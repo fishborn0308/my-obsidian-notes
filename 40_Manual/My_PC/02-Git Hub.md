@@ -65,3 +65,153 @@ git push -u origin main
 ```
 git config --global credential.helper osxkeychain
 ```
+
+## .gitignore
+### 1. `.gitignore` の作成手順
+
+1. Obsidianの保管庫（Vault）フォルダを**右クリック ＞ クイックアクション ＞ フォルダに新規ターミナル** を選択します。
+    
+2. ターミナルで以下のコマンドを入力して、空のファイルを作成します。
+    
+    Bash
+    
+    ```
+    touch .gitignore
+    ```
+    
+3. そのまま、ターミナルからエディタで中身を書き込みます（VS Codeが入っているので `code` コマンドが便利です）。
+    
+    Bash
+    
+    ```
+    code .gitignore
+    ```
+    
+    ※VS Codeが立ち上がらない場合は `nano .gitignore` で編集するか、Finderで隠しファイルを表示（`Command + Shift + .`）してテキストエディタで開いてください。
+    
+
+---
+
+### 2. コピペ用：Obsidian推奨の設定内容
+
+MacとWindowsの2台運用において、**競合（コンフリクト）を避けるために必須の設定**です。以下をコピーして貼り付けて保存してください。
+
+Plaintext
+
+```bash
+# --- Obsidian 内部設定 (デバイスごとに異なるため同期しない) ---
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/cache/
+.obsidian/plugins/obsidian-git/data.json
+
+# --- OS固有のゴミファイル ---
+.DS_Store
+*.swp
+Thumbs.db
+desktop.ini
+
+# --- セキュリティ・バックアップ ---
+# もし秘密情報を含む環境変数などがあれば
+.env
+```
+
+#### なぜこれが必要なのか（エンジニア的視点）
+
+- **`workspace.json`**: 「どのノートを開いているか」「サイドバーの幅」などの情報です。Macで開いている状態をWindowsに同期してしまうと、Windowsで開いた時にレイアウトが崩れたり、同期の衝突が頻繁に発生します。
+    
+- **`.DS_Store`**: Macがフォルダの表示設定を保存する隠しファイルです。Windows側では不要な「ゴミ」として扱われ、Gitの履歴を汚す原因になります。
+
+### 2. コピペ用：VSCode推奨の設定内容
+
+```bash
+# --- VS Code 関連 ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# --- OS 固有のファイル ---
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# --- 開発・スクリプト関連 (10_Script / 20_Program用) ---
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# ログファイル
+*.log
+*.bak
+*.tmp
+
+# --- セキュリティ・インフラ関連 (OSCP/ペンテスト意識) ---
+# 秘密情報 (絶対にコミットしない)
+.env
+.env.local
+*.pem
+*.key
+auth.json
+
+# ツール固有のテンポラリ
+.terraform/
+.vagrant/
+```
+
+---
+
+## 設定のポイント解説
+
+### 1. `.vscode/` フォルダの扱い
+
+.vscode/* で一度すべて無視したあと、!（否定）を使って、「共有したい設定（settings.jsonなど）」だけをあえて管理対象に戻しています。
+
+これにより、MacとWindowsでVS Codeのフォントサイズや拡張機能の設定を同期しつつ、作業状態（どのファイルを開いているか等）は同期しないようにできます。
+
+### 2. 言語・環境別の設定
+
+- **Python / Node.js**: `10_Script` や `20_Program` で使用するライブラリ（`node_modules` や `venv`）は、Gitで管理するには重すぎ、かつ各OSで再インストールすべきものなので除外しています。
+    
+- **秘密情報の保護**: ペンテスト学習中、APIキーやパスワードを `.env` に書くことがあるかもしれません。これを誤ってGitHub（Publicリポジトリなら特に）へPushしないよう、厳重に除外しています。
+    
+
+### 3. Brewfile (40_Brewfile) の同期
+
+Mac miniで使用している `Brewfile` は、そのままコミットしてOKです。これにより、万が一Macを再セットアップする際も、`brew bundle` コマンド一発で環境が復元できます。
+
+### 4. すでにファイルをコミット（保存）してしまっている場合
+
+もし、すでに `workspace.json` などがGitHubに上がってしまっている場合は、`.gitignore` を作っただけでは消えません。その場合は以下のコマンドをターミナルで実行してください。
+
+```Bash
+
+# キャッシュから削除（実ファイルは消えません）
+git rm --cached .obsidian/workspace.json
+git rm --cached .obsidian/workspace-mobile.json
+
+# 変更を確定
+git add .
+git commit -m "chore: ignore workspace settings"
+git push origin main
+```
+
