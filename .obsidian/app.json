@@ -3,5 +3,8 @@
   "promptDelete": false,
   "attachmentFolderPath": "99_Assets",
   "showLineNumber": true,
-  "tabSize": 2
+  "tabSize": 2,
+  "livePreview": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "00_inbox"
 }
