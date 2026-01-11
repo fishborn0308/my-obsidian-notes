@@ -7,7 +7,7 @@
       ""
     ]
   ],
-  "trigger_on_file_creation": false,
+  "trigger_on_file_creation": true,
   "auto_jump_to_cursor": false,
   "enable_system_commands": false,
   "shell_path": "",
@@ -15,8 +15,16 @@
   "enable_folder_templates": true,
   "folder_templates": [
     {
-      "folder": "",
-      "template": ""
+      "folder": "00_inbox",
+      "template": "40_Manual/Templates/Daily-Note-Template.md"
+    },
+    {
+      "folder": "10_RunBook",
+      "template": "40_Manual/Templates/Pentest-Project-Template.md"
+    },
+    {
+      "folder": "30_Knowledge/01_cheatsheets/Pentest",
+      "template": "40_Manual/Templates/Knowledge-Cheatsheet-Template.md"
     }
   ],
   "enable_file_templates": false,
