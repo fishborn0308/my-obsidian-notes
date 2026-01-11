@@ -11,14 +11,14 @@
             "id": "b4acfb8b6c30076a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "00_inbox/05-Checklist_App_Install.md",
-                "mode": "source",
-                "source": false
+                "aFile": ".obsidian/plugins/obsidian-git/data.json",
+                "bFile": ".obsidian/plugins/obsidian-git/data.json",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "05-Checklist_App_Install"
+              "icon": "diff",
+              "title": "Diff: data.json  (Working Tree)"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "workspace.json",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "ブックマーク"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -156,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2025-12-31.md",
+                "file": "40_Manual/My_PC/02-Runbook.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2025-12-31のアウトライン"
+              "title": "02-Runbookのアウトライン"
             }
           },
           {
@@ -192,11 +193,41 @@
       "templates:テンプレートを挿入": false,
       "command-palette:コマンドパレットを開く": false,
       "bases:Create new base": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "templater-obsidian:Templater": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "b4acfb8b6c30076a",
+  "active": "79ac4e5948472e7c",
   "lastOpenFiles": [
+    "40_Manual/My_PC/02-Runbook.md",
+    "Readme.md",
+    "40_Manual/My_PC/02-Git Hub.md",
+    "40_Manual/My_PC/02-VSCode・Obsidian.md",
+    "Query.md",
+    "40_Manual/My_PC/03-Maintenance.md",
+    "40_Manual/My_PC/03-App_Buckup.md",
+    "40_Manual/My_PC/02-Browser.md",
+    "40_Manual/My_PC/02-APP.md",
+    "40_Manual/My_PC/01-Infrastructure.md",
+    "30_Knowledge/01_cheatsheets/git_index.md",
+    "30_Knowledge/01_cheatsheets/Pentest/app/SQLMap.md",
+    "30_Knowledge/01_cheatsheets/Pentest/Log Poisoning.md",
+    "30_Knowledge/01_cheatsheets/Pentest/app/Nmap -SMNP.md",
+    "30_Knowledge/01_cheatsheets/Pentest/app/Nmap.md",
+    "30_Knowledge/01_cheatsheets/Pentest/app/Hydra.md",
+    "30_Knowledge/01_cheatsheets/Pentest/app",
+    "30_Knowledge/01_cheatsheets/Readme.md",
+    "30_Knowledge/01_cheatsheets/pronpt.md",
+    "40_Manual/My_PC/05-VM_Template.md",
+    "40_Manual/My_PC/04-Power_Management_Map.md",
+    "40_Manual/My_PC/02-RDP.md",
+    "40_Manual/My_PC/02-Karabiner-Elements.md",
+    "30_Knowledge/01_cheatsheets/common_practices/backup_strategies.md",
+    "30_Knowledge/00_app/vscode/shortcut.md",
+    "30_Knowledge/00_app/vscode/Regular_Expression.md",
+    "00_inbox/05-Checklist_App_Install.md",
     "スクリーンショット 2026-01-09 13.29.16.png",
     "99_Assets/スクリーンショット 2026-01-09 13.29.16.png",
     "99_Assets/スクリーンショット 2026-01-08 12.57.56.png",
@@ -204,36 +235,10 @@
     "99_Assets/スクリーンショット 2026-01-08 10.46.03.png",
     "99_Assets/スクリーンショット 2026-01-08 10.49.59.png",
     "99_Assets/スクリーンショット 2026-01-08 12.44.49.png",
-    "30_Knowledge/01_cheatsheets/tool/Nmap.md",
-    "30_Knowledge/01_cheatsheets/tool/Nmap -SMNP.md",
-    "10_RunBook/SMTPサービスへのスキャン.md",
-    "10_RunBook/Store.md",
-    "10_RunBook/SQLインジェクション攻撃検証3.md",
-    "30_Knowledge/01_cheatsheets/tool/SQL injection.md",
-    "00_inbox/05-Checklist_App_Install.md",
-    "30_Knowledge/01_cheatsheets/tool/SQLMap.md",
-    "10_RunBook/SQLインジェクション攻撃検証2.md",
-    "無題のファイル.md",
-    "10_RunBook/SQLMap Web Exploit 基本.md",
-    "10_RunBook/ログインブルートフォースログ調査.md",
-    "10_RunBook/ファイルアップロード攻撃検証.md",
-    "10_RunBook/LFI攻撃検証.md",
-    "10_RunBook/LFIログ調査.md",
-    "10_RunBook/HTTPファイル転送(Linux).md",
-    "10_RunBook/cron 基本.md",
-    "10_RunBook/AlwaysInstallElevated 権限昇格 基本.md",
     "99_Assets/スクリーンショット 2026-01-09 8.52.05.png",
     "99_Assets/スクリーンショット 2026-01-08 13.20.14.png",
     "99_Assets/スクリーンショット 2026-01-08 13.19.53.png",
-    "99_Assets/スクリーンショット 2026-01-08 10.40.39.png",
-    "40_Manual/My_PC/02-Karabiner-Elements.md",
-    "10_RunBook/LFI攻撃検証2.md",
-    "30_Knowledge/01_cheatsheets/tool/Reverse Shell.md",
-    "30_Knowledge/01_cheatsheets/tool/Log Poisoning.md",
-    "30_Knowledge/01_cheatsheets/tool/PHP PDO (MySQL).md",
-    "30_Knowledge/01_cheatsheets/tool/Hydra.md",
-    "30_Knowledge/01_cheatsheets/tool/File Upload.md",
-    "30_Knowledge/01_cheatsheets/tool",
+    "30_Knowledge/01_cheatsheets/Pentest",
     "90_Archive",
     "00_inbox/gemini",
     "40_Manual/My_PC",
@@ -242,7 +247,6 @@
     "無題のファイル.canvas",
     "30_Knowledge/01_cheatsheets/windows/powershell",
     "30_Knowledge/01_cheatsheets/windows/cmd",
-    "30_Knowledge/01_cheatsheets/windows",
-    "30_Knowledge/01_cheatsheets/linux"
+    "30_Knowledge/01_cheatsheets/windows"
   ]
 }

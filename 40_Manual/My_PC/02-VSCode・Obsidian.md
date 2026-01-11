@@ -1,6 +1,15 @@
 
 ## VSCode
 
+### ディレクトリ構成
+
+- 00_inbox
+- 10_Script
+- 20_Program
+- 30_Jsons
+- 40_Brewfile
+- 50_Configs
+
 ### VS Codeの設定(`settings.json`)
 
 `settings.json`はVS Codeの動作を細かく制御するためのファイルです。VS Codeを開き、`Cmd + Shift + P`でコマンドパレットを開き、「Preferences: Open User Settings (JSON)」と入力して開くことができます。
@@ -174,4 +183,23 @@
 
 ## Obsidian
 
-研究中
+### ディレクトリ構成
+
+- 00_inbox: メモ等、軽易なもの
+- 10_RunBook: CTF等のwrite upなど
+- 20_Projects: 検証など
+- 30_Knowledge: 学習などの成果
+	- 00_app: アプリ関連のマニュアル
+	- 01_cheatsheats: コマンドや構文を参照する辞書
+		- common_practices: OSに関わらず共通的なこと
+		- docker: Docker関連コマンド
+		- git: Git関連コマンド
+		- Pentest: ペンテスト関連チートシート
+			- app: Pentestツールに関するチートシート
+		- Linux: Linux関連コマンド
+		- Windows: Windows関連コマンド
+			- cmd: コマンドプロンプト関連コマンド
+			- powershell：パワーシェル関連コマンド
+- 40_Manual: マニュアル関連
+- 90_Archive: 過去のプロジェクトやまとめ終わったRunBookなど
+- 99_Assets: スクリーンショットなど
