@@ -1,0 +1,17 @@
+# PowerShell 一般的なエラーとトラブルシューティング
+
+このドキュメントでは、Windows PowerShellでよく遭遇する一般的なエラーメッセージと、その原因、基本的なトラブルシューティング方法について解説します。
+
+---
+
+## 1. よくあるエラーメッセージと解決策
+
+| エラーメッセージ | 考えられる原因 | 解決策 | セキュリティに関する考慮事項(ブルーチーム視点) |
+| :--- | :--- | :--- | :--- |
+| `The term 'CommandName' is not recognized as the name of a cmdlet, function, script file, or operable program.` | 1. コマンドレット/関数/スクリプト/実行ファイルが存在しない。<br>2. モジュールがインポートされていないか、モジュールパスにない。<br>3. スペルミス。 | 1. コマンド名が正しいか確認します。<br>2. `Get-Command -Name *CommandName*` で正しいコマンドレット名を探します。`Get-Module -ListAvailable` で利用可能なモジュールを確認し、`Import-Module`で必要なモジュールをインポートします。<br>3. `echo $env:Path` で外部プログラムのパスが正しく設定されているか確認します。 | 不審なコマンドレットやスクリプトの実行試行は、攻撃者がカスタムモジュールや外部ツールをロードしようとしていることを示唆する可能性があります。PowerShellスクリプトブロックロギング(イベントID 4104)を有効にして、実行されたスクリプトコードを監視し、不審な活動を特定します。AppLockerやWDACで実行を制限することも有効です。 |
+| `Access to the path 'FilePath' is denied.` (`パス 'FilePath' へのアクセスが拒否されました。`) | 1. ファイルやディレクトリへのアクセス権限がない。<br>2. PowerShellが管理者として実行されていない。<br>3. UAC (User Account Control) によるブロック。 | 1. 対象ファイル/ディレクトリのパーミッションを確認し、必要であれば変更します(例: `Set-ACL`)。<br>2. PowerShellを右クリックし「管理者として実行」を選択して再試行します。<br>3. UACのプロンプトが表示された場合は許可します。 | 不正なユーザーやプロセスによる権限昇格の試行や、保護されたファイルへのアクセス試行を示唆します。Windowsセキュリティイベントログ(イベントID 4656, 4663など)で、失敗したアクセス試行を監視し、異常なアクセスパターンを特定します。Sysmonのファイルイベント監視も有効です。 |
+| `Cannot find path 'Path' because it does not exist.` (`パス 'Path' が見つかりません。`) | 1. 指定されたファイルまたはディレクトリが存在しない。<br>2. ファイルまたはディレクトリへのパスが間違っている。 | 1. `Test-Path 'Path'` でパスの存在を確認します。<br>2. `Get-ChildItem` などでパスが正しいか確認し、絶対パスまたは正しい相対パスを指定します。<br>3. ドライブレターやUNCパスが正しいか確認します。 | 攻撃者が存在しないファイルやディレクトリにアクセスしようとしている、または不正なファイルを配置しようとしている可能性があります。特に、システムファイルや重要なディレクトリへのアクセス試行は監視すべきです。Sysmonのファイル作成イベントやプロセス作成イベントで、不審なパスへのアクセスがないか確認します。 |
+| `The process cannot access the file 'FilePath' because it is being used by another process.` (`プロセスはファイル 'FilePath' にアクセスできません。別のプロセスが使用中です。`) | 指定されたファイルが別のプロセスによってロックされている。 | タスクマネージャで不審なプロセスや関連プロセスを特定し、終了します。または、Sysinternalsの`handle`やリソースモニターでファイルロックを特定します。`Stop-Process`コマンドレットを利用します。 | 攻撃者が特定のファイルをロックして、正規のプロセスが実行できないようにDoS攻撃を試みている可能性があります。または、マルウェアがシステムファイルや重要なファイルをロックして、削除や変更を防いでいる可能性も考慮し、`Process Monitor`などで詳細なファイルアクセスアクティビティを調査します。 |
+| `Cannot bind parameter 'ParameterName'. Cannot convert value 'Value' to type 'Type'.` (`パラメーター 'ParameterName' をバインドできません。値 'Value' を型 'Type' に変換できません。`) | コマンドレットの引数(パラメーター)の型が正しくない、または期待される形式でない。 | `Get-Help CommandName -Parameter ParameterName` でパラメーターの型と期待される形式を確認します。正しいデータ型の値を渡すか、適切なキャストを行います。 | コマンドレットインジェクションの試行や、不正なパラメーターの利用を示唆する場合があります。特に、スクリプトや自動化ツールでこのエラーが頻繁に発生する場合は、入力値の検証が不十分である可能性があります。 |
+| `The script 'ScriptFile.ps1' cannot be run because the system has disabled script execution.` (`スクリプト 'ScriptFile.ps1' は、システムでスクリプトの実行が無効になっているため実行できません。`) | PowerShellの実行ポリシーによりスクリプトの実行が制限されている。 | `Get-ExecutionPolicy` で現在のポリシーを確認します。`Set-ExecutionPolicy RemoteSigned`(推奨)または`Bypass`(非推奨、一時的)でポリシーを変更します。 | 実行ポリシーはPowerShellスクリプトベースの攻撃を防ぐ重要なセキュリティ機能です。攻撃者が`Set-ExecutionPolicy`を実行しようとするのは、スクリプトを実行して永続化を図る試みである可能性が高いです。実行ポリシーの変更イベントを監視し、Sysmonやセキュリティイベントログでプロセスアクティビティを追跡すべきです。 |
+| `Test-Connection : Ping request could not find host google.com. Please check the name and try again.` | DNS解決に失敗している(名前解決ができない)。 | 1. ホスト名が正しいか確認します。<br>2. `Get-DnsClientServerAddress` でDNSサーバの設定を確認します。<br>3. `Resolve-DnsName google.com` で名前解決を試します。<br>4. ファイアウォールやルータの設定を確認し、DNSリクエストがブロックされていないか確認します。 | DNS設定の改ざん(例: `hosts`ファイルの変更、不正なDNSサーバへのリダイレクト)を示唆する場合があります。これはマルウェアのC2通信やフィッシングサイトへの誘導に利用されるため、DNSクエリの異常なパターンや、`hosts`ファイルの不正な変更を監視すべきです。 |
