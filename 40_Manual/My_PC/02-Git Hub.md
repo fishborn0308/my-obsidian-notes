@@ -123,7 +123,7 @@ desktop.ini
     
 - **`.DS_Store`**: Macがフォルダの表示設定を保存する隠しファイルです。Windows側では不要な「ゴミ」として扱われ、Gitの履歴を汚す原因になります。
 
-### 2. コピペ用：VSCode推奨の設定内容
+### 3. コピペ用：VSCode推奨の設定内容
 
 ```bash
 # --- VS Code 関連 ---
@@ -180,28 +180,30 @@ auth.json
 
 ---
 
-## 設定のポイント解説
+#### 設定のポイント解説
 
-### 1. `.vscode/` フォルダの扱い
+##### 1. `.vscode/` フォルダの扱い
 
 .vscode/* で一度すべて無視したあと、!（否定）を使って、「共有したい設定（settings.jsonなど）」だけをあえて管理対象に戻しています。
 
 これにより、MacとWindowsでVS Codeのフォントサイズや拡張機能の設定を同期しつつ、作業状態（どのファイルを開いているか等）は同期しないようにできます。
 
-### 2. 言語・環境別の設定
+##### 2. 言語・環境別の設定
 
 - **Python / Node.js**: `10_Script` や `20_Program` で使用するライブラリ（`node_modules` や `venv`）は、Gitで管理するには重すぎ、かつ各OSで再インストールすべきものなので除外しています。
     
 - **秘密情報の保護**: ペンテスト学習中、APIキーやパスワードを `.env` に書くことがあるかもしれません。これを誤ってGitHub（Publicリポジトリなら特に）へPushしないよう、厳重に除外しています。
     
 
-### 3. Brewfile (40_Brewfile) の同期
+##### 3. Brewfile (40_Brewfile) の同期
 
 Mac miniで使用している `Brewfile` は、そのままコミットしてOKです。これにより、万が一Macを再セットアップする際も、`brew bundle` コマンド一発で環境が復元できます。
 
 ### 4. すでにファイルをコミット（保存）してしまっている場合
 
 もし、すでに `workspace.json` などがGitHubに上がってしまっている場合は、`.gitignore` を作っただけでは消えません。その場合は以下のコマンドをターミナルで実行してください。
+
+#### Obsidian
 
 ```Bash
 
@@ -215,3 +217,15 @@ git commit -m "chore: ignore workspace settings"
 git push origin main
 ```
 
+#### VSCode
+
+```bash
+# キャッシュされているファイルを一旦すべて削除対象にする（実ファイルは消えません）
+git rm -r --cached .
+
+# 改めて .gitignore を反映して追加
+git add .
+
+# コミット
+git commit -m "chore: apply updated .gitignore"
+```
