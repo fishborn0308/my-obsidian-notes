@@ -14,7 +14,7 @@ const title = tp.file.title;
 type: cheatsheet
 category: <% category %>
 tags:
-	- Knowledge
+- Knowledge
 date: <% tp.date.now("YYYY-MM-DD") %>
 ---
 
