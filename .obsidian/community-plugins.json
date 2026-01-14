@@ -6,5 +6,11 @@
   "dataview",
   "templater-obsidian",
   "table-editor-obsidian",
-  "obsidian-excalidraw-plugin"
+  "obsidian-excalidraw-plugin",
+  "obsidian-memos",
+  "obsidian-hover-editor",
+  "copilot",
+  "obsidian-file-color",
+  "obsidian-icon-folder",
+  "obsidian-outliner"
 ]
