@@ -1,15 +1,27 @@
 ---
+created: 2026-01-09 14:54
+modified: 2026-01-17 18:35
+environment:
+  - Server/DB
+vulnearability:
+  - SQLi
+type: pentest-walkthrough
+pentest_category: Web
+platform:
+  - PurpleFlair
+tools: []
+cve: []
 tags:
-  - Webアプリ脆弱性
-title: SQLインジェクション攻撃検証3
 ---
+# [Pentest-Walkthrough] Web - Project: SQLインジェクション攻撃検証3
+
 あなたの会社で管理しているサーバに保存されていたファイルが漏洩したことがわかりました。漏洩したファイルは、サーバの管理者情報を記載していたファイルusers.csvです。
 
 ホームページでは、商品を検索する機能しか提供しておらず、漏洩したファイルは外部に公開していなかったことから、漏洩は考えにくいとのことでした。 しかし、調査の結果、該当のWebサイトにSQLインジェクション脆弱性が存在し、これを通じてファイルに書き込みが可能であることが判明しました。
 
 SQLインジェクション脆弱性について調査し、その脆弱性を利用して、users.csvからユーザー名adminのパスワードを解答してください。
 
-## 脆弱性の特定
+### 脆弱性の特定
 
 この問題のWebサイトには、SQLインジェクション脆弱性があります。
 
@@ -38,6 +50,7 @@ SELECT <在庫を表すカラム名> FROM <商品情報のテーブル名> WHERE
 この結果、青い花瓶が出力されることから、入力値青い花瓶' AND '1'='1が上記のSQL文として解釈されているため、SQLインジェクションが存在することがわかります。
 
 データベースの特定
+
 次にアプリケーションが使用しているデータベースを特定します。
 
 先程用いた入力からシングルクォートを1つ削除した、不完全なSQL文を構成する入力を試してみます。
@@ -75,7 +88,7 @@ SELECT <在庫を表すカラム名> FROM <商品情報のテーブル名> WHERE
 
 この結果、アプリケーションからのレスポンスが指定した秒数だけ遅くなることが確認できたため、データベースにはMySQLが使用されていることが分かります。
 
-## WebShellの作成
+### WebShellの作成
 
 それでは、システムコマンドを実行するためにWebShellを作成しましょう。
 
@@ -112,7 +125,8 @@ search.php
 shell.php
 style.css
 </pre>
-## 脆弱性の利用
+
+### 脆弱性の利用
 
 問題の答えは、users.csvに存在することはわかっていますが、パスがわかっていません。 そのため、findコマンドを使用し、users.csvのパスを検索します。
 
@@ -129,4 +143,5 @@ curl "http://<target1_ip>/shell.php?cmd=cat+/tmp/secret/users.csv"
 test_user,test@test.co.jp,awragwaw3e
 admin,admin@test.co.jp,dHj44@Cj63E4oGy5oNQc
 </pre>
+
 問題の答えは、ユーザー名adminのパスワードであることから、dHj44@Cj63E4oGy5oNQcとなります。

@@ -1,6 +1,6 @@
 ---
 created: 2026-01-09 16:40
-modified: 2026-01-17 18:28
+modified: 2026-01-17 18:49
 environment:
   - Server/Mail
 vulnearability: []
@@ -13,11 +13,11 @@ cve: []
 tags:
 ---
 
-## [Pentest-Walkthrough] Web - Project: SMTPサービスへのスキャン
+# [Pentest-Walkthrough] Web - Project: SMTPサービスへのスキャン
 
 攻撃対象マシンのSMTPサーバの情報を集めてSMTP通信をしましょう。
 
-### SMTPサービスへのスキャン
+## SMTPサービスへのスキャン
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -55,7 +55,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.39 seconds
 └─$ 
 ```
 
-### NSEスクリプトを用いたSMTPサーバでサポートされているコマンドの確認
+## NSEスクリプトを用いたSMTPサーバでサポートされているコマンドの確認
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -75,7 +75,7 @@ Nmap done: 1 IP address (1 host up) scanned in 9.27 seconds
 └─$ 
 ```
 
-### Netcatを用いたメールの送信
+## Netcatを用いたメールの送信
 
 Netcatコマンドを用いてSMTPサーバに接続します。
 

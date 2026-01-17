@@ -13,6 +13,7 @@ tools: []
 cve: []
 tags:
   - Log
+  - Incident_Response
 ---
 # [Pentest-Walkthrough] Web - Project: LFIログ調査
 

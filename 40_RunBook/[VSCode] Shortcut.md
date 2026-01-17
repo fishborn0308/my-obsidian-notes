@@ -1,4 +1,17 @@
-# VS Code ショートカットキーまとめ (目的別) ⌨️
+---
+created: 2025-09-23 10:56
+modified: 2026-01-17 18:55
+environment: []
+vulnearability: []
+runbook_category: Cheatsheet
+tools: []
+tags:
+  - VSCode
+---
+
+# Cheatsheet - Shortcut
+
+## VS Code ショートカットキーまとめ (目的別) ⌨️
 
 よく使うものから順に覚えるのがオススメです。まずは**「基本操作」**と**「テキスト編集」**からマスターしましょう！
 

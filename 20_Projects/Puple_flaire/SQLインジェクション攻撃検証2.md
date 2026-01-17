@@ -2,7 +2,7 @@
 created: 2026-01-09 13:41
 modified: 2026-01-17 18:34
 environment:
-  - Server/Web
+  - Server/DB
 vulnearability:
   - SQLi
 type: pentest-walkthrough

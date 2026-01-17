@@ -13,8 +13,7 @@ tools: []
 cve: []
 tags:
 ---
-
-## [Pentest-Walkthrough] OS - Project: AlwaysInstallElevated 権限昇格 基本
+# [Pentest-Walkthrough] OS - Project: AlwaysInstallElevated 権限昇格 基本
 
 ### 1. AlwaysInstallElevatedによる権限昇格
 

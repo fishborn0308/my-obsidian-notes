@@ -1,6 +1,6 @@
 ---
 created: 2026-01-09 12:22
-modified: 2026-01-17 18:29
+modified: 2026-01-17 18:49
 environment:
   - Server/Web
 vulnearability:
@@ -15,7 +15,7 @@ tags:
   - Log
 ---
 
-## [Pentest-Walkthrough] Web - Project: LFI攻撃検証2
+# [Pentest-Walkthrough] Web - Project: LFI攻撃検証2
 
 Webアプリケーションを調査して脆弱性を特定し、以下に示されるタスクを完了してください。
 
