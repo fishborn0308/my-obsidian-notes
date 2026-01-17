@@ -1,29 +1,19 @@
 ---
+created: 2026-01-08 09:40
+modified: 2026-01-17 18:18
+environment:
+  - OS/Linux
+vulnearability: []
+type: pentest-walkthrough
+pentest_category: OS
+platform:
+  - PurpleFlair
+tools: []
+cve: []
 tags:
-  - ペネトレーションテスト
-title: HTTPファイル転送(Linux)
+  - File_Transfer
 ---
-
-
-SSHを使用して一般ユーザとしてログインし、指示されたタスクを完了してください。
-
-なお、攻撃対象マシンに接続するには、以下の認証情報を用いて、SSH接続します。
-
-    ユーザ名: user
-    パスワード: password
-    ポート番号: 2223
-
-SSHコマンドは以下の通りとなります。
-
-```
-ssh -p 2223 user@10.234.132.140
-
-```
-
-ログインディレクトリ`/home/user`に、`this is a file to get a flag!!!`という内容を持つ`file.txt`ファイルを配置してください。ハッシュ値は、MD5で`8c1b553e197b7ceb4035b4d86034476c`となります。毎分ごとに確認が行われ、正しく配置されていると、ログインディレクトリに`flag.txt`が配置されます。その中に示されているフラグ文字列を解答してください。
-
-
-## 解説
+# [Pentest-Walkthrough] OS - Project: HTTPファイル転送(Linux)
 
 まず、SSHを利用して攻撃対象マシンにログインします。
 
@@ -69,6 +59,7 @@ users
 help
 
 ```
+
 ログインディレクトリ/home/userに、this is a file to get a flag!!!という内容を持つfile.txtファイルを配置する必要があります。前述の使えるコマンドを用いてfile.txtを配置する方法を考えましょう。
 
 コマンドを確認すると、curlコマンドが確認できます。よって、curlコマンドから上記の条件を満たすファイルを転送することを考えます。

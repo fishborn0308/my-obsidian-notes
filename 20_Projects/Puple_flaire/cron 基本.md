@@ -1,6 +1,6 @@
 ---
-created:
-modified:
+created: 2026-01-08 11:23
+modified: 2026-01-17 18:18
 environment:
   - OS/Linux
 vulnearability:
@@ -19,7 +19,7 @@ tags:
 
 なお、この問題ではKali Linuxのみを利用します。
 
-## 前準備
+### 前準備
 
 ユーザごとのcron設定の見え方を確認するため、kaliユーザとは別のユーザを作成します。
 
@@ -42,11 +42,12 @@ sudo chsh testuser -s /bin/zsh
 ```
 
 ユーザの作成とログインシェルの設定が完了したら、以下の手順で操作して、cronについて学習しましょう。
-## /etc/crontabの編集
+
+### /etc/crontabの編集
 
 /etc/crontabを編集することで、定期実行をしてみましょう。
 
-### 1. /etc/crontabファイルの内容と権限の確認
+#### 1. /etc/crontabファイルの内容と権限の確認
 
 cronの設定ファイル/etc/crontabの内容と権限を確認しましょう。
 
@@ -87,7 +88,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 -rw-r--r--であることと所有者・所有グループがrootであることから、rootユーザーが読み書きの権限を持ち、kaliなどの一般ユーザが読み込み権限のみを持っていることがわかります。
 
-### 2. /etc/crontabファイルによるcron設定
+#### 2. /etc/crontabファイルによるcron設定
 
 root権限で1分おきにwhoamiコマンドを実行し、その結果を/home/kali/crontest.txtファイルへ追記する​cronを設定しましょう。
 
@@ -97,7 +98,7 @@ root権限で1分おきにwhoamiコマンドを実行し、その結果を/home/
 */1 * * * * root whoami >> /home/kali/crontest.txt
 ```
 
-### 3. /etc/crontabファイルによるcron実行の確認
+#### 3. /etc/crontabファイルによるcron実行の確認
 
 cronによりwhoamiの実行結果が/home/kali/crontest.txtファイルへ追記されていることを確認しましょう。
 
@@ -111,7 +112,7 @@ root
 ...(snip)...
 ```
 
-### 4. testuserユーザでの/etc/crontabファイルの確認
+#### 4. testuserユーザでの/etc/crontabファイルの確認
 
 testuserユーザで/etc/crontabファイルを閲覧できることを確認しましょう。
 
@@ -136,20 +137,19 @@ testuserユーザで/etc/crontabファイルを閲覧でき、実行されるコ
 
 kaliユーザで追加したcron設定を、kaliユーザとは別のtestuserユーザで確認できます。
 
-### 5. /etc/crontabファイルの設定初期化
+#### 5. /etc/crontabファイルの設定初期化
 
 次の項目から別の内容となります。原状復帰のため、kaliユーザへ戻り、/etc/crontabファイルへ追加した設定を削除しましょう。
 
 ログアウトし、testuserユーザからkaliユーザへ戻ります。
 
-
 テキストエディタで/etc/crontabファイルを開き、追加したcron設定を削除します。
 
-## crontabコマンドでの設定
+### crontabコマンドでの設定
 
 /etc/crontabの編集ではなく、crontabコマンドを使って設定する方法があります。この方法を学びましょう。
 
-### 1. /var/spool/cron配下のファイル・ディレクトリ権限と初期状態の確認
+#### 1. /var/spool/cron配下のファイル・ディレクトリ権限と初期状態の確認
 
 /var/spool/cron配下のファイル・ディレクトリの権限を確認しましょう。
 
@@ -164,13 +164,13 @@ drwxr-xr-x 6 root root    4096 Aug  8  2023 ..
 drwx-wx--T 2 root crontab 4096 Nov  8 11:15 crontabs
 ```
 
-### 2. crontabコマンドによるcron設定
+#### 2. crontabコマンドによるcron設定
 
 1分おきにwhoamiコマンドを実行し、その結果を/home/kali/crontab.txtファイルへ追記する​cronを設定しましょう。
 
 crontab -eコマンドにてユーザのcronの設定を行うことができます。これを実行するとviでcronの設定を書き込めるようになるため、*/1 * * * * whoami >> /home/kali/crontab.txtを追記して保存しましょう。
 
-### 3. crontabコマンドによるcron設定の確認
+#### 3. crontabコマンドによるcron設定の確認
 
 crontab -lコマンドを実行し、cronの設定を確認しましょう。
 
@@ -181,7 +181,7 @@ crontab -lコマンドを実行し、cronの設定を確認しましょう。
 */1 * * * * whoami >> /home/kali/crontab.txt
 ```
 
-### 4. /var/spool/cron/crontabs配下のファイルによるcron設定の確認
+#### 4. /var/spool/cron/crontabs配下のファイルによるcron設定の確認
 
 /var/spool/cron配下に作成されるcron設定ファイルを閲覧することができるか確認しましょう。
 
@@ -203,7 +203,7 @@ drwxr-xr-x 3 root root    4096 Dec  9  2022 ..
 */1 * * * * whoami >> /home/kali/crontab.txt
 ```
 
-### 5. crontabコマンドによるcron実行の確認
+#### 5. crontabコマンドによるcron実行の確認
 
 cronによりwhoamiコマンドの実行結果が/home/kali/crontab.txtファイルへ追記されていることを確認しましょう。
 
@@ -220,15 +220,21 @@ kali
 Authorization required, but no authorization protocol specified
 
 cron: Authorization required, but no authorization protocol specified
+
 というエラーメッセージは、通常、X Window System（X11）の表示に関連するプログラム（グラフィカルなアプリケーションやユーティリティ）をcronジョブとして実行しようとしたときに発生します。
 
 XAUTHORITY=/home/your_username/.Xauthority
+
 DISPLAY=:0.0
-# 以下にジョブを記述
+
+## 以下にジョブを記述
+
 * * * * * /path/to/your/script.sh
 
 xhost +local:
-# または特定のユーザー/ホストからのアクセスを許可
+
+## または特定のユーザー/ホストからのアクセスを許可
 
 DISPLAY=:0.0 /path/to/your/script.sh
+
 cronジョブのコマンドラインまたはcrontabの冒頭で、使用したいディスプレイを指定します。通常は:0や:0.0です。

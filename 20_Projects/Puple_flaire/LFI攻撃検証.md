@@ -1,8 +1,22 @@
 ---
+created: 2026-01-08 19:00
+modified: 2026-01-17 18:18
+environment:
+  - Server/Web
+vulnearability:
+  - LFI
+type: pentest-walkthrough
+pentest_category: Web
+platform:
+  - PurpleFlair
+tools:
+  - Burp
+cve: []
 tags:
-  - Webアプリ脆弱性
-title: LFI攻撃検証
+  - Log
 ---
+# [Pentest-Walkthrough] Web - Project: LFI攻撃検証
+
 セキュリティアナリストから、自社サービスのユーザ情報が漏洩している可能性があると報告されました。ユーザ情報は、Webアプリケーションが稼働しているサーバ内に保存されています。これらをふまえて、利用者の情報から攻撃を受けた可能性のあるサービスを停止しました。調査を進めるなかで、同僚がローカルファイルインクルージョン(LFI)脆弱性が存在すると指摘しました。
 
 そこで、あなたは脆弱性を利用して、テストアカウントから他ユーザのパスワードが取得できることを確認することになりました。
@@ -193,6 +207,7 @@ User-Agentに
 出力された文字列にファイルやディレクトリの一覧が含まれているので、サーバサイドでの任意コードの実行ができました。
 
 パスワードの取得
+
 次に、任意コードの実行を利用してalessandroのパスワードを取得します。 ファイル一覧にlogin.phpが含まれてたのでcをcat%20login.phpとして、ファイルの内容を読み出します。
 
 ```
@@ -230,6 +245,7 @@ $res = $stmt->execute();
 if ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
     if (strcmp($_POST['pass'], $res['pass']) == 0) {
 ```
+
 userテーブルが存在し、pass列にパスワードが格納されていることが推定できます。
 
 以上から、新たにUser-Agentに以下のスクリプトを設定し、アクセスログを参照することで実行します。

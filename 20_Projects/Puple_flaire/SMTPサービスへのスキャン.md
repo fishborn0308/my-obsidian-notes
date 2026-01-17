@@ -1,11 +1,23 @@
 ---
+created: 2026-01-09 16:40
+modified: 2026-01-17 18:28
+environment:
+  - Server/Mail
+vulnearability: []
+type: pentest-walkthrough
+pentest_category: Web
+platform:
+  - PurpleFlair
+tools: []
+cve: []
 tags:
-  - プラットフォーム脆弱性診断
-title: SMTPサービスへのスキャン
 ---
+
+## [Pentest-Walkthrough] Web - Project: SMTPサービスへのスキャン
+
 攻撃対象マシンのSMTPサーバの情報を集めてSMTP通信をしましょう。
 
-## SMTPサービスへのスキャン
+### SMTPサービスへのスキャン
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -42,7 +54,8 @@ Nmap done: 1 IP address (1 host up) scanned in 0.39 seconds
 ┌──(kali㉿kali)-[~]
 └─$ 
 ```
-## NSEスクリプトを用いたSMTPサーバでサポートされているコマンドの確認
+
+### NSEスクリプトを用いたSMTPサーバでサポートされているコマンドの確認
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -62,7 +75,7 @@ Nmap done: 1 IP address (1 host up) scanned in 9.27 seconds
 └─$ 
 ```
 
-## Netcatを用いたメールの送信
+### Netcatを用いたメールの送信
 
 Netcatコマンドを用いてSMTPサーバに接続します。
 
@@ -110,6 +123,7 @@ MAIL FROM: <email_address>
 また、送信先のメールアドレスを指定するには、以下のコマンドを実行します。
 
 RCPT TO: <email_address>
+
 ここでは、送信元に<from@example.com>、送信先に<msfadmin@metasploitable.localdomain>を指定して実行します。
 
 ```
@@ -154,6 +168,7 @@ quit
 ```
 
 参考
+
 攻撃者はアカウント/メーリングリストの存在を確認するためにVRFY/EXPNを用いることがあります。
 
 例えば、以下のようなコマンドを実行することで、アカウントmsfadminは存在し、fsmadminは存在しないことがわかります。
