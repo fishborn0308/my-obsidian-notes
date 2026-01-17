@@ -14,11 +14,11 @@ created: 2026-01-11 11:48
 modified: 2026-01-17 14:08---
 environment:
 vulnearability:
-knowledge_category: Web-arch
+knowledge_category:  <% knowledge_category %>
 tags:
 ---
 
-# [<% tp.frontmatter["knowledge_category"] %>] <% tp.file.title %>
+# [<% tp.frontmatter.knowledge_category %>] <% tp.file.title %>
 
 ## 概要
 
