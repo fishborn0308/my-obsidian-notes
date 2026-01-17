@@ -4,6 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "knowledge_category": "text",
-    "command": "multitext"
+    "command": "multitext",
+    "tool": "checkbox"
   }
 }

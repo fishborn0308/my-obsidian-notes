@@ -10,15 +10,15 @@ const title = tp.file.title;
 
 -%>
 ---
-created: 2026-01-11 11:48
-modified: 2026-01-17 14:08---
+created:
+modified:
 environment:
 vulnearability:
 knowledge_category:  <% knowledge_category %>
 tags:
 ---
 
-# [<% tp.frontmatter.knowledge_category %>] <% tp.file.title %>
+# [<% knowledge_category %>] <% tp.file.title %>
 
 ## 概要
 
