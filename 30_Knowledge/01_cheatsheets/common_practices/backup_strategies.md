@@ -1,13 +1,22 @@
 ---
+type: cheatsheet
+category: <% category %>
+tags:
+- Knowledge
+date: <% tp.date.now("YYYY-MM-DD") %>
+---
+
+
+
+---
+created:
+updated:
+environment-vulnerability:
+knowledge-category:best_practice
 tags:
   - backup
   - disaster_recovery
   - security
-  - best_practice
-  - cheatsheet
-title: backup_strategies - 堅牢なデータ保護のためのバックアップ戦略
-summary: ハードウェア故障、サイバー攻撃、人為的ミスなどによるデータ損失を防ぎ、システムの復旧能力を確保するための計画と実装について解説します。
-related:
   - rsync
   - tar
   - cron
