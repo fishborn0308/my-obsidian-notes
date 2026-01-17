@@ -13,9 +13,8 @@ created:
 modified:
 environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
 vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
-type: pentest-log
-pentest_category: <% category %>
-platform: [] # 例: [HTB, THM, Purple_flare]
+type: 
+research_category: <% category %>
 target_ip: <% targetIp %>
 tools: [] # 例: [nmap, gobuster, hydra]
 cve: [] # 例: [CVE-2025-3365]

@@ -12,8 +12,8 @@ const title = tp.file.title;
 ---
 created:
 modified:
-environment:
-vulnearability:
+environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
+vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
 knowledge_category:  <% knowledge_category %>
 tags:
 ---
