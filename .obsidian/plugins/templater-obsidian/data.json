@@ -1,6 +1,6 @@
 {
   "command_timeout": 5,
-  "templates_folder": "40_Manual/Templates",
+  "templates_folder": "40_RunBook/Templates",
   "templates_pairs": [
     [
       "",
@@ -13,20 +13,7 @@
   "shell_path": "",
   "user_scripts_folder": "",
   "enable_folder_templates": true,
-  "folder_templates": [
-    {
-      "folder": "00_inbox",
-      "template": "40_Manual/Templates/Daily-Note-Template.md"
-    },
-    {
-      "folder": "10_RunBook",
-      "template": "40_Manual/Templates/Pentest-Project-Template.md"
-    },
-    {
-      "folder": "30_Knowledge/01_cheatsheets/Pentest",
-      "template": "40_Manual/Templates/Knowledge-Cheatsheet-Template.md"
-    }
-  ],
+  "folder_templates": [],
   "enable_file_templates": false,
   "file_templates": [
     {

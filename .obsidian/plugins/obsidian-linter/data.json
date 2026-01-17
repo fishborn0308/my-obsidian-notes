@@ -67,7 +67,7 @@
       "date-modified-source-of-truth": "file system",
       "format": "YYYY-MM-DD HH:mm",
       "convert-to-utc": false,
-      "update-on-file-contents-updated": "after 1 minute"
+      "update-on-file-contents-updated": "never"
     },
     "yaml-title": {
       "enabled": false,
@@ -276,7 +276,9 @@
   "lintOnFileChange": false,
   "displayLintOnFileChangeNotice": false,
   "settingsConvertedToConfigKeyValues": true,
-  "foldersToIgnore": [],
+  "foldersToIgnore": [
+    "40_RunBook/Templates"
+  ],
   "filesToIgnore": [],
   "linterLocale": "system-default",
   "logLevel": "ERROR",
