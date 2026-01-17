@@ -72,7 +72,7 @@ brew install mas
 
 ### 1. 仮想化・ネットワーク（最優先）
 
-* [ ] **VMware**: 仮想化基盤
+* [x] **VMware**: 仮想化基盤
 * [ ] **GNS3**: ネットワークシミュレータ
 * [ ] **WSL2 (Kali Linux)**: ペネトレーション環境
 * [x] **Wireshark**: パケット解析
