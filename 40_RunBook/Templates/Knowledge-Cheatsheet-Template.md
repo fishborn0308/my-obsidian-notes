@@ -1,21 +1,26 @@
+---
+created: 2026-01-11 11:48
+modified: 2026-01-17 13:52
+---
 <%*
 
 // 1. カテゴリを選択させる（変数に格納して実行を安定させる）
 
-const categories = ['Git', 'Docker', 'Linux', 'Windows', 'Pentest'];
+const knowledge_categories = ['Command', 'OS', 'Server', 'Network', 'Web-arch', 'Vuln-theory', 'Exploit-technique', 'Language', 'Security'];
 
-const category = await tp.system.suggester(categories, categories);
+const knowledge_category = await tp.system.suggester(knowledge_categories, knowledge_categories);
 
 const title = tp.file.title;
 
 -%>
 
 ---
-type: cheatsheet
-category: <% category %>
+created:
+modified:
+environment:
+vulnearability:
+knowledge_category: <% knowledge_category %>
 tags:
-- Knowledge
-date: <% tp.date.now("YYYY-MM-DD") %>
 ---
 
 ## [<% tp.frontmatter["category"] %>] <% tp.file.title %>

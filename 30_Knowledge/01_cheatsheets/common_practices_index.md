@@ -18,5 +18,5 @@ summary: 'OSやプラットフォームを問わず、ITインフラの設計、
 
 | チートシート | 概要 |
 | :--- | :--- |
-| [`backup_strategies.md`](./common_practices/backup_strategies.md) | 堅牢なデータ保護のためのバックアップ戦略。3-2-1ルール、RTO/RPO、各種バックアップ方式について解説します。 |
+| [`backup_strategies.md`](backup_strategies.md) | 堅牢なデータ保護のためのバックアップ戦略。3-2-1ルール、RTO/RPO、各種バックアップ方式について解説します。 |
 | [`security_best_practices.md`](./common_practices/security_best_practices.md) | 堅牢なシステムのための基本原則。最小権限の原則、ログ管理、脆弱性管理など、セキュリティの基本を網羅します。 |
