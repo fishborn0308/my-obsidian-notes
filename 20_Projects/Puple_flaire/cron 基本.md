@@ -1,8 +1,19 @@
 ---
+created:
+modified:
+environment:
+  - OS/Linux
+vulnearability:
+  - Cron
+type: pentest-walkthrough
+pentest_category: OS
+platform:
+  - PurpleFlair
+tools: []
+cve: []
 tags:
-  - ペネトレーションテスト
-title: cron 基本
 ---
+# [Pentest-Walkthrough] OS - Project: Cron 基本
 
 この問題では、cronを自身で設定することでcronの仕組みを理解することを目的とします。cronの設定は、/etc/crontabファイルを編集する方法と、crontab -eコマンドを利用して設定する2通りの方法があり、この問題ではそれぞれを学習します。
 
@@ -205,19 +216,6 @@ kali
 kali
 ...(snip)...
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Authorization required, but no authorization protocol specified
 
