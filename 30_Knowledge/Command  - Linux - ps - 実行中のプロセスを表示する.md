@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'ps'
-  - 'process_management'
-  - 'troubleshooting'
-  - 'top'
-  - 'htop'
-  - 'pstree'
-  - 'pgrep'
-  - 'kill'
+  - ps
+  - process_management
+  - troubleshooting
+  - top
+  - htop
+  - pstree
+  - pgrep
+  - kill
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:42
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ps` - 実行中のプロセスを表示する
+# Command  - Linux - ps - 実行中のプロセスを表示する
 
 ## 概要
 
@@ -123,5 +129,4 @@ ps aux | grep -i "sentinel\|falcon\|defender"
 ## 注意点・補足
 
 * **`ps aux` vs `ps -ef`**: どちらも「全プロセスを表示する」という目的は同じですが、表示される情報が異なります。`aux` はCPU/メモリ使用率などリソース中心、`-ef` はUID/PPIDなどプロセス関係中心の情報を提供します。どちらかに慣れて、一貫して使うのが良いでしょう。
-
 

@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'python'
-  - 'scripting'
-  - 'interpreter'
-  - 'bash'
-  - 'perl'
-  - 'ruby'
-  - 'pip'
-  - 'venv'
+  - python
+  - scripting
+  - interpreter
+  - bash
+  - perl
+  - ruby
+  - pip
+  - venv
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:44
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `python` - Pythonインタプリタを実行する
+# Command  - Linux - python - Pythonインタプリタを実行する
 
 ## 概要
 
@@ -99,8 +105,8 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `ModuleNotFoundError: No module named 'requests'`
-    * **考えられる原因**: スクリプトが必要とするライブラリ（この場合は `requests`）がインストールされていません。
-    * **解決策**: `pip install requests` を実行して、必要なパッケージをインストールしてください。**仮想環境 (`venv`)** を利用することが強く推奨されます。
+		* **考えられる原因**: スクリプトが必要とするライブラリ（この場合は `requests`）がインストールされていません。
+		* **解決策**: `pip install requests` を実行して、必要なパッケージをインストールしてください。**仮想環境 (`venv`)** を利用することが強く推奨されます。
 
 ## 環境変数と設定ファイル
 
@@ -131,5 +137,4 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 ## 注意点・補足
 
 * **仮想環境 (`venv`) の利用**: システムのPython (`/usr/bin/python3`) はOS自身も利用しており、ここに `pip` で直接パッケージを追加・変更するとOSが不安定になる可能性があります。**プロジェクトごとに必ず `python3 -m venv <dir>` で仮想環境を作成し、それを有効化してから利用する**のがベストプラクティスです。
-
 

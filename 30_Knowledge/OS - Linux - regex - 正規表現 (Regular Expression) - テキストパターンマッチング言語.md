@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'regex'
-  - 'regular_expression'
-  - 'text processing'
-  - 'grep'
-  - 'sed'
-  - 'grep'
-  - 'sed'
-  - 'awk'
-  - 'wildcards'
+  - regex
+  - regular_expression
+  - text_processing
+  - grep
+  - sed
+  - awk
+  - wildcards
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:48
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
+
+# OS - Linux - regex - 正規表現 (Regular Expression) - テキストパターンマッチング言語
 
 # 正規表現 (Regular Expression) - テキストパターンマッチング言語
 
@@ -134,5 +140,4 @@ grep -E -r -i "password\s*[:=]" /var/www/html 2>/dev/null
 ## 注意点・補足
 
 * **オンラインテスターの活用**: 複雑な正規表現を作成・デバッグする際は、**Regex101.com** や **RegExr.com** といったWebサイトが非常に役立ちます。パターンの意味を解説してくれたり、リアルタイムでマッチングを試したりできます。
-
 

