@@ -1,17 +1,22 @@
 ---
 tags:
-  - 'ufw'
-  - 'firewalld'
-  - 'iptables'
-  - 'firewall'
-  - 'netfilter'
-  - 'security'
-  - 'netfilter'
-  - 'systemd'
-  - 'fail2ban'
+  - ufw
+  - firewalld
+  - iptables
+  - firewall
+  - security
+  - netfilter
+  - systemd
+  - fail2ban
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `ufw` vs `firewalld` vs `iptables` - Linuxファイアウォール管理
+# OS  - Linux - firewall - `ufw` vs `firewalld` vs `iptables` - Linuxファイアウォール管理
 
 ## 概要
 
@@ -113,9 +118,9 @@ sudo iptables -I INPUT 1 -s 198.51.100.10 -j DROP
 
 * **タスク**: 侵入したサーバーのファイアウォール設定を調査し、「穴」を探す。
 * **調査コマンド**:
-  * **ufw**: `sudo ufw status`
-  * **firewalld**: `sudo firewall-cmd --list-all`
-  * **iptables**: `sudo iptables -L -n -v`
+	* **ufw**: `sudo ufw status`
+	* **firewalld**: `sudo firewall-cmd --list-all`
+	* **iptables**: `sudo iptables -L -n -v`
 * **解説**: 攻撃者はまずファイアウォール設定を偵察し、許可されているポート（例: DNS/53, HTTP/80）を使ってC2通信を偽装したり、もしroot権限を奪取できれば、自分たちの通信を許可するルールを追加したりファイアウォール自体を無効化します。
 
 ---
@@ -127,15 +132,15 @@ sudo iptables -I INPUT 1 -s 198.51.100.10 -j DROP
 ### 関連する設定ファイル
 
 * **`ufw`**:
-  * `/etc/default/ufw`: メイン設定ファイル。
-  * `/etc/ufw/before.rules`, `after.rules`: カスタムルール用。
+	* `/etc/default/ufw`: メイン設定ファイル。
+	* `/etc/ufw/before.rules`, `after.rules`: カスタムルール用。
 * **`firewalld`**:
-  * `/etc/firewalld/firewalld.conf`: デーモンのメイン設定ファイル。
-  * `/etc/firewalld/zones/`: ゾーン設定ファイル（XML形式）が格納される。
+	* `/etc/firewalld/firewalld.conf`: デーモンのメイン設定ファイル。
+	* `/etc/firewalld/zones/`: ゾーン設定ファイル（XML形式）が格納される。
 * **`iptables`**:
-  * ルールはメモリ上で管理され、特定のファイルに自動保存されません。
-  * **RHEL/CentOS**: `/etc/sysconfig/iptables` に `service iptables save` で保存。
-  * **Debian/Ubuntu**: `iptables-persistent` パッケージを使い `/etc/iptables/rules.v4` に保存。
+	* ルールはメモリ上で管理され、特定のファイルに自動保存されません。
+	* **RHEL/CentOS**: `/etc/sysconfig/iptables` に `service iptables save` で保存。
+	* **Debian/Ubuntu**: `iptables-persistent` パッケージを使い `/etc/iptables/rules.v4` に保存。
 
 ## セキュリティに関する考慮事項
 
@@ -158,5 +163,4 @@ sudo iptables -I INPUT 1 -s 198.51.100.10 -j DROP
 
 * **SSH接続の許可を忘れずに**: リモートサーバーでファイアウォールを有効化する際は、**必ずSSHの接続を許可するルールを追加してから有効化してください**。これを忘れると、サーバーから締め出されてしまいます。
 * **ツールの併用は避ける**: `firewalld`, `ufw`, `iptables`サービスなどを**同時に有効にしないでください**。互いに干渉し、予期せぬ動作を引き起こす原因となります。
-
 

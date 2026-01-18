@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'gpg'
-  - 'pgp'
-  - 'encryption'
-  - 'security'
-  - 'openssl'
-  - 'age'
-  - 'tar'
+  - gpg
+  - pgp
+  - encryption
+  - security
+  - openssl
+  - age
+  - tar
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:37
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `gpg` - OpenPGP暗号化・署名ツール
+# Command  - Linux - gpg - OpenPGP暗号化・署名ツール
 
 ## 概要
 
@@ -73,13 +79,13 @@ tar -czf - /path/to/loot | gpg -c -o loot.tar.gz.gpg
 * **解説**: ソフトウェアのリリースファイルとその署名ファイルを検証します。これにより、ファイルが本物の開発元からリリースされ、ダウンロード中に改ざんされていないことを確認できます。
 * **例**:
 
-    ```bash
-    # 1. 開発者の公開鍵をインポート (初回のみ)
-    gpg --recv-keys <開発者のキーID>
-    # 2. 署名を検証
-    gpg --verify apache-airflow-2.9.3.tar.gz.asc apache-airflow-2.9.3.tar.gz
-    # -> "Good signature from ..." と表示されればOK
-    ```
+```bash
+# 1. 開発者の公開鍵をインポート (初回のみ)
+gpg --recv-keys <開発者のキーID>
+# 2. 署名を検証
+gpg --verify apache-airflow-2.9.3.tar.gz.asc apache-airflow-2.9.3.tar.gz
+# -> "Good signature from ..." と表示されればOK
+```
 
 ### 2. ブルーチーム視点
 
@@ -88,10 +94,10 @@ tar -czf - /path/to/loot | gpg -c -o loot.tar.gz.gpg
 * **解説**: `-e` (暗号化) と `-r` (受信者) を使い、ファイルを相手の公開鍵で暗号化します。これにより、たとえファイルが漏洩しても、秘密鍵を持つ相手以外は内容を読むことができません。
 * **例**:
 
-    ```bash
-    # 同僚 (bob@example.com) の公開鍵で報告書を暗号化
-    gpg -e -r bob@example.com -o report.docx.gpg report.docx
-    ```
+```bash
+# 同僚 (bob@example.com) の公開鍵で報告書を暗号化
+gpg -e -r bob@example.com -o report.docx.gpg report.docx
+```
 
 ### 3. レッドチーム視点
 
@@ -100,22 +106,22 @@ tar -czf - /path/to/loot | gpg -c -o loot.tar.gz.gpg
 * **解説**: 窃取したデータを `tar` でアーカイブし、その結果をパイプで `gpg` に渡して、自身の公開鍵で暗号化します。これにより、ネットワーク上のDLPやIDSがファイルの中身をスキャンして検知するのを回避できます。
 * **例**:
 
-    ```bash
-    # /etc と /home/user の中身を、攻撃者の鍵 (0xATT4CK3R) で暗号化
-    tar -czf - /etc /home/user | gpg -e -r 0xATT4CK3R -o loot.tar.gz.gpg
-    ```
+```bash
+# /etc と /home/user の中身を、攻撃者の鍵 (0xATT4CK3R) で暗号化
+tar -czf - /etc /home/user | gpg -e -r 0xATT4CK3R -o loot.tar.gz.gpg
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `gpg: decryption failed: No secret key`
-    * **考えられる原因**: あなたの秘密鍵束に、そのファイルを復号するために必要な秘密鍵が存在しません。
-    * **解決策**: 正しい受信者であるか確認してください。もし自分のためのファイルであれば、必要な秘密鍵を `gpg --import` でインポートする必要があります。
+		* **考えられる原因**: あなたの秘密鍵束に、そのファイルを復号するために必要な秘密鍵が存在しません。
+		* **解決策**: 正しい受信者であるか確認してください。もし自分のためのファイルであれば、必要な秘密鍵を `gpg --import` でインポートする必要があります。
 
 2. **メッセージ例 2**: `gpg: WARNING: This key is not certified with a trusted signature!`
-    * **考えられる原因**: 使用した公開鍵が、あなた自身やあなたが信頼する第三者によって署名（信頼のお墨付き）されていません。
-    * **解決策**: これはエラーではなく警告です。公開鍵の指紋 (fingerprint) を別の信頼できる経路で相手に確認し、正しければ `gpg --edit-key <key_id>` で `sign` コマンドを実行して、その鍵を明示的に信頼します。
+		* **考えられる原因**: 使用した公開鍵が、あなた自身やあなたが信頼する第三者によって署名（信頼のお墨付き）されていません。
+		* **解決策**: これはエラーではなく警告です。公開鍵の指紋 (fingerprint) を別の信頼できる経路で相手に確認し、正しければ `gpg --edit-key <key_id>` で `sign` コマンドを実行して、その鍵を明示的に信頼します。
 
 ## 環境変数と設定ファイル
 
@@ -151,5 +157,3 @@ tar -czf - /path/to/loot | gpg -c -o loot.tar.gz.gpg
 
 * **信用の輪 (Web of Trust)**: OpenPGPは、中央集権的な認証局 (CA) に頼らず、ユーザー同士が互いの公開鍵を署名しあうことで信頼関係を構築する「信用の輪」というモデルを採用しています。
 
----
-[インデックスに戻る](../linux_index.md)

@@ -1,19 +1,21 @@
 ---
 tags:
-  - 'groupdel'
-  - 'user management'
-  - 'linux'
-  - 'cheetsheet'
-title: 'groupdel - 既存のユーザーグループを削除する'
-summary: 'システムから既存のユーザーグループを削除するためのコマンドです。不要になったグループの整理に使用します。'
-related:
-  - 'groupadd'
-  - 'groupmod'
-  - 'userdel'
-  - 'usermod'
+  - groupdel
+  - user_management
+  - linux
+  - groupadd
+  - groupmod
+  - userdel
+  - usermod
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:37
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `groupdel` - 既存のユーザーグループを削除する
+# Command  - Linux - groupdel - 既存のユーザーグループを削除する
 
 ## 概要
 
@@ -42,16 +44,16 @@ related:
 * **解説**: 意図しない権限の問題を防ぐため、グループ削除前には十分な確認が必要です。`getent group` でグループの存在とメンバーを確認し、`find` で関連ファイルがないかを調査します。
 * **コマンド例**:
 
-    ```bash
-    # 1. 削除したいグループ 'old-project' のメンバーを確認
-    getent group old-project
+```bash
+# 1. 削除したいグループ 'old-project' のメンバーを確認
+getent group old-project
 
-    # 2. 'old-project' グループが所有するファイルがないかシステム全体を検索
-    sudo find / -group old-project -ls 2>/dev/null
+# 2. 'old-project' グループが所有するファイルがないかシステム全体を検索
+sudo find / -group old-project -ls 2>/dev/null
 
-    # 3. (問題がなければ) グループを削除
-    sudo groupdel old-project
-    ```
+# 3. (問題がなければ) グループを削除
+sudo groupdel old-project
+```
 
 ## オプション説明
 
@@ -71,10 +73,10 @@ related:
 * **解説**: 関連するユーザーの所属グループを変更した後、このコマンドで不要になったグループを削除し、システムを整理整頓します。
 * **例**:
 
-    ```bash
-    # 不要になった 'web-staging' グループを削除
-    sudo groupdel web-staging
-    ```
+```bash
+# 不要になった 'web-staging' グループを削除
+sudo groupdel web-staging
+```
 
 ### 2. ブルーチーム視点
 
@@ -83,10 +85,10 @@ related:
 * **解説**: インシデント対応の修復 (Remediation) フェーズで使用します。調査の結果、攻撃者が永続化のために作成したとみられる不審なグループを発見した場合、関連するファイルやプロセスの無力化が完了した後、このコマンドで悪意のあるグループを削除し、システムを正常な状態に戻します。
 * **例**:
 
-    ```bash
-    # 攻撃者が作成した 'adm1n_grp' を削除
-    sudo groupdel adm1n_grp
-    ```
+```bash
+# 攻撃者が作成した 'adm1n_grp' を削除
+sudo groupdel adm1n_grp
+```
 
 ### 3. レッドチーム視点
 
@@ -99,10 +101,10 @@ related:
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `groupdel: cannot remove the primary group of user '<username>'`
-    * **考えられる原因**: 削除しようとしているグループが、少なくとも一人のユーザーのプライマリグループとして設定されています。
-    * **解決策**:
-        1. `usermod -g <new_primary_group> <username>` を実行して、そのユーザーのプライマリグループを別の既存のグループに変更します。
-        2. プライマリグループとして使用しているユーザーがいなくなったら、再度 `groupdel` を実行します。
+		* **考えられる原因**: 削除しようとしているグループが、少なくとも一人のユーザーのプライマリグループとして設定されています。
+		* **解決策**:
+				1. `usermod -g <new_primary_group> <username>` を実行して、そのユーザーのプライマリグループを別の既存のグループに変更します。
+				2. プライマリグループとして使用しているユーザーがいなくなったら、再度 `groupdel` を実行します。
 
 ## 環境変数と設定ファイル
 
@@ -133,5 +135,3 @@ related:
 
 * **孤立したファイル**: グループを削除しても、そのグループが所有していたファイルのグループ所有権は、削除されたグループの**GID（数値）**として残ります。`find / -nogroup` などのコマンドで該当するファイルを探し出し、`chgrp` で新しい適切なグループに所有者を変更することが推奨されます。
 
----
-[インデックスに戻る](../linux_index.md)

@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'history'
-  - 'shell'
-  - 'forensics'
-  - 'cheetsheet'
-title: 'history - コマンド実行履歴を表示・操作する'
-summary: '現在のシェルセッションで過去に実行したコマンドの履歴を表示・再実行するためのシェル組み込みコマンドです。'
-related:
-  - 'bash'
-  - 'grep'
-  - 'cat'
+  - history
+  - shell
+  - forensics
+  - bash
+  - grep
+  - cat
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `history` - コマンド実行履歴を表示・操作する
+# Command  - Linux - history - コマンド実行履歴を表示・操作する
 
 ## 概要
 
@@ -38,10 +40,10 @@ related:
 * **解説**: `history` で全履歴を出力し、その結果をパイプで `grep` に渡してキーワードで絞り込みます。これにより、目的のコマンドを簡単に見つけ出すことができます。
 * **コマンド例**:
 
-    ```bash
-    # 履歴の中から "rsync" を含むコマンドを検索する
-    history | grep 'rsync'
-    ```
+```bash
+# 履歴の中から "rsync" を含むコマンドを検索する
+history | grep 'rsync'
+```
 
 ## `history` の主要な機能とオプション
 
@@ -68,12 +70,12 @@ related:
 * **解説**: `apt install nginx` のようなコマンドが権限不足で失敗した場合、`sudo !!` と入力するだけで `sudo apt install nginx` として再実行できます。これは管理業務を大幅に効率化する黄金パターンです。
 * **例**:
 
-    ```bash
-    apt install nginx
-    # -> permission denied...
-    sudo !!
-    # -> sudo apt install nginx が実行される
-    ```
+```bash
+apt install nginx
+# -> permission denied...
+sudo !!
+# -> sudo apt install nginx が実行される
+```
 
 ### 2. ブルーチーム視点
 
@@ -82,24 +84,24 @@ related:
 * **解説**: **フォレンジック調査の最重要項目の一つ**。`user1` のアカウントが侵害された疑いがある場合、`/home/user1/.bash_history` を確認します。`wget http://.../evil.sh` や `nc -l -p ...` のようなコマンドが残っていれば、攻撃者が偵察、ペイロードのダウンロード、バックドアの設置を行った明確な証拠となります。
 * **例**:
 
-    ```bash
-    # 侵害されたユーザーのコマンド履歴を確認
-    sudo cat /home/compromised_user/.bash_history
-    ```
+```bash
+# 侵害されたユーザーのコマンド履歴を確認
+sudo cat /home/compromised_user/.bash_history
+```
 
 ### 3. レッドチーム視点
 
 * **タスク**: 侵入後の情報収集と、自身の活動の痕跡消去。
 * **組み合わせ**: `cat ~/.bash_history`, `history -c`
 * **解説**:
-  * **偵察**: 攻撃者は侵入後、まず `.bash_history` を確認し管理者が普段どのようなコマンドを実行しているか、システムの構成、さらには `mysql -u user -p'password'` のように誤って入力されたパスワードなどの機密情報を窃取します。
-  * **痕跡消去**: 活動終了後、`history -c && rm ~/.bash_history` のようにして、現在のセッション履歴と履歴ファイルの両方を削除し、追跡を困難にします。
+	* **偵察**: 攻撃者は侵入後、まず `.bash_history` を確認し管理者が普段どのようなコマンドを実行しているか、システムの構成、さらには `mysql -u user -p'password'` のように誤って入力されたパスワードなどの機密情報を窃取します。
+	* **痕跡消去**: 活動終了後、`history -c && rm ~/.bash_history` のようにして、現在のセッション履歴と履歴ファイルの両方を削除し、追跡を困難にします。
 * **例**:
 
-    ```bash
-    # 履歴ファイルからパスワードやキーの文字列を探す
-    cat ~/.bash_history | grep -i "password\|key\|token"
-    ```
+```bash
+# 履歴ファイルからパスワードやキーの文字列を探す
+cat ~/.bash_history | grep -i "password\|key\|token"
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -137,5 +139,3 @@ related:
 
 * **タイムスタンプの追加**: 監査やインシデント追跡のために、いつコマンドが実行されたかの情報は非常に重要です。`~/.bashrc` に `export HISTTIMEFORMAT="%F %T "` を追記しておくと、`history` の出力にタイムスタンプが付与され非常に便利です。
 
----
-[インデックスに戻る](../linux_index.md)

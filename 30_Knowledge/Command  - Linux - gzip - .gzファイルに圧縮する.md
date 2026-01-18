@@ -1,19 +1,20 @@
 ---
 tags:
-  - 'gzip'
-  - 'gunzip'
-  - 'compression'
-  - 'cheetsheet'
-title: 'gzip - .gzファイルに圧縮する'
-summary: 'DEFLATEアルゴリズムを使用し、ファイルを圧縮するためのLinux/Unix環境で最も標準的なコマンドです。'
-related:
-  - 'gunzip'
-  - 'bzip2'
-  - 'tar'
-  - 'zip'
+  - gzip
+  - gunzip
+  - compression
+  - bzip2
+  - tar
+  - zip
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `gzip` - .gzファイルに圧縮する
+# Command  - Linux - gzip - .gzファイルに圧縮する
 
 ## 概要
 
@@ -42,10 +43,10 @@ related:
 * **解説**: `mysqldump` の標準出力をパイプで `gzip` に渡します。`-c` オプションで結果を標準出力に送り、リダイレクションでファイルに保存することで、ディスクI/Oと容量を大幅に節約できます。
 * **コマンド例**:
 
-    ```bash
-    # mysqldumpの出力を直接gzipで圧縮してバックアップファイルを作成
-    mysqldump -u root -p my_database | gzip -c > backup-$(date +%F).sql.gz
-    ```
+```bash
+# mysqldumpの出力を直接gzipで圧縮してバックアップファイルを作成
+mysqldump -u root -p my_database | gzip -c > backup-$(date +%F).sql.gz
+```
 
 ## オプション説明
 
@@ -71,11 +72,11 @@ related:
 * **解説**: `-9` で最高の圧縮率を指定し、`-v` で圧縮結果を確認しながらファイルを圧縮します。`logrotate` スクリプトなどで頻繁に利用されます。
 * **例**:
 
-    ```bash
-    # 巨大なアクセスログを最高圧縮レベルで圧縮
-    gzip -9 -v /var/log/nginx/access.log
-    # -> /var/log/nginx/access.log.gz が生成される
-    ```
+```bash
+# 巨大なアクセスログを最高圧縮レベルで圧縮
+gzip -9 -v /var/log/nginx/access.log
+# -> /var/log/nginx/access.log.gz が生成される
+```
 
 ### 2. ブルーチーム視点
 
@@ -84,10 +85,10 @@ related:
 * **解説**: フォレンジック調査で収集した巨大なディスクイメージやメモリダンプを、長期保管やネットワーク経由での転送のために圧縮します。`-k` を使うことで、元の証拠ファイルのハッシュ値などを変えることなく、圧縮コピーを作成できます。
 * **例**:
 
-    ```bash
-    # メモリダンプファイルを圧縮してコピーを作成
-    gzip -k memory_dump.raw
-    ```
+```bash
+# メモリダンプファイルを圧縮してコピーを作成
+gzip -k memory_dump.raw
+```
 
 ### 3. レッドチーム視点
 
@@ -96,18 +97,18 @@ related:
 * **解説**: システムから盗み出した大量のテキストベースのデータ（ログ、ソースコードなど）を `gzip` で圧縮し、データサイズを小さくします。これにより、ネットワーク転送時間を短縮し、データ転送量を監視しているIDS/DLPによる検知を逃れやすくします。
 * **例**:
 
-    ```bash
-    # 窃取したユーザーのホームディレクトリをtarで固めてからgzipで圧縮
-    tar cf - /home/victim | gzip > victim_home.tar.gz
-    ```
+```bash
+# 窃取したユーザーのホームディレクトリをtarで固めてからgzipで圧縮
+tar cf - /home/victim | gzip > victim_home.tar.gz
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `gzip: <dirname> is a directory -- ignored`
-    * **考えられる原因**: `gzip` はデフォルトではディレクトリを圧縮しません。`-r` オプションはディレクトリ内のファイルを個別に圧縮しますが、ディレクトリを1つのファイルにまとめるわけではありません。
-    * **解決策**: ディレクトリを1つのファイルとして圧縮したい場合は、`tar czf archive.tar.gz directory/` のように**`tar` コマンドと組み合わせる**のが正しい方法です。
+		* **考えられる原因**: `gzip` はデフォルトではディレクトリを圧縮しません。`-r` オプションはディレクトリ内のファイルを個別に圧縮しますが、ディレクトリを1つのファイルにまとめるわけではありません。
+		* **解決策**: ディレクトリを1つのファイルとして圧縮したい場合は、`tar czf archive.tar.gz directory/` のように**`tar` コマンドと組み合わせる**のが正しい方法です。
 
 ## 環境変数と設定ファイル
 
@@ -134,9 +135,7 @@ related:
 
 * **`z`系コマンド**: `.gz` ファイルを展開せずに直接操作するための一連の便利なコマンド (`zcat`, `zless`, `zgrep`など) があります。
 
-  ```bash
-  # 圧縮されたログファイルを展開せずに検索
-  zgrep "ERROR" application.log.gz
-
----
-[インデックスに戻る](../linux_index.md)
+```bash
+# 圧縮されたログファイルを展開せずに検索
+zgrep "ERROR" application.log.gz
+```

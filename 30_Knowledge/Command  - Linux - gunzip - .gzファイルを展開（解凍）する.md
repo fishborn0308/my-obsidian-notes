@@ -1,19 +1,20 @@
 ---
 tags:
-  - 'gunzip'
-  - 'gzip'
-  - 'compression'
-  - 'cheetsheet'
-title: 'gunzip - .gzファイルを展開（解凍）する'
-summary: 'gzipアルゴリズムで圧縮されたファイル (.gz) を展開（解凍）するための、Linux/Unix環境で最も標準的なコマンドです。'
-related:
-  - 'gzip'
-  - 'bunzip2'
-  - 'tar'
-  - 'zcat'
+  - gunzip
+  - gzip
+  - compression
+  - bunzip2
+  - tar
+  - zcat
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:37
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `gunzip` - .gzファイルを展開（解凍）する
+# Command  - Linux - gunzip - .gzファイルを展開（解凍）する
 
 ## 概要
 
@@ -42,10 +43,10 @@ related:
 * **解説**: `-c` (`--stdout`) オプションで展開結果を標準出力に送り、それをパイプで `grep` に渡します。これにより、ディスクI/Oを減らして調査を高速化し、元ファイルも変更しないため証拠保全の観点からも安全です。
 * **コマンド例**:
 
-    ```bash
-    # 圧縮された認証ログの中から、特定のIPアドレスからのログイン失敗記録を調査
-    gunzip -c /mnt/evidence/auth.log.gz | grep "Failed password for root from 198.51.100.10"
-    ```
+```bash
+# 圧縮された認証ログの中から、特定のIPアドレスからのログイン失敗記録を調査
+gunzip -c /mnt/evidence/auth.log.gz | grep "Failed password for root from 198.51.100.10"
+```
 
 ## オプション説明
 
@@ -67,11 +68,11 @@ related:
 * **解説**: ログファイルを展開し、`grep` や `less` で内容を確認します。
 * **例**:
 
-    ```bash
-    # 昨日のNginxのアクセスログを展開する
-    sudo gunzip /var/log/nginx/access.log.1.gz
-    # -> access.log.1 が生成され、元の .gz ファイルは削除される
-    ```
+```bash
+# 昨日のNginxのアクセスログを展開する
+sudo gunzip /var/log/nginx/access.log.1.gz
+# -> access.log.1 が生成され、元の .gz ファイルは削除される
+```
 
 ### 2. ブルーチーム視点
 
@@ -80,10 +81,10 @@ related:
 * **解説**: `-c` を使うことで、ディスク上に展開後の一時ファイルを残さず、かつ安全に内容を確認できます。（`zcat <file>.gz | grep ...` と同じです）
 * **例**:
 
-    ```bash
-    # 証拠ファイルを元ファイルのまま、内容をページャで確認
-    gunzip -c /mnt/evidence/huge_log.gz | less
-    ```
+```bash
+# 証拠ファイルを元ファイルのまま、内容をページャで確認
+gunzip -c /mnt/evidence/huge_log.gz | less
+```
 
 ### 3. レッドチーム視点
 
@@ -92,18 +93,18 @@ related:
 * **解説**: 攻撃者は、ネットワークの検知を回避したり、転送量を減らしたりするためにツールを圧縮しておくことがあります。ホスト上で `gunzip` を使ってこれらのツールを展開し、攻撃の準備を整えます。
 * **例**:
 
-    ```bash
-    # 持ち込んだリバースシェルバイナリを展開する
-    gunzip reverse_shell.gz
-    ```
+```bash
+# 持ち込んだリバースシェルバイナリを展開する
+gunzip reverse_shell.gz
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `gzip: <filename>: not in gzip format`
-    * **考えられる原因**: 指定したファイルが `gzip` 形式で圧縮されていません。ファイルが破損しているか、`bzip2` (`.bz2`) など別の形式のファイルである可能性があります。
-    * **解決策**: `file <filename>` コマンドを実行して、ファイルの形式を正しく確認してください。
+		* **考えられる原因**: 指定したファイルが `gzip` 形式で圧縮されていません。ファイルが破損しているか、`bzip2` (`.bz2`) など別の形式のファイルである可能性があります。
+		* **解決策**: `file <filename>` コマンドを実行して、ファイルの形式を正しく確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -131,5 +132,3 @@ related:
 * **`.tar.gz` ファイルの展開**: `gunzip` は圧縮を解くだけです。複数のファイルが `tar` でまとめられた後に `gzip` で圧縮されたアーカイブ (`.tar.gz`, `.tgz`) の場合は、`tar xzf archive.tar.gz` のように `tar` コマンドを使うのが一般的です。
 * **`zcat` コマンド**: `gunzip -c` は `zcat` というコマンドと全く同じ動作をします。圧縮されたテキストファイルの中身をちょっと確認したい場合にタイプ数が少なく便利です。
 
----
-[インデックスに戻る](../linux_index.md)

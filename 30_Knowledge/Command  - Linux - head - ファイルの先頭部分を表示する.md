@@ -1,19 +1,21 @@
 ---
 tags:
-  - 'head'
-  - 'text processing'
-  - 'linux'
-  - 'cheetsheet'
-title: 'head - ファイルの先頭部分を表示する'
-summary: 'ファイルや標準入力の先頭部分（デフォルトは10行）を表示するためのコマンドで、巨大なファイルの内容を素早く確認するのに役立ちます。'
-related:
-  - 'tail'
-  - 'cat'
-  - 'less'
-  - 'sed'
+  - head
+  - text_processing
+  - linux
+  - tail
+  - cat
+  - less
+  - sed
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `head` - ファイルの先頭部分を表示する
+# Command  - Linux - head - ファイルの先頭部分を表示する
 
 ## 概要
 
@@ -40,10 +42,10 @@ related:
 * **解説**: 他のコマンドの出力をパイプで `head` に渡すことで、画面が大量のテキストで埋め尽くされるのを防ぎ、必要な部分だけを効率的に確認できます。
 * **コマンド例**:
 
-    ```bash
-    # システムで最もCPUを消費しているプロセスの上位5件を表示する
-    ps aux --sort=-%cpu | head -n 6
-    ```
+```bash
+# システムで最もCPUを消費しているプロセスの上位5件を表示する
+ps aux --sort=-%cpu | head -n 6
+```
 
 ## オプション説明
 
@@ -65,10 +67,10 @@ related:
 * **解説**: 巨大なCSVファイルを扱う際に、まずヘッダー行だけを確認し、どのようなデータが含まれているかを把握する基本的な操作です。
 * **例**:
 
-    ```bash
-    # access.log.csv のヘッダー行（1行目）のみを表示
-    head -n 1 access.log.csv
-    ```
+```bash
+# access.log.csv のヘッダー行（1行目）のみを表示
+head -n 1 access.log.csv
+```
 
 ### 2. ブルーチーム視点
 
@@ -77,10 +79,10 @@ related:
 * **解説**: `-c` オプションでファイルの先頭数バイトを抽出し、`xxd` で16進数表示します。これにより、ファイルの `file` コマンドの結果を偽装しようとするマルウェアなどに対して、実際のファイルシグネチャを確認できます。（例: `7f 45 4c 46` はELF実行ファイル）
 * **例**:
 
-    ```bash
-    # invoice.pdf というファイルの先頭4バイトを確認
-    head -c 4 invoice.pdf | xxd
-    ```
+```bash
+# invoice.pdf というファイルの先頭4バイトを確認
+head -c 4 invoice.pdf | xxd
+```
 
 ### 3. レッドチーム視点
 
@@ -89,10 +91,10 @@ related:
 * **解説**: 攻撃者はシステムに侵入後、`cat` でファイル全体を表示してログに大きな痕跡を残すのを避けつつ、`head` を使ってファイルの内容を断片的に調査します。`/etc/passwd` の先頭を見ることで `root` やシステムアカウントの存在を確認したり、ソースコードファイルの先頭を見てコメントから情報を得たりします。
 * **例**:
 
-    ```bash
-    # /etc/passwd の最初の5行を表示
-    head -n 5 /etc/passwd
-    ```
+```bash
+# /etc/passwd の最初の5行を表示
+head -n 5 /etc/passwd
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -128,9 +130,7 @@ related:
 
 * **`tail`との組み合わせ**: `head` と `tail` をパイプで組み合わせることで、ファイルの特定の中間部分を抜き出すことができます。
 
-  ```bash
-  # ファイルの11行目から20行目までを抽出する
-  head -n 20 some_file.txt | tail -n 10
-
----
-[インデックスに戻る](../linux_index.md)
+```bash
+# ファイルの11行目から20行目までを抽出する
+head -n 20 some_file.txt | tail -n 10
+```

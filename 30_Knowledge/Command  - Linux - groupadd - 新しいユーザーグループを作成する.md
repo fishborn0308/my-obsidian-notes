@@ -1,19 +1,21 @@
 ---
 tags:
-  - 'groupadd'
-  - 'user management'
-  - 'linux'
-  - 'cheetsheet'
-title: 'groupadd - 新しいユーザーグループを作成する'
-summary: 'システムに新しいユーザーグループを作成し、複数ユーザーに共通のファイルアクセス権を付与するための基本的なコマンドです。'
-related:
-  - 'useradd'
-  - 'groupmod'
-  - 'groupdel'
-  - 'usermod'
+  - groupadd
+  - user_management
+  - linux
+  - useradd
+  - groupmod
+  - groupdel
+  - usermod
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:37
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `groupadd` - 新しいユーザーグループを作成する
+# Command  - Linux - groupadd - 新しいユーザーグループを作成する
 
 ## 概要
 
@@ -43,19 +45,19 @@ related:
 * **解説**: まず `groupadd` で共有グループを作成し、`usermod` で開発者をメンバーに追加します。その後、ディレクトリを作成し、所有グループとパーミッションを適切に設定します。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスで共有ディレクトリをセットアップする
-    # 1. webdevs グループを作成
-    sudo groupadd webdevs
+```bash
+# このコマンドシーケンスで共有ディレクトリをセットアップする
+# 1. webdevs グループを作成
+sudo groupadd webdevs
 
-    # 2. ユーザー (user1) を webdevs グループに追加
-    sudo usermod -aG webdevs user1
+# 2. ユーザー (user1) を webdevs グループに追加
+sudo usermod -aG webdevs user1
 
-    # 3. 共有ディレクトリを作成し、グループ所有者と権限を設定
-    sudo mkdir -p /var/www/developers
-    sudo chgrp webdevs /var/www/developers
-    sudo chmod 775 /var/www/developers
-    ```
+# 3. 共有ディレクトリを作成し、グループ所有者と権限を設定
+sudo mkdir -p /var/www/developers
+sudo chgrp webdevs /var/www/developers
+sudo chmod 775 /var/www/developers
+```
 
 ## オプション説明
 
@@ -78,10 +80,10 @@ related:
 * **解説**: 共有ディレクトリへのアクセス権管理などのために、新しいグループを作成する最も基本的な使い方です。
 * **例**:
 
-    ```bash
-    # SFTPでのファイル共有用に 'sftp-users' グループを作成
-    sudo groupadd sftp-users
-    ```
+```bash
+# SFTPでのファイル共有用に 'sftp-users' グループを作成
+sudo groupadd sftp-users
+```
 
 ### 2. ブルーチーム視点
 
@@ -90,10 +92,10 @@ related:
 * **解説**: `groupadd` は直接使いませんが、`getent group` や `/etc/group` の内容を監査し、ベースラインと比較して意図しないグループ（例: `hackers`, `adm1n`）が作成されていないかを確認します。不審なグループの作成は、攻撃者による永続化や権限管理の兆候である可能性があります。
 * **例**:
 
-    ```bash
-    # /etc/group ファイルの内容を確認し、不審なグループがないか監査する
-    less /etc/group
-    ```
+```bash
+# /etc/group ファイルの内容を確認し、不審なグループがないか監査する
+less /etc/group
+```
 
 ### 3. レッドチーム視点
 
@@ -102,22 +104,22 @@ related:
 * **解説**: **永続化と隠蔽**。攻撃者がroot権限を奪取した後、`root` という名前を直接使わずに特権を維持するためのバックドアとして、GIDが `0` のグループを作成することがあります。これにより、一見しただけでは特権グループと分かりにくい名前で、`root` グループと同じ権限を持つファイルを作成・管理できる可能性があります。
 * **例**:
 
-    ```bash
-    # GID 0 を持つ 'system-admins' という名前のグループを作成
-    sudo groupadd -g 0 system-admins
-    ```
+```bash
+# GID 0 を持つ 'system-admins' という名前のグループを作成
+sudo groupadd -g 0 system-admins
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `groupadd: group '<group_name>' already exists`
-    * **考えられる原因**: 指定したグループ名は既にシステムに存在します。
-    * **解決策**: 別の名前を使用するか、`getent group <group_name>` で既存のグループ情報を確認してください。
+		* **考えられる原因**: 指定したグループ名は既にシステムに存在します。
+		* **解決策**: 別の名前を使用するか、`getent group <group_name>` で既存のグループ情報を確認してください。
 
 2. **エラーメッセージ例 2**: `groupadd: GID '<gid>' already exists`
-    * **考えられる原因**: `-g` オプションで指定したGIDが、既に別のグループによって使用されています。
-    * **解決策**: 別のGIDを指定するか、オプションなしでシステムに自動的にGIDを割り当てさせてください。
+		* **考えられる原因**: `-g` オプションで指定したGIDが、既に別のグループによって使用されています。
+		* **解決策**: 別のGIDを指定するか、オプションなしでシステムに自動的にGIDを割り当てさせてください。
 
 ## 環境変数と設定ファイル
 
@@ -149,5 +151,3 @@ related:
 
 * **GIDの範囲**: 通常、一般ユーザー向けのグループはGID 1000番以降に作成されます。`-r` (`--system`) オプションを付けると、システム用のグループとして1000番未満のGIDが割り当てられます。
 
----
-[インデックスに戻る](../linux_index.md)

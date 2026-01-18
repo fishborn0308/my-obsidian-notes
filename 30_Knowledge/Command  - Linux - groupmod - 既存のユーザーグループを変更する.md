@@ -1,19 +1,21 @@
 ---
 tags:
-  - 'groupmod'
-  - 'user management'
-  - 'linux'
-  - 'cheetsheet'
-title: 'groupmod - 既存のユーザーグループを変更する'
-summary: 'システムに既に存在するユーザーグループの名前やGID (グループID) を変更するためのコマンドです。'
-related:
-  - 'groupadd'
-  - 'groupdel'
-  - 'usermod'
-  - 'chgrp'
+  - groupmod
+  - user_management
+  - linux
+  - groupadd
+  - groupdel
+  - usermod
+  - chgrp
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:37
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `groupmod` - 既存のユーザーグループを変更する
+# Command  - Linux - groupmod - 既存のユーザーグループを変更する
 
 ## 概要
 
@@ -42,13 +44,13 @@ related:
 * **解説**: `groupmod -g` でGIDを変更すると、ファイルシステム上に古いGIDを持つファイルが残り、「孤立した」状態になります。`find` でこれらのファイルを検索し、`chgrp` でグループ所有者を（名前に基づいて）再設定することで、整合性を保ちます。
 * **コマンド例**:
 
-    ```bash
-    # 'webdevs' グループのGIDを 2001 に変更 (旧GIDは1005だったと仮定)
-    sudo groupmod -g 2001 webdevs
+```bash
+# 'webdevs' グループのGIDを 2001 に変更 (旧GIDは1005だったと仮定)
+sudo groupmod -g 2001 webdevs
 
-    # GID変更後、古いGID (1005) を持つファイルを検索して所有者を修正
-    sudo find / -gid 1005 -exec chgrp -h webdevs {} +
-    ```
+# GID変更後、古いGID (1005) を持つファイルを検索して所有者を修正
+sudo find / -gid 1005 -exec chgrp -h webdevs {} +
+```
 
 ## オプション説明
 
@@ -69,10 +71,10 @@ related:
 * **解説**: グループ名を実態に合わせて修正する、最も基本的な使い方です。
 * **例**:
 
-    ```bash
-    # 'alpha-devs' グループの名前を 'ares-devs' に変更
-    sudo groupmod -n ares-devs alpha-devs
-    ```
+```bash
+# 'alpha-devs' グループの名前を 'ares-devs' に変更
+sudo groupmod -n ares-devs alpha-devs
+```
 
 ### 2. ブルーチーム視点
 
@@ -81,10 +83,10 @@ related:
 * **解説**: 攻撃者が権限の隠蔽や混乱を試みるために、正規のシステムグループのGIDを変更する可能性があります。`groupmod` の実行ログは、不審な権限操作の兆候となり得るため、監査対象とします。
 * **例**:
 
-    ```bash
-    # ausearchでgroupmodの実行履歴がないか確認
-    sudo ausearch -c groupmod
-    ```
+```bash
+# ausearchでgroupmodの実行履歴がないか確認
+sudo ausearch -c groupmod
+```
 
 ### 3. レッドチーム視点
 
@@ -93,18 +95,18 @@ related:
 * **解説**: 攻撃者がroot権限を奪取した後、`docker` や `adm` といった、管理者ユーザーが所属していても不自然ではないグループのGIDを `0` に変更します。これにより、そのグループは `root` グループと全く同じ権限を持つことになり、`root` という名前を使わずに特権を維持・利用できます。
 * **例**:
 
-    ```bash
-    # 'adm' グループのGIDを0に変更して特権を隠蔽
-    sudo groupmod -g 0 adm
-    ```
+```bash
+# 'adm' グループのGIDを0に変更して特権を隠蔽
+sudo groupmod -g 0 adm
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `groupmod: GID '<gid>' already exists`
-    * **考えられる原因**: `-g` オプションで指定したGIDが、既に別のグループによって使用されています。
-    * **解決策**: 別のGIDを指定するか、`-o` オプションを付けて重複を許可します（非推奨）。
+		* **考えられる原因**: `-g` オプションで指定したGIDが、既に別のグループによって使用されています。
+		* **解決策**: 別のGIDを指定するか、`-o` オプションを付けて重複を許可します（非推奨）。
 
 ## 環境変数と設定ファイル
 
@@ -135,5 +137,3 @@ related:
 
 * **GID変更のリスク**: グループのGIDを変更すると、ファイルシステム上に古いGIDを持つファイルが残り、「孤立した」状態になります。これらのファイルの所有権を適切に再設定しないと、意図しないアクセス権の問題を引き起こす可能性があります。
 
----
-[インデックスに戻る](../linux_index.md)

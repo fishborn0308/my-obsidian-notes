@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'hostname'
-  - 'networking'
-  - 'linux'
-  - 'cheetsheet'
-title: 'hostname - システムのホスト名を表示・設定する'
-summary: 'システムの現在のホスト名を表示または一時的に設定するためのシンプルなコマンドです。自分がどのサーバーにいるかを確認するのに使います。'
-related:
-  - 'hostnamectl'
-  - 'uname'
-  - '/etc/hostname'
+  - hostname
+  - networking
+  - linux
+  - hostnamectl
+  - uname
+  - /etc/hostname
+created: 2025-06-29 15:02
+modified: 2026-01-18 16:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `hostname` - システムのホスト名を表示・設定する
+# Command  - Linux - hostname - システムのホスト名を表示・設定する
 
 ## 概要
 
@@ -23,9 +25,13 @@ related:
 ## 類似コマンドと差異
 
 | 類似コマンド | 差異 / 使い分けのポイント | 推
+
 | :--- | :--- | :---　|
+
 | **`hostnamectl`** | `systemd` 環境でホスト名を**永続的に**管理するための推奨コマンド。`hostname` による変更は再起動で失われます。 | `hostnamectl` |
+
 | **`uname -n`** | ホスト名を表示しますが、`hostname` の方がFQDNやIPアドレスを表示するオプションがあり多機能です。 | - |
+
 | **`/etc/hostname`**| OS起動時に読み込まれるホスト名の設定ファイル。永続的な設定はこちらに記述されます。 | - |
 
 ## よく連携されるコマンド
@@ -39,10 +45,10 @@ related:
 * **解説**: コマンド置換 `$(hostname)` を使って、`hostname` コマンドの実行結果（ホスト名）を `tar` コマンドの引数の一部として埋め込みます。
 * **コマンド例**:
 
-    ```bash
-    # /var/log ディレクトリを、ホスト名と日付を含むファイル名でアーカイブする
-    tar czf /mnt/backups/logs-$(hostname)-$(date +%F).tar.gz /var/log/
-    ```
+```bash
+# /var/log ディレクトリを、ホスト名と日付を含むファイル名でアーカイブする
+tar czf /mnt/backups/logs-$(hostname)-$(date +%F).tar.gz /var/log/
+```
 
 ## オプション説明
 
@@ -66,10 +72,10 @@ related:
 * **解説**: プロンプトにホスト名が表示されていない場合や、複数のサーバーを頻繁に行き来する際に、自分が意図したサーバーでコマンドを実行しているかを確認するための基本的な操作です。
 * **例**:
 
-    ```bash
-    # 現在のホスト名を確認
-    hostname
-    ```
+```bash
+# 現在のホスト名を確認
+hostname
+```
 
 ### 2. ブルーチーム視点
 
@@ -78,10 +84,10 @@ related:
 * **解説**: 不審なアラートを検知し、対象のサーバーにSSHでログインした後、最初に `hostname` を実行します。これにより、調査しているのが正しいサーバーであることを確認し、その後の調査記録にホスト名を正確に記載します。
 * **例**:
 
-    ```bash
-    # 調査対象ホストのIDを記録
-    hostname
-    ```
+```bash
+# 調査対象ホストのIDを記録
+hostname
+```
 
 ### 3. レッドチーム視点
 
@@ -90,18 +96,18 @@ related:
 * **解説**: 攻撃者は侵入後、即座に `whoami` と `hostname` を実行します。ホスト名が `prod-db-master` や `ad-controller-01` のようであれば、そこが非常に価値の高いターゲットであることが分かり、`dev-test-instance` のようであれば、そこからさらに本番環境へ侵入するための足がかりを探します。
 * **例**:
 
-    ```bash
-    # 侵入したホストの名前を確認
-    hostname
-    ```
+```bash
+# 侵入したホストの名前を確認
+hostname
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `hostname: you must be root to change the hostname`
-    * **考えられる原因**: 一般ユーザー権限でホスト名を変更しようとしました。
-    * **解決策**: `sudo hostname <new_name>` のように `sudo` を付けて実行してください。
+		* **考えられる原因**: 一般ユーザー権限でホスト名を変更しようとしました。
+		* **解決策**: `sudo hostname <new_name>` のように `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -132,5 +138,3 @@ related:
 
 * **永続的な変更**: `hostname` コマンドで変更したホスト名は、OSを再起動すると元に戻ってしまいます。ホスト名を永続的に変更するには、`hostnamectl set-hostname <new_name>` (systemd環境) を使うか、`/etc/hostname` ファイルを直接編集するのが正しい方法です。
 
----
-[インデックスに戻る](../linux_index.md)
