@@ -18,7 +18,7 @@ knowledge_category:  <% knowledge_category %>
 tags:
 ---
 
-# [<% knowledge_category %>] <% tp.file.title %>
+# <% knowledge_category %> - <% tp.file.title %>
 
 ## 概要
 
