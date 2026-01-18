@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'chgrp'
-  - 'permissions'
-  - 'linux'
-  - 'cheetsheet'
-title: 'chgrp - ファイルやディレクトリのグループ所有者を変更する'
-summary: 'ファイルやディレクトリのグループ所有権を変更し、特定のグループに所属するユーザー群のアクセス権をまとめて管理します。'
-related:
-  - 'chown'
-  - 'chmod'
-  - 'groupadd'
+  - chgrp
+  - permissions
+  - linux
+  - chown
+  - chmod
+  - groupadd
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:04
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `chgrp` - ファイルやディレクトリのグループ所有者を変更する
+# Command  - Linux - chgrp - ファイルやディレクトリのグループ所有者を変更する
 
 ## 概要
 
@@ -40,12 +42,12 @@ related:
 * **解説**: まずディレクトリを作成し、`chgrp` でグループ所有者を開発者グループに設定します。最後に `chmod` でSGIDビットとグループ書き込み権限を付与することで、そのディレクトリ内で作成されるファイルは自動的に開発者グループに所属し、グループメンバーは書き込みができるようになります。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスで共有ディレクトリをセットアップする
-    sudo mkdir /srv/shared-project
-    sudo chgrp developers /srv/shared-project
-    sudo chmod 2775 /srv/shared-project # SGIDビット(2) + rwxrwxr-x (775)
-    ```
+```bash
+# このコマンドシーケンスで共有ディレクトリをセットアップする
+sudo mkdir /srv/shared-project
+sudo chgrp developers /srv/shared-project
+sudo chmod 2775 /srv/shared-project # SGIDビット(2) + rwxrwxr-x (775)
+```
 
 ## オプション説明
 
@@ -68,10 +70,10 @@ related:
 * **解説**: 開発者がコンテンツをアップロードした後、Webサーバプロセス (`www-data`など) がそれらのファイルを読み取れるように、ディレクトリ全体のグループを `www-data` に設定します。
 * **例**:
 
-    ```bash
-    # /var/www/html ディレクトリ以下の全ファイルのグループを www-data に変更
-    sudo chgrp -R www-data /var/www/html
-    ```
+```bash
+# /var/www/html ディレクトリ以下の全ファイルのグループを www-data に変更
+sudo chgrp -R www-data /var/www/html
+```
 
 ### 2. ブルーチーム視点
 
@@ -80,10 +82,10 @@ related:
 * **解説**: システム監査中に、攻撃者が作成した可能性のある不審なグループ (`hackergroup` など) を発見した場合、`find` でそのグループに所属するファイルを全て検索し、`chgrp` を使ってそれらのグループを `root` など安全なものに戻し、無力化します。
 * **例**:
 
-    ```bash
-    # GID 1337 (不審なグループ) が所有するファイルを全て探し、グループをrootに変更
-    sudo find / -gid 1337 -exec chgrp root {} +
-    ```
+```bash
+# GID 1337 (不審なグループ) が所有するファイルを全て探し、グループをrootに変更
+sudo find / -gid 1337 -exec chgrp root {} +
+```
 
 ### 3. レッドチーム視点
 
@@ -92,18 +94,18 @@ related:
 * **解説**: 権限昇格後、`/etc/shadow` (パスワードハッシュファイル) のグループを、自身が制御する別のユーザーが所属するグループ (`adm` や `docker` など) に変更します。`/etc/shadow` のパーミッションが `640` であれば、`adm` グループのメンバーとしてファイルを読み取ることが可能になり、より隠密な情報窃取に繋がります。
 * **例**:
 
-    ```bash
-    # /etc/shadow のグループを 'adm' に変更
-    sudo chgrp adm /etc/shadow
-    ```
+```bash
+# /etc/shadow のグループを 'adm' に変更
+sudo chgrp adm /etc/shadow
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `chgrp: invalid group: ‘<group_name>’`
-    * **考えられる原因**: 指定したグループ名がシステムに存在しません。
-    * **解決策**: `getent group` や `cat /etc/group` コマンドで、システムに存在するグループの一覧を確認し、正しいグループ名を指定してください。
+		* **考えられる原因**: 指定したグループ名がシステムに存在しません。
+		* **解決策**: `getent group` や `cat /etc/group` コマンドで、システムに存在するグループの一覧を確認し、正しいグループ名を指定してください。
 
 ## 環境変数と設定ファイル
 
@@ -135,5 +137,3 @@ related:
 * **`chown`による代替**: `chown :<group_name> <file>` のように、`chown` コマンドでグループ所有者だけを変更できます。多くの管理者は、`chown` の方が多機能であるため好んで使う傾向にあります。
 * **再帰的変更の注意**: `-R` オプションは非常に強力ですが、システムの重要なディレクトリ（`/etc` や `/usr` など）に対して誤って実行すると、システムのパーミッションが破壊され、動作しなくなる可能性があります。実行前には、対象のパスが正しいことを十分に確認してください。
 
----
-[インデックスに戻る](../linux_index.md)

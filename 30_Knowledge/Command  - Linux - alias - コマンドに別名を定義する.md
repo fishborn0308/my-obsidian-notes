@@ -5,7 +5,7 @@ tags:
   - source
   - grep
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:35
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -38,12 +38,12 @@ knowledge_category: Command
 * **解説**: `alias ll='ls -lha'` のように定義しておけば、`ll` の実行結果（詳細なファイルリスト）をパイプで `grep` に渡すことで、目的の情報を効率的にフィルタリングできます。
 * **コマンド例**:
 
-		```bash
-		# 'nginx' という文字列を含むファイルやディレクトリだけを表示
+```bash
+# 'nginx' という文字列を含むファイルやディレクトリだけを表示
 
-		ll | grep 'nginx'
+ll | grep 'nginx'
 
-		```
+```
 
 ## オプション説明
 
@@ -62,24 +62,24 @@ knowledge_category: Command
 * **解説**: 危険なコマンドに確認プロンプトを挟んだり、SSH接続やDockerコンテナ操作を短縮したりする、基本的な使い方です。
 * **例**:
 
-		```bash
-		# 誤った削除を防ぐため、常に確認を求める
+```bash
+# 誤った削除を防ぐため、常に確認を求める
 
-		alias rm='rm -i'
+alias rm='rm -i'
 
-		alias mv='mv -i'
+alias mv='mv -i'
 
-		# よく使うコマンドを短縮
+# よく使うコマンドを短縮
 
-		alias ll='ls -lha'
+alias ll='ls -lha'
 
-		alias update='sudo apt update && sudo apt upgrade -y'
+alias update='sudo apt update && sudo apt upgrade -y'
 
-		# SSH接続を簡略化
+# SSH接続を簡略化
 
-		alias ssh-web='ssh user@web.example.com -i ~/.ssh/id_rsa_web'
+alias ssh-web='ssh user@web.example.com -i ~/.ssh/id_rsa_web'
 
-		```
+```
 
 ## 2. ブルーチーム視点
 
@@ -88,16 +88,16 @@ knowledge_category: Command
 * **解説**: インシデントレスポンスの初動調査で多用するコマンドをエイリアス化し、即座に実行できるようにします。
 * **例**:
 
-		```bash
-		# SSHのログイン失敗ログを素早く確認
+```bash
+# SSHのログイン失敗ログを素早く確認
 
-		alias ssh-fail="grep 'Failed password' /var/log/auth.log | tail -n 20"
+alias ssh-fail="grep 'Failed password' /var/log/auth.log | tail -n 20"
 
-		# LISTEN状態のポートをプロセス情報付きで確認 (ssが推奨)
+# LISTEN状態のポートをプロセス情報付きで確認 (ssが推奨)
 
-		alias listening='sudo ss -tulpn'
+alias listening='sudo ss -tulpn'
 
-		```
+```
 
 ## 3. レッドチーム視点
 
@@ -106,16 +106,16 @@ knowledge_category: Command
 * **解説**: リバースシェルの確立、Webサーバの簡易的な起動、よく使うスキャンコマンドなどを即座に実行できるように準備します。
 * **例**:
 
-		```bash
-		# Pythonを使った簡易HTTPサーバをカレントディレクトリで起動
+```bash
+# Pythonを使った簡易HTTPサーバをカレントディレクトリで起動
 
-		alias http-server='python3 -m http.server 8000'
+alias http-server='python3 -m http.server 8000'
 
-		# Netcatでリバースシェルを待ち受ける
+# Netcatでリバースシェルを待ち受ける
 
-		alias nc-listen='nc -lvnp 4444'
+alias nc-listen='nc -lvnp 4444'
 
-		```
+```
 
 ## エラーメッセージとトラブルシューティング
 

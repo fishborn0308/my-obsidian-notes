@@ -6,7 +6,7 @@ tags:
   - gunzip
   - tar
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:43
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -42,13 +42,12 @@ knowledge_category: Command
 * **解説**: `-c` (`--stdout`) オプションで展開結果を標準出力に送り、それをパイプで `grep` に渡します。これにより、ディスクI/Oを減らして調査を高速化し、元ファイルも変更しないため証拠保全の観点からも安全です。
 * **コマンド例**:
 
-		```bash
-    # 圧縮された認証ログの中から、特定のIPアドレスからのログイン失敗記録を調査
+```bash
+# 圧縮された認証ログの中から、特定のIPアドレスからのログイン失敗記録を調査
 
-    bunzip2 -c /mnt/evidence/auth.log.bz2 | grep "Failed password for root from 198.51.100.10"
+bunzip2 -c /mnt/evidence/auth.log.bz2 | grep "Failed password for root from 198.51.100.10"
 
-    ```
-
+```
 
 ## オプション説明
 
@@ -70,14 +69,13 @@ knowledge_category: Command
 * **解説**: ダウンロードしたソフトウェアのソースコードや、`logrotate` で圧縮されたデータベースのダンプファイルなどを展開する最も基本的な使い方です。
 * **例**:
 
-		```bash
-    # 過去のアクセスログを展開する
+```bash
+# 過去のアクセスログを展開する
 
-    bunzip2 /var/log/httpd/access_log-20250914.bz2
+bunzip2 /var/log/httpd/access_log-20250914.bz2
 
-    # -> access_log-20250914 が生成され、元の .bz2 ファイルは削除される
-    ```
-
+# -> access_log-20250914 が生成され、元の .bz2 ファイルは削除される
+```
 
 ### 2. ブルーチーム視点
 
@@ -86,13 +84,12 @@ knowledge_category: Command
 * **解説**: `-c` で標準出力に、`-k` で元ファイルを保持しながら展開し、その結果を `less` で閲覧します。これにより、ディスク上に展開後の一時ファイルを残さず、かつ安全に内容を確認できます。
 * **例**:
 
-		```bash
-    # 証拠ファイルを元ファイルのまま、内容をページャで確認
+```bash
+# 証拠ファイルを元ファイルのまま、内容をページャで確認
 
-    bunzip2 -ck /mnt/evidence/huge_log.bz2 | less
+bunzip2 -ck /mnt/evidence/huge_log.bz2 | less
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -101,13 +98,12 @@ knowledge_category: Command
 * **解説**: 攻撃者は、ネットワークの検知を回避したり、転送量を減らしたりするためにツールを圧縮しておくことがあります。ホスト上で `bunzip2` を使ってこれらのツールを展開し、攻撃の準備を整えます。
 * **例**:
 
-		```bash
-    # 持ち込んだワードリストを展開する
+```bash
+# 持ち込んだワードリストを展開する
 
-    bunzip2 wordlist.txt.bz2
+bunzip2 wordlist.txt.bz2
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 

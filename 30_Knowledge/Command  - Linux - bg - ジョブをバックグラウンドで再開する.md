@@ -6,7 +6,7 @@ tags:
   - jobs
   - nohup
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:38
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -41,23 +41,22 @@ knowledge_category: Command
 * **解説**: フォアグラウンドで実行したコマンドを `Ctrl+Z` で一時停止し、`jobs` で状態を確認した後、`bg` でバックグラウンドで再開させる、という一連の流れです。
 * **コマンド例**:
 
-		```bash
-    # 1. 時間のかかるコマンドを実行
+```bash
+# 1. 時間のかかるコマンドを実行
 
-    rsync -a /large/data/ /backup/
+rsync -a /large/data/ /backup/
 
-    # 2. Ctrl+Z を押して一時停止
-    # [1]+  Stopped                 rsync -a /large/data/ /backup/
+# 2. Ctrl+Z を押して一時停止
+# [1]+  Stopped                 rsync -a /large/data/ /backup/
 
-    # 3. bg コマンドでバックグラウンドで再開
+# 3. bg コマンドでバックグラウンドで再開
 
-    bg
+bg
 
-    # [1]+ rsync -a /large/data/ /backup/ &
+# [1]+ rsync -a /large/data/ /backup/ &
 
-    # 4. これで別の作業が可能になる
-    ```
-
+# 4. これで別の作業が可能になる
+```
 
 ## オプション説明
 
@@ -79,22 +78,21 @@ knowledge_category: Command
 * **解説**: サーバ管理者が単一のSSHセッションで複数の作業を効率的にこなすための基本的なテクニックです。ターミナルを多重化する `tmux` や `screen` が使えない環境でも役立ちます。
 * **例**:
 
-		```bash
-    # 1. データ処理スクリプトを実行
+```bash
+# 1. データ処理スクリプトを実行
 
-    ./long-running-script.sh
+./long-running-script.sh
 
-    # 2. Ctrl+Z で一時停止
-    # 3. bg でバックグラウンド実行に切り替え
+# 2. Ctrl+Z で一時停止
+# 3. bg でバックグラウンド実行に切り替え
 
-    bg
+bg
 
-    # 4. 別の作業を開始
+# 4. 別の作業を開始
 
-    vi /etc/nginx/nginx.conf
+vi /etc/nginx/nginx.conf
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -103,22 +101,21 @@ knowledge_category: Command
 * **解説**: インシデントレスポンスにおいて、時間のかかる調査と並行して、リアルタイムの状況分析を行う際に有効です。限られた時間とコンソールで効率的に調査を進めることができます。
 * **例**:
 
-		```bash
-    # 1. 巨大なログファイルを検索
+```bash
+# 1. 巨大なログファイルを検索
 
-    grep "198.51.100.10" /var/log/secure* > suspicious_logins.txt
+grep "198.51.100.10" /var/log/secure* > suspicious_logins.txt
 
-    # 2. Ctrl+Z で一時停止
-    # 3. bg %1 でバックグラウンドで検索を続行
+# 2. Ctrl+Z で一時停止
+# 3. bg %1 でバックグラウンドで検索を続行
 
-    bg %1
+bg %1
 
-    # 4. ps aux や ss -anp などで他の調査を開始
+# 4. ps aux や ss -anp などで他の調査を開始
 
-    ps aux
+ps aux
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -127,22 +124,21 @@ knowledge_category: Command
 * **解説**: `tmux` や `screen` がインストールされていない環境での活動において、セッションを失うことなく複数のタスクを維持するための手段となります。
 * **例**:
 
-		```bash
-    # 1. Netcatでリスナーを起動
+```bash
+# 1. Netcatでリスナーを起動
 
-    nc -lvnp 4444
+nc -lvnp 4444
 
-    # 2. Ctrl+Z で一時停止
-    # 3. bg でリスナーをバックグラウンドで稼働
+# 2. Ctrl+Z で一時停止
+# 3. bg でリスナーをバックグラウンドで稼働
 
-    bg
+bg
 
-    # 4. find / -perm -4000 2>/dev/null などで権限昇格の調査を開始
+# 4. find / -perm -4000 2>/dev/null などで権限昇格の調査を開始
 
-    find / -perm -4000 2>/dev/null
+find / -perm -4000 2>/dev/null
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 

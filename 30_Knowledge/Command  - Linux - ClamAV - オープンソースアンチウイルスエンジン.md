@@ -1,21 +1,23 @@
 ---
 tags:
-  - 'ClamAV'
-  - 'clamscan'
-  - 'freshclam'
-  - 'antivirus'
-  - 'security'
-  - 'cheetsheet'
-title: 'ClamAV - オープンソースアンチウイルスエンジン'
-summary: 'ウイルス、トロイの木馬、マルウェアなどの悪意のある脅威を検出するための、クロスプラットフォームのオープンソースアンチウイルスエンジンです。'
-related:
-  - 'chkrootkit'
-  - 'rkhunter'
-  - 'maldet'
-  - 'EDR'
+  - ClamAV
+  - clamscan
+  - freshclam
+  - antivirus
+  - security
+  - chkrootkit
+  - rkhunter
+  - maldet
+  - EDR
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:08
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ClamAV` - オープンソースアンチウイルスエンジン
+# Command  - Linux - ClamAV - オープンソースアンチウイルスエンジン
 
 ## 概要
 
@@ -45,10 +47,13 @@ related:
 * **解説**: まず `freshclam` でデータベースを最新にし、その後 `clamscan` を実行します。`-i` で感染ファイルのみを報告させ、`-l` でログファイルに出力することで、日々の監査を効率化します。
 * **コマンド例** (`/etc/cron.d/clamscan` などに記述):
 
-    ```bash
-    # 毎日午前3時にフルスキャンを実行し、結果をログに記録。感染ファイルのみをリストアップ。
-    0 3 * * * root /usr/bin/freshclam --quiet && /usr/bin/clamscan -r -i / -l /var/log/clamscan.log
-    ```
+```bash
+# 毎日午前3時にフルスキャンを実行し、結果をログに記録。感染ファイルのみをリストアップ。
+
+0 3 * * * root /usr/bin/freshclam --quiet && /usr/bin/clamscan -r -i / -l /var/log/clamscan.log
+
+```
+
 
 ### シナリオ例: 特定の種類のファイルのみをスキャンする (インフラ運用/ブルーチーム視点)
 
@@ -57,10 +62,13 @@ related:
 * **解説**: `find`コマンドでスキャン対象のファイルを絞り込み、その結果を `xargs` を通じて `clamscan` に渡すことで、システム全体の負荷を抑えつつ効率的なスキャンを実現します。
 * **コマンド例**:
 
-    ```bash
-    # 実行権限を持つファイルか、拡張子が.phpのファイルを探してスキャン
-    find /home -type f \( -perm /u=x,g=x,o=x -o -name "*.php" \) -print0 | xargs -0 clamscan -l /var/log/clamav/custom_scan.log
-    ```
+```bash
+# 実行権限を持つファイルか、拡張子が.phpのファイルを探してスキャン
+
+find /home -type f \( -perm /u=x,g=x,o=x -o -name "*.php" \) -print0 | xargs -0 clamscan -l /var/log/clamav/custom_scan.log
+
+```
+
 
 ## オプション説明
 
@@ -93,23 +101,29 @@ related:
 * **解説**: ファイルシステムのルートから、全ファイルを再帰的にスキャンする最も基本的な使い方です。cronジョブとしてスケジュールするのが一般的です。
 * **例**:
 
-    ```bash
-    # まずは定義ファイルを更新
-    sudo freshclam
+```bash
+# まずは定義ファイルを更新
 
-    # ホームディレクトリを再帰的にスキャンし、感染ファイルのみ表示
-    sudo clamscan -r -i /home
-    ```
+sudo freshclam
+
+# ホームディレクトリを再帰的にスキャンし、感染ファイルのみ表示
+
+sudo clamscan -r -i /home
+
+```
 
 * **タスク**: 毎晩Webサーバーの公開ディレクトリをスキャンし、感染ファイルを隔離、結果を日次ログに記録する。
 * **組み合わせ**: `-r --move=/opt/clamav/quarantine -l /var/log/clamav/daily_web_scan.log`
 * **解説**: cronジョブとして設定することを想定。再帰スキャン(`-r`)でディレクトリ全体を対象とし、マルウェアが見つかった場合は安全な隔離場所(`--move`)へ移動させ、日々の運用監査のためにログ(`-l`)を残します。
 * **例**:
 
-    ```bash
-    # /var/www/html をスキャンし、感染ファイルを隔離ディレクトリへ移動
-    clamscan -r --move=/opt/clamav/quarantine -l /var/log/clamav/daily_web_scan_$(date +\%Y\%m\%d).log /var/www/html
-    ```
+```bash
+# /var/www/html をスキャンし、感染ファイルを隔離ディレクトリへ移動
+
+clamscan -r --move=/opt/clamav/quarantine -l /var/log/clamav/daily_web_scan_$(date +\%Y\%m\%d).log /var/www/html
+
+```
+
 
 ### 2. ブルーチーム視点
 
@@ -118,21 +132,27 @@ related:
 * **解説**: Webサーバのアップロードディレクトリなど、マルウェアが設置されやすい場所をスキャンします。`--move` を使うことで、悪意のあるファイルをシステムから安全に隔離し、後の詳細なフォレンジック分析のために保全します。
 * **例**:
 
-    ```bash
-    # 調査対象のホームディレクトリをスキャンし、感染ファイルを /var/log/quarantine に隔離
-    sudo mkdir -p /var/log/quarantine
-    sudo clamscan -r -i --move=/var/log/quarantine /home/compromised_user
-    ```
+```bash
+# 調査対象のホームディレクトリをスキャンし、感染ファイルを /var/log/quarantine に隔離
+
+sudo mkdir -p /var/log/quarantine
+
+sudo clamscan -r -i --move=/var/log/quarantine /home/compromised_user
+
+```
 
 * **タスク**: インシデント対応中に、侵害された可能性のあるサーバー全体をスキャンし、感染ファイルとそのパスを特定する。
 * **組み合わせ**: `-r -i -l /tmp/incident_scan.log`
 * **解説**: サーバー全体を対象に再帰的(`-r`)にスキャンし、分析に必要な情報（感染ファイル）のみをリストアップ(`-i`)して、迅速な対応を支援します。全てのファイルをログに書くとノイズが多いため、感染ファイルに絞ることが重要です。
 * **例**:
 
-    ```bash
-    # ルートからスキャンを開始するが、擬似ファイルシステムは除外する
-    clamscan -r -i --exclude-dir="^/proc" --exclude-dir="^/sys" --exclude-dir="^/dev" -l /var/log/clamav/incident_response_$(date +\%F).log /
-    ```
+```bash
+# ルートからスキャンを開始するが、擬似ファイルシステムは除外する
+
+clamscan -r -i --exclude-dir="^/proc" --exclude-dir="^/sys" --exclude-dir="^/dev" -l /var/log/clamav/incident_response_$(date +\%F).log /
+
+```
+
 
 ### 3. レッドチーム視点
 
@@ -141,37 +161,37 @@ related:
 * **解説**: 攻撃者は、**検知回避 (Defense Evasion)** の一環として、作成したマルウェアやペイロードを `clamscan` にかけます。もし検出された場合、エンコーダやパッカーを使ってペイロードを難読化・改変し、`ClamAV` のシグネチャから逃れられるようになるまでこのプロセスを繰り返します。
 * **例**:
 
-  ```bash
-    # 自身が作成したペイロード 'payload.elf' が検出されるかテスト
-    clamscan ./payload.elf
+```bash
+# 自身が作成したペイロード 'payload.elf' が検出されるかテスト
+clamscan ./payload.elf
 
-    # サーバーのClamAVが古いかどうかを確認 (攻撃の足がかり)
-    clamscan --version
-    ```
+# サーバーのClamAVが古いかどうかを確認 (攻撃の足がかり)
+clamscan --version
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `LibClamAV Error: cli_loaddb(): No supported database files found in /var/lib/clamav`
-    * **考えられる原因**: ウイルス定義データベースがダウンロードされていないか、破損しています。
-    * **解決策**: `sudo freshclam` を実行して、データベースをダウンロードまたは更新してください。
+		* **考えられる原因**: ウイルス定義データベースがダウンロードされていないか、破損しています。
+		* **解決策**: `sudo freshclam` を実行して、データベースをダウンロードまたは更新してください。
 
 2. **エラーメッセージ例 2**: `freshclam: Can't connect to port 53` or `connection timed out`
-    * **考えられる原因**: DNSの名前解決ができていないか、ファイアウォールで外部への通信がブロックされています。
-    * **解決策**: `ping database.clamav.net` で疎通確認を行い、DNS設定 (`/etc/resolv.conf`) やファイアウォールの設定を見直してください。
+		* **考えられる原因**: DNSの名前解決ができていないか、ファイアウォールで外部への通信がブロックされています。
+		* **解決策**: `ping database.clamav.net` で疎通確認を行い、DNS設定 (`/etc/resolv.conf`) やファイアウォールの設定を見直してください。
 
 3. **エラーメッセージ**: `WARNING: Your ClamAV installation is OUTDATED.`
-    * **考えられる原因**: ClamAVのデータベースが7日以上更新されていない。
-    * **解決策**: `sudo freshclam` を実行します。ファイアウォールやプロキシ設定が原因で `freshclam` が失敗する場合は、`/etc/clamav/freshclam.conf` を確認してください。
+		* **考えられる原因**: ClamAVのデータベースが7日以上更新されていない。
+		* **解決策**: `sudo freshclam` を実行します。ファイアウォールやプロキシ設定が原因で `freshclam` が失敗する場合は、`/etc/clamav/freshclam.conf` を確認してください。
 
 4. **エラーメッセージ**: `Can't open file or directory ERROR`
-    * **考えられる原因**: `clamscan` を実行しているユーザーに、スキャン対象のファイルやディレクトリへの読み取り権限がない。
-    * **解決策**: `sudo` を付けてコマンドを実行するか、適切な権限を持つユーザーで実行してください。
+		* **考えられる原因**: `clamscan` を実行しているユーザーに、スキャン対象のファイルやディレクトリへの読み取り権限がない。
+		* **解決策**: `sudo` を付けてコマンドを実行するか、適切な権限を持つユーザーで実行してください。
 
 5. **現象**: `clamscan` の実行が非常に遅い。
-    * **考えられる原因**: `clamscan` は実行のたびにウイルス定義データベースをメモリに読み込むため、オーバーヘッドが大きい。
-    * **解決策**: `clamd` デーモンをセットアッ
+		* **考えられる原因**: `clamscan` は実行のたびにウイルス定義データベースをメモリに読み込むため、オーバーヘッドが大きい。
+		* **解決策**: `clamd` デーモンをセットアッ
 
 ## 環境変数と設定ファイル
 
@@ -188,8 +208,8 @@ related:
 ### 脆弱性と悪用事例
 
 * **脆弱性**:
-  * **シグネチャベースの限界**: `ClamAV` は主に既知のマルウェアを検出します。未知のマルウェア（ゼロデイ）や、高度に難読化されたペイロードは検出できない可能性があります（**偽陰性, False Negative**）。
-  * **誤検知 (False Positive)**: 稀に、正常なファイルをマルウェアとして誤検知することがあります。`--remove` オプションを自動実行すると、重要なシステムファイルが削除され、システムが破壊されるリスクがあります。
+	* **シグネチャベースの限界**: `ClamAV` は主に既知のマルウェアを検出します。未知のマルウェア（ゼロデイ）や、高度に難読化されたペイロードは検出できない可能性があります（**偽陰性, False Negative**）。
+	* **誤検知 (False Positive)**: 稀に、正常なファイルをマルウェアとして誤検知することがあります。`--remove` オプションを自動実行すると、重要なシステムファイルが削除され、システムが破壊されるリスクがあります。
 * **悪用シナリオ**: 過去には、`ClamAV` のスキャンエンジン自体に、特別に細工されたファイルをスキャンさせることでサービス拒否や任意コード実行が可能になる脆弱性が発見されたことがあります。
 
 ### GTFOBins / LOLBAS における利用例
@@ -206,5 +226,3 @@ related:
 * **`clamd` vs `clamscan`**: `clamscan` は実行のたびにDBを読み込むためオーバーヘッドが大きいです。メールサーバのように頻繁にスキャンを行う場合は、DBをメモリ上に保持するデーモン版の `clamd` と、そのクライアントの `clamdscan` を使うことで、高速なスキャンが可能です。
 * **データベースの更新**: `ClamAV` の検出能力は、ウイルス定義データベースの鮮度に完全に依存します。`freshclam` をcronやデーモンで定期的に実行し、常に最新の状態を保つ運用が不可欠です。
 
----
-[インデックスに戻る](../linux_index.md)

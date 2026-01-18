@@ -1,20 +1,22 @@
 ---
 tags:
-  - 'chkconfig'
-  - 'sysvinit'
-  - 'rhel'
-  - 'centos'
-  - 'legacy'
-  - 'cheetsheet'
-title: 'chkconfig - SysVinitサービスの自動起動を管理する (RHEL系/旧)'
-summary: 'SysVinitを採用した旧世代のRed Hat系システムで、サービスの自動起動設定をランレベルごとに管理します。'
-related:
-  - 'systemctl'
-  - 'update-rc.d'
-  - 'service'
+  - chkconfig
+  - sysvinit
+  - rhel
+  - centos
+  - legacy
+  - systemctl
+  - update-rc
+  - service
+created: 2025-09-22 14:02
+modified: 2026-01-18 15:07
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `chkconfig` - SysVinitサービスの自動起動を管理する (RHEL系/旧)
+# Command  - Linux - chkconfig - SysVinitサービスの自動起動を管理する (RHEL系/旧)
 
 ## 概要
 
@@ -43,13 +45,13 @@ related:
 * **解説**: まず起動スクリプトを所定の場所にコピーし、実行権限を付与します。次に `chkconfig --add` でサービスとして登録し、`chkconfig on` で自動起動を有効化します。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスでカスタムサービスを登録・有効化する
-    sudo cp myapp-script /etc/init.d/myapp
-    sudo chmod +x /etc/init.d/myapp
-    sudo chconfig --add myapp
-    sudo chkconfig myapp on
-    ```
+```bash
+# このコマンドシーケンスでカスタムサービスを登録・有効化する
+sudo cp myapp-script /etc/init.d/myapp
+sudo chmod +x /etc/init.d/myapp
+sudo chconfig --add myapp
+sudo chkconfig myapp on
+```
 
 ## オプション説明
 
@@ -73,13 +75,13 @@ related:
 * **解説**: サーバが再起動してもWebサービスが自動で開始されるように、サービスの自動起動を有効化します。
 * **例**:
 
-    ```bash
-    # httpdサービスの現在の設定を確認
-    chkconfig --list httpd
+```bash
+# httpdサービスの現在の設定を確認
+chkconfig --list httpd
 
-    # httpdサービスを自動起動ONに設定
-    sudo chkconfig httpd on
-    ```
+# httpdサービスを自動起動ONに設定
+sudo chkconfig httpd on
+```
 
 ### 2. ブルーチーム視点
 
@@ -88,10 +90,10 @@ related:
 * **解説**: システムで自動起動が有効になっているサービスを全てリストアップします。リストの中に、標準的でない、あるいは明らかに不審な名前のサービスが `on` になっているのを発見した場合、それは攻撃者が設置した永続化の仕組みである可能性が極めて高いです。
 * **例**:
 
-    ```bash
-    # 自動起動が有効なサービスをリストアップし、不審なものがないか確認
-    chkconfig --list | grep 'on'
-    ```
+```bash
+# 自動起動が有効なサービスをリストアップし、不審なものがないか確認
+chkconfig --list | grep 'on'
+```
 
 ### 3. レッドチーム視点
 
@@ -100,23 +102,23 @@ related:
 * **解説**: 攻撃者がroot権限を奪取した後、`/etc/init.d/` ディレクトリにリバースシェルなどを起動する悪意のあるスクリプトを設置し、このコマンドでサービスとして登録・有効化します。これにより、システムが再起動しても自身のバックドアが自動的に実行されるように仕掛けます。
 * **例**:
 
-    ```bash
-    # 悪意のあるスクリプトをサービスとして登録し、有効化する
-    sudo chkconfig --add evil-svc
-    sudo chkconfig evil-svc on
-    ```
+```bash
+# 悪意のあるスクリプトをサービスとして登録し、有効化する
+sudo chkconfig --add evil-svc
+sudo chkconfig evil-svc on
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error reading information on service <service_name>: No such file or directory`
-    * **考えられる原因**: `/etc/init.d/` ディレクトリに、指定したサービス名の起動スクリプトが存在しません。
-    * **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
+		* **考えられる原因**: `/etc/init.d/` ディレクトリに、指定したサービス名の起動スクリプトが存在しません。
+		* **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
 
 2. **エラーメッセージ例 2**: `service <service_name> does not support chkconfig`
-    * **考えられる原因**: `/etc/init.d/` にある起動スクリプトの冒頭に、`chkconfig` が必要とする特別なコメント行（例: `# chkconfig: 2345 80 20`）が記述されていません。
-    * **解決策**: スクリプトを編集し、適切な `chkconfig` ヘッダを追加する必要があります。
+		* **考えられる原因**: `/etc/init.d/` にある起動スクリプトの冒頭に、`chkconfig` が必要とする特別なコメント行（例: `# chkconfig: 2345 80 20`）が記述されていません。
+		* **解決策**: スクリプトを編集し、適切な `chkconfig` ヘッダを追加する必要があります。
 
 ## 環境変数と設定ファイル
 
@@ -148,5 +150,3 @@ related:
 
 * **ランレベル (Runlevel)**: SysVinitは、システムの動作モードを0から6の「ランレベル」で定義します（例: `3`はテキストベースのマルチユーザーモード、`5`はグラフィカルモード）。`chkconfig` は、どのランレベルでどのサービスを起動するかを設定しています。
 
----
-[インデックスに戻る](../linux_index.md)

@@ -7,7 +7,7 @@ tags:
   - ip_link
   - ovs-vsctl
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:39
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -42,19 +42,18 @@ knowledge_category: Command
 * **解説**: `brctl addbr` でブリッジデバイスを作成し、`brctl addif` でインターフェイスを接続します。その後、`ip` コマンドを使ってIPアドレスの割り当てや、インターフェイスの有効化を行います。
 * **コマンド例**:
 
-		```bash
-    # このコマンドシーケンスで基本的なブリッジを構築する
+```bash
+# このコマンドシーケンスで基本的なブリッジを構築する
 
-    sudo brctl addbr br0
+sudo brctl addbr br0
 
-    sudo ip addr flush dev eth0
+sudo ip addr flush dev eth0
 
-    sudo brctl addif br0 eth0
+sudo brctl addif br0 eth0
 
-    sudo ip link set br0 up
+sudo ip link set br0 up
 
-    ```
-
+```
 
 ## オプション説明
 
@@ -79,15 +78,14 @@ knowledge_category: Command
 * **解説**: 物理NIC `eth0` を含むブリッジ `br0` を作成します。その後、KVMの起動設定で、仮想マシンのネットワークインターフェイスが `br0` に接続されるように指定します。これにより、仮想マシンはブリッジを通じて物理ネットワークに直接アクセスできるようになります。
 * **例**:
 
-		```bash
-    # ブリッジbr0を作成し、eth0を追加する
+```bash
+# ブリッジbr0を作成し、eth0を追加する
 
-    sudo brctl addbr br0
+sudo brctl addbr br0
 
-    sudo brctl addif br0 eth0
+sudo brctl addif br0 eth0
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -96,13 +94,12 @@ knowledge_category: Command
 * **解説**: 物理スイッチのポートから不審なMACアドレスを持つ通信が検出された場合、`brctl showmacs` でブリッジのMACアドレステーブルを確認します。`port no` 列から、そのMACアドレスがどの仮想インターフェイス（例: `vnet0`）に紐付いているかを特定し、問題の仮想マシンを割り出すことができます。
 * **例**:
 
-		```bash
-    # br0ブリッジのMACアドレステーブルを確認
+```bash
+# br0ブリッジのMACアドレステーブルを確認
 
-    sudo brctl showmacs br0
+sudo brctl showmacs br0
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -111,13 +108,12 @@ knowledge_category: Command
 * **解説**: 侵入後の偵察の一環として `brctl show` を実行し、ブリッジの構成や接続インターフェイス名を把握します。これにより、ホストの役割や、同じネットワークセグメントに存在する他の仮想マシンを推測し、ラテラルムーブメント（横展開）の足がかりを探します。
 * **例**:
 
-		```bash
-    # 存在するブリッジと接続インターフェイスをリストアップ
+```bash
+# 存在するブリッジと接続インターフェイスをリストアップ
 
-    brctl show
+brctl show
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 

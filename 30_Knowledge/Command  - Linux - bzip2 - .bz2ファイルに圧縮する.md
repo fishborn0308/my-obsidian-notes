@@ -3,20 +3,18 @@ tags:
   - bzip2
   - bunzip2
   - compression
-  - cheetsheet
   - gzip
   - tar
   - zip
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 14:44
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
-
 # Command  - Linux - bzip2 - .bz2ファイルに圧縮する
-
 
 ## 概要
 
@@ -45,10 +43,11 @@ knowledge_category: Command
 * **解説**: `mysqldump` の標準出力をパイプで `bzip2` に渡します。`-c` オプションで結果を標準出力に送り、リダイレクションでファイルに保存します。
 * **コマンド例**:
 
-    ```bash
-    # my_database のダンプを取得し、bzip2で圧縮して保存
-    mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
-    ```
+```bash
+# my_database のダンプを取得し、bzip2で圧縮して保存
+mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
+```
+
 
 ## オプション説明
 
@@ -73,11 +72,12 @@ knowledge_category: Command
 * **解説**: `-9` で最高の圧縮率を指定し、`-v` で圧縮結果を確認しながらファイルを圧縮します。頻繁にアクセスしないが長期間保管する必要があるファイルに適しています。
 * **例**:
 
-    ```bash
-    # 1GBのSQLダンプファイルを最高圧縮レベルで圧縮
-    bzip2 -9 -v large_database_dump.sql
-    # -> large_database_dump.sql.bz2 が生成される
-    ```
+```bash
+	# 1GBのSQLダンプファイルを最高圧縮レベルで圧縮
+	bzip2 -9 -v large_database_dump.sql
+	# -> large_database_dump.sql.bz2 が生成される
+```
+
 
 ### 2. ブルーチーム視点
 
@@ -86,10 +86,11 @@ knowledge_category: Command
 * **解説**: `tar` と `bzip2` を連携 (`j` オプション) させ、証拠となるディレクトリ全体を1つのファイルにまとめます。`bzip2` の高い圧縮率を利用することで、ストレージ容量とネットワーク帯域を節約できます。
 * **例**:
 
-    ```bash
-    # /var/log ディレクトリ全体を 'logs-archive.tar.bz2' としてアーカイブ・圧縮
-    tar cjf logs-archive.tar.bz2 /var/log/
-    ```
+```bash
+	# /var/log ディレクトリ全体を 'logs-archive.tar.bz2' としてアーカイブ・圧縮
+	tar cjf logs-archive.tar.bz2 /var/log/
+```
+
 
 ### 3. レッドチーム視点
 
@@ -98,18 +99,19 @@ knowledge_category: Command
 * **解説**: 窃取したデータを `tar` と `bzip2` で高圧縮アーカイブし、その結果をパイプで `gpg` に渡してさらに暗号化します。
 * **例**:
 
-    ```bash
-    # /etc と /home/user の中身を高圧縮し、gpgで暗号化する
-    tar cjf - /etc /home/user | gpg -c -o loot.tar.bz2.gpg
-    ```
+```bash
+	# /etc と /home/user の中身を高圧縮し、gpgで暗号化する
+	tar cjf - /etc /home/user | gpg -c -o loot.tar.bz2.gpg
+```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `bzip2: I/O or other error, bailing out. Possible reason: disk full.`
-    * **考えられる原因**: 圧縮プロセス中にディスクの空き容量がなくなりました。
-    * **解決策**: 不要なファイルを削除してディスクの空き容量を確保するか、`-c` オプションとリダイレクションを使って別のファイルシステムに出力します。
+		* **考えられる原因**: 圧縮プロセス中にディスクの空き容量がなくなりました。
+		* **解決策**: 不要なファイルを削除してディスクの空き容量を確保するか、`-c` オプションとリダイレクションを使って別のファイルシステムに出力します。
 
 ## 環境変数と設定ファイル
 
@@ -136,11 +138,9 @@ knowledge_category: Command
 
 * **`tar` との組み合わせ**: 複数のファイルやディレクトリを扱う場合は、`bzip2` を直接使うのではなく、`tar` の `j` オプションを使うのがLinux/Unixの標準的な作法です。
 
-  ```bash
+	```bash
   # アーカイブ・圧縮
   tar cjf archive.tar.bz2 directory/
   # 展開・解凍
   tar xjf archive.tar.bz2
-
----
-[インデックスに戻る](../linux_index.md)
+	```

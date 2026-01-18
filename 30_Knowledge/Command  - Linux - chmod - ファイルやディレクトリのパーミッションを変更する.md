@@ -1,20 +1,22 @@
 ---
 tags:
-  - 'chmod'
-  - 'permissions'
-  - 'security'
-  - 'linux'
-  - 'cheetsheet'
-title: 'chmod - ファイルやディレクトリのパーミッションを変更する'
-summary: 'ファイルやディレクトリのアクセス権限（読み取り,書き込み,実行）を、ユーザー,グループ,その他のカテゴリごとに設定・変更します。'
-related:
-  - 'chown'
-  - 'chgrp'
-  - 'ls'
-  - 'umask'
+  - chmod
+  - permissions
+  - security
+  - linux
+  - chown
+  - chgrp
+  - ls
+  - umask
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:08
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `chmod` - ファイルやディレクトリのパーミッションを変更する
+# Command  - Linux - chmod - ファイルやディレクトリのパーミッションを変更する
 
 ## 概要
 
@@ -40,12 +42,17 @@ related:
 * **解説**: ディレクトリを作成し、グループ所有者を設定した後、`chmod` で適切なパーミッション（この場合は `770`）と `SGID` ビット (`2`) を設定します。SGIDビットにより、このディレクトリ内で作成されたファイルは親ディレクトリのグループを継承するようになります。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスで共有ディレクトリをセットアップする
-    sudo mkdir /srv/shared
-    sudo chgrp developers /srv/shared
-    sudo chmod 2770 /srv/shared
-    ```
+```bash
+# このコマンドシーケンスで共有ディレクトリをセットアップする
+
+sudo mkdir /srv/shared
+
+sudo chgrp developers /srv/shared
+
+sudo chmod 2770 /srv/shared
+
+```
+
 
 ## オプション説明
 
@@ -67,21 +74,27 @@ related:
 * **解説**: シンボリックモードを使い、スクリプトファイルに実行権限 (`x`) を付与する、最も基本的な操作です。
 * **例**:
 
-    ```bash
-    # backup.sh というスクリプトを実行可能にする
-    chmod +x backup.sh
-    ./backup.sh
-    ```
+```bash
+# backup.sh というスクリプトを実行可能にする
+
+chmod +x backup.sh
+
+./backup.sh
+
+```
 
 * **タスク**: SSHの秘密鍵ファイルのパーミッションを厳格にする。
 * **組み合わせ**: `chmod 600 <key_file>`
 * **解説**: 八進数モードを使い、SSHの秘密鍵を所有者のみが読み書きできるように設定します。これはSSH接続のための必須のセキュリティ設定です。
 * **例**:
 
-    ```bash
-    # SSH秘密鍵のパーミッションを設定
-    chmod 600 ~/.ssh/id_rsa
-    ```
+```bash
+# SSH秘密鍵のパーミッションを設定
+
+chmod 600 ~/.ssh/id_rsa
+
+```
+
 
 ### 2. ブルーチーム視点
 
@@ -90,10 +103,13 @@ related:
 * **解説**: インシデントレスポンス中に発見したマルウェアや不審な実行ファイルに対し、全ての権限を剥奪 (`000`) することで、そのファイルが誤って実行されたり、読み取られたりするのを防ぐ封じ込め措置として実行します。
 * **例**:
 
-    ```bash
-    # 不審な実行ファイルの権限を全て剥奪
-    sudo chmod 000 /tmp/evil.elf
-    ```
+```bash
+# 不審な実行ファイルの権限を全て剥奪
+
+sudo chmod 000 /tmp/evil.elf
+
+```
+
 
 ### 3. レッドチーム視点
 
@@ -102,20 +118,25 @@ related:
 * **解説**: **SUID (Set User ID) ビット**を設定します。攻撃者がroot権限を奪取した後、`/bin/bash` のコピーなどにSUIDビットを設定することで、一般ユーザーに戻った後でも、そのバイナリを実行すればroot権限のシェルを再度取得できる永続化手法です。
 * **例**:
 
-    ```bash
-    # bashのコピーにSUIDビットを設定する (root権限で実行)
-    sudo cp /bin/bash /tmp/root-shell
-    sudo chown root:root /tmp/root-shell
-    sudo chmod u+s /tmp/root-shell
-    ```
+```bash
+# bashのコピーにSUIDビットを設定する (root権限で実行)
+
+sudo cp /bin/bash /tmp/root-shell
+
+sudo chown root:root /tmp/root-shell
+
+sudo chmod u+s /tmp/root-shell
+
+```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `chmod: changing permissions of '<file>': Operation not permitted`
-    * **考えられる原因**: ファイルのパーミッションを変更できるのは、そのファイルの所有者または `root` ユーザーのみです。
-    * **解決策**: `sudo` を付けてコマンドを実行してください。
+		* **考えられる原因**: ファイルのパーミッションを変更できるのは、そのファイルの所有者または `root` ユーザーのみです。
+		* **解決策**: `sudo` を付けてコマンドを実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -142,9 +163,9 @@ related:
 
 * **`-R` (再帰) オプションの注意**: `chmod -R 755 /somedir` は便利ですが、ディレクトリとファイルで適切なパーミッションは異なるため、意図しない権限を設定してしまう可能性があります。`find` コマンドと組み合わせて、ファイルとディレクトリを分けて設定する方が安全です。
 
-  ```bash
-  find /somedir -type d -exec chmod 755 {} \;  # ディレクトリは755
-  find /somedir -type f -exec chmod 644 {} \;  # ファイルは644
+```bash
+find /somedir -type d -exec chmod 755 {} \;  # ディレクトリは755
+find /somedir -type f -exec chmod 644 {} \;  # ファイルは644
+```
 
----
-[インデックスに戻る](../linux_index.md)
+

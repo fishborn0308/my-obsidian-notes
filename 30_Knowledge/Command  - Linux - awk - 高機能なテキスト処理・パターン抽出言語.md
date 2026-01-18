@@ -6,7 +6,7 @@ tags:
   - cut
   - sort
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:37
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -40,13 +40,12 @@ knowledge_category: Command
 * **解説**: `awk` を使ってログの1番目のフィールド(IP)と9番目のフィールド(ステータスコード)を評価し、404の場合にIPを出力します。その結果を `sort` でまとめ、`uniq -c` で出現回数を数え、最後に再度 `sort` と `head` でトップ10を整形します。
 * **コマンド例**:
 
-		```bash
-    # $9がステータスコード, $1がIPアドレス (ログ形式による)
+```bash
+# $9がステータスコード, $1がIPアドレス (ログ形式による)
 
-    awk '$9 == 404 {print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10
+awk '$9 == 404 {print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10
 
-    ```
-
+```
 
 ## オプション説明
 
@@ -66,13 +65,12 @@ knowledge_category: Command
 * **解説**: `-F` オプションで区切り文字をコロン `:` に指定し、ユーザー名(1番目のフィールド)とUID(3番目のフィールド)を抽出します。
 * **例**:
 
-		```bash
-    # ユーザー名とUIDをタブ区切りで表示
+```bash
+# ユーザー名とUIDをタブ区切りで表示
 
-    awk -F':' '{print "User: " $1 "\tUID: " $3}' /etc/passwd
+awk -F':' '{print "User: " $1 "\tUID: " $3}' /etc/passwd
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -81,13 +79,12 @@ knowledge_category: Command
 * **解説**: `-v` オプションで調査対象のIPアドレスをシェルから受け取り、ログファイル内でそのIPアドレスが出現する回数をカウントして、最後に `END` ブロックで集計結果を出力します。
 * **例**:
 
-		```bash
-    # access.logからIP "198.51.100.10" のアクセス回数を数える
+```bash
+# access.logからIP "198.51.100.10" のアクセス回数を数える
 
-    awk -v ip="198.51.100.10" '$1 == ip {count++} END {print ip, "found", count, "times."}' access.log
+awk -v ip="198.51.100.10" '$1 == ip {count++} END {print ip, "found", count, "times."}' access.log
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -96,13 +93,12 @@ knowledge_category: Command
 * **解説**: NmapのGrepable形式 (`-oG`) の出力をパイプで受け取り、`awk` でホストが "Up" であり、かつポートが "open" である行から、2番目のフィールド(IPアドレス)のみを抽出します。
 * **例**:
 
-		```bash
-    # 192.168.1.0/24 ネットワークでポート80が開いているホストをリストアップ
+```bash
+# 192.168.1.0/24 ネットワークでポート80が開いているホストをリストアップ
 
-    nmap -p80 -oG - 192.168.1.0/24 | awk '/Up$/ && / 80\/open\// {print $2}'
+nmap -p80 -oG - 192.168.1.0/24 | awk '/Up$/ && / 80\/open\// {print $2}'
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -146,5 +142,4 @@ knowledge_category: Command
 
 * **クォートの使い分け**: `awk` スクリプトは**シングルクォート (`'`)** で囲むのが基本です。これは、`$1` などの `awk` の変数がシェルによって先に展開されてしまうのを防ぐためです。
 * **BEGINとEND**: `BEGIN` ブロックは入力ファイルを読み込む前に一度だけ実行され、ヘッダーの出力や変数の初期化に使います。`END` ブロックは全ての行の処理が終わった後に一度だけ実行され、合計値の表示や集計レポートの作成に非常に便利です。
-
 

@@ -1,19 +1,23 @@
 ---
 tags:
-  - 'capabilities'
-  - 'linux'
-  - 'security'
-  - 'privilege'
-  - 'cheetsheet'
-title: 'Linux Capabilities - root権限を分割・管理する'
-summary: '伝統的にrootユーザーに集約されていた特権を、より小さな独立した単位に分割し、プロセスに必要最小限の権限だけを付与するためのセキュリティ機構です。'
-related:
-  - 'setuid_setgid'
-  - 'sudo'
-  - 'selinux_apparmor'
+  - capabilities
+  - linux
+  - security
+  - privilege
+  - setuid_setgid
+  - sudo
+  - selinux_apparmor
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: OS
 ---
 
-# Linux Capabilities - root権限を分割・管理する
+# OS  - Linux - capabilities - root権限を分割・管理する
+
+
+
 
 ## 概要
 
@@ -40,10 +44,10 @@ Linuxケーパビリティは、伝統的に`root`ユーザーに集約されて
 * **解説**: `find` でシステム全体をスキャンし、`getcap` を `-exec` で実行することで、ケーパビリティを持つファイルをリストアップします。特に、スクリプトインタプリタなどに強力なケーパビリティが付与されている場合、それは攻撃の起点となり得ます。
 * **コマンド例**:
 
-    ```bash
-    # システム全体でケーパビリティが設定されたファイルを探す
-    find / -type f -exec getcap {} + 2>/dev/null
-    ```
+```bash
+# システム全体でケーパビリティが設定されたファイルを探す
+find / -type f -exec getcap {} + 2>/dev/null
+```
 
 ## オプション説明 (`getcap`/`setcap`)
 
@@ -64,10 +68,10 @@ Linuxケーパビリティは、伝統的に`root`ユーザーに集約されて
 * **解説**: 実行ファイルに `CAP_NET_BIND_SERVICE` を付与し、root以外のユーザーで実行しても特権ポート（1024番未満）をリッスンできるようにします。これはSUIDを使わずに特権操作を許可する、モダンで安全な方法です。
 * **例**:
 
-    ```bash
-    # Webサーババイナリにポート80/443へのバインド権限を付与
-    sudo setcap 'cap_net_bind_service=+ep' /opt/my-app/my-web-server
-    ```
+```bash
+# Webサーババイナリにポート80/443へのバインド権限を付与
+sudo setcap 'cap_net_bind_service=+ep' /opt/my-app/my-web-server
+```
 
 ### 2. ブルーチーム視点
 
@@ -76,10 +80,10 @@ Linuxケーパビリティは、伝統的に`root`ユーザーに集約されて
 * **解説**: ファイルシステムのルート (`/`) から再帰的に (`-r`) 検索し、ケーパビリティが設定されたファイルを全てリストアップします。ベースラインと比較し、意図しないファイルに危険なケーパビリティが付与されていないかを確認します。
 * **例**:
 
-    ```bash
-    # システム全体をスキャンしてケーパビリティを持つファイルを探す
-    getcap -r / 2>/dev/null
-    ```
+```bash
+# システム全体をスキャンしてケーパビリティを持つファイルを探す
+getcap -r / 2>/dev/null
+```
 
 ### 3. レッドチーム視点
 
@@ -88,10 +92,10 @@ Linuxケーパビリティは、伝統的に`root`ユーザーに集約されて
 * **解説**: 侵入後、このコマンドでケーパビリティを持つファイルを探します。もし、`python` や `perl`, `tar` のような、他のファイルを実行したり書き換えたりできるプログラムに `CAP_SETUID` や `CAP_DAC_READ_SEARCH` のような強力なケーパビリティが付与されているのを発見した場合、それを悪用してroot権限を奪取しようと試みます。
 * **例**:
 
-    ```bash
-    # 権限昇格に悪用できる可能性のあるケーパビリティを持つファイルを探す
-    getcap -r / 2>/dev/null | grep -E "cap_setuid|cap_dac_read_search"
-    ```
+```bash
+# 権限昇格に悪用できる可能性のあるケーパビリティを持つファイルを探す
+getcap -r / 2>/dev/null | grep -E "cap_setuid|cap_dac_read_search"
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -129,5 +133,4 @@ Linuxケーパビリティは、伝統的に`root`ユーザーに集約されて
 * **スクリプトへの設定不可**: ケーパビリティは、シェルスクリプトのようなテキストファイルに直接設定することはできません。ケーパビリティは、**実行バイナリ（インタプリタ自身）**に設定する必要があります。
 * **コンテナセキュリティ**: ケーパビリティはコンテナセキュリティの根幹をなす技術です。Dockerはデフォルトでコンテナから多くの危険なケーパビリティを剥奪 (`drop`) します。`docker run --cap-add=NET_ADMIN` のようにして、コンテナに特定のケーパビリティを明示的に追加できます。
 
----
-[インデックスに戻る](../linux_index.md)
+

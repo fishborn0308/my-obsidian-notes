@@ -6,7 +6,7 @@ tags:
   - yum
   - dnf
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:35
+modified: 2026-01-18 15:02
 environment:
   - OS/Linux
 vulnearability: []
@@ -40,13 +40,12 @@ knowledge_category: Command
 * **解説**: `apt list` の結果を `grep` で絞り込み、パッケージ名だけを `cut` で切り出し、`xargs` に渡して `apt purge` を実行させることで、効率的にクリーンアップできます。
 * **コマンド例**:
 
-		```bash
-    # php8.0関連のインストール済みパッケージを確認後、一括で完全削除
+```bash
+# php8.0関連のインストール済みパッケージを確認後、一括で完全削除
 
-    apt list --installed | grep 'php8.0' | cut -d'/' -f1 | xargs sudo apt purge -y
+apt list --installed | grep 'php8.0' | cut -d'/' -f1 | xargs sudo apt purge -y
 
-    ```
-
+```
 
 ## オプション説明
 
@@ -77,13 +76,12 @@ knowledge_category: Command
 * **解説**: パッケージリストを最新の状態に更新し、対話なしでシステム全体のパッケージをアップグレードする、最も基本的なサーバメンテナンスコマンドです。
 * **例**:
 
-		```bash
-    # 定期メンテナンスやセキュリティパッチの適用
+```bash
+# 定期メンテナンスやセキュリティパッチの適用
 
-    sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
-    ```
-
+```
 
 ### 2. ブルーチーム視点
 
@@ -92,13 +90,12 @@ knowledge_category: Command
 * **解説**: パッケージのインストール元リポジトリ、インストール済みバージョン、利用可能なバージョンなどを確認します。これにより、信頼性の低いサードパーティリポジトリからインストールされたものかを確認し、サプライチェーンリスクを評価します。
 * **例**:
 
-		```bash
-    # curlパッケージがどのリポジトリから提供されているか確認
+```bash
+# curlパッケージがどのリポジトリから提供されているか確認
 
-    apt-cache policy curl
+apt-cache policy curl
 
-    ```
-
+```
 
 ### 3. レッドチーム視点
 
@@ -107,13 +104,12 @@ knowledge_category: Command
 * **解説**: 取得したソフトウェアリストとそのバージョンを元に、既知の脆弱性 (CVE) を持つソフトウェアが存在しないかを検索し、権限昇格やさらなる攻撃の足がかりを探します。
 * **例**:
 
-		```bash
-    # インストール済みパッケージ一覧をファイルに出力して、攻撃者マシンに持ち帰り分析する
+```bash
+# インストール済みパッケージ一覧をファイルに出力して、攻撃者マシンに持ち帰り分析する
 
-    apt list --installed > installed_packages.txt
+apt list --installed > installed_packages.txt
 
-    ```
-
+```
 
 ## エラーメッセージとトラブルシューティング
 

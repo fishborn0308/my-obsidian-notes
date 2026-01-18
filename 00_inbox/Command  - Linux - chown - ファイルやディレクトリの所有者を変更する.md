@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'chown'
-  - 'permissions'
-  - 'linux'
-  - 'cheetsheet'
-title: 'chown - ファイルやディレクトリの所有者を変更する'
-summary: 'ファイルやディレクトリのユーザー所有者とグループ所有者を変更し、アクセス権管理の基礎を定義します。'
-related:
-  - 'chgrp'
-  - 'chmod'
-  - 'ls'
+  - chown
+  - permissions
+  - linux
+  - chgrp
+  - chmod
+  - ls
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:12
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `chown` - ファイルやディレクトリの所有者を変更する
+# Command  - Linux - chown - ファイルやディレクトリの所有者を変更する
 
 ## 概要
 
@@ -40,11 +42,11 @@ related:
 * **解説**: ユーザーが自身のホームディレクトリ内でファイルを自由に作成・編集できるように、ディレクトリ全体の所有者をそのユーザーに設定します。
 * **コマンド例**:
 
-    ```bash
-    # user1 を作成後、ホームディレクトリの所有権を再帰的に設定する
-    sudo useradd user1
-    sudo chown -R user1:user1 /home/user1
-    ```
+```bash
+# user1 を作成後、ホームディレクトリの所有権を再帰的に設定する
+sudo useradd user1
+sudo chown -R user1:user1 /home/user1
+```
 
 ## オプション説明
 
@@ -68,10 +70,10 @@ related:
 * **解説**: Webサーバプロセス (`www-data`など) がコンテンツファイルを読み書きできるように、ディレクトリ全体の所有者をWebサーバの実行ユーザーに設定します。
 * **例**:
 
-    ```bash
-    # /var/www/my-app ディレクトリ以下の所有者を再帰的に www-data に設定
-    sudo chown -R www-data:www-data /var/www/my-app
-    ```
+```bash
+# /var/www/my-app ディレクトリ以下の所有者を再帰的に www-data に設定
+sudo chown -R www-data:www-data /var/www/my-app
+```
 
 ### 2. ブルーチーム視点
 
@@ -80,26 +82,26 @@ related:
 * **解説**: ユーザーやグループが削除された後に残る「孤立したファイル」を `find` で検索し、`chown` で `root` などの安全な所有者に変更します。これは、システムの健全性を保ち、意図しない権限の問題を防ぐための修復作業です。
 * **例**:
 
-    ```bash
-    # 所有者ユーザーが存在しないファイルを検索し、所有者をrootに変更する
-    sudo find / -nouser -exec chown root {} \;
-    ```
+```bash
+# 所有者ユーザーが存在しないファイルを検索し、所有者をrootに変更する
+sudo find / -nouser -exec chown root {} \;
+```
 
 ### 3. レッドチーム視点
 
 * **タスク**: 権限昇格後、ファイルの所有権を自身が制御するユーザーに奪取する。
 * **組み合わせ**: `sudo chown attacker:attacker /path/to/file`
 * **解説**:
-    1. **永続化**: 攻撃者がroot権限でバックドアを設置した後、そのファイルの所有者をシステムに存在する一般ユーザーに変更することで、`root` 所有のファイルとして目立つのを避け、発見されにくくします。
-    2. **権限昇格への布石**: SUID化したいバイナリの所有権を `root` に変更 (`sudo chown root:root my_backdoor`) してから、`chmod u+s` でSUIDビットを付与し、権限昇格用のバックドアを作成します。
+		1. **永続化**: 攻撃者がroot権限でバックドアを設置した後、そのファイルの所有者をシステムに存在する一般ユーザーに変更することで、`root` 所有のファイルとして目立つのを避け、発見されにくくします。
+		2. **権限昇格への布石**: SUID化したいバイナリの所有権を `root` に変更 (`sudo chown root:root my_backdoor`) してから、`chmod u+s` でSUIDビットを付与し、権限昇格用のバックドアを作成します。
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `chown: invalid user: ‘<username>’`
-    * **考えられる原因**: 指定したユーザー名またはグループ名がシステムに存在しません。
-    * **解決策**: `getent passwd` や `getent group` コマンドで、システムに存在するユーザー・グループの一覧を確認し、正しい名前を指定してください。
+		* **考えられる原因**: 指定したユーザー名またはグループ名がシステムに存在しません。
+		* **解決策**: `getent passwd` や `getent group` コマンドで、システムに存在するユーザー・グループの一覧を確認し、正しい名前を指定してください。
 
 ## 環境変数と設定ファイル
 
@@ -128,5 +130,3 @@ related:
 
 * **再帰的変更の注意 (`-R`)**: `-R` オプションは強力ですが、システムの重要なディレクトリ (`/` や `/usr` など) に対して誤って実行すると、システムが起動しなくなるなど、致命的な問題を引き起こす可能性があります。実行前に対象パスを十分に確認してください。
 
----
-[インデックスに戻る](../linux_index.md)
