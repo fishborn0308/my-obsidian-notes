@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'ip_link'
-  - 'ip'
-  - 'iproute2'
-  - 'networking'
-  - 'ifconfig'
-  - 'ip_addr'
-  - 'ethtool'
+  - ip_link
+  - ip
+  - iproute2
+  - networking
+  - ifconfig
+  - ip_addr
+  - ethtool
+created: 2025-09-22 08:41
+modified: 2026-01-18 18:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip link` - ネットワークデバイス (インターフェイス) を管理する
+# Command  - Linux - ip_link - ネットワークデバイス (インターフェイス) を管理する
 
 ## 概要
 
@@ -110,8 +116,8 @@ sudo ip link set dev eth0 up
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `RTNETLINK answers: Operation not permitted`
-    * **考えられる原因**: `set`, `add`, `del` など、設定を変更する操作を一般ユーザー権限で実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: `set`, `add`, `del` など、設定を変更する操作を一般ユーザー権限で実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -124,8 +130,8 @@ sudo ip link set dev eth0 up
 
 * **脆弱性**: `ip link` 自体ではなく、**不適切なネットワーク設定**や**権限管理**がリスクとなります。
 * **悪用シナリオ**:
-  * **MACスプーフィング**: 攻撃者がMACアドレスを偽装し、ネットワークアクセス制御をバイパスする。
-  * **プロミスキャスモード**: ブルーチームのシナリオで述べたように、`ip link show` の出力に `PROMISC` フラグがあれば、ネットワークスニッファが動作している兆候です。
+	* **MACスプーフィング**: 攻撃者がMACアドレスを偽装し、ネットワークアクセス制御をバイパスする。
+	* **プロミスキャスモード**: ブルーチームのシナリオで述べたように、`ip link show` の出力に `PROMISC` フラグがあれば、ネットワークスニッファが動作している兆候です。
 
 ### GTFOBins / LOLBAS における利用例
 
@@ -141,5 +147,4 @@ sudo ip link set dev eth0 up
 ## 注意点・補足
 
 * **設定の永続化**: `ip link` コマンドで行った設定変更（MACアドレスの変更など）は、デフォルトでは**OSを再起動すると失われます**。設定を永続化させるには、各ディストリビューションのネットワーク管理設定ファイル（`/etc/netplan/`など）を編集する必要があります。
-
 

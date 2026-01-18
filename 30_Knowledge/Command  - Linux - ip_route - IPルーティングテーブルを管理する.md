@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'ip_route'
-  - 'ip'
-  - 'iproute2'
-  - 'networking'
-  - 'route'
-  - 'netstat_-r'
-  - 'traceroute'
-  - 'ip_rule'
+  - ip_route
+  - ip
+  - iproute2
+  - networking
+  - route
+  - netstat_-r
+  - traceroute
+  - ip_rule
+created: 2025-09-22 08:41
+modified: 2026-01-18 18:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip route` - IPルーティングテーブルを管理する
+# Command  - Linux - ip_route - IPルーティングテーブルを管理する
 
 ## 概要
 
@@ -107,8 +113,8 @@ sudo ip route add default via 192.168.1.200
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `RTNETLINK answers: Network is unreachable`
-    * **考えられる原因**: ルートを追加しようとしましたが、`via` で指定したゲートウェイが、どのインターフェイスからも直接到達できないネットワークにあります。
-    * **解決策**: ゲートウェイのIPアドレスが正しいか、また、そのゲートウェイが所属するネットワークセグメントにホストが正しく接続されているかを `ip addr show` で確認してください。
+		* **考えられる原因**: ルートを追加しようとしましたが、`via` で指定したゲートウェイが、どのインターフェイスからも直接到達できないネットワークにあります。
+		* **解決策**: ゲートウェイのIPアドレスが正しいか、また、そのゲートウェイが所属するネットワークセグメントにホストが正しく接続されているかを `ip addr show` で確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -136,5 +142,4 @@ sudo ip route add default via 192.168.1.200
 ## 注意点・補足
 
 * **設定の永続化**: `ip route` コマンドで行った設定変更は、デフォルトでは**OSを再起動すると失われます**。設定を永続化させるには、各ディストリビューションのネットワーク管理設定ファイル（`/etc/netplan/`など）に記述する必要があります。
-
 

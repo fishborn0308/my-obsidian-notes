@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'ip'
-  - 'iproute2'
-  - 'networking'
-  - 'ifconfig'
-  - 'route'
-  - 'arp'
-  - 'netstat'
+  - ip
+  - iproute2
+  - networking
+  - ifconfig
+  - route
+  - arp
+  - netstat
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip` - Linuxネットワーク設定の管理 (iproute2)
+# Command  - Linux - ip - Linuxネットワーク設定の管理 (iproute2)
 
 ## 概要
 
@@ -37,12 +43,12 @@ tags:
 
 | コマンド | 概要 | 詳細 |
 | :--- | :--- | :--- |
-| **`ip addr`** | ネットワークデバイスに紐付く**アドレス**を管理する | [./ip_addr.md](./ip_addr.md) |
-| **`ip link`** | ネットワーク**デバイス**自体を管理する | [./ip_link.md](./ip_link.md) |
-| **`ip route`** | **ルーティングテーブル**を管理する | [./ip_route.md](./ip_route.md) |
-| **`ip neigh`**| **ARPテーブル** (近隣キャッシュ) を管理する | [./ip_neigh.md](./ip_neigh.md) |
-| **`ip rule`** | **ルーティングポリシー**のルールを管理する | [./ip_rule.md](./ip_rule.md) |
-| **`ip netns`** | **ネットワーク名前空間**を管理する | [./ip_netns.md](./ip_netns.md) |
+| **`ip addr`** | ネットワークデバイスに紐付く**アドレス**を管理する | [./ip_addr.md](Command%20%20-%20Linux%20-%20ip_addr%20-%20ネットワークアドレスを管理する.md) |
+| **`ip link`** | ネットワーク**デバイス**自体を管理する | [./ip_link.md](Command%20%20-%20Linux%20-%20ip_link%20-%20ネットワークデバイス%20(インターフェイス)%20を管理する.md) |
+| **`ip route`** | **ルーティングテーブル**を管理する | [./ip_route.md](Command%20%20-%20Linux%20-%20ip_route%20-%20IPルーティングテーブルを管理する.md) |
+| **`ip neigh`**| **ARPテーブル** (近隣キャッシュ) を管理する | [./ip_neigh.md](Command%20%20-%20Linux%20-%20ip_neigh%20-%20近隣キャッシュ%20(ARPテーブル)%20を管理する.md) |
+| **`ip rule`** | **ルーティングポリシー**のルールを管理する | [./ip_rule.md](Command%20%20-%20Linux%20-%20ip_rule%20-%20ルーティングポリシーデータベースを管理する.md) |
+| **`ip netns`** | **ネットワーク名前空間**を管理する | [./ip_netns.md](Command%20%20-%20Linux%20-%20ip_netns%20-%20ネットワーク名前空間%20(Network%20Namespace)%20を管理する.md) |
 
 ---
 
@@ -92,8 +98,8 @@ ip addr | grep "inet "
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `RTNETLINK answers: Operation not permitted`
-    * **考えられる原因**: ネットワーク設定の変更（`add`, `del`, `set`など）を一般ユーザー権限で実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: ネットワーク設定の変更（`add`, `del`, `set`など）を一般ユーザー権限で実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

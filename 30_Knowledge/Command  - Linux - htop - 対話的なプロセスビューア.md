@@ -9,17 +9,15 @@ tags:
   - free
   - lsof
   - strace
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:02
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
-# Command  - Linux - htop
-
-
-# `htop` - 対話的なプロセスビューア
+# Command  - Linux - htop - 対話的なプロセスビューア
 
 ## 概要
 
@@ -104,16 +102,16 @@ sudo htop
 * **タスク**: 侵入後の偵察と、自身の活動の防御回避。
 * **組み合わせ**: `htop`
 * **解説**:
-  * **偵察**: 攻撃者は侵入後 `htop` を実行し、どのようなサービスやセキュリティ製品（EDRエージェントなど）が動いているか、また、どのユーザーがログインしているかを把握します。
-  * **防御回避**: 自身のマルウェアやリバースシェルがCPUを異常に消費していないかを `htop` で確認し、管理者に発見されるリスクを低減させます。
+	* **偵察**: 攻撃者は侵入後 `htop` を実行し、どのようなサービスやセキュリティ製品（EDRエージェントなど）が動いているか、また、どのユーザーがログインしているかを把握します。
+	* **防御回避**: 自身のマルウェアやリバースシェルがCPUを異常に消費していないかを `htop` で確認し、管理者に発見されるリスクを低減させます。
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: htop: command not found`
-    * **考えられる原因**: `htop` は多くのシステムでデフォルトではインストールされていません。
-    * **解決策**: システムのパッケージマネージャを使ってインストールしてください。（Debian/Ubuntu: `sudo apt install htop`, RHEL/CentOS: `sudo yum install htop`）
+		* **考えられる原因**: `htop` は多くのシステムでデフォルトではインストールされていません。
+		* **解決策**: システムのパッケージマネージャを使ってインストールしてください。（Debian/Ubuntu: `sudo apt install htop`, RHEL/CentOS: `sudo yum install htop`）
 
 ## 環境変数と設定ファイル
 
@@ -142,5 +140,4 @@ sudo htop
 ## 注意点・補足
 
 * **設定の保存**: `F2` (Setup) でカスタマイズした設定は、`F10` (Quit) で終了する際に自動的に `~/.config/htop/htoprc` ファイルに保存され、次回の起動時にも引き継がれます。
-
 

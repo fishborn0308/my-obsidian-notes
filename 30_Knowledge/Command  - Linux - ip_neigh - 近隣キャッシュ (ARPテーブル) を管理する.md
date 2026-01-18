@@ -1,17 +1,22 @@
 ---
 tags:
-  - 'ip_neigh'
-  - 'ip'
-  - 'arp'
-  - 'iproute2'
-  - 'networking'
-  - 'arp'
-  - 'ip_addr'
-  - 'ip_link'
-  - 'ping'
+  - ip_neigh
+  - ip
+  - arp
+  - iproute2
+  - networking
+  - ip_addr
+  - ip_link
+  - ping
+created: 2025-09-22 08:42
+modified: 2026-01-18 18:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip neigh` - 近隣キャッシュ (ARPテーブル) を管理する
+# Command  - Linux - ip_neigh - 近隣キャッシュ (ARPテーブル) を管理する
 
 ## 概要
 
@@ -101,8 +106,8 @@ ip n
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `RTNETLINK answers: Operation not permitted`
-    * **考えられる原因**: ARPテーブルの変更 (`add`, `del`, `flush`) を一般ユーザー権限で実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: ARPテーブルの変更 (`add`, `del`, `flush`) を一般ユーザー権限で実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -130,5 +135,4 @@ ip n
 ## 注意点・補足
 
 * **キャッシュの状態 (State)**: `REACHABLE` (到達可能), `STALE` (古いキャッシュ、通信時に再確認される), `FAILED` (到達失敗) などの状態は、カーネルがARPエントリをどのように管理しているかを示しています。
-
 

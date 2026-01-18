@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'journalctl'
-  - 'systemd'
-  - 'journald'
-  - 'logging'
-  - 'dmesg'
-  - 'syslog'
-  - 'systemctl'
-  - 'grep'
+  - journalctl
+  - systemd
+  - journald
+  - logging
+  - dmesg
+  - syslog
+  - systemctl
+  - grep
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `journalctl` - systemdジャーナルログを照会・表示する
+# Command  - Linux - journalctl - systemdジャーナルログを照会・表示する
 
 ## 概要
 
@@ -98,8 +104,8 @@ sudo journalctl --since "1 hour ago" | grep "Failed"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **サーバーを再起動したら、それ以前のログが消えてしまった。**
-    * **考えられる原因**: ジャーナルのログ保存が**永続化**されていません。デフォルトでは、ログは `/run/log/journal` （メモリ上）に保存され、再起動で消去されます。
-    * **解決策**: `sudo mkdir -p /var/log/journal` を実行して、永続的な保存ディレクトリを作成します。ディレクトリが存在すれば、`systemd-journald` は自動的にそこにログを書き込むようになります。
+		* **考えられる原因**: ジャーナルのログ保存が**永続化**されていません。デフォルトでは、ログは `/run/log/journal` （メモリ上）に保存され、再起動で消去されます。
+		* **解決策**: `sudo mkdir -p /var/log/journal` を実行して、永続的な保存ディレクトリを作成します。ディレクトリが存在すれば、`systemd-journald` は自動的にそこにログを書き込むようになります。
 
 ## 環境変数と設定ファイル
 

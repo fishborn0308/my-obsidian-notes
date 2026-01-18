@@ -1,14 +1,20 @@
 ---
 tags:
-  - 'id'
-  - 'user_management'
-  - 'linux'
-  - 'whoami'
-  - 'groups'
-  - 'logname'
+  - id
+  - user_management
+  - linux
+  - whoami
+  - groups
+  - logname
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `id` - ユーザーIDとグループID情報を表示する
+# Command  - Linux - id - ユーザーIDとグループID情報を表示する
 
 ## 概要
 
@@ -102,8 +108,8 @@ id
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `id: ‘<username>’: no such user`
-    * **考えられる原因**: 指定したユーザー名が存在しません。
-    * **解決策**: `getent passwd` や `/etc/passwd` ファイルで、存在するユーザーの名前を再確認してください。
+		* **考えられる原因**: 指定したユーザー名が存在しません。
+		* **解決策**: `getent passwd` や `/etc/passwd` ファイルで、存在するユーザーの名前を再確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -129,5 +135,4 @@ id
 ## 注意点・補足
 
 * **実IDと実効ID**: 通常、実UIDと実効UIDは同じです。しかし、SUIDビットが設定されたプログラムを実行すると、プロセスの実効UIDがプログラム所有者のUIDに一時的に変わります。`id -ru` (実ID) と `id -u` (実効ID) の結果が異なる場合、そのシェルが何らかの権限昇格状態にあることを示唆します。
-
 

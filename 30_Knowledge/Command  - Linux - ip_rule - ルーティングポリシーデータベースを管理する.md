@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'ip_rule'
-  - 'ip'
-  - 'iproute2'
-  - 'networking'
-  - 'routing'
-  - 'ip_route'
-  - 'iptables'
-  - 'systemd-networkd'
+  - ip_rule
+  - ip
+  - iproute2
+  - networking
+  - routing
+  - ip_route
+  - iptables
+  - systemd-networkd
+created: 2025-09-22 08:42
+modified: 2026-01-18 18:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ip rule` - ルーティングポリシーデータベースを管理する
+# Command  - Linux - ip_rule - ルーティングポリシーデータベースを管理する
 
 ## 概要
 
@@ -109,8 +115,8 @@ sudo ip rule add from 10.0.0.50/32 table hijack priority 500
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **ルールを追加したが、期待通りに動作しない。**
-    * **考えられる原因**: ルールの優先度 (priority) が適切でなく、より優先度の高い別のルールに先にマッチしているか、ルールが指し示しているルーティングテーブルの中身が間違っています。
-    * **解決策**: `ip rule show` でルールの順序を確認します。`ip route show table <table_name>` で、対象テーブルの経路設定が正しいかを確認してください。
+		* **考えられる原因**: ルールの優先度 (priority) が適切でなく、より優先度の高い別のルールに先にマッチしているか、ルールが指し示しているルーティングテーブルの中身が間違っています。
+		* **解決策**: `ip rule show` でルールの順序を確認します。`ip route show table <table_name>` で、対象テーブルの経路設定が正しいかを確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -142,5 +148,4 @@ sudo ip rule add from 10.0.0.50/32 table hijack priority 500
 ## 注意点・補足
 
 * **設定の永続化**: `ip rule` コマンドで行った設定変更は、デフォルトでは**OSを再起動すると失われます**。設定を永続化させるには、`systemd-networkd` の `.network` ファイルや、旧来の `ifupdown` スクリプトなど、ディストリビューションのネットワーク管理設定にルールを記述する必要があります。
-
 

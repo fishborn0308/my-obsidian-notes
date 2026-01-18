@@ -4,20 +4,16 @@ tags:
   - systemd
   - hostname
   - networking
-  - hostname
-  - systemd
   - /etc/hostname
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 18:02
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - hostnamectl - システムのホスト名を永続的に管理する
-
-
-
 
 ## 概要
 
@@ -111,8 +107,8 @@ sudo hostnamectl set-hostname generic-worker-05
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Must be root to change settings.`
-    * **考えられる原因**: `set-hostname` などの設定変更コマンドを、一般ユーザー権限で実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: `set-hostname` などの設定変更コマンドを、一般ユーザー権限で実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -143,5 +139,4 @@ sudo hostnamectl set-hostname generic-worker-05
 ## 注意点・補足
 
 * **再起動不要**: `hostnamectl` で行った変更は、関連する設定ファイルに書き込まれ、システムサービスに即座に通知されるため、**OSを再起動しなくても反映されます**。
-
 
