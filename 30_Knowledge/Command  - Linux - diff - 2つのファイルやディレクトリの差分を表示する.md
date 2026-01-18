@@ -1,18 +1,20 @@
 ---
 tags:
-  - 'diff'
-  - 'file comparison'
-  - 'cheetsheet'
-title: 'diff - 2つのファイルやディレクトリの差分を表示する'
-summary: '2つのファイルの内容を行単位で比較し、その差分を出力するコマンドです。ディレクトリを再帰的に比較することも可能です。'
-related:
-  - 'cmp'
-  - 'git diff'
-  - 'vimdiff'
-  - 'patch'
+  - diff
+  - file_comparison
+  - cmp
+  - git_diff
+  - vimdiff
+  - patch
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:29
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `diff` - 2つのファイルやディレクトリの差分を表示する
+# Command  - Linux - diff - 2つのファイルやディレクトリの差分を表示する
 
 ## 概要
 
@@ -39,10 +41,10 @@ related:
 * **解説**: `diff -u` でユニファイド形式の差分を生成し、その出力を `less` に渡すことで、長い差分でもスクロールしながら快適に確認できます。
 * **コマンド例**:
 
-    ```bash
-    # Nginxの設定変更箇所を確認する
-    diff -u /etc/nginx/nginx.conf.bak /etc/nginx/nginx.conf | less
-    ```
+```bash
+# Nginxの設定変更箇所を確認する
+diff -u /etc/nginx/nginx.conf.bak /etc/nginx/nginx.conf | less
+```
 
 ## オプション説明
 
@@ -67,10 +69,10 @@ related:
 * **解説**: ユニファイド形式 (`-u`) で差分を確認し、どの変更が問題を引き起こしたのかを特定する、基本的なトラブルシューティング手法です。
 * **例**:
 
-    ```bash
-    # Apacheの設定を変更後、動作がおかしくなった場合に差分を確認
-    diff -u /etc/httpd/conf/httpd.conf.old /etc/httpd/conf/httpd.conf
-    ```
+```bash
+# Apacheの設定を変更後、動作がおかしくなった場合に差分を確認
+diff -u /etc/httpd/conf/httpd.conf.old /etc/httpd/conf/httpd.conf
+```
 
 ### 2. ブルーチーム視点
 
@@ -79,10 +81,10 @@ related:
 * **解説**: `-q` (差分サマリー) と `-r` (再帰) を使い、正常なバックアップと現在稼働中のWebサーバーのドキュメントルートを比較します。これにより、攻撃者によって追加・改ざんされたファイルを素早く特定できます。これは**ファイル整合性監視 (FIM)** の手動での実践です。
 * **例**:
 
-    ```bash
-    # 正常なWordPressのソースと、改ざんが疑われるディレクトリの差分ファイルのみリストアップ
-    diff -qr /path/to/wordpress_clean/ /var/www/html/
-    ```
+```bash
+# 正常なWordPressのソースと、改ざんが疑われるディレクトリの差分ファイルのみリストアップ
+diff -qr /path/to/wordpress_clean/ /var/www/html/
+```
 
 ### 3. レッドチーム視点
 
@@ -91,22 +93,22 @@ related:
 * **解説**: 侵入したシステムに存在する正規のスクリプトに、リバースシェルを起動するコードなどを一行追加します。その後、`diff` を使って元のスクリプトとの差分を確認し、自分の変更が最小限で検知されにくいものであるかを確認します。
 * **例**:
 
-    ```bash
-    # バックアップスクリプトに悪意のあるコードを仕込んだ後、差分を確認
-    diff -u backup.sh.orig backup.sh
-    ```
+```bash
+# バックアップスクリプトに悪意のあるコードを仕込んだ後、差分を確認
+diff -u backup.sh.orig backup.sh
+```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `diff: <directory_name>: Is a directory`
-    * **考えられる原因**: ディレクトリを比較しようとしましたが、`-r` (recursive) オプションを指定していません。
-    * **解決策**: `diff -r dir1 dir2` のように `-r` オプションを追加してください。
+		* **考えられる原因**: ディレクトリを比較しようとしましたが、`-r` (recursive) オプションを指定していません。
+		* **解決策**: `diff -r dir1 dir2` のように `-r` オプションを追加してください。
 
 2. **エラーメッセージ例 2**: `Binary files <file1> and <file2> differ`
-    * **考えられる原因**: テキストファイルではなく、バイナリファイル（実行ファイル、画像など）を比較しようとしました。
-    * **解決策**: ファイルが同一かどうかだけを知りたい場合は `cmp` コマンドを使用します。
+		* **考えられる原因**: テキストファイルではなく、バイナリファイル（実行ファイル、画像など）を比較しようとしました。
+		* **解決策**: ファイルが同一かどうかだけを知りたい場合は `cmp` コマンドを使用します。
 
 ## 環境変数と設定ファイル
 
@@ -133,5 +135,3 @@ related:
 
 * **引数の順序が重要**: `diff old_file new_file` は、**`old_file` を `new_file` に変更するための手順**を出力します。`-` (マイナス) は `old_file` から削除すべき行、`+` (プラス) は `old_file` に追加すべき行を意味します。
 
----
-[インデックスに戻る](../linux_index.md)
