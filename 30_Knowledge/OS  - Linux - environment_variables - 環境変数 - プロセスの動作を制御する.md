@@ -1,25 +1,21 @@
 ---
 tags:
-  - environment variables
+  - environment_variables
   - env
   - export
   - shell
   - linux
   - shell_scripting_basics
   - environment_and_config
-  - export
-  - env
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: OS
 ---
 
 # OS  - Linux - environment_variables - 環境変数 (Environment Variables) - プロセスの動作を制御する
-
-
-
 
 ## 概要
 
@@ -118,8 +114,8 @@ env | grep -i "PASS\|KEY\|SECRET"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **`.bashrc` に `export` を書いたのに、スクリプト実行時に変数が認識されない。**
-    * **考えられる原因**: `cron` などから実行されるスクリプトは、ログインシェルを起動しないため `.bashrc` や `.profile` を読み込みません。
-    * **解決策**: スクリプト内で必要な環境変数を直接定義するか、変数を定義した別の設定ファイルを `source` コマンドで読み込むようにしてください。
+		* **考えられる原因**: `cron` などから実行されるスクリプトは、ログインシェルを起動しないため `.bashrc` や `.profile` を読み込みません。
+		* **解決策**: スクリプト内で必要な環境変数を直接定義するか、変数を定義した別の設定ファイルを `source` コマンドで読み込むようにしてください。
 
 ## 環境変数と設定ファイル
 
@@ -146,5 +142,4 @@ env | grep -i "PASS\|KEY\|SECRET"
 ## 注意点・補足
 
 * **変数の展開**: シェルスクリプト内やコマンドラインで変数を参照する際は `$` を付けます（例: `echo $HOME`）。`export PATH="$PATH:/new/path"` のように、ダブルクォートで囲むと変数が展開され、シングルクォートでは展開されません。
-
 

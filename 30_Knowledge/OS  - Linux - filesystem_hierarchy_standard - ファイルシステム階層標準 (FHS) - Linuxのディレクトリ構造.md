@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'fhs'
-  - 'filesystem'
-  - 'linux'
-  - 'ls'
-  - 'cd'
-  - 'find'
-  - 'environment_and_config'
+  - fhs
+  - filesystem
+  - linux
+  - ls
+  - cd
+  - find
+  - environment_and_config
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# ファイルシステム階層標準 (FHS) - Linuxのディレクトリ構造
+# OS  - Linux - filesystem_hierarchy_standard - ファイルシステム階層標準 (FHS) - Linuxのディレクトリ構造
 
 ## 概要
 
@@ -110,5 +116,4 @@ FHSは概念であり、GTFOBinsにはリストされていません。しかし
 ## 注意点・補足
 
 * **シンボリックリンク**: モダンなLinuxディストリビューションでは、階層構造を簡素化するため、`/bin` は `/usr/bin` へ、`/sbin` は `/usr/sbin` へのシンボリックリンクになっていることが多くなっています。
-
 

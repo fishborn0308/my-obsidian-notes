@@ -6,17 +6,15 @@ tags:
   - apt
   - apt-get
   - rpm
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - dpkg - Debianパッケージ管理システム (低レベル)
-
-
-
 
 ## 概要
 
@@ -112,8 +110,8 @@ dpkg -l | grep "sudo"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `dpkg: error: dependency problems prevent configuration of <package>: ...`
-    * **考えられる原因**: 最もよくあるエラー。インストールしようとしているパッケージが必要とする他のパッケージ（依存関係）がシステムにインストールされていません。
-    * **解決策**: `sudo apt --fix-broken install` を実行します。`apt` が不足している依存関係を自動的に解決してインストールしてくれます。
+		* **考えられる原因**: 最もよくあるエラー。インストールしようとしているパッケージが必要とする他のパッケージ（依存関係）がシステムにインストールされていません。
+		* **解決策**: `sudo apt --fix-broken install` を実行します。`apt` が不足している依存関係を自動的に解決してインストールしてくれます。
 
 ## 環境変数と設定ファイル
 

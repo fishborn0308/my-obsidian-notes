@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'fail2ban'
-  - 'security'
-  - 'firewall'
-  - 'ips'
-  - 'iptables'
-  - 'firewalld'
-  - 'sshd_config'
-  - 'journalctl'
+  - fail2ban
+  - security
+  - firewall
+  - ips
+  - iptables
+  - firewalld
+  - sshd_config
+  - journalctl
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `Fail2ban` - ログ監視によるブルートフォース攻撃防御
+# Command  - Linux - fail2ban - ログ監視によるブルートフォース攻撃防御
 
 ## 概要
 
@@ -92,18 +98,18 @@ sudo fail2ban-client status sshd
 * **組み合わせ**: (ログイン試行による偵察)
 * **解説**: 意図的に数回SSHログインを失敗させてみて、接続が拒否されるようになるかを確認し、`maxretry` や `bantime` を推測します。
 * **回避策**:
-  * **Low and Slow攻撃**: `maxretry` に達しないように、非常にゆっくりとしたペースでパスワード試行を行う。
-  * **分散ブルートフォース攻撃**: 大量のIPアドレスから、各IPが数回ずつしか試行しないように分散させて攻撃する。
+	* **Low and Slow攻撃**: `maxretry` に達しないように、非常にゆっくりとしたペースでパスワード試行を行う。
+	* **分散ブルートフォース攻撃**: 大量のIPアドレスから、各IPが数回ずつしか試行しないように分散させて攻撃する。
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **Jailを有効化したのに、IPがブロックされない。**
-    * **考えられる原因**:
-        * Filterの正規表現が、ログファイルの実際のエラーメッセージと一致していない。
-        * `jail.local` の `logpath` で指定したログファイルのパスが間違っている。
-    * **解決策**: `fail2ban-regex` というテストツールが非常に便利です。`sudo fail2ban-regex /var/log/auth.log /etc/fail2ban/filter.d/sshd.conf` のように実行し、フィルターがログに正しくマッチするかを確認できます。
+		* **考えられる原因**:
+				* Filterの正規表現が、ログファイルの実際のエラーメッセージと一致していない。
+				* `jail.local` の `logpath` で指定したログファイルのパスが間違っている。
+		* **解決策**: `fail2ban-regex` というテストツールが非常に便利です。`sudo fail2ban-regex /var/log/auth.log /etc/fail2ban/filter.d/sshd.conf` のように実行し、フィルターがログに正しくマッチするかを確認できます。
 
 ## 環境変数と設定ファイル
 

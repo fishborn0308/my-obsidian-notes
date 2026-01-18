@@ -7,17 +7,15 @@ tags:
   - lspci
   - lsusb
   - lscpu
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - dmidecode - DMIテーブルからハードウェア情報を表示する
-
-
-
 
 ## 概要
 
@@ -105,8 +103,8 @@ sudo dmidecode -s system-product-name
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `/dev/mem: Permission denied`
-    * **考えられる原因**: `dmidecode` はDMIテーブルを読み取るために `/dev/mem` などの低レベルなデバイスにアクセスする必要があるため、`root` 権限で実行されていません。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: `dmidecode` はDMIテーブルを読み取るために `/dev/mem` などの低レベルなデバイスにアクセスする必要があるため、`root` 権限で実行されていません。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -132,5 +130,4 @@ sudo dmidecode -s system-product-name
 ## 注意点・補足
 
 * **情報の正確性**: `dmidecode` が表示する情報は、あくまでBIOS/UEFIのDMIテーブルに書き込まれている内容に依存します。ハードウェアベンダーが正しい情報を書き込んでいなければ、不正確な情報が表示されることもあります。
-
 

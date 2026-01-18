@@ -1,13 +1,19 @@
 ---
 tags:
-  - 'find'
-  - 'file_search'
-  - 'locate'
-  - 'grep'
-  - 'xargs'
+  - find
+  - file_search
+  - locate
+  - grep
+  - xargs
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `find` - ファイルやディレクトリを検索し、操作を実行する
+# Command  - Linux - find - ファイルやディレクトリを検索し、操作を実行する
 
 ## 概要
 
@@ -100,8 +106,8 @@ find /home -name "id_rsa" 2>/dev/null
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `find: ‘/proc/1234/fd’: Permission denied`
-    * **考えられる原因**: 検索を実行しているユーザーに、特定のディレクトリへのアクセス権限がありません。
-    * **解決策**: これはエラーではなく警告に近いものです。検索結果と混ざって見にくいため、`2>/dev/null` をコマンドの末尾に付けて、標準エラー出力を破棄するのが一般的です。
+		* **考えられる原因**: 検索を実行しているユーザーに、特定のディレクトリへのアクセス権限がありません。
+		* **解決策**: これはエラーではなく警告に近いものです。検索結果と混ざって見にくいため、`2>/dev/null` をコマンドの末尾に付けて、標準エラー出力を破棄するのが一般的です。
 
 ## 環境変数と設定ファイル
 
@@ -129,5 +135,4 @@ find /home -name "id_rsa" 2>/dev/null
 ## 注意点・補足
 
 * **式の組み合わせ**: `-a` (AND, デフォルト)、`-o` (OR)、`!` (NOT) といった論理演算子を `\( ... \)` でグループ化することで、複雑な検索条件を組み立てることができます。
-
 

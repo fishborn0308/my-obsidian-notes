@@ -7,17 +7,15 @@ tags:
   - syslog
   - lsusb
   - lspci
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:49
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - dmesg - カーネルのリングバッファメッセージを表
-
-
-
 
 ## 概要
 
@@ -104,8 +102,8 @@ dmesg | grep -i "hypervisor"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `dmesg: read kernel buffer failed: Operation not permitted`
-    * **考えられる原因**: セキュリティが強化された一部のシステムでは、一般ユーザーがカーネルのログバッファにアクセスすることが制限されています (`dmesg_restrict=1`)。
-    * **解決策**: `sudo dmesg` のように、`sudo` を付けて実行してください。
+		* **考えられる原因**: セキュリティが強化された一部のシステムでは、一般ユーザーがカーネルのログバッファにアクセスすることが制限されています (`dmesg_restrict=1`)。
+		* **解決策**: `sudo dmesg` のように、`sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -131,5 +129,4 @@ dmesg | grep -i "hypervisor"
 ## 注意点・補足
 
 * **リングバッファ**: `dmesg` が表示するメッセージは、カーネル内の固定サイズの「リングバッファ」に保存されます。新しいメッセージが来ると古いメッセージは上書きされて消えていきます。起動から長時間経過したシステムでは、起動初期のメッセージは `dmesg` コマンドでは見えなくなっていることがあります。
-
 

@@ -6,17 +6,15 @@ tags:
   - nslookup
   - host
   - ping
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:50
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - dig - DNSクエリユーティリティ
-
-
-
 
 ## 概要
 
@@ -104,12 +102,12 @@ dig axfr @ns1.example.com example.com
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **ステータス**: `status: NXDOMAIN`
-    * **考えられる原因**: "Non-Existent Domain"。問い合わせたドメイン名やホスト名は存在しません。
-    * **解決策**: ドメイン名のタイプミスがないか確認してください。
+		* **考えられる原因**: "Non-Existent Domain"。問い合わせたドメイン名やホスト名は存在しません。
+		* **解決策**: ドメイン名のタイプミスがないか確認してください。
 
 2. **ステータス**: `status: SERVFAIL`
-    * **考えられる原因**: "Server Failure"。DNSサーバーが応答の生成に失敗しました。サーバー自体の問題や、上位サーバーへの問い合わせ失敗などが考えられます。
-    * **解決策**: 別のDNSサーバー (`@8.8.8.8`など) を指定して再度試み、問題の切り分けを行います。
+		* **考えられる原因**: "Server Failure"。DNSサーバーが応答の生成に失敗しました。サーバー自体の問題や、上位サーバーへの問い合わせ失敗などが考えられます。
+		* **解決策**: 別のDNSサーバー (`@8.8.8.8`など) を指定して再度試み、問題の切り分けを行います。
 
 ## 環境変数と設定ファイル
 
@@ -140,5 +138,4 @@ dig axfr @ns1.example.com example.com
 ## 注意点・補足
 
 * **キャッシュの影響**: `dig` の結果に表示される `TTL` (Time To Live) は、そのレコードがキャッシュに保持される残り時間（秒）を示します。DNS設定を変更した際は、このTTLが切れるまで古い情報が返され続けることがあります。
-
 
