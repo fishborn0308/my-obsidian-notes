@@ -1,15 +1,22 @@
 ---
 tags:
-  - 'log'
-  - 'rsyslog'
-  - 'journalctl'
-  - 'linux'
-  - 'journalctl'
-  - 'dmesg'
-  - 'systemctl'
-  - 'grep'
-  - 'tail'
+  - log
+  - rsyslog
+  - journalctl
+  - linux
+  - dmesg
+  - systemctl
+  - grep
+  - tail
+created: 2025-06-28 15:40
+modified: 2026-01-18 19:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
+
+# OS  - Linux - linux_log_files - Linuxにおける主要ログファイルと活用術
 
 # Linuxにおける主要ログファイルと活用術
 
@@ -106,8 +113,8 @@ sudo sed -i '/198.51.100.10/d' /var/log/auth.log
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **ログファイルが空、または更新が止まっている。**
-    * **考えられる原因**: `rsyslog` や `systemd-journald` といったロギングデーモンが停止しているか、設定エラーで起動に失敗しています。
-    * **解決策**: `systemctl status rsyslog` や `systemctl status systemd-journald` でデーモンの状態を確認し、必要であれば `restart` します。
+		* **考えられる原因**: `rsyslog` や `systemd-journald` といったロギングデーモンが停止しているか、設定エラーで起動に失敗しています。
+		* **解決策**: `systemctl status rsyslog` や `systemctl status systemd-journald` でデーモンの状態を確認し、必要であれば `restart` します。
 
 ## 環境変数と設定ファイル
 

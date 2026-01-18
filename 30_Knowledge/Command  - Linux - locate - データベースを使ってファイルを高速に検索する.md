@@ -1,15 +1,20 @@
 ---
 tags:
-  - 'locate'
-  - 'updatedb'
-  - 'file_search'
-  - 'find'
-  - 'updatedb'
-  - 'grep'
-  - 'which'
+  - locate
+  - updatedb
+  - file_search
+  - find
+  - grep
+  - which
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:01
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `locate` - データベースを使ってファイルを高速に検索する
+# Command  - Linux - locate - データベースを使ってファイルを高速に検索する
 
 ## 概要
 
@@ -106,8 +111,8 @@ locate "*.sql"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **ついさっき作成したファイルが `locate` で見つからない。**
-    * **考えられる原因**: `locate` のデータベースがまだ更新されていないためです。データベースは通常、cronによって深夜などに一日1回更新されます。
-    * **解決策**: `sudo updatedb` を手動で実行してデータベースを更新すれば、見つかるようになります。
+		* **考えられる原因**: `locate` のデータベースがまだ更新されていないためです。データベースは通常、cronによって深夜などに一日1回更新されます。
+		* **解決策**: `sudo updatedb` を手動で実行してデータベースを更新すれば、見つかるようになります。
 
 ## 環境変数と設定ファイル
 

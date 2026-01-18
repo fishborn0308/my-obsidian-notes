@@ -1,16 +1,20 @@
 ---
 tags:
-  - 'limits.conf'
-  - 'ulimit'
-  - 'pam'
-  - 'security'
-  - 'performance'
-  - 'ulimit'
-  - 'systemd'
-  - 'cgroups'
+  - ulimit
+  - pam
+  - security
+  - performance
+  - systemd
+  - cgroups
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:03
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `limits.conf` - ユーザーのリソース制限を設定する
+# OS - Linux - limits.conf - ユーザーのリソース制限を設定する
 
 ## 概要
 
@@ -93,11 +97,11 @@ ulimit -a
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **`limits.conf` を編集したのに、設定が反映されない。**
-    * **考えられる原因**:
-        * 変更後に**再ログイン**していない。`limits.conf` の設定は、PAMを通じて新しいログインセッションが開始される際に読み込まれます。
-        * `sshd` の設定で `UsePAM` が `no` になっている。
-        * そもそもそのプロセスがPAMセッションを通じて起動されていない（例: OS起動時に `systemd` が直接起動するデーモン）。
-    * **解決策**: まずは一度ログアウトし、再ログインして `ulimit -n` などで設定が反映されたか確認してください。デーモンプロセスに制限をかけたい場合は、`systemd` のユニットファイルで `LimitNOFILE=` などを設定するのが正しい方法です。
+		* **考えられる原因**:
+				* 変更後に**再ログイン**していない。`limits.conf` の設定は、PAMを通じて新しいログインセッションが開始される際に読み込まれます。
+				* `sshd` の設定で `UsePAM` が `no` になっている。
+				* そもそもそのプロセスがPAMセッションを通じて起動されていない（例: OS起動時に `systemd` が直接起動するデーモン）。
+		* **解決策**: まずは一度ログアウトし、再ログインして `ulimit -n` などで設定が反映されたか確認してください。デーモンプロセスに制限をかけたい場合は、`systemd` のユニットファイルで `LimitNOFILE=` などを設定するのが正しい方法です。
 
 ## 環境変数と設定ファイル
 
@@ -128,5 +132,4 @@ ulimit -a
 ## 注意点・補足
 
 * **`su` と `su -` の挙動**: `su` コマンドはデフォルトではログインセッションを開始しないため、`limits.conf` の設定が引き継がれないことがあります。`su -` のように `-` を付けてログインシェルを起動すると、設定が正しく読み込まれます。
-
 

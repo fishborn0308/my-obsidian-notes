@@ -7,17 +7,15 @@ tags:
   - killall
   - ps
   - jobs
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:00
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - kill - プロセスにシグナルを送信する
-
-
-
 
 ## 概要
 
@@ -117,12 +115,12 @@ sudo kill -9 $(pgrep edr-agent)
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `kill: (<PID>) - No such process`
-    * **考えられる原因**: 指定したPIDのプロセスは、コマンドを実行する時点では既に存在しません。
-    * **解決策**: `ps aux` などで、プロセスがまだ存在するか再確認してください。
+		* **考えられる原因**: 指定したPIDのプロセスは、コマンドを実行する時点では既に存在しません。
+		* **解決策**: `ps aux` などで、プロセスがまだ存在するか再確認してください。
 
 2. **エラーメッセージ例 2**: `kill: (<PID>) - Operation not permitted`
-    * **考えられる原因**: 他のユーザーが所有するプロセスを終了させようとしましたが、`root` 権限がありません。
-    * **解決策**: `sudo` を付けてコマンドを実行してください。
+		* **考えられる原因**: 他のユーザーが所有するプロセスを終了させようとしましたが、`root` 権限がありません。
+		* **解決策**: `sudo` を付けてコマンドを実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -150,5 +148,4 @@ sudo kill -9 $(pgrep edr-agent)
 ## 注意点・補足
 
 * **`SIGTERM` vs `SIGKILL`**: まずは常に `kill <PID>` (`SIGTERM`) を試し、プロセスに正常終了する機会を与えてください。`kill -9` (`SIGKILL`) は、ファイルが保存されない、ソケットが正常に閉じられないなどの副作用の可能性があるため、最後の手段としてのみ使用すべきです。
-
 

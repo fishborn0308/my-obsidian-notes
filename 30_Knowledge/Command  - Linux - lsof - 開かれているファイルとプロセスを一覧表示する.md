@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'lsof'
-  - 'forensics'
-  - 'networking'
-  - 'troubleshooting'
-  - 'netstat'
-  - 'ss'
-  - 'fuser'
-  - 'ps'
+  - lsof
+  - forensics
+  - networking
+  - troubleshooting
+  - netstat
+  - ss
+  - fuser
+  - ps
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `lsof` - 開かれているファイルとプロセスを一覧表示する
+# Command  - Linux - lsof - 開かれているファイルとプロセスを一覧表示する
 
 ## 概要
 
@@ -102,8 +108,8 @@ lsof -u webapp
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **コマンドの実行に非常に時間がかかる。**
-    * **考えられる原因**: オプションなしで実行すると、システム上の全てのプロセスが開いている全てのファイルをリストアップしようとするためです。また、DNSやポート名の解決にも時間がかかります。
-    * **解決策**: `-p`, `-c`, `-u`, `-i` などのフィルタオプションで対象を絞り込み、`-n` と `-P` を付けて名前解決をスキップしてください。
+		* **考えられる原因**: オプションなしで実行すると、システム上の全てのプロセスが開いている全てのファイルをリストアップしようとするためです。また、DNSやポート名の解決にも時間がかかります。
+		* **解決策**: `-p`, `-c`, `-u`, `-i` などのフィルタオプションで対象を絞り込み、`-n` と `-P` を付けて名前解決をスキップしてください。
 
 ## 環境変数と設定ファイル
 

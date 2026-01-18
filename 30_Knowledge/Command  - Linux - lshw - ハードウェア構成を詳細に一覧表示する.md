@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'lshw'
-  - 'hardware'
-  - 'linux'
-  - 'dmidecode'
-  - 'lspci'
-  - 'lsusb'
-  - 'lscpu'
+  - lshw
+  - hardware
+  - linux
+  - dmidecode
+  - lspci
+  - lsusb
+  - lscpu
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `lshw` - ハードウェア構成を詳細に一覧表示する
+# Command  - Linux - lshw - ハードウェア構成を詳細に一覧表示する
 
 ## 概要
 
@@ -99,12 +105,12 @@ sudo lshw -C system
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **警告メッセージ**: `WARNING: you should run this program as super-user.`
-    * **考えられる原因**: 一般ユーザーで `lshw` を実行しました。
-    * **解決策**: `lshw` は `root` 権限で実行することで、DMIテーブルなどからより完全で詳細な情報を取得できます。`sudo lshw` として実行してください。
+		* **考えられる原因**: 一般ユーザーで `lshw` を実行しました。
+		* **解決策**: `lshw` は `root` 権限で実行することで、DMIテーブルなどからより完全で詳細な情報を取得できます。`sudo lshw` として実行してください。
 
 2. **現象**: **デバイス情報に `UNCLAIMED` と表示される。**
-    * **考えられる原因**: カーネルがそのハードウェアを認識しているものの、対応する適切なデバイスドライバがロードされていない状態です。
-    * **解決策**: デバイスのベンダーとモデルを特定し、対応するドライバをインストールまたは `modprobe` でロードする必要があります。
+		* **考えられる原因**: カーネルがそのハードウェアを認識しているものの、対応する適切なデバイスドライバがロードされていない状態です。
+		* **解決策**: デバイスのベンダーとモデルを特定し、対応するドライバをインストールまたは `modprobe` でロードする必要があります。
 
 ## 環境変数と設定ファイル
 
@@ -131,5 +137,4 @@ sudo lshw -C system
 
 * **インストール**: `lshw` は多くのディストリビューションで標準インストールされていません。使用するには、`sudo apt install lshw` や `sudo yum install lshw` などでパッケージをインストールする必要があります。
 * **出力形式の活用**: `-html` や `-json` オプションを使うと、結果を機械処理しやすい形式で出力できます。資産管理システムと連携し、サーバーインベントリを自動的に収集・更新するようなスクリプトで非常に役立ちます。
-
 

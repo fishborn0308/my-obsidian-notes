@@ -6,19 +6,16 @@ tags:
   - forensics
   - who
   - w
-  - lastb
   - journalctl
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:01
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - last - 最近のログイン履歴を表示する
-
-
-
 
 ## 概要
 
@@ -110,8 +107,8 @@ last
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **`last` を実行しても何も表示されない、または非常に古いログしか表示されない。**
-    * **考えられる原因**: `/var/log/wtmp` ファイルが存在しない、空である、または最近クリアされた可能性があります。
-    * **解決策**: ログがローテーションされていないか (`/var/log/wtmp.1`など)、あるいは攻撃者によって消去された可能性を疑います。`ls -l /var/log/wtmp` でファイルの作成日時を確認するのも1つの手がかりです。
+		* **考えられる原因**: `/var/log/wtmp` ファイルが存在しない、空である、または最近クリアされた可能性があります。
+		* **解決策**: ログがローテーションされていないか (`/var/log/wtmp.1`など)、あるいは攻撃者によって消去された可能性を疑います。`ls -l /var/log/wtmp` でファイルの作成日時を確認するのも1つの手がかりです。
 
 ## 環境変数と設定ファイル
 

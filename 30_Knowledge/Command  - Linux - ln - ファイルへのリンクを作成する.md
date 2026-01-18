@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'ln'
-  - 'filesystem'
-  - 'linux'
-  - 'cp'
-  - 'mv'
-  - 'ls'
-  - 'readlink'
+  - ln
+  - filesystem
+  - linux
+  - cp
+  - mv
+  - ls
+  - readlink
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:01
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ln` - ファイルへのリンクを作成する
+# Command  - Linux - ln - ファイルへのリンクを作成する
 
 ## 概要
 
@@ -103,8 +109,8 @@ ln -s /etc/shadow /var/www/html/shadow.txt
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `ln: failed to create hard link './link' => './target': Invalid cross-device link`
-    * **考えられる原因**: 異なるファイルシステム（パーティションやディスク）をまたいで**ハードリンク**を作成しようとしました。
-    * **解決策**: ハードリンクは同一ファイルシステム内でしか作成できません。**シンボリックリンク (`ln -s`)** を使用してください。
+		* **考えられる原因**: 異なるファイルシステム（パーティションやディスク）をまたいで**ハードリンク**を作成しようとしました。
+		* **解決策**: ハードリンクは同一ファイルシステム内でしか作成できません。**シンボリックリンク (`ln -s`)** を使用してください。
 
 ## 環境変数と設定ファイル
 
@@ -132,5 +138,4 @@ ln -s /etc/shadow /var/www/html/shadow.txt
 ## 注意点・補足
 
 * **パスの指定**: シンボリックリンクを作成する際、リンク先のパスは**絶対パスで指定する**のが一般的です。相対パスで指定すると、リンクを置く場所によってリンク先が変わってしまい、意図しない挙動やリンク切れの原因となります。
-
 

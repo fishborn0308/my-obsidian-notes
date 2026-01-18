@@ -5,21 +5,17 @@ tags:
   - process_management
   - signal
   - kill
-  - pkill
   - ps
   - systemctl
-created:
-modified:
-environment: []
+created: 2025-06-29 15:02
+modified: 2026-01-18 19:01
+environment:
+  - OS/Linux
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - killall - 名前を指定してプロセスを終了させる
-
-
-
-
 
 ## 概要
 
@@ -112,8 +108,8 @@ sudo killall -9 edr-agent
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `<process_name>: no process found`
-    * **考えられる原因**: 指定した名前のプロセスが存在しないか、コマンドを実行したユーザーにそのプロセスを閲覧・操作する権限がありません。
-    * **解決策**: `ps aux | grep <process_name>` でプロセスが存在するか、またどのユーザーで実行されているかを確認してください。他のユーザーのプロセスを対象にする場合は `sudo` が必要です。
+		* **考えられる原因**: 指定した名前のプロセスが存在しないか、コマンドを実行したユーザーにそのプロセスを閲覧・操作する権限がありません。
+		* **解決策**: `ps aux | grep <process_name>` でプロセスが存在するか、またどのユーザーで実行されているかを確認してください。他のユーザーのプロセスを対象にする場合は `sudo` が必要です。
 
 ## 環境変数と設定ファイル
 
@@ -139,5 +135,4 @@ sudo killall -9 edr-agent
 ## 注意点・補足
 
 * **`pkill` の利用**: `pkill` は `killall` よりも新しいコマンドで、より柔軟なプロセス選択が可能です。例えば、`pkill -f "python my_app.py"` のように、コマンド名だけでなく引数を含めたフルコマンドラインでプロセスを特定できます。特別な理由がない限り、現在では `pkill` の方が推奨されることが多いです。
-
 

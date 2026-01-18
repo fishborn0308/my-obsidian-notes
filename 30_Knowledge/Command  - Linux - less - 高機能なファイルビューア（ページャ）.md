@@ -1,15 +1,24 @@
 ---
 tags:
-  - 'less'
-  - 'pager'
-  - 'text_processing'
-  - 'more'
-  - 'cat'
-  - 'tail'
-  - 'grep'
+  - less
+  - pager
+  - text_processing
+  - more
+  - cat
+  - tail
+  - grep
+created:
+modified:
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `less` - 高機能なファイルビューア（ページャ）
+# Command  - Linux - less - 高機能なファイルビューア（ページャ）
+
+
+
 
 ## 概要
 
