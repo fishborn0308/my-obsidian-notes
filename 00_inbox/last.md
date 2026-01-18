@@ -1,16 +1,24 @@
 ---
 tags:
-  - 'last'
-  - 'lastb'
-  - 'logging'
-  - 'forensics'
-  - 'who'
-  - 'w'
-  - 'lastb'
-  - 'journalctl'
+  - last
+  - lastb
+  - logging
+  - forensics
+  - who
+  - w
+  - lastb
+  - journalctl
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `last` - 最近のログイン履歴を表示する
+# Command  - Linux - last - 最近のログイン履歴を表示する
+
+
+
 
 ## 概要
 
@@ -65,12 +73,12 @@ last | grep '^compromised-user'
 * **解説**: システムの安定性を評価する指標として、または計画外の再起動が発生した場合の原因調査の第一歩として、再起動の履歴を一覧表示します。
 * **例**:
 
-    ```bash
-    last reboot
-    # reboot   system boot  5.15.0-101-gene  Mon Sep 22 09:10   still running
-    # reboot   system boot  5.15.0-101-gene  Sun Sep 21 18:30 - 20:05  (01:35)
-    # -> これで、9/22 09:10に再起動したことが分かる
-    ```
+```bash
+last reboot
+# reboot   system boot  5.15.0-101-gene  Mon Sep 22 09:10   still running
+# reboot   system boot  5.15.0-101-gene  Sun Sep 21 18:30 - 20:05  (01:35)
+# -> これで、9/22 09:10に再起動したことが分かる
+```
 
 ### 2. ブルーチーム視点
 
@@ -79,11 +87,11 @@ last | grep '^compromised-user'
 * **解説**: **インシデントレスポンスの基本操作**。直近50件のログイン履歴を、IPアドレス形式で確認します。見慣れないIPアドレスや、深夜などの不審な時間帯からのログインがないかを確認し、攻撃のタイムラインを構築します。
 * **例**:
 
-    ```bash
-    # last と lastb を比較し、ブルートフォース攻撃が成功した痕跡がないか確認
-    sudo lastb -i | head
-    last -i | head
-    ```
+```bash
+# last と lastb を比較し、ブルートフォース攻撃が成功した痕跡がないか確認
+sudo lastb -i | head
+last -i | head
+```
 
 ### 3. レッドチーム視点
 
@@ -92,10 +100,10 @@ last | grep '^compromised-user'
 * **解説**: 攻撃者は `last` を実行し、どの管理者アカウントが、どのIPアドレス（踏み台サーバーなど）から、どの時間帯にログインしてくるかを把握します。これにより、正規の管理者の活動に紛れて自身の活動を隠蔽したり、活動が手薄になる時間帯を狙ったりします。
 * **例**:
 
-    ```bash
-    # ログイン履歴から管理者のIPや活動時間を偵察
-    last
-    ```
+```bash
+# ログイン履歴から管理者のIPや活動時間を偵察
+last
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -135,5 +143,3 @@ last | grep '^compromised-user'
 
 * **`wtmp begins...`**: `last` の出力の最後にある `wtmp begins ...` という行は、現在 `last` が読み取っている `/var/log/wtmp` ファイルが、いつから記録を開始したかを示しています。
 
----
-[インデックスに戻る](../linux_index.md)

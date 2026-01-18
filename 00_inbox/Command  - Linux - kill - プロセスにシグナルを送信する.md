@@ -1,15 +1,23 @@
 ---
 tags:
-  - 'kill'
-  - 'process_management'
-  - 'signal'
-  - 'pkill'
-  - 'killall'
-  - 'ps'
-  - 'jobs'
+  - kill
+  - process_management
+  - signal
+  - pkill
+  - killall
+  - ps
+  - jobs
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `kill` - プロセスにシグナルを送信する
+# Command  - Linux - kill - プロセスにシグナルを送信する
+
+
+
 
 ## 概要
 

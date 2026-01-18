@@ -4,10 +4,6 @@ tags:
   - 'rsyslog'
   - 'journalctl'
   - 'linux'
-  - 'cheetsheet'
-title: 'Linuxにおける主要ログファイルと活用術'
-summary: 'Linuxシステムの動作状況、エラー、セキュリティイベントを記録する主要なログファイルとその管理方法、分析手法を解説します。'
-related:
   - 'journalctl'
   - 'dmesg'
   - 'systemctl'
@@ -42,10 +38,10 @@ Linuxシステムが生成するログは、システムの動作状況、アプ
 * **解説**: `tail -f` で認証ログ (`/var/log/auth.log`) の追記をリアルタイムに監視し、その出力をパイプで `grep` に渡してキーワードでフィルタリングします。
 * **コマンド例**:
 
-    ```bash
-    # 認証ログをリアルタイム監視し、"Failed password" を含む行のみ表示
-    sudo tail -f /var/log/auth.log | grep "Failed password"
-    ```
+```bash
+# 認証ログをリアルタイム監視し、"Failed password" を含む行のみ表示
+sudo tail -f /var/log/auth.log | grep "Failed password"
+```
 
 ## 📜 主要なログファイルと場所
 
@@ -73,10 +69,10 @@ Linuxシステムが生成するログは、システムの動作状況、アプ
 * **解説**: `-u` で特定のサービスに絞り込み、`-e` でログの末尾（最新のエラー）にジャンプします。これにより、起動失敗の原因となったエラーメッセージを素早く確認できます。
 * **例**:
 
-    ```bash
-    # Nginxサービスの起動失敗ログを確認
-    sudo journalctl -u nginx.service -e
-    ```
+```bash
+# Nginxサービスの起動失敗ログを確認
+sudo journalctl -u nginx.service -e
+```
 
 ### 2. ブルーチーム視点
 
@@ -85,10 +81,10 @@ Linuxシステムが生成するログは、システムの動作状況、アプ
 * **解説**: **インシデントレスポンスの基本**。認証ログからブルートフォース攻撃の兆候を探します。ここから攻撃元IPや標的となったユーザー名を特定し、`last` や `lastb` での調査に繋げます。
 * **例**:
 
-    ```bash
-    # ログイン失敗ログから攻撃元IPを抽出し、回数順にランキング
-    sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
-    ```
+```bash
+# ログイン失敗ログから攻撃元IPを抽出し、回数順にランキング
+sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
+```
 
 ### 3. レッドチーム視点
 
@@ -97,13 +93,13 @@ Linuxシステムが生成するログは、システムの動作状況、アプ
 * **解説**: 攻撃者は侵入後、自身のIPアドレスや実行したコマンドが記録されたログエントリーを削除しようと試みます。
 * **例**:
 
-    ```bash
-    # 自身のコマンド履歴ファイルを削除 (非常に一般的な痕跡消去)
-    rm ~/.bash_history
+```bash
+# 自身のコマンド履歴ファイルを削除 (非常に一般的な痕跡消去)
+rm ~/.bash_history
 
-    # 認証ログから自身のIPアドレスを含む行を削除 (より高度)
-    sudo sed -i '/198.51.100.10/d' /var/log/auth.log
-    ```
+# 認証ログから自身のIPアドレスを含む行を削除 (より高度)
+sudo sed -i '/198.51.100.10/d' /var/log/auth.log
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -143,5 +139,3 @@ Linuxシステムが生成するログは、システムの動作状況、アプ
 
 * **時刻同期の重要性**: 正確なログ分析のためには、`NTP` などを使ってシステム全体の時刻を正確に同期させておくことが不可欠です。
 
----
-[インデックスに戻る](../linux_index.md)

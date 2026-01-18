@@ -1,16 +1,25 @@
 ---
 tags:
-  - 'killall'
-  - 'pkill'
-  - 'process_management'
-  - 'signal'
-  - 'kill'
-  - 'pkill'
-  - 'ps'
-  - 'systemctl'
+  - killall
+  - pkill
+  - process_management
+  - signal
+  - kill
+  - pkill
+  - ps
+  - systemctl
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `killall` - 名前を指定してプロセスを終了させる
+# Command  - Linux - killall - 名前を指定してプロセスを終了させる
+
+
+
+
 
 ## 概要
 

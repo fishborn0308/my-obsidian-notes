@@ -3,10 +3,6 @@ tags:
   - 'ln'
   - 'filesystem'
   - 'linux'
-  - 'cheetsheet'
-title: 'ln - ファイルへのリンクを作成する'
-summary: '既存のファイルやディレクトリへの「ハードリンク」または「シンボリックリンク（ソフトリンク）」を作成し、ショートカットのように機能させます。'
-related:
   - 'cp'
   - 'mv'
   - 'ls'
@@ -44,14 +40,14 @@ related:
 * **解説**: `/opt/app/v1.0` と `/opt/app/v1.1` のようにバージョンごとにディレクトリを配置し、実際に参照されるパス (`/opt/app/current`) をシンボリックリンクで作成します。アップデート時は、リンクを一度削除して新しいバージョンに張り替えるだけで済みます。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスで、アプリケーションの参照バージョンをv1.1に切り替える
-    # 1. 古いシンボリックリンクを削除
-    sudo rm /opt/app/current
+```bash
+# このコマンドシーケンスで、アプリケーションの参照バージョンをv1.1に切り替える
+# 1. 古いシンボリックリンクを削除
+sudo rm /opt/app/current
 
-    # 2. 新しいバージョンへのシンボリックリンクを作成
-    sudo ln -s /opt/app/v1.1 /opt/app/current
-    ```
+# 2. 新しいバージョンへのシンボリックリンクを作成
+sudo ln -s /opt/app/v1.1 /opt/app/current
+```
 
 ## オプション説明
 
@@ -73,10 +69,10 @@ related:
 * **解説**: 実際に有効化したい設定だけを `sites-enabled` ディレクトリにリンクとして配置するのは、設定管理における一般的なプラクティスです。
 * **例**:
 
-    ```bash
-    # /etc/nginx/sites-availableにある設定ファイルを有効化する
-    sudo ln -s /etc/nginx/sites-available/my-app.conf /etc/nginx/sites-enabled/my-app.conf
-    ```
+```bash
+# /etc/nginx/sites-availableにある設定ファイルを有効化する
+sudo ln -s /etc/nginx/sites-available/my-app.conf /etc/nginx/sites-enabled/my-app.conf
+```
 
 ### 2. ブルーチーム視点
 
@@ -85,10 +81,10 @@ related:
 * **解説**: `/tmp` 配下にある攻撃者のスクリプトへ、正規のパス (`/usr/local/bin`など) からシンボリックリンクが張られている場合、それは永続化やバックドアの兆候である可能性があります。
 * **例**:
 
-    ```bash
-    # システム上の全シンボリックリンクを調査
-    sudo find / -type l -ls 2>/dev/null | less
-    ```
+```bash
+# システム上の全シンボリックリンクを調査
+sudo find / -type l -ls 2>/dev/null | less
+```
 
 ### 3. レッドチーム視点
 
@@ -97,10 +93,10 @@ related:
 * **解説**: 攻撃者がWebサーバーのドキュメントルートへの書き込み権限を得た場合、`/etc/shadow` などへのシンボリックリンクを作成します。Webサーバーの設定によっては、これにより外部から機密ファイルをダウンロードできてしまう可能性があります。
 * **例**:
 
-    ```bash
-    # Webルートに /etc/shadow へのシンボリックリンクを作成
-    ln -s /etc/shadow /var/www/html/shadow.txt
-    ```
+```bash
+# Webルートに /etc/shadow へのシンボリックリンクを作成
+ln -s /etc/shadow /var/www/html/shadow.txt
+```
 
 ## エラーメッセージとトラブルシューティング
 
@@ -137,5 +133,4 @@ related:
 
 * **パスの指定**: シンボリックリンクを作成する際、リンク先のパスは**絶対パスで指定する**のが一般的です。相対パスで指定すると、リンクを置く場所によってリンク先が変わってしまい、意図しない挙動やリンク切れの原因となります。
 
----
-[インデックスに戻る](../linux_index.md)
+
