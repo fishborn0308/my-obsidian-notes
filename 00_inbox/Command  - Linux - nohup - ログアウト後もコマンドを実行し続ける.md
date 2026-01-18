@@ -1,16 +1,20 @@
 ---
 tags:
-  - 'nohup'
-  - 'process_management'
-  - 'linux'
-  - 'screen'
-  - 'tmux'
-  - 'disown'
-  - 'bg'
-  - '&'
+  - nohup
+  - process_management
+  - linux
+  - screen
+  - tmux
+  - disown
+  - bg
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:31
+environment: []
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `nohup` - ログアウト後もコマンドを実行し続ける
+# Command  - Linux - nohup - ログアウト後もコマンドを実行し続ける
 
 ## 概要
 
@@ -105,12 +109,12 @@ nohup nc -lvnp 4444 -e /bin/sh &
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **メッセージ**: `nohup: ignoring input and appending output to 'nohup.out'`
-    * **考えられる原因**: これはエラーではなく、正常なメッセージです。`nohup` がターミナルからの入力を無視し、出力を `nohup.out` に追記モードで書き込み始めていることを示しています。
-    * **解決策**: -
+		* **考えられる原因**: これはエラーではなく、正常なメッセージです。`nohup` がターミナルからの入力を無視し、出力を `nohup.out` に追記モードで書き込み始めていることを示しています。
+		* **解決策**: -
 
 2. **現象**: **`nohup.out` が作成されない、または別の場所に作成される。**
-    * **考えられる原因**: カレントディレクトリに書き込み権限がない場合、`nohup` はユーザーのホームディレクトリ (`$HOME/nohup.out`) にファイルを作成しようと試みます。
-    * **解決策**: 出力ファイルの場所を確実に制御したい場合は、`nohup command > /path/to/logfile.log 2>&1 &` のように、明示的にリダイレクトを指定してください。
+		* **考えられる原因**: カレントディレクトリに書き込み権限がない場合、`nohup` はユーザーのホームディレクトリ (`$HOME/nohup.out`) にファイルを作成しようと試みます。
+		* **解決策**: 出力ファイルの場所を確実に制御したい場合は、`nohup command > /path/to/logfile.log 2>&1 &` のように、明示的にリダイレクトを指定してください。
 
 ## 環境変数と設定ファイル
 

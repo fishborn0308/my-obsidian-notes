@@ -1,16 +1,23 @@
 ---
 tags:
-  - 'mtr'
-  - 'networking'
-  - 'troubleshooting'
-  - 'traceroute'
-  - 'traceroute'
-  - 'ping'
-  - 'netstat'
-  - 'ss'
+  - mtr
+  - networking
+  - troubleshooting
+  - traceroute
+  - ping
+  - netstat
+  - ss
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:25
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `mtr` - ネットワーク経路の診断ツール
+# Command  - Linux - Command  - Linux - mtr - ネットワーク経路の診断ツール
+
+# Command  - Linux - mtr - ネットワーク経路の診断ツール
 
 ## 概要
 
@@ -99,8 +106,8 @@ mtr -n -r -c 10 10.10.20.5
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **途中のホップが `???` と表示され、Loss% が100%になる。**
-    * **考えられる原因**: そのホップのルーターが、セキュリティポリシーなどの理由で `traceroute` が使用するICMP Time Exceededメッセージを返さないように設定されています。
-    * **解決策**: **これは必ずしもネットワーク障害を意味しません**。その次のホップ以降で正常に応答が返ってきていれば、通信経路自体は正常である可能性が高いです。
+		* **考えられる原因**: そのホップのルーターが、セキュリティポリシーなどの理由で `traceroute` が使用するICMP Time Exceededメッセージを返さないように設定されています。
+		* **解決策**: **これは必ずしもネットワーク障害を意味しません**。その次のホップ以降で正常に応答が返ってきていれば、通信経路自体は正常である可能性が高いです。
 
 ## 環境変数と設定ファイル
 
@@ -126,5 +133,4 @@ mtr -n -r -c 10 10.10.20.5
 ## 注意点・補足
 
 * **パケットロスの解釈**: 経路の途中の1ホップだけでロスが発生し、それ以降のホップではロスがない場合、それはルーターがICMPの処理を低優先度にしているだけであり、実際の通信品質には問題がないことが多いです。
-
 

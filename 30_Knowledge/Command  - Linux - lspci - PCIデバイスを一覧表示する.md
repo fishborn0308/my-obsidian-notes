@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'lspci'
-  - 'hardware'
-  - 'pci'
-  - 'lshw'
-  - 'lsusb'
-  - 'dmidecode'
-  - 'dmesg'
+  - lspci
+  - hardware
+  - pci
+  - lshw
+  - lsusb
+  - dmidecode
+  - dmesg
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:20
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `lspci` - PCIデバイスを一覧表示する
+# Command  - Linux - lspci - PCIデバイスを一覧表示する
 
 ## 概要
 
@@ -99,8 +105,8 @@ lspci | grep -i -E "ethernet|vga"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **デバイス名は表示されるが、ベンダー名などが `Unknown device` と表示される。**
-    * **考えられる原因**: `lspci` がベンダーIDとデバイスIDを名前に変換するためのローカルデータベースが古い可能性があります。
-    * **解決策**: `sudo update-pciids` コマンドを実行して、PCI IDデータベースを最新の状態に更新してください。
+		* **考えられる原因**: `lspci` がベンダーIDとデバイスIDを名前に変換するためのローカルデータベースが古い可能性があります。
+		* **解決策**: `sudo update-pciids` コマンドを実行して、PCI IDデータベースを最新の状態に更新してください。
 
 ## 環境変数と設定ファイル
 

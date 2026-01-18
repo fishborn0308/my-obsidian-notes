@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'pipenv'
-  - 'python'
-  - 'package management'
-  - 'pip'
-  - 'venv'
-  - 'Poetry'
-  - 'conda'
+  - pipenv
+  - python
+  - package_management
+  - pip
+  - venv
+  - Poetry
+  - conda
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:40
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `pipenv` - Pythonの依存関係管理と仮想環境ツール
+# Command  - Linux - pipenv - Pythonの依存関係管理と仮想環境ツール
 
 ## 概要
 
@@ -41,10 +47,13 @@ tags:
 * **解説**: `pipenv shell` で仮想環境に入ることなく、`pipenv run` を使うことで、正しい仮想環境内のPythonインタプリタでスクリプトを実行できます。
 * **コマンド例 (`crontab -e` の記述)**:
 
-    ```bash
+		```bash
     # 毎時0分に、/path/to/project ディレクトリで my_task.py を実行
+
     0 * * * * cd /path/to/project && /usr/local/bin/pipenv run python my_task.py
+
     ```
+
 
 ## オプション説明 (`pipenv` のサブコマンド)
 
@@ -105,12 +114,12 @@ cat /var/www/my-app/Pipfile
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: pipenv: command not found`
-    * **考えられる原因**: `pipenv` がインストールされていません。
-    * **解決策**: `pip install --user pipenv` や `sudo apt install pipenv` などでインストールしてください。
+		* **考えられる原因**: `pipenv` がインストールされていません。
+		* **解決策**: `pip install --user pipenv` や `sudo apt install pipenv` などでインストールしてください。
 
 2. **現象**: **`pipenv lock` または `pipenv install` が非常に遅い。**
-    * **考えられる原因**: `pipenv` の依存関係解決プロセスは、複雑な依存ツリーを持つプロジェクトでは時間がかかることがあります。
-    * **解決策**: まずは待ちます。解決しない場合は、`pipenv lock --clear` でキャッシュをクリアしたりすると改善することがあります。
+		* **考えられる原因**: `pipenv` の依存関係解決プロセスは、複雑な依存ツリーを持つプロジェクトでは時間がかかることがあります。
+		* **解決策**: まずは待ちます。解決しない場合は、`pipenv lock --clear` でキャッシュをクリアしたりすると改善することがあります。
 
 ## 環境変数と設定ファイル
 
@@ -144,5 +153,4 @@ cat /var/www/my-app/Pipfile
 ## 注意点・補足
 
 * **`Pipfile.lock` の重要性**: `Pipfile.lock` は、依存関係のハッシュ値を記録することで、**中間者攻撃などによるパッケージの改ざんを防ぐ**重要な役割を果たします。`git` などでこのファイルを必ずバージョン管理し、`pipenv install --deploy` でlockファイルとの一致を強制することがセキュリティ上不可欠です。
-
 

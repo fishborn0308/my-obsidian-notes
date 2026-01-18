@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'ovs-vsctl'
-  - 'open_vswitch'
-  - 'ovs'
-  - 'networking'
-  - 'sdn'
-  - 'brctl'
-  - 'ip_link'
-  - 'ovs-ofctl'
+  - ovs-vsctl
+  - open_vswitch
+  - ovs
+  - networking
+  - sdn
+  - brctl
+  - ip_link
+  - ovs-ofctl
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:34
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `ovs-vsctl` - Open vSwitchを制御・管理する
+# OS  - Linux - ovs-vsctl - Open vSwitchを制御・管理する
 
 ## 概要
 
@@ -114,8 +120,8 @@ ovs-vsctl show
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `ovs-vsctl: unix:/var/run/openvswitch/db.sock: connect: No such file or directory`
-    * **考えられる原因**: Open vSwitchのデーモン (`ovs-vswitchd`) が起動していません。
-    * **解決策**: `sudo systemctl start openvswitch-switch` (または同等のコマンド) でサービスを起動してください。
+		* **考えられる原因**: Open vSwitchのデーモン (`ovs-vswitchd`) が起動していません。
+		* **解決策**: `sudo systemctl start openvswitch-switch` (または同等のコマンド) でサービスを起動してください。
 
 ## 環境変数と設定ファイル
 
@@ -145,5 +151,4 @@ ovs-vsctl show
 ## 注意点・補足
 
 * **設定の永続性**: `ovs-vsctl` で行った設定は、OVSのデータベースファイルに書き込まれ、**デフォルトで永続化されます**。
-
 

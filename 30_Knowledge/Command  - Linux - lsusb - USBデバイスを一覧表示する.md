@@ -1,14 +1,20 @@
 ---
 tags:
-  - 'lsusb'
-  - 'hardware'
-  - 'usb'
-  - 'lspci'
-  - 'lshw'
-  - 'dmesg'
+  - lsusb
+  - hardware
+  - usb
+  - lspci
+  - lshw
+  - dmesg
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:20
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `lsusb` - USBデバイスを一覧表示する
+# Command  - Linux - lsusb - USBデバイスを一覧表示する
 
 ## 概要
 
@@ -89,8 +95,8 @@ watch -n 5 lsusb
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: lsusb: command not found`
-    * **考えられる原因**: `usbutils` パッケージがインストールされていません。
-    * **解決策**: `sudo apt install usbutils` や `sudo yum install usbutils` などでパッケージをインストールしてください。
+		* **考えられる原因**: `usbutils` パッケージがインストールされていません。
+		* **解決策**: `sudo apt install usbutils` や `sudo yum install usbutils` などでパッケージをインストールしてください。
 
 ## 環境変数と設定ファイル
 

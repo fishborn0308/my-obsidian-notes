@@ -1,17 +1,23 @@
 ---
 tags:
-  - 'mkdir'
-  - 'file_management'
-  - 'linux'
-  - 'touch'
-  - 'cp -r'
-  - 'rmdir'
-  - 'install_-d'
+  - mkdir
+  - file_management
+  - linux
+  - touch
+  - cp_-r
+  - rmdir
+  - install_-d
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:21
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `mkdir` - 新しいディレクトリを作成する
+# Command  - Linux - mkdir - 新しいディレクトリを作成する
 
-## 概要
+  ## 概要
 
 `mkdir` (make directory) は、新しいディレクトリ（または複数のディレクトリ）を作成するための基本的なコマンドです。ファイルやプロジェクトを整理するための階層構造を作る際に使用します。
 
@@ -94,8 +100,8 @@ mkdir -p ~/.config/systemd/updates
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `mkdir: cannot create directory ‘a/b/c’: No such file or directory`
-    * **考えられる原因**: 親ディレクトリ (`a/b`) が存在しない状態で、その中に `c` を作成しようとしました。
-    * **解決策**: `-p` オプションを使用してください (`mkdir -p a/b/c`)。
+		* **考えられる原因**: 親ディレクトリ (`a/b`) が存在しない状態で、その中に `c` を作成しようとしました。
+		* **解決策**: `-p` オプションを使用してください (`mkdir -p a/b/c`)。
 
 ## 環境変数と設定ファイル
 
@@ -123,5 +129,4 @@ mkdir -p ~/.config/systemd/updates
 ## 注意点・補足
 
 * **`umask` との関係**: `-m` オプションを指定しない場合、作成されるディレクトリのパーミッションは、システムの `umask` の設定値に影響を受けます。通常は `777` から `umask` 値を引いた権限（例: `umask`が`022`なら`755`）になります。
-
 

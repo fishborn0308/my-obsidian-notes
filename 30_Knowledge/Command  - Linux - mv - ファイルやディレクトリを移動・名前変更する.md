@@ -1,25 +1,31 @@
 ---
 tags:
-  - 'mv'
-  - 'file_management'
-  - 'linux'
-  - 'cp'
-  - 'rsync'
-  - 'rename'
-  - 'rm'
+  - mv
+  - file_management
+  - linux
+  - cp
+  - rsync
+  - rename
+  - rm
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:25
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `mv` - ファイルやディレクトリを移動・名前変更する
+# Command  - Linux - mv - ファイルやディレクトリを移動・名前変更する
 
 ## 概要
 
 `mv` (move) は、ファイルやディレクトリを**移動**したり、**名前を変更**したりするためのコマンドです。`mv` の動作は、引数の数と種類によって決まります。
 
 1. **名前の変更**: `mv <SOURCE> <DEST>`
-    引数が2つで、`<DEST>` が既存のディレクトリで**ない**場合、`<SOURCE>` ファイル（またはディレクトリ）の名前が `<DEST>` に変更されます。
+		引数が2つで、`<DEST>` が既存のディレクトリで**ない**場合、`<SOURCE>` ファイル（またはディレクトリ）の名前が `<DEST>` に変更されます。
 
 2. **移動**: `mv <SOURCE>... <DIRECTORY>`
-    最後の引数が既存のディレクトリである場合、指定された全ての `<SOURCE>` ファイル（またはディレクトリ）が、その `<DIRECTORY>` の中に移動されます。
+		最後の引数が既存のディレクトリである場合、指定された全ての `<SOURCE>` ファイル（またはディレクトリ）が、その `<DIRECTORY>` の中に移動されます。
 
 (出自: `coreutils` パッケージに含まれる)
 
@@ -102,8 +108,8 @@ mv /tmp/revshell.sh /home/user/.profile
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `mv: cannot move '<file>' to '<dir>/<file>': Permission denied`
-    * **考えられる原因**: 移動先のディレクトリへの書き込み権限がありません。
-    * **解決策**: 移動先のディレクトリのパーミッションを確認し、必要であれば `sudo` を付けてコマンドを実行してください。
+		* **考えられる原因**: 移動先のディレクトリへの書き込み権限がありません。
+		* **解決策**: 移動先のディレクトリのパーミッションを確認し、必要であれば `sudo` を付けてコマンドを実行してください。
 
 ## 環境変数と設定ファイル
 

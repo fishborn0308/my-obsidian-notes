@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'ltrace'
-  - 'debugging'
-  - 'forensics'
-  - 'security'
-  - 'strace'
-  - 'gdb'
-  - 'ps'
+  - ltrace
+  - debugging
+  - forensics
+  - security
+  - strace
+  - gdb
+  - ps
+created: 2025-09-22 14:03
+modified: 2026-01-18 20:21
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `ltrace` - プロセスのライブラリコールを追跡する
+# Command  - Linux - ltrace - プロセスのライブラリコールを追跡する
 
 ## 概要
 

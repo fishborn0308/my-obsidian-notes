@@ -1,15 +1,23 @@
 ---
 tags:
-  - 'pipe'
-  - 'redirection'
-  - 'shell'
-  - 'bash'
-  - 'grep'
-  - 'sed'
-  - 'awk'
-  - 'tee'
-  - 'xargs'
+  - pipe
+  - redirection
+  - shell
+  - bash
+  - grep
+  - sed
+  - awk
+  - tee
+  - xargs
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: OS
 ---
+
+# OS  - Linux - pipes_redirections
+
 
 # パイプとリダイレクション - シェルの入出力を制御する
 

@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'netstat'
-  - 'networking'
-  - 'legacy'
-  - 'ss'
-  - 'ss'
-  - 'lsof'
-  - 'ip_route'
-  - 'ip_link'
+  - netstat
+  - networking
+  - legacy
+  - ss
+  - lsof
+  - ip_route
+  - ip_link
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:25
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `netstat` - ネットワーク接続、ルーティングテーブルなどを表示する (旧)
+# Command  - Linux - netstat - ネットワーク接続、ルーティングテーブルなどを表示する (旧)
 
 ## 概要
 
@@ -105,8 +110,8 @@ netstat -anp
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: netstat: command not found`
-    * **考えられる原因**: `net-tools` パッケージがインストールされていません。モダンなLinuxディストリビューションの最小インストールでは、デフォルトで含まれていないことが多くなっています。
-    * **解決策**: `sudo apt install net-tools` や `sudo yum install net-tools` でインストールするか、**代替コマンドである `ss` を使用してください**。
+		* **考えられる原因**: `net-tools` パッケージがインストールされていません。モダンなLinuxディストリビューションの最小インストールでは、デフォルトで含まれていないことが多くなっています。
+		* **解決策**: `sudo apt install net-tools` や `sudo yum install net-tools` でインストールするか、**代替コマンドである `ss` を使用してください**。
 
 ## 環境変数と設定ファイル
 
@@ -132,5 +137,4 @@ netstat -anp
 ## 注意点・補足
 
 * **`ss` への移行を強く推奨**: `netstat` はLinuxネットワークの仕組みを学ぶ上で歴史的に重要ですが、実務では `ss` を使う習慣をつけましょう。`ss` は大規模な接続を扱うサーバーで劇的なパフォーマンスの差が出ます。
-
 

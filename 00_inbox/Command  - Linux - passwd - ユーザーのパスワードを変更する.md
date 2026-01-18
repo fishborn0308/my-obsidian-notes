@@ -1,16 +1,22 @@
 ---
 tags:
-  - 'passwd'
-  - 'user_management'
-  - 'security'
-  - 'password'
-  - 'chage'
-  - 'useradd'
-  - 'chpasswd'
-  - 'sudo'
+  - passwd
+  - user_management
+  - security
+  - password
+  - chage
+  - useradd
+  - chpasswd
+  - sudo
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `passwd` - ユーザーのパスワードを変更する
+# Command  - Linux - passwd - ユーザーのパスワードを変更する
 
 ## 概要
 
@@ -107,12 +113,12 @@ sudo passwd root
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `passwd: Authentication token manipulation error`
-    * **考えられる原因**: パスワードの変更に失敗しました。現在のパスワードの入力間違い、ディスクの空き容量不足、`/etc/shadow` ファイルのパーミッションの問題などが考えられます。
-    * **解決策**: まずは現在のパスワードを正しく入力しているか確認します。管理者であれば、`sudo passwd <user>` で強制的に上書きできます。
+		* **考えられる原因**: パスワードの変更に失敗しました。現在のパスワードの入力間違い、ディスクの空き容量不足、`/etc/shadow` ファイルのパーミッションの問題などが考えられます。
+		* **解決策**: まずは現在のパスワードを正しく入力しているか確認します。管理者であれば、`sudo passwd <user>` で強制的に上書きできます。
 
 2. **エラーメッセージ例 2**: `BAD PASSWORD: The password is shorter than 8 characters`
-    * **考えられる原因**: 設定しようとしたパスワードが、システムのパスワード複雑性ポリシーを満たしていません。
-    * **解決策**: より長く、複雑なパスワードを設定してください。ポリシーは通常、PAM (`/etc/pam.d/common-password`など) によって定義されます。
+		* **考えられる原因**: 設定しようとしたパスワードが、システムのパスワード複雑性ポリシーを満たしていません。
+		* **解決策**: より長く、複雑なパスワードを設定してください。ポリシーは通常、PAM (`/etc/pam.d/common-password`など) によって定義されます。
 
 ## 環境変数と設定ファイル
 
@@ -144,5 +150,4 @@ sudo passwd root
 ## 注意点・補足
 
 * **パスワードなしアカウント**: `passwd -d <user>` は、そのユーザーのパスワード認証を無効にします。セキュリティ上、極めて危険なため、特別な理由がない限り使用すべきではありません。アカウントを無効化したい場合は `-l` (`--lock`) を使います。
-
 

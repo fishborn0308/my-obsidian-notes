@@ -1,17 +1,23 @@
 ---
 tags:
-  - 'nmap'
-  - 'networking'
-  - 'security'
-  - 'port_scanner'
-  - 'reconnaissance'
-  - 'netcat'
-  - 'masscan'
-  - 'zenmap'
-  - 'ping'
+  - nmap
+  - networking
+  - security
+  - port_scanner
+  - reconnaissance
+  - netcat
+  - masscan
+  - zenmap
+  - ping
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:25
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `nmap` - ネットワーク探索とセキュリティ監査ツール
+# Command  - Linux - nmap - ネットワーク探索とセキュリティ監査ツール
 
 ## 概要
 
@@ -110,8 +116,8 @@ sudo nmap -T4 -A -v 192.168.1.0/24 -oA initial_scan
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **`nmap` を実行したが、`Host seems down.` と表示される。**
-    * **考えられる原因**: ターゲットホストがICMPエコー（Ping）に応答しないように設定されています。`nmap` はスキャン前にこの生存確認を行うため、ここで失敗するとポートスキャンに進みません。
-    * **解決策**: `-Pn` オプションを付けて、Pingによる生存確認をスキップしてください。
+		* **考えられる原因**: ターゲットホストがICMPエコー（Ping）に応答しないように設定されています。`nmap` はスキャン前にこの生存確認を行うため、ここで失敗するとポートスキャンに進みません。
+		* **解決策**: `-Pn` オプションを付けて、Pingによる生存確認をスキップしてください。
 
 ## 環境変数と設定ファイル
 

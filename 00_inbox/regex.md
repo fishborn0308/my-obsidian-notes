@@ -98,10 +98,10 @@ grep -v -E "^#|^$" /etc/ssh/sshd_config
 * **解説**: `()` でユーザー名とIPアドレスの部分をグループとしてキャプチャすることで、後の処理で利用しやすくします。
 * **例**:
 
-    ```bash
-    # 認証ログから攻撃パターンを分析
-    journalctl -u sshd | grep "Failed password"
-    ```
+```bash
+# 認証ログから攻撃パターンを分析
+journalctl -u sshd | grep "Failed password"
+```
 
 ### 3. レッドチーム視点
 
@@ -110,10 +110,10 @@ grep -v -E "^#|^$" /etc/ssh/sshd_config
 * **解説**: `password = "..."` や `password: ...` のような、様々な形式のパスワード記述にマッチするように、空白 (`\s*`) や引用符 (`['"]?`) を考慮した柔軟なパターンを使用します。
 * **例**:
 
-    ```bash
-    # Webアプリケーションのソースコードから機密情報を再帰的に検索
-    grep -E -r -i "password\s*[:=]" /var/www/html 2>/dev/null
-    ```
+```bash
+# Webアプリケーションのソースコードから機密情報を再帰的に検索
+grep -E -r -i "password\s*[:=]" /var/www/html 2>/dev/null
+```
 
 ## セキュリティに関する考慮事項
 
@@ -135,5 +135,4 @@ grep -v -E "^#|^$" /etc/ssh/sshd_config
 
 * **オンラインテスターの活用**: 複雑な正規表現を作成・デバッグする際は、**Regex101.com** や **RegExr.com** といったWebサイトが非常に役立ちます。パターンの意味を解説してくれたり、リアルタイムでマッチングを試したりできます。
 
----
-[インデックスに戻る](../linux_index.md)
+

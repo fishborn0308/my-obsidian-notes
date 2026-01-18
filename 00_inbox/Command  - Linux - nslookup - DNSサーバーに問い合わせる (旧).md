@@ -1,16 +1,23 @@
 ---
 tags:
-  - 'nslookup'
-  - 'dns'
-  - 'networking'
-  - 'legacy'
-  - 'dig'
-  - 'host'
-  - 'ping'
-  - '/etc/resolv.conf'
+  - nslookup
+  - dns
+  - networking
+  - legacy
+  - dig
+  - host
+  - ping
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:34
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `nslookup` - DNSサーバーに問い合わせる (旧)
+# Command  - Linux - nslookup - DNSサーバーに問い合わせる (旧)
+
+ - DNSサーバーに問い合わせる (旧)
 
 ## 概要
 
@@ -101,12 +108,12 @@ nslookup -query=NS example.com
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **メッセージ**: `** server can't find <domain>: NXDOMAIN`
-    * **考えられる原因**: "Non-Existent Domain"。問い合わせたドメイン名は存在しません。
-    * **解決策**: ドメイン名のタイプミスがないか確認してください。
+		* **考えられる原因**: "Non-Existent Domain"。問い合わせたドメイン名は存在しません。
+		* **解決策**: ドメイン名のタイプミスがないか確認してください。
 
 2. **メッセージ**: `** server can't find <domain>: SERVFAIL`
-    * **考えられる原因**: "Server Failure"。DNSサーバーが応答の生成に失敗しました。
-    * **解決策**: 別のDNSサーバー (`nslookup <domain> 8.8.8.8`など) を指定して再度試み、問題の切り分けを行います。
+		* **考えられる原因**: "Server Failure"。DNSサーバーが応答の生成に失敗しました。
+		* **解決策**: 別のDNSサーバー (`nslookup <domain> 8.8.8.8`など) を指定して再度試み、問題の切り分けを行います。
 
 ## 環境変数と設定ファイル
 
@@ -136,5 +143,4 @@ nslookup -query=NS example.com
 ## 注意点・補足
 
 * **`dig` への移行**: `nslookup` の出力は人間には分かりやすいですが、プログラムでの処理には向いていません。DNS関連の調査やスクリプティングには、より詳細で信頼性の高い出力を提供する `dig` コマンドの使用に慣れることを強くお勧めします。
-
 

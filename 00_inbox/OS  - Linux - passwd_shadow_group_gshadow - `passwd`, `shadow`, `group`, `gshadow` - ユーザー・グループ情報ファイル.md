@@ -1,19 +1,24 @@
 ---
 tags:
-  - 'passwd'
-  - 'shadow'
-  - 'group'
-  - 'gshadow'
-  - 'user_management'
-  - 'security'
-  - 'useradd'
-  - 'usermod'
-  - 'userdel'
-  - 'passwd'
-  - 'chage'
+  - passwd
+  - shadow
+  - group
+  - gshadow
+  - user_management
+  - security
+  - useradd
+  - usermod
+  - userdel
+  - chage
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:36
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `/etc/passwd`, `shadow`, `group`, `gshadow` - ユーザー・グループ情報ファイル
+# OS  - Linux - passwd_shadow_group_gshadow - `/etc/passwd`, `shadow`, `group`, `gshadow` - ユーザー・グループ情報ファイル
 
 ## 概要
 
@@ -107,8 +112,8 @@ awk -F: '($3 == 0) { print $1 }' /etc/passwd
 * **タスク**: 権限昇格と永続化の足がかりを探す。
 * **組み合わせ**: `cat /etc/passwd`, `cat /etc/shadow`
 * **解説**:
-  * **偵察**: `cat /etc/passwd` でシステムに存在するユーザーをリストアップします。
-  * **権限昇格**: `/etc/shadow` が何らかのミスで読み取り可能になっていれば、パスワードハッシュを窃取し、オフラインでのクラッキングを試みます。root権限を奪取した場合、`/etc/passwd` に `hacker:x:0:0...` のような行を追加して、自分専用のrootアカウントを作成します。
+	* **偵察**: `cat /etc/passwd` でシステムに存在するユーザーをリストアップします。
+	* **権限昇格**: `/etc/shadow` が何らかのミスで読み取り可能になっていれば、パスワードハッシュを窃取し、オフラインでのクラッキングを試みます。root権限を奪取した場合、`/etc/passwd` に `hacker:x:0:0...` のような行を追加して、自分専用のrootアカウントを作成します。
 * **例**:
 
 ```bash
@@ -145,5 +150,4 @@ cat /etc/passwd
 ## 注意点・補足
 
 * **NSS (Name Service Switch)**: LDAPやSSSDなどを利用している環境では、ユーザーやグループの情報はネットワークから取得されることもあります。その場合、これらのローカルファイルだけを見てもシステム全体のユーザー情報を把握できないことがあります。挙動は `/etc/nsswitch.conf` ファイルで制御されます。
-
 

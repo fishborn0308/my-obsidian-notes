@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'pip'
-  - 'python'
-  - 'package_management'
-  - 'venv'
-  - 'pipenv'
-  - 'apt'
-  - 'yum'
+  - pip
+  - python
+  - package_management
+  - venv
+  - pipenv
+  - apt
+  - yum
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:39
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `pip` - Pythonのパッケージ管理ツール
+# Command  - Linux - pip- Pythonのパッケージ管理ツール
 
 ## 概要
 
@@ -101,8 +107,8 @@ pip list --outdated
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: externally-managed-environment`
-    * **考えられる原因**: OSのパッケージマネージャ (`apt`など) によって管理されているシステムPython環境に、`pip` で直接パッケージをインストールしようとしました。近年のディストリビューションでは、システムの破損を防ぐためにこの操作がデフォルトで禁止されています。
-    * **解決策**: **必ず `python3 -m venv <dir>` で仮想環境を作成し、それを有効化してから `pip` を使用してください**。
+		* **考えられる原因**: OSのパッケージマネージャ (`apt`など) によって管理されているシステムPython環境に、`pip` で直接パッケージをインストールしようとしました。近年のディストリビューションでは、システムの破損を防ぐためにこの操作がデフォルトで禁止されています。
+		* **解決策**: **必ず `python3 -m venv <dir>` で仮想環境を作成し、それを有効化してから `pip` を使用してください**。
 
 ## 環境変数と設定ファイル
 
@@ -133,5 +139,4 @@ pip list --outdated
 ## 注意点・補足
 
 * **`pip` vs `pip3`**: システムによっては `python2` の `pip` と `python3` の `pip3` が共存している場合があります。`python3 -m pip ...` のように `-m` を使って実行すると、意図したPythonバージョンの `pip` を確実に呼び出せるため安全です。
-
 

@@ -1,13 +1,19 @@
 ---
 tags:
-  - 'nano'
-  - 'vi'
-  - 'vim'
-  - 'pico'
-  - 'sed'
+  - nano
+  - vi
+  - vim
+  - pico
+  - sed
+created: 2025-06-29 15:02
+modified: 2026-01-18 20:25
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `nano` - シンプルで直感的なテキストエディタ
+# Command  - Linux - nano - シンプルで直感的なテキストエディタ
 
 ## 概要
 
@@ -110,8 +116,8 @@ sudo nano /etc/hosts
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `[ Error writing /etc/nginx/nginx.conf: Permission denied ]`
-    * **考えられる原因**: ファイルを保存しようとしましたが、そのファイルまたはディレクトリへの書き込み権限がありません。
-    * **解決策**: 一度 `Ctrl+X` で終了を選択し、保存せずに (`N`) エディタを抜けます。その後、`sudo nano <filename>` のように `sudo` を付けて再度コマンドを実行します。
+		* **考えられる原因**: ファイルを保存しようとしましたが、そのファイルまたはディレクトリへの書き込み権限がありません。
+		* **解決策**: 一度 `Ctrl+X` で終了を選択し、保存せずに (`N`) エディタを抜けます。その後、`sudo nano <filename>` のように `sudo` を付けて再度コマンドを実行します。
 
 ## 環境変数と設定ファイル
 
@@ -147,5 +153,4 @@ sudo nano /etc/hosts
 ## 注意点・補足
 
 * **設定のカスタマイズ**: `nano` の使いやすさは `~/.nanorc` ファイルのカスタマイズに大きく依存します。特にシンタックスハイライト (`include ...`) と行番号表示 (`set linenumbers`) は、作業効率を大幅に向上させるため、設定しておくことを強く推奨します。
-
 
