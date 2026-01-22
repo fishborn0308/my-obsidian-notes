@@ -1,15 +1,23 @@
 ---
 tags:
-  - 'setuid'
-  - 'sgid'
-  - 'permissions'
-  - 'security'
-  - 'privilege escalation'
-  - 'chmod'
-  - 'find'
-  - 'sudo'
-  - 'capabilities'
+  - setuid
+  - sgid
+  - permissions
+  - security
+  - privilege_escalation
+  - chmod
+  - find
+  - sudo
+  - capabilities
+created:
+modified:
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
+
+# OS  - Linux - `SUID` と `SGID` - ファイル実行時の権限昇格
 
 # `SUID` と `SGID` - ファイル実行時の権限昇格
 

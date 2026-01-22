@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'sed'
-  - 'stream editor'
-  - 'text processing'
-  - 'regex'
-  - 'awk'
-  - 'grep'
-  - 'vi'
-  - 'regex'
+  - sed
+  - stream_editor
+  - text_processing
+  - regex
+  - awk
+  - grep
+  - vi
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:16
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `sed` - テキストストリームを編集する
+# Command  - Linux - sed - テキストストリームを編集する
 
 ## 概要
 
@@ -101,8 +106,8 @@ sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **パス (`/`) を含む文字列を置換しようとするとエラーになる。**
-    * **考えられる原因**: `s/old/new/` の区切り文字 (`/`) と、置換したい文字列中の `/` が衝突しています。
-    * **解決策**: 区切り文字は `/` 以外にも、`@`, `|`, `#`, `_` など、パターンに含まれない任意の文字を使用できます。
+		* **考えられる原因**: `s/old/new/` の区切り文字 (`/`) と、置換したい文字列中の `/` が衝突しています。
+		* **解決策**: 区切り文字は `/` 以外にも、`@`, `|`, `#`, `_` など、パターンに含まれない任意の文字を使用できます。
 
 ```bash
 # /usr/local を /opt に置換する例
@@ -135,5 +140,4 @@ sed 's|/usr/local|/opt|g' some_file.txt
 ## 注意点・補足
 
 * **`-i` オプションの注意**: `-i` (`in-place`) オプションは、バックアップなしでファイルを直接上書きします。正規表現の記述ミスは、重要な設定ファイルを破壊する可能性があります。**編集前には必ずバックアップを取る**か、まずは `-i` なしで出力を確認してください。
-
 

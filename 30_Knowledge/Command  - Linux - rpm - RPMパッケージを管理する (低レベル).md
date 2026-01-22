@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'rpm'
-  - 'package management'
-  - 'rhel'
-  - 'centos'
-  - 'yum'
-  - 'dnf'
-  - 'dpkg'
+  - rpm
+  - package_management
+  - rhel
+  - centos
+  - yum
+  - dnf
+  - dpkg
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:13
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `rpm` - RPMパッケージを管理する (低レベル)
+# Command  - Linux - rpm - RPMパッケージを管理する (低レベル)
 
 ## 概要
 
@@ -101,8 +107,8 @@ rpm -qa | grep kernel
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: Failed dependencies: ...`
-    * **考えられる原因**: 最もよくあるエラー。`rpm` は依存関係を自動解決しません。
-    * **解決策**: `sudo yum install <package_file.rpm>` や `sudo dnf install <package_file.rpm>` を実行してください。`yum`/`dnf` が不足している依存関係をリポジトリから自動的に探し出し、一緒にインストールしてくれます。
+		* **考えられる原因**: 最もよくあるエラー。`rpm` は依存関係を自動解決しません。
+		* **解決策**: `sudo yum install <package_file.rpm>` や `sudo dnf install <package_file.rpm>` を実行してください。`yum`/`dnf` が不足している依存関係をリポジトリから自動的に探し出し、一緒にインストールしてくれます。
 
 ## 環境変数と設定ファイル
 
@@ -130,5 +136,4 @@ rpm -qa | grep kernel
 ## 注意点・補足
 
 * **`yum`/`dnf` を優先する**: 依存関係の問題を避けるため、日常的なパッケージのインストール・アンインストールには、**常に `yum` や `dnf` を使用してください**。
-
 

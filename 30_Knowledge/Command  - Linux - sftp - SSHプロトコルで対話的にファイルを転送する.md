@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'sftp'
-  - 'ssh'
-  - 'file transfer'
-  - 'networking'
-  - 'scp'
-  - 'rsync'
-  - 'ftp'
-  - 'ssh'
+  - sftp
+  - ssh
+  - file_transfer
+  - networking
+  - scp
+  - rsync
+  - ftp
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:20
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `sftp` - SSHプロトコルで対話的にファイルを転送する
+# Command  - Linux - sftp - SSHプロトコルで対話的にファイルを転送する
 
 ## 概要
 
@@ -119,12 +124,12 @@ sftp> put /etc/shadow
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Permission denied (publickey,password).`
-    * **考えられる原因**: `scp` と同じく、SSHの認証エラーです。
-    * **解決策**: ユーザー名、パスワード、鍵のパスと設定を再確認してください。
+		* **考えられる原因**: `scp` と同じく、SSHの認証エラーです。
+		* **解決策**: ユーザー名、パスワード、鍵のパスと設定を再確認してください。
 
 2. **エラーメッセージ例 2 (sftp内部)**: `Couldn't get remote file: Permission denied`
-    * **考えられる原因**: リモートサーバー上のユーザーに、`get` しようとしたファイルを読み取る権限がありません。
-    * **解決策**: リモートサーバー側でファイルのパーミッションを確認してください。
+		* **考えられる原因**: リモートサーバー上のユーザーに、`get` しようとしたファイルを読み取る権限がありません。
+		* **解決策**: リモートサーバー側でファイルのパーミッションを確認してください。
 
 ## 環境変数と設定ファイル
 

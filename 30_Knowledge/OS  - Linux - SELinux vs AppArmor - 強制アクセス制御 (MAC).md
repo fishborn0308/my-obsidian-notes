@@ -1,17 +1,23 @@
 ---
 tags:
-  - 'selinux'
-  - 'apparmor'
-  - 'mac'
-  - 'security'
-  - 'linux'
-  - 'sudo'
-  - 'capabilities'
-  - 'chcon'
-  - 'aa-status'
+  - selinux
+  - apparmor
+  - mac
+  - security
+  - linux
+  - sudo
+  - capabilities
+  - chcon
+  - aa-status
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:17
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `SELinux` vs `AppArmor` - 強制アクセス制御 (MAC)
+# OS  - Linux - `SELinux` vs `AppArmor` - 強制アクセス制御 (MAC)
 
 ## 概要
 
@@ -114,8 +120,8 @@ sestatus
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **パーミッションは正しいはずなのに、ファイルにアクセスできない。**
-    * **考えられる原因**: SELinuxまたはAppArmorのポリシーによってアクセスが拒否されています。
-    * **解決策**: `ausearch -m avc -ts recent` (SELinux) または `journalctl -f | grep "apparmor="` (AppArmor) を実行して、拒否ログを確認し、ポリシーを修正（`audit2allow`など）するか、コンテキストを修正（`restorecon`）します。
+		* **考えられる原因**: SELinuxまたはAppArmorのポリシーによってアクセスが拒否されています。
+		* **解決策**: `ausearch -m avc -ts recent` (SELinux) または `journalctl -f | grep "apparmor="` (AppArmor) を実行して、拒否ログを確認し、ポリシーを修正（`audit2allow`など）するか、コンテキストを修正（`restorecon`）します。
 
 ## 環境変数と設定ファイル
 

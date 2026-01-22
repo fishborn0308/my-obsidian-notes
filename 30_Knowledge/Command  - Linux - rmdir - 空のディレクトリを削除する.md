@@ -1,14 +1,20 @@
 ---
 tags:
-  - 'rmdir'
-  - 'file management'
-  - 'linux'
-  - 'rm'
-  - 'mkdir'
-  - 'find'
+  - rmdir
+  - file_management
+  - linux
+  - rm
+  - mkdir
+  - find
+created: 2025-06-29 15:02
+modified: 2026-01-22 20:11
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `rmdir` - 空のディレクトリを削除する
+# Command  - Linux - rmdir - 空のディレクトリを削除する
 
 ## 概要
 
@@ -89,8 +95,8 @@ rmdir /tmp/.x
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `rmdir: failed to remove '<dir_name>': Directory not empty`
-    * **考えられる原因**: **最もよくあるエラー**。削除しようとしたディレクトリが空ではありません。`.` で始まる隠しファイル（例: `.gitkeep`）が存在する場合もこのエラーになります。
-    * **解決策**: `ls -A <dir_name>` を実行して、隠しファイルを含めてディレクトリの中身を確認し、先にファイルを全て削除してください。中身ごと全て削除して良いことが確実な場合は、`rm -r <dir_name>` を使います。
+		* **考えられる原因**: **最もよくあるエラー**。削除しようとしたディレクトリが空ではありません。`.` で始まる隠しファイル（例: `.gitkeep`）が存在する場合もこのエラーになります。
+		* **解決策**: `ls -A <dir_name>` を実行して、隠しファイルを含めてディレクトリの中身を確認し、先にファイルを全て削除してください。中身ごと全て削除して良いことが確実な場合は、`rm -r <dir_name>` を使います。
 
 ## 環境変数と設定ファイル
 

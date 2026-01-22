@@ -1,16 +1,21 @@
 ---
 tags:
-  - 'shutdown'
-  - 'reboot'
-  - 'system management'
-  - 'legacy'
-  - 'systemctl'
-  - 'reboot'
-  - 'halt'
-  - 'poweroff'
+  - shutdown
+  - reboot
+  - system_management
+  - legacy
+  - systemctl
+  - halt
+  - poweroff
+created: 2025-09-22 14:02
+modified: 2026-01-22 20:22
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `shutdown` - システムを安全に停止・再起動する
+# Command  - Linux - shutdown - システムを安全に停止・再起動する
 
 ## 概要
 
@@ -107,8 +112,8 @@ sudo shutdown -h now
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `shutdown: Must be root.`
-    * **考えられる原因**: `root` 権限なしで `shutdown` を実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: `root` 権限なしで `shutdown` を実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 
