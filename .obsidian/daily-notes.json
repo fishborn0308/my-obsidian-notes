@@ -1,3 +1,4 @@
 {
-  "folder": "00_inbox"
+  "folder": "10_Daily",
+  "template": "40_RunBook/Templates/Daily-Note-Template"
 }

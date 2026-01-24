@@ -7,5 +7,14 @@
       ],
       "key": "T"
     }
+  ],
+  "obsidian-memos:open-thino-in-float": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "D"
+    }
   ]
 }
