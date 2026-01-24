@@ -1,3 +1,12 @@
+---
+created: 2026-01-10 20:07
+modified: 2026-01-24 11:43
+tags:
+  - Git-Hub
+  - config
+---
+# Mac - Git Hub
+
 ## GitHubでトークンを発行する
 
 1. ブラウザで [GitHubのSettings > Tokens](https://github.com/settings/tokens) (Classic) を開きます。
@@ -8,9 +17,7 @@
 3. 設定を入力します：
 
 	- **Note**: `Obsidian-Mac` など（自分がわかる名前）。
-			
 	- **Expiration**: `No expiration`（無期限）または長めの期間を推奨。
-			
 	- **Select scopes**: **「repo」** にチェックを入れます（これでリポジトリの操作権限が付与されます）。
 				
 4. 一番下の **[Generate token]** をクリック。
@@ -74,9 +81,9 @@ git config --global credential.helper osxkeychain
 		
 		```
 
-    touch .gitignore
+		touch .gitignore
 
-    ```
+		```
 		
 3. そのまま、ターミナルからエディタで中身を書き込みます（VS Codeが入っているので `code` コマンドが便利です）。
 
@@ -84,9 +91,9 @@ git config --global credential.helper osxkeychain
 		
 		```
 
-    code .gitignore
+		code .gitignore
 
-    ```
+		```
 		
 		※VS Codeが立ち上がらない場合は `nano .gitignore` で編集するか、Finderで隠しファイルを表示（`Command + Shift + .`）してテキストエディタで開いてください。
 		

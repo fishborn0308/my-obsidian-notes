@@ -9,7 +9,7 @@ tags:
   - VSCode
 ---
 
-# Cheatsheet - Shortcut
+# Cheatsheet - VSCode Shortcut
 
 ## VS Code ショートカットキーまとめ (目的別) ⌨️
 

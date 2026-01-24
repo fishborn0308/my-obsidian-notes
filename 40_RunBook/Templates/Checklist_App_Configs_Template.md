@@ -12,7 +12,7 @@
 - [ ] **VS Code**
     
     - [ ] **Settings Sync** を有効化（GitHub/Microsoftアカウントで設定同期）。
-	    - 同期に失敗した場合は[[02-VSCode・Obsidian]]から        
+	    - 同期に失敗した場合は[[Mac - VSCode]]から        
 - [ ] **Raycast**
     
     - [ ] ホットキーを `Option + Space`（または `Cmd + Space`）に変更。
