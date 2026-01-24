@@ -123,11 +123,11 @@ Plaintext
 
 検証中の「コマンド結果」や「一言メモ」を時系列で残すための設定です。
 
-- **Folder to store memo**: `00_inbox` を指定。
+- **Advance - Use which plugin's default configuration**: `Daily`
     
 - **Memo grouping**: `Day`（1日単位でファイルをまとめる）。
     
-- **ショートカット割り当て**: `Cmd + Shift + M` で即座にThinoの入力欄が開くように設定すると、ブラウザから戻ってすぐにメモできます。
+- **ショートカット割り当て**: hotkeyから`Cmd + Shift + M` で即座にThinoの入力欄が開くように設定
     
 
 ### **Outliner**
@@ -136,7 +136,7 @@ Plaintext
 
 - **Improve the style of your lists**: ON（見た目が整います）。
     
-- **Stick the cursor to the content**: ON（インデント操作時にカーソルがズレなくなります）。
+- **Stick the cursor to the content**: `Stick cursor out of bullets and checkboxes`（インデント操作時にカーソルがズレなくなります）。
     
 
 ---
@@ -145,11 +145,19 @@ Plaintext
 
 ### **Iconize**
 
-- **Icon Pack**: `Lucide` を推奨（シンプルでエンジニア向け）。
+- **Add  predefined icon pack**: `Lucide` を推奨（シンプルでエンジニア向け）。
     
-- **Auto-iconize**: ON。特定の単語（例：`Archive`）を含むフォルダに自動でアイコンをつける設定が可能です。
+- **Add icon rule**
     
-
+| **フォルダ名**      | **推奨アイコン (Lucide)** | **理由**        |
+| -------------- | ------------------- | ------------- |
+| `00_inbox`     | `Inbox`             | 未整理の受信箱として    |
+| `10_Daily`     | `Calendar`          | 日報・記録用        |
+| `20_Projects`  | `TerminalSquare`    | 攻略対象やアクティブな検証 |
+| `30_Knowledge` | `Brain`             | 体系化された知識庫     |
+| `40_RunBook`   | `BookText`          | インフラ操作の手順書    |
+| `90_Archive`   | `Archive`           | アーカイブ         |
+| `99_Assets`    | `Images`            | 画像など          |
 ### **File Color**
 
 - **Palette**: 落ち着いた色を選択し、左サイドバーのフォルダを右クリックして `Set Color`。
