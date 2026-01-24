@@ -194,7 +194,7 @@ Plaintext
 
 - **Default folder**: `99_Assets/Excalidraw`。
 - **Auto-export SVG**: ON（Obsidian以外の場所でも画像としてプレビューしやすくなります）。
-- **Fonts**: `Cascadia Code` や `JetBrains Mono` など、コーディング用フォントを指定すると雰囲気が増します。
+- **Default font typeface to use for embedded markdown file**: `Cascadia Code` 
 
 ---
 
@@ -202,9 +202,10 @@ Plaintext
 
 ### **Git**
 
-- **Vault backup interval**: `15`〜`30` 分。
-- **Commit message**: `vault backup: {{date}} {{time}}`
-- **Pull settings**: `Auto pull on startup` を必ずON。
+- **Auto commit-and-sync interval (minutes):**: `30`
+- **Commit message on auto commit-and-sync**: `vault backup: {{date}} {{time}}`
+- **Commit message on manual commit**: `vault backup: {{date}} {{time}}`
+- **Pull on startup**: `ON`
 
 ### **Linter**
 

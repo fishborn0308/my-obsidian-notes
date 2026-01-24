@@ -56,7 +56,7 @@
   "HttpApiIpType": "127.0.0.1",
   "HttpApiPort": "43999",
   "AutoDownloadImage": false,
-  "EditorType": "memos",
+  "EditorType": "obsidian",
   "EnabledLocationList": [
     {
       "value": "DAILY",
@@ -85,7 +85,7 @@
   "MomentsBackgroundImage": "https://images.pexels.com/photos/531767/pexels-photo-531767.jpeg",
   "MomentsIcon": "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg",
   "MomentsQuote": "Share your thino with the world",
-  "DefaultThemeForThino": "classic",
+  "DefaultThemeForThino": "modern",
   "LastUpdatedVersion": "2.8.18",
   "ShareToThinoWithText": false,
   "ShareToThinoWithTextAppend": "",

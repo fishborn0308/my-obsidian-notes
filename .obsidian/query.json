@@ -1,24 +1,6 @@
 {
   "queries": [
     {
-      "id": 0,
-      "pinnedAt": "",
-      "createdAt": "2026/01/24 12:39:13",
-      "updatedAt": "2026/01/24 12:39:13",
-      "title": "未命名",
-      "querystring": "[]",
-      "userId": "Memos"
-    },
-    {
-      "id": 1,
-      "pinnedAt": "",
-      "createdAt": "2026/01/24 12:39:13",
-      "updatedAt": "2026/01/24 12:39:13",
-      "title": "未命名",
-      "querystring": "[]",
-      "userId": "Memos"
-    },
-    {
       "id": 2,
       "pinnedAt": "",
       "createdAt": "2026/01/24 12:39:13",
