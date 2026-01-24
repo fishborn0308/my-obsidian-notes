@@ -1,6 +1,6 @@
 ---
 created: 2026-01-24 11:44
-modified: 2026-01-24 13:44
+modified: 2026-01-24 15:36
 tags:
   - Obsidian
   - config
@@ -125,7 +125,6 @@ Plaintext
 
 - **Advance - Use which plugin's default configuration**: `Daily`
 - **ショートカット割り当て**: hotkeyから`Cmd + Shift + M` で即座にThinoの入力欄が開くように設定
-- **Always Show Leaf Sidebar on PC:** `ON`
 - **Default Editor Mode:** `Live-Preview`
 
 ### **Outliner**
@@ -164,7 +163,6 @@ Plaintext
 		- `Templates` → **Purple**
 		- `90_Archive` → **Black**
 	- **Color Background:** `ON`
-				
 
 ### **Hover Editor**
 
@@ -193,7 +191,7 @@ Plaintext
 
 - **Default folder**: `99_Assets/Excalidraw`。
 - **Auto-export SVG**: ON（Obsidian以外の場所でも画像としてプレビューしやすくなります）。
-- **Default font typeface to use for embedded markdown file**: `Cascadia Code` 
+- **Default font typeface to use for embedded markdown file**: `Cascadia Code`
 
 ---
 
