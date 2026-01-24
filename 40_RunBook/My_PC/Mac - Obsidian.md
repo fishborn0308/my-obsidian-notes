@@ -124,10 +124,9 @@ Plaintext
 検証中の「コマンド結果」や「一言メモ」を時系列で残すための設定です。
 
 - **Advance - Use which plugin's default configuration**: `Daily`
-- **Memo grouping**: `Day`（1日単位でファイルをまとめる）。
 - **ショートカット割り当て**: hotkeyから`Cmd + Shift + M` で即座にThinoの入力欄が開くように設定
 - **Always Show Leaf Sidebar on PC:** `ON`
-- **Default Editor Mode:** `Source`
+- **Default Editor Mode:** `Live-Preview`
 
 ### **Outliner**
 
