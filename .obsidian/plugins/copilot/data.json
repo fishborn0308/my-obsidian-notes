@@ -382,5 +382,12 @@
   "maxRecentConversations": 30,
   "enableSavedMemory": true,
   "quickCommandIncludeNoteContext": true,
-  "autoIncludeTextSelection": false
+  "autoIncludeTextSelection": false,
+  "autoAddActiveContentToContext": true,
+  "autoCompactThreshold": 128000,
+  "autoAddSelectionToContext": false,
+  "autoAcceptEdits": false,
+  "chatHistorySortStrategy": "recent",
+  "projectListSortStrategy": "recent",
+  "userSystemPromptsFolder": "copilot/system-prompts"
 }
