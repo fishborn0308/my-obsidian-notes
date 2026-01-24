@@ -21,6 +21,23 @@
 2. **24インチ縦 (Pivot):** 資料・ログ・長いコードのフル画面表示用。
 3. **24インチ横 (Monitor 2):** 監視・ウィジェット・チャットの固定配置。
 
+### Raycast:Windows Management
+
+- Next Display:opt + n
+- Previous Display:opt + p
+
+- Almost Maximize:opt + Enter
+- Maximize:ctrl + opt + Enter
+
+- First Third:ctrl + opt + ←
+- Center Third:ctrl + opt + c
+- Last Third:ctrl + opt + →
+
+- Top Half:opt + ↑
+- Bottom Half:opt + ↓
+- Left Harf:opt + ←
+- Right Half:opt + →
+
 ### Trackpad (BTT) ジェスチャー
 
 - **3本指タップ:** 中央メイン領域（40インチ右寄り65%）へ移動
@@ -37,15 +54,11 @@
 		- height:Relative to screen :100
 - **3本指スワイプ右:** ピボット画面（24インチ縦）へ移動 ＋ 最大化
 	- Action - Move Window to Next Monitor
-	- Action - Resize Active Windows to Specific Position & Size
-		- x:3441
-		- y:0
-		- Width:1078
-		- Height:1918
+	- Action - ctrl + opt + Enter
 - **3本指スワイプ上:** ウィンドウを最大化
-	- Action - Maximize Windows
-- **3本指スワイプ下:** アプリを隠す（Hide）
-	- Action - cmd + H
+	- Action - ctrl + opt + Enter
+- **3本指スワイプ下:** ウィンドウを３分の１で中央
+	- Action - ctrl + opt + c
 
 ---
 
@@ -53,11 +66,13 @@
 
 マウスを動かさず、親指一本で「実行」を完結させる。
 
+- **ミドルボタン:** 貼り付け
+- **スクロール切り替えボタン:** スクリーンショット(shift + cmd + 4)
 - **ジェスチャーボタン + 左右:** 仮想デスクトップ/フル画面アプリの切り替え（Mac ↔ Win）
-- **ジェスチャーボタン + 上:** コピー (Cmd + C)
-- **ジェスチャーボタン + 下:** 貼り付け (Cmd + V)
-- **ジェスチャーボタン クリック:Raycast起動    
-- **ActionRings (単押し):** スクリーンショット(範囲)、クリップボード履歴、主要アプリ召喚
+- **ジェスチャーボタン + 上:** クリップボード履歴
+- **ジェスチャーボタン + 下:** デスクトップを表示
+- **ジェスチャーボタン クリック:** コピー (Cmd + C)
+- **ActionRings (単押し):** 主要アプリ召喚
 
 ---
 ## 4. 情報の「分散配置」と「中央検索」

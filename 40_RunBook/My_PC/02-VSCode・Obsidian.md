@@ -186,21 +186,10 @@
 ### ディレクトリ構成
 
 - 00_inbox: メモ等、軽易なもの
-- 10_RunBook: CTF等のwrite upなど
-- 20_Projects: 検証など
+- 10_Daily: デイリーノート
+- 20_Projects: 検証、CTF等のwrite upなど
 - 30_Knowledge: 学習などの成果
-	- 00_app: アプリ関連のマニュアル
-	- 01_cheatsheats: コマンドや構文を参照する辞書
-		- common_practices: OSに関わらず共通的なこと
-		- docker: Docker関連コマンド
-		- git: Git関連コマンド
-		- Pentest: ペンテスト関連チートシート
-			- app: Pentestツールに関するチートシート
-		- Linux: Linux関連コマンド
-		- Windows: Windows関連コマンド
-			- cmd: コマンドプロンプト関連コマンド
-			- powershell：パワーシェル関連コマンド
-- 40_Manual: マニュアル関連
+- 40_RunBook: プロジェクトから永続的に使用するドキュメントを作成
 	- My PC: デスクで使用しているPCの設定や構成
 	- Tamplate: テンプレート
 - 90_Archive: 過去のプロジェクトやまとめ終わったRunBookなど
