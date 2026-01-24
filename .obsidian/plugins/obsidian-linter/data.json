@@ -22,7 +22,7 @@
       "enabled": true
     },
     "format-yaml-array": {
-      "enabled": false,
+      "enabled": true,
       "alias-key": true,
       "tag-key": true,
       "default-array-style": "single-line",
@@ -35,7 +35,7 @@
       "text-to-insert": "aliases: \ntags: "
     },
     "move-tags-to-yaml": {
-      "enabled": true,
+      "enabled": false,
       "how-to-handle-existing-tags": "Nothing",
       "tags-to-ignore": ""
     },
