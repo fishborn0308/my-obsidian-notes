@@ -1,6 +1,6 @@
 ---
 created: 2026-01-24 11:44
-modified: 2026-01-24 12:26
+modified: 2026-01-24 13:44
 tags:
   - Obsidian
   - config
@@ -124,20 +124,17 @@ Plaintext
 検証中の「コマンド結果」や「一言メモ」を時系列で残すための設定です。
 
 - **Advance - Use which plugin's default configuration**: `Daily`
-    
 - **Memo grouping**: `Day`（1日単位でファイルをまとめる）。
-    
 - **ショートカット割り当て**: hotkeyから`Cmd + Shift + M` で即座にThinoの入力欄が開くように設定
-    
+- **Always Show Leaf Sidebar on PC:** `ON`
+- **Default Editor Mode:** `Source`
 
 ### **Outliner**
 
 箇条書きを「タスク」や「手順書」として扱いやすくします。
 
 - **Improve the style of your lists**: ON（見た目が整います）。
-    
 - **Stick the cursor to the content**: `Stick cursor out of bullets and checkboxes`（インデント操作時にカーソルがズレなくなります）。
-    
 
 ---
 
@@ -146,9 +143,8 @@ Plaintext
 ### **Iconize**
 
 - **Add  predefined icon pack**: `Lucide` を推奨（シンプルでエンジニア向け）。
-    
 - **Add icon rule**
-    
+
 | **フォルダ名**      | **推奨アイコン (Lucide)** | **理由**        |
 | -------------- | ------------------- | ------------- |
 | `00_inbox`     | `Inbox`             | 未整理の受信箱として    |
@@ -158,29 +154,27 @@ Plaintext
 | `40_RunBook`   | `BookText`          | インフラ操作の手順書    |
 | `90_Archive`   | `Archive`           | アーカイブ         |
 | `99_Assets`    | `Images`            | 画像など          |
+
 ### **File Color**
 
 - **Palette**: 落ち着いた色を選択し、左サイドバーのフォルダを右クリックして `Set Color`。
-    
-- **運用例**:
-    
-    - `20_Projects` → **Blue**（アクティブな作業）
-        
-    - `00_inbox` → **Red**（未処理のタスクがある場所）
-        
+- **運用**:
+
+		- `20_Projects` → **Blue**（アクティブな作業）
+		- `00_inbox` → **Red**（未処理のタスクがある場所）
+		- `Templates` → **Purple**
+		- `90_Archive` → **Black**
+	- **Color Background:** `ON`
+				
 
 ### **Hover Editor**
 
 このプラグインは設定次第で「化け」ます。
 
 - **Trigger Key**: `Cmd/Ctrl` に設定。
-    
 - **Default Mode**: `Live Preview`。
-    
 - **Auto Focus**: ON（ホバーした瞬間に編集可能にする）。
-    
 - **活用シーン**: ネットワーク図（Excalidraw）上の各ノードをクリックせず、`Cmd + ホバー` でその機器の設定メモを浮かせたまま編集。
-    
 
 ---
 
@@ -191,22 +185,15 @@ Plaintext
 自分の過去のメモをAIに読み込ませます。
 
 - **Default Model**: (使用可能な最新モデルを選択)。
-    
 - **Index Vault**: `30_Knowledge` と `20_Projects` を指定。
-    
 - **QA Mode Settings**: `Enable Local Indexing` をON。
-    
 - **運用**: 「以前のCTFでSQLインジェクションに使ったペイロードは何？」と聞けば、自分の過去のWriteupから回答してくれます。
-    
 
 ### **Excalidraw**
 
 - **Default folder**: `99_Assets/Excalidraw`。
-    
 - **Auto-export SVG**: ON（Obsidian以外の場所でも画像としてプレビューしやすくなります）。
-    
 - **Fonts**: `Cascadia Code` や `JetBrains Mono` など、コーディング用フォントを指定すると雰囲気が増します。
-    
 
 ---
 
@@ -215,20 +202,14 @@ Plaintext
 ### **Git**
 
 - **Vault backup interval**: `15`〜`30` 分。
-    
 - **Commit message**: `vault backup: {{date}} {{time}}`
-    
 - **Pull settings**: `Auto pull on startup` を必ずON。
-    
 
 ### **Linter**
 
 - **General**: `Lint on save` をON。
-    
 - **YAML**: `Force YAML key lowercase` をON（検索性を高めるため）。
-    
 - **Markdown**: `Heading blank lines`（見出しの上下に空行）をON。
-    
 
 ---
 

@@ -1,6 +1,44 @@
 {
   "cascadeColors": false,
-  "colorBackground": false,
-  "palette": [],
-  "fileColors": []
+  "colorBackground": true,
+  "palette": [
+    {
+      "id": "6hfjeTFewZYr3tp9iNr-_",
+      "name": "Blue",
+      "value": "#0960ec"
+    },
+    {
+      "id": "UT2o1AzrSf6tMEjYyUQO5",
+      "name": "Red",
+      "value": "#f20202"
+    },
+    {
+      "id": "8yzj6BoelEVe6jyzqsFT5",
+      "name": "Purple",
+      "value": "#c707ed"
+    },
+    {
+      "id": "hzGng0GEYIywReCGwDB63",
+      "name": "Black",
+      "value": "#000000"
+    }
+  ],
+  "fileColors": [
+    {
+      "path": "20_Projects",
+      "color": "6hfjeTFewZYr3tp9iNr-_"
+    },
+    {
+      "path": "00_inbox",
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
+    },
+    {
+      "path": "40_RunBook/Templates",
+      "color": "8yzj6BoelEVe6jyzqsFT5"
+    },
+    {
+      "path": "90_Archive",
+      "color": "hzGng0GEYIywReCGwDB63"
+    }
+  ]
 }

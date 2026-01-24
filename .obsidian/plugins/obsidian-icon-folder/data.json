@@ -49,6 +49,13 @@
         "icon": "LiImages",
         "for": "everything",
         "order": 6
+      },
+      {
+        "rule": "40_RunBook/Templates",
+        "icon": "LiLayoutTemplate",
+        "for": "everything",
+        "order": 7,
+        "useFilePath": true
       }
     ],
     "extraMargin": {
