@@ -171,9 +171,10 @@ Plaintext
 
 このプラグインは設定次第で「化け」ます。
 
-- **Trigger Key**: `Cmd/Ctrl` に設定。
-- **Default Mode**: `Live Preview`。
+- **Obsidian標準設定 > コアプラグイン > ページプレビュー:** `プレビューをON`
+- **Default Mode**: `Reading View`。
 - **Auto Focus**: ON（ホバーした瞬間に編集可能にする）。
+- **Initial popover width × height:** 800×720
 - **活用シーン**: ネットワーク図（Excalidraw）上の各ノードをクリックせず、`Cmd + ホバー` でその機器の設定メモを浮かせたまま編集。
 
 ---
