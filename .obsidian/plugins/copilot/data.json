@@ -63,7 +63,7 @@
       ]
     },
     {
-      "name": "google/gemini-2.5-flash-lite",
+      "name": "google/gemini-2.5-flash",
       "provider": "openrouterai",
       "enabled": true,
       "isBuiltIn": true,
@@ -74,7 +74,27 @@
       ]
     },
     {
-      "name": "google/gemini-2.5-flash",
+      "name": "gpt-5.2",
+      "provider": "openai",
+      "enabled": true,
+      "isBuiltIn": true,
+      "core": true,
+      "capabilities": [
+        "vision"
+      ]
+    },
+    {
+      "name": "gpt-5-mini",
+      "provider": "openai",
+      "enabled": true,
+      "isBuiltIn": true,
+      "core": true,
+      "capabilities": [
+        "vision"
+      ]
+    },
+    {
+      "name": "google/gemini-2.5-flash-lite",
       "provider": "openrouterai",
       "enabled": true,
       "isBuiltIn": true,
@@ -97,16 +117,6 @@
     },
     {
       "name": "gpt-5",
-      "provider": "openai",
-      "enabled": true,
-      "isBuiltIn": true,
-      "core": true,
-      "capabilities": [
-        "vision"
-      ]
-    },
-    {
-      "name": "gpt-5-mini",
       "provider": "openai",
       "enabled": true,
       "isBuiltIn": true,
@@ -290,6 +300,14 @@
       "core": true,
       "plusExclusive": true,
       "dimensions": 512
+    },
+    {
+      "name": "openai/text-embedding-3-small",
+      "provider": "openrouterai",
+      "enabled": true,
+      "isBuiltIn": true,
+      "isEmbeddingModel": true,
+      "core": true
     },
     {
       "name": "text-embedding-3-small",
