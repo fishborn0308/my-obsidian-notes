@@ -2,8 +2,8 @@
 
 以下の条件で「技術モジュール章」を作成してください。
 
-【対象技術】
-（例：Apache HTTP Server / Nginx / MySQL などをここに記載）
+【対象技術】 （例：Apache HTTP Server / Nginx / MySQL などをここに記載）
+Nginx
 
 【想定読者】
 SEC504受講レベルのペンテスト要員およびSOC要員
