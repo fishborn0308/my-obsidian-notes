@@ -1,16 +1,15 @@
 ---
 tags:
-  - 'sed'
-  - 'stream_editor'
-  - 'text_processing'
-  - 'regex'
-  - 'awk'
-  - 'grep'
-  - 'vi'
+  - sed
+  - stream_editor
+  - text_processing
+  - regex
+  - awk
+  - grep
+  - vi
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 17:36
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -42,10 +41,13 @@ knowledge_category: Command
 * **解説**: 正規表現を使ってIPv4アドレスのパターンに一致する部分を探し、それを固定の文字列に置換します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # access.log のIPアドレスをマスキングして表示する
+
     cat access.log | sed -E 's/\b([0-9]{1,3}\.){3}[0-9]{1,3}\b/XXX.XXX.XXX.XXX/g'
+
     ```
+
 
 ## オプション説明
 
@@ -69,13 +71,17 @@ knowledge_category: Command
 * **解説**: `-i` (`in-place`) オプションで、ファイルを直接編集します。スクリプトによるサーバーの自動プロビジョニングなどで多用されます。
 * **例**:
 
-    ```bash
+		```bash
     # 安全のため、編集前に必ずバックアップを取る
+
     sudo cp /etc/myapp.conf /etc/myapp.conf.bak
 
     # myapp.conf 内の全ての 'DEBUG = True' を 'DEBUG = False' に置換
+
     sudo sed -i 's/DEBUG = True/DEBUG = False/g' /etc/myapp.conf
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -84,10 +90,13 @@ knowledge_category: Command
 * **解説**: 上記「よく連携されるコマンド」のシナリオ例を参照。正規表現を使って、ログファイルに含まれるIPアドレスなどを固定文字列に置き換えます。
 * **例**:
 
-    ```bash
+		```bash
     # ログからIPアドレスをマスキング
+
     sed -E 's/\b([0-9]{1,3}\.){3}[0-9]{1,3}\b/REDACTED_IP/g' sensitive.log
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -96,23 +105,29 @@ knowledge_category: Command
 * **解説**: `sed` を使って、SSHのrootログインを有効にしたり、SELinuxを無効化したりするために、設定ファイルを直接編集します。コマンド履歴にも残りにくく、隠密な改ざんが可能です。
 * **例**:
 
-    ```bash
+		```bash
     # sshd_config の PermitRootLogin を有効化する
+
     sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **パス (`/`) を含む文字列を置換しようとするとエラーになる。**
-    * **考えられる原因**: `s/old/new/` の区切り文字 (`/`) と、置換したい文字列中の `/` が衝突しています。
-    * **解決策**: 区切り文字は `/` 以外にも、`@`, `|`, `#`, `_` など、パターンに含まれない任意の文字を使用できます。
+		* **考えられる原因**: `s/old/new/` の区切り文字 (`/`) と、置換したい文字列中の `/` が衝突しています。
+		* **解決策**: 区切り文字は `/` 以外にも、`@`, `|`, `#`, `_` など、パターンに含まれない任意の文字を使用できます。
 
-    ```bash
+		```bash
     # /usr/local を /opt に置換する例
+
     sed 's|/usr/local|/opt|g' some_file.txt
+
     ```
+
 
 ## 環境変数と設定ファイル
 

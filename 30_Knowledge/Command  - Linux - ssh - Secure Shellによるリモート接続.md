@@ -1,16 +1,16 @@
 ---
 tags:
-  - 'ssh'
-  - 'remote_access'
-  - 'security'
-  - 'networking'
-  - 'telnet'
-  - 'mosh'
-  - 'scp'
-  - 'sftp'
-  - 'ssh-keygen'
+  - ssh
+  - remote_access
+  - security
+  - networking
+  - telnet
+  - mosh
+  - scp
+  - sftp
+  - ssh-keygen
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -46,13 +46,12 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このコマンドを実行すると、ローカルの5432番ポートへの接続が、
-    # bastionサーバー経由でdb.internalの5432番ポートに転送される
+		# このコマンドを実行すると、ローカルの5432番ポートへの接続が、
+		# bastionサーバー経由でdb.internalの5432番ポートに転送される
 
-    ssh -L 5432:db.internal:5432 user@bastion.example.com
+		ssh -L 5432:db.internal:5432 user@bastion.example.com
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -82,10 +81,9 @@ knowledge_category: Command
 
 		```bash
 
-    ssh -i ~/.ssh/id_ed25519 admin@192.168.1.100
+		ssh -i ~/.ssh/id_ed25519 admin@192.168.1.100
 
-    ```
-
+		```
 
 ### 2. ブルーチーム視点
 
@@ -95,14 +93,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # sshdのログをリアルタイムで監視
+		# sshdのログをリアルタイムで監視
 
-    sudo journalctl -u sshd -f
+		sudo journalctl -u sshd -f
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **横展開 (Lateral Movement)**。侵入したサーバーを踏み台にして、他の内部サーバーへ侵入を拡大する。
 * **組み合わせ**: `ssh <internal_user>@<internal_host>`
@@ -110,12 +107,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 侵害ホストから、盗んだ秘密鍵を使って内部DBサーバーに接続
+		# 侵害ホストから、盗んだ秘密鍵を使って内部DBサーバーに接続
 
-    ssh -i /tmp/stolen_key.pem dbuser@10.10.20.5
+		ssh -i /tmp/stolen_key.pem dbuser@10.10.20.5
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

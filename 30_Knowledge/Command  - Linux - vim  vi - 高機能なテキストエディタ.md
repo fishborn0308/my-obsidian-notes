@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'vim'
-  - 'vi'
-  - 'editor'
-  - 'nano'
-  - 'emacs'
-  - 'sed'
-  - 'visudo'
+  - vim
+  - vi
+  - editor
+  - nano
+  - emacs
+  - sed
+  - visudo
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -44,16 +44,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # .bashrc などでデフォルトエディタを設定
+		# .bashrc などでデフォルトエディタを設定
 
-    export EDITOR=vim
+		export EDITOR=vim
 
-    # git commit を実行すると vim が起動する
+		# git commit を実行すると vim が起動する
 
-    git commit
+		git commit
 
-    ```
-
+		```
 
 ## ⌨️ ショートカットまとめ (ノーマルモード)
 
@@ -112,14 +111,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # Nginxの設定ファイルをvimで開く
+		# Nginxの設定ファイルをvimで開く
 
-    sudo vim /etc/nginx/nginx.conf
+		sudo vim /etc/nginx/nginx.conf
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ログファイルや不審なスクリプトを、誤って変更するリスクなしに調査する。
 * **組み合わせ**: `vim -R <filename>` (または `view <filename>`)
@@ -127,14 +125,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 認証ログを読み取り専用で開く
+		# 認証ログを読み取り専用で開く
 
-    vim -R /var/log/auth.log
+		vim -R /var/log/auth.log
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 最小構成のサーバー上で、攻撃用のスクリプトやペイロードをその場で作成・編集する。
 * **組み合わせ**: `vim /tmp/payload.py` → `i` → (ペースト) → `<Esc>` → `:wq`
@@ -142,12 +139,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # リバースシェルスクリプトを/tmpに作成
+		# リバースシェルスクリプトを/tmpに作成
 
-    vim /tmp/reverse_shell.sh
+		vim /tmp/reverse_shell.sh
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

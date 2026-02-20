@@ -3,7 +3,7 @@ tags:
   - git_reset
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -38,16 +38,21 @@ knowledge_category: Command
 * **解説**: `--soft` オプションでコミットのみを取り消し、変更内容はステージングされた状態のまま保持します。その後、ファイルを追加して再度コミットします。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 直前のコミットを取り消し、変更内容はステージングされたままにする
+
     git reset --soft HEAD~1
 
     # 2. 含め忘れたファイルを追加でステージング
+
     git add forgotten_file.conf
 
     # 3. 再度コミットを実行
+
     git commit -m "feat: Add new server config with all files"
+
     ```
+
 
 ## オプション説明
 
@@ -77,13 +82,17 @@ knowledge_category: Command
 * **解説**: `--mixed` オプションにより、ファイルはそのまま残るため、内容を確認したり修正したりする余地があります。
 * **例**:
 
-    ```bash
+		```bash
     # 最後の2つのコミットを取り消し、変更内容を作業ディレクトリに残す
+
     git reset --mixed HEAD~2
 
     # 作業ディレクトリに残った変更内容を精査・分析
+
     git diff
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -97,8 +106,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: ambiguous argument 'HEAD~': unknown revision or path not in the working tree.`
-    * **考えられる原因**: 指定したコミット参照が正しくないか、リポジトリが新しく、指定した数の親コミットが存在しません。
-    * **解決策**: `git log` でコミット履歴を確認し、正しいコミット参照やハッシュ値を指定します。
+		* **考えられる原因**: 指定したコミット参照が正しくないか、リポジトリが新しく、指定した数の親コミットが存在しません。
+		* **解決策**: `git log` でコミット履歴を確認し、正しいコミット参照やハッシュ値を指定します。
 
 ## 環境変数と設定ファイル
 

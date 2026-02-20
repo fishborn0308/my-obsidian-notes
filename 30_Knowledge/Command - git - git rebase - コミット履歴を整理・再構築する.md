@@ -3,7 +3,7 @@ tags:
   - git_rebase
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -36,13 +36,17 @@ knowledge_category: Command
 * **解説**: まず `git fetch` でリモートの最新情報を取得します。その後、`git rebase` を使って、現在の機能ブランチのコミットを `main` の最新コミットの上に再適用します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. リモートの最新情報を取得
+
     git fetch origin
 
     # 2. 現在のブランチを origin/main の上にリベース
+
     git rebase origin/main
+
     ```
+
 
 ## オプション説明
 
@@ -65,10 +69,13 @@ knowledge_category: Command
 * **解説**: `-i` (`interactive`) を使って、`main` ブランチとの差分コミットを整理します。エディタが開き、`pick` を `squash` や `fixup` に変更してコミットをまとめ、クリーンな履歴を作成します。
 * **例**:
 
-    ```bash
+		```bash
     # mainブランチとの差分をインタラクティブにリベース
+
     git rebase -i main
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -84,22 +91,25 @@ knowledge_category: Command
 * **解説**: 複数の試行錯誤のコミットを1つのクリーンなコミットにまとめたり、`edit` や `reword` でコミットメッセージを変更したりして、監査ログとしての履歴の追跡を困難にします。
 * **例**:
 
-    ```bash
+		```bash
     # 直近の5つのコミットをインタラクティブに整理
+
     git rebase -i HEAD~5
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: could not apply <commit-hash>...` (コンフリクト発生)
-    * **考えられる原因**: リベース中にコミットの再適用時に**コンフリクト（競合）**が発生しました。
-    * **解決策**:
-        1. `git status` で競合ファイルを確認し、手動で編集・解決します。
-        2. `git add <file>` で解決したファイルをステージングします。
-        3. `git rebase --continue` を実行してリベースを続行します。
-        4. 中断したい場合は `git rebase --abort` を実行します。
+		* **考えられる原因**: リベース中にコミットの再適用時に**コンフリクト（競合）**が発生しました。
+		* **解決策**:
+				1. `git status` で競合ファイルを確認し、手動で編集・解決します。
+				2. `git add <file>` で解決したファイルをステージングします。
+				3. `git rebase --continue` を実行してリベースを続行します。
+				4. 中断したい場合は `git rebase --abort` を実行します。
 
 ## 環境変数と設定ファイル
 

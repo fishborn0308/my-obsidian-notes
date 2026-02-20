@@ -3,7 +3,7 @@ tags:
   - git_pull
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -40,16 +40,21 @@ knowledge_category: Command
 * **解説**: ローカルにコミットされていない変更がある状態で `git pull` を実行すると、競合が発生する可能性があります。安全策として、一時的に変更を退避 (`git stash`) してからプルし、あとで退避した変更を元に戻します (`git stash pop`)。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 未コミットの変更を一時退避
+
     git stash save "Working on new log parser"
 
     # リモートの変更をプル
+
     git pull origin main
 
     # 退避した変更を元に戻す
+
     git stash pop
+
     ```
+
 
 ## オプション説明
 
@@ -73,10 +78,14 @@ knowledge_category: Command
 * **解説**: 日常的な作業で、メインブランチの最新状態をサッと取得したい場合に最も使われます。
 * **例**:
 
-    ```bash
+		```bash
+
     git checkout main
+
     git pull
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -85,9 +94,12 @@ knowledge_category: Command
 * **解説**: リモートの変更をファストフォワードマージできる場合にのみプルします。もしマージコミットが必要な競合状態になる場合は、プルを中断します。自動デプロイメントパイプラインなどで、予期せぬ競合による失敗を防ぐためにも利用されます。
 * **例**:
 
-    ```bash
+		```bash
+
     git pull --ff-only origin main
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -96,28 +108,31 @@ knowledge_category: Command
 * **解説**: チーム内の別のメンバーが、特定のブランチに新しいツールやスクリプトをプッシュした場合、`git pull` でその変更を自身の作業ブランチに統合します。
 * **例**:
 
-    ```bash
+		```bash
     # 自身の作業ブランチに、リモートの 'dev_tools_update' ブランチの変更を取り込む
+
     git pull origin dev_tools_update
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: Your local changes to the following files would be overwritten by merge:`
-    * **考えられる原因**: ローカルのワーキングディレクトリに未コミットの変更があり、それらがリモートからプルする変更と競合しています。
-    * **解決策**:
-        * 現在の変更をコミットする: `git commit -m "WIP"`
-        * 現在の変更を一時退避する: `git stash`
-        * 現在の変更を破棄する: `git restore .` (慎重に)
+		* **考えられる原因**: ローカルのワーキングディレクトリに未コミットの変更があり、それらがリモートからプルする変更と競合しています。
+		* **解決策**:
+				* 現在の変更をコミットする: `git commit -m "WIP"`
+				* 現在の変更を一時退避する: `git stash`
+				* 現在の変更を破棄する: `git restore .` (慎重に)
 
 2. **エラーメッセージ例 2**: `Merge conflict in <file>`
-    * **考えられる原因**: ローカルの変更とリモートの変更が同じファイルの同じ箇所を変更しており、Gitが自動的にマージできませんでした。
-    * **解決策**:
-        1. `git status` で競合しているファイルを確認します。
-        2. 競合ファイルをエディタで開き、`<<<<<<<`, `=======`, `>>>>>>>` のマーカーを参考に手動で編集・解決します。
-        3. `git add <file>` で解決したファイルをステージングし、`git commit` でマージを完了させます。
+		* **考えられる原因**: ローカルの変更とリモートの変更が同じファイルの同じ箇所を変更しており、Gitが自動的にマージできませんでした。
+		* **解決策**:
+				1. `git status` で競合しているファイルを確認します。
+				2. 競合ファイルをエディタで開き、`<<<<<<<`, `=======`, `>>>>>>>` のマーカーを参考に手動で編集・解決します。
+				3. `git add <file>` で解決したファイルをステージングし、`git commit` でマージを完了させます。
 
 ## 環境変数と設定ファイル
 

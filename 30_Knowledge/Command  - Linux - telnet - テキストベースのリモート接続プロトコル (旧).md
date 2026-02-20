@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'telnet'
-  - 'networking'
-  - 'legacy'
-  - 'security'
-  - 'ssh'
-  - 'netcat'
-  - 'curl'
+  - telnet
+  - networking
+  - legacy
+  - security
+  - ssh
+  - netcat
+  - curl
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -44,15 +44,14 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # メールサーバーの25番ポートに接続
+		# メールサーバーの25番ポートに接続
 
-    telnet mail.example.com 25
+		telnet mail.example.com 25
 
-    # (接続後、SMTPコマンドを対話的に入力)
-    # HELO mydomain.com
-    # MAIL FROM: <test@mydomain.com>
-    ```
-
+		# (接続後、SMTPコマンドを対話的に入力)
+		# HELO mydomain.com
+		# MAIL FROM: <test@mydomain.com>
+		```
 
 ## オプション説明 (`telnet` の引数)
 
@@ -72,14 +71,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # Webサーバーのポート80が開いているか確認
+		# Webサーバーのポート80が開いているか確認
 
-    telnet web-server.example.com 80
+		telnet web-server.example.com 80
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: **バナーグラビング**。不審なホストのオープンポートに接続し、どのようなサービスが応答するか調査する。
 * **組み合わせ**: `telnet <suspicious_host> <port>`
@@ -87,14 +85,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 不審なIPの8080番ポートを調査
+		# 不審なIPの8080番ポートを調査
 
-    telnet 198.51.100.10 8080
+		telnet 198.51.100.10 8080
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: レガシーシステムの偵察と侵害。
 * **組み合わせ**: `telnet <target_ip> 23`
@@ -102,12 +99,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 古いルーターにtelnetで接続
+		# 古いルーターにtelnetで接続
 
-    telnet 192.168.1.254
+		telnet 192.168.1.254
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

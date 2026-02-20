@@ -3,7 +3,7 @@ tags:
   - git_config
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -34,16 +34,21 @@ knowledge_category: Command
 * **解説**: Gitを使いはじめる際、または新しい環境をセットアップする際に、コミット作成者情報をグローバルに設定します。この設定は、そのシステム上のすべてのGitリポジトリに適用されます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # Gitのユーザー名を設定
+
     git config --global user.name "Your Name"
 
     # Gitのメールアドレスを設定
+
     git config --global user.email "your.email@example.com"
 
     # 設定が正しく行われたか確認
+
     git config --global --list
+
     ```
+
 
 ## オプション説明
 
@@ -68,13 +73,17 @@ knowledge_category: Command
 * **解説**: `core.autocrlf` を設定することで、Gitが自動的に改行コードを変換し、クロスプラットフォームでのコラボレーションをスムーズにします。
 * **例**:
 
-    ```bash
+		```bash
     # Windowsユーザーの場合
+
     git config --global core.autocrlf true
 
     # Linux/macOSユーザーの場合 (推奨)
+
     git config --global core.autocrlf input
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -83,13 +92,17 @@ knowledge_category: Command
 * **解説**: コミット署名は、コミットの作成者が本人であることを暗号学的に証明し、悪意のあるコミットインジェクションや履歴の改ざんを防ぐ重要なセキュリティ対策です。
 * **例**:
 
-    ```bash
+		```bash
     # すべてのコミットに自動的にGPG署名するように設定
+
     git config --global commit.gpgsign true
 
     # 使用するGPG署名キーのIDを設定
+
     git config --global user.signingkey <GPG_KEY_ID>
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -98,21 +111,25 @@ knowledge_category: Command
 * **解説**: ターゲットシステムへの侵入後、Gitリポジトリを操作する際に、ローカルリポジトリの設定を一時的に変更し、コミットの著者情報を偽装します。
 * **例**:
 
-    ```bash
+		```bash
     # 現在のリポジトリでのコミットのユーザー名を偽装
+
     git config --local user.name "Anonymous User"
 
     # 現在のリポジトリでのコミットのメールアドレスを偽装
+
     git config --local user.email "fake_email@example.com"
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: could not lock config file .git/config: File exists`
-    * **考えられる原因**: 別のGitプロセスが設定ファイルを変更しているか、以前のGit操作が異常終了し、ロックファイルが残っています。
-    * **解決策**: 他のGit操作が実行されていないことを確認し、`.git/config.lock` ファイルが存在する場合は手動で削除します。
+		* **考えられる原因**: 別のGitプロセスが設定ファイルを変更しているか、以前のGit操作が異常終了し、ロックファイルが残っています。
+		* **解決策**: 他のGit操作が実行されていないことを確認し、`.git/config.lock` ファイルが存在する場合は手動で削除します。
 
 ## 環境変数と設定ファイル
 

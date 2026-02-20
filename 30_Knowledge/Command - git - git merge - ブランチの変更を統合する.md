@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -37,17 +37,22 @@ knowledge_category: Command
 * **解説**: まず `git fetch` でリモートの変更を取得し、`git diff` でローカルブランチとの差分を確認します。安全だと判断したら、`git merge` でその変更を現在のローカルブランチに統合します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスで、リモートの変更を安全に取り込む
     # 1. リモートの最新情報を取得 (ローカル作業には影響なし)
+
     git fetch origin
 
     # 2. リモートの最新パッチ内容を確認
+
     git diff main origin/main
 
     # 3. 安全を確認後、リモートの変更をマージ
+
     git merge origin/main
+
     ```
+
 
 ## オプション説明
 
@@ -71,13 +76,17 @@ knowledge_category: Command
 * **解説**: `--no-ff` を使うことで、Fast-forwardマージが可能な場合でも必ずマージコミットを作成します。これにより、機能開発の境界が明確になり、後から履歴を追跡する際に役立ちます。
 * **例**:
 
-    ```bash
+		```bash
     # mainブランチに切り替え
+
     git checkout main
 
     # featureブランチを、マージコミットを作成してマージ
+
     git merge --no-ff feature/new-ansible-role
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -86,11 +95,16 @@ knowledge_category: Command
 * **解説**: `--squash` は、マージするブランチの全コミットを1つの変更セットにまとめ、ステージングします。その後、手動でコミットすることで、クリーンな単一コミットとして履歴に残せます。
 * **例**:
 
-    ```bash
+		```bash
+
     git checkout main
+
     git merge --squash security-hotfix-branch
+
     git commit -m "Security: Apply patches for CVE-202X-YYYY"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -104,11 +118,11 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Automatic merge failed; fix conflicts and then commit the result.`
-    * **考えられる原因**: **最もよくあるエラー**。マージしようとしている両方のブランチで、同じファイルの同じ行が異なる方法で変更されたため、Gitが自動的にどちらを採用すべきか判断できません。
-    * **解決策**:
-        1. `git status` で競合しているファイルを確認します。
-        2. 競合ファイルをエディタで開き、`<<<<<<<`, `=======`, `>>>>>>>` のマーカーを参考に手動で編集・解決します。
-        3. `git add <file>` で解決したファイルをステージングし、`git commit` でマージを完了させます。
+		* **考えられる原因**: **最もよくあるエラー**。マージしようとしている両方のブランチで、同じファイルの同じ行が異なる方法で変更されたため、Gitが自動的にどちらを採用すべきか判断できません。
+		* **解決策**:
+				1. `git status` で競合しているファイルを確認します。
+				2. 競合ファイルをエディタで開き、`<<<<<<<`, `=======`, `>>>>>>>` のマーカーを参考に手動で編集・解決します。
+				3. `git add <file>` で解決したファイルをステージングし、`git commit` でマージを完了させます。
 
 ## 環境変数と設定ファイル
 

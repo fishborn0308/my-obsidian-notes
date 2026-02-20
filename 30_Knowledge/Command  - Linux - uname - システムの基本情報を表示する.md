@@ -1,13 +1,13 @@
 ---
 tags:
-  - 'uname'
-  - 'kernel'
-  - 'system_information'
-  - 'lsb_release'
-  - 'hostname'
-  - 'cat_/proc/version'
+  - uname
+  - kernel
+  - system_information
+  - lsb_release
+  - hostname
+  - cat_/proc/version
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -43,12 +43,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 現在のカーネルに対応するモジュールディレクトリの内容をリスト表示
+		# 現在のカーネルに対応するモジュールディレクトリの内容をリスト表示
 
-    ls /lib/modules/$(uname -r)/
+		ls /lib/modules/$(uname -r)/
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -72,14 +71,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # DKMSなどでカーネルモジュールをビルドする際にバージョンを指定する
+		# DKMSなどでカーネルモジュールをビルドする際にバージョンを指定する
 
-    sudo apt install linux-headers-$(uname -r)
+		sudo apt install linux-headers-$(uname -r)
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたホストのOSとカーネルのバージョンを正確に記録する。
 * **組み合わせ**: `uname -a`
@@ -87,14 +85,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 調査対象ホストの情報を取得
+		# 調査対象ホストの情報を取得
 
-    uname -a
+		uname -a
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察として、標的のOSとカーネルを特定（フィンガープリント）する。
 * **組み合わせ**: `uname -a`
@@ -102,12 +99,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 侵入したホストのカーネルバージョンを特定
+		# 侵入したホストのカーネルバージョンを特定
 
-    uname -a
+		uname -a
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

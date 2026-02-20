@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'update-rc_d'
-  - 'sysvinit'
-  - 'debian'
-  - 'ubuntu'
-  - 'legacy'
-  - 'systemctl'
-  - 'chkconfig'
-  - 'service'
+  - update-rc_d
+  - sysvinit
+  - debian
+  - ubuntu
+  - legacy
+  - systemctl
+  - chkconfig
+  - service
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,16 +45,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このコマンドシーケンスでカスタムサービスを登録・有効化する
+		# このコマンドシーケンスでカスタムサービスを登録・有効化する
 
-    sudo cp myapp-script /etc/init.d/myapp
+		sudo cp myapp-script /etc/init.d/myapp
 
-    sudo chmod +x /etc/init.d/myapp
+		sudo chmod +x /etc/init.d/myapp
 
-    sudo update-rc.d myapp defaults
+		sudo update-rc.d myapp defaults
 
-    ```
-
+		```
 
 ## オプション説明 (`update-rc.d` のアクション)
 
@@ -78,18 +77,17 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # apache2サービスを自動起動ONに設定
+		# apache2サービスを自動起動ONに設定
 
-    sudo update-rc.d apache2 defaults
+		sudo update-rc.d apache2 defaults
 
-    # 自動起動をOFFにする
+		# 自動起動をOFFにする
 
-    sudo update-rc.d apache2 remove
+		sudo update-rc.d apache2 remove
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: システムに不審な永続化設定がないか監査する。
 * **組み合わせ**: `ls /etc/rc*.d/S*`
@@ -97,14 +95,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ランレベル3で起動するサービスをリストアップし、不審なものがないか確認
+		# ランレベル3で起動するサービスをリストアップし、不審なものがないか確認
 
-    ls -l /etc/rc3.d/S*
+		ls -l /etc/rc3.d/S*
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: レガシーシステム上で永続化を確立する。
 * **組み合わせ**: `update-rc.d <backdoor_svc> defaults`
@@ -112,14 +109,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 悪意のあるスクリプトをサービスとして登録し、有効化する
+		# 悪意のあるスクリプトをサービスとして登録し、有効化する
 
-    sudo chmod +x /etc/init.d/evil-svc
+		sudo chmod +x /etc/init.d/evil-svc
 
-    sudo update-rc.d evil-svc defaults
+		sudo update-rc.d evil-svc defaults
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

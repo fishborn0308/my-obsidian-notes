@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -39,13 +39,17 @@ knowledge_category: Command
 * **解説**: まず`git branch`で新しいブランチを作成し、次に`git switch`でそのブランチに切り替えます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # feature/new-dashboard という新しいブランチを作成
+
     git branch feature/new-dashboard
 
     # 作成したブランチに切り替える
+
     git switch feature/new-dashboard
+
     ```
+
 
 ## オプション説明
 
@@ -70,10 +74,13 @@ knowledge_category: Command
 * **解説**: マージ済みのブランチをリストアップし、現在のブランチを除外して、`xargs` を通じて一括で安全に削除します。
 * **例**:
 
-    ```bash
+		```bash
     # マージ済みの feature/old-feature ブランチを安全に削除
+
     git branch -d feature/old-feature
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -82,10 +89,13 @@ knowledge_category: Command
 * **解説**: 全てのブランチの最新コミットのハッシュ値とメッセージを表示し、不審なブランチや長期未マージのブランチがないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # 全てのローカル・リモートブランチの情報を詳細に表示
+
     git branch -a -v
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -94,22 +104,25 @@ knowledge_category: Command
 * **解説**: ターゲットリポジトリの特定の過去のコミットに機密情報が誤って含まれていた可能性がある場合、そのコミットから新しい調査用ブランチを作成し、元のブランチに影響を与えずに分析します。
 * **例**:
 
-    ```bash
+		```bash
     # 特定のコミットID (例: a1b2c3d4) から historical-review という新しいブランチを作成
+
     git branch historical-review a1b2c3d4
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: A branch named 'existing-branch' already exists.`
-    * **考えられる原因**: 指定した名前のブランチがすでに存在します。
-    * **解決策**: 別のブランチ名を指定してください。
+		* **考えられる原因**: 指定した名前のブランチがすでに存在します。
+		* **解決策**: 別のブランチ名を指定してください。
 
 2. **エラーメッセージ例 2**: `error: The branch 'feature/my-feature' is not fully merged.`
-    * **考えられる原因**: `git branch -d`でブランチを削除しようとしましたが、そのブランチにまだマージされていないコミットが含まれています。
-    * **解決策**: 変更が不要で、データ損失を許容する場合は、`git branch -D feature/my-feature`を使用して強制的に削除します。
+		* **考えられる原因**: `git branch -d`でブランチを削除しようとしましたが、そのブランチにまだマージされていないコミットが含まれています。
+		* **解決策**: 変更が不要で、データ損失を許容する場合は、`git branch -D feature/my-feature`を使用して強制的に削除します。
 
 ## 環境変数と設定ファイル
 

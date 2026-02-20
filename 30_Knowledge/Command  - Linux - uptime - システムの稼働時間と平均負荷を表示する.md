@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'uptime'
-  - 'monitoring'
-  - 'performance'
-  - 'linux'
-  - 'w'
-  - 'top'
-  - 'htop'
-  - 'last_reboot'
+  - uptime
+  - monitoring
+  - performance
+  - linux
+  - w
+  - top
+  - htop
+  - last_reboot
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -43,12 +43,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1分間のロードアベレージだけを抽出する
+		# 1分間のロードアベレージだけを抽出する
 
-    uptime | awk -F'load average: ' '{print $2}' | awk -F, '{print $1}'
+		uptime | awk -F'load average: ' '{print $2}' | awk -F, '{print $1}'
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -71,15 +70,14 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 現在の稼働時間とロードアベレージを確認
+		# 現在の稼働時間とロードアベレージを確認
 
-    uptime
+		uptime
 
-    # ->  15:00:00 up 30 days,  1:45,  2 users,  load average: 0.00, 0.01, 0.05
-    ```
+		# ->  15:00:00 up 30 days,  1:45,  2 users,  load average: 0.00, 0.01, 0.05
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 計画外の再起動がなかったか、システムのパッチ適用状況を推測する。
 * **組み合わせ**: `uptime -s`
@@ -87,15 +85,14 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # システムの起動日時を確認
+		# システムの起動日時を確認
 
-    uptime -s
+		uptime -s
 
-    # -> 2025-08-29 13:15:00
-    ```
+		# -> 2025-08-29 13:15:00
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察として、システムのパッチ適用状況を推測する。
 * **組み合わせ**: `uptime`
@@ -103,12 +100,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 稼働時間を確認
+		# 稼働時間を確認
 
-    uptime
+		uptime
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

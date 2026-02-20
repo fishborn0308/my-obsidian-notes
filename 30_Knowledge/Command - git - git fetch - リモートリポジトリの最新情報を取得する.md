@@ -3,7 +3,7 @@ tags:
   - git_fetch
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -37,16 +37,21 @@ knowledge_category: Command
 * **解説**: まず `git fetch` でリモートの情報を取得します。次に `git diff` や `git log` でローカルブランチとリモート追跡ブランチの差分を確認し、安全だと判断したら `git merge` で統合します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. リモートの最新情報を取得(ローカル作業には影響なし)
+
     git fetch origin
 
     # 2. ローカルのmainブランチとリモートのorigin/mainの差分を確認
+
     git diff main origin/main
 
     # 3. 安全を確認後、リモートの変更をマージ
+
     git merge origin/main
+
     ```
+
 
 ## オプション説明
 
@@ -70,11 +75,14 @@ knowledge_category: Command
 * **解説**: `origin` リモートから最新情報を取得するとともに、リモート側で削除されたブランチに対応するローカルのリモート追跡ブランチも自動的に削除します。
 * **例**:
 
-    ```bash
+		```bash
+
     git fetch --prune origin
+
     # From [https://github.com/your-username/your-repo-name](https://github.com/your-username/your-repo-name)
     #  x [deleted]         (none)     -> origin/old-feature-branch
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -83,12 +91,17 @@ knowledge_category: Command
 * **解説**: 設定されているすべてのリモート(例: `origin`と`upstream`など)から、最新情報を一括で取得します。
 * **例**:
 
-    ```bash
+		```bash
     # 上流リポジトリを追加済みの場合
+
     git remote add upstream [https://github.com/upstream-project/repo.git](https://github.com/upstream-project/repo.git)
+
     # 全リモートから変更を取得
+
     git fetch --all
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -97,18 +110,21 @@ knowledge_category: Command
 * **解説**: `--dry-run` を使って、実際にフェッチせずに、何がフェッチされるか（新しいコミットなど）をシミュレーション表示します。これにより、不必要な痕跡を残すのを避けることができます。
 * **例**:
 
-    ```bash
+		```bash
     # 実際にはフェッチせずに、何が変更されるかを確認
+
     git fetch --dry-run origin main
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: Authentication failed for 'https://github.com/...'`
-    * **考えられる原因**: リモートリポジトリへの認証情報(ユーザー名、トークン、SSHキーなど)が間違っているか、権限が不足しています。
-    * **解決策**: 認証情報を再確認します。SSHを使用している場合は、SSHキーが正しく設定され、ssh-agentに追加されているかを確認します。
+		* **考えられる原因**: リモートリポジトリへの認証情報(ユーザー名、トークン、SSHキーなど)が間違っているか、権限が不足しています。
+		* **解決策**: 認証情報を再確認します。SSHを使用している場合は、SSHキーが正しく設定され、ssh-agentに追加されているかを確認します。
 
 ## 環境変数と設定ファイル
 

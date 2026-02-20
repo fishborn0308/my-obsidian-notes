@@ -8,7 +8,7 @@ tags:
   - userdel
   - passwd
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,17 +45,16 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このコマンドシーケンスで新しいユーザーアカウントを払い出す
-    # 1. 'newdev' ユーザーを作成し、ホームディレクトリも作成、sudoグループに追加
+		# このコマンドシーケンスで新しいユーザーアカウントを払い出す
+		# 1. 'newdev' ユーザーを作成し、ホームディレクトリも作成、sudoグループに追加
 
-    sudo useradd -m -s /bin/bash -G sudo newdev
+		sudo useradd -m -s /bin/bash -G sudo newdev
 
-    # 2. 作成したユーザーのパスワードを設定 (対話形式)
+		# 2. 作成したユーザーのパスワードを設定 (対話形式)
 
-    sudo passwd newdev
+		sudo passwd newdev
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -82,16 +81,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ユーザー newdev を作成し、sudoグループに追加
+		# ユーザー newdev を作成し、sudoグループに追加
 
-    sudo useradd -m -s /bin/bash -G sudo newdev
+		sudo useradd -m -s /bin/bash -G sudo newdev
 
-    sudo passwd newdev
+		sudo passwd newdev
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: システムのアカウントを監査し、不審なアカウントがないか確認する。
 * **組み合わせ**: `cat /etc/passwd`
@@ -99,14 +97,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # UIDが0の特権アカウントを全てリストアップする
+		# UIDが0の特権アカウントを全てリストアップする
 
-    awk -F: '($3 == 0) { print $1 }' /etc/passwd
+		awk -F: '($3 == 0) { print $1 }' /etc/passwd
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **永続化 (Persistence)** のために、隠れた特権アカウントを作成する。
 * **組み合わせ**: `sudo useradd -o -u 0 -g 0 ... attacker`
@@ -114,12 +111,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 'system-svc' という名前で、UID 0 の隠しアカウントを作成
+		# 'system-svc' という名前で、UID 0 の隠しアカウントを作成
 
-    sudo useradd -o -u 0 -g 0 -m -d /home/system-svc -s /bin/bash system-svc
+		sudo useradd -o -u 0 -g 0 -m -d /home/system-svc -s /bin/bash system-svc
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

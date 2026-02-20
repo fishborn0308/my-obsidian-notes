@@ -8,7 +8,7 @@ tags:
   - fail2ban
   - systemctl
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -42,22 +42,21 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. 設定ファイルを編集
+		# 1. 設定ファイルを編集
 
-    sudo vi /etc/ssh/sshd_config
+		sudo vi /etc/ssh/sshd_config
 
-    # -> Port 22 を Port 2222 に変更
+		# -> Port 22 を Port 2222 に変更
 
-    # 2. 構文チェック (何も出力されなければ成功)
+		# 2. 構文チェック (何も出力されなければ成功)
 
-    sudo sshd -t
+		sudo sshd -t
 
-    # 3. SSHサービスを再起動して変更を適用
+		# 3. SSHサービスを再起動して変更を適用
 
-    sudo systemctl restart sshd
+		sudo systemctl restart sshd
 
-    ```
-
+		```
 
 ## オプション説明 (主要なディレクティブ)
 
@@ -90,18 +89,17 @@ knowledge_category: Command
 
 		```sshd_config
 
-    Port 2222
+		Port 2222
 
-    PermitRootLogin no
+		PermitRootLogin no
 
-    PasswordAuthentication no
+		PasswordAuthentication no
 
-    PubkeyAuthentication yes
+		PubkeyAuthentication yes
 
-    AllowUsers adminuser devuser
+		AllowUsers adminuser devuser
 
-    ```
-
+		```
 
 ### 2. ブルーチーム視点
 
@@ -111,14 +109,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 現在の設定ファイルから、主要なセキュリティ項目を抜き出して確認
+		# 現在の設定ファイルから、主要なセキュリティ項目を抜き出して確認
 
-    sudo grep -E "^Port|^PermitRootLogin|^PasswordAuthentication|^AllowUsers" /etc/ssh/sshd_config
+		sudo grep -E "^Port|^PermitRootLogin|^PasswordAuthentication|^AllowUsers" /etc/ssh/sshd_config
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **侵入後の偵察**と**永続化**。
 * **組み合わせ**: `cat /etc/ssh/sshd_config`
@@ -126,12 +123,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 設定ファイルから AllowUsers や AllowGroups を探し、攻撃対象となりうるユーザー/グループを特定
+		# 設定ファイルから AllowUsers や AllowGroups を探し、攻撃対象となりうるユーザー/グループを特定
 
-    cat /etc/ssh/sshd_config | grep -E "AllowUsers|AllowGroups"
+		cat /etc/ssh/sshd_config | grep -E "AllowUsers|AllowGroups"
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

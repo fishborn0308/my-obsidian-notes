@@ -3,7 +3,7 @@ tags:
   - git_stash
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -35,21 +35,27 @@ knowledge_category: Command
 * **解説**: 作業途中の変更を`git stash`で退避させ、クリーンな状態でバグ修正ブランチに切り替えます。修正が完了した後、元のブランチに戻り、`git stash pop`で退避した変更を適用し作業を再開します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 作業中の変更をメッセージ付きで一時保存
+
     git stash push -m "WIP: Feature X development"
 
     # 緊急のバグ修正ブランチに切り替え
+
     git checkout hotfix/critical-bug
 
     # (バグ修正作業...)
 
     # 元のブランチに戻る
+
     git checkout feature/X
 
     # 退避した変更を適用し、スタッシュから削除
+
     git stash pop
+
     ```
+
 
 ## オプション説明
 
@@ -83,10 +89,13 @@ knowledge_category: Command
 * **解説**: `-u` (`--include-untracked`) を使うことで、Gitで追跡されていない新しいファイルも含めて一時的に退避させ、迅速に作業コンテキストを切り替えられます。
 * **例**:
 
-    ```bash
+		```bash
     # 解析スクリプトの変更と、その実行で生成された一時的なログファイルを一緒にスタッシュ
+
     git stash push -u -m "Temporary analysis script and generated logs"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -100,8 +109,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: Your local changes to the following files would be overwritten by merge:`
-    * **考えられる原因**: `git stash pop` しようとしたときに、現在のブランチの同じファイルに未コミットの変更があり、スタッシュを適用するとそれらの変更が上書きされてしまうためです。
-    * **解決策**: 現在の未コミットの変更をコミットするか、別のスタッシュに保存してから、再度 `git stash pop` を試みます。
+		* **考えられる原因**: `git stash pop` しようとしたときに、現在のブランチの同じファイルに未コミットの変更があり、スタッシュを適用するとそれらの変更が上書きされてしまうためです。
+		* **解決策**: 現在の未コミットの変更をコミットするか、別のスタッシュに保存してから、再度 `git stash pop` を試みます。
 
 ## 環境変数と設定ファイル
 

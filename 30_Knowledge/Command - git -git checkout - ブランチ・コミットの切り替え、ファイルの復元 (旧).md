@@ -5,7 +5,7 @@ tags:
   - branch_management
   - legacy
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -40,10 +40,13 @@ knowledge_category: Command
 * **解説**: `-b` オプションを使って新しいブランチを作成し、同時にそのブランチへ切り替えます。これは `git branch <name>` と `git switch <name>` をまとめて実行するのと同じです。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 'main' ブランチから新しい機能ブランチ 'feature/user-auth' を作成し、切り替える
+
     git checkout -b feature/user-auth
+
     ```
+
 
 ## オプション説明
 
@@ -67,11 +70,14 @@ knowledge_category: Command
 * **解説**: 作業ディレクトリでの変更を完全に破棄し、最後にコミットされた安全な状態に戻します。
 * **例**:
 
-    ```bash
+		```bash
     # httpd.conf の変更を破棄し、最後にコミットされた状態に戻す
+
     git checkout -- httpd.conf
+
     # (Git 2.23以降では git restore httpd.conf が推奨されます)
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -80,11 +86,14 @@ knowledge_category: Command
 * **解説**: 特定の過去のコミット時点でのファイルの健全性を確認し、必要であればその状態に復元して比較します。
 * **例**:
 
-    ```bash
+		```bash
     # コミットID 'abcdefg' 時点の nginx.conf を作業ディレクトリに復元して確認
+
     git checkout abcdefg -- nginx.conf
+
     # (Git 2.23以降では git restore --source abcdefg nginx.conf が推奨されます)
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -93,21 +102,24 @@ knowledge_category: Command
 * **解説**: 特定のコミット（ベースとなるエクスプロイト）から新しいブランチを作成し、元のコードベースを汚染せずに独自の変更を加えます。
 * **例**:
 
-    ```bash
+		```bash
     # ベースとなるC2エージェントの安定版コミットから、新しい開発ブランチを作成
+
     git checkout -b c2-agent-obfuscation develop-c2
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: Your local changes to the following files would be overwritten by checkout: ...`
-    * **考えられる原因**: 現在のブランチにコミットされていない変更がある状態で、別のブランチに切り替えようとしました。
-    * **解決策**:
-        * 変更をコミットする: `git commit -m "WIP"`
-        * 変更を一時退避する: `git stash`
-        * 変更を破棄する: `git restore .`
+		* **考えられる原因**: 現在のブランチにコミットされていない変更がある状態で、別のブランチに切り替えようとしました。
+		* **解決策**:
+				* 変更をコミットする: `git commit -m "WIP"`
+				* 変更を一時退避する: `git stash`
+				* 変更を破棄する: `git restore .`
 
 ## 環境変数と設定ファイル
 

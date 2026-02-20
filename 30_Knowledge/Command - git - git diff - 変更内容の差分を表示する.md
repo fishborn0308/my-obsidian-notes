@@ -3,7 +3,7 @@ tags:
   - git_diff
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -35,19 +35,25 @@ knowledge_category: Command
 * **解説**: ファイルを変更した後、まず`git diff`で作業ディレクトリでの変更を確認します。次に、変更を`git add`でステージした後、`git diff --staged`でステージされた変更を確認します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 作業ディレクトリで行った、まだステージされていない変更を確認
+
     git diff
 
     # 特定のファイルをステージングエリアに追加
+
     git add src/main.py
 
     # ステージングエリアに追加された変更を確認
+
     git diff --staged
 
     # 確認後、変更をコミット
+
     git commit -m "feat: Add user authentication logic"
+
     ```
+
 
 ## オプション説明
 
@@ -74,10 +80,13 @@ knowledge_category: Command
 * **解説**: `--stat`で前回のコミットからの変更概要を素早く確認し、意図しない設定変更がないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # 最新のコミットで行われた変更の統計情報を表示
+
     git diff --stat HEAD~1
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -86,10 +95,13 @@ knowledge_category: Command
 * **解説**: 既知の安全な状態のコミットと現在のHEAD間の差分を、とくにスクリプトファイルに絞って確認することで、不正なコードの追加や改ざんを発見します。
 * **例**:
 
-    ```bash
+		```bash
     # 既知の安全なコミットと現在のHEAD間で、PHPとJSファイルに絞った変更内容を確認
+
     git diff <known-good-commit> HEAD -- *.php *.js
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -98,18 +110,21 @@ knowledge_category: Command
 * **解説**: 自身の活動によって生成されたログファイルなどがGitに追跡されていないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # 直前のコミットと現在の作業ディレクトリ間で、生成されたログファイルがGitに追跡されていないことを確認
+
     git diff HEAD~1 HEAD --name-only -- *.log
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: Not a git repository`
-    * **考えられる原因**: 現在のディレクトリがGitリポジトリではありません。
-    * **解決策**: 正しいGitリポジトリのディレクトリに移動してください。
+		* **考えられる原因**: 現在のディレクトリがGitリポジトリではありません。
+		* **解決策**: 正しいGitリポジトリのディレクトリに移動してください。
 
 ## 環境変数と設定ファイル
 

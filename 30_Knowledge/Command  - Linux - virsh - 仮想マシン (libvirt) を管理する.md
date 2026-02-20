@@ -9,7 +9,7 @@ tags:
   - docker
   - systemctl
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,12 +45,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # web-serverのXML定義からディスクファイルのパスを抽出
+		# web-serverのXML定義からディスクファイルのパスを抽出
 
-    sudo virsh dumpxml web-server | grep "source file"
+		sudo virsh dumpxml web-server | grep "source file"
 
-    ```
-
+		```
 
 ## オプション説明 (`virsh` のサブコマンド)
 
@@ -80,14 +79,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # my-vm のコンソールに接続 (終了は Ctrl + ])
+		# my-vm のコンソールに接続 (終了は Ctrl + ])
 
-    sudo virsh console my-vm
+		sudo virsh console my-vm
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたVMを、メモリ情報を保全したまま活動停止させる（封じ込め）。
 * **組み合わせ**: `sudo virsh suspend <compromised_vm>`
@@ -95,14 +93,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 侵害されたVM 'suspicious-vm' を一時停止
+		# 侵害されたVM 'suspicious-vm' を一時停止
 
-    sudo virsh suspend suspicious-vm
+		sudo virsh suspend suspicious-vm
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入した仮想化ホストから、オフラインでVM内のデータを窃取する。
 * **組み合わせ**: `virsh dumpxml <domain>` → `mount <disk_image>`
@@ -110,13 +107,12 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 1. ディスクパスを特定
+		# 1. ディスクパスを特定
 
-    sudo virsh dumpxml target-vm | grep "source file"
+		sudo virsh dumpxml target-vm | grep "source file"
 
-    # 2. (特定したディスクイメージをマウントしてデータを窃取)
-    ```
-
+		# 2. (特定したディスクイメージをマウントしてデータを窃取)
+		```
 
 ## エラーメッセージとトラブルシューティング
 

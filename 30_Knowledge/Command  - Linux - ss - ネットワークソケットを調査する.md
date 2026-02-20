@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'ss'
-  - 'networking'
-  - 'iproute2'
-  - 'troubleshooting'
-  - 'netstat'
-  - 'lsof'
-  - 'ip'
-  - 'grep'
+  - ss
+  - networking
+  - iproute2
+  - troubleshooting
+  - netstat
+  - lsof
+  - ip
+  - grep
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -44,12 +44,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 宛先ポートが443の確立済みTCP接続を表示
+		# 宛先ポートが443の確立済みTCP接続を表示
 
-    ss -t state established dport = :443
+		ss -t state established dport = :443
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -81,15 +80,14 @@ knowledge_category: Command
 
 		```bash
 
-    sudo ss -tulpn
+		sudo ss -tulpn
 
-    # State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port   Process
-    # LISTEN   0        128            0.0.0.0:22             0.0.0.0:* users:(("sshd",pid=1234,fd=3))
-    # LISTEN   0        511          127.0.0.1:3306           0.0.0.0:* users:(("mysqld",pid=5678,fd=30))
-    ```
+		# State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port   Process
+		# LISTEN   0        128            0.0.0.0:22             0.0.0.0:* users:(("sshd",pid=1234,fd=3))
+		# LISTEN   0        511          127.0.0.1:3306           0.0.0.0:* users:(("mysqld",pid=5678,fd=30))
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたホスト上で、不審な外部接続がないか調査する。
 * **組み合わせ**: `sudo ss -anp`
@@ -97,14 +95,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 全ての確立済みTCP接続をプロセス情報付きで表示
+		# 全ての確立済みTCP接続をプロセス情報付きで表示
 
-    sudo ss -t -p state established
+		sudo ss -t -p state established
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察として、システムのネットワーク活動を完全にマッピングする。
 * **組み合わせ**: `ss -anp`
@@ -112,12 +109,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 待ち受けポートと確立済みの接続をリストアップ
+		# 待ち受けポートと確立済みの接続をリストアップ
 
-    ss -anp
+		ss -anp
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

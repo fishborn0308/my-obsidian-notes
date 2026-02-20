@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'usermod'
-  - 'user_management'
-  - 'security'
-  - 'linux'
-  - 'useradd'
-  - 'userdel'
-  - 'gpasswd'
-  - 'chsh'
+  - usermod
+  - user_management
+  - security
+  - linux
+  - useradd
+  - userdel
+  - gpasswd
+  - chsh
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,16 +45,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # ユーザー 'devuser' を docker グループに追加
+		# ユーザー 'devuser' を docker グループに追加
 
-    sudo usermod -aG docker devuser
+		sudo usermod -aG docker devuser
 
-    # 変更が反映されたか確認 (groups=... の中にdockerが含まれているか)
+		# 変更が反映されたか確認 (groups=... の中にdockerが含まれているか)
 
-    id devuser
+		id devuser
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -83,18 +82,17 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ユーザー 'devuser' を sudo グループに追加 (Debian/Ubuntu系)
+		# ユーザー 'devuser' を sudo グループに追加 (Debian/Ubuntu系)
 
-    sudo usermod -aG sudo devuser
+		sudo usermod -aG sudo devuser
 
-    # ユーザー 'devuser' を wheel グループに追加 (RHEL/CentOS系)
+		# ユーザー 'devuser' を wheel グループに追加 (RHEL/CentOS系)
 
-    sudo usermod -aG wheel devuser
+		sudo usermod -aG wheel devuser
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたアカウントの権限を剥奪し、無力化する（封じ込め）。
 * **組み合わせ**: `sudo usermod -G <new_group_list> <compromised_user>`
@@ -102,14 +100,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # user1 の所属グループを 'users' のみに限定する
+		# user1 の所属グループを 'users' のみに限定する
 
-    sudo usermod -G users user1
+		sudo usermod -G users user1
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **隠密な権限昇格**として、一般ユーザーのUIDを `0` (rootのUID) に変更する。
 * **組み合わせ**: `sudo usermod -u 0 <compromised_user>`
@@ -117,12 +114,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 'devuser' のUIDを0に変更
+		# 'devuser' のUIDを0に変更
 
-    sudo usermod -u 0 devuser
+		sudo usermod -u 0 devuser
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

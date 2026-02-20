@@ -1,17 +1,17 @@
 ---
 tags:
-  - 'tar'
-  - 'archive'
-  - 'backup'
-  - 'compression'
-  - 'cheetsheet'
-  - 'zip'
-  - 'gzip'
-  - 'bzip2'
-  - 'cp'
-  - 'ssh'
+  - tar
+  - archive
+  - backup
+  - compression
+  - cheetsheet
+  - zip
+  - gzip
+  - bzip2
+  - cp
+  - ssh
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -47,12 +47,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # ローカルの current-dir をリモートホストの /backup/ に転送
+		# ローカルの current-dir をリモートホストの /backup/ に転送
 
-    tar czf - ./current-dir | ssh user@remote-host "cd /backup/ && tar xzf -"
+		tar czf - ./current-dir | ssh user@remote-host "cd /backup/ && tar xzf -"
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -83,14 +82,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # /home/user ディレクトリを user-backup.tar.gz という名前で圧縮・アーカイブ
+		# /home/user ディレクトリを user-backup.tar.gz という名前で圧縮・アーカイブ
 
-    tar czf user-backup-$(date +%F).tar.gz /home/user
+		tar czf user-backup-$(date +%F).tar.gz /home/user
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 不審なアーカイブファイルを、安全に内容物を確認する。
 * **組み合わせ**: `tar tf <archive_file>.tar.gz`
@@ -98,14 +96,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 侵害されたサーバーから収集した不審な .tar.gz ファイルの中身をリストアップ
+		# 侵害されたサーバーから収集した不審な .tar.gz ファイルの中身をリストアップ
 
-    tar tf suspicious_archive.tar.gz
+		tar tf suspicious_archive.tar.gz
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **データ窃取 (Data Exfiltration)**。窃取した複数のファイルやディレクトリを、転送しやすいように1つの圧縮ファイルにまとめる。
 * **組み合わせ**: `tar czf loot.tar.gz /path/to/stolen/data`
@@ -113,12 +110,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 窃取した /etc と /home/user をまとめて圧縮
+		# 窃取した /etc と /home/user をまとめて圧縮
 
-    tar czf loot.tar.gz /etc /home/user
+		tar czf loot.tar.gz /etc /home/user
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

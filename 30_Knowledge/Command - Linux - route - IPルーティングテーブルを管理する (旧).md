@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'route'
-  - 'networking'
-  - 'legacy'
-  - 'iproute2'
-  - 'iproute'
-  - 'netstat-r'
-  - 'traceroute'
+  - route
+  - networking
+  - legacy
+  - iproute2
+  - iproute
+  - netstat-r
+  - traceroute
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:47
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

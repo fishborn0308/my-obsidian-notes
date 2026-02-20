@@ -3,7 +3,7 @@ tags:
   - git_remote
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -36,16 +36,21 @@ knowledge_category: Command
 * **解説**: `git remote add`で新しいリモートの名前とURLを登録し、`git push`でローカルの変更を新しいリモートに送信します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 新しいリモートリポジトリ 'gitlab' を追加
+
     git remote add gitlab [https://gitlab.com/your-org/your-project.git](https://gitlab.com/your-org/your-project.git)
 
     # 新しいリモートが追加されたことを確認
+
     git remote -v
 
     # 新しいリモートにローカルブランチをプッシュ
+
     git push -u gitlab main
+
     ```
+
 
 ## オプション説明
 
@@ -68,13 +73,17 @@ knowledge_category: Command
 * **解説**: 自社でフォークしたIaCツールなどを、本家プロジェクトの最新状態から乖離しないように同期するために使用します。
 * **例**:
 
-    ```bash
+		```bash
     # 本家のリポジトリを 'upstream' として追加
+
     git remote add upstream [https://github.com/original-project/iac-tool.git](https://github.com/original-project/iac-tool.git)
 
     # 全リモートから変更を取得
+
     git fetch --all
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -83,13 +92,17 @@ knowledge_category: Command
 * **解説**: 既存のリモート設定を確認後、安全なフォレンジックサーバーに新しいリモートを追加し、調査中のリポジトリの全履歴をプッシュして、詳細なオフライン分析を行います。
 * **例**:
 
-    ```bash
+		```bash
     # フォレンジック分析サーバーを新しいリモートとして追加
+
     git remote add forensic-server ssh://forensic-user@192.168.1.100/var/git/compromised.git
 
     # リポジトリのすべてのブランチをフォレンジックサーバーにプッシュ
+
     git push forensic-server --all
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -103,8 +116,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: remote <name> already exists.`
-    * **考えられる原因**: 指定した名前のリモートがすでに存在します。
-    * **解決策**: 別の名前を使用するか、既存のリモートを `git remote rm <name>` で削除してから再度追加します。
+		* **考えられる原因**: 指定した名前のリモートがすでに存在します。
+		* **解決策**: 別の名前を使用するか、既存のリモートを `git remote rm <name>` で削除してから再度追加します。
 
 ## 環境変数と設定ファイル
 

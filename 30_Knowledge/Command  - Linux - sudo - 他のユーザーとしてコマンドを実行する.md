@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'sudo'
-  - 'privilege_management'
-  - 'security'
-  - 'su'
-  - 'sudoers'
-  - 'visudo'
-  - 'id'
+  - sudo
+  - privilege_management
+  - security
+  - su
+  - sudoers
+  - visudo
+  - id
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -43,19 +43,18 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # sudoを付け忘れ
+		# sudoを付け忘れ
 
-    apt update
+		apt update
 
-    # -> E: Could not open lock file ... - open (13: Permission denied)
+		# -> E: Could not open lock file ... - open (13: Permission denied)
 
-    # sudo !! で再実行
+		# sudo !! で再実行
 
-    sudo !!
+		sudo !!
 
-    # -> sudo apt update が実行される
-    ```
-
+		# -> sudo apt update が実行される
+		```
 
 ## オプション説明
 
@@ -82,18 +81,17 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # パッケージをアップデート
+		# パッケージをアップデート
 
-    sudo apt update && sudo apt upgrade -y
+		sudo apt update && sudo apt upgrade -y
 
-    # nginxサービスを再起動
+		# nginxサービスを再起動
 
-    sudo systemctl restart nginx
+		sudo systemctl restart nginx
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: `sudo` の実行ログを分析し、不審な特権昇格がないか調査する。
 * **組み合わせ**: `journalctl | grep "sudo"` または `cat /var/log/auth.log`
@@ -101,14 +99,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ジャーナルログからsudoの実行履歴を確認
+		# ジャーナルログからsudoの実行履歴を確認
 
-    sudo journalctl | grep "sudo"
+		sudo journalctl | grep "sudo"
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **権限昇格の足がかりを探す**ため、現在のユーザーに付与された`sudo`権限を調査する。
 * **組み合わせ**: `sudo -l`
@@ -116,12 +113,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 現在のユーザーがsudoで何を実行できるか確認
+		# 現在のユーザーがsudoで何を実行できるか確認
 
-    sudo -l
+		sudo -l
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

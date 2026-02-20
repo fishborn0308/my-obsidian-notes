@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'traceroute'
-  - 'networking'
-  - 'troubleshooting'
-  - 'icmp'
-  - 'mtr'
-  - 'ping'
-  - 'ip_route'
+  - traceroute
+  - networking
+  - troubleshooting
+  - icmp
+  - mtr
+  - ping
+  - ip_route
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -41,12 +41,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # google.com への経路追跡結果をレポートファイルに保存
+		# google.com への経路追跡結果をレポートファイルに保存
 
-    traceroute -n google.com > traceroute-report-google-$(date +%F).txt
+		traceroute -n google.com > traceroute-report-google-$(date +%F).txt
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -73,14 +72,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ICMPがブロックされている可能性を考慮し、HTTPS(443)ポートへのTCPで経路追跡
+		# ICMPがブロックされている可能性を考慮し、HTTPS(443)ポートへのTCPで経路追跡
 
-    sudo traceroute -T -p 443 [www.example.com](https://www.example.com)
+		sudo traceroute -T -p 443 [www.example.com](https://www.example.com)
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 不審なIPアドレスが、地理的にどこにあり、どのネットワークプロバイダに属しているかを大まかに把握する。
 * **組み合わせ**: `traceroute -n <suspicious_ip>`
@@ -88,14 +86,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 不審なIP 198.51.100.10 への経路を確認
+		# 不審なIP 198.51.100.10 への経路を確認
 
-    traceroute -n 198.51.100.10
+		traceroute -n 198.51.100.10
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **ネットワークの内部偵察 (Reconnaissance)**。
 * **組み合わせ**: `traceroute -n <internal_target_ip>`
@@ -103,12 +100,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 内部のDBサーバー (10.10.20.5) への経路を偵察
+		# 内部のDBサーバー (10.10.20.5) への経路を偵察
 
-    traceroute -n 10.10.20.5
+		traceroute -n 10.10.20.5
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

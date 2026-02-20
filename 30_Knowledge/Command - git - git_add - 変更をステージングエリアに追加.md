@@ -3,7 +3,7 @@ tags:
   - git_add
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -37,28 +37,27 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 新しい設定ファイルを作成
+		# 新しい設定ファイルを作成
 
-    touch new_server_config.conf
+		touch new_server_config.conf
 
-    # 未追跡ファイルとして表示されることを確認
+		# 未追跡ファイルとして表示されることを確認
 
-    git status
+		git status
 
-    # ファイルをステージング
+		# ファイルをステージング
 
-    git add new_server_config.conf
+		git add new_server_config.conf
 
-    # コミット対象としてステージされていることを確認
+		# コミット対象としてステージされていることを確認
 
-    git status
+		git status
 
-    # 変更をコミット
+		# 変更をコミット
 
-    git commit -m "Add new server configuration file"
+		git commit -m "Add new server configuration file"
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -84,16 +83,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 複数の設定ファイルを編集・作成・削除
+		# 複数の設定ファイルを編集・作成・削除
 
-    git add . # 全ての変更(新規・修正・削除)をステージング
+		git add . # 全ての変更(新規・修正・削除)をステージング
 
-    git commit -m "Prepare web server configuration for new deployment"
+		git commit -m "Prepare web server configuration for new deployment"
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: セキュリティスクリプトに実行権限を付与し、その変更もコミットに含める。
 * **組み合わせ**: `git add <file>`
@@ -101,18 +99,17 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # analysis_script.py を作成し、実行可能にする
+		# analysis_script.py を作成し、実行可能にする
 
-    chmod +x analysis_script.py
+		chmod +x analysis_script.py
 
-    git add analysis_script.py # 実行権限の変更もステージングされる
+		git add analysis_script.py # 実行権限の変更もステージングされる
 
-    git commit -m "Add new malware analysis script with execute permission"
+		git commit -m "Add new malware analysis script with execute permission"
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 多数の変更を行った後、痕跡を隠す目的で、コミットしたい変更とそうでない変更を厳密に区別する。
 * **組み合わせ**: `git add -p <file>`
@@ -120,16 +117,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # target_script.py を修正。機能追加とデバッグコードが混在。
+		# target_script.py を修正。機能追加とデバッグコードが混在。
 
-    git add -p target_script.py
+		git add -p target_script.py
 
-    # インタラクティブモードで、機能追加のHunkのみを 'y' で選択
+		# インタラクティブモードで、機能追加のHunkのみを 'y' で選択
 
-    git commit -m "Add new feature to target_script.py"
+		git commit -m "Add new feature to target_script.py"
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

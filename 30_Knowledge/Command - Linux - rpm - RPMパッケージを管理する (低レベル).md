@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'rpm'
-  - 'package_management'
-  - 'rhel'
-  - 'centos'
-  - 'yum'
-  - 'dnf'
-  - 'dpkg'
+  - rpm
+  - package_management
+  - rhel
+  - centos
+  - yum
+  - dnf
+  - dpkg
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:35
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

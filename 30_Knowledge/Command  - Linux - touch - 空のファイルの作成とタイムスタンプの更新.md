@@ -1,13 +1,13 @@
 ---
 tags:
-  - 'touch'
-  - 'file_management'
-  - 'timestamp'
-  - 'forensics'
-  - 'mkdir'
-  - 'stat'
+  - touch
+  - file_management
+  - timestamp
+  - forensics
+  - mkdir
+  - stat
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -46,20 +46,19 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. 空のログファイルを作成
+		# 1. 空のログファイルを作成
 
-    sudo touch /var/log/my-app.log
+		sudo touch /var/log/my-app.log
 
-    # 2. 所有者をアプリケーションユーザーに変更
+		# 2. 所有者をアプリケーションユーザーに変更
 
-    sudo chown my-app-user:my-app-group /var/log/my-app.log
+		sudo chown my-app-user:my-app-group /var/log/my-app.log
 
-    # 3. 適切なパーミッションを設定
+		# 3. 適切なパーミッションを設定
 
-    sudo chmod 644 /var/log/my-app.log
+		sudo chmod 644 /var/log/my-app.log
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -84,14 +83,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # アプリケーション用のロックファイルを作成
+		# アプリケーション用のロックファイルを作成
 
-    touch /var/run/my-app.pid
+		touch /var/run/my-app.pid
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: **ハニーポット（おとり）ファイル**を作成し、不正アクセスを検知する。
 * **組み合わせ**: `touch /path/to/honeypot-file.txt`
@@ -99,14 +97,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 秘密鍵に見せかけたおとりファイルを作成
+		# 秘密鍵に見せかけたおとりファイルを作成
 
-    touch /home/admin/.ssh/id_rsa.bak
+		touch /home/admin/.ssh/id_rsa.bak
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **痕跡消去 (Anti-Forensics)** のため、ファイルのタイムスタンプを偽装する。
 * **組み合わせ**: `touch -r <original_file> <modified_file>`
@@ -114,20 +111,19 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 1. 元のファイルのタイムスタンプを一時ファイルにコピー
+		# 1. 元のファイルのタイムスタンプを一時ファイルにコピー
 
-    touch -r /etc/important_script.sh /tmp/timestamp_ref
+		touch -r /etc/important_script.sh /tmp/timestamp_ref
 
-    # 2. (important_script.sh を改ざん)
+		# 2. (important_script.sh を改ざん)
 
-    echo "evil_command" >> /etc/important_script.sh
+		echo "evil_command" >> /etc/important_script.sh
 
-    # 3. タイムスタンプを元に戻す
+		# 3. タイムスタンプを元に戻す
 
-    touch -r /tmp/timestamp_ref /etc/important_script.sh
+		touch -r /tmp/timestamp_ref /etc/important_script.sh
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

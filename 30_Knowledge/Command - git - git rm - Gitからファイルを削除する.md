@@ -3,7 +3,7 @@ tags:
   - git_rm
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -36,16 +36,21 @@ knowledge_category: Command
 * **解説**: まず`git status`で現在の状態を確認します。次に`git rm`でファイルを削除し、`git status`で削除がステージングされたことを確認します。最後に`git commit`で削除を履歴に永続化します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 不要なファイルを削除し、その削除をステージング
+
     git rm old_script.sh
 
     # 2. 削除がステージングされたことを確認
+
     git status
 
     # 3. 削除をコミット
+
     git commit -m "chore: Remove old_script.sh as it's no longer needed"
+
     ```
+
 
 ## オプション説明
 
@@ -69,17 +74,23 @@ knowledge_category: Command
 * **解説**: `--cached` を使ってGitの追跡のみを停止し、ファイル自体は残します。その後、将来的に再び追跡されないよう、そのファイルを `.gitignore` に追加します。
 * **例**:
 
-    ```bash
+		```bash
     # .env ファイルをGitの追跡対象から外す
+
     git rm --cached .env
 
     # .env を .gitignore に追加
+
     echo ".env" >> .gitignore
 
     # 変更をコミット
+
     git add .gitignore
+
     git commit -m "Stop tracking .env file"
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -88,11 +99,15 @@ knowledge_category: Command
 * **解説**: 調査の結果、Webシェル (`shell.php`など) がリポジトリに追加されていることが判明した場合、このコマンドでファイルを削除し、その削除をコミットして修復します。
 * **例**:
 
-    ```bash
+		```bash
     # Webシェルを削除
+
     git rm shell.php
+
     git commit -m "Security: Remove malicious web shell"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -106,8 +121,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: pathspec '<file>' did not match any files`
-    * **考えられる原因**: 指定したファイルがGitリポジトリに存在しないか、追跡されていません。
-    * **解決策**: ファイル名が正しいか確認します。追跡されていないファイルは、通常の `rm` コマンドで削除します。
+		* **考えられる原因**: 指定したファイルがGitリポジトリに存在しないか、追跡されていません。
+		* **解決策**: ファイル名が正しいか確認します。追跡されていないファイルは、通常の `rm` コマンドで削除します。
 
 ## 環境変数と設定ファイル
 
@@ -133,8 +148,8 @@ knowledge_category: Command
 
 * **Prevention (予防)**: 機密情報をGitリポジトリにコミットしないためのポリシーを徹底する。
 * **Detection (検知)**:
-  * 履歴から完全にファイルを削除する必要がある場合は、`git filter-repo` などの専門ツールを使用する。
-  * CI/CDパイプラインに `TruffleHog` などのシークレットスキャンツールを導入し、履歴全体をスキャンする。
+	* 履歴から完全にファイルを削除する必要がある場合は、`git filter-repo` などの専門ツールを使用する。
+	* CI/CDパイプラインに `TruffleHog` などのシークレットスキャンツールを導入し、履歴全体をスキャンする。
 
 ## 注意点・補足
 

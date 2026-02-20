@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'wc'
-  - 'text_processing'
-  - 'linux'
-  - 'ls_-l'
-  - 'grep_-c'
-  - 'sort'
-  - 'uniq'
+  - wc
+  - text_processing
+  - linux
+  - ls_-l
+  - grep_-c
+  - sort
+  - uniq
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -41,12 +41,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 実行中の nginx プロセスの数を数える
+		# 実行中の nginx プロセスの数を数える
 
-    ps aux | grep '[n]ginx' | wc -l
+		ps aux | grep '[n]ginx' | wc -l
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -68,14 +67,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # /etc/systemd/system/ ディレクトリにあるユニットファイルの数を数える
+		# /etc/systemd/system/ ディレクトリにあるユニットファイルの数を数える
 
-    ls -1 /etc/systemd/system/ | wc -l
+		ls -1 /etc/systemd/system/ | wc -l
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ログファイル内の特定のイベント発生回数を定量的に把握する。
 * **組み合わせ**: `grep <pattern> <logfile> | wc -l`
@@ -83,14 +81,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 直近の認証ログから "Failed password" が含まれる行数をカウント
+		# 直近の認証ログから "Failed password" が含まれる行数をカウント
 
-    grep "Failed password" /var/log/auth.log | wc -l
+		grep "Failed password" /var/log/auth.log | wc -l
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: パスワード攻撃に使用するワードリストの規模を確認する。
 * **組み合わせ**: `wc -l <wordlist>`
@@ -98,12 +95,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # rockyou.txt の行数を数える
+		# rockyou.txt の行数を数える
 
-    wc -l /usr/share/wordlists/rockyou.txt
+		wc -l /usr/share/wordlists/rockyou.txt
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

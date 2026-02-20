@@ -3,7 +3,7 @@ tags:
   - git_status
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -35,15 +35,18 @@ knowledge_category: Command
 * **解説**: ファイルを変更した後、`git add` でコミットしたい変更をステージングします。その後 `git status` を実行すると、「Changes to be committed」（コミットされる変更）と「Changes not staged for commit」（コミットされない変更）が明確に区別して表示されます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. ファイルを編集
     # ...
 
     # 2. 変更をステージング
+
     git add file1.txt
 
     # 3. 現在の状態を確認
+
     git status
+
     # On branch main
     # Changes to be committed:
     #   (use "git restore --staged <file>..." to unstage)
@@ -54,6 +57,7 @@ knowledge_category: Command
     #   (use "git restore <file>..." to discard changes in working directory)
     #         modified:   file2.txt
     ```
+
 
 ## オプション説明
 
@@ -75,12 +79,15 @@ knowledge_category: Command
 * **解説**: `-s` (short) と `-b` (branch) を組み合わせることで、ブランチ名、リモート追跡ブランチとの差（進んでいるか、遅れているか）、変更されたファイルの状態を一行でコンパクトに表示できます。
 * **例**:
 
-    ```bash
+		```bash
+
     git status -sb
+
     # ## main...origin/main [ahead 1]
     #  M README.md
     # ?? new_file.txt
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -101,8 +108,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: Not a git repository`
-    * **考えられる原因**: 現在のディレクトリまたはその親ディレクトリに `.git` ディレクトリが存在しません。
-    * **解決策**: 正しいGitリポジトリのディレクトリに移動するか、`git init` で新しいリポジトリを作成してください。
+		* **考えられる原因**: 現在のディレクトリまたはその親ディレクトリに `.git` ディレクトリが存在しません。
+		* **解決策**: 正しいGitリポジトリのディレクトリに移動するか、`git init` で新しいリポジトリを作成してください。
 
 ## 環境変数と設定ファイル
 

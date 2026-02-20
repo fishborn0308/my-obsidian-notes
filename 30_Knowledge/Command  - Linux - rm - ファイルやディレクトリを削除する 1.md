@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'rm'
-  - 'file management'
-  - 'destructive'
-  - 'rmdir'
-  - 'shred'
-  - 'find'
-  - 'mv'
+  - rm
+  - file management
+  - destructive
+  - rmdir
+  - shred
+  - find
+  - mv
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:41
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -42,12 +42,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # /mnt/backups 配下で、30日より古い .bak ファイルを検索して削除する
+		# /mnt/backups 配下で、30日より古い .bak ファイルを検索して削除する
 
-    find /mnt/backups -type f -name "*.bak" -mtime +30 -delete
+		find /mnt/backups -type f -name "*.bak" -mtime +30 -delete
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -70,14 +69,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 不要になった古いプロジェクトディレクトリを完全に削除
+		# 不要になった古いプロジェクトディレクトリを完全に削除
 
-    rm -rf /opt/old-project/
+		rm -rf /opt/old-project/
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 証拠保全と分析が完了したマルウェアをシステムから完全に除去する。
 * **組み合わせ**: `rm <malware_file>`
@@ -85,14 +83,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 隔離ディレクトリ内の分析済みマルウェアを削除
+		# 隔離ディレクトリ内の分析済みマルウェアを削除
 
-    sudo rm /var/log/quarantine/evil.elf
+		sudo rm /var/log/quarantine/evil.elf
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **痕跡消去 (Anti-Forensics)** のため、自身の活動の証拠となるファイルを削除する。
 * **組み合わせ**: `rm <log_or_history_file>`
@@ -100,12 +97,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # コマンド履歴ファイルを削除
+		# コマンド履歴ファイルを削除
 
-    rm ~/.bash_history
+		rm ~/.bash_history
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

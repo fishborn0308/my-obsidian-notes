@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'who'
-  - 'monitoring'
-  - 'forensics'
-  - 'linux'
-  - 'w'
-  - 'users'
-  - 'last'
-  - 'whoami'
+  - who
+  - monitoring
+  - forensics
+  - linux
+  - w
+  - users
+  - last
+  - whoami
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:35
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

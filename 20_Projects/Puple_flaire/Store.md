@@ -1,12 +1,12 @@
 ---
 created: 2026-01-08 13:45
-modified: 2026-02-20 16:16
+modified: 2026-02-20 17:36
 environment: [Server/Web]
 vulnearability: [SQLi, LFI, Path_Traversal]
 type: pentest-walkthrough
 pentest_category: Web
 platform: [PurpleFlair]
-tools: [feroxbuster , ffuf]
+tools: [feroxbuster, ffuf]
 cve: []
 tags: 
 ---

@@ -6,7 +6,7 @@ tags:
   - ssh-keygen
   - ssh-copy-id
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -39,21 +39,21 @@ knowledge_category: Command
 * **コマンド例 (`~/.ssh/config` の設定)**:
 
 		```bash
-    # 踏み台サーバー
+		# 踏み台サーバー
 
-    Host bastion
+		Host bastion
 
-        HostName bastion.example.com
+	      HostName bastion.example.com
 
         User admin
 
         IdentityFile ~/.ssh/keys/bastion_key.pem
 
-    # 踏み台経由で接続するDBサーバー
+		# 踏み台経由で接続するDBサーバー
 
-    Host prod-db-01
+		Host prod-db-01
 
-        HostName db.internal
+	      HostName db.internal
 
         User db_user
 
@@ -61,8 +61,7 @@ knowledge_category: Command
 
         ProxyJump bastion
 
-    ```
-
+		```
 
 ## オプション説明 (主要なディレクティブ)
 
@@ -91,14 +90,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # config設定後
+		# config設定後
 
-    ssh prod-db-01
+		ssh prod-db-01
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 調査対象ホストへの接続方法を標準化し、安全性を確保する。
 * **組み合わせ**: `Host`, `HostName`, `User`, `IdentityFile`, `PasswordAuthentication no`
@@ -107,9 +105,9 @@ knowledge_category: Command
 
 		```bash
 
-    Host compromised-host
+		Host compromised-host
 
-        HostName 203.0.113.80
+	      HostName 203.0.113.80
 
         User readonly_analyst
 
@@ -117,10 +115,9 @@ knowledge_category: Command
 
         PasswordAuthentication no
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **偵察 (Reconnaissance)**。侵入したホストの `~/.ssh/config` ファイルを調査する。
 * **組み合わせ**: `cat ~/.ssh/config`
@@ -128,12 +125,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 侵入したユーザーのssh configを調査
+		# 侵入したユーザーのssh configを調査
 
-    cat /home/user1/.ssh/config
+		cat /home/user1/.ssh/config
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

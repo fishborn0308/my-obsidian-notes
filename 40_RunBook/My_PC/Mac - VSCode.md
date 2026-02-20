@@ -1,6 +1,6 @@
 ---
 created: 2026-01-04 08:35
-modified: 2026-02-20 16:15
+modified: 2026-02-20 17:36
 tags:
   - VCCode
   - config
@@ -170,19 +170,18 @@ tags:
 
 			```bash
 
-	    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-	    ```
+			```
 
 * **Gitのインストール:**
 	* MacにはデフォルトでGitがインストールされていることが多いですが、最新版をHomebrewでインストールしておくことをオススメします。
 
 			```bash
 
-	    brew install git
+			brew install git
 
-	    ```
-
+			```
 
 ## Obsidian
 

@@ -9,7 +9,7 @@ tags:
   - Poetry
   - pip
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,29 +45,28 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このコマンドシーケンスで仮想環境をセットアップし、利用する
-    # 1. プロジェクトディレクトリに移動
+		# このコマンドシーケンスで仮想環境をセットアップし、利用する
+		# 1. プロジェクトディレクトリに移動
 
-    cd my-project
+		cd my-project
 
-    # 2. "venv" という名前で仮想環境を作成
+		# 2. "venv" という名前で仮想環境を作成
 
-    python3 -m venv venv
+		python3 -m venv venv
 
-    # 3. 仮想環境を有効化 (プロンプトが変わる)
+		# 3. 仮想環境を有効化 (プロンプトが変わる)
 
-    source venv/bin/activate
+		source venv/bin/activate
 
-    # 4. (venv)環境内でパッケージをインストール
+		# 4. (venv)環境内でパッケージをインストール
 
-    pip install requests
+		pip install requests
 
-    # 5. 作業終了後、仮想環境を無効化
+		# 5. 作業終了後、仮想環境を無効化
 
-    deactivate
+		deactivate
 
-    ```
-
+		```
 
 ## オプション説明 (`python -m venv ...`)
 
@@ -89,22 +88,21 @@ knowledge_category: Command
 * **例 (Dockerfile内)**:
 
 		```Dockerfile
-    # アプリケーション用の仮想環境を作成し、PATHを通す
+		# アプリケーション用の仮想環境を作成し、PATHを通す
 
-    RUN python3 -m venv /opt/venv
+		RUN python3 -m venv /opt/venv
 
-    ENV PATH="/opt/venv/bin:$PATH"
+		ENV PATH="/opt/venv/bin:$PATH"
 
-    # 依存関係を仮想環境内にインストール
+		# 依存関係を仮想環境内にインストール
 
-    COPY requirements.txt .
+		COPY requirements.txt .
 
-    RUN pip install -r requirements.txt
+		RUN pip install -r requirements.txt
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: マルウェアの疑いがあるPythonスクリプトを安全に分析するための隔離環境を作成する。
 * **組み合わせ**: `python3 -m venv <analysis_env>`
@@ -112,20 +110,19 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # マルウェア分析用の仮想環境を作成
+		# マルウェア分析用の仮想環境を作成
 
-    python3 -m venv malware_analysis_env
+		python3 -m venv malware_analysis_env
 
-    source malware_analysis_env/bin/activate
+		source malware_analysis_env/bin/activate
 
-    # 分析に必要なツールをインストール
+		# 分析に必要なツールをインストール
 
-    pip install oletools
+		pip install oletools
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **活動の隠蔽 (Defense Evasion)**。侵入したホスト上で、攻撃ツールをシステムの `pip` を使わずに導入する。
 * **組み合わせ**: `python3 -m venv .hidden_env`
@@ -133,16 +130,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # /tmp に隠し仮想環境を作成
+		# /tmp に隠し仮想環境を作成
 
-    python3 -m venv /tmp/.my-tools
+		python3 -m venv /tmp/.my-tools
 
-    # 隠し環境のpipを使ってライブラリをインストール
+		# 隠し環境のpipを使ってライブラリをインストール
 
-    /tmp/.my-tools/bin/pip install impacket
+		/tmp/.my-tools/bin/pip install impacket
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

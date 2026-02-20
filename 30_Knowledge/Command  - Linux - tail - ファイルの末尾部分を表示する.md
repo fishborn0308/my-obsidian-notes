@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'tail'
-  - 'text_processing'
-  - 'logging'
-  - 'linux'
-  - 'head'
-  - 'cat'
-  - 'less'
-  - 'journalctl'
+  - tail
+  - text_processing
+  - logging
+  - linux
+  - head
+  - cat
+  - less
+  - journalctl
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -44,12 +44,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 認証ログをリアルタイムで監視し、ログイン失敗の行のみを表示
+		# 認証ログをリアルタイムで監視し、ログイン失敗の行のみを表示
 
-    sudo tail -f /var/log/auth.log | grep "Failed password"
+		sudo tail -f /var/log/auth.log | grep "Failed password"
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -71,14 +70,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 直近100行のシステムログを確認する
+		# 直近100行のシステムログを確認する
 
-    tail -n 100 /var/log/syslog
+		tail -n 100 /var/log/syslog
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 進行中の攻撃の兆候をリアルタイムで監視する。
 * **組み合わせ**: `tail -f <logfile> | grep <IOC>`
@@ -86,14 +84,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # Fail2banのログを監視して、どのIPがブロックされているかを確認
+		# Fail2banのログを監視して、どのIPがブロックされているかを確認
 
-    sudo tail -f /var/log/fail2ban.log
+		sudo tail -f /var/log/fail2ban.log
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 偵察の一環として、管理者の活動を把握する。
 * **組み合わせ**: `tail -f /var/log/auth.log`
@@ -101,12 +98,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ユーザーのコマンド履歴ファイルの末尾を確認
+		# ユーザーのコマンド履歴ファイルの末尾を確認
 
-    tail -n 50 ~/.bash_history
+		tail -n 50 ~/.bash_history
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

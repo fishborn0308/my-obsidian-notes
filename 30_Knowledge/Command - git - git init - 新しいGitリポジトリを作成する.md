@@ -3,7 +3,7 @@ tags:
   - git_init
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -34,15 +34,23 @@ knowledge_category: Command
 * **解説**: まず `git init` でリポジトリを作成し、管理したいファイルを `git add` でステージングエリアに追加、最後に `git commit` で最初のコミットを作成します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスで新しいリポジトリを開始する
+
     mkdir my_new_infra
+
     cd my_new_infra
+
     git init
+
     touch playbook.yml
+
     git add .
+
     git commit -m "Initial commit"
+
     ```
+
 
 ## オプション説明
 
@@ -64,14 +72,22 @@ knowledge_category: Command
 * **解説**: 新しいIaC (Infrastructure as Code) プロジェクトや、サーバーのデプロイメントスクリプトなどの管理を開始する際に使用します。
 * **例**:
 
-    ```bash
+		```bash
+
     mkdir terraform_aws_vpc
+
     cd terraform_aws_vpc
+
     git init
+
     # terraformファイルを配置後
+
     git add .
+
     git commit -m "Initial commit for AWS VPC Terraform configuration"
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -80,15 +96,24 @@ knowledge_category: Command
 * **解説**: セキュリティツールやスクリプト、監査設定の変更履歴を管理する際に使用します。
 * **例**:
 
-    ```bash
+		```bash
+
     mkdir security_audits
+
     cd security_audits
+
     git init
+
     # auditd設定ファイルなどをコピー・編集後
+
     cp /etc/audit/rules.d/audit.rules .
+
     git add audit.rules
+
     git commit -m "Initial commit of custom auditd rules"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -97,20 +122,25 @@ knowledge_category: Command
 * **解説**: チーム内で共有するツールキットをプライベートなGitリポジトリで管理する場合など、ごく限定的なシナリオで使用されます。
 * **例**:
 
-    ```bash
+		```bash
     # チーム内の共有サーバー上で実行
+
     mkdir /srv/git/redteam_tools.git
+
     cd /srv/git/redteam_tools.git
+
     git init --bare
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: destination path '<directory_name>' already exists and is not an empty directory.`
-    * **考えられる原因**: 指定したディレクトリがすでに存在し、空でないため、そこに新しいリポジトリを作成できません。
-    * **解決策**: 既存のディレクトリをGitリポジトリとして初期化する場合は、そのディレクトリ**内**で `git init` を引数なしで実行します。
+		* **考えられる原因**: 指定したディレクトリがすでに存在し、空でないため、そこに新しいリポジトリを作成できません。
+		* **解決策**: 既存のディレクトリをGitリポジトリとして初期化する場合は、そのディレクトリ**内**で `git init` を引数なしで実行します。
 
 ## 環境変数と設定ファイル
 

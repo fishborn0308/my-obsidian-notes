@@ -3,7 +3,7 @@ tags:
   - git_reflog
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -37,19 +37,25 @@ knowledge_category: Command
 * **解説**: `git reset --hard`はローカルのコミット履歴を巻き戻す強力なコマンドですが、これにより**ブランチの履歴からは見えなくなったコミット**が生まれます。`git reflog`を使ってそのコミットのハッシュ値を見つけ出し、`git reset`で安全に復元します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # (誤って最新の2つのコミットを削除)
+
     git reset --hard HEAD~2
 
     # git reflog で過去の操作履歴を確認し、削除前のコミットIDを探す
+
     git reflog
+
     # 出力例:
     # a1b2c3d HEAD@{0}: reset: moving to HEAD~2
     # e4f5g6h HEAD@{1}: commit: feat: Add new feature
 
     # 削除前の状態 (e4f5g6h) に復元
+
     git reset --hard e4f5g6h
+
     ```
+
 
 ## オプション説明
 
@@ -72,15 +78,19 @@ knowledge_category: Command
 * **解説**: `git rebase`はコミット履歴を書き換えるため、失敗すると履歴が混乱することがあります。`reflog`はリベース前の状態を記録しているので、問題が発生した場合でも簡単に元の地点に戻り、リベースを最初からやり直すことができます。
 * **例**:
 
-    ```bash
+		```bash
     # (rebase中に問題が発生)
 
     # git reflog でリベース前のブランチの状態 (例: HEAD@{2}) を確認
+
     git reflog
 
     # リベース開始前の状態に戻す
+
     git reset --hard HEAD@{2}
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -89,10 +99,13 @@ knowledge_category: Command
 * **解説**: `git reflog`は、通常の`git log`では見えなくなったコミット（悪意のあるコミットや削除されたバックドアなど）の痕跡を追跡するのに役立ちます。`--date=iso`で正確なタイムスタンプを取得し、いつどのような操作が行われたかを詳細に分析できます。
 * **例**:
 
-    ```bash
+		```bash
     # 調査対象ブランチのreflogをISO形式の正確なタイムスタンプで表示
+
     git reflog show --date=iso main
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -101,19 +114,23 @@ knowledge_category: Command
 * **解説**: 侵害したシステム上でGitリポジトリを操作した場合、自身の痕跡を隠蔽するために、`reflog`を意図的にクリーンアップすることが考えられます。`expire`コマンドを使うことで、HEADの移動履歴を削除し、後のフォレンジック調査を困難にします。
 * **例**:
 
-    ```bash
+		```bash
     # 全てのreflogエントリを即座に期限切れとしてマークし、削除する
+
     git reflog expire --all --expire=now --rewrite
+
     git gc --prune=now
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: your current branch 'main' does not have any commits yet`
-    * **考えられる原因**: `git init`したばかりで、まだ一度もコミットが行われていません。
-    * **解決策**: 少なくとも1つコミットを作成してから`git reflog`を実行します。
+		* **考えられる原因**: `git init`したばかりで、まだ一度もコミットが行われていません。
+		* **解決策**: 少なくとも1つコミットを作成してから`git reflog`を実行します。
 
 ## 環境変数と設定ファイル
 

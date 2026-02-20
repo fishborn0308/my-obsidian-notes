@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -35,10 +35,13 @@ knowledge_category: Command
 * **解説**: `git switch -c`コマンドを使って、新しいブランチを作成し、同時にそのブランチへ切り替えます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # main ブランチから新しい機能ブランチ 'feature/new-api' を作成し、切り替える
+
     git switch -c feature/new-api
+
     ```
+
 
 ## オプション説明
 
@@ -62,10 +65,13 @@ knowledge_category: Command
 * **解説**: これにより、本番環境への変更が他の開発作業と混ざることなく、独立した形で管理でき、レビューやデプロイのプロセスが明確になります。
 * **例**:
 
-    ```bash
+		```bash
     # main から新しい設定変更ブランチを作成し、切り替える
+
     git switch -c feature/vpc-update
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -74,10 +80,13 @@ knowledge_category: Command
 * **解説**: `--detach`を使うことで、特定のコミット状態を「固定」し、その上で影響を与えずに分析を進められます。
 * **例**:
 
-    ```bash
+		```bash
     # 特定のコミットID(例: abcd123)に移動し、その状態を調査
+
     git switch --detach abcd123
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -86,21 +95,24 @@ knowledge_category: Command
 * **解説**: `--orphan`を使用することで、以前のコミット履歴が意図せず含まれることを防ぎ、クリーンな状態から新しいツールの開発を始められます。
 * **例**:
 
-    ```bash
+		```bash
     # 履歴を持たない新しい孤立ブランチ 'stealthy-payload' を作成
+
     git switch --orphan stealthy-payload
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: you have uncommitted changes. Please commit or stash them.`
-    * **考えられる原因**: 現在のブランチにコミットされていない変更がある状態で、別のブランチに切り替えようとしました。
-    * **解決策**:
-        1. 変更をコミットする: `git commit -m "WIP"`
-        2. 変更を一時退避する: `git stash`
-        3. 変更を破棄する: `git restore .`
+		* **考えられる原因**: 現在のブランチにコミットされていない変更がある状態で、別のブランチに切り替えようとしました。
+		* **解決策**:
+				1. 変更をコミットする: `git commit -m "WIP"`
+				2. 変更を一時退避する: `git stash`
+				3. 変更を破棄する: `git restore .`
 
 ## 環境変数と設定ファイル
 

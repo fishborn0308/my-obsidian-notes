@@ -3,7 +3,7 @@ tags:
   - git_log
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -37,10 +37,13 @@ knowledge_category: Command
 * **解説**: `-p` (`--patch`) オプションと対象ファイルのパスを指定することで、そのファイルに対するコミットの差分も同時に表示されます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # path/to/nginx.conf ファイルに加えられた変更の履歴と差分を表示
+
     git log -p -- path/to/nginx.conf
+
     ```
+
 
 ## オプション説明
 
@@ -75,10 +78,13 @@ knowledge_category: Command
 * **解説**: `-S` オプションで、`eval()` のような危険な関数が追加または削除された全てのコミットとその差分を表示し、悪意のあるコードの混入を追跡します。
 * **例**:
 
-    ```bash
+		```bash
     # コミットメッセージに特定のCVE IDが含まれるものを検索
+
     git log --grep="CVE-2023-XXXX"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -87,18 +93,21 @@ knowledge_category: Command
 * **解説**: `--reverse` で古い順に表示し、初期のセキュリティ対策が不十分だったコミットを狙って、機密設定ファイルの変更履歴を差分付きで精査します。
 * **例**:
 
-    ```bash
+		```bash
     # 全コミットメッセージから "password" という文字列を検索
+
     git log --all | grep -i "password"
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: your current branch 'master' does not have any commits yet`
-    * **考えられる原因**: `git init` したばかりで、まだ一度もコミットが行われていません。
-    * **解決策**: `git add` と `git commit` で最初のコミットを作成してください。
+		* **考えられる原因**: `git init` したばかりで、まだ一度もコミットが行われていません。
+		* **解決策**: `git add` と `git commit` で最初のコミットを作成してください。
 
 ## 環境変数と設定ファイル
 

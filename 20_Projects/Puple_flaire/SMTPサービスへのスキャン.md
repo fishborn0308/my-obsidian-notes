@@ -1,16 +1,14 @@
 ---
 created: 2026-01-09 16:40
-modified: 2026-01-17 18:49
-environment:
-  - Server/Mail
+modified: 2026-02-20 17:36
+environment: [Server/Mail]
 vulnearability: []
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
+platform: [PurpleFlair]
 tools: []
 cve: []
-tags:
+tags: 
 ---
 
 # [Pentest-Walkthrough] Web - Project: SMTPサービスへのスキャン

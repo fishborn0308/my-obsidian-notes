@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'sort'
-  - 'text_processing'
-  - 'linux'
-  - 'uniq'
-  - 'shuf'
-  - 'ls_-l'
-  - 'awk'
+  - sort
+  - text_processing
+  - linux
+  - uniq
+  - shuf
+  - ls_-l
+  - awk
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -42,12 +42,11 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このパイプラインで、アクセスログから攻撃元IPトップ10を抽出する
+		# このパイプラインで、アクセスログから攻撃元IPトップ10を抽出する
 
-    awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
+		awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -74,14 +73,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # /etc/passwd ファイルを、ユーザーID (3番目のフィールド) の数値順でソート
+		# /etc/passwd ファイルを、ユーザーID (3番目のフィールド) の数値順でソート
 
-    sort -t ':' -k 3 -n /etc/passwd
+		sort -t ':' -k 3 -n /etc/passwd
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ログから特定のイベントを抽出し、発生回数が多い順にランキングする。
 * **組み合わせ**: `... | sort | uniq -c | sort -nr`
@@ -89,14 +87,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 認証ログからログインに失敗しているユーザー名を多い順にリストアップ
+		# 認証ログからログインに失敗しているユーザー名を多い順にリストアップ
 
-    grep "Failed password for" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+		grep "Failed password for" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: パスワード攻撃用のワードリストから重複を削除し、整理する。
 * **組み合わせ**: `sort -u wordlist.txt -o wordlist_unique.txt`
@@ -104,12 +101,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 複数のワードリストを結合し、重複を排除してクリーンなリストを作成
+		# 複数のワードリストを結合し、重複を排除してクリーンなリストを作成
 
-    cat list1.txt list2.txt | sort -u > clean_wordlist.txt
+		cat list1.txt list2.txt | sort -u > clean_wordlist.txt
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

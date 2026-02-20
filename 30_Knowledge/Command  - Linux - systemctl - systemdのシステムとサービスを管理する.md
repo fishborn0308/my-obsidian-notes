@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'systemctl'
-  - 'systemd'
-  - 'service_management'
-  - 'linux'
-  - 'service'
-  - 'chkconfig'
-  - 'shutdown'
-  - 'journalctl'
+  - systemctl
+  - systemd
+  - service_management
+  - linux
+  - service
+  - chkconfig
+  - shutdown
+  - journalctl
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,16 +45,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. Nginxサービスのステータスを確認 (ここで 'failed' と表示されたと仮定)
+		# 1. Nginxサービスのステータスを確認 (ここで 'failed' と表示されたと仮定)
 
-    sudo systemctl status nginx.service
+		sudo systemctl status nginx.service
 
-    # 2. nginx.service ユニットに絞って、詳細なログを確認する
+		# 2. nginx.service ユニットに絞って、詳細なログを確認する
 
-    sudo journalctl -u nginx.service -e
+		sudo journalctl -u nginx.service -e
 
-    ```
-
+		```
 
 ## オプション説明 (`systemctl` のサブコマンド)
 
@@ -85,14 +84,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # Nginxをインストール後、起動と自動起動設定を一度に行う
+		# Nginxをインストール後、起動と自動起動設定を一度に行う
 
-    sudo systemctl enable --now nginx
+		sudo systemctl enable --now nginx
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: システムに不審なサービス（バックドア）が永続化のために設置されていないか監査する。
 * **組み合わせ**: `systemctl list-unit-files --type=service`
@@ -100,14 +98,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 全てのサービスユニットをリストし、grepで不審な名前がないか確認
+		# 全てのサービスユニットをリストし、grepで不審な名前がないか確認
 
-    systemctl list-unit-files --type=service | grep -i "backdoor\|revshell"
+		systemctl list-unit-files --type=service | grep -i "backdoor\|revshell"
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **モダンなLinuxにおける最も強力な永続化**を確立する。
 * **組み合わせ**: (ユニットファイル作成) → `sudo systemctl enable --now <backdoor.service>`
@@ -115,13 +112,12 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # /etc/systemd/system/revshell.service というファイルを作成後...
-    # バックドアサービスを有効化・起動する
+		# /etc/systemd/system/revshell.service というファイルを作成後...
+		# バックドアサービスを有効化・起動する
 
-    sudo systemctl enable --now revshell.service
+		sudo systemctl enable --now revshell.service
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

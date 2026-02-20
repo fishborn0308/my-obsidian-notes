@@ -1,14 +1,14 @@
 ---
 tags:
-  - 'w'
-  - 'who'
-  - 'monitoring'
-  - 'forensics'
-  - 'users'
-  - 'uptime'
-  - 'last'
+  - w
+  - who
+  - monitoring
+  - forensics
+  - users
+  - uptime
+  - last
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -44,16 +44,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. 現在のログイン状況を確認
+		# 1. 現在のログイン状況を確認
 
-    w
+		w
 
-    # 2. 不審なユーザー 'attacker' の活動を確認した場合、そのユーザーのコマンド履歴を調査
+		# 2. 不審なユーザー 'attacker' の活動を確認した場合、そのユーザーのコマンド履歴を調査
 
-    sudo cat /home/attacker/.bash_history
+		sudo cat /home/attacker/.bash_history
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -76,14 +75,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 現在ログインしている全ユーザーとその活動を確認
+		# 現在ログインしている全ユーザーとその活動を確認
 
-    w
+		w
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ライブレスポンスで、攻撃者がログインしていないか、何をしているかを確認する。
 * **組み合わせ**: `w`
@@ -91,14 +89,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ライブ調査で現在の全セッションを監査
+		# ライブ調査で現在の全セッションを監査
 
-    w
+		w
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察として、他にどのようなユーザーがログインしているか把握する。
 * **組み合わせ**: `w`
@@ -106,12 +103,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # システムの活動状況を偵察
+		# システムの活動状況を偵察
 
-    w
+		w
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

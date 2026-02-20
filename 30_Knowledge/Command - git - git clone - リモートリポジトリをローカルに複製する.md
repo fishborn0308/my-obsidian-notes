@@ -3,7 +3,7 @@ tags:
   - git_clone
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -35,16 +35,21 @@ knowledge_category: Command
 * **解説**: `git clone` を実行すると、リモートリポジトリのコピーが指定したディレクトリに作成されます。その後、そのディレクトリに移動し、作業を開始します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # リモートリポジトリをカレントディレクトリにクローンする
+
     git clone [https://github.com/your-org/your-project.git](https://github.com/your-org/your-project.git)
 
     # クローンしたディレクトリに移動
+
     cd your-project
 
     # 現在のブランチなどを確認
+
     git status
+
     ```
+
 
 ## オプション説明
 
@@ -69,10 +74,13 @@ knowledge_category: Command
 * **解説**: `--depth 1` で最新のコミットのみを取得することで、クローン時間を短縮し、サーバーのディスク使用量を抑えます。IaCリポジトリのデプロイなど、最新の状態だけが必要な場合に非常に有効です。
 * **例**:
 
-    ```bash
+		```bash
     # release/production ブランチの最新コミットのみをクローン
+
     git clone --depth 1 --single-branch -b release/production [https://github.com/my-infra/my-iac.git](https://github.com/my-infra/my-iac.git)
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -81,12 +89,16 @@ knowledge_category: Command
 * **解説**: `--no-checkout` を使うことで、作業ディレクトリにファイルを展開せず、`.git` ディレクトリ内のオブジェクトと履歴のみを安全にダウンロードします。これにより、リポジトリに含まれる可能性のある悪意のあるフックなどの自動実行を防ぎます。
 * **例**:
 
-    ```bash
+		```bash
     # ファイルを展開せずにリポジトリをクローン
+
     git clone --no-checkout [https://github.com/suspicious/tool-kit.git](https://github.com/suspicious/tool-kit.git)
+
     cd tool-kit
+
     # git log や git cat-file などで安全に内部を調査
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -95,22 +107,25 @@ knowledge_category: Command
 * **解説**: 攻撃ツールは、他のGitリポジトリをサブモジュールとして依存していることがよくあります。`--recursive` を使うことで、これらのツールキットを完全な形で取得し、すぐに使用できる状態にします。
 * **例**:
 
-    ```bash
+		```bash
     # 脆弱性検証用のWebアプリケーションリポジトリを、サブモジュールも含めてクローン
+
     git clone --recursive [https://github.com/vulnerable/web-app.git](https://github.com/vulnerable/web-app.git)
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `fatal: repository '<repo-url>' not found`
-    * **考えられる原因**: 指定したリポジトリのURLが間違っている、リポジトリが存在しない、またはアクセス権限がありません。
-    * **解決策**: URLが正しいか、リポジトリがプライベートでないか、認証情報（SSHキー、Personal Access Tokenなど）が正しく設定されているか確認します。
+		* **考えられる原因**: 指定したリポジトリのURLが間違っている、リポジトリが存在しない、またはアクセス権限がありません。
+		* **解決策**: URLが正しいか、リポジトリがプライベートでないか、認証情報（SSHキー、Personal Access Tokenなど）が正しく設定されているか確認します。
 
 2. **エラーメッセージ例 2**: `fatal: destination path '<directory-name>' already exists and is not an empty directory.`
-    * **考えられる原因**: クローン先のディレクトリがすでに存在し、空ではありません。
-    * **解決策**: 別のディレクトリ名を指定するか、既存のディレクトリの内容を削除してから再度クローンします。
+		* **考えられる原因**: クローン先のディレクトリがすでに存在し、空ではありません。
+		* **解決策**: 別のディレクトリ名を指定するか、既存のディレクトリの内容を削除してから再度クローンします。
 
 ## 環境変数と設定ファイル
 

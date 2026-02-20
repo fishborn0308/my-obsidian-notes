@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'su'
-  - 'user_management'
-  - 'security'
-  - 'legacy'
-  - 'sudo'
-  - 'login'
-  - 'runuser'
-  - 'id'
+  - su
+  - user_management
+  - security
+  - legacy
+  - sudo
+  - login
+  - runuser
+  - id
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,16 +45,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # Debian/Ubuntu系の認証ログからsuの実行履歴を検索
+		# Debian/Ubuntu系の認証ログからsuの実行履歴を検索
 
-    sudo grep "su:" /var/log/auth.log
+		sudo grep "su:" /var/log/auth.log
 
-    # systemd環境でジャーナルから検索
+		# systemd環境でジャーナルから検索
 
-    sudo journalctl | grep "session opened for user root"
+		sudo journalctl | grep "session opened for user root"
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -76,14 +75,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # rootユーザーに切り替え
+		# rootユーザーに切り替え
 
-    su -
+		su -
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: `su`コマンドの実行履歴を監査ログから調査し、権限昇格の試みがないか確認する。
 * **組み合わせ**: `grep "su:" /var/log/auth.log`
@@ -91,14 +89,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # suの認証失敗ログを検索
+		# suの認証失敗ログを検索
 
-    sudo grep "su: PAM authentication failure" /var/log/auth.log
+		sudo grep "su: PAM authentication failure" /var/log/auth.log
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 窃取したパスワードを使い、権限昇格または横展開を行う。
 * **組み合わせ**: `su - <username>`
@@ -106,12 +103,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 窃取したrootのパスワードでrootになる
+		# 窃取したrootのパスワードでrootになる
 
-    su -
+		su -
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

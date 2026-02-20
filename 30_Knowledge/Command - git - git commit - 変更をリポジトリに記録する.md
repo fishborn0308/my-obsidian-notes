@@ -3,7 +3,7 @@ tags:
   - git_commit
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -38,16 +38,21 @@ knowledge_category: Command
 * **解説**: ファイルを変更した後、`git status` で状態を確認し、`git add` でステージング、最後に `git commit` で記録、というGitの最も基本的なワークフローです。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 変更内容を確認
+
     git status
 
     # 2. 変更をステージング
+
     git add new_playbook.yml
 
     # 3. コミットメッセージを付けてコミット
+
     git commit -m "feat: Add new Ansible playbook for web server setup"
+
     ```
+
 
 ## オプション説明
 
@@ -74,11 +79,15 @@ knowledge_category: Command
 * **解説**: プッシュする前に、直前のコミットをクリーンな状態に修正します。`--amend` は新しいコミットを作成するのではなく、直前のコミットを書き換えます。
 * **例**:
 
-    ```bash
+		```bash
     # (コミット後に、files/template.j2 を追加し忘れたことに気づく)
+
     git add files/template.j2
+
     git commit --amend --no-edit # --no-editでメッセージは変更しない
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -87,10 +96,13 @@ knowledge_category: Command
 * **解説**: `-S` オプションでコミットにGPG署名を追加します。これにより、そのコミットが本当にその本人によって作成され、改ざんされていないことを暗号学的に保証できます。インシデント対応の記録など、監査証跡としての信頼性が求められる場面で重要です。
 * **例**:
 
-    ```bash
+		```bash
     # 調査結果を署名付きでコミット
+
     git commit -S -m "docs: Add initial incident report for case #123"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -104,12 +116,12 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Changes not staged for commit`
-    * **考えられる原因**: コミットしようとしましたが、ステージングエリアに何も変更がありません。
-    * **解決策**: `git add <file>` を実行して、コミットに含めたい変更をステージングしてください。
+		* **考えられる原因**: コミットしようとしましたが、ステージングエリアに何も変更がありません。
+		* **解決策**: `git add <file>` を実行して、コミットに含めたい変更をステージングしてください。
 
 2. **エラーメッセージ例 1**: `Please tell me who you are.`
-    * **考えられる原因**: Gitのユーザー名とメールアドレスが設定されていません。
-    * **解決策**: `git config --global user.name "Your Name"` と `git config --global user.email "you@example.com"` を実行して設定してください。
+		* **考えられる原因**: Gitのユーザー名とメールアドレスが設定されていません。
+		* **解決策**: `git config --global user.name "Your Name"` と `git config --global user.email "you@example.com"` を実行して設定してください。
 
 ## 環境変数と設定ファイル
 

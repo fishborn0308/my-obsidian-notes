@@ -4,7 +4,7 @@ tags:
   - git
   - remote_repository
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -36,16 +36,21 @@ knowledge_category: Command
 * **解説**: 変更を加え、`git add`でステージングし、`git commit`でコミットします。その後に`git push`を実行して、これらのコミットをリモートに反映させます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 変更をステージ
+
     git add .
 
     # 変更をコミット
+
     git commit -m "feat: Add user profile management"
 
     # コミットされた変更をリモートリポジトリにプッシュ
+
     git push origin main
+
     ```
+
 
 ## オプション説明
 
@@ -78,10 +83,13 @@ knowledge_category: Command
 * **解説**: `--no-verify` を使用して pre-push フックなどを一時的にスキップし、迅速に修正をデプロイします。
 * **例**:
 
-    ```bash
+		```bash
     # セキュリティパッチの緊急適用のため、フックをスキップしてプッシュ
+
     git push --no-verify origin main
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -95,8 +103,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: failed to push some refs to '<remote-url>'`
-    * **考えられる原因**: 他の誰かが先にプッシュしており、ローカルとリモートで履歴が分岐しています。
-    * **解決策**: まず `git pull` を実行してリモートの変更をローカルに取り込み、マージまたはリベースで履歴を統合してから再度 `git push` を試みます。
+		* **考えられる原因**: 他の誰かが先にプッシュしており、ローカルとリモートで履歴が分岐しています。
+		* **解決策**: まず `git pull` を実行してリモートの変更をローカルに取り込み、マージまたはリベースで履歴を統合してから再度 `git push` を試みます。
 
 ## 環境変数と設定ファイル
 

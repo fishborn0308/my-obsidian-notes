@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'strace'
-  - 'debugging'
-  - 'forensics'
-  - 'syscall'
-  - 'ltrace'
-  - 'gdb'
-  - 'perf'
-  - 'ps'
+  - strace
+  - debugging
+  - forensics
+  - syscall
+  - ltrace
+  - gdb
+  - perf
+  - ps
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,18 +45,17 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. ハングした 'my-app' プロセスのPIDを探す
+		# 1. ハングした 'my-app' プロセスのPIDを探す
 
-    ps aux | grep 'my-app'
+		ps aux | grep 'my-app'
 
-    # -> user      12345 ... ./my-app
+		# -> user      12345 ... ./my-app
 
-    # 2. 特定したPID (12345) にアタッチしてシステムコールを監視
+		# 2. 特定したPID (12345) にアタッチしてシステムコールを監視
 
-    sudo strace -p 12345
+		sudo strace -p 12345
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -82,15 +81,14 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # strace の出力例
+		# strace の出力例
 
-    openat(AT_FDCWD, "/etc/myapp/config.conf", O_RDONLY) = -1 EACCES (Permission denied)
+		openat(AT_FDCWD, "/etc/myapp/config.conf", O_RDONLY) = -1 EACCES (Permission denied)
 
-    # -> この行から、"/etc/myapp/config.conf" が読み取れずに失敗したことが分かる
-    ```
+		# -> この行から、"/etc/myapp/config.conf" が読み取れずに失敗したことが分かる
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: **動的マルウェア解析**。サンドボックス環境で、不審なバイナリを実行してその全てのシステムコールを記録する。
 * **組み合わせ**: `sudo strace -f -o trace_output.txt /path/to/malware`
@@ -98,14 +96,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # マルウェアのファイル操作とネットワーク活動を追跡
+		# マルウェアのファイル操作とネットワーク活動を追跡
 
-    sudo strace -f -e trace=file,network -o malware_trace.log ./malware_sample
+		sudo strace -f -e trace=file,network -o malware_trace.log ./malware_sample
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 脆弱性分析のため、攻撃対象のバイナリの内部動作を理解する。
 * **組み合わせ**: `strace /path/to/target_app`
@@ -113,12 +110,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ユーザー入力を待つプログラムをstraceで起動し、様々な入力を試す
+		# ユーザー入力を待つプログラムをstraceで起動し、様々な入力を試す
 
-    strace ./vulnerable_app
+		strace ./vulnerable_app
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

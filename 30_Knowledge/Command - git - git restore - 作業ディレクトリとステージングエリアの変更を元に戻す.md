@@ -3,7 +3,7 @@ tags:
   - git_restore
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 16:24
+modified: 2026-02-20 17:36
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -38,16 +38,21 @@ knowledge_category: Command
 * **解説**: まず`git status`でファイルの変更状況を確認し、`git diff`で具体的な変更内容を把握します。その上で、変更を破棄するために`git restore`を使います。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 現在の変更状況を確認
+
     git status
 
     # 2. 変更内容を確認
+
     git diff network_config.conf
 
     # 3. network_config.conf の変更を破棄し、最後にコミットされた状態に戻す
+
     git restore network_config.conf
+
     ```
+
 
 ## オプション説明
 
@@ -71,10 +76,13 @@ knowledge_category: Command
 * **解説**: 作業ディレクトリでの変更を完全に破棄し、最後にコミットされた状態に戻す、最も基本的な使い方です。
 * **例**:
 
-    ```bash
+		```bash
     # nginx.conf の変更を破棄し、最後にコミットされた状態に戻す
+
     git restore nginx.conf
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -90,18 +98,21 @@ knowledge_category: Command
 * **解説**: これにより、不要な情報がリポジトリ履歴に残るのを防ぎます。
 * **例**:
 
-    ```bash
+		```bash
     # 誤ってステージングしてしまった機密情報ファイル `creds.txt` をアンステージ
+
     git restore --staged creds.txt
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: pathspec '<file>' did not match any file(s) known to git.`
-    * **考えられる原因**: 指定したファイル名が間違っているか、そのファイルがGitによって追跡されていません。
-    * **解決策**: ファイル名が正しいか確認します。追跡されていないファイルを削除したい場合は`rm`コマンドを使用します。
+		* **考えられる原因**: 指定したファイル名が間違っているか、そのファイルがGitによって追跡されていません。
+		* **解決策**: ファイル名が正しいか確認します。追跡されていないファイルを削除したい場合は`rm`コマンドを使用します。
 
 ## 環境変数と設定ファイル
 

@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'service'
-  - 'sysvinit'
-  - 'legacy'
-  - 'systemd'
-  - 'systemctl'
-  - 'chkconfig'
-  - 'update-rc_d'
-  - '/etc/init_d/'
+  - service
+  - sysvinit
+  - legacy
+  - systemd
+  - systemctl
+  - chkconfig
+  - update-rc_d
+  - /etc/init_d/
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:43
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,17 +45,16 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # (CentOS 6 などのレガシーシステムでの例)
-    # 1. 設定ファイルを編集
+		# (CentOS 6 などのレガシーシステムでの例)
+		# 1. 設定ファイルを編集
 
-    sudo vi /etc/httpd/conf/httpd.conf
+		sudo vi /etc/httpd/conf/httpd.conf
 
-    # 2. サービスを再起動して変更を適用
+		# 2. サービスを再起動して変更を適用
 
-    sudo service httpd restart
+		sudo service httpd restart
 
-    ```
-
+		```
 
 ## オプション説明 (`service` のアクション)
 
@@ -80,14 +79,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # MySQLサービスを再起動
+		# MySQLサービスを再起動
 
-    sudo service mysqld restart
+		sudo service mysqld restart
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: インシデント対応中に、悪意のあるサービスを停止して封じ込める。
 * **組み合わせ**: `sudo service <malicious_service> stop`
@@ -95,14 +93,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 不審なサービス 'evil-svc' を停止
+		# 不審なサービス 'evil-svc' を停止
 
-    sudo service evil-svc stop
+		sudo service evil-svc stop
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入したレガシーシステムで、稼働中のサービスを偵察する。
 * **組み合わせ**: `service --status-all` (Debian系)
@@ -110,12 +107,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 全サービスのステータスを確認
+		# 全サービスのステータスを確認
 
-    service --status-all
+		service --status-all
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

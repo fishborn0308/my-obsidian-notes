@@ -1,15 +1,15 @@
 ---
 tags:
-  - 'userdel'
-  - 'user_management'
-  - 'security'
-  - 'linux'
-  - 'useradd'
-  - 'usermod'
-  - 'passwd_-l'
-  - 'groupdel'
+  - userdel
+  - user_management
+  - security
+  - linux
+  - useradd
+  - usermod
+  - passwd_-l
+  - groupdel
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:44
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -45,16 +45,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # ユーザー 'olduser' が所有するファイルをシステム全体から検索
+		# ユーザー 'olduser' が所有するファイルをシステム全体から検索
 
-    sudo find / -user olduser -ls 2>/dev/null
+		sudo find / -user olduser -ls 2>/dev/null
 
-    # (確認後、安全であればユーザーをホームディレクトリごと削除)
+		# (確認後、安全であればユーザーをホームディレクトリごと削除)
 
-    sudo userdel -r olduser
+		sudo userdel -r olduser
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -75,14 +74,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 退職したユーザー 'old-employee' のアカウントとホームディレクトリを削除
+		# 退職したユーザー 'old-employee' のアカウントとホームディレクトリを削除
 
-    sudo userdel -r old-employee
+		sudo userdel -r old-employee
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 攻撃者によって作成された不正なアカウントを削除し、システムを修復する。
 * **組み合わせ**: `sudo userdel -r <rogue_account>`
@@ -90,14 +88,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 攻撃者が作成した 'hacker' アカウントをホームディレクトリごと削除
+		# 攻撃者が作成した 'hacker' アカウントをホームディレクトリごと削除
 
-    sudo userdel -r hacker
+		sudo userdel -r hacker
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **破壊活動 (Sabotage)** または**サービス妨害 (DoS)**。
 * **組み合わせ**: `sudo userdel <critical_user>`
@@ -105,12 +102,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # アプリケーションのサービスアカウントを削除してサービスを妨害
+		# アプリケーションのサービスアカウントを削除してサービスを妨害
 
-    sudo userdel application_user
+		sudo userdel application_user
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

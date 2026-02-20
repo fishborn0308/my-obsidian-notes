@@ -8,7 +8,7 @@ tags:
   - fdisk
   - lsof
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:38
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

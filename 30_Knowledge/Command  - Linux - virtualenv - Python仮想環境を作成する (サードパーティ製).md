@@ -1,16 +1,16 @@
 ---
 tags:
-  - 'virtualenv'
-  - 'python'
-  - 'virtual_environment'
-  - 'dependency_management'
-  - 'legacy'
-  - 'venv'
-  - 'pipenv'
-  - 'Poetry'
-  - 'pip'
+  - virtualenv
+  - python
+  - virtual_environment
+  - dependency_management
+  - legacy
+  - venv
+  - pipenv
+  - Poetry
+  - pip
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:37
+modified: 2026-02-20 17:36
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
