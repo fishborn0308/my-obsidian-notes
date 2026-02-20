@@ -12,17 +12,20 @@
 
 ## 出力
 
-チートシート　windows/cmd/environment_and_config.mdを作成してください。
+windows - cmd - assocコマンドについて
+
+`Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>.md`を作成してください。
 
 ## 条件
 
-- チートシートは下記の構成に従って作成する
-  - チートシートのファイル構造
+- ドキュメントは下記の構成に従って作成する
+  - ドキュメントのファイル構造
   - インデックスの項目構成
   - コマンド詳細ファイルの項目構成
   - 参考にするサイト
+- 概念説明だけで終わらせないこと
+- 実務ログ例を含めること
 - マークダウン形式で作成する
-- 出力したマークダウン形式のチートシートはコードブロックでくくる
 - 日本語で記述すること
 - 作成するファイルは下記リポジトリのファイルと形式を合わせる
   - `https://github.com/fishborn0308/cheatsheets`
@@ -31,7 +34,7 @@
 
 ```bash
 ./
-├── cheatsheets/
+├── knowledge/
 │   ├── linux/            # Linuxコマンドの詳細ファイル群
 │   │   ├── ls.md
 │   │   ├── cd.md
@@ -70,66 +73,47 @@
 
 ### インデックスの項目構成
 
-```markdown
+```yaml
 ---
 # --- YAML Frontmatter ---
-# ドキュメントのメタデータを管理します。検索や分類に利用できます。
+# ドキュメントのライフサイクルや環境、脆弱性の種類を定義します。
+
+created: 'YYYY-MM-DD' # ドキュメントの作成日を記録します。情報の鮮度を確認する際に役立ちます。
+modified: 'YYYY-MM-DD' # 最終更新日を記録します。更新履歴の管理に利用します。
+
+environment: [] 
+# 実行環境や対象システムを指定します。
+# 例: [OS/Linux, Web/Nginx, DB/PostgreSQL]
+# 特定のOSやソフトウェアに依存する情報をフィルタリングするために重要です。
+
+vulnearability: [] 
+# 関連する脆弱性の種類や攻撃手法を記録します。
+# 例: [RCE, SQLi, IDOR, Broken_Auth]
+# 先ほど英語化したような攻撃手法をタグ付けし、後から特定の攻撃に関する情報を逆引きできます。
+
+knowledge_category: Command
+# 情報の性質を分類します。
+# 例: 'Command', 'OS', 'Server', 'Network', 'Web-arch', 'Vuln-theory', 'Exploit-technique', 'Coding', 'Osint', 'Training', 'Language', 'Security'
 
 tags:
-  - '<Topic>'  # 例: linux, git, docker
-  - 'cheatsheet_index'
-title: '<Topic>_index - <インデックスのタイトル>' # 例: Linuxコマンドとシステム管理の主要目次
-description: '<このインデックス全体の簡単な説明を1〜2文で記述します>' # 例: Linuxの基本操作からセキュリティまで、主要なコマンドと概念を網羅したチートシートの目次です。
-
+  - '<Specific_Tag>' # 具体的な要素（例: nmap, metasploit, active_directory）
+  - 'knowledge_base' # ドキュメントの種類を識別する共通タグ
 ---
-
-# <Topic>_index - <インデックスのタイトル>
-## 概要
-
----
-
-## 1. <Category 1: カテゴリー名>
-
-* [`<Item 1>`](path/to/item1.md) - <項目の簡単な説明>
-* [`<Item 2>`](path/to/item2.md) - <項目の簡単な説明>
-* ...
-
----
-
-## 2. <Category 2: サブグループを持つカテゴリー名>
-
-**<Sub-group 1>**
-* [`<Item 3>`](path/to/item3.md) - <項目の簡単な説明>
-* [`<Item 4>`](path/to/item4.md) - <項目の簡単な説明>
-
-**<Sub-group 2>**
-* [`<Item 5>`](path/to/item5.md) - <項目の簡単な説明>
-
----
-
-## 3. <Category 3: 入れ子リストを持つカテゴリー名>
-
-* [`<Parent Item>`](path/to/parent_item.md) - <親項目の簡単な説明>
-    * `<sub-item 1>`: <サブ項目の簡単な説明>
-    * `<sub-item 2>`: <サブ項目の簡単な説明>
-* [`<Item 6>`](path/to/item6.md) - <項目の簡単な説明>
 ```
 
 ### コマンド詳細ファイルの項目構成　Linux
 
 ```markdown
 ---
+created:
+modified:
+environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
+vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
+knowledge_category:  Command
 tags:
-  - '<コマンド名>'
-  - 'cheetsheet'
-title: '<コマンド名> - <コマンドの簡潔な概要>'
-summary: '<コマンドの基本的な役割と目的を1〜2文で記述。>'
-related:
-  - '<類似コマンド1>'
-  - '<連携コマンド1>'
 ---
 
-# `<コマンド名>` - <コマンドの簡潔な概要>
+# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 
@@ -250,25 +234,21 @@ related:
 * **パフォーマンス**: <例: 大量ファイルに対して使用する際のメモリ消費など>
 
 ---
-[インデックスに戻る](path/to/index.md)
 ```
 
 ### コマンド詳細ファイルの項目構成　Windows CMD
 
 ```markdown
 ---
+created:
+modified:
+environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
+vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
+knowledge_category:  Command
 tags:
-  - '<コマンド名>'
-  - 'cmd'
-  - 'cheetsheet'
-title: '<コマンド名> - <コマンドの簡潔な概要>'
-summary: '<コマンドの基本的な役割と目的を1〜2文で記述。>'
-related:
-  - '<類似コマンド1>'
-  - '<連携コマンド1>'
 ---
 
-# `<コマンド名>` - <コマンドの簡潔な概要>
+# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 
@@ -382,25 +362,21 @@ related:
 * **PowerShellとの比較**: <例: `copy`よりもPowerShellの`Copy-Item`の方が高機能である点など>
 
 ---
-[CMDインデックスに戻る](path/to/index.md)
 ```
 
 ### コマンド詳細ファイルの項目構成　PowerShell
 
 ```markdown
 ---
+created:
+modified:
+environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
+vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
+knowledge_category:  Command
 tags:
-  - '<コマンドレット名>'
-  - 'powershell'
-  - 'cheetsheet'
-title: '<コマンドレット名> - <コマンドレットの簡潔な概要>'
-summary: '<コマンドレットの基本的な役割と目的を1〜2文で記述。>'
-related:
-  - '<類似コマンドレット1>'
-  - '<連携コマンドレット1>'
 ---
 
-# `<コマンドレット名>` - <コマンドレットの簡潔な概要>
+# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 `<コマンドレット名>` の基本的な役割、目的を説明します。PowerShellのオブジェクトパイプラインでどのように機能するかに焦点を当てます。
@@ -450,7 +426,6 @@ related:
 * **オブジェクトの操作**: <例: `Select-Object`, `Where-Object` との連携の重要性>
 
 ---
-[PowerShellインデックスに戻る](path/to/index.md)
 ```
 
 ### 参考にするサイト
