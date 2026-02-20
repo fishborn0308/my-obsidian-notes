@@ -1,4 +1,8 @@
-## 🍎 Mac アプリ インストールリスト
+---
+created: 2026-01-04 12:38
+modified: 2026-02-20 16:14
+---
+# 🍎 Mac アプリ インストールリスト
 
 * [x] **Homebrew**: iTerm上でインストール
 
@@ -17,7 +21,7 @@ brew install git
 brew install mas
 ```
 
-### 1. Homebrew / 公式サイト（基本ツール）
+## 1. Homebrew / 公式サイト（基本ツール）
 
 * [x] **1Password**: パスワード管理（最優先）
 * [x] **Brave Browser**: メインブラウザ
@@ -32,7 +36,7 @@ brew install mas
 * [x] **Zoom**: ビデオ会議
 * [x] **DeepL:** 翻訳
 
-### 2. インフラ・セキュリティ・ネットワーク
+## 2. インフラ・セキュリティ・ネットワーク
 
 * [x] **Tailscale**: メッシュVPN
 * [x] **TablePlus**: データベース管理
@@ -41,7 +45,7 @@ brew install mas
 * [x] **CyberChef**: データ解析（Web版でも可）
 * [x] **Microsoft Remote Desktop (Beta)**: RDPクライアント
 
-### 3. ユーティリティ・システム拡張
+## 3. ユーティリティ・システム拡張
 
 * [x] **Karabiner-Elements**: キーボードカスタマイズ
 * [x] **BetterTouchTool**: トラックパッド拡張
@@ -55,12 +59,12 @@ brew install mas
 * [x] **Th-Marker x**: 画像リサイズ・透かし
 * [x] **Eagle**: デザイン・素材管理
 
-### 4. メール・カレンダー
+## 4. メール・カレンダー
 
 * [x] **Spark**: メールクライアント
 * [x] **Fantastical**: カレンダー
 
-### 5. Mac App Store (mas)
+## 5. Mac App Store (mas)
 
 * [x] **Be Focused Pro**: ポモドーロタイマー
 * [x] **Kindle**: 電子書籍
@@ -68,9 +72,9 @@ brew install mas
 
 ---
 
-## 💻 Windows アプリ インストールリスト
+# 💻 Windows アプリ インストールリスト
 
-### 1. 仮想化・ネットワーク（最優先）
+## 1. 仮想化・ネットワーク（最優先）
 
 * [x] **VMware**: 仮想化基盤
 * [ ] **GNS3**: ネットワークシミュレータ
@@ -78,7 +82,7 @@ brew install mas
 * [x] **Wireshark**: パケット解析
 * [x] **MobaXterm**: 統合ターミナル・SSH
 
-### 2. 開発・セキュリティ
+## 2. 開発・セキュリティ
 
 * [x] **Cursor**: AI統合エディタ
 * [x] **Notepad++**: 軽量エディタ
@@ -86,14 +90,14 @@ brew install mas
 * [ ] **Burp Suite Community**: Web脆弱性診断
 * [ ] **HeidiSQL / DBeaver**: DB管理GUI
 
-### 3. ブラウザ・セキュリティ管理
+## 3. ブラウザ・セキュリティ管理
 
 * [x] **Firefox**: 診断用ブラウザ（拡張機能セットアップ込み）
 * [x] **Google Chrome: ワカモレ環境へのアクセス用ブラウザ
 * [x] **1Password**: パスワード管理
 * [x] **Portmaster**: 通信監視・ファイアウォール
 
-### 4. システムユーティリティ
+## 4. システムユーティリティ
 
 * [x] **Microsoft PowerToys**: 公式ユーティリティ集
 * [x] **Everything**: 高速ファイル検索
@@ -103,22 +107,23 @@ brew install mas
 * [x] **Logi Options+**: デバイス管理
 * [x] **SnipDo**: テキストポップアップ
 
-### 5. ハードウェア・バックアップ
+## 5. ハードウェア・バックアップ
 
 * [x] **HWinfo64**: ハードウェア診断
 * [ ] **Macrium Reflect**: イメージバックアップ作成
 
-### 6. コミュニケーション
+## 6. コミュニケーション
+
 * [x] **Slack**: コミュニケーション---
 
-## 🌐 Webアプリ（ブックマーク登録）
+# 🌐 Webアプリ（ブックマーク登録）
 
 * [ ] **Draw.io**: ネットワーク図作成
 * [ ] **Squoosh**: 画像圧縮
 
 ---
 
-### 💡 構築時のアドバイス
+## 💡 構築時のアドバイス
 
 このチェックリストを **Obsidian** の新規ノートに貼り付け、インストールが完了するごとに `[x]` をつけて管理することをお勧めします。
 

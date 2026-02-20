@@ -1,10 +1,11 @@
 ---
 created: 2026-01-10 20:07
-modified: 2026-01-24 11:43
+modified: 2026-02-20 16:15
 tags:
   - Git-Hub
   - config
 ---
+
 # Mac - Git Hub
 
 ## GitHubでトークンを発行する

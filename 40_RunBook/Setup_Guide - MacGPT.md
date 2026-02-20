@@ -1,12 +1,13 @@
 ---
 created: 2026-02-20 09:37
-modified: 2026-02-20 11:41
+modified: 2026-02-20 16:16
 environment: [OS/Windows11] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
 vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
 runbook_category: Setup_Guide
 tools: [] # 例: [nmap, gobuster, hydra]
-tags: []
+tags: 
 ---
+
 # MacGPT
 
 ## 1. Menu Bar モード（クイック起動）

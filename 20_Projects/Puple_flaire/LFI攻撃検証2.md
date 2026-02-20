@@ -1,18 +1,14 @@
 ---
 created: 2026-01-09 12:22
-modified: 2026-01-17 18:49
-environment:
-  - Server/Web
-vulnearability:
-  - LFI/LogPoisoning
+modified: 2026-02-20 16:15
+environment: [Server/Web]
+vulnearability: [LFI/LogPoisoning]
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
+platform: [PurpleFlair]
 tools: []
 cve: []
-tags:
-  - Log
+tags: Log
 ---
 
 # [Pentest-Walkthrough] Web - Project: LFI攻撃検証2

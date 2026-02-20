@@ -1,12 +1,11 @@
 ---
 created: 2026-01-24 12:07
-modified: 2026-01-24 12:09
+modified: 2026-02-20 16:14
 environment: []
 vulnearability: []
 runbook_category: Cheatsheet
 tools: []
-tags:
-  - Obsidian
+tags: Obsidian
 ---
 
 # Cheatsheet - Obsidian Shortcut

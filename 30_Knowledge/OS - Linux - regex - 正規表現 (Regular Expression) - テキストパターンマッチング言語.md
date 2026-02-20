@@ -1,7 +1,14 @@
 ---
-tags: regex regular_expression text_processing grep sed awk wildcards
+tags:
+  - regex
+  - regular_expression
+  - text_processing
+  - grep
+  - sed
+  - awk
+  - wildcards
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:57
+modified: 2026-02-20 16:10
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

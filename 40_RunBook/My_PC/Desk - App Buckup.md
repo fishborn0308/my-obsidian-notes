@@ -1,9 +1,9 @@
 ---
 created: 2025-12-28 10:33
-modified: 2026-01-24 12:11
-tags:
-  - Manual
+modified: 2026-02-20 16:14
+tags: Manual
 ---
+
 # バックアップ
 
 ## 1. バックアップ対象の分類

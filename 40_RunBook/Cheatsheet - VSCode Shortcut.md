@@ -1,12 +1,11 @@
 ---
 created: 2025-09-23 10:56
-modified: 2026-01-17 18:55
+modified: 2026-02-20 16:14
 environment: []
 vulnearability: []
 runbook_category: Cheatsheet
 tools: []
-tags:
-  - VSCode
+tags: VSCode
 ---
 
 # Cheatsheet - VSCode Shortcut

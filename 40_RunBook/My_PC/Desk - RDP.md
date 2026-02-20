@@ -1,10 +1,11 @@
 ---
 created: 2026-01-05 20:30
-modified: 2026-01-24 12:04
+modified: 2026-02-20 16:15
 tags:
   - RDP
   - config
 ---
+
 # RDP接続
 
 ## 1. macOS側の前提設定（Mission Control）

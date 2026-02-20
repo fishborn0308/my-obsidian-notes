@@ -1,20 +1,16 @@
 ---
 created: 2026-01-08 19:00
-modified: 2026-01-17 18:18
-environment:
-  - Server/Web
-vulnearability:
-  - LFI
+modified: 2026-02-20 16:15
+environment: [Server/Web]
+vulnearability: [LFI]
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
-tools:
-  - Burp
+platform: [PurpleFlair]
+tools: [Burp]
 cve: []
-tags:
-  - Log
+tags: Log
 ---
+
 # [Pentest-Walkthrough] Web - Project: LFI攻撃検証
 
 セキュリティアナリストから、自社サービスのユーザ情報が漏洩している可能性があると報告されました。ユーザ情報は、Webアプリケーションが稼働しているサーバ内に保存されています。これらをふまえて、利用者の情報から攻撃を受けた可能性のあるサービスを停止しました。調査を進めるなかで、同僚がローカルファイルインクルージョン(LFI)脆弱性が存在すると指摘しました。

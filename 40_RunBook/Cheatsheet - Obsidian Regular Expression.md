@@ -1,12 +1,11 @@
 ---
 created: 2026-01-24 11:49
-modified: 2026-01-24 12:06
+modified: 2026-02-20 16:14
 environment: []
 vulnearability: []
 runbook_category: Cheatsheet
 tools: []
-tags:
-  - Obsidian
+tags: Obsidian
 ---
 
 # Cheatsheet - Obsidian Regular Expression

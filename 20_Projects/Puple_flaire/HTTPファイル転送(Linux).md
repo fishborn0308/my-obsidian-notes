@@ -1,18 +1,16 @@
 ---
 created: 2026-01-08 09:40
-modified: 2026-01-17 18:18
-environment:
-  - OS/Linux
+modified: 2026-02-20 16:15
+environment: [OS/Linux]
 vulnearability: []
 type: pentest-walkthrough
 pentest_category: OS
-platform:
-  - PurpleFlair
+platform: [PurpleFlair]
 tools: []
 cve: []
-tags:
-  - File_Transfer
+tags: File_Transfer
 ---
+
 # [Pentest-Walkthrough] OS - Project: HTTPファイル転送(Linux)
 
 まず、SSHを利用して攻撃対象マシンにログインします。

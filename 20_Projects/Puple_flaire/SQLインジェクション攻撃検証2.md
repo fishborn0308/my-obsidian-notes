@@ -1,18 +1,16 @@
 ---
 created: 2026-01-09 13:41
-modified: 2026-01-17 18:34
-environment:
-  - Server/DB
-vulnearability:
-  - SQLi
+modified: 2026-02-20 16:16
+environment: [Server/DB]
+vulnearability: [SQLi]
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
+platform: [PurpleFlair]
 tools: []
 cve: []
-tags:
+tags: 
 ---
+
 # [Pentest-Walkthrough] OS - Project: SQLインジェクション攻撃検証2
 
 あなたの会社で管理しているサーバに「管理者としての不正ログインが確認された」と連絡がありました。どうやらデータベースに保存されていたパスワードが流出してるようです。データベースには、自社で公開しているWebサイトで利用している商品情報が保存されています。
@@ -21,7 +19,7 @@ tags:
 
 SQLインジェクション脆弱性について調査し、その脆弱性を利用して、管理者のパスワードを解答してください。
 
-### 攻略手順
+## 攻略手順
 
 今回の問題の目標は、「SQLインジェクションを利用して、管理者のパスワードを取得すること」です。
 

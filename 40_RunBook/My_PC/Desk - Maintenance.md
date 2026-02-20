@@ -1,9 +1,9 @@
 ---
 created: 2025-12-28 11:17
-modified: 2026-01-24 12:09
-tags:
-  - Manual
+modified: 2026-02-20 16:15
+tags: Manual
 ---
+
 # メンテナンス
 
 ## 1. Backup戦略：再現性重視の「軽量」バックアップ

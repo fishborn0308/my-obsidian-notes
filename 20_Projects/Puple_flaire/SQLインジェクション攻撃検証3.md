@@ -1,18 +1,16 @@
 ---
 created: 2026-01-09 14:54
-modified: 2026-01-17 18:35
-environment:
-  - Server/DB
-vulnearability:
-  - SQLi
+modified: 2026-02-20 16:16
+environment: [Server/DB]
+vulnearability: [SQLi]
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
+platform: [PurpleFlair]
 tools: []
 cve: []
-tags:
+tags: 
 ---
+
 # [Pentest-Walkthrough] Web - Project: SQLインジェクション攻撃検証3
 
 あなたの会社で管理しているサーバに保存されていたファイルが漏洩したことがわかりました。漏洩したファイルは、サーバの管理者情報を記載していたファイルusers.csvです。
@@ -21,7 +19,7 @@ tags:
 
 SQLインジェクション脆弱性について調査し、その脆弱性を利用して、users.csvからユーザー名adminのパスワードを解答してください。
 
-### 脆弱性の特定
+## 脆弱性の特定
 
 この問題のWebサイトには、SQLインジェクション脆弱性があります。
 
@@ -88,7 +86,7 @@ SELECT <在庫を表すカラム名> FROM <商品情報のテーブル名> WHERE
 
 この結果、アプリケーションからのレスポンスが指定した秒数だけ遅くなることが確認できたため、データベースにはMySQLが使用されていることが分かります。
 
-### WebShellの作成
+## WebShellの作成
 
 それでは、システムコマンドを実行するためにWebShellを作成しましょう。
 
@@ -126,7 +124,7 @@ shell.php
 style.css
 </pre>
 
-### 脆弱性の利用
+## 脆弱性の利用
 
 問題の答えは、users.csvに存在することはわかっていますが、パスがわかっていません。 そのため、findコマンドを使用し、users.csvのパスを検索します。
 

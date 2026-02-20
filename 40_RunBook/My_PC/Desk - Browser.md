@@ -1,9 +1,9 @@
 ---
 created: 2026-01-02 20:49
-modified: 2026-01-24 12:10
-tags:
-  - Manual
+modified: 2026-02-20 16:15
+tags: Manual
 ---
+
 # ブラウザの使い分け
 
 * **Mac (日常): Brave**

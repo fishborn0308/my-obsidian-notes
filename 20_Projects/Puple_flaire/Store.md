@@ -1,22 +1,16 @@
 ---
 created: 2026-01-08 13:45
-modified: 2026-01-17 18:38
-environment:
-  - Server/Web
-vulnearability:
-  - SQLi
-  - LFI
-  - Path_Traversal
+modified: 2026-02-20 16:16
+environment: [Server/Web]
+vulnearability: [SQLi, LFI, Path_Traversal]
 type: pentest-walkthrough
 pentest_category: Web
-platform:
-  - PurpleFlair
-tools:
-  - feroxbuster 
-  - ffuf
+platform: [PurpleFlair]
+tools: [feroxbuster , ffuf]
 cve: []
-tags:
+tags: 
 ---
+
 # [Pentest-Walkthrough] Web - Project: Store
 
 ペネトレーションテスターのあなたは、「出店するECサイトのWebサーバを構築したが、セキュリティ面で安全に構築できたか不安だ。サーバを攻撃者目線で確認してサーバの管理者権限が取得できるかテストして欲しい」という依頼を受けました。

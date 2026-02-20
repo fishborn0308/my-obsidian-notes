@@ -1,10 +1,11 @@
 ---
 created: 2026-01-04 08:35
-modified: 2026-01-24 12:01
+modified: 2026-02-20 16:15
 tags:
   - VCCode
   - config
 ---
+
 # Mac - VSCode
 
 ## VSCode
@@ -167,16 +168,21 @@ tags:
 	* Mac用のパッケージマネージャであるHomebrewを導入しておくと、今後必要なツール(Git自体もそうですが、各種セキュリティツールなど)のインストールが非常に楽になります。
 	* ターミナルで以下のコマンドを実行してインストールできます。
 
-	    ```bash
+			```bash
+
 	    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 	    ```
 
 * **Gitのインストール:**
 	* MacにはデフォルトでGitがインストールされていることが多いですが、最新版をHomebrewでインストールしておくことをオススメします。
 
-	    ```bash
+			```bash
+
 	    brew install git
+
 	    ```
+
 
 ## Obsidian
 
