@@ -2,19 +2,21 @@
 tags:
   - 'sftp'
   - 'ssh'
-  - 'file transfer'
+  - 'file_transfer'
   - 'networking'
-  - 'cheetsheet'
-title: 'sftp - SSHプロトコルで対話的にファイルを転送する'
-summary: 'SSHプロトコル上で動作する、対話的なファイル転送プログラムです。FTPに似たコマンド体系で、安全にファイル操作を行えます。'
-related:
   - 'scp'
   - 'rsync'
   - 'ftp'
   - 'ssh'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `sftp` - SSHプロトコルで対話的にファイルを転送する
+# Command  - Linux -  sftp - SSHプロトコルで対話的にファイルを転送する
 
 ## 概要
 
@@ -158,4 +160,4 @@ related:
 * **chroot jail**: `sshd_config` で `ChrootDirectory %h` を設定すると、`sftp` ユーザーは自身のホームディレクトリ (`%h`) より上の階層に移動できなくなり、セキュリティが大幅に向上します。
 
 ---
-[インデックスに戻る](../linux_index.md)
+

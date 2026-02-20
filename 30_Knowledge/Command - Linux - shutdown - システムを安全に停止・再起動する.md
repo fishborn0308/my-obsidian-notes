@@ -2,19 +2,21 @@
 tags:
   - 'shutdown'
   - 'reboot'
-  - 'system management'
+  - 'system_management'
   - 'legacy'
-  - 'cheetsheet'
-title: 'shutdown - システムを安全に停止・再起動する'
-summary: 'ログイン中の全ユーザーに警告を通知した後、全てのプロセスを穏やかに終了させ、システムを安全にシャットダウンまたは再起動します。'
-related:
   - 'systemctl'
   - 'reboot'
   - 'halt'
   - 'poweroff'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `shutdown` - システムを安全に停止・再起動する
+# Command - Linux - shutdown - システムを安全に停止・再起動する
 
 ## 概要
 
@@ -142,4 +144,4 @@ related:
 * **`systemctl` を推奨**: モダンな `systemd` 環境では、`shutdown` よりも `systemctl reboot` や `systemctl poweroff` を使う方が、`systemd` の状態管理とより密接に連携するため、挙動が明確です。
 
 ---
-[インデックスに戻る](../linux_index.md)
+

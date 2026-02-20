@@ -4,17 +4,19 @@ tags:
   - 'sysvinit'
   - 'legacy'
   - 'systemd'
-  - 'cheetsheet'
-title: 'service - SysVinitサービスを管理する (旧)'
-summary: 'SysVinitやUpstartシステムにおいて、サービスの起動・停止・再起動を行うためのラッパースクリプトです。'
-related:
   - 'systemctl'
   - 'chkconfig'
-  - 'update-rc.d'
-  - '/etc/init.d/'
+  - 'update-rc_d'
+  - '/etc/init_d/'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `service` - SysVinitサービスを管理する (旧)
+# Command  - Linux - service - SysVinitサービスを管理する (旧)
 
 ## 概要
 
@@ -146,4 +148,3 @@ related:
 * **`systemctl` への移行**: モダンなシステムではサービスの管理は全て `systemctl` で行うべきです。`systemctl` は、より詳細な状態管理、ログ連携、依存関係の制御など、遥かに優れた機能を提供します。
 
 ---
-[インデックスに戻る](../linux_index.md)

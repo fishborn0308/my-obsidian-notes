@@ -1,20 +1,21 @@
 ---
 tags:
   - 'sed'
-  - 'stream editor'
-  - 'text processing'
+  - 'stream_editor'
+  - 'text_processing'
   - 'regex'
-  - 'cheetsheet'
-title: 'sed - テキストストリームを編集する'
-summary: 'ファイルや標準入力からのテキストストリームを、一行ずつ非対話的に編集するためのコマンドで、とくに正規表現を使った置換が得意です。'
-related:
   - 'awk'
   - 'grep'
   - 'vi'
-  - 'regex'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `sed` - テキストストリームを編集する
+# Command  - Linux - sed - テキストストリームを編集する
 
 ## 概要
 
@@ -141,4 +142,4 @@ related:
 * **`-i` オプションの注意**: `-i` (`in-place`) オプションは、バックアップなしでファイルを直接上書きします。正規表現の記述ミスは、重要な設定ファイルを破壊する可能性があります。**編集前には必ずバックアップを取る**か、まずは `-i` なしで出力を確認してください。
 
 ---
-[インデックスに戻る](../linux_index.md)
+

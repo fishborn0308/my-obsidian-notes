@@ -1,70 +1,21 @@
 ---
 tags:
-  - rm
-  - file management
-  - destructive
-  - cheetsheet
-title: rm - ファイルやディレクトリを削除する
-summary: ファイルやディレクトリを恒久的に削除するための基本的なコマンドです。実行には細心の注意が必要です。
-related:
-  - rmdir
-  - shred
-  - find
-  - mv
-created:
-modified:
-environment: []
-vulnearability: []
-knowledge_category: Command
----
-
-# Command - rm
-
-## 概要
-
-- 
-
-## コマンド / 設定例
-
-```bash
-
-```
-
-## 逆引き・逆引き（➔ 逆引き・解決策 に修正）
-
-- **やりたいこと:** （例：特定のプロセスを強制終了したい）
-- **解決策:** `kill -9 <PID>`
-- **補足:** ゾンビプロセスには効かない場合がある
-
-## このナレッジを使用した検証ログ
-
-[!INFO] このツール/知識を実際に使用した 20_Projects のログが自動で表示されます。
-
-```dataview
-TABLE target_ip as "ターゲット", status as "状況", date as "実施日"
-FROM "20_Projects"
-WHERE contains(tools, this.file.name) OR contains(tools, [[rm]])
-SORT date DESC
-```
-
-## 関連リンク
-
-- [[_Index_undefined]]---
-tags:
   - 'rm'
   - 'file management'
   - 'destructive'
-  - 'cheetsheet'
-title: 'rm - ファイルやディレクトリを削除する'
-summary: 'ファイルやディレクトリを恒久的に削除するための基本的なコマンドです。実行には細心の注意が必要です。'
-related:
   - 'rmdir'
   - 'shred'
   - 'find'
   - 'mv'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# `rm` - ファイルやディレクトリを削除する
+# Command  - Linux - rm - ファイルやディレクトリを削除する
 
 ## 概要
 
@@ -184,4 +135,4 @@ related:
 * **ワイルドカード (`*`) の恐怖**: `rm -rf *` を実行する際は、自分がどのディレクトリにいるかを `pwd` で**絶対に**確認してください。予期せぬディレクトリで実行すると、大惨事を引き起こします。
 
 ---
-[インデックスに戻る](../linux_index.md)
+

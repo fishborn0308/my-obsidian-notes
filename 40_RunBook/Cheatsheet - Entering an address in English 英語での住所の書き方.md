@@ -1,3 +1,14 @@
+---
+created:
+modified:
+environment: []
+vulnearability: []
+runbook_category: Cheatsheet
+tools: []
+tags:
+  - address_in_English
+---
+
 英語の住所は、**「狭い範囲（部屋番号）から広い範囲（国名）」**の順に並べるのがルール
 
 ### 英語表記

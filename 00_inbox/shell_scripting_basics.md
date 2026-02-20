@@ -14,7 +14,7 @@ related:
   - 'pipes_redirections'
 ---
 
-# シェルスクリプティング基礎 (Bash)
+# OS - Linux - シェルスクリプティング基礎 (Bash)
 
 ## 概要
 
@@ -177,4 +177,3 @@ chmod +x my_script.sh
 
 ---
 
-[インデックスに戻る](https://www.google.com/search?q=../linux_index.md)
