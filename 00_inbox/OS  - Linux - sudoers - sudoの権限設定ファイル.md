@@ -4,15 +4,16 @@ tags:
   - 'visudo'
   - 'sudo'
   - 'security'
-  - 'privilege management'
-  - 'cheetsheet'
-title: 'sudoers - sudoの権限設定ファイル'
-summary: 'sudoコマンドの挙動を定義するポリシーファイル。どのユーザーがどのコマンドをどの権限で実行できるかを詳細に設定し、権限管理の中核を担います。'
-related:
+  - 'privilege_management'
   - 'sudo'
   - 'visudo'
   - 'su'
   - 'groupadd'
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: OS
 ---
 
 # OS  - Linux - sudoers - sudoの権限設定ファイル
@@ -103,7 +104,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `>>> /etc/sudoers: syntax error near line 25 <<<`
     * **考えられる原因**: `visudo` を使わずにファイルを編集した、または `visudo` の編集中に構文を間違えました。

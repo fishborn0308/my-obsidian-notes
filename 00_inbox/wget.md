@@ -112,7 +112,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `ERROR 404: Not Found.`
     * **考えられる原因**: 指定したURLのパスが間違っているか、そのファイルはサーバー上に存在しません。

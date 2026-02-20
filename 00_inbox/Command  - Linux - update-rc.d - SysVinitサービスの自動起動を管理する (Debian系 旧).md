@@ -1,17 +1,19 @@
 ---
 tags:
-  - 'update-rc.d'
+  - 'update-rc_d'
   - 'sysvinit'
   - 'debian'
   - 'ubuntu'
   - 'legacy'
-  - 'cheetsheet'
-title: 'update-rc.d - SysVinitサービスの自動起動を管理する (Debian系/旧)'
-summary: 'SysVinitを採用した旧世代のDebian/Ubuntu系システムで、サービスの自動起動設定をランレベルごとに管理します。'
-related:
   - 'systemctl'
   - 'chkconfig'
   - 'service'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - update-rc.d - SysVinitサービスの自動起動を管理する (Debian系/旧)
@@ -106,7 +108,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `update-rc.d: error: initscript does not exist: /etc/init.d/<service_name>`
     * **考えられる原因**: `/etc/init.d/` ディレクトリに、指定したサービス名の起動スクリプトが存在しません。

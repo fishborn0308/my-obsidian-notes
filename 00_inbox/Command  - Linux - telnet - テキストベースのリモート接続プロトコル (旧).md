@@ -4,13 +4,15 @@ tags:
   - 'networking'
   - 'legacy'
   - 'security'
-  - 'cheetsheet'
-title: 'telnet - テキストベースのリモート接続プロトコル (旧)'
-summary: 'リモートコンピュータと対話的なテキストベース通信を行う古典的なプロトコルおよびクライアント。現代では主にポート接続のテストに使用されます。'
-related:
   - 'ssh'
   - 'netcat'
   - 'curl'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - telnet - テキストベースのリモート接続プロトコル (旧)
@@ -99,7 +101,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `Connection refused`
     * **考えられる原因**: ネットワークは到達可能ですが、宛先ホストの指定ポートでリッスンしているプロセスが存在しません。

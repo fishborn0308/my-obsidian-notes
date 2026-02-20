@@ -1,17 +1,19 @@
 ---
 tags:
   - 'su'
-  - 'user management'
+  - 'user_management'
   - 'security'
   - 'legacy'
-  - 'cheetsheet'
-title: 'su - ユーザーを切り替える'
-summary: '現在のターミナルセッションで、別のユーザーアカウント（デフォルトはroot）に切り替えるための古典的なコマンドです。'
-related:
   - 'sudo'
   - 'login'
   - 'runuser'
   - 'id'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - su - ユーザーを切り替える
@@ -101,7 +103,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `su: Authentication failure`
     * **考えられる原因**: 間違ったパスワードを入力しました。

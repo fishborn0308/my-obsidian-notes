@@ -5,14 +5,15 @@ tags:
   - 'free'
   - 'monitoring'
   - 'performance'
-  - 'cheetsheet'
-title: 'top, htop, free - システムリソース監視ツール'
-summary: 'システムのCPU、メモリ、プロセスなどのリソース使用状況を把握するための基本的なコマンド群、top, htop, freeを比較解説します。'
-related:
   - 'ps'
   - 'vmstat'
   - 'iostat'
   - 'kill'
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: OS
 ---
 
 # OS  - Linux - top, htop, free - システムリソース監視ツール
@@ -115,7 +116,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: htop: command not found`
     * **考えられる原因**: `htop` は多くのシステムでデフォルトではインストールされていません。

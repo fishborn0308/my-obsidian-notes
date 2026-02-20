@@ -4,14 +4,16 @@ tags:
   - 'debugging'
   - 'forensics'
   - 'syscall'
-  - 'cheetsheet'
-title: 'strace - プロセスのシステムコールを追跡する'
-summary: 'プロセスがカーネルに対して行うシステムコールと、受信するシグナルを傍受・記録する強力な動的解析ツールで、デバッグやフォレンジックに不可欠です。'
-related:
   - 'ltrace'
   - 'gdb'
   - 'perf'
   - 'ps'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - strace - プロセスのシステムコールを追跡する
@@ -107,7 +109,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `strace: attach: ptrace(PTRACE_ATTACH, ...): Operation not permitted`
     * **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。

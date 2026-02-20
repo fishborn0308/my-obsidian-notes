@@ -3,15 +3,17 @@ tags:
   - 'sshd_config'
   - 'ssh'
   - 'security'
-  - 'server hardening'
-  - 'cheetsheet'
-title: 'sshd_config - SSHサーバーの設定ファイル'
-summary: 'SSHデーモン(sshd)の動作を制御するメイン設定ファイルで、認証方式、アクセス制御、ロギングなどを定義し、サーバーのセキュリティを強化します。'
-related:
+  - 'server_hardening'
   - 'ssh'
   - 'ssh_config'
   - 'fail2ban'
   - 'systemctl'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - sshd_config - SSHサーバーの設定ファイル
@@ -116,7 +118,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`sshd_config` を変更してサービスを再起動したら、SSH接続できなくなった。**
     * **考えられる原因**: ファイルに構文エラーがあるか、`Port` や `ListenAddress`, `AllowUsers` などの設定で自分自身を締め出す設定をしてしまった。

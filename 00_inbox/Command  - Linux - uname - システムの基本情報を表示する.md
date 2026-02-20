@@ -2,14 +2,16 @@
 tags:
   - 'uname'
   - 'kernel'
-  - 'system information'
-  - 'cheetsheet'
-title: 'uname - システムの基本情報を表示する'
-summary: '現在実行中のカーネル名、ホスト名、カーネルリリース、CPUアーキテクチャなど、システムの最も基本的な情報を表示します。'
-related:
+  - 'system_information'
   - 'lsb_release'
   - 'hostname'
-  - 'cat /proc/version'
+  - 'cat_/proc/version'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - uname - システムの基本情報を表示する
@@ -98,7 +100,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 * `uname` はシステムの基本的な情報を表示するだけの非常にシンプルなコマンドであり、エラーが発生することは稀です。
 
 ## 環境変数と設定ファイル

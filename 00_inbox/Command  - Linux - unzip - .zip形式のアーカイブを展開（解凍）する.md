@@ -3,14 +3,15 @@ tags:
   - 'unzip'
   - 'zip'
   - 'archive'
-  - 'cheetsheet'
-title: 'unzip - .zip形式のアーカイブを展開（解凍）する'
-summary: 'ZIP形式のアーカイブファイル(.zip)に格納されているファイルの一覧表示、テスト、展開（解凍）を行うための標準的なユーティリティです。'
-related:
-  - 'zip'
   - 'tar'
   - 'gunzip'
   - '7z'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - unzip - .zip形式のアーカイブを展開（解凍）する
@@ -96,7 +97,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: cannot find zipfile directory in one of ...`
     * **考えられる原因**: ZIPファイルが破損しているか、ダウンロードが不完全です。

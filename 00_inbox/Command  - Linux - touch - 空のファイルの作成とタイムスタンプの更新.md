@@ -1,16 +1,17 @@
 ---
 tags:
   - 'touch'
-  - 'file management'
+  - 'file_management'
   - 'timestamp'
   - 'forensics'
-  - 'cheetsheet'
-title: 'touch - 空のファイルの作成とタイムスタンプの更新'
-summary: '存在しない場合は空のファイルを新規作成し、存在する場合はファイルのアクセス時刻と変更時刻を更新するための基本的なコマンドです。'
-related:
   - 'mkdir'
-  - 'cat > file'
   - 'stat'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - touch - 空のファイルの作成とタイムスタンプの更新
@@ -115,7 +116,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `touch: cannot touch '<filename>': Permission denied`
     * **考えられる原因**: ファイルを作成しようとしているディレクトリへの書き込み権限がないか、既存のファイルのタイムスタンプを変更しようとしたが、そのファイルの所有者ではありません。

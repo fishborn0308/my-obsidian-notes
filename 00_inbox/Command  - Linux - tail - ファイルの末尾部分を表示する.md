@@ -1,17 +1,19 @@
 ---
 tags:
   - 'tail'
-  - 'text processing'
+  - 'text_processing'
   - 'logging'
   - 'linux'
-  - 'cheetsheet'
-title: 'tail - ファイルの末尾部分を表示する'
-summary: 'ファイルや標準入力の末尾部分（デフォルトは10行）を表示し、-fオプションでファイルの追記をリアルタイムに監視できるコマンドです。'
-related:
   - 'head'
   - 'cat'
   - 'less'
   - 'journalctl'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - tail - ファイルの末尾部分を表示する
@@ -97,7 +99,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`tail -f` を実行していたら、ログがローテーションされた後、出力が止まってしまった。**
     * **考えられる原因**: `tail -f` はファイルのiノードを監視しています。ログローテーションでファイルがリネーム (`log -> log.1`) され、新しいファイルが作成されると、`tail` はリネームされた古いファイルを追いかけ続けてしまいます。

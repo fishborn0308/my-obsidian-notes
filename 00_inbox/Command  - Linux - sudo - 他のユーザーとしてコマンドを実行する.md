@@ -1,16 +1,18 @@
 ---
 tags:
   - 'sudo'
-  - 'privilege management'
+  - 'privilege_management'
   - 'security'
-  - 'cheetsheet'
-title: 'sudo - 他のユーザーとしてコマンドを実行する'
-summary: '一般ユーザーが、許可された別のユーザー（通常はroot）の権限で、自身のパスワードを使って特定のコマンドを一時的に実行できるようにする仕組みです。'
-related:
   - 'su'
   - 'sudoers'
   - 'visudo'
   - 'id'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - sudo - 他のユーザーとしてコマンドを実行する
@@ -109,7 +111,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `user is not in the sudoers file. This incident will be reported.`
     * **考えられる原因**: コマンドを実行したユーザーは、`/etc/sudoers` ファイルで `sudo` の使用が許可されていません。

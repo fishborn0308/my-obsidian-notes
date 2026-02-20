@@ -4,13 +4,15 @@ tags:
   - 'networking'
   - 'troubleshooting'
   - 'icmp'
-  - 'cheetsheet'
-title: 'traceroute - 宛先ホストまでのネットワーク経路を追跡する'
-summary: '指定したホストまでのIPパケットが、どのような経路（ルーター）を通過していくかを一覧表示するネットワーク診断ツールです。'
-related:
   - 'mtr'
   - 'ping'
-  - 'ip route'
+  - 'ip_route'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - traceroute - 宛先ホストまでのネットワーク経路を追跡する
@@ -99,7 +101,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **途中のホップが全て `* * *` になる。**
     * **考えられる原因**: 経路上のファイアウォールが、`traceroute` が使用するICMPまたはUDPパケットを完全にブロックしています。

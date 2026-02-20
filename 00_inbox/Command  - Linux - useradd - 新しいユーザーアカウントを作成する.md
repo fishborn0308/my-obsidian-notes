@@ -2,16 +2,18 @@
 tags:
   - 'useradd'
   - 'adduser'
-  - 'user management'
+  - 'user_management'
   - 'security'
-  - 'cheetsheet'
-title: 'useradd - 新しいユーザーアカウントを作成する'
-summary: 'システムに新しいユーザーアカウントを作成し、ホームディレクトリや所属グループ、ログインシェルなどを設定するための基本的なコマンドです。'
-related:
   - 'adduser'
   - 'usermod'
   - 'userdel'
   - 'passwd'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - useradd - 新しいユーザーアカウントを作成する
@@ -109,7 +111,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `useradd: user '<username>' already exists`
     * **考えられる原因**: 指定したユーザー名は既にシステムに存在します。

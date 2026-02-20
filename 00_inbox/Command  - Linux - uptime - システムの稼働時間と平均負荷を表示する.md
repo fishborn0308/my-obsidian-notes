@@ -4,14 +4,16 @@ tags:
   - 'monitoring'
   - 'performance'
   - 'linux'
-  - 'cheetsheet'
-title: 'uptime - システムの稼働時間と平均負荷を表示する'
-summary: 'システムが最後に起動してからの稼働時間、ログインユーザー数、そしてシステムの平均負荷（ロードアベレージ）を一行で簡潔に表示します。'
-related:
   - 'w'
   - 'top'
   - 'htop'
-  - 'last reboot'
+  - 'last_reboot'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - uptime - システムの稼働時間と平均負荷を表示する
@@ -99,7 +101,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 * `uptime` はシステムの基本的な情報を表示するだけの非常にシンプルなコマンドであり、エラーが発生することはほぼありません。
 
 ## 環境変数と設定ファイル

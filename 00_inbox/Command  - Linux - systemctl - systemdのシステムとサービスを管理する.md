@@ -2,16 +2,18 @@
 tags:
   - 'systemctl'
   - 'systemd'
-  - 'service management'
+  - 'service_management'
   - 'linux'
-  - 'cheetsheet'
-title: 'systemctl - systemdのシステムとサービスを管理する'
-summary: 'systemd initシステムを制御・管理するための中心的なコマンド。サービスの起動・停止、自動起動設定、システムの状態確認などを統一的に行います。'
-related:
   - 'service'
   - 'chkconfig'
   - 'shutdown'
   - 'journalctl'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - systemctl - systemdのシステムとサービスを管理する
@@ -111,7 +113,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `Failed to start <service_name>.service: Unit <service_name>.service not found.`
     * **考えられる原因**: 指定したサービス名のユニットファイルが存在しません。

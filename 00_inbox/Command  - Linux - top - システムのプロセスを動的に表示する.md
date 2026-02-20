@@ -1,17 +1,19 @@
 ---
 tags:
   - 'top'
-  - 'process management'
+  - 'process_management'
   - 'performance'
   - 'monitoring'
-  - 'cheetsheet'
-title: 'top - システムのプロセスを動的に表示する'
-summary: '実行中のプロセスをリアルタイムで監視し、CPUやメモリを多く消費している順に一覧表示する、古典的で基本的なシステム監視ツールです。'
-related:
   - 'htop'
   - 'ps'
   - 'free'
   - 'kill'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - top - システムのプロセスを動的に表示する
@@ -102,7 +104,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 * `top` は基本的なコマンドのため、特有のエラーは稀です。
 
 ## 環境変数と設定ファイル

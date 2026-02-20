@@ -5,14 +5,17 @@ tags:
   - 'backup'
   - 'compression'
   - 'cheetsheet'
-title: 'tar - ファイルやディレクトリをアーカイブにまとめる'
-summary: '多数のファイルやディレクトリを単一のアーカイブファイル(.tar)にまとめ、gzip(-z)やbzip2(-j)と連携して圧縮・展開を行う標準的なツールです。'
-related:
   - 'zip'
   - 'gzip'
   - 'bzip2'
   - 'cp'
   - 'ssh'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - tar - ファイルやディレクトリをアーカイブにまとめる
@@ -108,7 +111,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `tar: Error is not recoverable: exiting now`
     * **考えられる原因**: アーカイブファイルが破損しているか、ダウンロードが不完全です。

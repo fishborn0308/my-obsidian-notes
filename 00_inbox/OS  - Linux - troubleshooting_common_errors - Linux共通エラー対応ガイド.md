@@ -3,17 +3,19 @@ tags:
   - 'troubleshooting'
   - 'linux'
   - 'error'
-  - 'cheetsheet'
-title: 'トラブルシューティング: Linux共通エラー対応ガイド'
-summary: 'Linuxシステムを運用する上で頻繁に遭遇する共通のエラーメッセージと、その原因を特定し、解決するための基本的な診断ワークフローを解説します。'
-related:
   - 'permissions'
   - 'networking'
   - 'shell'
   - 'filesystem'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# OS  - Linux - トラブルシューティング: Linux共通エラー対応ガイド
+# OS  - Linux - troubleshooting_common_errors - Linux共通エラー対応ガイド
 
 ## 概要
 

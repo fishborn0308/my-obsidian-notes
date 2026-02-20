@@ -1,15 +1,17 @@
 ---
 tags:
   - 'uniq'
-  - 'text processing'
+  - 'text_processing'
   - 'linux'
-  - 'cheetsheet'
-title: 'uniq - 重複する隣接行を報告・削除する'
-summary: 'ソート済みのテキストデータから、隣接する重複行を削除、集計、または表示するためのコマンドで、ログ分析やデータ集計に多用されます。'
-related:
   - 'sort'
   - 'awk'
   - 'grep'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - uniq - 重複する隣接行を報告・削除する
@@ -98,7 +100,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`uniq` を実行したが、重複しているはずの行が消えない。**
     * **考えられる原因**: **最もよくある間違い**。`uniq` を実行する前に、**入力データを `sort` していません**。`uniq` は隣接する行しか比較しないため、ファイル内で離れた場所にある同じ行は重複と見なされません。

@@ -5,14 +5,15 @@ tags:
   - 'debugging'
   - 'forensics'
   - 'security'
-  - 'cheetsheet'
-title: 'strace vs ltrace - プロセスの動作を追跡・分析する'
-summary: 'strace(システムコール追跡)とltrace(ライブラリコール追跡)という、プロセスの挙動を異なるレベルで詳細に追跡・分析するための2つの強力な動的解析ツールを比較します。'
-related:
   - 'strace'
   - 'ltrace'
   - 'gdb'
   - 'perf'
+created:
+modified:
+environment: []
+vulnearability: []
+knowledge_category: OS
 ---
 
 # OS  - Linux - strace vs ltrace - プロセスの動作を追跡・分析する
@@ -91,7 +92,7 @@ related:
 
 ## エラーメッセージとトラブルシューティング
 
-* 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
+* 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `strace: attach: ptrace(PTRACE_ATTACH, ...): Operation not permitted`
     * **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。
