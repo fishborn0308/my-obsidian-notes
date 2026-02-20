@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:14
+modified: 2026-02-21 08:36
 environment: [Network, OS/Windows]
 vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'netstat'
-  - 'network_monitoring'
-  - 'enumeration'
-  - 'knowledge_base'
+  - cmd
+  - netstat
+  - network_monitoring
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - netstat - ネットワーク接続と統計情報の表示
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `netstat` (Network Statistics) は、アクティブな TCP 接続、コンピュータがリスンしているポート、イーサネット統計情報、IP ルーティング テーブル、IPv4/IPv6 統計情報などのネットワーク接続に関する詳細情報を表示するコマンドです。
+
 システムの通信状態をリアルタイムで把握し、不審な外部通信や内部サービスの待機状態を確認するために使用されます。
 
 (出自: `Windows 標準搭載 - TCP/IP ユーティリティ`)
@@ -44,8 +45,6 @@ tags:
     REM 見つかった PID (例: 1234) からプログラム名を特定
     tasklist /FI "PID eq 1234"
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -104,50 +103,30 @@ C:\> netstat -ano | findstr ESTABLISHED
 ```
 
 - `445` ポートが `LISTENING` 状態（SMBサービス稼働中）。
-    
 - `192.168.1.15` から外部の `13.107.21.200` に対し、HTTPS (`443`) 通信が確立されている。
-    
 
 ## エラーメッセージとトラブルシューティング
 
 1. **エラーメッセージ例 1**: `要求された操作には、昇格が必要です。`
     
     - **考えられる原因**: `-b` オプション（実行ファイル名を直接表示）など、一部のスイッチは管理者権限が必要です。
-        
     - **解決策**: 管理者として実行するか、`-o` で PID を取得し `tasklist` で補完してください。
-        
 
 ## セキュリティに関する考慮事項
 
 ### 脆弱性と悪用事例
 
 - **情報漏洩**: 稼働しているサービスや接続先 IP のリストは、ネットワークマップを作成するための重要な情報源となります。
-    
 - **隠蔽テクニック**: 高度なマルウェアは、フック技術を使用して `netstat` の結果から自身の通信を隠すことがあります。
-    
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
 
 - **機能**: `Reconnaissance` (偵察)
-    
 - **参照**: [LOLBAS - netstat.exe](https://www.google.com/search?q=https://lolbas-project.github.io/lolbas/Binaries/Netstat/)
-    
 
 ## 注意点・補足
 
 - **`-n` の重要性**: DNS の逆引きが遅い環境で `-n` を忘れると、結果が表示されるまで数分待たされることがあります。**「基本は `-an` または `-ano`」**と覚えておくのが実務的です。
-    
 - **IPv6**: IPv6 接続も同時に表示されるため、混同しないように注意が必要です。
-    
 
 ---
-
-```
-
-### 次のステップとして
-これでネットワーク構成（`ipconfig`）、経路（`tracert`）、接続（`netstat`）の三種の神器が揃いました！
-
-次は、ネットワーク上の共有リソースやユーザー情報を操作・列挙する、ペンテスト最重要コマンド **`net`** シリーズ（`net user`, `net view`, `net use` 等）に進むのはいかがでしょうか？
-
-それとも、DNS 関連を深掘りするために **`nslookup`** をまとめますか？
-```

@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:48
+modified: 2026-02-21 08:29
 environment: [OS/Windows]
 vulnearability: [File_Download, Persistence, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'bitsadmin'
-  - 'file_transfer'
-  - 'lolbas'
-  - 'persistence'
-  - 'knowledge_base'
+  - cmd
+  - bitsadmin
+  - file_transfer
+  - lolbas
+  - persistence
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - bitsadmin - バックグラウンドでのファイル転送とジョブ管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `bitsadmin` は、バックグラウンド インテリジェント 転送サービス (BITS) を管理するためのコマンドラインツールです。
+
 本来は大きなファイルのダウンロードやアップロードを、ネットワーク帯域を圧迫せずに低優先度で実行するために設計されました。中断された転送の自動再開や、ユーザーのログオフを跨いだ実行が可能な点が強力です。
 
 (出自: `Windows 標準搭載 - 現在は非推奨とされ、PowerShellの BITS コマンドレットへの移行が推奨されている`)
@@ -46,8 +47,6 @@ tags:
     bitsadmin /SetNotifyCmdLine myjob C:\Windows\Temp\shell.exe NUL
     bitsadmin /resume myjob
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -106,6 +105,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `0x80070005 - Access is denied.`
     * **考えられる原因**: 他のユーザーが作成したジョブを操作しようとした、または管理者権限が必要なディレクトリに保存しようとした。
     * **解決策**: 管理者権限で実行するか、書き込み権限のあるディレクトリ（`C:\Users\Public`など）を指定してください。

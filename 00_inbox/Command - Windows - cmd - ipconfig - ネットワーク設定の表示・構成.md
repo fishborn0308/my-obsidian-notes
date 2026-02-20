@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:10
+modified: 2026-02-21 08:27
 environment: [Network, OS/Windows]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'ipconfig'
-  - 'network_recon'
-  - 'dns'
-  - 'dhcp'
-  - 'knowledge_base'
+  - cmd
+  - ipconfig
+  - network_recon
+  - dns
+  - dhcp
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - ipconfig - ネットワーク設定の表示・構成
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `ipconfig` (IP Configuration) は、Windows のすべての現在の TCP/IP ネットワーク構成値を表示し、動的ホスト構成プロトコル (DHCP) およびドメイン ネーム システム (DNS) の設定を更新するためのコマンドです。
+
 ネットワーク接続のトラブルシューティングにおける「最初の一手」であり、インターフェースの状態、IPアドレス、サブネットマスク、デフォルトゲートウェイなどの基本情報を即座に提供します。
 
 (出自: `Windows 標準搭載 - TCP/IP ユーティリティ`)
@@ -39,15 +40,15 @@ tags:
 * **連携コマンド**: `ipconfig`, `findstr`
 * **解説**: `/all` スイッチは情報量が多いため、パイプと正規表現（あるいはキーワード検索）を組み合わせて必要な行だけを表示させます。
 * **コマンド例**:
-    ```cmd
+	```cmd
     REM 自分の IPv4 アドレスのみを表示
     ipconfig | findstr "IPv4"
 
     REM DNS サーバーの設定を確認
+
     ipconfig /all | findstr "DNS"
+
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -71,7 +72,7 @@ tags:
 * **タスク**: 仮想環境構築時、どのアダプターがどの仮想ネットワーク（NAT/Host-Only）に紐付いているか特定する。
 * **解説**: `ipconfig /all` で「説明 (Description)」欄を確認し、`VMware Virtual Ethernet Adapter` や `vEthernet (Default Switch)` などの名称から判別します。
 * **例**:
-    ```cmd
+	```cmd
     REM 仮想ネットワークアダプターの情報を含め全表示
     ipconfig /all
     ```
@@ -81,7 +82,7 @@ tags:
 * **タスク**: インシデント調査時に、端末が現在どの DNS サーバーを参照しているか、不審なドメインを解決した形跡（キャッシュ）がないか確認する。
 * **解説**: `/displaydns` でキャッシュを確認することで、ブラウザ履歴を消されても「どのドメインにアクセスしようとしたか」の痕跡を拾える可能性があります。
 * **例**:
-    ```cmd
+	```cmd
     REM DNS キャッシュを表示し、特定の悪性ドメインが含まれていないか確認
     ipconfig /displaydns | findstr "malicious-domain"
     ```
@@ -91,7 +92,7 @@ tags:
 * **タスク**: 内部偵察 (Internal Reconnaissance)。ターゲット端末が所属するサブネットの広さを確認し、他セグメント（マルチホーム等）へのルートがないか調べる。
 * **解説**: ゲートウェイが複数ある場合や、複数の NIC が刺さっている場合、それはネットワーク間の「踏み台（ピボット）」として利用できる絶好のポイントになります。
 * **例**:
-    ```cmd
+	```cmd
     REM ネットワーク構成全体を把握し、ピボッティングの可能性を探る
     ipconfig /all
     ```
@@ -99,12 +100,12 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 1.  **エラーメッセージ例 1**: `The operation failed as no adapter is in the state permissible for this operation.`
-    * **考えられる原因**: `/renew` を実行したが、アダプターが接続されていない（メディアが切断されている）か、固定IPが設定されている。
-    * **解決策**: 物理的な接続を確認し、DHCP 設定が有効になっているか確認してください。
+		* **考えられる原因**: `/renew` を実行したが、アダプターが接続されていない（メディアが切断されている）か、固定IPが設定されている。
+		* **解決策**: 物理的な接続を確認し、DHCP 設定が有効になっているか確認してください。
 
 2.  **エラーメッセージ例 2**: `Access is denied.`
-    * **考えられる原因**: `/flushdns` などの一部の操作には管理者権限が必要な場合があります。
-    * **解決策**: 管理者として実行してください。
+		* **考えられる原因**: `/flushdns` などの一部の操作には管理者権限が必要な場合があります。
+		* **解決策**: 管理者として実行してください。
 
 ## 環境変数と設定ファイル
 

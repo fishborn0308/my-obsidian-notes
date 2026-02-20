@@ -1,12 +1,8 @@
 ---
 created: 2026-02-20 23:24
-modified: 2026-02-20 23:25
-environment:
-  - OS/Windows
-vulnearability:
-  - Privilege_Escalation
-  - Persistence
-  - Code_Execution
+modified: 2026-02-21 08:39
+environment: [OS/Windows]
+vulnearability: [Privilege_Escalation, Persistence, Code_Execution]
 knowledge_category: Command
 tags:
   - cmd
@@ -42,13 +38,10 @@ tags:
 * **連携コマンド**: `assoc`, `ftype`, `findstr`
 * **解説**: Windowsのファイル起動プロセスを逆引きします。
 * **コマンド例**:
-		```cmd
+	```cmd
     REM .ps1 拡張子の型を確認し、その型に紐づく実行コマンドを表示する
     for /f "tokens=2 delims==" %i in ('assoc .ps1') do ftype %i
     ```
-
-
-
 
 ## スイッチ/オプション説明
 
@@ -67,11 +60,10 @@ tags:
 * **組み合わせ**: `ftype MyTool.File="C:\Path\to\tool.exe" "%1" --config default`
 * **解説**: `%1` を含めることで、ファイルをツールにドラッグ＆ドロップした際やダブルクリックした際に、そのパスを引数として渡せます。
 * **例**:
-		```cmd
+	```cmd
     REM ログ解析ツールを専用のファイル型に紐付け
     ftype LogViewer.File="C:\Tools\Viewer.exe" "%1"
     ```
-
 
 ### 2. ブルーチーム視点
 
@@ -79,11 +71,10 @@ tags:
 * **組み合わせ**: `ftype | findstr /i "powershell.exe cmd.exe temp appdata"`
 * **解説**: 本来ドキュメントビューアで開くべきファイル型が、シェルや一時ディレクトリの実行ファイルを指している場合、永続化攻撃の兆候です。
 * **例**:
-		```cmd
+　　```cmd
     REM 危険な実行ファイルが関連付けに含まれていないか抽出
     ftype | findstr "powershell cscript wscript"
-    ```
-
+　　```
 
 ### 3. レッドチーム視点
 
@@ -91,11 +82,10 @@ tags:
 * **組み合わせ**: `ftype txtfile=C:\Windows\System32\cmd.exe /c "start /b malicious.exe & notepad.exe %1"`
 * **解説**: `ftype` を書き換えることで、ユーザーに気づかれずにバックグラウンドで処理を実行させる「File Association Hijacking」の手法です。
 * **例**:
-		```cmd
+	```cmd
     REM txtfileの動作を書き換えて永続化を狙う（管理者権限が必要）
     ftype txtfile=C:\Windows\System32\cmd.exe /c "powershell.exe -WindowStyle Hidden -EncodedCommand <payload> & notepad.exe %1"
     ```
-
 
 ## エラーメッセージとトラブルシューティング
 
