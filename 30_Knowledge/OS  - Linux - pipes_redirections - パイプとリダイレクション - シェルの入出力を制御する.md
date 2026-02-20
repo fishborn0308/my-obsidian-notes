@@ -1,4 +1,10 @@
 ---
+created: 2025-06-29 15:02
+modified: 2026-02-20 16:01
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: OS
 tags:
   - pipe
   - redirection
@@ -9,11 +15,6 @@ tags:
   - awk
   - tee
   - xargs
-created: 2025-06-29 15:02
-modified: 2026-02-20 16:01
-environment: [OS/Linux]
-vulnearability: []
-knowledge_category: OS
 ---
 
 # OS  - Linux - pipes_redirections - # パイプとリダイレクション - シェルの入出力を制御する
