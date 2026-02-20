@@ -1,14 +1,19 @@
 ---
 created: 2026-02-20 23:24
 modified: 2026-02-20 23:25
-environment: [OS/Windows]
-vulnearability: [Privilege_Escalation, Persistence, Code_Execution]
+environment:
+  - OS/Windows
+vulnearability:
+  - Privilege_Escalation
+  - Persistence
+  - Code_Execution
 knowledge_category: Command
 tags:
   - cmd
   - file_association
   - lolbas
   - knowledge_base
+  - ftype
 ---
 
 # Command - Windows - cmd - ftype - ファイル型に関連付けられた実行プログラムの表示・修正

@@ -1,14 +1,18 @@
 ---
 created: 2026-02-20 23:21
 modified: 2026-02-20 23:25
-environment: [OS/Windows]
-vulnearability: [Privilege_Escalation, Persistence]
+environment:
+  - OS/Windows
+vulnearability:
+  - Privilege_Escalation
+  - Persistence
 knowledge_category: Command
 tags:
   - cmd
   - file_association
   - windows_internals
   - knowledge_base
+  - assoc
 ---
 
 # Command - Windows - cmd - assoc - ファイル拡張子の関連付けを表示・修正

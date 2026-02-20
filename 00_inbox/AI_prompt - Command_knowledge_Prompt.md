@@ -113,7 +113,7 @@ knowledge_category:  Command
 tags:
 ---
 
-# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
+# Command - Linux - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 
@@ -248,7 +248,7 @@ knowledge_category:  Command
 tags:
 ---
 
-# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
+# Command - Windows - cmd - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 
@@ -376,7 +376,7 @@ knowledge_category:  Command
 tags:
 ---
 
-# Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>
+# Command - Windows - powershell - <コマンド名> - <コマンドの簡潔な概要>
 
 ## 概要
 `<コマンドレット名>` の基本的な役割、目的を説明します。PowerShellのオブジェクトパイプラインでどのように機能するかに焦点を当てます。
