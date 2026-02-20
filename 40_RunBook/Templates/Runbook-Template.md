@@ -2,7 +2,7 @@
 
 // 1. カテゴリを選択させる（変数に格納して実行を安定させる）
 
-const categories = ['Cheatsheet', 'Procedure', 'Setup-Guide'];
+const categories = ['Cheatsheet', 'Procedure', 'Setup_Guide'];
 
 const category = await tp.system.suggester(categories, categories);
 
