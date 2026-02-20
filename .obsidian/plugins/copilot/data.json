@@ -21,7 +21,7 @@
   "amazonBedrockRegion": "",
   "siliconflowApiKey": "",
   "defaultChainType": "llm_chain",
-  "defaultModelKey": "gemini-2.5-flash|google",
+  "defaultModelKey": "gemini-2.5-pro|google",
   "embeddingModelKey": "text-embedding-3-small|openai",
   "temperature": 0.1,
   "maxTokens": 6000,
