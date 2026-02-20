@@ -4,14 +4,16 @@ tags:
   - 'bash'
   - 'scripting'
   - 'automation'
-  - 'cheetsheet'
-title: 'シェルスクリプティング基礎 (Bash)'
-summary: '一連のコマンドを記述したテキストファイルで、定型的な作業の自動化、複雑なコマンドの組み合わせの再利用、簡単なツールの作成などを行うための基本技術です。'
-related:
   - 'bash'
   - 'chmod'
   - 'environment_variables'
   - 'pipes_redirections'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Coding
 ---
 
 # OS - Linux - シェルスクリプティング基礎 (Bash)
