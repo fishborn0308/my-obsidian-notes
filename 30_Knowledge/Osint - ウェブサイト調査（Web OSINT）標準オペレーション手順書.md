@@ -3,7 +3,7 @@ created: 2026-02-19 20:18
 modified: 2026-02-20 17:36
 environment: [] # 例: [OS/Windows11, Web/Apache2, DB/MySQL]
 vulnearability: [] # 例: [SQLi, SSXi, OSCommandi]
-knowledge_category: Exploit-technique
+knowledge_category:  Osint
 tags: 
 ---
 
