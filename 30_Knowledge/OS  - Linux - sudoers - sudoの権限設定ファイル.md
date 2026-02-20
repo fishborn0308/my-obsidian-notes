@@ -1,7 +1,14 @@
 ---
-tags: [sudoers visudo sudo security privilege_management su groupadd]
+tags:
+  - sudoers
+  - visudo
+  - sudo
+  - security
+  - privilege_management
+  - su
+  - groupadd
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 16:03
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -37,14 +44,13 @@ knowledge_category: OS
 * **コマンド例**:
 
 		```bash
-    # このコマンドでsudoersファイルを安全に編集する
+		# このコマンドでsudoersファイルを安全に編集する
 
-    sudo visudo
+		sudo visudo
 
-    # (エディタが起動するので、設定を編集して保存・終了する)
-    # もし構文エラーがあれば、エラー内容が表示され、再編集を促される
-    ```
-
+		# (エディタが起動するので、設定を編集して保存・終了する)
+		# もし構文エラーがあれば、エラー内容が表示され、再編集を促される
+		```
 
 ## オプション説明 (`sudoers` の構文)
 
@@ -67,14 +73,13 @@ knowledge_category: OS
 * **例 (`/etc/sudoers.d/admin` ファイルに記述)**:
 
 		```bash
-    # admin グループのメンバーは、全てのホストから、全てのコマンドをrootとして実行できる
+		# admin グループのメンバーは、全てのホストから、全てのコマンドをrootとして実行できる
 
-    %admin ALL=(ALL) ALL
+		%admin ALL=(ALL) ALL
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: `sudoers` ファイルの設定を監査し、過剰な権限が付与されていないか確認する。
 * **組み合わせ**: `cat /etc/sudoers && cat /etc/sudoers.d/*`
@@ -82,14 +87,13 @@ knowledge_category: OS
 * **例**:
 
 		```bash
-    # パスワードなしで実行できるコマンドがないか確認
+		# パスワードなしで実行できるコマンドがないか確認
 
-    sudo grep -r "NOPASSWD" /etc/sudoers /etc/sudoers.d/
+		sudo grep -r "NOPASSWD" /etc/sudoers /etc/sudoers.d/
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入したユーザーの権限を調査し、権限昇格の足がかりを探す。
 * **組み合わせ**: `sudo -l`
@@ -97,12 +101,11 @@ knowledge_category: OS
 * **例**:
 
 		```bash
-    # 現在のユーザーがsudoで何を実行できるか確認
+		# 現在のユーザーがsudoで何を実行できるか確認
 
-    sudo -l
+		sudo -l
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

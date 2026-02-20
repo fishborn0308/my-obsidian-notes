@@ -9,9 +9,8 @@ tags:
   - 'perf'
   - 'ps'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,14 +44,19 @@ knowledge_category: Command
 * **解説**: まず `ps` と `grep` で問題のプロセスのPIDを特定します。次に `strace -p` でその実行中プロセスにアタッチし、最後のシステムコール出力を調べることで、ハングアップの原因（例: ネットワークの読み取り待ち、ファイルのロック待ちなど）を推測します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. ハングした 'my-app' プロセスのPIDを探す
+
     ps aux | grep 'my-app'
+
     # -> user      12345 ... ./my-app
 
     # 2. 特定したPID (12345) にアタッチしてシステムコールを監視
+
     sudo strace -p 12345
+
     ```
+
 
 ## オプション説明
 
@@ -77,11 +81,14 @@ knowledge_category: Command
 * **解説**: `-e` でファイルアクセスに関連するシステムコールに絞り、`-f` で子プロセスも追跡します。出力の中から `EACCES (Permission denied)` や `ENOENT (No such file or directory)` を返している行を見つけることで、問題の原因を正確に特定できます。
 * **例**:
 
-    ```bash
+		```bash
     # strace の出力例
+
     openat(AT_FDCWD, "/etc/myapp/config.conf", O_RDONLY) = -1 EACCES (Permission denied)
+
     # -> この行から、"/etc/myapp/config.conf" が読み取れずに失敗したことが分かる
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -90,10 +97,13 @@ knowledge_category: Command
 * **解説**: `strace` の出力ログを分析することで、マルウェアがどのような悪意のある活動（情報収集、永続化、通信、破壊活動）を行っているかを把握します。
 * **例**:
 
-    ```bash
+		```bash
     # マルウェアのファイル操作とネットワーク活動を追跡
+
     sudo strace -f -e trace=file,network -o malware_trace.log ./malware_sample
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -102,18 +112,21 @@ knowledge_category: Command
 * **解説**: 対象のプログラムを `strace` で実行し、そのシステムコールの流れを追跡します。ハードコードされたパスや、予測可能な `/tmp` ファイルの利用（シンボリックリンク攻撃の可能性）、`execve` での外部コマンド呼び出し（コマンドインジェクションの可能性）などを調査し、脆弱性を探します。
 * **例**:
 
-    ```bash
+		```bash
     # ユーザー入力を待つプログラムをstraceで起動し、様々な入力を試す
+
     strace ./vulnerable_app
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `strace: attach: ptrace(PTRACE_ATTACH, ...): Operation not permitted`
-    * **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。
-    * **解決策**: `sudo strace ...` のように `sudo` を付けて実行してください。
+		* **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。
+		* **解決策**: `sudo strace ...` のように `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

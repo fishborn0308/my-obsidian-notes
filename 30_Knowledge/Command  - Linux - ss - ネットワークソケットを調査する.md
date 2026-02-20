@@ -9,9 +9,8 @@ tags:
   - 'ip'
   - 'grep'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -44,10 +43,13 @@ knowledge_category: Command
 * **解説**: `ss` の強力なフィルタ構文を使い、`ESTABLISHED` 状態のTCP接続のうち、宛先ポートが443 (HTTPS) のものだけを表示します。`grep` を使うよりも正確で効率的です。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 宛先ポートが443の確立済みTCP接続を表示
+
     ss -t state established dport = :443
+
     ```
+
 
 ## オプション説明
 
@@ -77,12 +79,15 @@ knowledge_category: Command
 * **解説**: 「TCP/UDPのLISTEN状態の、PID付きの数値表示」を意味し、`netstat -tulpn` と同じ感覚で使えます。サービス起動後の確認やポート競合のトラブルシューティングに不可欠です。
 * **例**:
 
-    ```bash
+		```bash
+
     sudo ss -tulpn
+
     # State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port   Process
     # LISTEN   0        128            0.0.0.0:22             0.0.0.0:* users:(("sshd",pid=1234,fd=3))
     # LISTEN   0        511          127.0.0.1:3306           0.0.0.0:* users:(("mysqld",pid=5678,fd=30))
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -91,10 +96,13 @@ knowledge_category: Command
 * **解説**: **ライブフォレンジックの基本**。全ての接続を数値とプロセス情報付きで表示します。`ESTABLISHED` 状態のリストの中から、見慣れない外部IPアドレスへの接続を探し、関連するプロセス名を特定することで、悪意のあるプロセスを突き止めます。
 * **例**:
 
-    ```bash
+		```bash
     # 全ての確立済みTCP接続をプロセス情報付きで表示
+
     sudo ss -t -p state established
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -103,18 +111,21 @@ knowledge_category: Command
 * **解説**: `LISTEN` 状態のポート（特に `127.0.0.1` でのみリッスンしている内部サービス）を特定したり、`ESTABLISHED` 状態の接続から、このサーバーがどの他の内部サーバーと通信しているかを把握したりして、ラテラルムーブメント（横展開）の標的を探します。
 * **例**:
 
-    ```bash
+		```bash
     # 待ち受けポートと確立済みの接続をリストアップ
+
     ss -anp
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`-p` オプションを付けたのにPID/プログラム名が表示されない。**
-    * **考えられる原因**: `root` 権限なしで実行しています。他のユーザーが所有するプロセスの情報を閲覧するには特権が必要です。
-    * **解決策**: `sudo ss ...` のように `sudo` を付けて実行してください。
+		* **考えられる原因**: `root` 権限なしで実行しています。他のユーザーが所有するプロセスの情報を閲覧するには特権が必要です。
+		* **解決策**: `sudo ss ...` のように `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

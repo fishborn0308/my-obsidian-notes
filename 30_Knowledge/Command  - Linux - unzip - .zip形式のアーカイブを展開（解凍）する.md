@@ -7,9 +7,8 @@ tags:
   - 'gunzip'
   - '7z'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -41,10 +40,13 @@ knowledge_category: Command
 * **解説**: `find` で `.zip` ファイルを検索し、`-exec` オプションを使って見つかった各ファイルに対して `unzip` を実行するシェルコマンドを呼び出します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # カレントディレクトリ以下の全 .zip ファイルを、それぞれファイル名から拡張子を除いたディレクトリに展開
+
     find . -name "*.zip" -exec sh -c 'unzip -d "${0%.*}" "$0"' {} \;
+
     ```
+
 
 ## オプション説明
 
@@ -71,10 +73,13 @@ knowledge_category: Command
 * **解説**: ダウンロードしたZIPアーカイブを、`-d` オプションで指定したデプロイ先のディレクトリに展開します。
 * **例**:
 
-    ```bash
+		```bash
     # アプリケーションを /opt/apps ディレクトリに展開する
+
     unzip my-app-v1.2.zip -d /opt/apps/
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -83,10 +88,13 @@ knowledge_category: Command
 * **解説**: **安全な調査の第一歩**。ZIPファイルを展開せずに `-l` で内容物を確認し、`.exe` や `.scr` のような実行ファイル、あるいは `../../...` のような不審なパスが含まれていないかを調べます。
 * **例**:
 
-    ```bash
+		```bash
     # フィッシングメールに添付されていた invoice.zip の中身を確認
+
     unzip -l invoice.zip
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -100,8 +108,8 @@ knowledge_category: Command
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: cannot find zipfile directory in one of ...`
-    * **考えられる原因**: ZIPファイルが破損しているか、ダウンロードが不完全です。
-    * **解決策**: ファイルを再ダウンロードしてください。`unzip -t` でファイルの整合性をテストできます。
+		* **考えられる原因**: ZIPファイルが破損しているか、ダウンロードが不完全です。
+		* **解決策**: ファイルを再ダウンロードしてください。`unzip -t` でファイルの整合性をテストできます。
 
 ## 環境変数と設定ファイル
 

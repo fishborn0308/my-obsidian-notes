@@ -1,7 +1,15 @@
 ---
-tags: [log rsyslog journalctl linux dmesg systemctl grep tail]
+tags:
+  - log
+  - rsyslog
+  - journalctl
+  - linux
+  - dmesg
+  - systemctl
+  - grep
+  - tail
 created: 2025-06-28 15:40
-modified: 2026-02-20 15:23
+modified: 2026-02-20 15:55
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

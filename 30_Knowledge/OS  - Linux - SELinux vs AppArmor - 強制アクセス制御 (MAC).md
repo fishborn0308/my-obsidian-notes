@@ -1,7 +1,16 @@
 ---
-tags: [selinux apparmor mac security linux sudo capabilities chcon aa-status]
+tags:
+  - selinux
+  - apparmor
+  - mac
+  - security
+  - linux
+  - sudo
+  - capabilities
+  - chcon
+  - aa-status
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 16:02
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

@@ -9,9 +9,8 @@ tags:
   - ip_link
   - ping
 created: 2025-09-22 08:42
-modified: 2026-01-18 18:03
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:40
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

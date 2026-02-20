@@ -1,7 +1,14 @@
 ---
-tags: [capabilities linux security privilege setuid_setgid sudo selinux_apparmor]
+tags:
+  - capabilities
+  - linux
+  - security
+  - privilege
+  - setuid_setgid
+  - sudo
+  - selinux_apparmor
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:24
+modified: 2026-02-20 15:52
 environment: []
 vulnearability: []
 knowledge_category: OS

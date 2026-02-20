@@ -8,9 +8,8 @@ tags:
   - logname
   - users
 created: 2025-09-27 12:00
-modified: 2026-01-18 16:17
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

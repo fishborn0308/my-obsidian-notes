@@ -7,18 +7,14 @@ tags:
   - cat
   - tail
   - grep
-created:
-modified:
-environment:
-  - OS/Linux
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:40
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - less - 高機能なファイルビューア（ページャ）
-
-
-
 
 ## 概要
 
@@ -115,8 +111,8 @@ less /var/www/html/config.php
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **現象**: **バイナリファイルを開くと文字化けし、警告が出る。**
-    * **考えられる原因**: `less` はテキストファイル用のビューアです。実行ファイルなどのバイナリファイルを開こうとすると警告を表示します。
-    * **解決策**: `y` を押せば強制的に表示できますが、通常は `strings` や `xxd` といったバイナリ調査用のコマンドを使うべきです。
+		* **考えられる原因**: `less` はテキストファイル用のビューアです。実行ファイルなどのバイナリファイルを開こうとすると警告を表示します。
+		* **解決策**: `y` を押せば強制的に表示できますが、通常は `strings` や `xxd` といったバイナリ調査用のコマンドを使うべきです。
 
 ## 環境変数と設定ファイル
 

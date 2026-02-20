@@ -1,7 +1,7 @@
 ---
-tags: [ulimit pam security performance systemd cgroups]
+tags: ulimit pam security performance systemd cgroups
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:22
+modified: 2026-02-20 15:57
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

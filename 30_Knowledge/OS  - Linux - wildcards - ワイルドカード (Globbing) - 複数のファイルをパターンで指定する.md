@@ -1,7 +1,16 @@
 ---
-tags: [wildcards globbing shell bash regex ls cp rm find]
+tags:
+  - wildcards
+  - globbing
+  - shell
+  - bash
+  - regex
+  - ls
+  - cp
+  - rm
+  - find
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:21
+modified: 2026-02-20 16:08
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

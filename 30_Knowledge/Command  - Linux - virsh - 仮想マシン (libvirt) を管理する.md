@@ -9,9 +9,8 @@ tags:
   - docker
   - systemctl
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,10 +44,13 @@ knowledge_category: Command
 * **解説**: `virsh dumpxml` でVMの全設定をXML形式で出力し、その中から `source file` という行を `grep` でフィルタリングすることで、ディスクイメージのパスを特定します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # web-serverのXML定義からディスクファイルのパスを抽出
+
     sudo virsh dumpxml web-server | grep "source file"
+
     ```
+
 
 ## オプション説明 (`virsh` のサブコマンド)
 
@@ -77,10 +79,13 @@ knowledge_category: Command
 * **解説**: 仮想マシンのネットワーク設定を間違えてSSHでログインできなくなった場合、`virsh console` でシリアルコンソールに接続し、rootでログインして設定ファイルを修正します。
 * **例**:
 
-    ```bash
+		```bash
     # my-vm のコンソールに接続 (終了は Ctrl + ])
+
     sudo virsh console my-vm
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -89,10 +94,13 @@ knowledge_category: Command
 * **解説**: `virsh suspend` でVMをメモリの状態を保持したまま一時停止させ、活動を即座に止めます。その後、メモリダンプを取得して詳細なフォレンジック分析を行ったり、`virsh destroy` で完全に停止させたりします。
 * **例**:
 
-    ```bash
+		```bash
     # 侵害されたVM 'suspicious-vm' を一時停止
+
     sudo virsh suspend suspicious-vm
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -101,20 +109,22 @@ knowledge_category: Command
 * **解説**: `dumpxml` でVMのディスクイメージのパスを特定し、そのディスクイメージをホスト上で直接マウントします。これにより、VMを起動させることなく、内部のファイル（`/etc/shadow`など）をオフラインで読み書きします。
 * **例**:
 
-    ```bash
+		```bash
     # 1. ディスクパスを特定
+
     sudo virsh dumpxml target-vm | grep "source file"
 
     # 2. (特定したディスクイメージをマウントしてデータを窃取)
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: failed to connect to the hypervisor`
-    * **考えられる原因**: `libvirtd` デーモンが起動していないか、コマンドを実行しているユーザーに `libvirt` グループへの所属など、デーモンと通信するための権限がありません。
-    * **解決策**: `sudo systemctl start libvirtd` でデーモンを起動します。`sudo` を付けて `virsh` を実行するか、`sudo usermod -aG libvirt $(whoami)` で現在のユーザーを `libvirt` グループに追加します（再ログインが必要です）。
+		* **考えられる原因**: `libvirtd` デーモンが起動していないか、コマンドを実行しているユーザーに `libvirt` グループへの所属など、デーモンと通信するための権限がありません。
+		* **解決策**: `sudo systemctl start libvirtd` でデーモンを起動します。`sudo` を付けて `virsh` を実行するか、`sudo usermod -aG libvirt $(whoami)` で現在のユーザーを `libvirt` グループに追加します（再ログインが必要です）。
 
 ## 環境変数と設定ファイル
 

@@ -8,9 +8,8 @@ tags:
   - 'find'
   - 'mv'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:41
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -42,10 +41,13 @@ knowledge_category: Command
 * **解説**: `find` で条件に合うファイルを検索し、`-delete` アクションで直接削除します。`xargs` を使う方法よりも効率的で安全な場合があります。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # /mnt/backups 配下で、30日より古い .bak ファイルを検索して削除する
+
     find /mnt/backups -type f -name "*.bak" -mtime +30 -delete
+
     ```
+
 
 ## オプション説明
 
@@ -67,10 +69,13 @@ knowledge_category: Command
 * **解説**: **非常に強力で危険なコマンド**。プロジェクトが完全に終了し、関連ディレクトリを完全に削除する場合などに使用します。**実行前には、`pwd` と `ls` で現在地と対象を何度も確認することが不可欠です。**
 * **例**:
 
-    ```bash
+		```bash
     # 不要になった古いプロジェクトディレクトリを完全に削除
+
     rm -rf /opt/old-project/
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -79,10 +84,13 @@ knowledge_category: Command
 * **解説**: インシデント対応の最終段階で、隔離・分析済みのマルウェアの実体をシステムから削除します。
 * **例**:
 
-    ```bash
+		```bash
     # 隔離ディレクトリ内の分析済みマルウェアを削除
+
     sudo rm /var/log/quarantine/evil.elf
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -91,18 +99,21 @@ knowledge_category: Command
 * **解説**: 攻撃者は侵入後、自身の活動を隠蔽するために `rm` を多用します。`~/.bash_history` (コマンド履歴) や、自身が生成したログ、アップロードしたツールなどを `rm` で消去し、調査を困難にしようとします。
 * **例**:
 
-    ```bash
+		```bash
     # コマンド履歴ファイルを削除
+
     rm ~/.bash_history
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `rm: cannot remove '<directory_name>': Is a directory`
-    * **考えられる原因**: ディレクトリを削除しようとしましたが、`-r` または `-R` オプションを指定していません。
-    * **解決策**: ディレクトリを中身ごと削除してよい場合は `rm -r <directory_name>` を実行してください。
+		* **考えられる原因**: ディレクトリを削除しようとしましたが、`-r` または `-R` オプションを指定していません。
+		* **解決策**: ディレクトリを中身ごと削除してよい場合は `rm -r <directory_name>` を実行してください。
 
 ## 環境変数と設定ファイル
 
@@ -115,8 +126,8 @@ knowledge_category: Command
 
 * **脆弱性**: `rm` コマンドの**破壊力**そのものがリスクとなります。
 * **悪用シナリオ**:
-  * **破壊活動 (Sabotage)**: 攻撃者がroot権限を奪取した後、`rm -rf /boot` や `rm /etc/shadow` のようにシステムの重要ファイルを削除し、サービス妨害 (DoS) やシステムの破壊を狙います。
-  * **痕跡消去**: 攻撃者がログファイル (`/var/log/`配下) や履歴ファイルを `rm` で消して侵入の痕跡を隠蔽します。
+	* **破壊活動 (Sabotage)**: 攻撃者がroot権限を奪取した後、`rm -rf /boot` や `rm /etc/shadow` のようにシステムの重要ファイルを削除し、サービス妨害 (DoS) やシステムの破壊を狙います。
+	* **痕跡消去**: 攻撃者がログファイル (`/var/log/`配下) や履歴ファイルを `rm` で消して侵入の痕跡を隠蔽します。
 
 ### GTFOBins / LOLBAS における利用例
 

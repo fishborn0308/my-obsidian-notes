@@ -1,7 +1,11 @@
 ---
-tags: [alias function source grep]
+tags:
+  - alias
+  - function
+  - source
+  - grep
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:21
+modified: 2026-02-20 15:58
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

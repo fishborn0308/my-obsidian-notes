@@ -1,7 +1,15 @@
 ---
-tags: [ufw firewalld iptables firewall security netfilter systemd fail2ban]
+tags:
+  - ufw
+  - firewalld
+  - iptables
+  - firewall
+  - security
+  - netfilter
+  - systemd
+  - fail2ban
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 15:54
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

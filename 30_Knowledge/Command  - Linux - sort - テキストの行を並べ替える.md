@@ -8,9 +8,8 @@ tags:
   - 'ls_-l'
   - 'awk'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -42,10 +41,13 @@ knowledge_category: Command
 * **解説**: `awk` でIPアドレスを抽出し、`sort` でIPアドレスをまとめ（`uniq` の前処理）、`uniq -c` で出現回数を集計します。最後に再度 `sort -nr` で結果を降順にソートするのが黄金パターンです。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このパイプラインで、アクセスログから攻撃元IPトップ10を抽出する
+
     awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
+
     ```
+
 
 ## オプション説明
 
@@ -71,10 +73,13 @@ knowledge_category: Command
 * **解説**: `du` の出力を、人間が読みやすい単位 (`-h`) で、逆順 (`-r`) にソートする定番の使い方です。
 * **例**:
 
-    ```bash
+		```bash
     # /etc/passwd ファイルを、ユーザーID (3番目のフィールド) の数値順でソート
+
     sort -t ':' -k 3 -n /etc/passwd
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -83,10 +88,13 @@ knowledge_category: Command
 * **解説**: 上記「よく連携されるコマンド」シナリオの通り、ログ分析における頻出パターンです。
 * **例**:
 
-    ```bash
+		```bash
     # 認証ログからログインに失敗しているユーザー名を多い順にリストアップ
+
     grep "Failed password for" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -95,18 +103,21 @@ knowledge_category: Command
 * **解説**: ブルートフォース攻撃やディレクトリ・ファジングに使用するワードリストから重複を削除し、攻撃の効率を高めます。`-o` オプションで、結果を直接新しいファイルに書き出します。
 * **例**:
 
-    ```bash
+		```bash
     # 複数のワードリストを結合し、重複を排除してクリーンなリストを作成
+
     cat list1.txt list2.txt | sort -u > clean_wordlist.txt
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **数字をソートしたが、`1, 10, 2, 20` のような順番になってしまう。**
-    * **考えられる原因**: デフォルトの辞書順ソートが適用されており、文字列として比較されています。
-    * **解決策**: `-n` (`--numeric-sort`) オプションを追加して、数値としてソートしてください。
+		* **考えられる原因**: デフォルトの辞書順ソートが適用されており、文字列として比較されています。
+		* **解決策**: `-n` (`--numeric-sort`) オプションを追加して、数値としてソートしてください。
 
 ## 環境変数と設定ファイル
 

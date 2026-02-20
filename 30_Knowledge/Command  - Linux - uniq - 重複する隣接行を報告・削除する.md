@@ -7,9 +7,8 @@ tags:
   - 'awk'
   - 'grep'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -42,10 +41,13 @@ knowledge_category: Command
 * **解説**: `awk` でIPアドレスを抽出し、`sort` でIPアドレスをまとめ（`uniq` の前処理）、`uniq -c` で出現回数を集計します。最後に再度 `sort -nr` で結果を降順にソートするのが黄金パターンです。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このパイプラインで、アクセスログから攻撃元IPトップ10を抽出する
+
     awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
+
     ```
+
 
 ## オプション説明
 
@@ -69,10 +71,13 @@ knowledge_category: Command
 * **解説**: 設定ファイルに誤って同じエントリを複数記述してしまった場合に、重複を排除したクリーンな設定ファイルを作成します。
 * **例**:
 
-    ```bash
+		```bash
     # myconfig.txt の重複行を削除して myconfig.clean.txt に保存
+
     sort myconfig.txt | uniq > myconfig.clean.txt
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -81,10 +86,13 @@ knowledge_category: Command
 * **解説**: 上記「よく連携されるコマンド」シナリオの通り、ログ分析における頻出パターンです。
 * **例**:
 
-    ```bash
+		```bash
     # 認証ログからログインに失敗しているユーザー名を多い順にリストアップ
+
     grep "Failed password for" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -93,18 +101,21 @@ knowledge_category: Command
 * **解説**: 複数のソースから収集したワードリストを1つにまとめた後、このコマンドで重複エントリを削除し、無駄な試行を減らしたクリーンな辞書ファイルを作成します。(`uniq` よりも `sort -u` の方がこの用途には効率的です)
 * **例**:
 
-    ```bash
+		```bash
     # 複数のワードリストを結合し、重複を排除してクリーンなリストを作成
+
     cat list1.txt list2.txt | sort -u > clean_wordlist.txt
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`uniq` を実行したが、重複しているはずの行が消えない。**
-    * **考えられる原因**: **最もよくある間違い**。`uniq` を実行する前に、**入力データを `sort` していません**。`uniq` は隣接する行しか比較しないため、ファイル内で離れた場所にある同じ行は重複と見なされません。
-    * **解決策**: 必ず `sort filename | uniq` のように、`uniq` の前段で `sort` を実行してください。
+		* **考えられる原因**: **最もよくある間違い**。`uniq` を実行する前に、**入力データを `sort` していません**。`uniq` は隣接する行しか比較しないため、ファイル内で離れた場所にある同じ行は重複と見なされません。
+		* **解決策**: 必ず `sort filename | uniq` のように、`uniq` の前段で `sort` を実行してください。
 
 ## 環境変数と設定ファイル
 

@@ -9,9 +9,8 @@ tags:
   - 'shutdown'
   - 'journalctl'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,13 +44,17 @@ knowledge_category: Command
 * **解説**: `systemctl status <service>` を実行すると、サービスの現在の状態と共に、関連する直近のログが数行表示されます。さらに詳細なログが必要な場合は、`journalctl -u <service>` を実行して、そのサービスの全てのログを時系列で確認します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. Nginxサービスのステータスを確認 (ここで 'failed' と表示されたと仮定)
+
     sudo systemctl status nginx.service
 
     # 2. nginx.service ユニットに絞って、詳細なログを確認する
+
     sudo journalctl -u nginx.service -e
+
     ```
+
 
 ## オプション説明 (`systemctl` のサブコマンド)
 
@@ -81,10 +84,13 @@ knowledge_category: Command
 * **解説**: サービスの自動起動を有効化 (`enable`) すると同時に、即座にサービスを起動 (`start`) する、非常に便利な使い方です。
 * **例**:
 
-    ```bash
+		```bash
     # Nginxをインストール後、起動と自動起動設定を一度に行う
+
     sudo systemctl enable --now nginx
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -93,10 +99,13 @@ knowledge_category: Command
 * **解説**: インストールされている全てのサービスユニットの状態を一覧表示します。`enabled` 状態になっているサービスの中に、標準的でない、あるいは明らかに不審な名前のサービスがないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # 全てのサービスユニットをリストし、grepで不審な名前がないか確認
+
     systemctl list-unit-files --type=service | grep -i "backdoor\|revshell"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -105,23 +114,26 @@ knowledge_category: Command
 * **解説**: 攻撃者がroot権限を奪取した後、`/etc/systemd/system/` ディレクトリに、リバースシェルなどを起動する悪意のあるサービスユニットファイルを作成します。そして `systemctl enable --now` を実行することで、そのバックドアを即座に起動させ、さらにOS起動時に自動実行されるように仕掛けます。
 * **例**:
 
-    ```bash
+		```bash
     # /etc/systemd/system/revshell.service というファイルを作成後...
     # バックドアサービスを有効化・起動する
+
     sudo systemctl enable --now revshell.service
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `Failed to start <service_name>.service: Unit <service_name>.service not found.`
-    * **考えられる原因**: 指定したサービス名のユニットファイルが存在しません。
-    * **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
+		* **考えられる原因**: 指定したサービス名のユニットファイルが存在しません。
+		* **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
 
 2. **現象**: **ユニットファイルを編集したが、変更が反映されない。**
-    * **考えられる原因**: ユニットファイル (`.service`など) を手動で作成・編集した後に、`systemd` に変更を認識させるためのコマンドを実行していません。
-    * **解決策**: 必ず `sudo systemctl daemon-reload` を実行してください。
+		* **考えられる原因**: ユニットファイル (`.service`など) を手動で作成・編集した後に、`systemd` に変更を認識させるためのコマンドを実行していません。
+		* **解決策**: 必ず `sudo systemctl daemon-reload` を実行してください。
 
 ## 環境変数と設定ファイル
 

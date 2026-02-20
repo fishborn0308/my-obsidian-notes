@@ -8,9 +8,8 @@ tags:
   - Poetry
   - conda
 created: 2025-06-29 15:02
-modified: 2026-01-18 20:40
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:41
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -48,12 +47,11 @@ knowledge_category: Command
 * **コマンド例 (`crontab -e` の記述)**:
 
 		```bash
-    # 毎時0分に、/path/to/project ディレクトリで my_task.py を実行
+		# 毎時0分に、/path/to/project ディレクトリで my_task.py を実行
 
-    0 * * * * cd /path/to/project && /usr/local/bin/pipenv run python my_task.py
+		0 * * * * cd /path/to/project && /usr/local/bin/pipenv run python my_task.py
 
-    ```
-
+		```
 
 ## オプション説明 (`pipenv` のサブコマンド)
 

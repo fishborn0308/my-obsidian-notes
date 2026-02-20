@@ -1,7 +1,14 @@
 ---
-tags: [strace ltrace debugging forensics security gdb perf]
+tags:
+  - strace
+  - ltrace
+  - debugging
+  - forensics
+  - security
+  - gdb
+  - perf
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 16:02
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -38,12 +45,11 @@ knowledge_category: OS
 * **コマンド例**:
 
 		```bash
-    # my-app の実行中に行われる "openat" システムコールのみを表示
+		# my-app の実行中に行われる "openat" システムコールのみを表示
 
-    strace -f -e trace=openat ./my-app 2>&1 | grep "myapp.conf"
+		strace -f -e trace=openat ./my-app 2>&1 | grep "myapp.conf"
 
-    ```
-
+		```
 
 ## オプション説明 (共通)
 

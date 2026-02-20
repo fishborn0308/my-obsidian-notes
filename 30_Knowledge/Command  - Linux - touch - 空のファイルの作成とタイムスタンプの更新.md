@@ -7,9 +7,8 @@ tags:
   - 'mkdir'
   - 'stat'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -46,16 +45,21 @@ knowledge_category: Command
 * **解説**: `touch` で空のファイルを作成した後、`chown` と `chmod` で、アプリケーションの実行ユーザーがそのファイルに書き込めるように権限を整えます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 空のログファイルを作成
+
     sudo touch /var/log/my-app.log
 
     # 2. 所有者をアプリケーションユーザーに変更
+
     sudo chown my-app-user:my-app-group /var/log/my-app.log
 
     # 3. 適切なパーミッションを設定
+
     sudo chmod 644 /var/log/my-app.log
+
     ```
+
 
 ## オプション説明
 
@@ -79,10 +83,13 @@ knowledge_category: Command
 * **解説**: デーモンが起動時に特定のファイルを要求する場合、`touch` で先に作成しておくことで、起動エラーを防ぎます。
 * **例**:
 
-    ```bash
+		```bash
     # アプリケーション用のロックファイルを作成
+
     touch /var/run/my-app.pid
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -91,10 +98,13 @@ knowledge_category: Command
 * **解説**: 攻撃者が侵入後に探索しそうな場所に、`passwords.txt` のような魅力的な名前の空ファイルを設置します。そして `auditd` などで、そのファイルへの全てのアクセスを監視します。もしこのファイルへのアクセスがあれば、それは不審な偵察活動の強力な兆候となります。
 * **例**:
 
-    ```bash
+		```bash
     # 秘密鍵に見せかけたおとりファイルを作成
+
     touch /home/admin/.ssh/id_rsa.bak
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -103,24 +113,29 @@ knowledge_category: Command
 * **解説**: 攻撃者は正規のスクリプトなどを改ざんした後、`-r` オプションを使って、改ざんしたファイルのタイムスタンプを**元のファイルと全く同じ**に戻します。これにより、`ls -lt` などによる単純な変更検知を回避しようとします。
 * **例**:
 
-    ```bash
+		```bash
     # 1. 元のファイルのタイムスタンプを一時ファイルにコピー
+
     touch -r /etc/important_script.sh /tmp/timestamp_ref
 
     # 2. (important_script.sh を改ざん)
+
     echo "evil_command" >> /etc/important_script.sh
 
     # 3. タイムスタンプを元に戻す
+
     touch -r /tmp/timestamp_ref /etc/important_script.sh
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `touch: cannot touch '<filename>': Permission denied`
-    * **考えられる原因**: ファイルを作成しようとしているディレクトリへの書き込み権限がないか、既存のファイルのタイムスタンプを変更しようとしたが、そのファイルの所有者ではありません。
-    * **解決策**: ディレクトリやファイルのパーミッションを確認し、必要であれば `sudo` を付けて実行してください。
+		* **考えられる原因**: ファイルを作成しようとしているディレクトリへの書き込み権限がないか、既存のファイルのタイムスタンプを変更しようとしたが、そのファイルの所有者ではありません。
+		* **解決策**: ディレクトリやファイルのパーミッションを確認し、必要であれば `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

@@ -1,7 +1,16 @@
 ---
-tags: [setuid sgid permissions security privilege_escalation chmod find sudo capabilities]
+tags:
+  - setuid
+  - sgid
+  - permissions
+  - security
+  - privilege_escalation
+  - chmod
+  - find
+  - sudo
+  - capabilities
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:22
+modified: 2026-02-20 16:03
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

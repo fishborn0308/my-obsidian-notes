@@ -8,9 +8,8 @@ tags:
   - gdb
   - ps
 created: 2025-09-22 14:03
-modified: 2026-01-18 20:21
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:40
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

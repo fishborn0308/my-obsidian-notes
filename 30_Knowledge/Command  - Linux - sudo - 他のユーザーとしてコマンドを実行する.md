@@ -8,9 +8,8 @@ tags:
   - 'visudo'
   - 'id'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -43,15 +42,20 @@ knowledge_category: Command
 * **解説**: シェルの履歴展開機能 `!!` は直前のコマンドを表します。`sudo !!` と入力することで、`sudo <直前のコマンド>` として実行でき、コマンドを再入力する手間を省きます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # sudoを付け忘れ
+
     apt update
+
     # -> E: Could not open lock file ... - open (13: Permission denied)
 
     # sudo !! で再実行
+
     sudo !!
+
     # -> sudo apt update が実行される
     ```
+
 
 ## オプション説明
 
@@ -77,13 +81,17 @@ knowledge_category: Command
 * **解説**: システムに変更を加えるための最も基本的な使い方です。
 * **例**:
 
-    ```bash
+		```bash
     # パッケージをアップデート
+
     sudo apt update && sudo apt upgrade -y
 
     # nginxサービスを再起動
+
     sudo systemctl restart nginx
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -92,10 +100,13 @@ knowledge_category: Command
 * **解説**: `sudo` の実行履歴は、誰が、いつ、どのディレクトリで何のコマンドを特権で実行したかを追跡するための重要な監査証跡です。認証の失敗や意図しないコマンドの実行がないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # ジャーナルログからsudoの実行履歴を確認
+
     sudo journalctl | grep "sudo"
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -104,18 +115,21 @@ knowledge_category: Command
 * **解説**: 攻撃者は侵入後、即座に `sudo -l` を実行します。もし `(ALL) ALL` が許可されていれば `sudo su` で即座にrootになれます。特定のコマンドのみが許可されている場合は、**GTFOBins** を参照し、そのコマンドを悪用して権限昇格を試みます。
 * **例**:
 
-    ```bash
+		```bash
     # 現在のユーザーがsudoで何を実行できるか確認
+
     sudo -l
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `user is not in the sudoers file. This incident will be reported.`
-    * **考えられる原因**: コマンドを実行したユーザーは、`/etc/sudoers` ファイルで `sudo` の使用が許可されていません。
-    * **解決策**: 管理者に依頼して、`visudo` コマンドで `sudoers` ファイルにユーザーを追加（または `sudo` グループに追加）してもらう必要があります。
+		* **考えられる原因**: コマンドを実行したユーザーは、`/etc/sudoers` ファイルで `sudo` の使用が許可されていません。
+		* **解決策**: 管理者に依頼して、`visudo` コマンドで `sudoers` ファイルにユーザーを追加（または `sudo` グループに追加）してもらう必要があります。
 
 ## 環境変数と設定ファイル
 

@@ -1,7 +1,14 @@
 ---
-tags: ['route' 'networking' 'legacy' 'iproute2' 'iproute' 'netstat-r' 'traceroute']
+tags:
+  - 'route'
+  - 'networking'
+  - 'legacy'
+  - 'iproute2'
+  - 'iproute'
+  - 'netstat-r'
+  - 'traceroute'
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:21
+modified: 2026-02-20 15:47
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -36,16 +43,15 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # 1. 10.10.20.0/24 への静的ルートを追加
+		# 1. 10.10.20.0/24 への静的ルートを追加
 
-    sudo route add -net 10.10.20.0 netmask 255.255.255.0 gw 192.168.1.254
+		sudo route add -net 10.10.20.0 netmask 255.255.255.0 gw 192.168.1.254
 
-    # 2. 追加したルートの先にあるサーバー (10.10.20.10) への疎通を確認
+		# 2. 追加したルートの先にあるサーバー (10.10.20.10) への疎通を確認
 
-    ping -c 4 10.10.20.10
+		ping -c 4 10.10.20.10
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -71,14 +77,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 現在のルーティングテーブルを数値表示で確認
+		# 現在のルーティングテーブルを数値表示で確認
 
-    route -n
+		route -n
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ルーティングテーブルが改ざんされていないかを確認する。
 * **組み合わせ**: `route -n`
@@ -86,14 +91,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ゲートウェイが意図しないIPに変更されていないか監査する
+		# ゲートウェイが意図しないIPに変更されていないか監査する
 
-    route -n
+		route -n
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察としてネットワークトポロジーを把握し、中間者攻撃を仕掛ける。
 * **組み合わせ**: `route -n`, `sudo route add/del ...`
@@ -101,16 +105,15 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 既存のデフォルトゲートウェイを削除
+		# 既存のデフォルトゲートウェイを削除
 
-    sudo route del default
+		sudo route del default
 
-    # 攻撃者のマシン (192.168.1.200) を新しいゲートウェイに設定
+		# 攻撃者のマシン (192.168.1.200) を新しいゲートウェイに設定
 
-    sudo route add default gw 192.168.1.200
+		sudo route add default gw 192.168.1.200
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

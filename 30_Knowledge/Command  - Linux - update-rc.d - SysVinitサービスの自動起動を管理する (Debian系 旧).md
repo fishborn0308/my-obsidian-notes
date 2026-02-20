@@ -9,9 +9,8 @@ tags:
   - 'chkconfig'
   - 'service'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,12 +44,17 @@ knowledge_category: Command
 * **解説**: まず起動スクリプトを所定の場所にコピーし、実行権限を付与します。次に `update-rc.d ... defaults` でサービスとして登録・有効化します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスでカスタムサービスを登録・有効化する
+
     sudo cp myapp-script /etc/init.d/myapp
+
     sudo chmod +x /etc/init.d/myapp
+
     sudo update-rc.d myapp defaults
+
     ```
+
 
 ## オプション説明 (`update-rc.d` のアクション)
 
@@ -73,13 +77,17 @@ knowledge_category: Command
 * **解説**: サーバーが再起動してもWebサービスが自動で開始されるように、サービスの自動起動を有効化します。
 * **例**:
 
-    ```bash
+		```bash
     # apache2サービスを自動起動ONに設定
+
     sudo update-rc.d apache2 defaults
 
     # 自動起動をOFFにする
+
     sudo update-rc.d apache2 remove
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -88,10 +96,13 @@ knowledge_category: Command
 * **解説**: システムで自動起動が有効になっているサービス (`S`で始まるシンボリックリンク) をリストアップします。リストの中に、標準的でない、あるいは明らかに不審な名前のサービスがないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # ランレベル3で起動するサービスをリストアップし、不審なものがないか確認
+
     ls -l /etc/rc3.d/S*
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -100,19 +111,23 @@ knowledge_category: Command
 * **解説**: 攻撃者がroot権限を奪取した後、`/etc/init.d/` ディレクトリにリバースシェルなどを起動する悪意のあるスクリプトを設置し、このコマンドでサービスとして有効化します。これにより、システムが再起動してもバックドアが自動的に実行されるように仕掛けます。
 * **例**:
 
-    ```bash
+		```bash
     # 悪意のあるスクリプトをサービスとして登録し、有効化する
+
     sudo chmod +x /etc/init.d/evil-svc
+
     sudo update-rc.d evil-svc defaults
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `update-rc.d: error: initscript does not exist: /etc/init.d/<service_name>`
-    * **考えられる原因**: `/etc/init.d/` ディレクトリに、指定したサービス名の起動スクリプトが存在しません。
-    * **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
+		* **考えられる原因**: `/etc/init.d/` ディレクトリに、指定したサービス名の起動スクリプトが存在しません。
+		* **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
 
 ## 環境変数と設定ファイル
 

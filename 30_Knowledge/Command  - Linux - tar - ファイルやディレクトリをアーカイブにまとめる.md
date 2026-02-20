@@ -11,9 +11,8 @@ tags:
   - 'cp'
   - 'ssh'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -47,10 +46,13 @@ knowledge_category: Command
 * **解説**: `tar czf - ...` のように、アーカイブファイル名として `-` を指定すると、結果が標準出力に送られます。これをパイプで `ssh` に渡し、リモート側で `tar xzf -` を実行して標準入力からデータを受け取り展開します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # ローカルの current-dir をリモートホストの /backup/ に転送
+
     tar czf - ./current-dir | ssh user@remote-host "cd /backup/ && tar xzf -"
+
     ```
+
 
 ## オプション説明
 
@@ -80,10 +82,13 @@ knowledge_category: Command
 * **解説**: **C**reate **Z**ip **F**ile のように覚えると便利な、最も代表的な使い方です。Webサーバーのドキュメントルートのバックアップなどに使用します。
 * **例**:
 
-    ```bash
+		```bash
     # /home/user ディレクトリを user-backup.tar.gz という名前で圧縮・アーカイブ
+
     tar czf user-backup-$(date +%F).tar.gz /home/user
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -92,10 +97,13 @@ knowledge_category: Command
 * **解説**: `-t` (`--list`) を使い、アーカイブを実際にディスクに展開することなく、中にどのようなファイルが含まれているかを確認します。これにより、マルウェアなどを安全に調査できます。
 * **例**:
 
-    ```bash
+		```bash
     # 侵害されたサーバーから収集した不審な .tar.gz ファイルの中身をリストアップ
+
     tar tf suspicious_archive.tar.gz
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -104,18 +112,21 @@ knowledge_category: Command
 * **解説**: 攻撃者はシステムから `/etc` ディレクトリ、ユーザーのホームディレクトリなどを盗み出した後、`tar` でそれらを1つのファイルにまとめ、自身のサーバーに転送します。
 * **例**:
 
-    ```bash
+		```bash
     # 窃取した /etc と /home/user をまとめて圧縮
+
     tar czf loot.tar.gz /etc /home/user
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `tar: Error is not recoverable: exiting now`
-    * **考えられる原因**: アーカイブファイルが破損しているか、ダウンロードが不完全です。
-    * **解決策**: ファイルを再ダウンロードしてください。
+		* **考えられる原因**: アーカイブファイルが破損しているか、ダウンロードが不完全です。
+		* **解決策**: ファイルを再ダウンロードしてください。
 
 ## 環境変数と設定ファイル
 

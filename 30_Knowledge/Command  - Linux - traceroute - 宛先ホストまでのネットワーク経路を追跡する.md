@@ -8,9 +8,8 @@ tags:
   - 'ping'
   - 'ip_route'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -41,10 +40,13 @@ knowledge_category: Command
 * **解説**: `-n` で名前解決を無効にし、迅速に結果を出力してファイルに保存します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # google.com への経路追跡結果をレポートファイルに保存
+
     traceroute -n google.com > traceroute-report-google-$(date +%F).txt
+
     ```
+
 
 ## オプション説明
 
@@ -70,10 +72,13 @@ knowledge_category: Command
 * **解説**: `traceroute` を実行し、自社ネットワークを出た直後のISPのルーターで応答が途絶えればISP側の問題、相手先のデータセンターのルーターで途絶えれば相手側の問題、といったように責任範囲の切り分けに役立ちます。
 * **例**:
 
-    ```bash
+		```bash
     # ICMPがブロックされている可能性を考慮し、HTTPS(443)ポートへのTCPで経路追跡
+
     sudo traceroute -T -p 443 [www.example.com](https://www.example.com)
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -82,10 +87,13 @@ knowledge_category: Command
 * **解説**: 経路上ルーターのホスト名（`-n` なしの場合）やIPアドレスから、その通信がどの国や地域、どのISPを経由しているかを推測し、攻撃者の属性を判断する一助とします。
 * **例**:
 
-    ```bash
+		```bash
     # 不審なIP 198.51.100.10 への経路を確認
+
     traceroute -n 198.51.100.10
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -94,18 +102,21 @@ knowledge_category: Command
 * **解説**: 侵入したネットワークセグメントから、別の内部セグメントにあるサーバーへの経路を `traceroute` で調査します。出力される経路上ルーターのIPアドレスから、組織の内部ネットワークのトポロジー（構造）や、ファイアウォール、ACLの存在を推測します。
 * **例**:
 
-    ```bash
+		```bash
     # 内部のDBサーバー (10.10.20.5) への経路を偵察
+
     traceroute -n 10.10.20.5
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **途中のホップが全て `* * *` になる。**
-    * **考えられる原因**: 経路上のファイアウォールが、`traceroute` が使用するICMPまたはUDPパケットを完全にブロックしています。
-    * **解決策**: `-T` (`--tcp`) オプションを使い、HTTP(80)やHTTPS(443)のような、一般的に許可されているTCPポートで追跡を試みると、経路が表示されることがあります。
+		* **考えられる原因**: 経路上のファイアウォールが、`traceroute` が使用するICMPまたはUDPパケットを完全にブロックしています。
+		* **解決策**: `-T` (`--tcp`) オプションを使い、HTTP(80)やHTTPS(443)のような、一般的に許可されているTCPポートで追跡を試みると、経路が表示されることがあります。
 
 ## 環境変数と設定ファイル
 

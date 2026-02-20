@@ -8,9 +8,8 @@ tags:
   - dmidecode
   - dmesg
 created: 2025-06-29 15:02
-modified: 2026-01-18 20:20
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:40
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

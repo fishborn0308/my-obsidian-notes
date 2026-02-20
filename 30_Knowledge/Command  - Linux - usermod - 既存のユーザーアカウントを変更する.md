@@ -9,9 +9,8 @@ tags:
   - 'gpasswd'
   - 'chsh'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,13 +44,17 @@ knowledge_category: Command
 * **解説**: `usermod -aG` でユーザーをグループに追加します。`-a` (`--append`) を忘れると他のグループから削除されてしまうため注意が必要です。変更後、ユーザーが再ログインすると新しいグループが有効になりますが、`id` コマンドで即座に定義を確認できます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # ユーザー 'devuser' を docker グループに追加
+
     sudo usermod -aG docker devuser
 
     # 変更が反映されたか確認 (groups=... の中にdockerが含まれているか)
+
     id devuser
+
     ```
+
 
 ## オプション説明
 
@@ -79,13 +82,17 @@ knowledge_category: Command
 * **解説**: ユーザーを `sudo` または `wheel` グループに追加することで、`sudo` コマンドの実行を許可します。
 * **例**:
 
-    ```bash
+		```bash
     # ユーザー 'devuser' を sudo グループに追加 (Debian/Ubuntu系)
+
     sudo usermod -aG sudo devuser
 
     # ユーザー 'devuser' を wheel グループに追加 (RHEL/CentOS系)
+
     sudo usermod -aG wheel devuser
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -94,10 +101,13 @@ knowledge_category: Command
 * **解説**: 侵害されたユーザーから、`-a` を付けずに `-G` を使って所属グループを一般グループのみに上書きすることで、`sudo` や `docker` などの全ての特権グループから一度に削除し、権限を剥奪します。
 * **例**:
 
-    ```bash
+		```bash
     # user1 の所属グループを 'users' のみに限定する
+
     sudo usermod -G users user1
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -106,18 +116,21 @@ knowledge_category: Command
 * **解説**: 攻撃者は、ユーザー名を `root` に変えるのではなく、一般ユーザー (`devuser`など) のUIDを `0` に変更します。`/etc/passwd` を一見しただけでは普通のユーザーに見えますが、このアカウントは `root` と全く同じ権限を持つため、検知されにくい強力なバックドアとなります。
 * **例**:
 
-    ```bash
+		```bash
     # 'devuser' のUIDを0に変更
+
     sudo usermod -u 0 devuser
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **ユーザーをグループに追加したが、権限が反映されない。**
-    * **考えられる原因**: グループメンバーシップの変更は、**新しいログインセッション**を開始したときに初めて有効になります。
-    * **解決策**: 対象のユーザーに、一度ログアウトしてから再度ログインするように依頼してください。`su - <username>` でも新しいセッションを開始できます。
+		* **考えられる原因**: グループメンバーシップの変更は、**新しいログインセッション**を開始したときに初めて有効になります。
+		* **解決策**: 対象のユーザーに、一度ログアウトしてから再度ログインするように依頼してください。`su - <username>` でも新しいセッションを開始できます。
 
 ## 環境変数と設定ファイル
 

@@ -1,7 +1,14 @@
 ---
-tags: ['troubleshooting' 'linux' 'error' 'permissions' 'networking' 'shell' 'filesystem']
+tags:
+  - troubleshooting
+  - linux
+  - error
+  - permissions
+  - networking
+  - shell
+  - filesystem
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:21
+modified: 2026-02-20 16:07
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

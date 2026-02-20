@@ -1,7 +1,16 @@
 ---
-tags: ['top' 'htop' 'free' 'monitoring' 'performance' 'ps' 'vmstat' 'iostat' 'kill']
+tags:
+  - top
+  - htop
+  - free
+  - monitoring
+  - performance
+  - ps
+  - vmstat
+  - iostat
+  - kill
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:22
+modified: 2026-02-20 16:07
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -41,20 +50,19 @@ knowledge_category: OS
 * **コマンド例**:
 
 		```bash
-    # このコマンドシーケンスでパフォーマンス問題を診断する
-    # 1. まずはメモリの全体状況を確認
+		# このコマンドシーケンスでパフォーマンス問題を診断する
+		# 1. まずはメモリの全体状況を確認
 
-    free -h
+		free -h
 
-    # 2. 次にhtopで詳細なプロセス状況を確認
+		# 2. 次にhtopで詳細なプロセス状況を確認
 
-    htop
+		htop
 
-    # 3. (htop内で) 'P' や 'M' を押してソートし、原因プロセスを特定
+		# 3. (htop内で) 'P' や 'M' を押してソートし、原因プロセスを特定
 
-    # 4. (htop内で) 'k' または 'F9' を押して、必要であればプロセスを停止
-    ```
-
+		# 4. (htop内で) 'k' または 'F9' を押して、必要であればプロセスを停止
+		```
 
 ## オプション説明 (各コマンド)
 
@@ -78,18 +86,17 @@ knowledge_category: OS
 * **例**:
 
 		```bash
-    # まずはメモリ状況を確認
+		# まずはメモリ状況を確認
 
-    free -h
+		free -h
 
-    # 次に詳細をhtopで確認
+		# 次に詳細をhtopで確認
 
-    htop
+		htop
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: ライブレスポンス中に不審なプロセスの活動を発見する。
 * **組み合わせ**: `sudo htop`
@@ -97,14 +104,13 @@ knowledge_category: OS
 * **例**:
 
 		```bash
-    # ライブフォレンジック調査のためにhtopを管理者権限で起動
+		# ライブフォレンジック調査のためにhtopを管理者権限で起動
 
-    sudo htop
+		sudo htop
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 侵入後の偵察と、自身の活動の防御回避。
 * **組み合わせ**: `top`, `htop`
@@ -112,12 +118,11 @@ knowledge_category: OS
 * **例**:
 
 		```bash
-    # システムで稼働中のプロセスを偵察
+		# システムで稼働中のプロセスを偵察
 
-    top -b -n 1
+		top -b -n 1
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

@@ -7,9 +7,8 @@ tags:
   - 'hostname'
   - 'cat_/proc/version'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -43,10 +42,13 @@ knowledge_category: Command
 * **解説**: `uname -r` の実行結果をコマンド置換で `ls` コマンドの引数に渡し、動的にパスを生成します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 現在のカーネルに対応するモジュールディレクトリの内容をリスト表示
+
     ls /lib/modules/$(uname -r)/
+
     ```
+
 
 ## オプション説明
 
@@ -69,10 +71,13 @@ knowledge_category: Command
 * **解説**: カーネルモジュールをビルド・インストールする際に、正しいバージョンのヘッダーファイルを指定するために使用します。
 * **例**:
 
-    ```bash
+		```bash
     # DKMSなどでカーネルモジュールをビルドする際にバージョンを指定する
+
     sudo apt install linux-headers-$(uname -r)
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -81,10 +86,13 @@ knowledge_category: Command
 * **解説**: **インシデントレスポンスの初期調査**。`uname -a` で得られたカーネルバージョンをCVEデータベースと照合し、そのカーネルに影響する既知の権限昇格の脆弱性がないかを判断します。
 * **例**:
 
-    ```bash
+		```bash
     # 調査対象ホストの情報を取得
+
     uname -a
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -93,10 +101,13 @@ knowledge_category: Command
 * **解説**: 攻撃者は侵入後、ほぼ確実に `uname -a` を実行します。この出力から得られるカーネルの正確なバージョンとアーキテクチャを元に、**権限昇格 (Privilege Escalation)** に利用可能な公開エクスプロイトコードを検索します。
 * **例**:
 
-    ```bash
+		```bash
     # 侵入したホストのカーネルバージョンを特定
+
     uname -a
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 

@@ -9,9 +9,8 @@ tags:
   - 'runuser'
   - 'id'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,13 +44,17 @@ knowledge_category: Command
 * **解説**: `su` の実行はセキュリティ上重要なイベントであり、監査ログに記録されます。`grep` で "su:" というキーワードを検索することで、`su` の成功・失敗の履歴を追跡できます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # Debian/Ubuntu系の認証ログからsuの実行履歴を検索
+
     sudo grep "su:" /var/log/auth.log
 
     # systemd環境でジャーナルから検索
+
     sudo journalctl | grep "session opened for user root"
+
     ```
+
 
 ## オプション説明
 
@@ -72,10 +75,13 @@ knowledge_category: Command
 * **解説**: `sudo` が設定されていない古いシステムや、レスキューモードで作業する際に、`root` のパスワードを入力してスーパーユーザーになります。`-` を付けることで、`root` の `PATH` やプロファイルが正しく読み込まれます。
 * **例**:
 
-    ```bash
+		```bash
     # rootユーザーに切り替え
+
     su -
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -84,10 +90,13 @@ knowledge_category: Command
 * **解説**: `su: PAM authentication failure` ログの大量発生は、攻撃者がパスワードをブルートフォースしている兆候を示します。`pam:session opened for user root` は権限昇格が成功したことを意味します。
 * **例**:
 
-    ```bash
+		```bash
     # suの認証失敗ログを検索
+
     sudo grep "su: PAM authentication failure" /var/log/auth.log
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -96,22 +105,25 @@ knowledge_category: Command
 * **解説**: 攻撃者はシステム侵入後、何らかの方法で `root` や他のユーザーのパスワードを入手した場合、`su` を使ってそのユーザーになりすまします。`root` になれればシステムを完全に掌握でき、他の一般ユーザーになれれば、そのユーザーがアクセスできるファイルを探索します。
 * **例**:
 
-    ```bash
+		```bash
     # 窃取したrootのパスワードでrootになる
+
     su -
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `su: Authentication failure`
-    * **考えられる原因**: 間違ったパスワードを入力しました。
-    * **解決策**: 正しいパスワードを再入力してください。
+		* **考えられる原因**: 間違ったパスワードを入力しました。
+		* **解決策**: 正しいパスワードを再入力してください。
 
 2. **現象**: **`su` は成功したが、元のユーザーの `PATH` が引き継がれてコマンドが見つからない。**
-    * **考えられる原因**: `-` を付けずに `su` を実行したため、非ログインシェルとなり、環境変数が完全にリセットされませんでした。
-    * **解決策**: `exit` して、**`su -`** を使用してください。
+		* **考えられる原因**: `-` を付けずに `su` を実行したため、非ログインシェルとなり、環境変数が完全にリセットされませんでした。
+		* **解決策**: `exit` して、**`su -`** を使用してください。
 
 ## 環境変数と設定ファイル
 

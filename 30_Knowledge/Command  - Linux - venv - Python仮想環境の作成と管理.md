@@ -9,9 +9,8 @@ tags:
   - Poetry
   - pip
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,23 +44,30 @@ knowledge_category: Command
 * **解説**: プロジェクトディレクトリ内で仮想環境を作成し、それを有効化してから `pip` でパッケージをインストールするのが定石です。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスで仮想環境をセットアップし、利用する
     # 1. プロジェクトディレクトリに移動
+
     cd my-project
 
     # 2. "venv" という名前で仮想環境を作成
+
     python3 -m venv venv
 
     # 3. 仮想環境を有効化 (プロンプトが変わる)
+
     source venv/bin/activate
 
     # 4. (venv)環境内でパッケージをインストール
+
     pip install requests
 
     # 5. 作業終了後、仮想環境を無効化
+
     deactivate
+
     ```
+
 
 ## オプション説明 (`python -m venv ...`)
 
@@ -82,15 +88,21 @@ knowledge_category: Command
 * **解説**: コンテナ内であっても `venv` を使うことで、OSのPythonパッケージとの依存関係を完全に分離し、クリーンで再現性の高い環境を保証します。
 * **例 (Dockerfile内)**:
 
-    ```Dockerfile
+		```Dockerfile
     # アプリケーション用の仮想環境を作成し、PATHを通す
+
     RUN python3 -m venv /opt/venv
+
     ENV PATH="/opt/venv/bin:$PATH"
 
     # 依存関係を仮想環境内にインストール
+
     COPY requirements.txt .
+
     RUN pip install -r requirements.txt
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -99,13 +111,19 @@ knowledge_category: Command
 * **解説**: 調査用に隔離されたサンドボックス環境で、分析専用の仮想環境を作成します。これにより、マルウェアの依存パッケージや分析ツールが、システムのグローバルなPython環境を汚染するのを防ぎます。
 * **例**:
 
-    ```bash
+		```bash
     # マルウェア分析用の仮想環境を作成
+
     python3 -m venv malware_analysis_env
+
     source malware_analysis_env/bin/activate
+
     # 分析に必要なツールをインストール
+
     pip install oletools
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -114,20 +132,25 @@ knowledge_category: Command
 * **解説**: 攻撃者は、書き込み権限のあるディレクトリに隠し仮想環境を作成し、その中で攻撃に必要なライブラリを `pip` でインストールします。これにより、管理者が `sudo pip list` を実行しても、システムのグローバル環境には何もインストールされていないように見せかけ、偵察からツールキットを隠蔽します。
 * **例**:
 
-    ```bash
+		```bash
     # /tmp に隠し仮想環境を作成
+
     python3 -m venv /tmp/.my-tools
+
     # 隠し環境のpipを使ってライブラリをインストール
+
     /tmp/.my-tools/bin/pip install impacket
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `The virtual environment was not created successfully because ensurepip is not available.`
-    * **考えられる原因**: OSのパッケージ管理でPythonをインストールした際に、`python3-venv` (または `python3.X-venv`) パッケージがインストールされていません。
-    * **解決策**: `sudo apt install python3-venv` や `sudo yum install python3.X-venv` などで、`venv` を提供するパッケージをインストールしてください。
+		* **考えられる原因**: OSのパッケージ管理でPythonをインストールした際に、`python3-venv` (または `python3.X-venv`) パッケージがインストールされていません。
+		* **解決策**: `sudo apt install python3-venv` や `sudo yum install python3.X-venv` などで、`venv` を提供するパッケージをインストールしてください。
 
 ## 環境変数と設定ファイル
 

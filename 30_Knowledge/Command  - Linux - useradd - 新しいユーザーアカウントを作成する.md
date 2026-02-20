@@ -8,9 +8,8 @@ tags:
   - userdel
   - passwd
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:44
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,14 +44,18 @@ knowledge_category: Command
 * **解説**: `useradd` でアカウントの骨子を作成しただけでは、パスワードが設定されておらずログインできません。必ず `passwd` を実行して、パスワードを設定する必要があります。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスで新しいユーザーアカウントを払い出す
     # 1. 'newdev' ユーザーを作成し、ホームディレクトリも作成、sudoグループに追加
+
     sudo useradd -m -s /bin/bash -G sudo newdev
 
     # 2. 作成したユーザーのパスワードを設定 (対話形式)
+
     sudo passwd newdev
+
     ```
+
 
 ## オプション説明
 
@@ -78,11 +81,15 @@ knowledge_category: Command
 * **解説**: 新しい開発者のためにアカウントを作成し、`sudo` や `docker` を実行できる権限を持つグループに追加する、最も基本的な使い方です。
 * **例**:
 
-    ```bash
+		```bash
     # ユーザー newdev を作成し、sudoグループに追加
+
     sudo useradd -m -s /bin/bash -G sudo newdev
+
     sudo passwd newdev
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -91,10 +98,13 @@ knowledge_category: Command
 * **解説**: `useradd` は直接使いませんが、`/etc/passwd` ファイルを監査し、意図しないユーザーアカウントが作成されていないかを確認します。特に、UIDが `0` のアカウントや、特権グループ (`root`, `wheel`, `sudo`) に所属している不審なアカウントがないかを重点的にチェックします。
 * **例**:
 
-    ```bash
+		```bash
     # UIDが0の特権アカウントを全てリストアップする
+
     awk -F: '($3 == 0) { print $1 }' /etc/passwd
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -103,22 +113,25 @@ knowledge_category: Command
 * **解説**: 攻撃者がroot権限を奪取した後、システムに永続的なバックドアを設置するためにこのコマンドを実行します。`-u 0 -g 0` で `root` と同じ権限を持つユーザーを作成し、`-o` でUIDの重複を許可します。ユーザー名を `root` ではない目立たない名前にすることで、特権アカウントだと気づかれにくくします。
 * **例**:
 
-    ```bash
+		```bash
     # 'system-svc' という名前で、UID 0 の隠しアカウントを作成
+
     sudo useradd -o -u 0 -g 0 -m -d /home/system-svc -s /bin/bash system-svc
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `useradd: user '<username>' already exists`
-    * **考えられる原因**: 指定したユーザー名は既にシステムに存在します。
-    * **解決策**: 別のユーザー名を使用してください。
+		* **考えられる原因**: 指定したユーザー名は既にシステムに存在します。
+		* **解決策**: 別のユーザー名を使用してください。
 
 2. **エラーメッセージ例 2**: `useradd: group '<groupname>' does not exist`
-    * **考えられる原因**: `-g` または `-G` で指定したグループが存在しません。
-    * **解決策**: 先に `groupadd <groupname>` でグループを作成してください。
+		* **考えられる原因**: `-g` または `-G` で指定したグループが存在しません。
+		* **解決策**: 先に `groupadd <groupname>` でグループを作成してください。
 
 ## 環境変数と設定ファイル
 

@@ -1,7 +1,16 @@
 ---
-tags: [pipe redirection shell bash grep sed awk tee xargs]
+tags:
+  - pipe
+  - redirection
+  - shell
+  - bash
+  - grep
+  - sed
+  - awk
+  - tee
+  - xargs
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 16:01
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
@@ -10,6 +19,8 @@ knowledge_category: OS
 # OS  - Linux - pipes_redirections - # パイプとリダイレクション - シェルの入出力を制御する
 
 ## 概要
+
+s
 
 パイプとリダイレクションは、Linux/Unixシェルの最も強力で基本的な機能です。これらを使いこなすことで、複数のコマンドを連携させたり、コマンドの実行結果をファイルに保存したりと、単純なコマンドを組み合わせて複雑なタスクを効率的に実行できます。
 

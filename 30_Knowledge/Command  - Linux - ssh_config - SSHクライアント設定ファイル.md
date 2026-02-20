@@ -6,9 +6,8 @@ tags:
   - ssh-keygen
   - ssh-copy-id
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -39,20 +38,31 @@ knowledge_category: Command
 * **解説**: `~/.ssh/config` に `ProxyJump` ディレクティブを設定することで、`ssh prod-db-01` と打つだけで、自動的に `bastion` サーバーを経由して `db.internal` に接続してくれます。
 * **コマンド例 (`~/.ssh/config` の設定)**:
 
-    ```bash
+		```bash
     # 踏み台サーバー
+
     Host bastion
+
         HostName bastion.example.com
+
         User admin
+
         IdentityFile ~/.ssh/keys/bastion_key.pem
 
     # 踏み台経由で接続するDBサーバー
+
     Host prod-db-01
+
         HostName db.internal
+
         User db_user
+
         IdentityFile ~/.ssh/keys/internal_db_key.pem
+
         ProxyJump bastion
+
     ```
+
 
 ## オプション説明 (主要なディレクティブ)
 
@@ -80,10 +90,13 @@ knowledge_category: Command
 * **解説**: 上記「よく連携されるコマンド」のシナリオ例を参照。この設定により、`ssh prod-web-01` のような短いコマンドで、複雑なオプションを付けずに接続できます。
 * **例**:
 
-    ```bash
+		```bash
     # config設定後
+
     ssh prod-db-01
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -92,13 +105,20 @@ knowledge_category: Command
 * **解説**: 調査用ワークステーションの `ssh_config` に専用の設定を記述しておきます。`PasswordAuthentication no` をクライアント側で指定することで、誤ってパスワード認証を試みないように強制できます。
 * **例 (`~/.ssh/config`)**:
 
-    ```bash
+		```bash
+
     Host compromised-host
+
         HostName 203.0.113.80
+
         User readonly_analyst
+
         IdentityFile ~/.ssh/keys/forensics_key.pem
+
         PasswordAuthentication no
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -107,22 +127,25 @@ knowledge_category: Command
 * **解説**: このファイルには、そのユーザーが普段接続している他のサーバーの**ホスト名、IPアドレス、ユーザー名、使用している鍵のパス**といった、内部ネットワークの構造や重要なサーバーの情報を把握するための貴重な情報が含まれています。
 * **例**:
 
-    ```bash
+		```bash
     # 侵入したユーザーのssh configを調査
+
     cat /home/user1/.ssh/config
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `Bad configuration option: ...`
-    * **考えられる原因**: `ssh_config` ファイル内のディレクティブ名にタイプミスがあります。
-    * **解決策**: ディレクティブのスペルが正しいか (`man ssh_config` で確認) を確認してください。
+		* **考えられる原因**: `ssh_config` ファイル内のディレクティブ名にタイプミスがあります。
+		* **解決策**: ディレクティブのスペルが正しいか (`man ssh_config` で確認) を確認してください。
 
 2. **エラーメッセージ例 2**: `Bad owner or permissions on .../.ssh/config`
-    * **考えられる原因**: `~/.ssh/config` ファイルのパーミッションが緩すぎます（例: グループや他人が書き込み可能になっている）。
-    * **解決策**: `chmod 600 ~/.ssh/config` を実行して、パーミッションを所有者のみ読み書き可能に修正してください。
+		* **考えられる原因**: `~/.ssh/config` ファイルのパーミッションが緩すぎます（例: グループや他人が書き込み可能になっている）。
+		* **解決策**: `chmod 600 ~/.ssh/config` を実行して、パーミッションを所有者のみ読み書き可能に修正してください。
 
 ## 環境変数と設定ファイル
 

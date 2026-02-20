@@ -8,9 +8,8 @@ tags:
   - rsync
   - cp
 created: 2025-06-29 15:02
-modified: 2026-01-22 20:15
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:41
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

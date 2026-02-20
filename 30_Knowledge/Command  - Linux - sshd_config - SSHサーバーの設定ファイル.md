@@ -8,9 +8,8 @@ tags:
   - fail2ban
   - systemctl
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -42,17 +41,23 @@ knowledge_category: Command
 * **解説**: まず設定ファイルを編集します。次に `sshd -t` で構文エラーがないかを必ず確認します。エラーがなければ、サービスを再起動して変更を適用します。構文チェックを怠ると、sshdが起動しなくなりサーバーにログインできなくなる可能性があります。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # 1. 設定ファイルを編集
+
     sudo vi /etc/ssh/sshd_config
+
     # -> Port 22 を Port 2222 に変更
 
     # 2. 構文チェック (何も出力されなければ成功)
+
     sudo sshd -t
 
     # 3. SSHサービスを再起動して変更を適用
+
     sudo systemctl restart sshd
+
     ```
+
 
 ## オプション説明 (主要なディレクティブ)
 
@@ -83,13 +88,20 @@ knowledge_category: Command
 * **解説**: `root`での直接ログインを禁止し、パスワード認証を無効化して公開鍵認証のみを許可することは、ブルートフォース攻撃に対する最も効果的な防御策であり、現代のサーバー構築における標準的なプラクティスです。
 * **例 (`/etc/ssh/sshd_config` の設定)**:
 
-    ```sshd_config
+		```sshd_config
+
     Port 2222
+
     PermitRootLogin no
+
     PasswordAuthentication no
+
     PubkeyAuthentication yes
+
     AllowUsers adminuser devuser
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -98,10 +110,13 @@ knowledge_category: Command
 * **解説**: インシデント調査や定期監査でこのファイルを確認し、`PermitRootLogin yes` や `PasswordAuthentication yes` のような危険な設定が有効になっていないか、`AllowUsers` に不審なユーザーが追加されていないかなどをチェックします。
 * **例**:
 
-    ```bash
+		```bash
     # 現在の設定ファイルから、主要なセキュリティ項目を抜き出して確認
+
     sudo grep -E "^Port|^PermitRootLogin|^PasswordAuthentication|^AllowUsers" /etc/ssh/sshd_config
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -110,18 +125,21 @@ knowledge_category: Command
 * **解説**: 攻撃者はシステム侵入後、まずこのファイルを読み取り、サーバーのセキュリティ設定レベルを把握します。`PasswordAuthentication yes` であればブルートフォース攻撃の対象となり得ます。root権限を奪取した後は、`AllowUsers` に自身のバックドア用アカウントを追加するなどの改ざんを行い、永続化を図ります。
 * **例**:
 
-    ```bash
+		```bash
     # 設定ファイルから AllowUsers や AllowGroups を探し、攻撃対象となりうるユーザー/グループを特定
+
     cat /etc/ssh/sshd_config | grep -E "AllowUsers|AllowGroups"
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **現象**: **`sshd_config` を変更してサービスを再起動したら、SSH接続できなくなった。**
-    * **考えられる原因**: ファイルに構文エラーがあるか、`Port` や `ListenAddress`, `AllowUsers` などの設定で自分自身を締め出す設定をしてしまった。
-    * **解決策**: 変更を加える前に、必ず `sudo sshd -t` を実行して構文チェックを行ってください。もし締め出された場合は、物理コンソールやクラウドのシリアルコンソールからログインして修正する必要があります。
+		* **考えられる原因**: ファイルに構文エラーがあるか、`Port` や `ListenAddress`, `AllowUsers` などの設定で自分自身を締め出す設定をしてしまった。
+		* **解決策**: 変更を加える前に、必ず `sudo sshd -t` を実行して構文チェックを行ってください。もし締め出された場合は、物理コンソールやクラウドのシリアルコンソールからログインして修正する必要があります。
 
 ## 環境変数と設定ファイル
 

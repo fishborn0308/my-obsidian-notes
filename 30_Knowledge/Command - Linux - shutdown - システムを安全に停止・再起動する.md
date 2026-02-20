@@ -1,7 +1,15 @@
 ---
-tags: ['shutdown' 'reboot' 'system_management' 'legacy' 'systemctl' 'reboot' 'halt' 'poweroff']
+tags:
+  - 'shutdown'
+  - 'reboot'
+  - 'system_management'
+  - 'legacy'
+  - 'systemctl'
+  - 'reboot'
+  - 'halt'
+  - 'poweroff'
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:24
+modified: 2026-02-20 15:48
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -37,13 +45,12 @@ knowledge_category: Command
 * **コマンド例**:
 
 		```bash
-    # (カーネルアップデートを実行した後...)
-    # ログイン中の全ユーザーに通知し、15分後に再起動をスケジュール
+		# (カーネルアップデートを実行した後...)
+		# ログイン中の全ユーザーに通知し、15分後に再起動をスケジュール
 
-    sudo shutdown -r +15 "Kernel update applied. System will reboot in 15 minutes."
+		sudo shutdown -r +15 "Kernel update applied. System will reboot in 15 minutes."
 
-    ```
-
+		```
 
 ## オプション説明
 
@@ -70,19 +77,18 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 今すぐシステムを完全に停止（電源オフ）
+		# 今すぐシステムを完全に停止（電源オフ）
 
-    sudo shutdown -h now
+		sudo shutdown -h now
 
-    # 10分後に予約した再起動をキャンセルする
-    # (sudo shutdown -r +10 "...") を実行した後
+		# 10分後に予約した再起動をキャンセルする
+		# (sudo shutdown -r +10 "...") を実行した後
 
-    sudo shutdown -c
+		sudo shutdown -c
 
-    ```
+		```
 
-
-### 2. ブルーチーム視点
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたホストを、これ以上悪用されないように完全に停止させる（最終的な封じ込め）。
 * **組み合わせ**: `sudo shutdown -h now`
@@ -90,14 +96,13 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # ネットワーク上で被害を拡大させているホストを緊急停止
+		# ネットワーク上で被害を拡大させているホストを緊急停止
 
-    sudo shutdown -h now
+		sudo shutdown -h now
 
-    ```
+		```
 
-
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **サービス妨害 (Denial of Service, DoS) 攻撃**として、標的のサーバーをシャットダウンする。
 * **組み合わせ**: `sudo shutdown -h now`
@@ -105,12 +110,11 @@ knowledge_category: Command
 * **例**:
 
 		```bash
-    # 標的のWebサーバーを停止させる
+		# 標的のWebサーバーを停止させる
 
-    sudo shutdown -h now
+		sudo shutdown -h now
 
-    ```
-
+		```
 
 ## エラーメッセージとトラブルシューティング
 

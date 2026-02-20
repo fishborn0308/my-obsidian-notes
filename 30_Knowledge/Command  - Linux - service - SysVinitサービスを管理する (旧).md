@@ -9,9 +9,8 @@ tags:
   - 'update-rc_d'
   - '/etc/init_d/'
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:43
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,14 +44,18 @@ knowledge_category: Command
 * **解説**: レガシーシステムにおける基本的な運用フローです。設定ファイルを編集し、`service ... restart` でサービスを再起動します。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # (CentOS 6 などのレガシーシステムでの例)
     # 1. 設定ファイルを編集
+
     sudo vi /etc/httpd/conf/httpd.conf
 
     # 2. サービスを再起動して変更を適用
+
     sudo service httpd restart
+
     ```
+
 
 ## オプション説明 (`service` のアクション)
 
@@ -76,10 +79,13 @@ knowledge_category: Command
 * **解説**: 上記シナリオ例の通り、`httpd.conf` や `my.cnf` などの設定ファイルを編集した後に、サービスを再起動して変更を反映させます。
 * **例**:
 
-    ```bash
+		```bash
     # MySQLサービスを再起動
+
     sudo service mysqld restart
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -88,10 +94,13 @@ knowledge_category: Command
 * **解説**: 調査の結果、`/etc/init.d/backdoor` という悪意のあるサービスが永続化のために設置され、実行されていることを発見した場合、このコマンドでサービスを即座に停止させ、攻撃者の活動を無力化します。
 * **例**:
 
-    ```bash
+		```bash
     # 不審なサービス 'evil-svc' を停止
+
     sudo service evil-svc stop
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -100,22 +109,25 @@ knowledge_category: Command
 * **解説**: このコマンドで、稼働中のサービス (`[ + ]` で表示) と停止中のサービス (`[ - ]`) を一覧で把握します。これにより、システムの役割や、攻撃対象となりうる脆弱なサービスがないかを探します。
 * **例**:
 
-    ```bash
+		```bash
     # 全サービスのステータスを確認
+
     service --status-all
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `<service_name>: unrecognized service`
-    * **考えられる原因**: 指定したサービス名の起動スクリプトが `/etc/init.d/` ディレクトリに存在しません。
-    * **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
+		* **考えられる原因**: 指定したサービス名の起動スクリプトが `/etc/init.d/` ディレクトリに存在しません。
+		* **解決策**: サービス名が正しいか、パッケージが正しくインストールされているかを確認してください。
 
 2. **メッセージ (systemd環境)**: `Redirecting to /bin/systemctl restart <service_name>.service`
-    * **考えられる原因**: これはエラーではありません。`systemd` 環境で `service` コマンドが実行されたため、コマンドが自動的に `systemctl` にリダイレクト（転送）されたことを示すメッセージです。
-    * **解決策**: -
+		* **考えられる原因**: これはエラーではありません。`systemd` 環境で `service` コマンドが実行されたため、コマンドが自動的に `systemctl` にリダイレクト（転送）されたことを示すメッセージです。
+		* **解決策**: -
 
 ## 環境変数と設定ファイル
 

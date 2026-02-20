@@ -8,9 +8,8 @@ tags:
   - rm
   - cp
 created: 2025-09-28 09:43
-modified: 2026-01-18 16:18
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:45
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

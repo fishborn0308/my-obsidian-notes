@@ -8,16 +8,15 @@ tags:
   - rmdir
   - install_-d
 created: 2025-06-29 15:02
-modified: 2026-01-18 20:21
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:40
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
 
 # Command  - Linux - mkdir - 新しいディレクトリを作成する
 
-  ## 概要
+	## 概要
 
 `mkdir` (make directory) は、新しいディレクトリ（または複数のディレクトリ）を作成するための基本的なコマンドです。ファイルやプロジェクトを整理するための階層構造を作る際に使用します。
 

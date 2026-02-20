@@ -1,7 +1,11 @@
 ---
-tags: [linux environment_variables configuration_files environment_and_config]
+tags:
+  - linux
+  - environment_variables
+  - configuration_files
+  - environment_and_config
 created: 2025-06-28 14:24
-modified: 2026-02-20 15:23
+modified: 2026-02-20 15:53
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS

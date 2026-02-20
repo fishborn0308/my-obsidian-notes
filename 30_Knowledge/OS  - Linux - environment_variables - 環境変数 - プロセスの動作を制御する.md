@@ -1,7 +1,13 @@
 ---
-tags: [environment_variables env export shell linux shell_scripting_basics environment_and_config]
+tags:
+  - environment_variables
+  - env
+  - export
+  - shell
+  - linux shell_scripting_basics
+  - environment_and_config
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:23
+modified: 2026-02-20 15:54
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
