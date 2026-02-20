@@ -1,23 +1,13 @@
 ---
-tags:
-  - capabilities
-  - linux
-  - security
-  - privilege
-  - setuid_setgid
-  - sudo
-  - selinux_apparmor
-created:
-modified:
+tags: [capabilities linux security privilege setuid_setgid sudo selinux_apparmor]
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:24
 environment: []
 vulnearability: []
 knowledge_category: OS
 ---
 
 # OS  - Linux - capabilities - root権限を分割・管理する
-
-
-
 
 ## 概要
 
@@ -102,8 +92,8 @@ getcap -r / 2>/dev/null | grep -E "cap_setuid|cap_dac_read_search"
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `Failed to set capabilities on file '<file>' (Operation not supported)`
-    * **考えられる原因**: ファイルシステムが拡張属性 (xattr) をサポートしていないか、マウントオプションで無効化されています。ケーパビリティはxattrを使ってファイルに保存されます。
-    * **解決策**: `mount` コマンドでファイルシステムのマウントオプションを確認します。必要であれば、`user_xattr` オプションを付けて再マウントします。
+		* **考えられる原因**: ファイルシステムが拡張属性 (xattr) をサポートしていないか、マウントオプションで無効化されています。ケーパビリティはxattrを使ってファイルに保存されます。
+		* **解決策**: `mount` コマンドでファイルシステムのマウントオプションを確認します。必要であれば、`user_xattr` オプションを付けて再マウントします。
 
 ## 環境変数と設定ファイル
 
@@ -132,5 +122,4 @@ getcap -r / 2>/dev/null | grep -E "cap_setuid|cap_dac_read_search"
 
 * **スクリプトへの設定不可**: ケーパビリティは、シェルスクリプトのようなテキストファイルに直接設定することはできません。ケーパビリティは、**実行バイナリ（インタプリタ自身）**に設定する必要があります。
 * **コンテナセキュリティ**: ケーパビリティはコンテナセキュリティの根幹をなす技術です。Dockerはデフォルトでコンテナから多くの危険なケーパビリティを剥奪 (`drop`) します。`docker run --cap-add=NET_ADMIN` のようにして、コンテナに特定のケーパビリティを明示的に追加できます。
-
 

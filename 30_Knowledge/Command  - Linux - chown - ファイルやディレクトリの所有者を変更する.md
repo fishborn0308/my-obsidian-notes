@@ -7,9 +7,8 @@ tags:
   - chmod
   - ls
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:12
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:38
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

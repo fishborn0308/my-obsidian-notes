@@ -1,17 +1,8 @@
 ---
-tags:
-  - network_troubleshooting
-  - linux
-  - networking
-  - ping
-  - traceroute
-  - mtr
-  - dig
-  - ss
+tags: [network_troubleshooting linux networking ping traceroute mtr dig ss]
 created: 2025-06-28 15:40
-modified: 2026-01-18 19:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:23
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
 ---

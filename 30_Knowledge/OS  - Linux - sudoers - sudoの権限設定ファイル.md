@@ -1,16 +1,7 @@
 ---
-tags:
-  - 'sudoers'
-  - 'visudo'
-  - 'sudo'
-  - 'security'
-  - 'privilege_management'
-  - 'sudo'
-  - 'visudo'
-  - 'su'
-  - 'groupadd'
-created:
-modified:
+tags: [sudoers visudo sudo security privilege_management su groupadd]
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:23
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -45,13 +36,15 @@ knowledge_category: OS
 * **解説**: `visudo` は、保存時にファイルの構文チェックを行い、エラーがあれば保存を中止してくれます。これにより、構文ミスで `sudo` が使えなくなるという最悪の事態を防ぎます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドでsudoersファイルを安全に編集する
+
     sudo visudo
 
     # (エディタが起動するので、設定を編集して保存・終了する)
     # もし構文エラーがあれば、エラー内容が表示され、再編集を促される
     ```
+
 
 ## オプション説明 (`sudoers` の構文)
 
@@ -73,10 +66,13 @@ knowledge_category: OS
 * **解説**: システム管理を行うユーザーを `admin` グループ (または `wheel` グループ) に追加するだけで、`sudo` 権限を付与できる、一般的で効率的な設定です。
 * **例 (`/etc/sudoers.d/admin` ファイルに記述)**:
 
-    ```bash
+		```bash
     # admin グループのメンバーは、全てのホストから、全てのコマンドをrootとして実行できる
+
     %admin ALL=(ALL) ALL
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -85,10 +81,13 @@ knowledge_category: OS
 * **解説**: 定期的にこのファイルの内容を監査し、組織のセキュリティポリシーに準拠しているか、特に `NOPASSWD: ALL` のような危険な設定がないかを確認します。
 * **例**:
 
-    ```bash
+		```bash
     # パスワードなしで実行できるコマンドがないか確認
+
     sudo grep -r "NOPASSWD" /etc/sudoers /etc/sudoers.d/
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -97,18 +96,21 @@ knowledge_category: OS
 * **解説**: `sudo -l` は、`sudoers` ファイルに定義された、現在のユーザー向けのルールを表示します。もし、`find`, `vi`, `less`, `nmap` といった、シェルを起動したり任意のファイルを読み書きしたりできるコマンドが `sudo` で許可されていれば、**GTFOBins** を参照しそのコマンドを悪用してroot権限のシェルを奪取します。
 * **例**:
 
-    ```bash
+		```bash
     # 現在のユーザーがsudoで何を実行できるか確認
+
     sudo -l
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `>>> /etc/sudoers: syntax error near line 25 <<<`
-    * **考えられる原因**: `visudo` を使わずにファイルを編集した、または `visudo` の編集中に構文を間違えました。
-    * **解決策**: `visudo` はエラーがあると保存を中止します。再度 `sudo visudo` を実行し、指定された行の構文を修正してください。
+		* **考えられる原因**: `visudo` を使わずにファイルを編集した、または `visudo` の編集中に構文を間違えました。
+		* **解決策**: `visudo` はエラーがあると保存を中止します。再度 `sudo visudo` を実行し、指定された行の構文を修正してください。
 
 ## 環境変数と設定ファイル
 

@@ -1,15 +1,8 @@
 ---
-tags:
-  - service
-  - sysvinit
-  - legacy
-  - systemd
-  - systemctl
-  - chkconfig
+tags: [service sysvinit legacy systemd systemctl chkconfig]
 created: 2025-09-22 13:32
-modified: 2026-01-22 20:18
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:23
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
 ---

@@ -1,17 +1,19 @@
 ---
 tags:
   - 'usermod'
-  - 'user management'
+  - 'user_management'
   - 'security'
   - 'linux'
-  - 'cheetsheet'
-title: 'usermod - 既存のユーザーアカウントを変更する'
-summary: '既存のユーザーアカウントの属性（所属グループ、ログインシェル、ホームディレクトリ、ユーザー名、UIDなど）を変更するためのコマンドです。'
-related:
   - 'useradd'
   - 'userdel'
   - 'gpasswd'
   - 'chsh'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - usermod - 既存のユーザーアカウントを変更する

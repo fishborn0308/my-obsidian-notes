@@ -1,16 +1,7 @@
 ---
-tags:
-  - 'strace'
-  - 'ltrace'
-  - 'debugging'
-  - 'forensics'
-  - 'security'
-  - 'strace'
-  - 'ltrace'
-  - 'gdb'
-  - 'perf'
-created:
-modified:
+tags: [strace ltrace debugging forensics security gdb perf]
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:23
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -23,7 +14,6 @@ knowledge_category: OS
 `strace` と `ltrace` は、プログラムが実行中に何を行っているかを、低レベルで詳細に追跡（トレース）するための動的解析ツールです。アプリケーションのデバッグや、マルウェアの挙動分析など、プロセス内部の動きを理解するために不可欠なコマンドです。
 
 * **`strace` (System Call Trace)**: プロセスが行う**システムコール**（カーネルへの要求）と、プロセスが受信する**シグナル**を追跡します。ファイルアクセス、ネットワーク通信、プロセス操作など、**OSとのやり取り**を監視します。
-
 * **`ltrace` (Library Call Trace)**: プロセスが行う**共有ライブラリ**へのコール（関数呼び出し）を追跡します。`printf` や `strcpy` など、**アプリケーションがライブラリ関数をどのように利用しているか**を監視します。
 
 (出自: `strace` / `ltrace` パッケージに含まれる)
@@ -47,10 +37,13 @@ knowledge_category: OS
 * **解説**: `strace` でアプリケーションを実行し、その出力の中からファイルを開くシステムコール (`openat`) を `grep` でフィルタリングします。これにより、設定ファイルの読み込みパスや、読み込みに失敗しているファイル (`ENOENT`) を簡単に特定できます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # my-app の実行中に行われる "openat" システムコールのみを表示
+
     strace -f -e trace=openat ./my-app 2>&1 | grep "myapp.conf"
+
     ```
+
 
 ## オプション説明 (共通)
 
@@ -73,7 +66,6 @@ knowledge_category: OS
 * **タスク (strace)**: 「Permission denied」エラーの根本原因を究明する。
 * **組み合わせ**: `strace -e trace=open,openat,access -f /path/to/app`
 * **解説**: ファイルアクセスに関連するシステムコールに絞り、出力の中から `EACCES (Permission denied)` を返す行を見つけることで、どのファイルへの権限が不足しているかを正確に特定します。
-
 * **タスク (ltrace)**: アプリケーションがクラッシュする原因を調査する。
 * **組み合わせ**: `ltrace /path/to/application`
 * **解説**: クラッシュ直前に呼び出されたライブラリコールを確認します。例えば、`strcpy` の引数に異常に長い文字列が渡されていれば、バッファオーバーフローを疑うことができます。
@@ -95,8 +87,8 @@ knowledge_category: OS
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `strace: attach: ptrace(PTRACE_ATTACH, ...): Operation not permitted`
-    * **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。
-    * **解決策**: `sudo strace ...` のように `sudo` を付けて実行してください。
+		* **考えられる原因**: `root` 権限なしで、自身が所有していないプロセスにアタッチしようとしました。または、`kernel.yama.ptrace_scope` の設定により `ptrace` が制限されています。
+		* **解決策**: `sudo strace ...` のように `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

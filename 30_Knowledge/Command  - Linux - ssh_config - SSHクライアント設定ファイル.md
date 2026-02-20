@@ -1,11 +1,10 @@
 ---
 tags:
-  - 'ssh'
-  - 'ssh_config'
-  - 'security'
-  - 'ssh'
-  - 'ssh-keygen'
-  - 'ssh-copy-id'
+  - ssh
+  - ssh_config
+  - security
+  - ssh-keygen
+  - ssh-copy-id
 created: 2025-06-29 15:02
 modified: 2026-01-18 15:02
 environment:

@@ -1,17 +1,8 @@
 ---
-tags:
-  - ovs-vsctl
-  - open_vswitch
-  - ovs
-  - networking
-  - sdn
-  - brctl
-  - ip_link
-  - ovs-ofctl
+tags: [ovs-vsctl open_vswitch ovs networking sdn brctl ip_link ovs-ofctl]
 created: 2025-06-29 15:02
-modified: 2026-01-18 20:34
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:23
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
 ---

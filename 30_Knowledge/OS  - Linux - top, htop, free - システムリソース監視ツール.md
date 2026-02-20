@@ -1,16 +1,7 @@
 ---
-tags:
-  - 'top'
-  - 'htop'
-  - 'free'
-  - 'monitoring'
-  - 'performance'
-  - 'ps'
-  - 'vmstat'
-  - 'iostat'
-  - 'kill'
-created:
-modified:
+tags: ['top' 'htop' 'free' 'monitoring' 'performance' 'ps' 'vmstat' 'iostat' 'kill']
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:22
 environment: []
 vulnearability: []
 knowledge_category: OS
@@ -49,18 +40,21 @@ knowledge_category: OS
 * **解説**: まず `free -h` でメモリ全体像を把握します。もしメモリが逼迫していれば `htop` を起動し、`M`キーでメモリ消費順にソートして原因プロセスを特定します。CPU負荷が高い場合は `P`キーでソートします。暴走しているプロセスは `F9`キーで停止させます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # このコマンドシーケンスでパフォーマンス問題を診断する
     # 1. まずはメモリの全体状況を確認
+
     free -h
 
     # 2. 次にhtopで詳細なプロセス状況を確認
+
     htop
 
     # 3. (htop内で) 'P' や 'M' を押してソートし、原因プロセスを特定
 
     # 4. (htop内で) 'k' または 'F9' を押して、必要であればプロセスを停止
     ```
+
 
 ## オプション説明 (各コマンド)
 
@@ -83,12 +77,17 @@ knowledge_category: OS
 * **解説**: `free` で全体像を掴み、`htop` で犯人を特定し、`kill` で対処する、という流れはトラブルシューティングの基本です。
 * **例**:
 
-    ```bash
+		```bash
     # まずはメモリ状況を確認
+
     free -h
+
     # 次に詳細をhtopで確認
+
     htop
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -97,10 +96,13 @@ knowledge_category: OS
 * **解説**: `htop` を実行し、CPUを異常に消費している偽装名のプロセス（クリプトマイナーなど）や、サービスアカウントから起動された予期せぬシェル (`/bin/sh`) がいないかを `F5` (ツリー表示) で確認します。
 * **例**:
 
-    ```bash
+		```bash
     # ライブフォレンジック調査のためにhtopを管理者権限で起動
+
     sudo htop
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -109,18 +111,21 @@ knowledge_category: OS
 * **解説**: 攻撃者は `top` や `htop` を実行し、システムでどのようなサービスやセキュリティ製品（EDRエージェントなど）が動いているかを把握します。また、自身のマルウェアがCPUを過剰に消費して発見されることがないよう、リソース消費を低く抑えます。
 * **例**:
 
-    ```bash
+		```bash
     # システムで稼働中のプロセスを偵察
+
     top -b -n 1
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: htop: command not found`
-    * **考えられる原因**: `htop` は多くのシステムでデフォルトではインストールされていません。
-    * **解決策**: システムのパッケージマネージャを使ってインストールしてください。（Debian/Ubuntu: `sudo apt install htop`, RHEL/CentOS: `sudo yum install htop`）
+		* **考えられる原因**: `htop` は多くのシステムでデフォルトではインストールされていません。
+		* **解決策**: システムのパッケージマネージャを使ってインストールしてください。（Debian/Ubuntu: `sudo apt install htop`, RHEL/CentOS: `sudo yum install htop`）
 
 ## 環境変数と設定ファイル
 

@@ -7,9 +7,8 @@ tags:
   - tar
   - zip
 created: 2025-06-29 15:02
-modified: 2026-01-18 14:44
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:37
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -48,7 +47,6 @@ knowledge_category: Command
 mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
 ```
 
-
 ## オプション説明
 
 | オプション | 説明 |
@@ -78,7 +76,6 @@ mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
 	# -> large_database_dump.sql.bz2 が生成される
 ```
 
-
 ### 2. ブルーチーム視点
 
 * **タスク**: 証拠となる大量のファイルを、保管や転送のために1つの高圧縮アーカイブにまとめる。
@@ -91,7 +88,6 @@ mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
 	tar cjf logs-archive.tar.bz2 /var/log/
 ```
 
-
 ### 3. レッドチーム視点
 
 * **タスク**: 窃取したデータを高圧縮・暗号化して持ち出す準備をする。
@@ -103,7 +99,6 @@ mysqldump -u root -p my_database | bzip2 -c > backup-$(date +%F).sql.bz2
 	# /etc と /home/user の中身を高圧縮し、gpgで暗号化する
 	tar cjf - /etc /home/user | gpg -c -o loot.tar.bz2.gpg
 ```
-
 
 ## エラーメッセージとトラブルシューティング
 

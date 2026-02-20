@@ -1,13 +1,12 @@
 ---
 tags:
-  - 'sshd_config'
-  - 'ssh'
-  - 'security'
-  - 'server_hardening'
-  - 'ssh'
-  - 'ssh_config'
-  - 'fail2ban'
-  - 'systemctl'
+  - sshd_config
+  - ssh
+  - security
+  - server_hardening
+  - ssh_config
+  - fail2ban
+  - systemctl
 created: 2025-06-29 15:02
 modified: 2026-01-18 15:02
 environment:

@@ -1,19 +1,8 @@
 ---
-tags:
-  - passwd
-  - shadow
-  - group
-  - gshadow
-  - user_management
-  - security
-  - useradd
-  - usermod
-  - userdel
-  - chage
+tags: [passwd shadow group gshadow user_management security useradd usermod userdel chage]
 created: 2025-06-29 15:02
-modified: 2026-01-18 20:36
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:23
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
 ---

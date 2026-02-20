@@ -9,9 +9,8 @@ tags:
   - update-rc
   - service
 created: 2025-09-22 14:02
-modified: 2026-01-18 15:07
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:38
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---

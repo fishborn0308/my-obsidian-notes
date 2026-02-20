@@ -1,16 +1,17 @@
 ---
 tags:
   - 'rpm'
-  - 'package management'
+  - 'package_management'
   - 'rhel'
   - 'centos'
-  - 'cheetsheet'
-title: 'rpm - RPMパッケージを管理する (低レベル)'
-summary: '.rpm形式のパッケージファイルを直接インストール、アンインストール、問い合わせ、検証などを行う、Red Hat系Linuxの中核的なパッケージ管理システムです。'
-related:
   - 'yum'
   - 'dnf'
   - 'dpkg'
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:35
+environment: [OS/Linux]
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command - Linux - rpm - RPMパッケージを管理する (低レベル)
@@ -41,10 +42,12 @@ related:
 * **解説**: `-q` (query), `-p` (package file), `-l` (list files) を組み合わせることで、インストール前の `.rpm` パッケージの中身を一覧表示できます。
 * **コマンド例**:
 
-    ```bash
-    # ダウンロードしたepel-releaseのrpmファイルに何が含まれているか確認
-    rpm -qpl epel-release-latest-8.noarch.rpm
-    ```
+		```bash
+		# ダウンロードしたepel-releaseのrpmファイルに何が含まれているか確認
+
+		rpm -qpl epel-release-latest-8.noarch.rpm
+
+		```
 
 ## オプション説明
 
@@ -70,43 +73,49 @@ related:
 * **解説**: `-U` (`Upgrade`) を使うことで、もし古いバージョンがインストールされていても安全に更新できます。`-i` (`install`) よりもこちらを使うのが一般的です。
 * **例**:
 
-    ```bash
-    # epel-releaseリポジトリのrpmをインストール
-    sudo rpm -Uvh [https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm](https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm)
-    ```
+		```bash
+		# epel-releaseリポジトリのrpmをインストール
 
-### 2. ブルーチーム視点
+		sudo rpm -Uvh [https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm](https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm)
+
+		```
+
+## 2. ブルーチーム視点
 
 * **タスク**: 不審なファイルが、正規のパッケージによってインストールされたものか特定する。
 * **組み合わせ**: `rpm -qf <file_path>`
 * **解説**: フォレンジック調査において、不審なファイルを発見した場合にこのコマンドを実行します。もし「`file ... is not owned by any package`」と表示されれば、攻撃者が手動で配置したマルウェアである可能性が極めて高いと判断できます。
 * **例**:
 
-    ```bash
-    # /etc/ssh/sshd_config がどのパッケージに属しているか確認
-    rpm -qf /etc/ssh/sshd_config
-    # -> openssh-server-8.0p1-10.el8.x86_64
-    ```
+		```bash
+		# /etc/ssh/sshd_config がどのパッケージに属しているか確認
 
-### 3. レッドチーム視点
+		rpm -qf /etc/ssh/sshd_config
+
+		# -> openssh-server-8.0p1-10.el8.x86_64
+		```
+
+## 3. レッドチーム視点
 
 * **タスク**: 侵入したシステムにインストールされているソフトウェアの一覧を取得し、脆弱性を探す。
 * **組み合わせ**: `rpm -qa`
 * **解説**: 権限昇格の足がかりを探すため、インストール済みのパッケージ一覧から、既知の脆弱性 (CVE) を持つ古いバージョンのサービス（Kernel, Sudo, Polkitなど）がないかを探します。
 * **例**:
 
-    ```bash
-    # インストール済みの全パッケージをリストし、kernelのバージョンを確認
-    rpm -qa | grep kernel
-    ```
+		```bash
+		# インストール済みの全パッケージをリストし、kernelのバージョンを確認
+
+		rpm -qa | grep kernel
+
+		```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `error: Failed dependencies: ...`
-    * **考えられる原因**: 最もよくあるエラー。`rpm` は依存関係を自動解決しません。
-    * **解決策**: `sudo yum install <package_file.rpm>` や `sudo dnf install <package_file.rpm>` を実行してください。`yum`/`dnf` が不足している依存関係をリポジトリから自動的に探し出し、一緒にインストールしてくれます。
+		* **考えられる原因**: 最もよくあるエラー。`rpm` は依存関係を自動解決しません。
+		* **解決策**: `sudo yum install <package_file.rpm>` や `sudo dnf install <package_file.rpm>` を実行してください。`yum`/`dnf` が不足している依存関係をリポジトリから自動的に探し出し、一緒にインストールしてくれます。
 
 ## 環境変数と設定ファイル
 

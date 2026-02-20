@@ -2,17 +2,18 @@
 tags:
   - 'virtualenv'
   - 'python'
-  - 'virtual environment'
-  - 'dependency management'
+  - 'virtual_environment'
+  - 'dependency_management'
   - 'legacy'
-  - 'cheetsheet'
-title: 'virtualenv - Python仮想環境を作成する (サードパーティ製)'
-summary: 'プロジェクトごとに隔離されたPython仮想環境を作成するためのサードパーティ製ツール。古いPythonバージョンもサポートします。'
-related:
   - 'venv'
   - 'pipenv'
   - 'Poetry'
   - 'pip'
+created: 2025-06-29 15:02
+modified: 2026-02-20 15:37
+environment: [OS/Linux]
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - virtualenv - Python仮想環境を作成する (サードパーティ製)
@@ -43,24 +44,31 @@ related:
 * **解説**: プロジェクトディレクトリ内で仮想環境を作成し、それを有効化してから `pip` でパッケージをインストールするのが定石です。
 * **コマンド例**:
 
-    ```bash
-    # このコマンドシーケンスで仮想環境をセットアップし、利用する
-    # 1. virtualenvをインストール (初回のみ)
-    pip install virtualenv
+		```bash
+		# このコマンドシーケンスで仮想環境をセットアップし、利用する
+		# 1. virtualenvをインストール (初回のみ)
 
-    # 2. プロジェクトディレクトリに移動し、仮想環境を作成
-    cd my-project
-    virtualenv venv
+		pip install virtualenv
 
-    # 3. 仮想環境を有効化 (プロンプトが変わる)
-    source venv/bin/activate
+		# 2. プロジェクトディレクトリに移動し、仮想環境を作成
 
-    # 4. (venv)環境内でパッケージをインストール
-    pip install requests
+		cd my-project
 
-    # 5. 作業終了後、仮想環境を無効化
-    deactivate
-    ```
+		virtualenv venv
+
+		# 3. 仮想環境を有効化 (プロンプトが変わる)
+
+		source venv/bin/activate
+
+		# 4. (venv)環境内でパッケージをインストール
+
+		pip install requests
+
+		# 5. 作業終了後、仮想環境を無効化
+
+		deactivate
+
+		```
 
 ## オプション説明
 
@@ -80,48 +88,58 @@ related:
 * **解説**: `-p` オプションでベースとなるPythonインタプリタを指定することで、システムに複数のPythonバージョンが共存している場合でも、特定のバージョンの隔離環境を確実に作成できます。
 * **例**:
 
-    ```bash
-    # Python 2.7 の仮想環境 'legacy_env' を作成
-    virtualenv -p /usr/bin/python2.7 legacy_env
+		```bash
+		# Python 2.7 の仮想環境 'legacy_env' を作成
 
-    # 有効化して、古いライブラリをインストール
-    source legacy_env/bin/activate
-    pip install Fabric==1.14.0
-    ```
+		virtualenv -p /usr/bin/python2.7 legacy_env
 
-### 2. ブルーチーム視点
+		# 有効化して、古いライブラリをインストール
+
+		source legacy_env/bin/activate
+
+		pip install Fabric==1.14.0
+
+		```
+
+## 2. ブルーチーム視点
 
 * **タスク**: Python 2で書かれたマルウェアの疑いがあるスクリプトを、安全なサンドボックス内で分析する。
 * **組み合わせ**: `virtualenv -p python2.7 <analysis_env>`
 * **解説**: `venv` と同様に、分析専用の仮想環境を作成しますが、対象がPython 2であるため `virtualenv` を使用します。これにより、モダンなシステム上でも安全にレガシーなスクリプトの依存関係をインストールし、動的解析を行うことができます。
 * **例**:
 
-    ```bash
-    # マルウェア分析用のPython 2仮想環境を作成
-    virtualenv -p python2.7 malware_analysis_env
-    ```
+		```bash
+		# マルウェア分析用のPython 2仮想環境を作成
 
-### 3. レッドチーム視点
+		virtualenv -p python2.7 malware_analysis_env
+
+		```
+
+## 3. レッドチーム視点
 
 * **タスク**: **活動の隠蔽 (Defense Evasion)**。侵入したホスト上で、攻撃ツールをシステムの `pip` を使わずに導入する。
 * **組み合わせ**: `virtualenv .hidden_env`
 * **解説**: 攻撃者は、書き込み権限のあるディレクトリに隠し仮想環境を作成し、その中で攻撃に必要なライブラリを `pip` でインストールします。これにより、管理者が `sudo pip list` を実行しても、システムのグローバル環境には何もインストールされていないように見せかけます。
 * **例**:
 
-    ```bash
-    # /tmp に隠し仮想環境を作成
-    virtualenv /tmp/.my-tools
-    # 隠し環境のpipを使ってライブラリをインストール
-    /tmp/.my-tools/bin/pip install impacket
-    ```
+		```bash
+		# /tmp に隠し仮想環境を作成
+
+		virtualenv /tmp/.my-tools
+
+		# 隠し環境のpipを使ってライブラリをインストール
+
+		/tmp/.my-tools/bin/pip install impacket
+
+		```
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](OS%20%20-%20Linux%20-%20troubleshooting_common_errors%20-%20Linux共通エラー対応ガイド.md) を参照。
 
 1. **エラーメッセージ例 1**: `bash: virtualenv: command not found`
-    * **考えられる原因**: `virtualenv` がインストールされていません。
-    * **解決策**: `pip install virtualenv` を実行してインストールしてください。
+		* **考えられる原因**: `virtualenv` がインストールされていません。
+		* **解決策**: `pip install virtualenv` を実行してインストールしてください。
 
 ## 環境変数と設定ファイル
 

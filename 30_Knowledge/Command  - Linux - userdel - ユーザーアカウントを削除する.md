@@ -1,17 +1,19 @@
 ---
 tags:
   - 'userdel'
-  - 'user management'
+  - 'user_management'
   - 'security'
   - 'linux'
-  - 'cheetsheet'
-title: 'userdel - ユーザーアカウントを削除する'
-summary: 'システムから既存のユーザーアカウントを、関連ファイル（ホームディレクトリなど）と共に完全に削除します。'
-related:
   - 'useradd'
   - 'usermod'
-  - 'passwd -l'
+  - 'passwd_-l'
   - 'groupdel'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - userdel - ユーザーアカウントを削除する

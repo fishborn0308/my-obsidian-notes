@@ -4,14 +4,15 @@ tags:
   - 'who'
   - 'monitoring'
   - 'forensics'
-  - 'cheetsheet'
-title: 'w - ログイン中のユーザーとそのプロセスを表示する'
-summary: '現在システムにログインしているユーザーの一覧、稼働時間、ロードアベレージ、そして各ユーザーが何を実行しているかを詳細に表示します。'
-related:
-  - 'who'
   - 'users'
   - 'uptime'
   - 'last'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - w - ログイン中のユーザーとそのプロセスを表示する

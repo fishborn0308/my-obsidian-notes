@@ -9,9 +9,8 @@ tags:
   - ls
   - umask
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:08
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:38
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -52,7 +51,6 @@ sudo chgrp developers /srv/shared
 sudo chmod 2770 /srv/shared
 
 ```
-
 
 ## オプション説明
 
@@ -95,7 +93,6 @@ chmod 600 ~/.ssh/id_rsa
 
 ```
 
-
 ### 2. ブルーチーム視点
 
 * **タスク**: マルウェアを無力化する。
@@ -109,7 +106,6 @@ chmod 600 ~/.ssh/id_rsa
 sudo chmod 000 /tmp/evil.elf
 
 ```
-
 
 ### 3. レッドチーム視点
 
@@ -128,7 +124,6 @@ sudo chown root:root /tmp/root-shell
 sudo chmod u+s /tmp/root-shell
 
 ```
-
 
 ## エラーメッセージとトラブルシューティング
 
@@ -167,5 +162,4 @@ sudo chmod u+s /tmp/root-shell
 find /somedir -type d -exec chmod 755 {} \;  # ディレクトリは755
 find /somedir -type f -exec chmod 644 {} \;  # ファイルは644
 ```
-
 

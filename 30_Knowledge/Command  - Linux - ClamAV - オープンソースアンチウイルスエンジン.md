@@ -10,9 +10,8 @@ tags:
   - maldet
   - EDR
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:08
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:38
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -54,7 +53,6 @@ knowledge_category: Command
 
 ```
 
-
 ### シナリオ例: 特定の種類のファイルのみをスキャンする (インフラ運用/ブルーチーム視点)
 
 * **目的**: サーバー上の全ユーザーのホームディレクトリから、実行ファイルとPHPスクリプトのみを対象にマルウェアスキャンを実行し、結果をログに記録する。
@@ -68,7 +66,6 @@ knowledge_category: Command
 find /home -type f \( -perm /u=x,g=x,o=x -o -name "*.php" \) -print0 | xargs -0 clamscan -l /var/log/clamav/custom_scan.log
 
 ```
-
 
 ## オプション説明
 
@@ -124,7 +121,6 @@ clamscan -r --move=/opt/clamav/quarantine -l /var/log/clamav/daily_web_scan_$(da
 
 ```
 
-
 ### 2. ブルーチーム視点
 
 * **タスク**: 侵害された可能性のあるディレクトリをスキャンし、マルウェアを安全に隔離する。
@@ -152,7 +148,6 @@ sudo clamscan -r -i --move=/var/log/quarantine /home/compromised_user
 clamscan -r -i --exclude-dir="^/proc" --exclude-dir="^/sys" --exclude-dir="^/dev" -l /var/log/clamav/incident_response_$(date +\%F).log /
 
 ```
-
 
 ### 3. レッドチーム視点
 

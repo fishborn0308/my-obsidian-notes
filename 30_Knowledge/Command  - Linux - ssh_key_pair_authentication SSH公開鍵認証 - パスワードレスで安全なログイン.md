@@ -1,13 +1,12 @@
 ---
 tags:
-  - 'ssh'
-  - 'public_key_cryptography'
-  - 'authentication'
-  - 'security'
-  - 'ssh'
-  - 'ssh-keygen'
-  - 'ssh-copy-id'
-  - 'sshd_config'
+  - ssh
+  - public_key_cryptography
+  - authentication
+  - security
+  - ssh-keygen
+  - ssh-copy-id
+  - sshd_config
 created: 2025-06-29 15:02
 modified: 2026-01-18 15:02
 environment:

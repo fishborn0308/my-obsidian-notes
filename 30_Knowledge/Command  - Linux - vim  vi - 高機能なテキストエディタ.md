@@ -3,17 +3,19 @@ tags:
   - 'vim'
   - 'vi'
   - 'editor'
-  - 'cheetsheet'
-title: 'vim / vi - 高機能なテキストエディタ'
-summary: 'サーバー管理やプログラミングで標準的に使われる、キーボード主体の高機能なテキストエディタ。モードを切り替えて高速な編集が可能です。'
-related:
   - 'nano'
   - 'emacs'
   - 'sed'
   - 'visudo'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
-# Command  - Linux - vim`/ vi - 高機能なテキストエディタ
+# Command  - Linux - vim/ vi - 高機能なテキストエディタ
 
 ## 概要
 

@@ -1,17 +1,8 @@
 ---
-tags:
-  - 'shutdown'
-  - 'reboot'
-  - 'system_management'
-  - 'legacy'
-  - 'systemctl'
-  - 'reboot'
-  - 'halt'
-  - 'poweroff'
+tags: ['shutdown' 'reboot' 'system_management' 'legacy' 'systemctl' 'reboot' 'halt' 'poweroff']
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:02
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:24
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
 ---
@@ -45,11 +36,14 @@ knowledge_category: Command
 * **解説**: パッケージのアップグレード後、`shutdown -r` に時間とメッセージを指定して実行することで、他の管理者が作業中であっても安全に再起動プロセスを進めることができます。
 * **コマンド例**:
 
-    ```bash
+		```bash
     # (カーネルアップデートを実行した後...)
     # ログイン中の全ユーザーに通知し、15分後に再起動をスケジュール
+
     sudo shutdown -r +15 "Kernel update applied. System will reboot in 15 minutes."
+
     ```
+
 
 ## オプション説明
 
@@ -75,14 +69,18 @@ knowledge_category: Command
 * **解説**: 最も一般的に使われる再起動コマンドです。
 * **例**:
 
-    ```bash
+		```bash
     # 今すぐシステムを完全に停止（電源オフ）
+
     sudo shutdown -h now
 
     # 10分後に予約した再起動をキャンセルする
     # (sudo shutdown -r +10 "...") を実行した後
+
     sudo shutdown -c
+
     ```
+
 
 ### 2. ブルーチーム視点
 
@@ -91,10 +89,13 @@ knowledge_category: Command
 * **解説**: ネットワークから切り離すよりもさらに強力な封じ込め手段ですが、メモリ上にしか存在しない揮発性の証拠が失われるというトレードオフがあります。
 * **例**:
 
-    ```bash
+		```bash
     # ネットワーク上で被害を拡大させているホストを緊急停止
+
     sudo shutdown -h now
+
     ```
+
 
 ### 3. レッドチーム視点
 
@@ -103,18 +104,21 @@ knowledge_category: Command
 * **解説**: 攻撃者がroot権限を奪取した後、標的のビジネスに直接的な打撃を与えるために、本番稼働中のサーバーをシャットダウンします。これはシンプルながら非常に効果的な破壊活動です。
 * **例**:
 
-    ```bash
+		```bash
     # 標的のWebサーバーを停止させる
+
     sudo shutdown -h now
+
     ```
+
 
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
 
 1. **エラーメッセージ例 1**: `shutdown: Must be root.`
-    * **考えられる原因**: `root` 権限なしで `shutdown` を実行しようとしました。
-    * **解決策**: コマンドの前に `sudo` を付けて実行してください。
+		* **考えられる原因**: `root` 権限なしで `shutdown` を実行しようとしました。
+		* **解決策**: コマンドの前に `sudo` を付けて実行してください。
 
 ## 環境変数と設定ファイル
 

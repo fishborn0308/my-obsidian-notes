@@ -1,17 +1,19 @@
 ---
 tags:
-  - 'venv'
-  - 'python'
-  - 'virtual environment'
-  - 'dependency management'
-  - 'cheetsheet'
-title: 'venv - Python仮想環境の作成と管理'
-summary: 'プロジェクトごとに独立したPythonの実行環境とライブラリを持つ、隔離された仮想環境を作成するためのPython標準モジュールです。'
-related:
-  - 'virtualenv'
-  - 'pipenv'
-  - 'Poetry'
-  - 'pip'
+  - venv
+  - python
+  - virtual_environment
+  - dependency_management
+  - virtualenv
+  - pipenv
+  - Poetry
+  - pip
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - venv - Python仮想環境の作成と管理

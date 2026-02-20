@@ -1,16 +1,18 @@
 ---
 tags:
   - 'wc'
-  - 'text processing'
+  - 'text_processing'
   - 'linux'
-  - 'cheetsheet'
-title: 'wc - ファイルの行数、単語数、バイト数を数える'
-summary: 'ファイルや標準入力の行数、単語数、バイト数をカウントする基本的なコマンドで、ログ分析やスクリプトで多用されます。'
-related:
-  - 'ls -l'
-  - 'grep -c'
+  - 'ls_-l'
+  - 'grep_-c'
   - 'sort'
   - 'uniq'
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - wc - ファイルの行数、単語数、バイト数を数える

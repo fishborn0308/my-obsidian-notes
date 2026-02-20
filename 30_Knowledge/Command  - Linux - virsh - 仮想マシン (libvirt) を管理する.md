@@ -1,18 +1,19 @@
 ---
 tags:
-  - 'virsh'
-  - 'kvm'
-  - 'qemu'
-  - 'virtualization'
-  - 'libvirt'
-  - 'cheetsheet'
-title: 'virsh - 仮想マシン (libvirt) を管理する'
-summary: 'libvirt APIを操作するための主要なコマンドラインインターフェース。KVM/QEMUなどのハイパーバイザ上で動作する仮想マシン（ドメイン）を管理します。'
-related:
-  - 'virt-manager'
-  - 'qemu'
-  - 'docker'
-  - 'systemctl'
+  - virsh
+  - kvm
+  - qemu
+  - virtualization
+  - libvirt
+  - virt-manager
+  - docker
+  - systemctl
+created: 2025-06-29 15:02
+modified: 2026-01-18 15:02
+environment:
+  - OS/Linux
+vulnearability: []
+knowledge_category: Command
 ---
 
 # Command  - Linux - virsh - 仮想マシン (libvirt) を管理する

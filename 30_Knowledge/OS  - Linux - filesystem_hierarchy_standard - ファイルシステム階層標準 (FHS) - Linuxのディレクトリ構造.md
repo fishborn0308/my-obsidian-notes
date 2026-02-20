@@ -1,16 +1,8 @@
 ---
-tags:
-  - fhs
-  - filesystem
-  - linux
-  - ls
-  - cd
-  - find
-  - environment_and_config
+tags: [fhs filesystem linux ls cd find environment_and_config]
 created: 2025-06-29 15:02
-modified: 2026-01-18 15:49
-environment:
-  - OS/Linux
+modified: 2026-02-20 15:23
+environment: [OS/Linux]
 vulnearability: []
 knowledge_category: OS
 ---
