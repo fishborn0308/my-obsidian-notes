@@ -1,22 +1,28 @@
-
-## あなたの役割
+---
+created: 2025-10-04 08:22
+modified: 2026-02-21 10:04
+---
+# あなたの役割
 
 あなたは、ネットワーク技術、セキュリティ分野、ペンテスト分野に精通したAIです。
 
-## 前提
+# 前提
 
 私は現在IT関連の仕事をしています。内容としては、インフラ構築については、ネットワークインフラの構築、各種サービスのサーバ構築、dockerやvmwareでの軽易な検証環境の構築です。キャリアアップのため、ブルーチームやレッドチームについても学んでいるところです。
+
 ブルーチームとしては、ログの取得と解析要領、セキュアなサーバ構築、ファイヤーウォールの構築要領、WAFやIDSの構築要領とそのルール設計
+
 レッドチームとしては、hack the boxやtry hack meによる実習、SANSの504や542へ向けての学習をしています。
+
 最終的な学習目標は、OSCPの合格と中小企業規模のネットワーク設計、構築です。
 
-## 出力
+# 出力
 
-windows - cmd - assocコマンドについて
+windows - cmd - [ここにコマンド名を入力] コマンドについて
 
 `Command - <LinuxやWindows、Web_Server、Git等の依存する環境> - <コマンド名> - <コマンドの簡潔な概要>.md`を作成してください。
 
-## 条件
+# 条件
 
 - ドキュメントは下記の構成に従って作成する
   - ドキュメントのファイル構造
@@ -27,10 +33,11 @@ windows - cmd - assocコマンドについて
 - 実務ログ例を含めること
 - マークダウン形式で作成する
 - 日本語で記述すること
+- **追加の依頼（特定のセクションの深掘り、修正など）の際は、出力はマークダウンのコードブロックで記述し、変更箇所のみを出力すること。**
 - 作成するファイルは下記リポジトリのファイルと形式を合わせる
   - `https://github.com/fishborn0308/cheatsheets`
 
-### チートシートのファイル構造
+## チートシートのファイル構造
 
 ```bash
 ./
@@ -71,7 +78,7 @@ windows - cmd - assocコマンドについて
 └── README.md             # チートシート全体の概要や使い方(トップレベルの目次にもなりうる)
 ```
 
-### インデックスの項目構成
+## インデックスの項目構成
 
 ```yaml
 ---
@@ -101,7 +108,7 @@ tags:
 ---
 ```
 
-### コマンド詳細ファイルの項目構成　Linux
+## コマンド詳細ファイルの項目構成　Linux
 
 ```markdown
 ---
@@ -236,7 +243,7 @@ tags:
 ---
 ```
 
-### コマンド詳細ファイルの項目構成　Windows CMD
+## コマンド詳細ファイルの項目構成　Windows CMD
 
 ```markdown
 ---
@@ -364,7 +371,7 @@ tags:
 ---
 ```
 
-### コマンド詳細ファイルの項目構成　PowerShell
+## コマンド詳細ファイルの項目構成　PowerShell
 
 ```markdown
 ---
@@ -428,11 +435,16 @@ tags:
 ---
 ```
 
-### 参考にするサイト
+## 参考にするサイト
 
 <https://github.com/FavioVazquez/ds-cheatsheets>
+
 <https://github.com/Kitsun3Sec/Pentest-Cheat-Sheets>
+
 <https://lolbas-project.github.io/>
+
 <https://gtfobins.github.io/>
+
 <https://book.hacktricks.wiki/en/index.html>
+
 <https://swisskyrepo.github.io/PayloadsAllTheThings/>
