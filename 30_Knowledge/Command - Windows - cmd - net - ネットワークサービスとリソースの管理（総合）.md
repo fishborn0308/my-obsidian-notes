@@ -34,12 +34,12 @@ tags:
 | `group` | ドメイングループの管理（AD環境専用）。 | [[Command - Windows - cmd - net group - ドメイングループの管理]]] |
 | `accounts` | パスワードポリシーやログオン制限の設定確認。 | [[Command - Windows - cmd - net accounts - パスワードとログオンポリシーの管理]]] |
 | **リソース・共有管理** | | |
-| `view` | ネットワーク上のコンピュータや共有リソースの列挙。 | [net_view.md](./net_view.md) |
-| `share` | 自端末の共有フォルダの作成、管理。 | [net_share.md](./net_share.md) |
-| `use` | リモート共有リソースへの接続（ドライブマウント）。 | [net_use.md](./net_use.md) |
-| `session` | 自端末に接続しているセッションの表示・切断。 | [net_session.md](./net_session.md) |
+| `view` | ネットワーク上のコンピュータや共有リソースの列挙。 | [[Command - Windows - cmd - net view - ネットワーク共有リソースの列挙]]] |
+| `share` | 自端末の共有フォルダの作成、管理。 | [[Command - Windows - cmd - net share - ローカル共有リソースの管理]]] |
+| `use` | リモート共有リソースへの接続（ドライブマウント）。 | [[Command - Windows - cmd - net use - リモート共有リソースへの接続と管理]] |
+| `session` | 自端末に接続しているセッションの表示・切断。 | [[Command - Windows - cmd - net session - リモートセッションの表示と管理]]] |
 | **サービス・その他** | | |
-| `start` / `stop` | Windows サービスの開始と停止。 | [net_service.md](./net_service.md) |
+| `start` / `stop` | Windows サービスの開始と停止。 | [[Command - Windows - cmd - net start／stop - Windows サービスの管理]]] |
 | `time` | サーバーとの時刻同期。 | - |
 
 ## 共通の業務シナリオ

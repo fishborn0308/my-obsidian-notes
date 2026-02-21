@@ -36,7 +36,7 @@ knowledge_category: Command
 * **解説**: `docker build` でローカルイメージを作成した後、`docker tag` でレジストリ用の名前を付け、`docker push` でアップロードします。
 * **コマンド例**:
 
-		```bash
+	```bash
     # 1. 'my-app:1.0' という名前でイメージをビルド
 
     docker build -t my-app:1.0 .
@@ -76,7 +76,7 @@ knowledge_category: Command
 * **解説**: カレントディレクトリ (`.`) をコンテキストとして `Dockerfile` に基づいてイメージをビルドし、`-t` オプションで名前とタグを付ける、最も基本的な使い方です。
 * **例**:
 
-		```bash
+	```bash
     # カレントディレクトリのDockerfileを基に、my-web-app:1.0 というイメージをビルド
 
     docker build -t my-web-app:1.0 .
@@ -91,7 +91,7 @@ knowledge_category: Command
 * **解説**: `Dockerfile` からイメージをビルドした後、`Trivy` や `Dive` といったツールでイメージを分析します。CI/CDパイプラインに組み込み、既知の脆弱性 (CVE) を持つOSパッケージやライブラリが含まれていないかをスキャンします。
 * **例**:
 
-		```bash
+	```bash
     # イメージをビルド
 
     docker build -t my-app-for-scan .
