@@ -27,13 +27,12 @@ tags:
 
 `net` コマンドの後に続く主要なサブコマンドの一覧です。詳細は各詳細ドキュメントを参照してください。
 
-| サブコマンド | 役割の概要 | 詳細リンク |
-| :--- | :--- | :--- |
+| サブコマンド | 役割の概要 | 詳細リンク |Command - Windows - cmd - net localgroup - ローカルグループの管理
 | **ユーザー・グループ管理** | | |
-| `user` | ローカル/ドメインユーザーの作成、削除、照会。 | [net_user.md](./net_user.md) |
-| `localgroup` | ローカルグループの管理（管理権限の付与など）。 | [net_localgroup.md](./net_localgroup.md) |
-| `group` | ドメイングループの管理（AD環境専用）。 | [net_group.md](./net_group.md) |
-| `accounts` | パスワードポリシーやログオン制限の設定確認。 | [net_accounts.md](./net_accounts.md) |
+| `user` | ローカル/ドメインユーザーの作成、削除、照会。 | [[Command - Windows - cmd - net user - ユーザーアカウントの管理]] |
+| `localgroup` | ローカルグループの管理（管理権限の付与など）。 | [[Command - Windows - cmd - net localgroup - ローカルグループの管理]] |
+| `group` | ドメイングループの管理（AD環境専用）。 | [[Command - Windows - cmd - net group - ドメイングループの管理]]] |
+| `accounts` | パスワードポリシーやログオン制限の設定確認。 | [[Command - Windows - cmd - net accounts - パスワードとログオンポリシーの管理]]] |
 | **リソース・共有管理** | | |
 | `view` | ネットワーク上のコンピュータや共有リソースの列挙。 | [net_view.md](./net_view.md) |
 | `share` | 自端末の共有フォルダの作成、管理。 | [net_share.md](./net_share.md) |
