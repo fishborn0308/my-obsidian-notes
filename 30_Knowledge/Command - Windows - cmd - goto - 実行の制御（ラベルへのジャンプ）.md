@@ -6,6 +6,7 @@ vulnearability: []
 knowledge_category: Command
 tags:
   - goto
+  - cmd
   - scripting
   - batch
   - control_flow

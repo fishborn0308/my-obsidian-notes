@@ -7,6 +7,7 @@ vulnearability: []
 knowledge_category: Command
 tags:
   - 'setlocal'
+  - cmd
   - 'batch_scripting'
   - 'delayed_expansion'
   - 'knowledge_base'

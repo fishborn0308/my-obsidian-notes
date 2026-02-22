@@ -6,6 +6,7 @@ vulnearability: [Persistence, Defense_Evasion]
 knowledge_category: Command
 tags:
   - gpupdate
+  - cmd
   - group_policy
   - gpo
   - administration

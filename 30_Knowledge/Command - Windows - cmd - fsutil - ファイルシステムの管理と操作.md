@@ -6,6 +6,7 @@ vulnearability: [Information_Disclosure, Denial_of_Service]
 knowledge_category: Command
 tags:
   - fsutil
+  - cmd
   - ntfs
   - forensics
   - storage_management

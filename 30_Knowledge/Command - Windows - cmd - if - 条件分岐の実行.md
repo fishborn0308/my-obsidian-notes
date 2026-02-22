@@ -6,6 +6,7 @@ vulnearability: [Reconnaissance, Execution]
 knowledge_category: Command
 tags:
   - if
+  - cmd
   - scripting
   - conditional
   - batch_logic

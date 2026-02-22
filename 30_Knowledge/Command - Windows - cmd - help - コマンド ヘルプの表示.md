@@ -6,6 +6,7 @@ vulnearability: []
 knowledge_category: Command
 tags:
   - help
+  - cmd
   - documentation
   - manual
   - reference

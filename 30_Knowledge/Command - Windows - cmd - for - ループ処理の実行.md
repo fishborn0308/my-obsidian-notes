@@ -6,6 +6,7 @@ vulnearability: [Reconnaissance, Execution, Brute_Force]
 knowledge_category: Command
 tags:
   - for
+  - cmd
   - loop
   - automation
   - scripting

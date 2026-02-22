@@ -6,6 +6,7 @@ vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command
 tags:
   - findstr
+  - cmd
   - search
   - regex
   - enumeration

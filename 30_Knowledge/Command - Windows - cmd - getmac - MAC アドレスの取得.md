@@ -6,6 +6,7 @@ vulnearability: [Information_Disclosure, Enumeration]
 knowledge_category: Command
 tags:
   - getmac
+  - cmd
   - mac_address
   - network
   - enumeration

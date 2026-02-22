@@ -136,7 +136,7 @@ modified: 2026-02-22 09:30
 
 ![[Command - Windows - cmd - echo - メッセージの表示と設定]]
 
-![[Command - Windows - cmd - endlocal - 環境変数のローカライズの終了]]
+![[30_Knowledge/Command - Windows - cmd - endlocal - 環境変数のローカライズの終了]]
 
 ![[Command - Windows - cmd - eventvwr - イベント ビューアーの起動]]
 

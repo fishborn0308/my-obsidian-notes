@@ -6,6 +6,7 @@ vulnearability: [Information_Disclosure, Data_Exfiltration, Cleartext_Credential
 knowledge_category: Command
 tags:
   - ftp
+  - cmd
   - network
   - file_transfer
   - exfiltration
