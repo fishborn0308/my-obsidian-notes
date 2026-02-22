@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -55,6 +55,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -90,6 +91,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 複数の小さなセキュリティ修正コミットを含むブランチを `main` にマージする際、履歴を煩雑にせず、一連のパッチ適用を1つの論理的な単位として記録したい。
@@ -106,6 +108,7 @@ knowledge_category: Command
     git commit -m "Security: Apply patches for CVE-202X-YYYY"
 
     ```
+
 
 
 

@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:32
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'pause'
+  - pause
   - cmd
-  - 'batch_scripting'
-  - 'interaction'
-  - 'knowledge_base'
+  - batch_scripting
+  - interaction
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - pause - バッチ処理の一時停止とユーザー待機
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `pause` コマンドは、バッチファイルの処理を一時的に停止し、ユーザーがキーボードのキーを押すまで待機させるために使用されます。
+
 実行されると、標準出力に「続行するには何かキーを押してください . . .」というメッセージが表示されます。
+
 (出自: Windows標準搭載 / MS-DOS由来)
-
-
 
 ## 類似コマンドと差異
 
@@ -120,7 +120,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Social Engineering**: バッチファイルを実行させたターゲットに対し、「システム修復中... 完了するには何かキーを押してください」と表示させ、その間にバックグラウンドでデータを窃取する時間を稼ぐ。
     - **Anti-Analysis**: 前述の通り、動的解析環境をストップさせるために使用。
 
@@ -131,7 +131,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - スクリプトブロックロギング等で、`pause > nul` が含まれる不審なバッチファイルが一時フォルダ（`Temp`）から実行されていないか監視する。
     - サンドボックス環境では、`pause` を自動的にスキップする、あるいはキー入力をシミュレートする設定を検討する。
 

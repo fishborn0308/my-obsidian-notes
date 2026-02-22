@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:33
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'set'
+  - set
   - cmd
-  - 'environment_variables'
-  - 'scripting'
-  - 'knowledge_base'
+  - environment_variables
+  - scripting
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - set - 環境変数の表示・設定・削除
@@ -18,7 +18,9 @@ tags:
 ## 概要
 
 `set` コマンドは、現在のコマンド プロンプト セッションにおける環境変数を表示、設定、または削除するために使用されます。
+
 変数はメモリ上に一時的に保持され、そのウィンドウを閉じると破棄されます。
+
 (出自: Windows標準搭載 / MS-DOS由来)
 
 ## 類似コマンドと差異
@@ -44,8 +46,6 @@ tags:
     for /f "delims=" %i in ('where target.txt') do set TARGET_PATH=%i
     echo %TARGET_PATH%
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -122,7 +122,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Credential Dumping**: 開発者が利便性のために設定した `DB_PASSWORD` や `AWS_SECRET_ACCESS_KEY` などの変数を、`set` コマンド一つで窃取される。
     * **Path Hijacking**: `set PATH=C:\Temp;%PATH%` のように、攻撃者の制御下にあるディレクトリを優先させることで、正規コマンドの実行時に悪意あるバイナリを身代わりに実行させる。
 
@@ -133,9 +133,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     * 秘密情報（パスワードやAPIキー）を環境変数に直接保持せず、Secret Managerなどのセキュアなストレージを利用する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * 踏み台サーバーなどで `set` コマンドが頻繁に実行されたり、`PATH` 変数が不自然に書き換えられたりするログを監視する。
 
 ## 注意点・補足

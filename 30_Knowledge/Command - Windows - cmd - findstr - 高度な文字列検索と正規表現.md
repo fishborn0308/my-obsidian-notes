@@ -1,6 +1,6 @@
 ---
 created: 2026-02-22 08:29
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command

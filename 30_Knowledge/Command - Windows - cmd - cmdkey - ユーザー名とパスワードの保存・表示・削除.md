@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:50
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Credential_Access, Lateral_Movement]
 knowledge_category: Command
 tags:
-  - 'cmdkey'
+  - cmdkey
   - cmd
-  - 'credentials'
-  - 'enumeration'
-  - 'knowledge_base'
+  - credentials
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - cmdkey - ユーザー名とパスワードの保存・表示・削除
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `cmdkey` は、Windows の「資格情報マネージャー（Windows Vault）」に格納されているユーザー名とパスワード、またはスマート カードの資格情報を作成、一覧表示、および削除するために使用されます。
+
 一度保存された資格情報は、対象のリソース（共有フォルダやリモートデスクトップなど）にアクセスする際に自動的に使用されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -109,7 +109,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **`runas /savecred` の罠**: 管理者が一度でも `/savecred` を使ってログインすると、そのパスワード（のハッシュ/トークン）が Windows Vault に保存されます。攻撃者は **`cmdkey` でその存在を確認し、パスワードを知らなくてもその権限でプログラムを動かせてしまいます。**
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
@@ -120,10 +120,10 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - GPO で「ネットワーク パスワードおよび資格情報の保存を許可しない」を有効にする。
     - 管理業務に `/savecred` を絶対に使用しないよう徹底する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4648**: 明示的な資格情報を使用したログオン（`runas` と `cmdkey` の組み合わせなど）を監視する。
     - **イベントID 4688**: `cmdkey.exe /list` の実行を監視。一般ユーザーがこれを叩く理由は通常ありません。
 

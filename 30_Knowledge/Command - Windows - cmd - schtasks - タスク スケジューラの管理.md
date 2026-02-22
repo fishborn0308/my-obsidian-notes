@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:52
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Persistence, Privilege_Escalation]
 knowledge_category: Command
 tags:
-  - 'schtasks'
+  - schtasks
   - cmd
-  - 'task_scheduler'
-  - 'persistence'
-  - 'knowledge_base'
+  - task_scheduler
+  - persistence
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - schtasks - タスク スケジューラの管理
@@ -18,7 +18,9 @@ tags:
 ## 概要
 
 `schtasks` コマンドは、ローカルまたはリモート コンピューター上のスケジュールされたタスクを作成、削除、照会、変更、実行、および終了するために使用されます。
+
 GUI の「タスク スケジューラ」で行うすべての操作をコマンドラインから実行でき、バッチスクリプトによる自動化に最適です。
+
 (出自: Windows標準搭載)
 
 ## 類似コマンドと差異
@@ -112,6 +114,7 @@ GUI の「タスク スケジューラ」で行うすべての操作をコマン
 ## 環境変数と設定ファイル
 
 タスクの実体は XML ファイルとして保存されていますが、レジストリでも管理されています。
+
 * **ファイル保存場所**: `C:\Windows\System32\Tasks`
 * **レジストリパス**: `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree`
 
@@ -121,7 +124,7 @@ GUI の「タスク スケジューラ」で行うすべての操作をコマン
 
 * **脆弱性**: **Insecure Task Permissions**
     - タスクが実行する実行ファイル（バイナリ）のアクセス権が緩く、一般ユーザーが書き換え可能な場合、そのファイルを置き換えることでタスク実行時に権限昇格が可能になる。
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - 攻撃者が `schtasks` を使い、一見正規のサービス名に見えるタスクを登録し、深夜に C2 サーバへ通信させる。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
@@ -132,9 +135,9 @@ GUI の「タスク スケジューラ」で行うすべての操作をコマン
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - スケジュールされたタスクが参照するバイナリおよびスクリプトの ACL を厳格化し、一般ユーザーの書き込みを禁止する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4698**: 新しいタスクが作成された。
     - **イベントID 4699**: タスクが削除された。
     - **イベントID 4702**: タスクが更新された。

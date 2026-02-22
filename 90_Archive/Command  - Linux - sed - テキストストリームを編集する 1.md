@@ -8,7 +8,7 @@ tags:
   - grep
   - vi
 created: 2025-06-29 15:02
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -50,6 +50,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -85,6 +86,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: ログファイルから機密情報（IPアドレスなど）を匿名化する。
@@ -98,6 +100,7 @@ knowledge_category: Command
     sed -E 's/\b([0-9]{1,3}\.){3}[0-9]{1,3}\b/REDACTED_IP/g' sensitive.log
 
     ```
+
 
 
 
@@ -117,6 +120,7 @@ knowledge_category: Command
 
 
 
+
 ## エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](./troubleshooting_common_errors.md) を参照。
@@ -131,6 +135,7 @@ knowledge_category: Command
     sed 's|/usr/local|/opt|g' some_file.txt
 
     ```
+
 
 
 

@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:51
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Evasion]
 knowledge_category: Command
 tags:
-  - 'taskkill'
+  - taskkill
   - cmd
-  - 'process_management'
-  - 'incident_response'
-  - 'knowledge_base'
+  - process_management
+  - incident_response
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - taskkill - プロセスの終了
@@ -18,9 +18,8 @@ tags:
 ## 概要
 
 `taskkill` コマンドは、1 つ以上のプロセスを終了させるために使用されます。プロセス ID (PID) またはイメージ名（ファイル名）を指定して実行します。通常の終了要請だけでなく、応答のないプロセスを「強制終了」させるオプションも備えています。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -85,7 +84,7 @@ tags:
 
 * **タスク**: 競合するプロセスの停止、または簡易的な防御無効化
 * **組み合わせ**: `/F`, `/IM`
-* **解説**: 
+* **解説**:
     1. 自身のツール（例: リバースシェルのリスナー）とポートが重複している既存プロセスを止める。
     2. (権限がある場合) セキュリティ監視ツールのプロセスを停止させて検知を免れる。
 * **例**:
@@ -114,7 +113,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Evasion (回避)**: 攻撃者が管理者権限を奪取した後、AV (Anti-Virus) や EDR (Endpoint Detection and Response) のプロセスを `taskkill /F` で停止させ、その後の攻撃活動を隠蔽する。
     * **Denial of Service (DoS)**: 重要なシステムプロセスを終了させることで、システムを意図的にクラッシュさせる。
 
@@ -126,9 +125,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     * セキュリティ製品自体の「自己保護（Self-Protection）機能」を有効にし、管理者であってもプロセスを簡単に殺せないように設定する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * **イベントID 4688**: `taskkill` の実行ログを監視し、引数にセキュリティ製品の名前や `/F` スイッチが含まれている場合にアラートを出す。
     * 特に `SYSTEM` 権限のプロセスを対象にした `taskkill` は厳重に監視する。
 

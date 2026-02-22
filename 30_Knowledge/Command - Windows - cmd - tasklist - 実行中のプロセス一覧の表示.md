@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:50
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Process_Injection, Evasion]
 knowledge_category: Command
 tags:
-  - 'tasklist'
+  - tasklist
   - cmd
-  - 'process_management'
-  - 'enumeration'
-  - 'knowledge_base'
+  - process_management
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - tasklist - 実行中のプロセス一覧の表示
@@ -18,9 +18,8 @@ tags:
 ## 概要
 
 `tasklist` コマンドは、ローカルまたはリモート コンピューター上で実行されているアプリケーションとサービスの一覧を表示します。プロセスID (PID) やメモリ使用量を確認できるほか、フィルタリング機能を使用して特定の条件に合致するプロセスを抽出することが可能です。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -84,7 +83,7 @@ tags:
 
 * **タスク**: セキュリティソフト (AV/EDR) の列挙とプロセスインジェクションの対象探し
 * **組み合わせ**: `/m`, `/fi`
-* **解説**: 
+* **解説**:
     1. 導入されているセキュリティ製品のプロセス名（例: `MsMpEng.exe` 等）を探す。
     2. インジェクション対象として安定したプロセス（例: `explorer.exe`, `notepad.exe`）の PID を特定する。
 * **例**:
@@ -113,7 +112,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Enumeration**: 攻撃者が侵入後、EDRやアンチウイルスが動作しているか、サンドボックス環境でないか（仮想化関連のプロセスがないか）を確認するために多用されます。
     * **Process Injection**: `tasklist` で取得した PID は、`Reflective DLL Injection` や `Process Hollowing` などの攻撃におけるターゲット指定に利用されます。
 
@@ -125,7 +124,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * 短時間に `tasklist /svc` や `tasklist /v` が繰り返し実行される挙動を監視する。
     * プロセス名やPIDを列挙した直後に、メモリへの不審な書き込み（インジェクションの兆候）がないか相関分析を行う。
 

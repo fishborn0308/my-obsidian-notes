@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:34
+modified: 2026-02-22 15:13
 environment: [OS/Windows, Network/Infrastructure]
 vulnearability: [Evasion, Network_Pivoting, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'netsh'
+  - netsh
   - cmd
-  - 'networking'
-  - 'firewall'
-  - 'pivoting'
-  - 'knowledge_base'
+  - networking
+  - firewall
+  - pivoting
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - netsh - ネットワーク構成の表示・変更
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `netsh` は、実行中のコンピュータのネットワーク構成を表示したり、変更したりするためのコマンドライン ユーティリティです。
+
 コンテキスト（`interface`, `firewall`, `wlan` など）を切り替えて使用する階層構造を持っており、ローカルだけでなくリモートコンピュータの管理も可能です。
+
 (出自: Windows 2000 以降標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -92,7 +92,6 @@ tags:
     netsh interface portproxy add v4tov4 listenport=4444 listenaddress=0.0.0.0 connectport=8080 connectaddress=10.1.1.50
     ```
 
-
 * **タスク**: 保存済み Wi-Fi パスワードの窃取
 * **解説**: 過去に接続した Wi-Fi プロファイルから、平文のパスワードを抽出します。
 * **例**:
@@ -116,14 +115,16 @@ tags:
 ## 環境変数と設定ファイル
 
 `netsh` は設定を直接システム（レジストリ等）に書き込むため、即時反映されます。
+
 特定の「スクリプトファイル」を読み込ませて実行することも可能です。
+
 * `netsh -f script.txt` : ファイル内のコマンドを順次実行。
 
 ## セキュリティに関する考慮事項
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Evasion**: 管理者権限を得た攻撃者が `netsh advfirewall set allprofiles state off` を実行し、すべての保護を無効化する。
     - **Exfiltration**: `portproxy` を使い、内部の機密データを外部の攻撃者サーバーへ中継させる。
 
@@ -134,10 +135,10 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 一般ユーザーに管理者権限を与えない。
     - `netsh` による `portproxy` の追加を EDR 等で監視・ブロックする。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4688**: `netsh` の実行ログ。特に `advfirewall set`, `portproxy`, `wlan show profile` などの引数を監視。
     - **レジストリ監視**: `HKLM\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4` への書き込みを検知。
 

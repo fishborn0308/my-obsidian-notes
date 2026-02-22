@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:55
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Persistence, Privilege_Escalation, Credential_Access]
 knowledge_category: Command
 tags:
-  - 'reg'
+  - reg
   - cmd
-  - 'registry'
-  - 'post_exploitation'
-  - 'knowledge_base'
+  - registry
+  - post_exploitation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - reg - レジストリの操作 (CLI版)
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `reg` コマンドは、コマンドラインから Windows レジストリを操作するための強力なツールです。レジストリキーの追加、削除、検索、保存、復元、およびインポート/エクスポートが可能です。
+
 GUI (regedit) を使用できない環境や、スクリプトによる自動設定において不可欠なコマンドです。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -112,7 +112,7 @@ GUI (regedit) を使用できない環境や、スクリプトによる自動設
 ### よくあるエラーメッセージ
 
 1.  **エラーメッセージ例 1**: `エラー: アクセスが拒否されました。`
-    * **考えられる原因**: 
+    * **考えられる原因**:
         - HKLM などの重要な場所を書き換えようとしたが、管理者権限がない。
         - セキュリティソフトがレジストリ操作をブロックしている。
     * **解決策**: コマンドプロンプトを「管理者として実行」する。
@@ -129,7 +129,7 @@ GUI (regedit) を使用できない環境や、スクリプトによる自動設
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **UAC Bypass**: `Fodhelper.exe` などの正規プログラムが参照するレジストリキーを書き換え、管理者権限で任意のコマンドを実行させる。
     - **Persistence**: `Image File Execution Options` (IFEO) を利用し、特定のアプリ（例: `notepad.exe`）が起動した際にバックドアを同時起動させる。
 
@@ -140,9 +140,9 @@ GUI (regedit) を使用できない環境や、スクリプトによる自動設
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 最小権限の原則（PoLP）を適用し、一般ユーザーに HKLM の書き込み権限を与えない。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4657**: レジストリ値の変更を監視。
     - 特に `SAM` ハイブの `reg save` 実行は、資格情報窃取の明確な予兆としてアラートを出すべきです。
 

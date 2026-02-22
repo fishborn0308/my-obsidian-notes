@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:53
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Persistence, Evasion]
 knowledge_category: Command
 tags:
-  - 'msconfig'
+  - msconfig
   - cmd
-  - 'system_configuration'
-  - 'boot_management'
-  - 'knowledge_base'
+  - system_configuration
+  - boot_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - msconfig - システム構成ユーティリティの起動
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `msconfig` は、Windowsの起動時の問題（スタートアップ エラーなど）を特定して解決するためのシステム構成ユーティリティです。
+
 スタートアップ プログラムの有効化/無効化、ブート オプションの変更、サービスの管理などを一元的に行えます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -89,6 +89,7 @@ tags:
 ## 環境変数と設定ファイル
 
 `msconfig` で設定した内容は、主に以下のレジストリキーに反映されます。
+
 * **ブート設定**: `HKEY_LOCAL_MACHINE\BCD00000000`
 * **サービス**: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services`
 
@@ -96,15 +97,15 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Persistence**: 攻撃者が自身の実行ファイルをサービスとして登録した後、`msconfig` の設定を改ざんして、再起動後も常に実行されるように仕向ける。
     * **Anti-Forensics**: セーフモードで起動させることで、通常モードで動作している監視ツールやEDRのプロセスが立ち上がらない状態にし、その隙にログ消去などを行う。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     * UAC（ユーザーアカウント制御）を最高レベルに設定し、`msconfig` のようなシステム設定変更時に必ず警告・認証を求めるようにする。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * **イベントID 4697**: サービスがインストールされたログを監視。
     * BCD（ブート構成）の変更を監視し、予期せぬセーフモード設定が行われていないかチェックする。
 

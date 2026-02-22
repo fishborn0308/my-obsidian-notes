@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:46
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Privilege_Escalation, Credential_Access]
 knowledge_category: Command
 tags:
-  - 'runas'
+  - runas
   - cmd
-  - 'privilege_management'
-  - 'lateral_movement'
-  - 'knowledge_base'
+  - privilege_management
+  - lateral_movement
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - runas - 別ユーザー権限でのプログラム実行
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `runas` コマンドは、現在のログオン セッションを維持したまま、別のユーザーの資格情報（ユーザー名とパスワード）を使用して特定のツールやプログラムを実行します。
+
 管理者が一般ユーザーとしてログインしている際に、一時的に管理者権限が必要なツール（`regedit` や `cmd` 等）を起動する場合や、レッドチームが奪取した別のアカウント権限でコマンドを試行する際に多用されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -93,7 +93,7 @@ tags:
 ### よくあるトラブル
 
 1.  **現象**: パスワードを正しく入力しているのに「1326: ログオン失敗」が出る。
-    * **考えられる原因**: 
+    * **考えられる原因**:
         - ユーザー名にドメイン名が含まれていない（または間違っている）。
         - ローカルのアカウントポリシーで、空のパスワードでの `runas` が制限されている。
     * **解決策**: アカウント名を `.\Administrator` (ローカル) や `domain\user` (ドメイン) の形式で正確に指定する。
@@ -117,41 +117,27 @@ cmd.exe を ユーザー "LAB\AdminUser" として開始しています...
 ### 脆弱性と悪用事例
 
 - **悪用シナリオ**:
-    
     - **Credential Replay**: 管理者が `/savecred` オプションを使用してログインしたことがある場合、攻撃者はパスワードを知らなくても `runas /savecred /user:Admin cmd.exe` を実行するだけで管理者権限を取得できてしまいます。
-        
     - **Lateral Movement**: 侵害した端末内に残っている他のユーザーのプロセスやトークンを悪用し、`runas` 経由で他サーバーへアクセスを試みる。
-        
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
 
 - **機能**: `Execute`
-    
 - **解説**: 別のユーザーコンテキストで任意のコードを実行するために使用される。
-    
 - **参照**: [LOLBAS - runas.exe](https://www.google.com/search?q=https://lolbas-project.github.io/lolbas/Binaries/Runas/)
-    
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
 - **Prevention (予防)**:
-    
     - グループポリシー (GPO) で **「ネットワーク パスワードの保存を許可しない」** 設定を有効にし、`/savecred` の悪用を防ぐ。
-        
     - `Secondary Logon` サービスを必要最小限の端末以外で無効化する。
-        
 - **Detection (検知)**:
-    
     - **イベントID 4624 (Logon)**: ログオンタイプ 2 (Interactive) または 9 (NewCredentials) を監視し、不審なユーザー切り替えを検知する。
-        
     - **イベントID 4688 (Process Creation)**: `runas.exe` の実行ログを監視。
-        
 
 ## 注意点・補足
 
 - **対話が必要**: `runas` は実行時にパスワードの入力を求めるプロンプトが出るため、完全な自動化スクリプトには向きません（標準入力からのリダイレクトを受け付けない仕様です）。
-    
 - **GUI と CUI**: `runas` で起動したアプリは通常、新しいウィンドウとして開きます。
-    
 
 ---

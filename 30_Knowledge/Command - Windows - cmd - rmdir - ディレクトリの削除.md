@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:30
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'rd'
-  - 'rmdir'
+  - rd
+  - rmdir
   - cmd
-  - 'file_management'
-  - 'knowledge_base'
+  - file_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - rmdir - ディレクトリの削除
@@ -18,9 +18,8 @@ tags:
 ## 概要
 
 `rd` (または `rmdir`) コマンドは、空のディレクトリ、または指定したオプションによって中身を含むディレクトリツリー全体を削除するために使用されます。
+
 (出自: Windows標準搭載 / MS-DOS由来)
-
-
 
 ## 類似コマンドと差異
 
@@ -111,7 +110,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Anti-Forensics**: 攻撃者がフォレンジック調査を妨害するために、ログが格納されているディレクトリや、プリフェッチファイル、自身の活動痕跡を `rd /s /q` で一気に消去する。
     - **Denial of Service (DoS)**: 管理者権限を奪取した攻撃者が、アプリケーションの重要なライブラリディレクトリを削除することでサービスを停止させる。
 
@@ -122,9 +121,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 重要なシステムディレクトリへの `Delete` 権限を一般ユーザーから剥奪する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4660**: オブジェクトが削除された。
     - **イベントID 4663**: ファイルシステムオブジェクトへのアクセス（Deleteフラグの監視）。
     - 短時間に大量のディレクトリやファイルが `rd /s /q` で削除される挙動を EDR でアラート化する。

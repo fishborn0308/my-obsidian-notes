@@ -1,6 +1,6 @@
 ---
 created: 2026-02-22 08:34
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment: [OS/Windows, Network/Protocol]
 vulnearability: [Information_Disclosure, Data_Exfiltration, Cleartext_Credentials]
 knowledge_category: Command

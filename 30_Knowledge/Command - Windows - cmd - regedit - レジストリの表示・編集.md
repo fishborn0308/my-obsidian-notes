@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:54
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Persistence, Privilege_Escalation, Credential_Access]
 knowledge_category: Command
 tags:
-  - 'regedit'
+  - regedit
   - cmd
-  - 'registry'
-  - 'configuration'
-  - 'knowledge_base'
+  - registry
+  - configuration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - regedit - レジストリの表示・編集
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `regedit` は、Windows オペレーティング システムの構成設定が格納されているデータベース「レジストリ」を表示、検索、および変更するための GUI ツールです。
+
 システム、ドライバー、サービス、アプリケーションの動作を決定する無数の設定値が含まれています。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -99,6 +99,7 @@ tags:
 ## 環境変数と設定ファイル
 
 レジストリ自体が Windows の「究極の設定ファイル」です。物理的には以下のファイルなどに分割されて保存されています（これを「ハイブ」と呼びます）。
+
 * `%SystemRoot%\System32\Config\SYSTEM`
 * `%SystemRoot%\System32\Config\SOFTWARE`
 * `%UserProfile%\NTUSER.DAT`
@@ -107,7 +108,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **LSA Secrets**: 過去にログインしたユーザーのパスワードハッシュなどがレジストリにキャッシュされている場合があり、これを窃取される（Credential Access）。
     - **UAC Bypass**: 特定のレジストリ値を書き換えることで、ユーザーに通知を出さずに管理者権限でコマンドを実行させる。
 
@@ -119,7 +120,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4657**: レジストリ値が変更されたことを監視（監査ポリシーの有効化が必要）。
     - 重要なキー（Runキー、Image File Execution Optionsなど）の変更を EDR で監視する。
 

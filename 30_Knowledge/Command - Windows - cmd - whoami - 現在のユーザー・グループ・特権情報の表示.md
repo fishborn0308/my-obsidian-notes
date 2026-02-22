@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:23
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Privilege_Escalation]
 knowledge_category: Command
 tags:
-  - 'whoami'
+  - whoami
   - cmd
-  - 'enumeration'
-  - 'privilege_escalation'
-  - 'knowledge_base'
+  - enumeration
+  - privilege_escalation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - whoami - 現在のユーザー・グループ・特権情報の表示
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `whoami` コマンドは、現在ローカル システムにログオンしているユーザーのユーザー名、グループ メンバーシップ、およびセキュリティ権限（特権）を表示します。
+
 特にペネトレーションテストにおいては、取得したシェルの権限を確認し、権限昇格が可能かどうかを判断するための「状況把握（Situational Awareness）」に不可欠なコマンドです。
+
 (出自: Windows標準搭載 / 旧Windowsリソースキット由来)
-
-
 
 ## 類似コマンドと差異
 
@@ -109,7 +109,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Reconnaissance**: 攻撃者が最初に実行し、自分が `www-data` (IIS) なのか、`Local Service` なのか、あるいは `Administrator` なのかを判断します。それにより、次に投げるエクスプロイト（Kernel Exploit か Token Manipulation か）を決定します。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
@@ -120,9 +120,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - サービスアカウントには必要最小限の特権のみを付与する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4688**: `whoami` の実行を監視。特に Web サーバーのプロセス（`w3wp.exe` 等）やデータベースプロセスから `whoami` が実行された場合は、Webシェルが設置された可能性が高いため、即座にアラートを出す設定を推奨します。
 
 ## 注意点・補足

@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:42
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'systeminfo'
+  - systeminfo
   - cmd
-  - 'enumeration'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - enumeration
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - systeminfo - システムの詳細構成情報の表示
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `systeminfo` コマンドは、オペレーティング システムの構成に関する詳細な情報（サービス パックのレベル、BIOS のバージョン、メモリ構成、ネットワーク アダプターの情報、および適用済みの修正プログラム（Hotfix）など）を表示します。
+
 ローカルマシンだけでなく、リモートマシンの情報取得も可能です。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -112,13 +112,14 @@ tags:
 ## 環境変数と設定ファイル
 
 `systeminfo` 自体に影響を与える固有の変数は少ないですが、表示される情報の多くはレジストリから取得されています。
+
 * **レジストリ位置**: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`
 
 ## セキュリティに関する考慮事項
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Enumeration**: 侵入後、攻撃者が最初に実行するコマンドの一つ。インストールされているパッチ、OSのビルド、ドメイン参加状況を把握されることで、攻撃のネクストステップ（権限昇格やラテラルムーブメント）の戦略を立てられてしまいます。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
@@ -129,9 +130,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     * 攻撃者が情報を得られないよう、一般ユーザーによる `systeminfo` 実行を制限することは困難（多くの正当な用途があるため）ですが、重要なサーバーへのアクセス制限を徹底します。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * **コマンドライン監査**: 短時間に `systeminfo` を実行し、その後すぐにエクスプロイトコードが実行されるようなパターンを監視します。
 
 ## 注意点・補足

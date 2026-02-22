@@ -3,7 +3,7 @@ tags:
   - git_reflog
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -58,6 +58,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -94,6 +95,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: インシデント調査で、攻撃者によって隠蔽された可能性のあるコミット履歴を追跡する。
@@ -107,6 +109,7 @@ knowledge_category: Command
     git reflog show --date=iso main
 
     ```
+
 
 
 
@@ -125,6 +128,7 @@ knowledge_category: Command
     git gc --prune=now
 
     ```
+
 
 
 

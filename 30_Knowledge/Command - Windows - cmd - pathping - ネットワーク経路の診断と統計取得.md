@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:38
+modified: 2026-02-22 15:13
 environment: [OS/Windows, Network/Infrastructure]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'pathping'
+  - pathping
   - cmd
-  - 'networking'
-  - 'troubleshooting'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - networking
+  - troubleshooting
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - pathping - ネットワーク経路の診断と統計取得
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `pathping` は、宛先ホストに至るまでのネットワーク経路をトレースし、その経路上にある各ルーター（ホップ）でのパケットロスや遅延の統計を算出するコマンドです。
+
 `tracert` のように経路を表示した後、一定時間（デフォルトで250秒間）パケットを送信し続けて各ポイントの品質を測定します。
+
 (出自: Windows NT 4.0 Resource Kit 以降標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -111,14 +111,14 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Information Disclosure**: 内部ネットワークの構成（IP スキーム、ゲートウェイの配置）を外部から推測される。特に、パケットロス率の変化から IDS/IPS の存在を推測される可能性があります。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 境界ルーター/ファイアウォールで、外部からの ICMP Time Exceeded や ICMP Echo Request に対する応答を制限する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - 短時間に大量の ICMP パケットを送信するホストを監視（特に経路を舐めるような挙動）。
 
 ## 注意点・補足

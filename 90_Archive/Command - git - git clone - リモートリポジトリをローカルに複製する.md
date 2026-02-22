@@ -3,7 +3,7 @@ tags:
   - git_clone
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -84,6 +85,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 悪意のある可能性のあるスクリプトが自動実行されることを防ぎつつ、リポジトリの履歴を安全に調査する。
@@ -103,6 +105,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: 攻撃に必要なツールキットやエクスプロイトコードを、依存関係も含めて完全に取得する。
@@ -116,6 +119,7 @@ knowledge_category: Command
     git clone --recursive [https://github.com/vulnerable/web-app.git](https://github.com/vulnerable/web-app.git)
 
     ```
+
 
 
 

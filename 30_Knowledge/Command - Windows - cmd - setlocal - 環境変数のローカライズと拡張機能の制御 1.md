@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:36
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'setlocal'
+  - setlocal
   - cmd
-  - 'batch_scripting'
-  - 'delayed_expansion'
-  - 'knowledge_base'
+  - batch_scripting
+  - delayed_expansion
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - setlocal - 環境変数のローカライズと拡張機能の制御
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `setlocal` コマンドは、バッチファイル内において環境変数の変更の有効範囲（スコープ）を限定（ローカライズ）するために使用されます。
+
 `setlocal` を実行した後に変更された環境変数は、そのバッチファイルが終了するか、`endlocal` コマンドが実行された時点で、実行前の状態に自動的に復元されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -129,12 +129,12 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **難読化**: 攻撃者が作成する複雑なバッチファイル（ダウンローダーなど）では、`enabledelayedexpansion` を用いて文字列を動的に組み立て、静的解析によるシグネチャ検知（例: `powershell` という文字列を分割して結合）を回避します。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * バッチファイル内で `setlocal enabledelayedexpansion` が多用されている場合、そのスクリプトは高度なロジック（または難読化）を含んでいる可能性が高いため、詳細な動的解析や引数の監視が推奨されます。
 
 ## 注意点・補足

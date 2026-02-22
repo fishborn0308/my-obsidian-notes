@@ -5,7 +5,7 @@ tags:
   - image_management
   - forensics
 created: 2025-06-29 15:02
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
     docker commit suspicious-container malware-evidence:case-001
 
     ```
+
 
 
 

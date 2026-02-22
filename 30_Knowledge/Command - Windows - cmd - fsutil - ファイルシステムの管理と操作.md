@@ -1,6 +1,6 @@
 ---
 created: 2026-02-22 08:32
-modified: 2026-02-22 09:30
+modified: 2026-02-22 15:13
 environment: [OS/Windows, Filesystem/NTFS]
 vulnearability: [Information_Disclosure, Denial_of_Service]
 knowledge_category: Command

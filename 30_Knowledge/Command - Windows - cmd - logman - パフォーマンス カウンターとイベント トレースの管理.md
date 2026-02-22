@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:43
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'logman'
+  - logman
   - cmd
-  - 'performance'
-  - 'etw'
-  - 'enumeration'
-  - 'knowledge_base'
+  - performance
+  - etw
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - logman - パフォーマンス カウンターとイベント トレースの管理
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `logman` は、パフォーマンス カウンターおよびイベント トレース ログ (ETW) の作成、開始、停止、および照会を行うためのコマンドライン ツールです。
+
 GUI の「パフォーマンス モニター」で行う操作をスクリプト化でき、サーバーのパフォーマンス診断やセキュリティ監査のためのトレース収集に利用されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -120,7 +120,7 @@ GUI の「パフォーマンス モニター」で行う操作をスクリプト
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Evasion (ETW Blinding)**: 攻撃者が管理者権限を得た後、`logman stop` を使ってセキュリティ製品（EDR等）が依存しているトレースセッションを停止させ、活動を不可視にする。
     - **Information Disclosure**: ETW を通じて、他のプロセスがやり取りしている機密情報（暗号化前のデータや API 引数）を傍受される可能性。
 
@@ -131,7 +131,7 @@ GUI の「パフォーマンス モニター」で行う操作をスクリプト
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4688**: `logman` の実行ログ、特に `stop` や `delete` サブコマンドの使用を監視。
     - 重要なセキュリティトレース（例: `DefenderApiLogger` や `EtwRT...`）が予期せず停止した際のアラート設定。
 

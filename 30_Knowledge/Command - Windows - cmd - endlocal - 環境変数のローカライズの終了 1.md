@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:38
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'endlocal'
+  - endlocal
   - cmd
-  - 'batch_scripting'
-  - 'scope_management'
-  - 'knowledge_base'
+  - batch_scripting
+  - scope_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - endlocal - 環境変数のローカライズの終了
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `endlocal` コマンドは、バッチファイル内で `setlocal` によって開始された環境変数のローカライズ（局所化）を終了させます。
+
 このコマンドが実行されると、`setlocal` 以降に行われたすべての変数変更や設定（遅延展開の有効化など）が破棄され、環境変数は `setlocal` 実行直前の状態に復元されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -126,12 +126,12 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **隠蔽**: 攻撃者が対話型シェルではなく、複雑なバッチファイルを介して攻撃を行う場合、`setlocal/endlocal` を使うことで、システムの環境変数リストを汚さずに（＝目立たずに）作業を完結させます。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * バッチファイルの実行プロセスを監視し、短時間に大量の環境変数変更とリセットが行われている場合、難読化されたダウンローダーや偵察スクリプトの可能性があります。
     * **Transcriptロギング**（PowerShellの場合）や、コマンドライン引数の詳細ログを確認し、`endlocal & set` のような特殊な記述がないかチェックします。
 

@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:24
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Privilege_Escalation, Insecure_Service_Permissions, Unquoted_Service_Path]
 knowledge_category: Command
 tags:
-  - 'sc'
+  - sc
   - cmd
-  - 'services'
-  - 'privilege_escalation'
-  - 'enumeration'
-  - 'knowledge_base'
+  - services
+  - privilege_escalation
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - sc - サービス コントロール マネージャーとの通信
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `sc` コマンドは、Windows サービス コントロール マネージャー (SCM) との通信を行い、サービスの作成、開始、停止、一時停止、および構成の変更を行うためのツールです。
+
 `net start` よりも詳細な設定が可能であり、リモートマシンのサービス操作もサポートしています。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -115,13 +115,14 @@ tags:
 ## 環境変数と設定ファイル
 
 `sc` の操作対象となるサービス情報は、以下のレジストリキーに格納されています。
+
 * **パス**: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services`
 
 ## セキュリティに関する考慮事項
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Insecure Service Permissions**: 一般ユーザーが特定のサービスの `SERVICE_CHANGE_CONFIG` 権限を持っている場合、`binpath` を書き換えて権限昇格に悪用される。
     - **Unquoted Service Path**: パスにスペースが含まれ、かつ `"` で囲まれていない場合、途中のパスに悪意あるバイナリを置いて実行させる。
 
@@ -132,10 +133,10 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - サービスの ACL を厳格に管理し、一般ユーザーに `config` 権限を与えない。
     - すべてのサービスのパスが引用符 `"` で囲まれていることを確認する。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 7045**: 新しいサービスがインストールされた。
     - **イベントID 4697**: サービスがシステムに登録された（特に実行ユーザーが `SYSTEM` のものに注意）。
 

@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:35
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'nbtstat'
+  - nbtstat
   - cmd
-  - 'netbios'
-  - 'enumeration'
-  - 'networking'
-  - 'knowledge_base'
+  - netbios
+  - enumeration
+  - networking
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - nbtstat - NetBIOS 統計と名前解決の表示
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `nbtstat` は、TCP/IP 上の NetBIOS (NetBT) 統計、ローカルおよびリモート コンピュータの NetBIOS 名テーブル、および NetBIOS 名キャッシュを表示するためのコマンドです。
+
 名前解決のトラブルシューティングや、IP アドレスからコンピュータ名、ログインユーザー、ドメイン名を特定する際に使用されます。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -99,13 +99,12 @@ tags:
     nbtstat -A 192.168.10.101
     ```
 
-
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
 
 1.  **エラーメッセージ例 1**: `ホストが見つかりません。`
-    * **考えられる原因**: 
+    * **考えられる原因**:
         - ターゲットが NetBIOS を無効にしている（現代の Windows ではデフォルトで制限されている場合がある）。
         - ファイアウォール (UDP 137番ポート) で遮断されている。
     * **解決策**: ターゲットの NetBIOS over TCP/IP 設定を確認する。
@@ -123,16 +122,16 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Information Disclosure**: NetBIOS は認証なしでコンピュータ名やログインユーザー名を返してしまうため、攻撃者に組織内の命名規則やアカウント名を把握されるきっかけになります。
     - **LLMNR/NBT-NS Poisoning**: 攻撃者が `Responder` などのツールを使い、`nbtstat` が探している名前に「私がそのサーバーです」と偽の応答を返すことで、認証ハッシュを窃取する（Relay 攻撃）。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - 現代的なネットワークでは、DHCP 設定や GPO で **NetBIOS over TCP/IP を無効化** することを強く推奨します。
     - LLMNR も同時に無効化し、名前解決を DNS に一本化します。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - UDP 137, 138 ポートの異常なスキャンを IDS/IPS で監視する。
 
 ## 注意点・補足

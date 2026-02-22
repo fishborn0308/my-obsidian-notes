@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 09:37
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'choice'
+  - choice
   - cmd
-  - 'interactive'
-  - 'batch_scripting'
-  - 'knowledge_base'
+  - interactive
+  - batch_scripting
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - choice - ユーザー入力を待ち受け、選択肢から選択させる
@@ -18,7 +18,9 @@ tags:
 ## 概要
 
 `choice` コマンドは、ユーザーに選択肢（1文字のリスト）を提示し、入力を待ち受けます。ユーザーが選択した結果は、選択肢のインデックス番号として環境変数 `%ERRORLEVEL%` に返されます。
+
 自由入力を許さず、特定のキー入力のみを強制したい場合に非常に有用です。
+
 (出自: Windows標準搭載 / 旧リソースキット由来)
 
 ## 類似コマンドと差異
@@ -136,7 +138,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     * **Social Engineering**: 「Press 'Y' to install updates」といった偽のプロンプトを出し、ユーザーに悪意ある操作を承認させる。
     * **Anti-Sandbox**: 解析環境での実行を遅延させる、あるいは人間の介在を要求させることで、動的解析を困難にする。
 
@@ -147,7 +149,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection (検知)**: 
+* **Detection (検知)**:
     * バッチファイル内で `/T` による長時間の待機が含まれている場合、解析回避の意図がないか調査する。
     * 不審なバイナリと一緒に `choice` がループ内で回されているような挙動を監視する。
 

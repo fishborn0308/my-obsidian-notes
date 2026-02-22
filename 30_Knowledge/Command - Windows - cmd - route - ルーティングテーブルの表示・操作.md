@@ -1,17 +1,17 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:44
+modified: 2026-02-22 15:13
 environment: [OS/Windows, Network/Routing]
 vulnearability: [Network_Pivoting, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'route'
+  - route
   - cmd
-  - 'networking'
-  - 'pivoting'
-  - 'infrastructure'
-  - 'knowledge_base'
+  - networking
+  - pivoting
+  - infrastructure
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - route - ルーティングテーブルの表示・操作
@@ -19,10 +19,10 @@ tags:
 ## 概要
 
 `route` コマンドは、Windows の IP ルーティング テーブルの内容を表示および変更するために使用されます。
+
 パケットがどのネットワーク インターフェイスやゲートウェイを経由して宛先に到達するかを制御します。ネットワーク設計におけるマルチホーム環境（複数のネットワークに接続された端末）の構築や、障害時の経路切り替えに欠かせません。
+
 (出自: Windows標準搭載 / TCP/IP ユーティリティ)
-
-
 
 ## 類似コマンドと差異
 
@@ -112,13 +112,14 @@ tags:
 ## 環境変数と設定ファイル
 
 `route` 自体は環境変数を持ちませんが、`-p` で追加された永続的なルートはレジストリに保存されます。
+
 * **レジストリパス**: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes`
 
 ## セキュリティに関する考慮事項
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Man-in-the-Middle (MitM)**: 攻撃者が自身の端末をゲートウェイとして登録させ、通信を盗聴・改ざんする。
     - **Network Pivoting**: 侵害した端末にスタティックルートを追加し、外部から隔離された内部セグメント（DBサーバー等）への攻撃経路を確立する。
 
@@ -129,9 +130,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - ホスト型のファイアウォールで、予期せぬインターフェイス間転送（IP Forwarding）を無効にする。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 4688**: `route` コマンドの実行、特に `add` や `-p` スイッチの使用を監視。
     - 定期的にルーティングテーブルをエクスポートし、ベースラインと比較する。
 

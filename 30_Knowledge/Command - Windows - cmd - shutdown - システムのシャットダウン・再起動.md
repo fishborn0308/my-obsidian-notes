@@ -1,16 +1,16 @@
 ---
 # --- YAML Frontmatter ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 14:56
+modified: 2026-02-22 15:13
 environment: [OS/Windows]
 vulnearability: [Denial_of_Service]
 knowledge_category: Command
 tags:
-  - 'shutdown'
+  - shutdown
   - cmd
-  - 'administration'
-  - 'persistence'
-  - 'knowledge_base'
+  - administration
+  - persistence
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - shutdown - システムのシャットダウン・再起動
@@ -18,10 +18,10 @@ tags:
 ## 概要
 
 `shutdown` コマンドは、ローカルまたはリモートの Windows コンピューターをシャットダウン、再起動、またはログオフさせるためのコマンドです。
+
 指定した時間（秒）の待機や、実行中のアプリケーションを強制終了させるオプション、さらにシャットダウンの理由を記録する機能も備えています。
+
 (出自: Windows標準搭載)
-
-
 
 ## 類似コマンドと差異
 
@@ -82,7 +82,6 @@ tags:
     REM ID 6006: システムの正常終了
     ```
 
-
 ### 3. レッドチーム視点 (OSCP / Persistence)
 
 * **タスク**: 永続化（Persistence）トリガーの強制発動
@@ -115,7 +114,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **悪用シナリオ**: 
+* **悪用シナリオ**:
     - **Persistence Activation**: インストールしたバックドアやルートキットを有効化するための再起動。
     - **Anti-Forensics**: フォレンジックツールによるメモリ調査を逃れるために、即座に電源を落としてメモリ内のデータを揮発させる。
 
@@ -126,9 +125,9 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Prevention (予防)**: 
+* **Prevention (予防)**:
     - サーバー環境では、一般ユーザーから `SeShutdownPrivilege` を剥奪し、勝手に電源を落とせないようにする。
-* **Detection (検知)**: 
+* **Detection (検知)**:
     - **イベントID 1074**: どのプロセス（またはユーザー）がシャットダウンを要求したかを記録。不審なプロセス名（例: `revshell.exe`）からの要求を監視する。
 
 ## 注意点・補足
