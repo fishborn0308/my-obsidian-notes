@@ -3,7 +3,7 @@ tags:
   - du
   - disk
   - filesystem
-  - cheetsheet
+  - cheatsheet
 created: 2025-06-29 15:02
 modified: 2026-02-20 15:39
 environment: [OS/Linux]

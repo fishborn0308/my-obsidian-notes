@@ -4,7 +4,7 @@ tags:
   - archive
   - backup
   - compression
-  - cheetsheet
+  - cheatsheet
   - zip
   - gzip
   - bzip2

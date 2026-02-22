@@ -3,7 +3,7 @@ tags:
   - rmdir
   - file management
   - linux
-  - cheetsheet
+  - cheatsheet
   - rm
   - mkdir
   - mkdir
