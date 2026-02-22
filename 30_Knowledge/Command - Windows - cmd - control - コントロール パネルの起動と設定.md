@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:57
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Privilege_Escalation, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'control'
-  - 'control_panel'
-  - 'gui'
-  - 'configuration'
-  - 'knowledge_base'
+  - cmd
+  - control
+  - control_panel
+  - gui
+  - configuration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - control - コントロール パネルの起動と設定
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `control` コマンドは、Windows のコントロール パネル（Control Panel）を起動したり、特定のコントロール パネル項目（.cpl ファイル）を直接開いたりするために使用されます。
+
 マウス操作では何度もクリックが必要な深い設定画面を、コマンド一つで呼び出すことができます。
 
 (出自: `Windows 標準搭載 - control.exe`)
@@ -43,8 +44,6 @@ tags:
     control netconnections
     ```
 
-
-
 ## よく使われる引数と項目名
 
 `control [項目名]` の形式で実行します。
@@ -63,7 +62,9 @@ tags:
 | ⭐ `userpasswords2` | ユーザー アカウント（詳細版。自動ログイン設定などで使用） |
 
 ### Canonical Names (正規名) を使用した指定
+
 `/name` スイッチを使うことで、より詳細な項目を指定できます。
+
 * **例**: `control /name Microsoft.BackupAndRestore` (バックアップと復元)
 
 ## よく使われる組み合わせと業務シナリオ
@@ -108,9 +109,9 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **権限昇格の足がかり**: 
+* **権限昇格の足がかり**:
     * 管理者権限を必要とする項目（`userpasswords2` など）を呼び出す際、UAC（ユーザーアカウント制御）のダイアログが表示されますが、ここからさらにエクスプローラーを管理者権限で立ち上げるなどのテクニックに繋げられることがあります。
-* **Social Engineering**: 
+* **Social Engineering**:
     * 攻撃者が「設定を確認してください」と偽り、特定の `control` コマンドを実行させてセキュリティ機能を無効化させる（例: ファイアウォールをオフにする）誘導に悪用されるリスクがあります。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

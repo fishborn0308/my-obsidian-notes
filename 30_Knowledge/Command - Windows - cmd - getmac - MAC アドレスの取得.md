@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:34
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network]
 vulnearability: [Information_Disclosure, Enumeration]
 knowledge_category: Command
 tags:
-  - 'getmac'
-  - 'mac_address'
-  - 'network'
-  - 'enumeration'
-  - 'knowledge_base'
+  - getmac
+  - mac_address
+  - network
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - getmac - MAC アドレスの取得
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `getmac` は、コンピューター上のすべてのネットワーク アダプターのメディア アクセス制御 (MAC) アドレスと、各アドレスに関連付けられているネットワーク プロトコルの一覧を返します。
+
 `ipconfig /all` よりも MAC アドレスの抽出に特化しており、ローカルだけでなくリモート システムの情報も取得可能です。
 
 (出自: `Windows 標準搭載 - 外部コマンド (getmac.exe)`)
@@ -42,8 +43,6 @@ tags:
     REM ホスト名と MAC アドレスを 1 行にまとめて出力（簡易版）
     echo %COMPUTERNAME% > mac_list.txt & getmac /fo csv /nh >> mac_list.txt
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -96,7 +95,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **MAC スプーフィング (MAC Spoofing)**: 
+* **MAC スプーフィング (MAC Spoofing)**:
     * 攻撃者は `getmac` で正規のアドレスを調査した後、自身の端末の MAC アドレスを偽装（スプーフィング）することで、MAC アドレス制限のある Wi-Fi やポートセキュリティをバイパスしようとします。
 
 ### 対応策・緩和策 (ブルーチーム視点)

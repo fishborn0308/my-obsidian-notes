@@ -3,7 +3,7 @@ tags:
   - git_restore
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -54,6 +54,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -84,14 +85,15 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 監査ログファイルや設定ファイルが改ざんされた可能性がある場合、特定の過去のコミット時点でのファイルの健全な状態を確認・比較する。
 * **組み合わせ**: `git restore --source=<commit-id> <file>`
 * **解説**: 現在のファイルを直接上書きするのではなく、`git show <commit-id>:<file> > <file>.old` のようにして過去のバージョンを別名で抽出し、`diff` で比較するのがより安全な調査手法です。
 * **例**: -
 
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: 偵察段階で発見した認証情報などを誤ってステージングしてしまった場合に、コミットせずにステージング状態を解除する。
 * **組み合わせ**: `git restore --staged <secret-file>`
@@ -104,6 +106,7 @@ knowledge_category: Command
     git restore --staged creds.txt
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

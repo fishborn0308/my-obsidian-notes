@@ -8,7 +8,7 @@ tags:
   - grep
   - vi
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command
@@ -49,6 +49,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -83,7 +84,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: ログファイルから機密情報（IPアドレスなど）を匿名化する。
 * **組み合わせ**: `sed 's/<pattern>/<redacted>/g'`
@@ -98,7 +100,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: システムの設定をサイレントに改ざんし、永続化や防御回避を図る。
 * **組み合わせ**: `sudo sed -i 's/<secure_setting>/<insecure_setting>/' <config_file>`
@@ -111,6 +114,7 @@ knowledge_category: Command
     sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング
@@ -127,6 +131,7 @@ knowledge_category: Command
     sed 's|/usr/local|/opt|g' some_file.txt
 
     ```
+
 
 
 ## 環境変数と設定ファイル

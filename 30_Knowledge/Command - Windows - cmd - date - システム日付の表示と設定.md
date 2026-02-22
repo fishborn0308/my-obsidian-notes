@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:58
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Anti_Forensics, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'date'
-  - 'timestamp'
-  - 'anti_forensics'
-  - 'knowledge_base'
+  - cmd
+  - date
+  - timestamp
+  - anti_forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - date - システム日付の表示と設定
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `date` コマンドは、システムの現在の日付を表示、または新しい日付に設定するために使用されます。
+
 引数なしで実行すると現在の設定が表示され、新しい日付の入力を求められます。単に表示のみを行いたい場合は `/T` スイッチを使用します。
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド`)

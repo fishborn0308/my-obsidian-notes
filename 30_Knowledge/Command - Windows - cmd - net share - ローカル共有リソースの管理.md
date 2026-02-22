@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:23
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network/SMB]
 vulnearability: [Information_Disclosure, Lateral_Movement]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_share'
-  - 'smb'
-  - 'file_sharing'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - net_share
+  - smb
+  - file_sharing
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net share - ローカル共有リソースの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net share` コマンドは、ローカルコンピュータの共有リソース（フォルダ、プリンタ）を作成、削除、または表示するために使用されます。
+
 ネットワーク上の他のユーザーが自分のコンピュータ上のファイルにアクセスできるように設定するための中心的なツールです。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -103,7 +104,6 @@ tags:
 * **タスク 2: Data Exfiltration Point (持ち出しポイントの作成)**
     * **目的**: ネットワーク内の他の端末から盗み出したファイルを、自分が支配している端末へ集約するために共有を作成する。
     * **解説**: 攻撃者は `net share` を使って、目立たない名前（例: `Default_Log`）の共有を作成し、そこにデータを集めます。
-
 * **タスク 3: 共有パスワードの探索 (Looting)**
     * **目的**: 共有の設定情報から、機密データが保存されていそうな物理パスを特定する。
     * **解説**: 共有名が `Secret_Docs` で、物理パスが `D:\Confidential\ProjectX` であれば、そのディレクトリを重点的に探索します。

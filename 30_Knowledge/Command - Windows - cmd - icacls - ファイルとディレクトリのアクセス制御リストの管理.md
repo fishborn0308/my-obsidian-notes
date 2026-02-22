@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:40
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Filesystem/NTFS]
 vulnearability: [Privilege_Escalation, Information_Disclosure, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'icacls'
-  - 'acl'
-  - 'permissions'
-  - 'file_security'
-  - 'privilege_escalation'
-  - 'knowledge_base'
+  - icacls
+  - acl
+  - permissions
+  - file_security
+  - privilege_escalation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - icacls - ファイルとディレクトリのアクセス制御リストの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `icacls` (Integrity Control Access Control List) は、ファイルやディレクトリのアクセス制御リスト (ACL) を表示、変更、バックアップ、および復元するための強力なツールです。
+
 NTFS ファイルシステム上の詳細なアクセス許可（読み取り、書き込み、フルコントロールなど）や、継承の挙動、所有者の変更などをコマンドラインから一括で制御できます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (icacls.exe)`)
@@ -44,11 +45,10 @@ NTFS ファイルシステム上の詳細なアクセス許可（読み取り、
     icacls "C:\Program Files\*" /t /c /l | findstr "(I)(M)"
     ```
 
-
-
 ## 主要なスイッチと権限表記
 
 ### 実行スイッチ
+
 | スイッチ | 説明 |
 | :--- | :--- |
 | ⭐ `/grant` | 指定したユーザーに権限を付与する（既存の権限は維持）。 |
@@ -59,6 +59,7 @@ NTFS ファイルシステム上の詳細なアクセス許可（読み取り、
 | `/inheritance:e|d|r` | 継承を有効(e)、無効(d)、または削除(r)する。 |
 
 ### 権限の略称 (Permissions)
+
 | 略称 | 意味 |
 | :--- | :--- |
 | **F** | フル コントロール (Full Access) |

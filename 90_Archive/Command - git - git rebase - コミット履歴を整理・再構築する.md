@@ -3,7 +3,7 @@ tags:
   - git_rebase
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -48,6 +48,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -77,14 +78,15 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 過去のコミット履歴から、誤ってコミットされた機密情報（パスワードなど）を恒久的に削除する。
 * **組み合わせ**: `git rebase -i <commit-hash>^`
 * **解説**: **非常に危険な操作**ですが、`rebase -i` で問題のコミットを `edit` し、ファイルから機密情報を削除して `git commit --amend` を行い、`git rebase --continue` することで履歴を書き換えます。
 * **例**: -
 
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **痕跡を隠蔽**するため、自身の攻撃活動に関するコミット履歴を整理・偽装する。
 * **組み合わせ**: `git rebase -i HEAD~N`
@@ -97,6 +99,7 @@ knowledge_category: Command
     git rebase -i HEAD~5
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

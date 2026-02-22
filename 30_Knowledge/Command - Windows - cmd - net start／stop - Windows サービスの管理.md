@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:32
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Defense_Evasion, Persistence]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_start'
-  - 'net_stop'
-  - 'service_management'
-  - 'defense_evasion'
-  - 'knowledge_base'
+  - cmd
+  - net_start
+  - net_stop
+  - service_management
+  - defense_evasion
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net start / stop - Windows サービスの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net start` および `net stop` コマンドは、Windows サービスの開始、停止、および現在実行中のサービスの一覧表示を行うために使用されます。
+
 Windows サービスはシステムのバックグラウンドで動作するプログラムであり、このコマンドを通じて、ネットワーク機能、セキュリティ機能、アプリケーション固有の機能などを制御します。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -43,8 +44,6 @@ Windows サービスはシステムのバックグラウンドで動作するプ
     net stop "Print Spooler"
     net start "Print Spooler"
     ```
-
-
 
 ## スイッチ/オプション説明
 

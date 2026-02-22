@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:54
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Data_Tampering, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'comp'
-  - 'file_comparison'
-  - 'integrity_check'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - comp
+  - file_comparison
+  - integrity_check
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - comp - ファイル内容の比較
@@ -18,7 +18,9 @@ tags:
 ## 概要
 
 `comp` コマンドは、2 つのファイルまたはファイル セットの内容をバイト単位で比較します。
+
 ファイルサイズが異なる場合は比較を行わず、内容が異なる場合はその不一致箇所を（デフォルトでは 16 進数で）報告します。
+
 非常に高速であり、大規模なバイナリファイルが同一であるかを即座に判断するのに適しています。
 
 (出自: `Windows 標準搭載 - 外部コマンド (comp.exe)`)
@@ -45,8 +47,6 @@ tags:
     copy config.ini config.ini.bak
     comp config.ini config.ini.bak /l
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -97,7 +97,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **機密情報の露出**: 
+* **機密情報の露出**:
     * 攻撃者は `comp` を使用して、2 つの暗号化されたファイル（あるいはパスワードハッシュのリスト）を比較し、同一の平文から生成されたものがないかを推測する一助にすることがあります。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

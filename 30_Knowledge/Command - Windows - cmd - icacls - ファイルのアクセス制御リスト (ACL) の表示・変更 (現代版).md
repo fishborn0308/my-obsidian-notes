@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:56
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Privilege_Escalation, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'icacls'
-  - 'permissions'
-  - 'acl'
-  - 'knowledge_base'
+  - cmd
+  - icacls
+  - permissions
+  - acl
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - icacls - ファイルのアクセス制御リスト (ACL) の表示・変更 (現代版)
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `icacls` (Integrity Control Access Control Lists) は、NTFS ファイルおよびディレクトリの権限を表示、変更、バックアップ、復元するための強力なツールです。
+
 前身の `cacls` では不完全だった「権限の継承」や「整合性レベル (Integrity Level)」を正しく扱うことができ、現在の Windows 管理における標準コマンドです。
 
 (出自: `Windows 標準搭載`)
@@ -41,8 +42,6 @@ tags:
     REM 特定のサービスバイナリに対する権限を調査
     icacls "C:\Program Files\Vulnerable App\service.exe"
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -98,6 +97,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `Successfully processed 0 files; Failed processing 1 files`
     * **考えられる原因**: 指定したパスが存在しないか、所有権がないため ACL を読み取れない。
     * **解決策**: `takeown /f <file>` で一度所有権を自分に移してから `icacls` を実行してください。

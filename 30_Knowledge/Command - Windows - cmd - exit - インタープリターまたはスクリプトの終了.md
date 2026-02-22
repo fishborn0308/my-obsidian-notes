@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:11
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'exit'
-  - 'batch_script'
-  - 'automation'
-  - 'error_handling'
-  - 'knowledge_base'
+  - cmd
+  - exit
+  - batch_script
+  - automation
+  - error_handling
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - exit - インタープリターまたはスクリプトの終了
@@ -47,8 +47,6 @@ tags:
     exit /b 0
     ```
 
-
-
 ## スイッチ/オプション説明
 
 | スイッチ/引数 | 説明 |
@@ -79,7 +77,6 @@ tags:
 * **タスク 1: Cleanup and Close (セッションの終了と痕跡隠蔽)**
     * **目的**: リモートシェルや対話型セッションでの作業終了後、ウィンドウを確実に閉じてプロセスを消去する。
     * **解説**: 痕跡を残さないよう、作業の最後に `exit` を実行してセッションを切断します。
-
 * **タスク 2: Conditional Payload Execution (条件付きペイロード実行)**
     * **目的**: 前の攻撃ステップが成功した (`0`) か失敗した (`1`) かを判定し、次のエクスプロイトを実行するか決める。
     * **コマンド例**:
@@ -102,7 +99,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **エラーコードによる情報漏洩**: 
+* **エラーコードによる情報漏洩**:
     * 独自に設計されたアプリケーションやスクリプトが、詳細すぎるエラーコードを `exit` で返している場合、攻撃者がその数値を分析してシステムの内部状態（「ユーザーは存在するがパスワードが違う」など）を推測される可能性があります。
 
 ### LOLBAS における利用例

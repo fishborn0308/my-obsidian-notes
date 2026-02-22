@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:02
+modified: 2026-02-22 09:30
 environment: [OS/Windows, OS/Windows_Server]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'robocopy'
-  - 'backup'
-  - 'migration'
-  - 'knowledge_base'
+  - cmd
+  - robocopy
+  - backup
+  - migration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - robocopy - 堅牢なファイル複製と同期

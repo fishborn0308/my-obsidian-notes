@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:53
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'break'
-  - 'legacy'
-  - 'batch_script'
-  - 'knowledge_base'
+  - cmd
+  - break
+  - legacy
+  - batch_script
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - break - 拡張 CTRL+C チェックの設定・表示
@@ -17,7 +17,9 @@ tags:
 ## 概要
 
 `break` は、MS-DOS システムにおいて「拡張 CTRL+C チェック」機能を有効または無効にするためのコマンドです。
+
 本来は、プログラムがディスク I/O 以外の処理（計算中など）を行っている最中でも、`CTRL+C` による中断を受け付けるかどうかを制御するものでした。
+
 現代の Windows (Windows 10/11 等) では、この設定は常に有効な状態に近いか、あるいは OS レベルで別の制御が行われているため、コマンドを実行しても**システムの挙動に影響を与えません。**
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド (MS-DOS 互換)`)
@@ -78,6 +80,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 * **特になし**: どの引数を与えてもエラーになることは殆どなく、単に無視されるか状態が表示されるだけです。
 
 ## 環境変数と設定ファイル

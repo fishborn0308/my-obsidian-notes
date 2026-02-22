@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:19
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'wevtutil'
-  - 'event_log'
-  - 'forensics'
-  - 'anti_forensics'
-  - 'knowledge_base'
+  - cmd
+  - wevtutil
+  - event_log
+  - forensics
+  - anti_forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - wevtutil - Windows イベント ログの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `wevtutil` (Windows Event Utility) は、イベント ログと発行元に関する情報の取得、ログのアーカイブやエクスポート、およびログの消去を行うためのコマンドライン ツールです。
+
 GUI を使わずに、特定の条件（イベント ID や時間帯）に基づいたログの抽出ができるため、大規模なログ解析や自動化されたインシデント レスポンスにおいて極めて重要です。
 
 (出自: `Windows 標準搭載 - 外部コマンド (wevtutil.exe)`)
@@ -42,8 +43,6 @@ GUI を使わずに、特定の条件（イベント ID や時間帯）に基づ
     REM セキュリティ ログを C:\temp\security_backup.evtx にエクスポート
     wevtutil epl Security C:\temp\security_backup.evtx
     ```
-
-
 
 ## スイッチ/サブコマンド説明
 
@@ -111,9 +110,9 @@ GUI を使わずに、特定の条件（イベント ID や時間帯）に基づ
 
 ### 脆弱性と悪用事例
 
-* **ログの全消去**: 
+* **ログの全消去**:
     * 攻撃者が `cl` コマンドを使用すると、消去したこと自体が「Event ID 1102」として記録されますが、それ以前のすべての詳細な活動履歴が失われます。
-* **情報の露出**: 
+* **情報の露出**:
     * ログには、パスワード忘れによって誤ってユーザー名欄に入力されたパスワードや、スクリプトの引数に含まれた機密情報が残っている場合があり、攻撃者の格好の情報源になります。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

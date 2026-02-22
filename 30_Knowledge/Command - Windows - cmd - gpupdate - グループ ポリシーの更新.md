@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:36
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Service/ActiveDirectory]
 vulnearability: [Persistence, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'gpupdate'
-  - 'group_policy'
-  - 'gpo'
-  - 'administration'
-  - 'remediation'
-  - 'knowledge_base'
+  - gpupdate
+  - group_policy
+  - gpo
+  - administration
+  - remediation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - gpupdate - グループ ポリシーの更新
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `gpupdate` は、ローカルおよび Active Directory ベースのグループ ポリシー設定を更新（リフレッシュ）します。
+
 通常、グループ ポリシーはバックグラウンドで一定の間隔（デフォルトでは 90 分 + ランダムなオフセット）で自動更新されますが、`gpupdate` を実行することで、管理者が変更したポリシー設定を待機することなく即座にクライアント コンピューターへ反映させることができます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (gpupdate.exe)`)
@@ -44,8 +45,6 @@ tags:
     REM 反映結果を簡易確認
     gpresult /r
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -95,7 +94,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **GPO テンプレートの改ざん**: 
+* **GPO テンプレートの改ざん**:
     * 攻撃者がドメイン上の GPO テンプレート（SYSVOL 内）を書き換えた場合、各端末が `gpupdate` を行うタイミングでその「悪意ある設定」が自動的に全社に拡散されます。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

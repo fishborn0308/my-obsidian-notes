@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:03
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network/Active_Directory]
 vulnearability: [Reconnaissance, Privilege_Escalation]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_group'
-  - 'active_directory'
-  - 'group_management'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - net_group
+  - active_directory
+  - group_management
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net group - ドメイングループの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net group` コマンドは、Active Directory ドメイン内のグローバルグループを追加、表示、および変更するために使用されます。
+
 ドメイン全体のユーザーを論理的なグループ（部署別、権限別など）にまとめ、リソースへのアクセス権を一括管理する際に使用されます。実行にはドメイン環境への接続（ドメイン参加済み端末またはDCへの照会）が必要です。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -45,8 +46,6 @@ tags:
     REM "Domain Admins" グループのメンバーを確認
     net group "Domain Admins" /domain
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -143,7 +142,6 @@ tags:
     * **列挙による標的選定**: Active Directory のデフォルト設定では、**一般のドメインユーザー権限**であっても `net group /domain` を実行して、特権グループのメンバーをすべて閲覧可能です。攻撃者はこの情報を元に、「誰の認証情報を盗めばドメイン全体の支配権（Domain Admin）を得られるか」という最短ルートを容易に特定できます。
     * **組織構造の可視化**: グループ名（例: `Finance_Admin`, `C-Suite_Users`, `IT_Security`）から、組織内の重要部署や高権限者の所在をマッピングされ、標的型攻撃（フィッシング等）に悪用されます。
     * **不適切な情報保持**: グループの「コメント」欄に、暫定的なパスワードや、システムへのアクセス手順、サーバー名などが管理者によってメモされていることがあり、これが重要な情報漏洩源となります。
-
 * **アカウント操作と永続化 (Account Manipulation - T1098):**
     * **バックドアとしての特権付与**: 攻撃者が一時的にドメイン管理権限を得た際、自身の作成した目立たないユーザーを `Domain Admins` や `Enterprise Admins` に追加して永続化を図ります。
     * **ネストされたグループの悪用**: 監視の目を逃れるため、一見無害な一般グループを特権グループのメンバーに追加（ネスト）し、間接的に管理者権限を維持する手法が取られます。
@@ -159,7 +157,6 @@ tags:
 * **Prevention (予防)**:
     * **AD ACL の見直し**: 重要なセキュリティグループ（特権グループ）のプロパティに対する読み取り権限を、管理者のみに制限することを検討します。
     * **特権管理の厳格化**: 特権ユーザーの管理には PAW (Privileged Access Workstation) を使用し、ドメイン管理者権限を持つアカウントが一般のワークステーションにログオン（＝ハッシュをメモリに残す）しないように徹底します。
-
 * **Detection (検知)**:
     * **イベントIDの重点監視**: SIEM 等で以下のイベント、特に「メンバーシップの変更」をリアルタイムで追跡します。
         * **4727**: セキュリティ グローバル グループが作成されました。

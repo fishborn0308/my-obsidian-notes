@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:59
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'type'
-  - 'file_reading'
-  - 'looting'
-  - 'knowledge_base'
+  - cmd
+  - type
+  - file_reading
+  - looting
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - type - テキストファイルの内容表示
@@ -40,8 +40,6 @@ tags:
     REM 設定ファイルから "password" という文字列を含む行を探す
     type C:\inetpub\wwwroot\web.config | findstr /i "password"
     ```
-
-
 
 ## スイッチ/オプション説明
 

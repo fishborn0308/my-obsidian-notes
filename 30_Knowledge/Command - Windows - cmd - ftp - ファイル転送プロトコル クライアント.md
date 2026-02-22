@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:34
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network/Protocol]
 vulnearability: [Information_Disclosure, Data_Exfiltration, Cleartext_Credentials]
 knowledge_category: Command
 tags:
-  - 'ftp'
-  - 'network'
-  - 'file_transfer'
-  - 'exfiltration'
-  - 'lolbas'
-  - 'knowledge_base'
+  - ftp
+  - network
+  - file_transfer
+  - exfiltration
+  - lolbas
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - ftp - ファイル転送プロトコル クライアント
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `ftp` は、FTP (File Transfer Protocol) を使用して、リモート サーバーとの間でファイルを転送するための対話型コマンドライン ツールです。
+
 古くから存在するプロトコルであるため、暗号化（SSL/TLS）をサポートしていない「プレーンテキスト」での通信が基本となります。現代のインフラではセキュリティ上の理由から制限されることが多いですが、レガシーシステムの保守や、特定の制限環境下での「足場」として利用されます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (ftp.exe)`)
@@ -50,8 +51,6 @@ tags:
     REM スクリプトを指定して実行
     ftp -s:ftp_script.txt
     ```
-
-
 
 ## スイッチ/オプション説明
 

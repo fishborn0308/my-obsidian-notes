@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:17
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Service/Management]
 vulnearability: [Privilege_Escalation, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'dism'
-  - 'system_repair'
-  - 'feature_management'
-  - 'image_servicing'
-  - 'knowledge_base'
+  - cmd
+  - dism
+  - system_repair
+  - feature_management
+  - image_servicing
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - dism - システム イメージの管理と修復
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `dism` (展開イメージのサービスと管理) は、Windows イメージ（.wim）や仮想ハードディスク（.vhd/.vhdx）を修復、準備、および変更するためのコマンドライン ツールです。
+
 実行中の OS (Online) に対して、壊れたシステムファイルの修復、Windows 機能（IIS, SNMP, SMB1.0 など）の有効化・無効化、ドライバの追加など、OS の「構成」そのものを操作するために使用されます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (dism.exe)`)
@@ -45,8 +46,6 @@ tags:
     REM その後、システムファイルをスキャン
     sfc /scannow
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -98,7 +97,6 @@ tags:
 
 * **タスク 2: Impair Defenses (防御機能の無効化 - T1562.001)**
     * **目的**: Windows 内蔵のセキュリティ機能（例: Windows Sandbox 等、攻撃に不都合なもの）をコンポーネントレベルで削除・無効化する。
-
 * **タスク 3: Drivers Injection (不審なドライバの追加)**
     * **目的**: `/Add-Driver` を使用して、署名チェックをバイパスするような脆弱なドライバや、永続化のための不正ドライバを流し込む。
 
@@ -115,7 +113,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **機密情報の露出**: 
+* **機密情報の露出**:
     * 攻撃者はオフラインイメージに対して `dism` を実行し、中に含まれる `unattend.xml` やレジストリハイブをマウント・解析することで、パスワード情報を窃取しようとします。
 * **永続化 (Persistence)**:
     * 機能を有効化するだけでなく、独自のドライバをパッケージとして統合することで、システム再起動後も高い権限で動作し続ける仕組みを構築されるリスクがあります。

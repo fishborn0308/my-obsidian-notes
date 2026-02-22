@@ -4,7 +4,7 @@ tags:
   - docker_compose
   - docker
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -79,7 +80,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 不審なアプリケーションの構成要素と、過去の実行履歴を調査する。
 * **組み合わせ**: `docker compose -f /path/to/docker-compose.yml ps -a`
@@ -94,7 +96,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: 侵入したホスト上で稼働しているアプリケーションの構成を偵察する。
 * **組み合わせ**: `docker compose ps`
@@ -109,6 +112,7 @@ knowledge_category: Command
     docker compose ps
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

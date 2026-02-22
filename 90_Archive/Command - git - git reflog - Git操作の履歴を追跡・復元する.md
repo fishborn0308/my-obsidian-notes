@@ -3,7 +3,7 @@ tags:
   - git_reflog
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -57,6 +57,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -92,7 +93,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: インシデント調査で、攻撃者によって隠蔽された可能性のあるコミット履歴を追跡する。
 * **組み合わせ**: `git reflog show --date=iso <branch_name>`
@@ -107,7 +109,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: **痕跡消去 (Anti-Forensics)**。自身の活動履歴をreflogから削除する。
 * **組み合わせ**: `git reflog expire --all --expire=now`
@@ -122,6 +125,7 @@ knowledge_category: Command
     git gc --prune=now
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

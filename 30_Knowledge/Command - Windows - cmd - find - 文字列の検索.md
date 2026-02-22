@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:20
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'find'
-  - 'search'
-  - 'text_processing'
-  - 'enumeration'
-  - 'knowledge_base'
+  - cmd
+  - find
+  - search
+  - text_processing
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - find - 文字列の検索
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `find` コマンドは、1 つまたは複数のファイルから特定のテキスト文字列を検索します。
+
 指定した文字列が見つかった行をすべて表示するほか、出現回数のカウントや、指定した文字列を「含まない」行の抽出も可能です。パイプ (`|`) を介して他のコマンドの出力をフィルタリングする用途で最も頻繁に利用されます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (find.exe)`)
@@ -61,8 +62,6 @@ tags:
         for /L %i in (1,1,254) do @ping -n 1 -w 100 192.168.1.%i | find "Reply from"
         ```
 
-
-
 ### 2. ブルーチーム視点：迅速な異常検知とログ解析
 
 * **シナリオ A: 不審なネットワーク接続の監視 (Egress Filtering Check)**
@@ -91,8 +90,6 @@ tags:
         REM 実行中プロセスの中から Temp フォルダが含まれる怪しいパスを表示
         wmic process get name,executablepath | find /i "Temp"
         ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -156,7 +153,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **機密情報の露出**: 
+* **機密情報の露出**:
     * 攻撃者が `find` をパイプで繋いで「特定の文字列」を自動検索するスクリプトを走らせることで、短時間に大量の機密情報（トークン、APIキーなど）が持ち出されるリスクがあります。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

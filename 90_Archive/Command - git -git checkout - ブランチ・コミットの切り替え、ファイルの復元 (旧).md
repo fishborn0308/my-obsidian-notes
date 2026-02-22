@@ -5,7 +5,7 @@ tags:
   - branch_management
   - legacy
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -48,6 +48,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -79,7 +80,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害が疑われる期間の直前のクリーンな状態や、特定のマルウェアが導入されたとされるコミット時点のファイルを確認する。
 * **組み合わせ**: `git checkout <suspected-commit-id> -- <log-file>`
@@ -95,7 +97,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: 既存のエクスプロイトコードの新しいバリアントを開発する。
 * **組み合わせ**: `git checkout -b <exploit-variant> <base-exploit-commit>`
@@ -108,6 +111,7 @@ knowledge_category: Command
     git checkout -b c2-agent-obfuscation develop-c2
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

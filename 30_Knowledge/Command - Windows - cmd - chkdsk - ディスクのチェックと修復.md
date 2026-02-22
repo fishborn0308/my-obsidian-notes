@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:47
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Hardware/Storage]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'chkdsk'
-  - 'filesystem'
-  - 'maintenance'
-  - 'troubleshooting'
-  - 'knowledge_base'
+  - cmd
+  - chkdsk
+  - filesystem
+  - maintenance
+  - troubleshooting
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - chkdsk - ディスクのチェックと修復
@@ -41,8 +41,6 @@ tags:
     REM Cドライブのエラーを修復予約（再起動が必要）
     chkdsk C: /f
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -94,12 +92,12 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **アンチ・フォレンジック**: 
+* **アンチ・フォレンジック**:
     * `/r` による修復プロセスはディスク上の未使用領域や不良セクタを再スキャンするため、削除されたファイルの痕跡（スラックスペース）を上書きし、データ復元を困難にさせる目的で悪用される可能性があります。
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **モニタリング**: 
+* **モニタリング**:
     * 業務時間外に予期せぬ `chkdsk` が実行されていないか、イベントログ（Source: `Wininit` または `chkdsk`）を監視します。
 
 ## 注意点・補足

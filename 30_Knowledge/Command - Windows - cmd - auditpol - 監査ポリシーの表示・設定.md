@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:44
+modified: 2026-02-22 09:30
 environment: [OS/Windows, OS/Windows_Server]
 vulnearability: [Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'auditpol'
-  - 'logging'
-  - 'forensics'
-  - 'defense_evasion'
-  - 'knowledge_base'
+  - cmd
+  - auditpol
+  - logging
+  - forensics
+  - defense_evasion
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - auditpol - 監査ポリシーの表示・設定
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `auditpol` は、Windowsの監査ポリシーを表示、作成、変更するためのコマンドラインツールです。
+
 システムが「どの操作をイベントログ（セキュリティログ）に記録するか」を細かく制御します。GUIの「ローカルセキュリティポリシー」よりも詳細なサブカテゴリ単位での設定が可能です。
 
 (出自: `Windows 標準搭載`)
@@ -44,8 +45,6 @@ tags:
     REM 「プロセスの作成」に関する現在の設定のみを確認
     auditpol /get /category:"詳細な追跡" | findstr "プロセスの作成"
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -97,6 +96,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `Error 0x00000005: Access is denied.`
     * **考えられる原因**: 管理者権限がない。
     * **解決策**: コマンドプロンプトを「管理者として実行」してください。

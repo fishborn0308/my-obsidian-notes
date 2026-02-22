@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:55
+modified: 2026-02-22 09:30
 environment: [OS/Windows_Legacy, OS/Windows]
 vulnearability: [Privilege_Escalation, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'cacls'
-  - 'permissions'
-  - 'acl'
-  - 'knowledge_base'
+  - cmd
+  - cacls
+  - permissions
+  - acl
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - cacls - ファイルのアクセス制御リスト (ACL) の表示・変更 (レガシー)
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `cacls` (Control Access Control Lists) は、NTFS ファイルシステムのアクセス制御リストを表示または変更するためのレガシーなコマンドラインツールです。
+
 ユーザーやグループに対して、ファイルやディレクトリへの「読み取り」「書き込み」「変更」「フルコントロール」といった権限を割り当てます。
 
 (出自: `Windows 標準搭載 - 現在は非推奨 (Deprecated)`)
@@ -45,8 +46,6 @@ tags:
     REM カレントディレクトリの全ファイルの権限を表示し、Everyoneに対する書き込み/変更権限を抽出
     for %f in (*) do cacls "%f" | findstr "Everyone:(C) Everyone:(F)"
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -99,6 +98,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `Access is denied.`
     * **考えられる原因**: 管理者権限がない、または他のプロセスがファイルをロックしている。
     * **解決策**: 管理者として実行する。所有権がない場合は `takeown` で所有権を取得してから再試行する。

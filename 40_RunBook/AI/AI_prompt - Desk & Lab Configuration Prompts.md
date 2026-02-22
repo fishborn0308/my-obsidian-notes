@@ -1,7 +1,8 @@
 ---
 created: 2026-02-19 14:09
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 ---
+
 # Desk & Lab Configuration Prompts
 
 ## 運用アドバイス

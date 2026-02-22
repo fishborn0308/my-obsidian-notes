@@ -4,7 +4,7 @@ tags:
   - docker
   - Dockerfile
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -51,7 +51,6 @@ knowledge_category: Command
 
     ```
 
-
 ## オプション説明
 
 | オプション | 説明 |
@@ -83,7 +82,6 @@ knowledge_category: Command
 
     ```
 
-
 ### 2. ブルーチーム視点
 
 * **タスク**: 脆弱性スキャンを行うために、提供された `Dockerfile` からイメージを再現ビルドする。
@@ -101,7 +99,6 @@ knowledge_category: Command
     trivy image my-app-for-scan
 
     ```
-
 
 ### 3. レッドチーム視点
 

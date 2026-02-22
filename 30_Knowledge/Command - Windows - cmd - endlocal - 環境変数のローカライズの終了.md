@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:10
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'endlocal'
-  - 'setlocal'
-  - 'scripting'
-  - 'environment_variables'
-  - 'knowledge_base'
+  - cmd
+  - endlocal
+  - setlocal
+  - scripting
+  - environment_variables
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - endlocal - 環境変数のローカライズの終了
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `endlocal` コマンドは、バッチファイル内で `setlocal` コマンドによって開始された環境変数の変更（ローカライズ）の有効範囲を終了させます。
+
 `setlocal` 以降に行われた環境変数の追加や変更は、`endlocal` が実行された時点で破棄され、`setlocal` 実行前の状態に復元されます。これにより、スクリプト内の一時的な変数がシステム全体の環境に影響を与えるのを防ぎます。
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド`)
@@ -83,7 +84,6 @@ tags:
 * **タスク 1: Artifact Cleanup (痕跡の最小化)**
     * **目的**: 攻撃用スクリプトの実行中に定義した多数の環境変数（例：C2サーバのIP、奪取したトークン、一時的なパス）を、スクリプト終了後に一括で消去する。
     * **解説**: `setlocal`/`endlocal` を使用することで、セッションが維持されている場合でも、不審な変数が環境内に残るのを防ぎ、管理者の目から隠蔽します。
-
 * **タスク 2: Variable Scope Sandboxing (変数のサンドボックス化)**
     * **目的**: 難読化された複雑なコマンドを展開・実行する際、中間生成された不審な文字列をメモリ（環境変数空間）から即座に破棄する。
 
@@ -101,7 +101,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **環境変数汚染の回避**: 
+* **環境変数汚染の回避**:
     * 攻撃者が正規の管理スクリプトを改ざんして `endlocal` を削除した場合、スクリプトが作成した不審な変数がシステムに残り続け、後のプロセスで予期せぬ動作を引き起こす可能性があります。
 
 ### LOLBAS における利用例

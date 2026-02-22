@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:30
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Reconnaissance, Execution, Brute_Force]
 knowledge_category: Command
 tags:
-  - 'for'
-  - 'loop'
-  - 'automation'
-  - 'scripting'
-  - 'enumeration'
-  - 'knowledge_base'
+  - for
+  - loop
+  - automation
+  - scripting
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - for - ループ処理の実行
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `for` コマンドは、指定されたセット（ファイル群、数値範囲、コマンドの出力結果など）に対して、指定したコマンドを繰り返し実行します。
+
 単なるファイル操作にとどまらず、`/f` スイッチを用いることでテキストファイルやコマンド出力を 1 行ずつ解析し、特定の要素を抽出して変数に格納するといったプログラミング的な処理が可能です。
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド`)
@@ -43,8 +44,6 @@ tags:
     for /l %i in (1,1,254) do @ping -n 1 -w 100 192.168.1.%i | find "Reply from"
     ```
 
-
-
 ## スイッチ/オプション説明
 
 **※重要: コマンドラインでは `%i`、バッチファイル内では `%%i` と記述する必要があります。**
@@ -58,7 +57,9 @@ tags:
 | ⭐ `/f` | **ファイルの内容やコマンドの出力**をパース（解析）してループする。 |
 
 ### /f スイッチの詳細パラメータ (Options)
+
 `for /f "options" %i in (...) do ...`
+
 * `tokens=n,m`: 各行の何番目の単語を抽出するか。
 * `delims=xxx`: 区切り文字の指定（デフォルトはスペースとタブ）。
 * `skip=n`: 最初の n 行をスキップする。
@@ -117,7 +118,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **コマンドインジェクションの増幅**: 
+* **コマンドインジェクションの増幅**:
     * `for` ループ内にユーザー入力を不適切に組み込むと、単一のインジェクションでシステム全体の破壊や、ネットワーク全体への攻撃（ワームのような挙動）を自動実行される恐れがあります。
 
 ### LOLBAS における利用例

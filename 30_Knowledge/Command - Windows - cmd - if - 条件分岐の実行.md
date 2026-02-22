@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:41
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Reconnaissance, Execution]
 knowledge_category: Command
 tags:
-  - 'if'
-  - 'scripting'
-  - 'conditional'
-  - 'batch_logic'
-  - 'automation'
-  - 'knowledge_base'
+  - if
+  - scripting
+  - conditional
+  - batch_logic
+  - automation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - if - 条件分岐の実行
@@ -47,11 +47,10 @@ tags:
     echo [+] Success: Administrator privileges detected.
     ```
 
-
-
 ## 条件式と演算子
 
 ### 基本的な条件
+
 | 条件 | 説明 |
 | :--- | :--- |
 | `exist [path]` | 指定したファイルやフォルダが存在する場合に真。 |
@@ -60,7 +59,9 @@ tags:
 | `not [condition]` | 条件の結果を反転させる。 |
 
 ### 比較演算子 (文字列/数値)
+
 `/i` スイッチを付けると大文字小文字を区別しません。
+
 | 演算子 | 意味 |
 | :--- | :--- |
 | `EQU` | 等しい (Equal to) |
@@ -125,7 +126,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **ロジックバイパス**: 
+* **ロジックバイパス**:
     * 攻撃者が環境変数を事前に書き換えられる場合、スクリプト内のセキュリティチェック（例: `if "%ADMIN_STATUS%"=="OK"`）を容易にバイパスされる可能性があります。
 
 ## 注意点・補足

@@ -112,7 +112,7 @@ tags:
   - GoogleNotebookLM
   - zip2john
 created: 2025-06-29 15:02
-modified: 2026-02-20 21:02
+modified: 2026-02-22 09:30
 environment: [Windows, Linux, Web_Seerver, DB_Server, ActiveDirectory]
 vulnearability: [Directory Traversal, Shellshock, RCE, IDOR, BOLA, JWT Abuse, JuicyPotato, SUID Exploitation, Log Wiping, Living off the Land, Password Spraying, Brute Force, Session Hijacking, SQL Injection, OS Command Injection, Pass-the-Ticket, Golden Ticket]
 knowledge_category: Server/Common

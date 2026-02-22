@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:55
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Filesystem/NTFS]
 vulnearability: [Information_Disclosure, Data_Exfiltration]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'compact'
-  - 'compression'
-  - 'ntfs'
-  - 'disk_management'
-  - 'knowledge_base'
+  - cmd
+  - compact
+  - compression
+  - ntfs
+  - disk_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - compact - NTFS 圧縮の表示・変更
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `compact` は、NTFS パーティション上のファイルやディレクトリの圧縮状態を表示、または変更するためのコマンドです。
+
 ファイル単位だけでなく、ディレクトリに圧縮属性を付与することで、今後その中に作成されるファイルを自動的に圧縮するように設定することも可能です。
 
 (出自: `Windows 標準搭載 - 外部コマンド (compact.exe)`)
@@ -44,8 +45,6 @@ tags:
     mkdir C:\Logs\Archive
     compact /c /s:C:\Logs\Archive
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -104,7 +103,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **アンチ・フォレンジック**: 
+* **アンチ・フォレンジック**:
     * 攻撃者が `compact` を利用してツールを圧縮状態で保持することで、単純なファイルサイズベースのシグネチャ検知を回避しようとする試みがあります。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

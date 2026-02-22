@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:45
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'chcp'
-  - 'encoding'
-  - 'unicode'
-  - 'mojibake'
-  - 'knowledge_base'
+  - cmd
+  - chcp
+  - encoding
+  - unicode
+  - mojibake
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - chcp - コードページの表示・変更
@@ -42,8 +42,6 @@ tags:
     REM 以降、UTF-8 のログ出力などが正しく表示される
     type utf8_log.txt
     ```
-
-
 
 ## 主要なコードページ番号
 
@@ -101,7 +99,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **回避（Evasion）**: 
+* **回避（Evasion）**:
     * 攻撃者が特殊なコードページを利用して、セキュリティ製品のシグネチャ検知（文字列ベースの検知）を回避しようとする試みがあります。
     * 一部のログ収集ツールが特定のコードページ以外を正しくパースできない場合、その隙を突いて痕跡を隠蔽される可能性があります。
 

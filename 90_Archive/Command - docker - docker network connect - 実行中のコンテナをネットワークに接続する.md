@@ -5,7 +5,7 @@ tags:
   - networking
   - container
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -49,6 +49,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -75,14 +76,15 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたコンテナの通信を、隔離された監視ネットワークに接続して分析する。
 * **組み合わせ**: `docker network create honeypot-net` → `docker network connect honeypot-net <suspicious_container>`
 * **解説**: 隔離された調査用のネットワークを作成し、不審なコンテナをそのネットワークに接続します。このネットワークには、`tcpdump` を実行する監視コンテナのみを配置し、マルウェアがどのような通信を試みるかを安全に監視します。
 * **例**: -
 
-### 3. レッドチーム視点
+## 3. レッドチーム視点
 
 * **タスク**: **ラテラルムーブメント (横展開)**。攻撃用コンテナをターゲットの内部ネットワークに接続する。
 * **組み合わせ**: `docker network connect <backend_network> <attacker_container>`
@@ -99,6 +101,7 @@ knowledge_category: Command
     docker network connect prod-db-net attacker-box
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

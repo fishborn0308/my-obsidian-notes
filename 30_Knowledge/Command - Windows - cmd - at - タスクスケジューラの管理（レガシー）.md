@@ -1,12 +1,8 @@
 ---
-created: 2026-02-21
-modified: 2026-02-21
-environment:
-  - OS/Windows_Legacy
-  - OS/Windows_Server
-vulnearability:
-  - Privilege_Escalation
-  - Persistence
+created: 2026-02-21 07:38
+modified: 2026-02-22 09:30
+environment: [OS/Windows_Legacy, OS/Windows_Server]
+vulnearability: [Privilege_Escalation, Persistence]
 knowledge_category: Command
 tags:
   - cmd
@@ -21,6 +17,7 @@ tags:
 ## 概要
 
 `at` コマンドは、指定した時間や日付にコマンドやプログラムを実行するようにスケジュールするコマンドです。
+
 現代のWindowsでは `schtasks` に置き換わっていますが、古いエディションのWindowsでは **SYSTEM権限** でタスクが実行される仕様があるため、権限昇格の文脈で頻繁に登場します。
 
 (出自: `Windows 標準搭載 - スケジュール済みタスクサービスを利用`)
@@ -97,6 +94,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `The AT command has been deprecated. Please use schtasks.exe instead.`
     * **考えられる原因**: Windows 8/Server 2012以降のOSで実行した。
     * **解決策**: メッセージの通り `schtasks` を使用するか、どうしても `at` を使いたい場合は古いバージョンのWindows環境であるか確認してください。

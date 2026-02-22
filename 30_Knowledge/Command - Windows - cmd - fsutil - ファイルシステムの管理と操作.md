@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:32
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Filesystem/NTFS]
 vulnearability: [Information_Disclosure, Denial_of_Service]
 knowledge_category: Command
 tags:
-  - 'fsutil'
-  - 'ntfs'
-  - 'forensics'
-  - 'storage_management'
-  - 'knowledge_base'
+  - fsutil
+  - ntfs
+  - forensics
+  - storage_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - fsutil - ファイルシステムの管理と操作
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `fsutil` は、FAT および NTFS ファイルシステムに関する高度なタスクを実行するためのコマンドライン ユーティリティです。
+
 ディスク クォータの管理、ハードリンクの作成、USN ジャーナルのクエリ、スパースファイルの操作など、エクスプローラーや通常の `dir` コマンドでは不可能なファイルシステムの内部メタデータへのアクセスと操作を可能にします。
 
 (出自: `Windows 標準搭載 - 外部コマンド (fsutil.exe)`)
@@ -42,8 +43,6 @@ tags:
     REM Cドライブの USN ジャーナルから、ファイル変更履歴を表示
     fsutil usn readjournal C:
     ```
-
-
 
 ## スイッチ/サブコマンド説明
 
@@ -88,7 +87,6 @@ tags:
 * **タスク 1: Storage Exhaustion (リソース枯渇攻撃 - T1499)**
     * **目的**: ターゲットサーバーの空きディスク容量を巨大なファイルで埋め尽くし、システムログの記録停止やサービスの異常終了を誘発する。
     * **解説**: `createnew` は実際にディスクを消費しますが、`sparse` を併用すると「見かけ上のサイズは巨大だが実占有量は小さい」ファイルも作成可能です。
-
 * **タスク 2: Defense Evasion (検知回避のためのハードリンク)**
     * **目的**: 重要なファイルを直接触るのではなく、別の場所にハードリンクを作成して操作することで、特定のファイルパスを監視する単純なツールを回避する試み。
 

@@ -3,7 +3,7 @@ tags:
   - git_init
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -89,7 +90,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 独自のセキュリティ監視スクリプトや、`auditd` などの設定ファイル変更を追跡する。
 * **組み合わせ**: `git init`
@@ -115,7 +117,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: チーム内で共有するカスタムエクスプロイトやスクリプトを格納するためのプライベートな「ベアリポジトリ」をセットアップする。
 * **組み合わせ**: `git init --bare`
@@ -132,6 +135,7 @@ knowledge_category: Command
     git init --bare
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

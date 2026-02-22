@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:01
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'copy'
-  - 'file_management'
-  - 'ads'
-  - 'knowledge_base'
+  - cmd
+  - copy
+  - file_management
+  - ads
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - copy - ファイルのコピーと結合
@@ -39,8 +39,6 @@ tags:
     REM 実行ファイルをテキストファイルの代替データストリームとしてコピー
     copy malicious.exe text.txt:malicious.exe
     ```
-
-
 
 ## スイッチ/オプション説明
 

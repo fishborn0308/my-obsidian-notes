@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:49
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Filesystem/NTFS]
 vulnearability: [Data_Exfiltration, Anti_Forensics]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'cipher'
-  - 'encryption'
-  - 'efs'
-  - 'anti_forensics'
-  - 'knowledge_base'
+  - cmd
+  - cipher
+  - encryption
+  - efs
+  - anti_forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - cipher - EFS暗号化の管理と空き領域の消去
@@ -41,8 +41,6 @@ tags:
     REM フォルダを暗号化属性に設定
     cipher /e /s:"C:\SensitiveData"
     ```
-
-
 
 ## スイッチ/オプション説明
 

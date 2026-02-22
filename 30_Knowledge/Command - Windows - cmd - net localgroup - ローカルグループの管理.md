@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:59
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Reconnaissance, Privilege_Escalation]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_localgroup'
-  - 'group_management'
-  - 'privilege_escalation'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - net_localgroup
+  - group_management
+  - privilege_escalation
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net localgroup - ローカルグループの管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net localgroup` コマンドは、ローカルコンピュータ上のローカルグループの追加、表示、および変更を行うために使用されます。
+
 特定のユーザーを `Administrators`（管理者）グループに追加して特権を与えたり、`Remote Desktop Users` グループに追加して遠隔操作を許可したりする際に多用されます。
 
 (出自: `Windows 標準搭載 - net.exe`)

@@ -4,7 +4,7 @@ tags:
   - docker_compose
   - docker
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -50,6 +50,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -80,7 +81,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたアプリケーションを迅速かつ完全に無力化する（封じ込め）。
 * **組み合わせ**: `docker compose -f <path/to/docker-compose.yml> down`
@@ -95,14 +97,15 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: **痕跡消去 (Anti-Forensics)**。攻撃の踏み台として利用したコンテナ環境を削除する。
 * **組み合わせ**: `docker compose down --rmi all -v`
 * **解説**: 攻撃者が展開したカスタムツール環境を、コンテナ、ネットワーク、ボリューム、さらには使用したイメージまで含めて全て削除し、フォレンジック調査を困難にしようと試みます。
 * **例**: -
 
-## エラーメッセージとトラブルシューティング
+# エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
@@ -110,28 +113,28 @@ knowledge_category: Command
 		* **考えられる原因**: Composeが管理するネットワークに、Composeプロジェクト外のコンテナが接続されています。
 		* **解決策**: `docker network inspect <network_name>` で接続されているコンテナを確認し、切り離すか停止させてから再度 `down` を実行します。
 
-## 環境変数と設定ファイル
+# 環境変数と設定ファイル
 
 * `docker compose` は `.env` ファイルを読み込みます。
 * 一般的な環境変数・設定ファイルは [Linux共通の環境変数・設定ファイル](../linux/environment_and_config.md) を参照。
 
-## セキュリティに関する考慮事項
+# セキュリティに関する考慮事項
 
-### 脆弱性と悪用事例
+## 脆弱性と悪用事例
 
 * **脆弱性**: `docker compose down` は**破壊的なコマンド**です。
 * **悪用シナリオ**: 攻撃者が `docker` コマンドの実行権限を得た場合、`docker compose down -v` を実行して、本番環境のデータベースボリュームを意図的に削除し、深刻な**サービス妨害 (DoS)** と**データ損失**を引き起こす可能性があります。
 
-### GTFOBins / LOLBAS における利用例
+## GTFOBins / LOLBAS における利用例
 
 `docker compose` は `docker` コマンドの一部として扱われます。`sudo docker` の権限があれば、任意の操作が可能です。
 
-### 対応策・緩和策 (ブルーチーム視点)
+## 対応策・緩和策 (ブルーチーム視点)
 
 * **Prevention (予防)**: 本番環境のデータボリュームは、不用意に削除されないようにバックアップとリストアのプロセスを確立する。Dockerソケットへのアクセス権を厳格に管理する。
 * **Detection (検知)**: `docker compose down` の実行を `auditd` で監視し、計画外の環境破棄がないかを確認する。
 
-## 注意点・補足
+# 注意点・補足
 
 * **`stop` と `down` の違い**: `stop` は一時停止、`down` は完全な撤去です。この違いを理解することが、意図しないデータ損失を防ぐ上で非常に重要です。
 * **冪等性**: `docker compose down` は冪等な操作です。つまり、すでに `down` 済みの環境に対して再度実行してもエラーにはなりません。

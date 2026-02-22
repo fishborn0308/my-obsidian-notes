@@ -1,17 +1,17 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 06:45
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Anti_Forensics, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'doskey'
-  - 'history'
-  - 'macro'
-  - 'alias'
-  - 'anti_forensics'
-  - 'knowledge_base'
+  - cmd
+  - doskey
+  - history
+  - macro
+  - alias
+  - anti_forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - doskey - コマンド履歴とマクロの管理
@@ -43,8 +43,6 @@ tags:
     REM "lp" と打つだけでリスニングポートを表示するマクロを作成
     doskey lp=netstat -ano ^| findstr LISTENING
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -101,7 +99,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **コマンド実行履歴の窃取**: 
+* **コマンド実行履歴の窃取**:
     * 攻撃者が `doskey /history` を実行することで、前のユーザーが打ったパスワード（`net use \\server /user:admin password` など）を平文で取得されるリスクがあります。
 * **フィッシング/偽装**:
     * `doskey help=echo System update in progress, please wait...` のように定義し、ユーザーに偽の情報を信じ込ませる。

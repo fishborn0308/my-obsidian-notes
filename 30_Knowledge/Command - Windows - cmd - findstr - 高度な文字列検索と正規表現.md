@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:29
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command
 tags:
-  - 'findstr'
-  - 'search'
-  - 'regex'
-  - 'enumeration'
-  - 'knowledge_base'
+  - findstr
+  - search
+  - regex
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - findstr - 高度な文字列検索と正規表現
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `findstr` は、ファイルやコマンドの出力から、特定の文字列や正規表現パターンに一致する行を検索・抽出します。
+
 単純な文字列検索を行う `find` の上位互換であり、複数のファイルに対する再帰検索や、大文字小文字を区別しない検索、正規表現によるパターンマッチングなど、実務およびペンテストの列挙（Enumeration）フェーズにおいて極めて強力な機能を提供します。
 
 (出自: `Windows 標準搭載 - 外部コマンド (findstr.exe)`)
@@ -41,8 +42,6 @@ tags:
     REM 4445 ポートを使用しているプロセスの行を抽出
     netstat -ano | findstr /r ":4445 "
     ```
-
-
 
 ## スイッチ/オプション説明
 

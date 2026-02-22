@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:51
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Execution, Command_Injection]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'shell'
-  - 'interpreter'
-  - 'execution'
-  - 'knowledge_base'
+  - cmd
+  - shell
+  - interpreter
+  - execution
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - Windows コマンド インタープリターの開始
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `cmd` は Windows の標準的なコマンドライン インタープリター (シェル) を開始します。
+
 現在のセッションから新しい `cmd.exe` インスタンス（子プロセス）を立ち上げることで、環境変数のスコープを限定したり、特定のフラグ（遅延展開の有効化、Unicode 出力など）を適用してコマンドを実行したりすることが可能です。
 
 (出自: `Windows 標準搭載 - cmd.exe`)
@@ -41,8 +42,6 @@ tags:
     REM リモートや他のスクリプトからシステム情報を取得
     cmd /c "systeminfo | findstr /B /C:\"OS Name\""
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -90,8 +89,6 @@ tags:
         REM "whoami" を分割して実行
         cmd /c "set a=who& set b=ami& call %a%%b%"
         ```
-
-
 
 ## エラーメッセージとトラブルシューティング
 

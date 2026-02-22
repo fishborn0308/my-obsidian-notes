@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:12
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network/Active_Directory]
 vulnearability: [Brute_Force, Password_Spraying]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_accounts'
-  - 'password_policy'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - net_accounts
+  - password_policy
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net accounts - パスワードとログオンポリシーの管理
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `net accounts` コマンドは、ユーザーアカウントのパスワード要件（最小文字数、有効期限など）およびログオン制限（アカウントロックアウトの閾値など）を表示または変更するために使用されます。
+
 ローカルコンピュータのポリシーだけでなく、`/domain` スイッチを使用することでドメイン全体のパスワードポリシーを確認することも可能です。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -41,8 +42,6 @@ tags:
     REM ドメイン全体のパスワードポリシーとロックアウト閾値を確認
     net accounts /domain
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -127,7 +126,7 @@ tags:
 
 * **パスワードスプレー攻撃の準備 (T1110.003):**
     * 攻撃者は `net accounts /domain` を実行して、ターゲット組織のロックアウトポリシーを事前に把握します。例えば閾値が「5回」であれば、各ユーザーに対して「4回」までの試行に抑えることで、SOC（セキュリティ監視チーム）に検知されずに攻撃を継続します。
-* **弱いポリシーの特定**: 
+* **弱いポリシーの特定**:
     * `minpwlen` が `0` や低い値になっているサーバーを特定し、ブルートフォース攻撃の容易なターゲットとしてマークします。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例

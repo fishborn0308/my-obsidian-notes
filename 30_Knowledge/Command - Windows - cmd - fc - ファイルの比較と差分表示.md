@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:14
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Data_Tampering, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'fc'
-  - 'file_comparison'
-  - 'diff'
-  - 'integrity_check'
-  - 'knowledge_base'
+  - cmd
+  - fc
+  - file_comparison
+  - diff
+  - integrity_check
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - fc - ファイルの比較と差分表示
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `fc` (File Compare) は、2 つのファイルまたはファイル セットを比較し、それらの間の違いを表示します。
+
 テキスト ファイルの行ごとの比較に加え、実行ファイルやデータ ファイルのバイナリ比較（16進数表示）もサポートしています。特にテキスト比較では、不一致が発生した後に再び一致する箇所を探す「再同期」機能により、差分のみを効率的に抽出できます。
 
 (出自: `Windows 標準搭載 - 外部コマンド (fc.exe)`)
@@ -43,8 +44,6 @@ tags:
     REM 新旧の設定ファイルを比較し、行番号を表示
     fc /n config.ini.old config.ini.new
     ```
-
-
 
 ## スイッチ/オプション説明
 

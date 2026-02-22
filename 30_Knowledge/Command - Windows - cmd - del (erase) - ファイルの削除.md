@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 10:05
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Data_Destruction, Anti_Forensics]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'del'
-  - 'erase'
-  - 'file_management'
-  - 'anti_forensics'
-  - 'knowledge_base'
+  - cmd
+  - del
+  - erase
+  - file_management
+  - anti_forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - del (erase) - ファイルの削除
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `del` および `erase` コマンドは、1 つ以上のファイルを削除します。
+
 ディレクトリ構造を維持したまま中身のファイルだけを消去したり、属性（読み取り専用など）を無視して強制的に削除したりすることが可能です。なお、このコマンドで削除されたファイルは「ごみ箱」には入らず、ファイルシステム上から直接リンクが外されます。
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド`)
@@ -43,8 +44,6 @@ tags:
     REM C:\Temp 内のすべての .tmp ファイルを、確認なしで強制削除
     del /s /q /f C:\Temp\*.tmp
     ```
-
-
 
 ## スイッチ/オプション説明
 

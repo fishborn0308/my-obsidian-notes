@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -51,6 +51,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -82,7 +83,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: リポジトリの健全性を確認するため、全てのブランチの状況を詳細に表示する。
 * **組み合わせ**: `git branch -a -v`
@@ -97,7 +99,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: 偵察段階で、過去の特定のコミットの状態を確認するための調査用ブランチを作成する。
 * **組み合わせ**: `git branch <new-branch-name> <commit-id>`
@@ -110,6 +113,7 @@ knowledge_category: Command
     git branch historical-review a1b2c3d4
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

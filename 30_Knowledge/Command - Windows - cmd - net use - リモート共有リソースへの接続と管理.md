@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:38
+modified: 2026-02-22 09:30
 environment: [Network, OS/Windows, Network/Active_Directory]
 vulnearability: [Lateral_Movement, Credential_Exposure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_use'
-  - 'smb'
-  - 'lateral_movement'
-  - 'network_drive'
-  - 'knowledge_base'
+  - cmd
+  - net_use
+  - smb
+  - lateral_movement
+  - network_drive
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net use - リモート共有リソースへの接続と管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net use` コマンドは、コンピュータを共有リソースに接続したり、共有リソースから切断したりするために使用されます。また、現在のネットワーク接続に関する情報を表示します。
+
 ネットワークドライブの割り当て（マウント）だけでなく、認証情報（ユーザー名・パスワード）を指定した一時的なセッションの確立にも利用されます。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -42,8 +43,6 @@ tags:
     REM ユーザー "admin" としてサーバー "SRV01" の C ドライブを Z ドライブに割り当て
     net use z: \\SRV01\C$ /user:admin P@ssw0rd123!
     ```
-
-
 
 ## スイッチ/オプション説明
 

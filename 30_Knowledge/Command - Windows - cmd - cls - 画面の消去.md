@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:50
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'cls'
-  - 'display'
-  - 'terminal'
-  - 'knowledge_base'
+  - cmd
+  - cls
+  - display
+  - terminal
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - cls - 画面の消去
@@ -45,8 +45,6 @@ tags:
     timeout /t 5 > nul
     goto loop
     ```
-
-
 
 ## スイッチ/オプション説明
 

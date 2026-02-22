@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:07
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Execution]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'echo'
-  - 'scripting'
-  - 'file_creation'
-  - 'environment_variables'
-  - 'knowledge_base'
+  - cmd
+  - echo
+  - scripting
+  - file_creation
+  - environment_variables
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - echo - メッセージの表示と設定
@@ -41,8 +41,6 @@ tags:
     REM ログファイルに実行時のタイムスタンプを追記
     echo [%DATE% %TIME%] Backup Process Started >> C:\Logs\backup.log
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -112,7 +110,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **機密情報の漏洩**: 
+* **機密情報の漏洩**:
     * バッチファイル内で `echo` を多用していると、実行時にパスワードや API キーなどが画面（またはリダイレクトされたログ）に表示されてしまうリスクがあります。
 * **偽装メッセージ (Social Engineering)**:
     * `echo System Update Error: Please call extension 123...` のように表示させ、ユーザーを騙すスクリプトに悪用されます。

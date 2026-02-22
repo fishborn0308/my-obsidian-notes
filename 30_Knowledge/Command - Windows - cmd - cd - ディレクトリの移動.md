@@ -1,14 +1,14 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:58
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'cd'
-  - 'navigation'
-  - 'knowledge_base'
+  - cmd
+  - cd
+  - navigation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - cd - ディレクトリの移動

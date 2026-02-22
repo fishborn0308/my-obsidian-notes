@@ -1,14 +1,14 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:04
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'xcopy'
-  - 'file_management'
-  - 'knowledge_base'
+  - cmd
+  - xcopy
+  - file_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - xcopy - ファイルとディレクトリ構造のコピー
@@ -38,8 +38,6 @@ tags:
     REM ユーザーディレクトリ内のすべての .config ファイルを収集用フォルダにコピー
     xcopy C:\Users\*.config C:\Temp\Loot\ /S /I /Y
     ```
-
-
 
 ## スイッチ/オプション説明
 

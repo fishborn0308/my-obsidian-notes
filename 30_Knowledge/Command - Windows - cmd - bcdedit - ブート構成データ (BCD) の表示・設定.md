@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 07:51
+modified: 2026-02-22 09:30
 environment: [OS/Windows, OS/Windows_Server]
 vulnearability: [Defense_Evasion, Persistence]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'bcdedit'
-  - 'boot_configuration'
-  - 'defense_evasion'
-  - 'lolbas'
-  - 'knowledge_base'
+  - cmd
+  - bcdedit
+  - boot_configuration
+  - defense_evasion
+  - lolbas
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - bcdedit - ブート構成データ (BCD) の表示・設定
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `bcdedit` は、Windows のブート構成データ (BCD) ストアを管理するためのコマンドライン ツールです。
+
 従来の `boot.ini` に代わり、Windows Vista 以降の起動オプション（OS の選択、セーフモードの設定、デバッグオプションなど）を制御します。システムのブートストラップフェーズに直接影響を与えるため、実行には **管理者権限** が必須です。
 
 (出自: `Windows 標準搭載`)
@@ -44,8 +45,6 @@ tags:
     REM WinRE の有効化状態を確認
     reagentc /info
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -104,6 +103,7 @@ tags:
 ## エラーメッセージとトラブルシューティング
 
 ### よくあるエラーメッセージ
+
 1.  **エラーメッセージ例 1**: `The boot configuration data store could not be opened. Access is denied.`
     * **考えられる原因**: 標準ユーザー権限で実行している。
     * **解決策**: 「管理者として実行」でコマンドプロンプトを開き直してください。

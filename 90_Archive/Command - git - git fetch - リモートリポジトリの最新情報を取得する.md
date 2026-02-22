@@ -3,7 +3,7 @@ tags:
   - git_fetch
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -53,6 +53,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -84,7 +85,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: 複数のGitリポジトリを追跡し、新しいセキュリティパッチが公開されていないかを確認する。
 * **組み合わせ**: `git fetch --all`
@@ -103,7 +105,8 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: ターゲットシステムから外部のGitリポジトリにアクセスする際に、実際に変更を取得する前に、何が転送されるかを確認する。
 * **組み合わせ**: `git fetch --dry-run origin main`
@@ -116,6 +119,7 @@ knowledge_category: Command
     git fetch --dry-run origin main
 
     ```
+
 
 
 ## エラーメッセージとトラブルシューティング

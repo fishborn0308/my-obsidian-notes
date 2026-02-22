@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:30
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network/SMB]
 vulnearability: [Information_Disclosure, Unauthorized_Access]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'net_session'
-  - 'smb'
-  - 'incident_response'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - cmd
+  - net_session
+  - smb
+  - incident_response
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - net session - リモートセッションの表示と管理
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `net session`（または `net sessions`）コマンドは、ローカルコンピュータとネットワーク上のクライアントとの間のセッションを表示、または切断するために使用されます。
+
 主にファイルサーバーとして機能している端末で、現在「誰が」「どのコンピュータから」SMB 接続を行っているかをリアルタイムで確認するためのツールです。
 
 (出自: `Windows 標準搭載 - net.exe`)
@@ -46,8 +47,6 @@ tags:
     REM 端末 "ATTACKER-PC" からのセッションをすべて強制切断
     net session \\ATTACKER-PC /delete
     ```
-
-
 
 ## スイッチ/オプション説明
 

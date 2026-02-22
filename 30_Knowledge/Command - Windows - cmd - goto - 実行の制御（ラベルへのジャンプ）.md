@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:37
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'goto'
-  - 'scripting'
-  - 'batch'
-  - 'control_flow'
-  - 'knowledge_base'
+  - goto
+  - scripting
+  - batch
+  - control_flow
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - goto - 実行の制御（ラベルへのジャンプ）
@@ -48,8 +48,6 @@ tags:
     )
     echo Connection established!
     ```
-
-
 
 ## スイッチ/引数説明
 
@@ -117,7 +115,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **制御フローの乗っ取り**: 
+* **制御フローの乗っ取り**:
     * 攻撃者がバッチファイル内の環境変数を操作できる場合、ジャンプ先のラベル名を書き換えることで、本来実行されるべきではない「管理者向けメンテナンス処理」などへ実行を誘導される可能性があります。
 
 ## 注意点・補足

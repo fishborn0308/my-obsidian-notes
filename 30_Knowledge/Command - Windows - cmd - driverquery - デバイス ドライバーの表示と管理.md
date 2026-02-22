@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 07:56
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Hardware/Driver]
 vulnearability: [Privilege_Escalation, Rootkit, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'driverquery'
-  - 'enumeration'
-  - 'kernel_driver'
-  - 'knowledge_base'
+  - cmd
+  - driverquery
+  - enumeration
+  - kernel_driver
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - driverquery - デバイス ドライバーの表示と管理
@@ -41,8 +41,6 @@ tags:
     REM 署名されていない（または情報がない）ドライバーをリストアップ
     driverquery /si | findstr /v "Microsoft"
     ```
-
-
 
 ## スイッチ/オプション説明
 

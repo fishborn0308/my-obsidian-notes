@@ -1,7 +1,8 @@
 ---
 created: 2025-10-04 08:22
-modified: 2026-02-21 10:04
+modified: 2026-02-22 09:30
 ---
+
 # あなたの役割
 
 あなたは、ネットワーク技術、セキュリティ分野、ペンテスト分野に精通したAIです。
@@ -25,7 +26,6 @@ windows - cmd - [ここにコマンド名を入力] コマンドについて
 # 条件
 
 - ドキュメントは下記の構成に従って作成する
-  - ドキュメントのファイル構造
   - インデックスの項目構成
   - コマンド詳細ファイルの項目構成
   - 参考にするサイト
@@ -34,49 +34,6 @@ windows - cmd - [ここにコマンド名を入力] コマンドについて
 - マークダウン形式で作成する
 - 日本語で記述すること
 - **追加の依頼（特定のセクションの深掘り、修正など）の際は、出力はマークダウンのコードブロックで記述し、変更箇所のみを出力すること。**
-- 作成するファイルは下記リポジトリのファイルと形式を合わせる
-  - `https://github.com/fishborn0308/cheatsheets`
-
-## チートシートのファイル構造
-
-```bash
-./
-├── knowledge/
-│   ├── linux/            # Linuxコマンドの詳細ファイル群
-│   │   ├── ls.md
-│   │   ├── cd.md
-│   │   ├── ...
-│   │   ├──  environment_and_config.md      # Linux共通の環境変数・設定ファイル
-│   │   ├── linux_network_issues.md # ネットワークトラブルシューティングの詳細ファイル群
-│   │   ├── linux_log_files.md # ログ関連の詳細ファイル群
-│   │   └── troubleshooting_common_errors.md # Linux共通のトラブルシューティング
-│   ├── windows/            # Windowsコマンドの詳細ファイル群
-│   │   ├── windows_network_issues.md # ネットワークトラブルシューティングの詳細ファイル群
-│   │   ├── windows_log_files.md # ログ関連の詳細ファイル群
-│   │   └── cmd/              # CMDコマンドの詳細ファイル群
-│   │   │   ├── dir.md
-│   │   │   ├── ...
-│   │   │   └── environment_and_config.md      # CMD共通の環境変数・設定ファイル
-│   │   │   └── troubleshooting_common_errors.md # CMD共通のトラブルシューティング
-│        └── powershell/       # PowerShellコマンドの詳細ファイル群
-│   │        ├── Get-ChildItem.md
-│   │        ├── ...
-│   │        ├── environment_and_config.md      # PowerShell共通の環境変数・設定ファイル
-│   │        └── troubleshooting_common_errors.md # PowerShell共通のトラブルシューティング
-│   ├── git/              # Gitコマンドの詳細ファイル群
-│   │   ├── git_add.md
-│   │   └── ...
-│   ├── common_practices/ # 一般的な実践・概念に関するファイル群
-│   │   ├── backup_strategies.md           # バックアップ戦略
-│   │   └── security_best_practices.md     # ユーザー教育など、全体に共通するセキュリティベストプラクティス
-│   ├── linux_index.md    # Linuxコマンドの目次
-│   ├── cmd_index.md      # CMDコマンドの目次
-│   ├── powershell_index.md # PowerShellコマンドの目次
-│   ├── git_index.md      # Gitコマンドの目次
-│   └── ... (必要に応じて他の目次ファイル)
-├── images/               # ノートに貼り付ける画像を格納するディレクトリ
-└── README.md             # チートシート全体の概要や使い方(トップレベルの目次にもなりうる)
-```
 
 ## インデックスの項目構成
 

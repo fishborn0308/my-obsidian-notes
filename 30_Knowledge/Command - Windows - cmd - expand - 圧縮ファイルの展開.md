@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:12
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Execution]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'expand'
-  - 'compression'
-  - 'cabinet'
-  - 'forensics'
-  - 'knowledge_base'
+  - cmd
+  - expand
+  - compression
+  - cabinet
+  - forensics
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - expand - 圧縮ファイルの展開
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `expand` コマンドは、1 つ以上の圧縮された配布用ファイル（主に `.cab` 形式や、末尾がアンダースコア `_` で終わる `.ex_`, `.dl_` などの形式）を展開します。
+
 Windows のインストールメディアや更新プログラム、古いドライバパッケージなどで使用されている形式を扱うための標準ツールです。
 
 (出自: `Windows 標準搭載 - 外部コマンド (expand.exe)`)
@@ -43,8 +44,6 @@ Windows のインストールメディアや更新プログラム、古いドラ
     REM cabinet_file.cab 内のすべての .dll ファイルを C:\temp に展開
     expand cabinet_file.cab -f:*.dll C:\temp
     ```
-
-
 
 ## スイッチ/オプション説明
 

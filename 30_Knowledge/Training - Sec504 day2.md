@@ -107,31 +107,9 @@ tags:
   - Google_NotebookLM
   - zip2john
 created: 2025-06-29 15:02
-modified: 2026-02-20 15:59
-environment:
-  - Windows
-  - Linux
-  - WebServer
-  - DBServer
-  - ActiveDirectory
-vulnearability:
-  - DirectoryTraversal
-  - Shellshock
-  - RCE
-  - IDOR
-  - BOLA
-  - JWTAbuse
-  - JuicyPotato
-  - SUIDAbuse
-  - LogWiping
-  - LivingOffTheLand
-  - PasswordSpraying
-  - BruteForce
-  - SessionHijacking
-  - SQLInjection
-  - OSCommandInjection
-  - PassTheTicket
-  - GoldenTicket
+modified: 2026-02-22 09:30
+environment: [Windows, Linux, WebServer, DBServer, ActiveDirectory]
+vulnearability: [DirectoryTraversal, Shellshock, RCE, IDOR, BOLA, JWTAbuse, JuicyPotato, SUIDAbuse, LogWiping, LivingOffTheLand, PasswordSpraying, BruteForce, SessionHijacking, SQLInjection, OSCommandInjection, PassTheTicket, GoldenTicket]
 knowledge_category: Training
 ---
 

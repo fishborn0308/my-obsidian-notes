@@ -4,7 +4,7 @@ tags:
   - docker_compose
   - docker
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-22 09:30
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -60,6 +60,7 @@ knowledge_category: Command
     ```
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -90,7 +91,8 @@ knowledge_category: Command
     ```
 
 
-### 2. ブルーチーム視点
+
+## 2. ブルーチーム視点
 
 * **タスク**: サンドボックス環境で、不審な `docker-compose.yml` ファイルを起動して挙動を分析する。
 * **組み合わせ**: `docker compose -f <suspicious.yml> up`
@@ -105,14 +107,15 @@ knowledge_category: Command
     ```
 
 
-### 3. レッドチーム視点
+
+## 3. レッドチーム視点
 
 * **タスク**: 侵入したホスト上で、攻撃用のインフラを迅速に展開する。
 * **組み合わせ**: `docker compose -f <attack.yml> up -d`
 * **解説**: C2サーバー、内部スキャン用のプロキシ、データベースなどの攻撃ツール一式を定義したカスタムの `docker-compose.yml` を使い、バックグラウンドで攻撃インフラを一括で起動します。
 * **例**: -
 
-## エラーメッセージとトラブルシューティング
+# エラーメッセージとトラブルシューティング
 
 * 一般的なエラーは [Linux共通のトラブルシューティング](../linux/troubleshooting_common_errors.md) を参照。
 
@@ -120,28 +123,28 @@ knowledge_category: Command
 		* **考えられる原因**: `docker-compose.yml` で指定したホスト側のポート(この例では8080)が、すでに他のプロセスによって使用されています。
 		* **解決策**: `sudo lsof -i :8080` や `sudo ss -tulpn | grep 8080` でポートを使用中のプロセスを特定し、停止させるか、`docker-compose.yml` のポートマッピングを変更します。
 
-## 環境変数と設定ファイル
+# 環境変数と設定ファイル
 
 * `docker compose` は `.env` ファイルを読み込みます。
 * 一般的な環境変数・設定ファイルは [Linux共通の環境変数・設定ファイル](../linux/environment_and_config.md) を参照。
 
-## セキュリティに関する考慮事項
+# セキュリティに関する考慮事項
 
-### 脆弱性と悪用事例
+## 脆弱性と悪用事例
 
 * **脆弱性**: **信頼できないイメージ/Composeファイルの実行**。
 * **悪用シナリオ**: インターネット上で見つけた信頼性の低い `docker-compose.yml` を安易に実行すると、悪意のあるイメージを `pull` したり、ホストの機密ディレクトリをコンテナにマウントしたりする記述が含まれている可能性があります。
 
-### GTFOBins / LOLBAS における利用例
+## GTFOBins / LOLBAS における利用例
 
 `docker compose` は `docker` コマンドの一部として扱われます。`sudo docker` の権限があれば、任意の操作が可能です。
 
-### 対応策・緩和策 (ブルーチーム視点)
+## 対応策・緩和策 (ブルーチーム視点)
 
 * **Prevention (予防)**: `docker-compose.yml` の `ports` ディレクティブで、`127.0.0.1:8080:80` のようにローカルホストにのみバインドし、意図しない外部公開を防ぐ。
 * **Detection (検知)**: `docker compose` の実行ログやDockerデーモンのAPIコールを監視し、不審なイメージの `pull` やコンテナの作成がないかを確認する。
 
-## 注意点・補足
+# 注意点・補足
 
 * **コンテナの再作成**: `docker-compose.yml` の内容や、イメージが更新された後に `docker compose up` を実行すると、Composeは変更があったサービスについてコンテナを自動的に停止・削除し、新しい設定で再作成します。この挙動を理解しておくことが重要です。
 

@@ -1,16 +1,16 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:18
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Defense_Evasion]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'eventvwr'
-  - 'event_viewer'
-  - 'log_analysis'
-  - 'gui'
-  - 'knowledge_base'
+  - cmd
+  - eventvwr
+  - event_viewer
+  - log_analysis
+  - gui
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - eventvwr - イベント ビューアーの起動
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `eventvwr` は、Windows イベント ビューアー (Event Viewer) の GUI ツールを起動します。
+
 システム、セキュリティ、アプリケーションなどの各ログを視覚的に閲覧・フィルタリングするために使用されます。トラブルシューティング、パフォーマンス監視、そしてセキュリティ監査において最も基本的なツールです。
 
 (出自: `Windows 標準搭載 - eventvwr.exe`)
@@ -42,8 +43,6 @@ tags:
     REM 保存済みのログファイルを指定してイベントビューアーを起動
     eventvwr /l:C:\Backups\Security_Log_Snapshot.evtx
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -90,7 +89,7 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **ログの消去 (Defense Evasion - T1070.001)**: 
+* **ログの消去 (Defense Evasion - T1070.001)**:
     * 攻撃者は管理者権限を得た後、`eventvwr`（または `wevtutil`）を使用してログを消去します。
 * **UAC Bypass**:
     * 過去には `eventvwr.exe` が特定のレジストリを読み込む挙動を悪用し、権限昇格（UAC バイパス）に利用される手法が存在しました。

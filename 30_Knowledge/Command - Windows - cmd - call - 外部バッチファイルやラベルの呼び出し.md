@@ -1,15 +1,15 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-21 09:44
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: []
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'call'
-  - 'batch_script'
-  - 'automation'
-  - 'knowledge_base'
+  - cmd
+  - call
+  - batch_script
+  - automation
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - call - 外部バッチファイルやラベルの呼び出し
@@ -40,8 +40,6 @@ tags:
     REM 外部の logger.bat を引数付きで呼び出す
     call logger.bat "INFO" "Processing started."
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -122,7 +120,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection**: 
+* **Detection**:
     * コマンドラインロギング（Event ID 4688）を有効にし、不自然に細切れにされた変数を `call` している挙動がないか監視する。
     * 多数の `call` を含むバッチファイル、特に一時ディレクトリ（`%TEMP%`）から実行されるものを重点的にスキャンする。
 

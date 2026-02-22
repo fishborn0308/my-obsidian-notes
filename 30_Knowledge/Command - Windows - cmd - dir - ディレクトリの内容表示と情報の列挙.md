@@ -1,16 +1,16 @@
 ---
-created: '2026-02-21'
-modified: '2026-02-21'
+created: 2026-02-22 06:38
+modified: 2026-02-22 09:30
 environment: [OS/Windows]
 vulnearability: [Reconnaissance, Information_Disclosure]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'dir'
-  - 'file_management'
-  - 'reconnaissance'
-  - 'enumeration'
-  - 'knowledge_base'
+  - cmd
+  - dir
+  - file_management
+  - reconnaissance
+  - enumeration
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - dir - ディレクトリの内容表示と情報の列挙
@@ -18,6 +18,7 @@ tags:
 ## 概要
 
 `dir` コマンドは、ディレクトリに含まれるファイルとサブディレクトリのリストを表示します。
+
 ファイルサイズ、最終更新日時、属性（隠しファイル等）を確認できるほか、特定の条件（拡張子、作成日時など）でフィルタリングして検索する機能も備えています。
 
 (出自: `Windows 標準搭載 - cmd.exe 内蔵コマンド`)
@@ -42,8 +43,6 @@ tags:
     REM Cドライブ内のすべての .config または .xml ファイルを再帰的に検索
     dir /s /b C:\*.config C:\*.xml | findstr /i "pass config secret"
     ```
-
-
 
 ## スイッチ/オプション説明
 
@@ -135,7 +134,7 @@ tags:
 
 ### 対応策・緩和策 (ブルーチーム視点)
 
-* **Detection**: 
+* **Detection**:
     * 短時間に大量のディレクトリを再帰的にスキャン（`dir /s`）するプロセスを監視する。
     * 一般ユーザーが本来アクセスすべきでない領域に対して `dir` を試行しているログを SIEM で検知する。
 

@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 08:58
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Network]
 vulnearability: [Information_Disclosure, Reconnaissance]
 knowledge_category: Command
 tags:
-  - 'hostname'
-  - 'enumeration'
-  - 'network'
-  - 'reconnaissance'
-  - 'knowledge_base'
+  - hostname
+  - enumeration
+  - network
+  - reconnaissance
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - hostname - コンピューター名の表示
@@ -17,6 +17,7 @@ tags:
 ## 概要
 
 `hostname` コマンドは、現在のコンピューターの「ホスト名（ネットワーク上の名前）」を表示します。
+
 これは DNS や NetBIOS で他から参照される名前であり、システムの識別において最も基本的な情報です。Windows 版の `hostname` は Linux 版と異なり、名前の表示機能に特化しており、このコマンド単体で名前を変更する機能は持っていません。
 
 (出自: `Windows 標準搭載 - 外部コマンド (hostname.exe)`)
@@ -42,8 +43,6 @@ tags:
     REM 調査結果ファイルにホスト名と日付を記録
     hostname > evidence.txt & ipconfig /all >> evidence.txt & date /t >> evidence.txt
     ```
-
-
 
 ## スイッチ/オプション説明
 

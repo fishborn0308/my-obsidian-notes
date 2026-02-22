@@ -1,15 +1,15 @@
 ---
-created: '2026-02-22'
-modified: '2026-02-22'
+created: 2026-02-22 06:44
+modified: 2026-02-22 09:30
 environment: [OS/Windows, Hardware/Storage]
 vulnearability: [Information_Disclosure, Data_Destruction, Persistence]
 knowledge_category: Command
 tags:
-  - 'cmd'
-  - 'diskpart'
-  - 'partition'
-  - 'disk_management'
-  - 'knowledge_base'
+  - cmd
+  - diskpart
+  - partition
+  - disk_management
+  - knowledge_base
 ---
 
 # Command - Windows - cmd - diskpart - ディスク パーティションの管理
@@ -46,8 +46,6 @@ tags:
     DISKPART> assign letter=E
     DISKPART> exit
     ```
-
-
 
 ## 主要なサブコマンド (DISKPART プロンプト内)
 
@@ -96,7 +94,6 @@ tags:
 * **タスク 1: Storage Enumeration (詳細なストレージ調査)**
     * **目的**: 接続されている USB メモリ、外部 HDD、またはマウントされている ISO/VHD ファイルを特定する。
     * **解説**: `list volume` では見えない「マウントされていないパーティション」を `list disk` と `list partition` で洗い出します。
-
 * **タスク 2: Mounting VHDs (仮想ディスクの悪用)**
     * **目的**: 盗み出したバックアップファイル（.vhdx）をその場でマウントし、中のデータを閲覧する。
     * **コマンド例**:
@@ -124,9 +121,9 @@ tags:
 
 ### 脆弱性と悪用事例
 
-* **隠しドライブの露出**: 
+* **隠しドライブの露出**:
     * 攻撃者は `diskpart` を使って、管理者が隠したドライブ（バックアップ用やツール保管用）にドライブ文字を再割り当てし、アクセスを試みます。
-* **Anti-Forensics**: 
+* **Anti-Forensics**:
     * `clean` コマンドは、クイックフォーマットよりも深くパーティションテーブルを破壊するため、簡易的なデータ復元を困難にします。
 
 ### LOLBAS (Living Off The Land Binaries and Scripts) における利用例
