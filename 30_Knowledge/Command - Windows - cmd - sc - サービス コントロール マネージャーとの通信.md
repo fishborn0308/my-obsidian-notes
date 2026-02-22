@@ -7,6 +7,7 @@ vulnearability: [Privilege_Escalation, Insecure_Service_Permissions, Unquoted_Se
 knowledge_category: Command
 tags:
   - 'sc'
+  - cmd
   - 'services'
   - 'privilege_escalation'
   - 'enumeration'
