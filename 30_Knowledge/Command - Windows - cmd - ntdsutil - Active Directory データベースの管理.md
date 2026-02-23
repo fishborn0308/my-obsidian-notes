@@ -1,7 +1,7 @@
 ---
 # --- YAML Frontmatter ---
 created: 2026-02-22 15:10
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment: [OS/Windows_Server, Active_Directory]
 vulnearability: [Credential_Access, Information_Disclosure]
 knowledge_category: Command

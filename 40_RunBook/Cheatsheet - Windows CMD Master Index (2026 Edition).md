@@ -1,8 +1,7 @@
 ---
 created: 2026-02-20 12:18
-modified: 2026-02-20 16:14
-environment:
-  - OS/Windows
+modified: 2026-02-23 09:52
+environment: [OS/Windows]
 vulnearability: []
 runbook_category: Cheatsheet
 tools: []

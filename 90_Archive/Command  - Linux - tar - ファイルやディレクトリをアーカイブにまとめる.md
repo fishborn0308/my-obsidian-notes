@@ -11,7 +11,7 @@ tags:
   - cp
   - ssh
 created: 2025-06-29 15:02
-modified: 2026-02-20 17:36
+modified: 2026-02-23 09:52
 environment: [OS/Linux]
 vulnearability: []
 knowledge_category: Command

@@ -3,7 +3,7 @@ tags:
   - git_log
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -43,6 +43,7 @@ knowledge_category: Command
     git log -p -- path/to/nginx.conf
 
     ```
+
 
 
 
@@ -90,6 +91,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: 標的の公開リポジトリから、過去に誤ってコミットされた機密情報（APIキーなど）を探す。
@@ -103,6 +105,7 @@ knowledge_category: Command
     git log --all | grep -i "password"
 
     ```
+
 
 
 

@@ -4,7 +4,7 @@ tags:
   - docker
   - image_management
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -48,6 +48,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -80,6 +81,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: イメージの同一性を厳密に検証する。
@@ -97,6 +99,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: 侵入したホストにどのような技術スタックが存在するかを偵察する。
@@ -110,6 +113,7 @@ knowledge_category: Command
     docker images
 
     ```
+
 
 
 

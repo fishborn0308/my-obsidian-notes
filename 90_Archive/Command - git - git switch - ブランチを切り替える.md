@@ -4,7 +4,7 @@ tags:
   - git
   - branch_management
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -45,6 +45,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -77,6 +78,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: インシデント発生時に、特定の時点のコードベースの状態を正確に調査する。
@@ -94,6 +96,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: これまでのリポジトリ履歴とは完全に切り離された新しいマルウェア開発プロジェクトを開始したい。
@@ -107,6 +110,7 @@ knowledge_category: Command
     git switch --orphan stealthy-payload
 
     ```
+
 
 
 

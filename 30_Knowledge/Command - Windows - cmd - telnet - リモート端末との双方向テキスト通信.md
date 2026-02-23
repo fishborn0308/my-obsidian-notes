@@ -1,7 +1,7 @@
 ---
 # --- YAML Frontmatter ---
 created: 2026-02-22 15:00
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment: [Network, OS/Windows, OS/Linux]
 vulnearability: [Cleartext_Transmission, Information_Disclosure]
 knowledge_category: Command

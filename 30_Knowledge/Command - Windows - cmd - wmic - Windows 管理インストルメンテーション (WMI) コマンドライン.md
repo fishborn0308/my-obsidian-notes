@@ -1,7 +1,7 @@
 ---
 # --- YAML Frontmatter ---
 created: 2026-02-22 15:12
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment: [OS/Windows]
 vulnearability: [Information_Disclosure, Lateral_Movement]
 knowledge_category: Command

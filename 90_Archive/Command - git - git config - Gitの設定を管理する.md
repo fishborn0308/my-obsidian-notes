@@ -3,7 +3,7 @@ tags:
   - git_config
   - git
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -89,6 +90,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 監査証跡の信頼性を高めるため、全てのGitコミットにGPG署名を義務付ける。
@@ -110,6 +112,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: 侵入したシステムで、自身の痕跡を偽装または隠蔽する。
@@ -127,6 +130,7 @@ knowledge_category: Command
     git config --local user.email "fake_email@example.com"
 
     ```
+
 
 
 

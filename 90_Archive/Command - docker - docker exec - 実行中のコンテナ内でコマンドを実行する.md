@@ -5,7 +5,7 @@ tags:
   - container
   - troubleshooting
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -84,6 +85,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 侵害された疑いのあるコンテナを停止させずに、内部のプロセスリストを確認する。
@@ -101,6 +103,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: コンテナ内の `root` ユーザーとしてシェルを奪取する。
@@ -114,6 +117,7 @@ knowledge_category: Command
     docker exec -it --user root privileged-container /bin/sh
 
     ```
+
 
 
 

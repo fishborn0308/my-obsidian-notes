@@ -4,7 +4,7 @@ tags:
   - docker
   - troubleshooting
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -48,6 +48,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -75,6 +76,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 侵害された疑いのあるコンテナの構成情報と動的な状態を完全に把握する。
@@ -92,6 +94,7 @@ knowledge_category: Command
 
 
 
+
 ## 3. レッドチーム視点
 
 * **タスク**: 侵入したホスト上で、稼働中のコンテナから攻撃の足がかりとなる情報を収集する。
@@ -105,6 +108,7 @@ knowledge_category: Command
     docker inspect target-container | grep -i "PASS\|KEY\|TOKEN"
 
     ```
+
 
 
 

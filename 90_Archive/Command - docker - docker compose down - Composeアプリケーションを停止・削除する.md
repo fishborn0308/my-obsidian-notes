@@ -4,7 +4,7 @@ tags:
   - docker_compose
   - docker
 created: 2025-06-29 15:02
-modified: 2026-02-22 15:13
+modified: 2026-02-23 09:52
 environment:
 vulnearability: []
 knowledge_category: Command
@@ -52,6 +52,7 @@ knowledge_category: Command
 
 
 
+
 ## オプション説明
 
 | オプション | 説明 |
@@ -84,6 +85,7 @@ knowledge_category: Command
 
 
 
+
 ## 2. ブルーチーム視点
 
 * **タスク**: 侵害されたアプリケーションを迅速かつ完全に無力化する（封じ込め）。
@@ -97,6 +99,7 @@ knowledge_category: Command
     docker compose -f /opt/compromised-app/docker-compose.yml down
 
     ```
+
 
 
 
