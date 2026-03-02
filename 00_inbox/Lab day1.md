@@ -419,5 +419,53 @@ NameSpaceTypeにはどのような選択肢がありますか？
 
 企業がMicrosoft 365を使用していない場合、ドメインのSPFレコードを調べることで実際のメールサーバーを特定できることが多い。SPFレコードとは、そのドメインのメール送信を許可されたサーバーを示すDNSのTXTレコードである。
 
-例としてfastenal.comのSPFレコードを調べてみよう：
+**例としてfastenal.comのSPFレコードを調べてみよう：**
+
+```powershell
+Resolve-DnsName -Type TXT -Name fastenal.com | Where-Object { $_.Strings -like "v=spf1*" }
+```
+
+```powershell
+PS C:\Users\sec560> Resolve-DnsName -Type TXT -Name fastenal.com | Where-Object { $_.Strings -like "v=spf1*" }
+
+Name                                     Type   TTL   Section    Strings
+----                                     ----   ---   -------    -------
+fastenal.com                             TXT    299   Answer     {v=spf1
+                                                                 include:spf.protection.outlook.com
+                                                                 include:spf.mandrillapp.com
+                                                                 include:spf.criticalimpactinc.com
+                                                                 include:wappmail.com
+                                                                 a:b.spf.service-now.com
+                                                                 ip4:148.163.142.133 ip4:148.163.146.161
+                                                                 , ip4:192.254.121.248 ip4:23.21.109.197
+                                                                 ip4:23.21.109.212 ip4:68.73.223.13
+                                                                 ip4:205.243.112.9 ip4:205.243.112.22
+                                                                 ip4:205.243.112.227 ip4:216.34.99.11
+                                                                 ip4:216.34.99.12 ip4:167.89.45.155
+                                                                 ip4:168.245.103.157 ip4:208.117.50.210 ,
+                                                                 ip4:146.20.91.152 ip4:146.20.91.153
+                                                                 ip4:168.245.16.242 ip4:38.117.70.165
+                                                                 -all}
+
+PS C:\Users\sec560>
+```
+
+SPFレコードの完全な解析はやや複雑ですが、fastenal.comがメール送信に複数のサードパーティサービスを利用していることが確認できます。具体的には：
+
+- `spf.protection.outlook.com`: Microsoft 365（Microsoft 365利用の信頼性が高い指標）
+- `spf.mandrillapp.com`: Mandrill (メールマーケティングサービス)
+- `spf.criticalimpactinc.com`: Critical Impact (メールマーケティングサービス)
+- `wappmail.com`: 自動化プラットフォームform.comに関連
+- `a:b.spf.service-now.com`: ServiceNow (ITサービス管理プラットフォーム)
+- `ip4:...`: ドメインのメール送信を許可された各種IPアドレス。自社所有またはサードパーティサービス所有の可能性があります。
+
+本質的に、特定の企業のメールサーバーが分かれば、通常は認証プロバイダーも特定できます。例えば、企業がメールにMicrosoft 365を使用している場合、ID管理にもMicrosoft Entra IDを使用しているはずです。
+
+後ほど、このプロセスを自動化するAADInternals PowerShellモジュールのInvoke-AADIntReconAsOutsiderコマンドレットについて説明します。このコマンドレットはMXレコードの検索、GetUserRealmエンドポイントの確認、および対象ドメインで使用されているIDプロバイダーを特定するための追加チェックを実行します。先取りしたい場合は、PowerShellでImport-Module AADInternalsを実行してモジュールをインポートし、`Invoke-AADIntReconAsOutsider -DomainName sans.org`（sans.orgをターゲットドメインに置き換えて）を実行すると結果を確認できます。
+
+### 2: Finding Public IP Space Owned by a Company
+
+ルーターがBGPを介して相互にトラフィックを送信する仕組みを利用することで、特定の企業が所有するパブリックIPアドレス空間を調査できます。これにより、将来の攻撃対象候補を特定することが可能です。企業は1つ以上の自律システム番号（ASN）を保有しており、これは単一の組織が管理するIPネットワーク群を識別するために使用されます。特定の企業が所有するASNを調査し、それらのASNに関連付けられたIPアドレス範囲を特定できます。
+
+ASNとIP範囲の検索にはHurricane Electric BGP Toolkitを使用します。Home Depotが所有するASNを検索してみましょう：
 

@@ -6,117 +6,125 @@
 
 ![[スクリーンショット 2026-03-02 9.24.13.png]]
 
-Think like a hacker
-- Attacker mindset 
-- Be pragmatic 
-- Follow promising leads
-Help defenders to improve
-- Repeatable process 
-- Document as you go 
-- Minimize risk to production
+- ハッカーのように考える
+	- 攻撃者の視点
+	- 現実的であること
+	- 有望な手がかりを追う
+- 防御側の改善を支援する
+	- 再現可能なプロセス
+	- 進行中の記録
+	- 本番環境へのリスク最小化
 
-Balance between these two is crucial for success
+この二つのバランスが成功の鍵となる
 
-At the outset of this class, let's briefly explore the mindset of penetration testers and ethical hackers. 
+本講義の冒頭で、ペネトレーションテスターと倫理的ハッカーの思考様式を簡潔に考察しよう。
 
-That's what our job is: find flaws that enable attackers to do evil on target machines so that an organization can better understand its business risks and resolve vulnerabilities before mayhem ensues. However, to successfully achieve that goal, penetration testers and ethical hackers must maintain a mindset that involves two often contradictory-sounding concepts. 
+我々の仕事とは、攻撃者が標的マシンで悪事を働くことを可能にする欠陥を発見し、組織がビジネスリスクをより深く理解し、混乱が生じる前に脆弱性を解消できるようにすることである。しかし、この目標を達成するためには、ペネトレーションテスターと倫理的ハッカーは、しばしば矛盾するように聞こえる二つの概念を含む思考様式を維持しなければならない。
 
-First, a penetration tester or ethical hacker must be flexible and pragmatic, thinking outside the box. To be successful, you need to think differently than most traditional system administrators or network architects, trying to solve problems in often untraditional ways. 
+第一に、ペネトレーションテスターや倫理的ハッカーは柔軟かつ現実的で、枠にとらわれない思考が求められます。成功するためには、従来のシステム管理者やネットワーク設計者とは異なる視点で、しばしば非伝統的な方法で問題解決を試みる必要があります。
 
-But at the same time, as you wield your pragmatic style, you have to be thorough, methodical, and careful. To be valuable, your work must be understandable and reproducible so that the target organization can understand its vulnerabilities and risks and take action to mitigate the flaws. You need to take good notes and produce a high-quality report that presents your findings in a digestible form for people who don't perform penetration testing or ethical hacking professionally—people who may not share your pragmatic, "think-differently" mindset. 
+しかし同時に、現実的な手法を用いる際には、徹底的かつ系統的で慎重であることが不可欠です。価値ある仕事とは、対象組織が自らの脆弱性とリスクを理解し、欠陥を軽減するための措置を講じられるよう、理解可能かつ再現性のあるものでなければなりません。優れた記録を取り、ペネトレーションテストや倫理的ハッキングを専門的に行わない人々——つまり、あなたの現実的で「異なる考え方」の姿勢を共有しないかもしれない人々——にも理解しやすい形で調査結果を提示する、高品質な報告書を作成する必要があります。
 
-Some people struggle with this mindset, erring by allowing one side to dominate over the other. However, many people can resolve this conflict between these two mindsets, thus balancing them. To be a successful penetration tester, you need to strive for this balance.
+この思考様式に苦戦し、一方に偏る過ちを犯す者もいる。しかし多くの人は両思考の葛藤を解決し、バランスを取れる。成功するペネトレーションテスターとなるには、この均衡を追求すべきである。
 
 ### Vulnerability, Exploit, Threat, Risk
 
 ![[スクリーンショット 2026-03-02 9.23.58.png]]
 
 #### Vulnerability 
-A pen tester's goal is to exploit security vulnerabilities, but what is a vulnerability? RFC 4949 defines it as: "A flaw or weakness in a system's design, implementation, or operation and management that could be exploited to violate the system's security policy." Simply put, we can define it as a flaw or weakness that can be exploited by a threat actor. Most people associate vulnerabilities with memory corruption flaws (e.g., buffer overflows), but that is only a portion of all the security vulnerabilities. Vulnerabilities include, but are not limited to: 
 
-- Misconfiguration
-- Design and architectural flaws 
-- Missing audit features 
-- Weak/guessable passwords 
-- Default credentials 
+ペネトレーションテスターの目的はセキュリティ脆弱性を悪用することですが、脆弱性とは何でしょうか？RFC 4949では次のように定義されています：「システムの設計、実装、運用、管理における欠陥または弱点であり、システムのセキュリティポリシーを侵害するために悪用される可能性があるもの」。簡単に言えば、脅威アクターによって悪用可能な欠陥や弱点と定義できます。多くの人は脆弱性をメモリ破損の欠陥（例：バッファオーバーフロー）と関連付けますが、それは全セキュリティ脆弱性の一部に過ぎません。脆弱性には以下が含まれますが、これらに限定されません：
+- 設定ミス
+- 設計およびアーキテクチャ上の欠陥
+- 監査機能の欠如
+- 脆弱な/推測可能なパスワード
+- デフォルト認証情報 
 
-There are many other categories of vulnerabilities that are not listed above. MITRE created the Common Weaknesses Enumeration, which is a list of hardware and software weakness types. This isn't to be confused with CVE (Common Vulnerabilities and Exposures), which lists specific flaws in a specific piece of software. 
+上記以外にも多くの脆弱性カテゴリが存在します。MITREはハードウェア・ソフトウェアの弱点タイプを列挙した「Common Weaknesses Enumeration」を作成しました。これは特定のソフトウェアの具体的な欠陥を列挙する「CVE（Common Vulnerabilities and Exposures）」とは混同しないでください。
 
 #### Exploit 
-An exploit is a code or technique that takes advantage of a vulnerability. Here are a number of examples: 
 
-- Exploit a vulnerability in memory management and allow the attacker to gain remote access to the system 
-- Use existing functionality to upload code and execute it, such as uploading a web shell to a web server using a feature that allows users to upload a resume or avatar 
-- An attacker changes their name to JavaScript code, exploiting the weak input filtering on the website
-- Run an executable that executes privileged operations on the system, thereby escalating access SEC560 | Enterprise Penetration Testing Vulnerability, Exploit, Threat, Risk A flaw or weakness that can be exploited by a threat actor Examples: Buffer overflow, misconfiguration, design flaws Vulnerability Code or technique that takes advantage of a vulnerability Examples: Public exploit code, upload web shell to server Exploit An agent or actor that can cause harm Examples: Human attacker, worm, user clicking on links Threat Potential for loss or damage Often calculated as: Risk = Likelihood * Impact Risk 9 10 There are many different ways exploits can take advantage of vulnerabilities. In fact, the same vulnerability may be exploited differently by different threats depending on their end goal. We'll discuss exploits and exploit classes in more depth later in this course. 
+エクスプロイトとは、脆弱性を悪用するコードや手法のことです。以下にいくつかの例を示します：
+
+- メモリ管理の脆弱性を悪用し、攻撃者がシステムにリモートアクセスできるようにする
+- 既存の機能を利用してコードをアップロード・実行する（例：ユーザーが履歴書やアバターをアップロードできる機能を利用して、WebサーバーにWebシェルをアップロードする） 
+- 攻撃者が自身の名前をJavaScriptコードに変更し、ウェブサイトの脆弱な入力フィルタリングを悪用する
+- システム上で特権操作を実行する実行可能ファイルを実行し、アクセス権を昇格させる SEC560 | エンタープライズ侵入テスト 脆弱性、エクスプロイト、脅威、リスク 脅威アクターに悪用される可能性のある欠陥や弱点 例： バッファオーバーフロー、設定ミス、設計上の欠陥脆弱性脆弱性を悪用するコードまたは手法例：公開エクスプロイトコード、サーバーへのWebシェルアップロードエクスプロイト危害をもたらす可能性のある主体または行為者例：人間の攻撃者、ワーム、リンクをクリックするユーザー脅威損失または損害の可能性通常は以下のように算出：リスク = 発生確率 × 影響度リスク 9 10エクスプロイトが脆弱性を悪用する方法は多岐にわたる。実際、同じ脆弱性でも脅威主体によって最終目的が異なるため、異なる方法で悪用される可能性があります。本コースの後半でエクスプロイトとエクスプロイト分類について詳しく説明します。
 
 #### Threat
-A threat is an agent or actor that can cause harm. More broadly, it is anything that can cause harm. A threat could be the organized crime attacker attempting to steal credit card numbers, but it also could be the user who accidentally clicks the wrong button. A threat doesn't even have to be human. A worm is a threat since the code is what is propagating and causing damage. Similarly, our own security tools can be considered a threat in certain contexts. A web application vulnerability scanner will crawl the website and submit data. If the scanner is pointed at a production website with production data, what would happen if the scanner "clicked" the delete button? Scanners will attempt to avoid sensitive actions, but things like these do happen. This is one of the reasons it is important to have backups and to have test systems. 
+
+脅威とは、危害を加える可能性のある主体または行為者を指す。より広くは、危害を引き起こし得るあらゆるものを意味する。脅威は、クレジットカード番号を盗もうとする組織犯罪者である場合もあれば、誤って間違ったボタンをクリックしたユーザーである場合もある。脅威は人間である必要すらない。ワームは脅威である。なぜなら、コード自体が拡散し損害をもたらすからだ。同様に、自社のセキュリティツールも特定の状況下では脅威と見なされる可能性がある。Webアプリケーション脆弱性スキャナはウェブサイトを巡回しデータを送信する。本番環境のウェブサイトと本番データを対象にスキャナが「削除ボタンをクリック」した場合、何が起こるだろうか？スキャナは機微な操作を回避しようとするが、こうした事態は実際に発生する。これがバックアップとテスト環境の重要性を示す一例である。
 
 #### Risk
-Risk is defined as the potential for loss or damage. Risk is often calculated as (Probability of Occurrence) * (Potential Impact). The potential impact is a number we can calculate with a reasonable degree of certainty; however, the likelihood is a much more contentious number. Often, the likelihood (and ultimately the risk value itself) comes down to the expert opinion of the security team. The team uses its collective knowledge and experience to determine the risk and ultimately provide guidance to the business. Balancing the risk with organizational needs is one of the fundamental goals of the security team. Unfortunately, many security teams are viewed as roadblocks—hindering the organization instead of enabling it to develop and progress securely. 
 
-As a penetration tester, part of your role is to estimate the risk related to the vulnerabilities you uncover. This is a powerful and important role. Junior testers will often overestimate the risk of vulnerabilities. Their reports will often be top-heavy, where most of the risks are categorized as high or critical. 
+リスクとは、損失や損害が発生する可能性と定義される。リスクは通常、（発生確率）×（潜在的影響）として算出される。潜在的影響は合理的な確度で算出可能な数値であるが、発生確率ははるかに議論の余地が大きい数値である。多くの場合、発生確率（ひいてはリスク値そのもの）はセキュリティチームの専門家の見解に帰着する。チームは集合的な知識と経験を用いてリスクを判断し、最終的に事業部門へ指針を提供する。リスクと組織的ニーズのバランスを取ることは、セキュリティチームの基本的な目標の一つである。残念ながら、多くのセキュリティチームは障害物と見なされ、組織が安全に発展・進歩することを妨げている。
 
-As penetration testers mature, they learn to understand the risk and how it plays into the organizational processes. Understanding the risks and identifying them accordingly helps the organization prioritize remediation efforts.
+ペネトレーションテスターとしての役割の一部は、発見した脆弱性に関連するリスクを見積もることです。これは強力かつ重要な役割です。経験の浅いテスターは脆弱性のリスクを過大評価しがちです。彼らの報告書はリスク評価が偏りがちで、大半のリスクが「高」または「重大」に分類されます。
 
-We can simplify the risk by thinking about it as the intersection of threat, vulnerability, and risk. If we can reduce or eliminate one of these pieces, the risk is reduced or eliminated, respectively. We can limit access to the system, preventing a threat from accessing the service. Similarly, if the system no longer has sensitive data (Personally Identifiable Information / PII, passwords, etc.), then there is no risk since it provides the attacker no value, and no data can be lost, stolen, or destroyed. 
+ペネトレーションテスターが経験を積むにつれ、リスクの本質と組織プロセスへの影響を理解するようになります。リスクを理解し適切に特定することは、組織が修正作業の優先順位付けを行う上で役立ちます。
 
-We can implement filtering tools to prevent an exploit from working. For example, we could use a WAF (web application firewall) to filter the characters of what would trigger the vulnerability. Similarly, an Intrusion Prevention System (IPS) could prevent specific actions against the target system that would trigger an exploit. In both cases, the vulnerability still exists, but it can't be exploited. Note: Be careful with this approach, as attackers will often change signatures or encoding to bypass these tools. 
+リスクを脅威・脆弱性・リスクの交点として捉えることで単純化できます。いずれか一つを減らすか排除できれば、リスクも同様に低減または解消されます。システムへのアクセスを制限すれば、脅威がサービスに到達するのを防げます。同様に、システムから機密データ（個人識別情報/PII、パスワード等）を排除すれば、攻撃者に価値を提供せず、データの紛失・窃取・破壊も発生しないため、リスクは存在しなくなる。
 
-Finally, we could remove the risk by patching the vulnerability.
+フィルタリングツールを導入してエクスプロイトの実行を阻止できる。例えばWAF（Webアプリケーションファイアウォール）で脆弱性を引き起こす文字列をフィルタリングする手法がある。同様に、侵入防止システム（IPS）は、標的システムに対する特定の攻撃行動（エクスプロイトを誘発する行為）を阻止できます。いずれの場合も脆弱性は存在しますが、悪用されることはありません。注：攻撃者はこれらのツールを回避するため、シグネチャやエンコーディングを変更することが多いため、この手法には注意が必要です。
+
+最終的に、脆弱性を修正することでリスクを排除できます。
 
 ### Pen Test, Red Team, Purple Team, Vuln Assessment, Audit
 
 ![[スクリーンショット 2026-03-02 9.29.16.png]]
 
 #### Penetration Testing
-Penetration testing focuses on identifying vulnerabilities in a target that could allow an attacker to penetrate the computer or network and steal, damage, or corrupt data. Penetration testers (pen testers) will use tools similar to the malicious attackers. Sometimes, the malicious actors even take tools and techniques from penetration testers. As the name implies, penetration testing requires penetration (if possible). A test that forbids penetration is not a penetration test. Sometimes, targets ask for a penetration test but then disallow exploitation, password guessing, and other activities that would allow the testers to verify flaws and find second-order vulnerabilities. These handcuffed tests are more akin to vulnerability assessments.
+
+侵入テストは、攻撃者がコンピュータやネットワークに侵入し、データを窃取・損傷・改ざんする可能性のある標的の脆弱性を特定することに焦点を当てます。侵入テスター（ペネトレーションテスター）は、悪意のある攻撃者と類似したツールを使用します。時には、悪意のある攻撃者が侵入テスターのツールや技術を流用することさえあります。名称が示す通り、侵入テストには（可能な限り）侵入が求められます。侵入を禁じるテストはペネトレーションテストとは言えません。対象組織がペネトレーションテストを依頼しながら、脆弱性の検証や二次的脆弱性の発見を可能にするエクスプロイト、パスワード推測などの活動を禁止する場合があります。こうした制約付きのテストは、むしろ脆弱性評価に近い性質を持ちます。
 
 #### Red Team
-Red teams are focused on testing the effectiveness of the entire security program. They emulate the Tactics, Techniques, and Procedures (TTPs) of real-world adversaries with the goal of measuring weaknesses in defense, detection, and response. Red teams use many of the same tools as penetration testers; however, they have a different focus. The red team is focused on identifying deficiencies in the blue team's (defenders) ability to detect, respond, and eradicate a threat. A red team only uses vulnerabilities that help them accomplish their goal, while penetration testers are most often tasked with finding many vulnerabilities. 
 
-Penetration testing is focused on finding flaws, understanding their business risks, and helping the organization improve its security stance. The red team's primary job is to help make the blue team better equipped to detect and respond to attacks. To put it simply, penetration testing focuses on the defenses (technology), and the red team focuses on the defenders (people).
+レッドチームは、セキュリティプログラム全体の有効性をテストすることに焦点を当てています。彼らは現実世界の攻撃者の戦術、技術、手順（TTPs）を模倣し、防御、検知、対応における弱点を測定することを目的としています。レッドチームはペネトレーションテスターと多くのツールを共有しますが、焦点は異なります。レッドチームはブルーチーム（防御側）の脅威検知・対応・排除能力における欠陥の特定に注力します。レッドチームは目標達成に役立つ脆弱性のみを利用するのに対し、ペネトレーションテスターは多くの脆弱性発見を主な任務とします。
+
+ペネトレーションテストは欠陥の発見、ビジネスリスクの理解、組織のセキュリティ態勢改善支援に焦点を当てます。レッドチームの主な役割は、ブルーチームが攻撃を検知・対応する能力を向上させることです。端的に言えば、ペネトレーションテストは防御手段（技術）に、レッドチームは防御者（人材）に焦点を当てるのです。
 
 #### Purple Team 
-Purple teams are cross-functional teams where the red and blue teams work together. The closer the interaction, the better. This type of assessment includes metrics on blue's ability to identify, detect, and SEC560 | Enterprise Penetration Testing Pen Test, Red Team, Purple Team, Vuln Assessment, Audit Identify flaws that attackers could cause business harm with (testing preventive controls) Pen Test Red Team Designed to test detection and response capabilities Cross-functional team of red and blue teamers, and/or tightening the feedback loop between offense and defense Purple Team Identify, quantify, and rank vulnerabilities (no exploitation) Vulnerability Assessment Security Audit Audit implies testing against a particular set of standards 11 12 respond to an attack. The testing should be documented to show advances in detection and response capabilities. These metrics can be used to justify investments in tools and training.
+
+パープルチームは、レッドチームとブルーチームが協力するクロスファンクショナルチームです。連携が密であるほど効果的です。この評価手法では、攻撃者がビジネスに損害を与える可能性のある欠陥を特定するブルーチームの能力（予防的統制のテスト）を測定します。ペネトレーションテスト（レッドチーム）検知・対応能力のテストを目的とするレッドチームとブルーチームのクロスファンクショナルチーム、および／または攻撃側と防御側のフィードバックループ強化パープルチーム脆弱性の特定・定量化・ランク付け（悪用なし）脆弱性評価セキュリティ監査監査は特定の基準セットに対するテストを意味する攻撃への対応能力の向上を示すため、テストは文書化されるべきである。これらの指標はツールやトレーニングへの投資を正当化するのに使用できる。
 
 #### Vulnerability Assessment
-Many people use the phrases vulnerability assessments and security assessments to describe the work done by penetration testers and ethical hackers, but there is a subtle distinction between a penetration test and a security assessment. 
 
-A penetration test is focused on getting in or stealing data. The emphasis is on penetrating the target environment by exploiting discovered vulnerabilities. 
+多くの人々は、ペネトレーションテスターや倫理的ハッカーが行う作業を説明するために「脆弱性評価」や「セキュリティ評価」という表現を使用しますが、ペネトレーションテストとセキュリティ評価の間には微妙な違いがあります。
 
-Vulnerability assessments and security assessments are focused on finding vulnerabilities, often without regard to actually exploiting them and getting in. 
+ペネトレーションテストは、侵入またはデータ窃取に焦点を当てています。発見された脆弱性を悪用して対象環境へ侵入することに重点が置かれます。
 
-Thus, penetration testing often goes deeper, with its goal of taking over systems and stealing data, whereas security and vulnerability assessments are broader, involving the process of looking for security flaws. These assessments also often include policy and procedure reviews, which are usually not included in penetration testing. 
+脆弱性評価やセキュリティ評価は、実際に悪用して侵入することには関心を向けず、脆弱性の発見に焦点を当てます。
 
-The table on the previous slide shows the differences between the different types of assessments. Of course, each can vary to some degree, with penetration testing having the greatest variability. A penetration tester is often tasked with finding all vulnerabilities, even those that aren't exploitable.
+したがって、システム掌握やデータ窃取を目的とするペネトレーションテストはより深く掘り下げられる一方、セキュリティ評価や脆弱性評価はセキュリティ上の欠陥を探すプロセスを含む広範なものです。これらの評価には、通常ペネトレーションテストに含まれないポリシーや手順のレビューも含まれることがよくあります。
+
+前のスライドの表は、各種評価の違いを示しています。もちろん、それぞれにある程度の差異があり、ペネトレーションテストが最も変動性が高いです。ペネトレーションテスターは、悪用不可能な脆弱性も含め、全ての脆弱性を見つけることを求められることがよくあります。
 
 #### Security Audit 
-Finally, we have the phrase security audit. An audit implies that we are measuring things against a fixed, predetermined, rigorous set of standards. These audits are almost always done with detailed checklists. 
 
-Some penetration testing and ethical hacking organizations have created their own internal checklists of items that need to be covered in a test, but these checklists aren't as detailed as those for comprehensive audits. 
+最後に、セキュリティ監査という表現があります。監査とは、あらかじめ定められた厳格な基準に対して測定を行うことを意味します。こうした監査は、ほぼ例外なく詳細なチェックリストを用いて実施されます。
 
-Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
+一部のペネトレーションテストや倫理的ハッキング組織では、テストでカバーすべき項目をまとめた独自の内部チェックリストを作成していますが、これらのチェックリストは包括的な監査用ほど詳細ではありません。
+
+本講座の焦点は監査ではありません。SANSにはセキュリティ監査を詳細に扱う他の講座が多数あります。本講座の焦点は倫理的ハッキングとペネトレーションテストにあります。
 
 #### Penetration Testing Goals
 
-Penetration testing is demonstrating business risk from realistic attackers: 
-- Modeling real-world adversaries 
-- Finding vulnerabilities (ideally, before the adversary) 
-- Exploiting those flaws under controlled circumstances 
-- Determining business risk 
-- Improving the organization's security
+ペネトレーションテストは、現実的な攻撃者によるビジネスリスクを実証するものです：
+- 現実世界の攻撃者を模倣する
+- 脆弱性を発見する（理想的には攻撃者に先んじて）
+- 制御された環境下でそれらの欠陥を悪用する
+- ビジネスリスクを判定する
+- 組織のセキュリティを向上させる
 
-A formal definition of penetration testing is as follows:
+ペネトレーションテストの正式な定義は以下の通りです：
 
->Penetration testing involves modeling the techniques used by real-world computer attackers to find vulnerabilities and, under controlled circumstances, to exploit those flaws in a professional, safe manner according to a carefully designed scope and Rules of Engagement to determine business risk and potential impact, all with the goal of helping the organization improve security practices.
+>ペネトレーションテストとは、現実世界のコンピュータ攻撃者が使用する手法を模倣して脆弱性を発見し、管理された環境下で、慎重に設計された範囲と行動規範に従い、専門的かつ安全な方法でそれらの欠陥を悪用し、ビジネスリスクと潜在的な影響を判断するプロセスである。その目的は、組織のセキュリティ慣行の改善を支援することにある。
 
-The key is that the vulnerability identification and exploitation should always be business-focused. The penetration test findings should always focus on the organizational risk, not just the technical risk. 
+重要なのは、脆弱性の特定と悪用が常にビジネスに焦点を当てるべきだということである。ペネトレーションテストの結果は、技術的リスクだけでなく、組織的リスクに常に焦点を当てるべきである。
 
-Many organizations use ethical hacking and penetration testing to find security flaws before their adversaries do. After applying their security policies, procedures, and technology, organizations can use thorough penetration tests to see how effective their security is in light of an actual attack, albeit by friendly attackers. 
+多くの組織は、敵対者に先んじてセキュリティ上の欠陥を見つけるために、倫理的ハッキングとペネトレーションテストを利用している。セキュリティポリシー、手順、技術を適用した後、組織は徹底的なペネトレーションテストを実施することで、実際の攻撃（友好的な攻撃者によるものとはいえ）に照らして自社のセキュリティがどれほど効果的かを確認できる。
 
-An added benefit of ethical hacking and penetration testing is that because they show real vulnerabilities and indicate what a malicious attacker might be capable of achieving, they can get management's attention. Decision makers, when presented with the carefully formulated results of a test in business terms, are more likely to provide resources and attention to improve the security stance of an organization.
+倫理的ハッキングとペネトレーションテストの追加的な利点は、実際の脆弱性を可視化し、悪意ある攻撃者が達成し得る可能性を示すことで、経営陣の注意を喚起できる点にある。意思決定者は、ビジネス用語で慎重に構成されたテスト結果を提示されると、組織のセキュリティ態勢強化に向けたリソースと関与を提供する可能性が高まる。
 
 ### Types of Penetration Tests
 
