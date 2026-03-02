@@ -128,332 +128,330 @@
 
 ### Types of Penetration Tests
 
-- Network services test
-	- One of the most common 
-- Assumed breach test 
-- Web application test 
-- Social engineering test 
-- Email-based or phone-based 
-- Wireless security test 
-	- Not just Wi-Fi 
-- Physical security test 
-- Product security test
-	- Could be software package or hardware (e.g., IoT) 
-	- Breaking or bypassing encryption on local data or intercepted traffic
-- Enterprise penetration test
-	- Pen testing the whole company 
-	- If it can be in scope, it's in scope
+- ネットワークサービステスト
+    - 最も一般的なテストの一つ
+- 想定侵害テスト
+- Webアプリケーションテスト
+- ソーシャルエンジニアリングテスト
+- メールベースまたは電話ベース
+- ワイヤレスセキュリティテスト
+    - Wi-Fiだけではない
+- 物理的セキュリティテスト
+- 製品セキュリティテスト
+    - ソフトウェアパッケージまたはハードウェア（例：IoT） 
+	- ローカルデータまたは傍受トラフィックの暗号化破棄・回避
+- エンタープライズペネトレーションテスト
+    - 企業全体のペネトレーションテスト
+    - 対象範囲に含められるものは全て対象
 
-There are numerous kinds of penetration tests:
+ペネトレーションテストには数多くの種類がある：
 
-- **Network services test:** One of the most common types of tests, it involves finding target systems on the network, looking for openings in their underlying operating systems and available network services, and then exploiting them remotely. Some of these network service tests happen remotely across the internet, targeting the organization's perimeter networks. Others are launched locally from the target's own facilities to evaluate the security of the internal network, seeing what kinds of vulnerabilities an internal user could discover.
-- **Assumed breach test:** Designed to find vulnerabilities in the network once an attacker has gained access to a system in the network. This is a fantastic way to find issues in Active Directory permissions, file permissions (excessive sharing on file shares), and client-side software. 
-- **Web application test:** These tests look for security vulnerabilities in web-based applications and APIs. 
-- **Social engineering test:** Involves attempting to trick a user into revealing sensitive information, such as a password, or possibly convincing a user to click a link in an email. These tests are often conducted via email or over the phone, targeting selected users and evaluating processes, procedures, and user awareness. 
-- **Wireless security test:** These tests involve exploring a target's physical environment to find unauthorized wireless access points or authorized wireless access points with security weaknesses. 
-- **Physical security test:** This test looks for flaws in the physical security practices of a target organization. Testers might attempt to gain access to buildings and rooms or to take laptops, desktops, or recycling bins out of target facilities. A dumpster diving test is a variation of a physical security analysis. Physical testing must be conducted carefully to ensure that the testers do not get hurt or arrested during their work. 
-- **Product security test:** This test focuses on one specific product. It could be hardware or software. In this kind of test, you look for security flaws in products that can be used in the tester's laboratory systems. Such tests look for flaws in the software, such as exploitable buffer overflow conditions, SEC560 | Enterprise Penetration Testing Types of Penetration Tests • Network services test − One of the most common Assumed breach test • Web application test • Social engineering test − Email-based or phone-based • Wireless security test − Not just Wi-Fi • Physical security test • Product security test − Could be software package or hardware (e.g., IoT) − Breaking or bypassing encryption on local data or intercepted traffic • Enterprise penetration test − Pen testing the whole company − If it can be in scope, it's in scope 14 15 privilege escalation flaws, and the exposure of unencrypted sensitive data. These tests could focus on bypassing or breaking the encryption of data stored on a local system or across the network. 
-- **Enterprise penetration test:** This test has as its scope, to a first approximation, everything that the company has the authority to grant the penetration tester to test. Some exclusions may still apply, but the tester should emphasize that removing systems from the scope of the enterprise penetration test reduces the fidelity of the results.
+- **ネットワークサービステスト：** 最も一般的なテストの一種。ネットワーク上のターゲットシステムを特定し、基盤となるOSや利用可能なネットワークサービスに存在する脆弱性を探し、それらを遠隔から悪用する。インターネット経由で組織の境界ネットワークを標的とする遠隔テストもあれば、ターゲット施設内からローカルに実行され、内部ネットワークのセキュリティを評価し、内部ユーザーが発見し得る脆弱性の種類を調べるものもある。
+- **侵入後想定テスト：** 攻撃者がネットワーク内のシステムへのアクセス権を取得した後の脆弱性を発見するために設計されています。これは、Active Directoryの権限、ファイル権限（ファイル共有における過剰な共有設定）、クライアントサイドソフトウェアの問題を発見する優れた方法です。
+- **Webアプリケーションテスト：** WebベースのアプリケーションやAPIのセキュリティ脆弱性を検出します。
+- **ソーシャルエンジニアリングテスト：** ユーザーを騙してパスワードなどの機密情報を開示させたり、メール内のリンクをクリックさせたりする試みです。メールや電話を介して特定ユーザーを対象に実施され、プロセス・手順・ユーザー意識を評価します。
+- **無線セキュリティテスト：** 対象の物理的環境を探索し、不正な無線アクセスポイントやセキュリティ弱点のある認可済みアクセスポイントを発見します。
+- **物理的セキュリティテスト：** 対象組織の物理的セキュリティ対策の欠陥を調査します。テスト担当者は建物や部屋への侵入を試みたり、ノートパソコン、デスクトップPC、リサイクルボックスを施設外へ持ち出そうとする場合があります。ダンプスターダイビングテストは物理的セキュリティ分析の一形態です。物理的テストは、作業中にテスターが負傷したり逮捕されたりしないよう慎重に実施する必要があります。
+- **製品セキュリティテスト：** 特定の単一製品（ハードウェアまたはソフトウェア）に焦点を当てたテストです。この種のテストでは、テスターのラボシステムで使用可能な製品におけるセキュリティ上の欠陥を探します。このようなテストでは、悪用可能なバッファオーバーフロー条件などのソフトウェアの欠陥、SEC560 | エンタープライズペネトレーションテスト ペネトレーションテストの種類 
+- **企業ペネトレーションテスト：** このテストの範囲は、大まかに言えば、企業がペネトレーションテスターにテストを許可する権限を持つすべてのものを対象とします。除外事項が適用される場合もありますが、テスターは、企業ペネトレーションテストの範囲からシステムを除外すると結果の信頼性が低下することを強調すべきです。
 
 ### Attack Phases
 
 ![[スクリーンショット 2026-03-02 9.51.35.png]]
 
-Both malicious attackers and professional penetration testers/ethical hackers apply various phases in their attacks. Attacks are often separated into these phases:
+悪意のある攻撃者とプロのペネトレーションテスター／倫理的ハッカーは、攻撃において様々な段階を踏む。攻撃は通常、以下の段階に分けられる：
 
-- Reconnaissance is the process of investigating the target organization to gather information about it from publicly available sources, such as domain registration services, websites, and so on. Some people include techniques such as social engineering and dumpster diving in the recon phase. 
-- Scanning is the process of finding openings in the target organization, such as internet gateways, available systems, listening ports, and vulnerability lists. 
-- In the Exploitation phase, attackers exploit target systems to compromise them, possibly getting control of them or causing a denial-of-service attack. 
-- Post-exploitation is what happens after the initial compromise. Both penetration testers and malicious attackers use their access to pivot and move throughout the target environment.
+- 偵察（Reconnaissance）は、ドメイン登録サービスやウェブサイトなど、公開情報源から標的組織に関する情報を収集する調査プロセスである。ソーシャルエンジニアリングやダンプスターダイビングなどの手法を偵察段階に含める見解もある。
+- スキャニングは、インターネットゲートウェイ、利用可能なシステム、リスニングポート、脆弱性リストなど、標的組織の侵入経路を発見するプロセスです。
+- エクスプロイテーション段階では、攻撃者は標的システムを悪用して侵害し、制御権の奪取やサービス拒否攻撃を引き起こす可能性があります。
+- ポストエクスプロイテーションは、初期侵害後の行動を指します。ペネトレーションテスターも悪意のある攻撃者も、獲得したアクセス権を利用して標的環境内でピボット（移動）し、展開します。
 
-Although legitimate tests often include the previously listed phases, malicious attackers often go further than the Rules of Engagement allow for a professional penetration test. The next phase, often used by a malicious attacker to maintain access to and control of a target machine, involves setting up the compromised machine so that the attacker can keep control over it, with techniques such as installing backdoors and planting rootkits. Malicious attackers also often use a final phase, Covering the Tracks, in which they employ log editing, file hiding, and covert channels to hide their activities on a system. 
+正当なテストでは前述の段階を含むことが多いが、悪意のある攻撃者はプロフェッショナルなペネトレーションテストの行動規範（Rules of Engagement）が許容する範囲を超えて行動することが多い。次の段階では、悪意のある攻撃者が標的マシンへのアクセスと制御を維持するため、バックドアの設置やルートキットの埋め込みといった手法を用いて侵害マシンを制御下に置くよう設定します。悪意のある攻撃者は最終段階として「痕跡隠蔽」も頻繁に実施し、ログ改ざん、ファイル隠蔽、隠蔽チャネルなどを用いてシステム上での活動を隠蔽します。
 
-Please note that the best of the attackers (both the good guys and the evil ones) are pragmatists. They don't always proceed from reconnaissance to scanning to gaining access and so on. Sure, they use these steps, but they are likely to jump around among them as events and discoveries warrant. For example, during the recon phase, attackers may discover an exploitable flaw that they will use to gain access directly, temporarily bypassing scanning. Then, after they gain access to one machine, they may go back and start scanning. 
+攻撃者（善玉も悪玉も）の優れた者は現実主義者であることに留意してください。彼らは必ずしも偵察→スキャン→アクセス獲得といった順序で進めるわけではありません。確かにこれらの手順は用いますが、状況や発見に応じて手順を飛び越える可能性が高いのです。例えば偵察段階で攻撃者が悪用可能な脆弱性を発見した場合、スキャンを一時的に省略して直接アクセスを獲得する可能性があります。その後、1台のシステムへのアクセス権を獲得した後に、戻ってスキャンを開始することもある。
 
-From a professional testing perspective, though, be careful when jumping out of order among these steps, making sure that you return to the earlier phases to conduct a comprehensive test.
+ただし、プロフェッショナルなテストの観点からは、これらの手順を順不同で飛び越える際には注意が必要だ。包括的なテストを実施するため、必ず先行するフェーズに戻って検証を行うようにすべきである。
 
 ### Recent Enterprise Breaches: Learning from Reality
 
-- Change Healthcare 
-	- Root cause: Missing MFA on public-facing Citrix server 
-	- Impact: $2+ billion in damages with nation-wide disruption 
-	- Lesson: Basic controls prevent catastrophic breaches 
+- Change Healthcare
+    - 根本原因：公開向けCitrixサーバーにおける多要素認証（MFA）の欠如
+    - 影響：20億ドル以上の損害と全国的な混乱
+    - 教訓：基本的な制御が壊滅的な侵害を防ぐ
 - Snowflake 
-	- Method: Infostealer → stolen credentials → 160+ victims 
-	- Victims: Ticketmaster (560M records), AT&T, Santander Bank 
-	- Lesson: Risks in your supply chain and third parties = risks to your enterprise
-- Ransomware Evolution 
-	- RansomHub: 434 victims in first year 
-	- Healthcare: 92% of organizations targeted in last 12 months 
-	- Average payment: $2.73 million (double/triple extortion now standard) 
-	- Lesson: Ransomware remains #1 threat 
-- Living Off The Land (LOL) 
-	- Many incidents use only legitimate tools (PowerShell, WMI, CertUtil, rundll32) 
-	- Even when using C2, attackers often "shell out" to native binaries such as whoami, nltest
+	- 手口：情報窃取型マルウェア → 認証情報窃取 → 160以上の被害企業 
+    - 被害企業：Ticketmaster（5億6000万件の記録）、AT&T、サンタンデール銀行 
+    - 教訓：サプライチェーンや第三者のリスク＝自社へのリスク
+- ランサムウェアの進化
+    - RansomHub：初年度434件の被害
+    - 医療分野：過去12ヶ月で92％の組織が標的
+    - 平均支払額：273万ドル（2倍/3倍の身代金要求が標準化）
+    - 教訓：ランサムウェアは依然として最大の脅威
+- 現地資源活用型攻撃（LOL） 
+	- 多くのインシデントでは正当なツールのみを使用（PowerShell、WMI、CertUtil、rundll32）
+    - C2を使用する場合でも、攻撃者はwhoamiやnltestなどのネイティブバイナリを「シェルアウト」することが多い
 
 ### Lockheed Martin Cyber Kill Chain
 
-- Pros:
-	- Industry recognition 
-	- Focus on attacker's actions and viewpoint 
-	- Breaking the chain breaks the attack 
-- Cons: 
-	- For most orgs, they see nothing until steps 3 and 4
+- 長所:
+	- 業界での認知度
+    - 攻撃者の行動と視点に焦点を当てる
+    - チェーンを断ち切れば攻撃を阻止できる
+- デメリット:
+    - 多くの組織では、ステップ3と4まで何も把握できない
 
-**Pros of the Cyber Kill Chain**
-Industry Recognition: The Cyber Kill Chain model is well-regarded across the cybersecurity industry, known for its effectiveness in organizing the stages of cyber threats. 
+**サイバーキルチェーンの長所**
+業界での認知度: サイバーキルチェーンモデルはサイバーセキュリティ業界全体で高く評価されており、サイバー脅威の段階を体系化する効果で知られています。
 
-Focus on Attacker's Actions: The model is structured around the actions of an attacker, allowing defenders to anticipate and counteract each stage of an attack effectively. 
+攻撃者の行動に焦点を当てる: 攻撃者の行動を軸に構築されたモデルであり、防御側が攻撃の各段階を効果的に予測・対抗することを可能にする。
 
-Preventative Strategy: By identifying and disrupting any stage of the kill chain, it is possible to stop the attack process altogether. This "break the chain, break the attack" approach underlines the potential to mitigate threats before they reach their objectives.
+予防的戦略: キルチェーンのどの段階でも特定・妨害することで、攻撃プロセス全体を阻止できる。「連鎖を断ち切れば攻撃を阻止できる」というこのアプローチは、脅威が目的を達成する前に軽減する可能性を強調している。
 
-**Cons of the Cyber Kill Chain** 
-Visibility and Detection Challenges: One significant drawback of the model is that many organizations do 
-
-the model). This late detection makes proactive defense challenging and often leaves organizations reactive to threats rather than preemptive.
+**サイバーキルチェーンの欠点**
+可視性と検知の課題：このモデルの大きな欠点は、多くの組織が脅威を検知するまでに時間がかかりすぎる点である。この遅延した検知は、予防的な防御を困難にし、組織が脅威に対して先制的な対応ではなく事後対応を余儀なくされることが多い。
 
 ### MITRE ATT&CK
 
-- MITRE ATT&CK framework is a knowledge base of attack tactics based on realworld attackers
-- Techniques are grouped together into tactics
-	- Phishing and Valid Accounts techniques are part of the Initial Access tactic
-	- Techniques have multiple procedures (PsExec.exe vs Metasploit's psexec)
-- The framework includes Groups, which track sets of related activity to a common adversary group (such as APT1, FIN7, etc.)
-- Great resource for learning specific tools and techniques as well as understanding the playbook of real-world attackers
+- MITRE ATT&CKフレームワークは、実在の攻撃者に基づく攻撃戦術のナレッジベースである
+- テクニックは戦術ごとにグループ化される
+    - フィッシングと有効アカウントのテクニックは初期アクセス戦術の一部である
+    - テクニックには複数の手順が存在する（PsExec.exe 対 Metasploitのpsexec）
+- フレームワークには「グループ」が含まれ、共通の攻撃者グループ（APT1、FIN7など）に関連する一連の活動を追跡します
+- 特定のツールやテクニックを学ぶだけでなく、実世界の攻撃者の手口を理解するための優れたリソースです
 
-MITRE ATT&CK (pronounced "attack") is a knowledge base of attack tactics based on real-world attackers. The framework includes many techniques (and sub-techniques) used by good and bad attackers. It is a valuable resource for learning new tools and techniques. The techniques are grouped together into "tactics." For example, the "Initial Access" tactic includes the techniques Exploit Public Facing Application, Phishing, and Valid Accounts, among others. 
+MITRE ATT&CK（発音は「アタック」）は、実世界の攻撃者に基づく攻撃戦術のナレッジベースです。このフレームワークには、善意・悪意を問わず攻撃者が使用する多くの技術（およびサブ技術）が含まれています。新たなツールや技術を学ぶ上で貴重なリソースです。技術は「戦術」にグループ化されます。例えば「初期アクセス」戦術には、公開アプリケーションの悪用、フィッシング、有効なアカウントの悪用などの技術が含まれます。
 
-The tactics and techniques are pieces used by an attacker. ATT&CK also includes "Groups," which is a set of related activities tracked to a common adversary group (e.g., APT1, FIN7). These provide the story of various breaches, which we can use to learn when and how to use specific attacks. 
+戦術と技術は攻撃者が使用する手段です。ATT&CKには「グループ」も含まれており、これは共通の敵対者グループ（例：APT1、FIN7）に追跡される関連活動の集合です。これらは様々な侵害の経緯を示しており、特定の攻撃をいつ、どのように使用すべきかを学ぶために活用できます。
 
-The combination of the Groups and the Tactics/Techniques make ATT&CK a valuable resource to develop our own offensive skills. 
+グループと戦術／手法の組み合わせにより、ATT&CKは攻撃スキルの開発に極めて有用なリソースとなります。
 
-MITRE ATT&CK Matrix for Enterprise can be found at https://attack.mitre.org/.
+MITRE ATT&CK Matrix for Enterpriseはhttps://attack.mitre.org/で閲覧可能です。
 
 ### Attackers Want Your Data
 
-- Breach: Unauthorized access to protected information
-	- Some attacks begin and end in one step:
-		- Open Amazon S3 buckets
-		- Public-facing exploitable systems such as 2025's Microsoft SharePoint, Citrix NetScaler, Palo Alto GlobalProtect, Ivanti VPN, and SonicWall
-		- Unprotected databases such as MongoDB
-	- If the entire breach is a wget command, you have no time for detection and response!
+- 侵害：保護された情報への不正アクセス
+    - 一部の攻撃は1ステップで完結する：
+        - 公開されたAmazon S3バケット
+        - 2025年版Microsoft SharePoint、Citrix NetScaler、Palo Alto GlobalProtect、Ivanti VPN、SonicWallなど公開されている脆弱性のあるシステム
+        - MongoDBなどの保護されていないデータベース
+	- 侵害全体がwgetコマンドで完結する場合、検知と対応の時間は皆無です！
 
-Open Amazon S3 Buckets: Misconfigured S3 buckets are a common error that can lead to massive data leaks. These buckets, if not properly secured, can be accessed without authorization using simple web requests. 
+公開されたAmazon S3バケット：設定ミスのあるS3バケットは、大規模なデータ漏洩につながる一般的なエラーです。適切に保護されていないこれらのバケットは、単純なWebリクエストで無許可にアクセスされる可能性があります。
 
-Vulnerabilities in File Transfer Software: Tools like MOVEit and GoAnywhere, designed for secure file transfer, have had vulnerabilities discovered in recent years that could allow attackers to exploit them and gain unauthorized access. 
+ファイル転送ソフトウェアの脆弱性：MOVEitやGoAnywhereなど、安全なファイル転送を目的としたツールにおいて、近年攻撃者が悪用して不正アクセスを可能にする脆弱性が発見されている。
 
-Unprotected Databases: Databases such as MongoDB that are left unprotected on the internet can be accessed and downloaded without needing sophisticated hacking techniques. 
+保護されていないデータベース：MongoDBなどのデータベースがインターネット上で無防備な状態に放置されると、高度なハッキング技術なしにアクセス・ダウンロードが可能となる。
 
-Consequences of Quick Breaches: An entire data breach could be conducted with a single wget command, leaving virtually no time for detection and response. This goes to show the importance of proactive security measures and defense in depth. 
+迅速な侵害の結果：単一のwgetコマンドでデータ侵害全体が実行可能であり、検知と対応の時間が事実上存在しない。これは積極的なセキュリティ対策と多重防御の重要性を示している。
 
-There are no walls so high, nor so strong, that they cannot be breached. We need time for our detection and response capabilities.
+どんなに高く強固な壁も、突破されないものはない。検知と対応能力を発揮するには時間が必要だ。
 
 ### Let's Keep Things Simple
 
 ![[スクリーンショット 2026-03-02 10.11.42.png]]
 
-Here, we aim to simplify your understanding of the typical progression of an attack, breaking it down into three critical phases that reflect the attacker's pathway from initial entry to achieving their ultimate objectives. 
+ここでは、攻撃の典型的な進行過程を理解しやすくするため、攻撃者が初期侵入から最終目標達成に至るまでの経路を反映した3つの重要な段階に分解して説明します。
 
-Attackers want your data. Since that data is often inside your environment, attackers need inside. Since that data requires privileges that not everyone has access to, attackers often need privileges as well.
+攻撃者はあなたのデータを狙っています。そのデータは多くの場合、あなたの環境内に存在するため、攻撃者は内部への侵入が必要です。また、そのデータには誰もがアクセスできるわけではない特権が必要なため、攻撃者は特権も必要とする場合が多いのです。
 
-**Initial Access** 
-The first step for an attacker is gaining access to the internal network or systems. This can be accomplished through various methods, such as phishing, exploiting vulnerabilities, or using stolen credentials.
+**初期アクセス** 
+攻撃者の最初のステップは、内部ネットワークやシステムへのアクセス権を獲得することです。これはフィッシング、脆弱性の悪用、盗まれた認証情報の使用など、様々な手法で達成されます。
 
-**Privileges** 
-Once inside, attackers often seek to escalate their privileges to gain higher levels of access. This can involve exploiting system weaknesses, configuration errors, or using social engineering tactics to gain the necessary permissions to access more sensitive areas of the network.
+**特権の取得**
+内部に侵入すると、攻撃者はより高いレベルのアクセス権を得るために特権の昇格を図るケースが多く見られます。これには、システムの弱点や設定ミスを悪用したり、ソーシャルエンジニアリングの手法を用いてネットワークのより機密性の高い領域にアクセスするための必要な権限を取得したりすることが含まれます。
 
-**Actions on Objective**
-The final phase involves the attackers executing their intended actions, which could be data theft, deploying malware, or conducting other malicious activities designed to fulfill their initial objectives. This phase represents the culmination of the attack process and is ultimately what the attackers aim to achieve through their efforts.
+**目的達成のための行動**
+最終段階では、攻撃者は意図した行動を実行します。これにはデータ窃取、マルウェアの展開、あるいは当初の目的達成のために設計されたその他の悪意ある活動が含まれます。この段階は攻撃プロセスの集大成であり、攻撃者がその努力を通じて最終的に達成しようとするものです。
 
 ### Initial Access Eventually Becomes a Breach
 
 ![[スクリーンショット 2026-03-02 10.15.55.png]]
 
-- Attackers inside your perimeter will eventually cause harm 
-	- Much like a trespasser inside your building or an unchecked illness
-- Once attackers have gained Initial Access, it starts a race: 
-	- Attackers race to gain necessary Privileges for their Actions on Objective 
-	- Defenders race to detect and respond (eradicating attackers' presence)
-- Whoever wins the race wins the incident
+- 境界内に侵入した攻撃者は、いずれ損害をもたらす
+    - 建物内に侵入した不法侵入者や、放置された病気と同様である
+- 攻撃者が初期アクセスを獲得した時点で、競争が始まる：
+    - 攻撃者は目的達成に必要な権限獲得を急ぐ
+    - 防御側は検知と対応（攻撃者の排除）を急ぐ
+- レースに勝った側がインシデントの勝者となる
 
-This slide highlights the inevitability of harm once attackers breach your perimeter, comparing it to a trespasser in a building or an unchecked illness. Once inside, the attacker has started a race: 
+本スライドは、攻撃者が境界を突破した際の被害の必然性を強調し、建物への不法侵入者や放置された病気になぞらえている。内部に侵入した攻撃者はレースを開始する：
 
-Attackers race to escalate privileges and achieve their objectives, such as data theft or system disruption. 
+攻撃者は特権を昇格させ、データ窃取やシステム破壊といった目的達成へ急ぐ。
 
-Defenders, starting only when they detect the attacker's presence, must quickly respond to eradicate the attackers and prevent damage. 
+防御側は攻撃者の存在を検知してから初めて対応を開始し、迅速に攻撃者を排除して被害を防止しなければならない。
 
-The race begins only when defenders detect the breach, emphasizing the importance of detective controls for early detection. Whoever wins this race—attackers or defenders—determines the incident's outcome. Rapid detection and response are crucial to maintaining security.
+防御側が侵入を検知した時点で初めて競争が始まるため、早期検知のための検知制御の重要性が強調される。この競争に勝つ側（攻撃者か防御者か）がインシデントの結果を決定する。セキュリティ維持には迅速な検知と対応が不可欠である。
 
 ### Preventing Breaches (1)
 
-To prevent successful breaches, defenders need to both detect and respond to attackers who gain initial access, before attackers accomplish their goal.
+攻撃者が目的を達成する前に、防御側は初期アクセスを得た攻撃者を検知し、対応する必要がある。
 
 ![[スクリーンショット 2026-03-02 10.17.06.png]]
 
-This slide emphasizes the need for defenders to quickly detect and respond to attackers to prevent successful breaches. It highlights the following points:
+このスライドは、防御側が攻撃者を迅速に検知・対応し、侵入の成功を防ぐ必要性を強調しています。以下の点を示しています：
 
-- Shorter Detection and Response Timeline: Defenders must rapidly detect and respond to threats to minimize potential damage. 
-- Longer Privilege Escalation and Actions on Objective Timeline: Slowing down attackers' progress provides defenders more time to act.
+- 検知と対応のタイムライン短縮：防御側は脅威を迅速に検知・対応し、潜在的な被害を最小限に抑えなければならない。
+- 特権昇格と目標達成行動のタイムライン延長：攻撃者の進行を遅らせることで、防御側にはより多くの対応時間が与えられる。
 
-The combination of quick detection and response with delaying attackers' actions leads to preventing breaches, illustrating the importance of efficient monitoring and swift defensive actions.
+迅速な検知・対応と攻撃者の行動遅延を組み合わせることで侵入を阻止でき、効率的な監視と迅速な防御行動の重要性が示されています。
 
 ### Preventing Breaches (2)
 
-To prevent successful breaches, defenders need to both detect and respond to attackers who gain initial access, before attackers accomplish their goal.
+攻撃者が目的を達成する前に、防御側は初期アクセスを得た攻撃者を検知し、対応する必要がある。
 
 ![[スクリーンショット 2026-03-02 10.18.24.png]]
 
-This slide highlights the consequences of delayed detection and response in preventing breaches. It illustrates the following points:
+このスライドは、侵害防止における検知と対応の遅延がもたらす結果を強調しています。以下の点を示しています：
 
-- Longer Detection and Response Timeline: If defenders take too long to detect and respond to threats, it increases the likelihood of a successful breach. This is all too common due to failed detective controls, erroneous marking of alerts as false positives, shift changes or outsourced SOC offering differing capabilities, etc. 
-- Shorter Privilege Escalation and Actions on Objective Timeline: Attackers quickly escalate privileges and achieve their objectives if not promptly countered.
+- 検知と対応のタイムラインの長期化：防御側が脅威の検知と対応に時間がかかりすぎると、侵害が成功する可能性が高まります。これは、検知制御の失敗、アラートの誤った偽陽性判定、シフト交代、能力の異なる外部委託SOCなどにより、あまりにも頻繁に発生しています。
+- 特権昇格と目的達成までの時間の短縮：攻撃者は迅速に対抗されなければ、素早く特権を昇格させ目標を達成します。
 
-Imagine an attacker gaining access via credential stuffing and VPN (or RDP), followed by Kerberoasting for privileges, followed by domain-wide ransomware. This sort of attack can happen in minutes, not hours or days.
+攻撃者がクレデンシャルスタッフィングとVPN（またはRDP）経由でアクセス権を取得し、続いてKerberoastingで特権を取得、その後ドメイン全体へのランサムウェア展開を行うシナリオを想像してください。この種の攻撃は数時間や数日ではなく、数分で発生し得ます。
 
 ### Defenders' Three Objectives
 
-1. This slide outlines three key objectives for defenders to enhance their security posture: Reduce the number of ways attackers gain initial access: 
-	- Consolidate remote support tools and monitor for unauthorized usage. 
-	- Minimize the external attack surface by securing 1FA services and Exchange servers. 
-	- Remove endpoint code execution methods like macros, AutoDDE, and Quick Assist 
-2. Lower the time to detect and respond to an attacker: 
-	- Focus on detecting post-exploitation activities early. 
-	- Regularly test and improve response capabilities to quickly eradicate threats. 
-	- Use deception technologies like Canarytokens to identify breaches early. 
-3. Increase the time for an attacker to accomplish their goal: 
-	- Remove easy targets for privilege escalation. 
-	- Conduct penetration testing to identify and mitigate vulnerabilities. 
+1. このスライドでは、防御側がセキュリティ態勢を強化するための3つの主要目標を概説します：攻撃者が初期アクセスを得る手段を減らす：
+    - リモートサポートツールを統合し、不正使用を監視する。
+    - 1FAサービスとExchangeサーバーを保護することで、外部攻撃対象領域を最小化する。
+	- マクロ、AutoDDE、クイックアシストなどのエンドポイントコード実行手法を排除する
+2. 攻撃者の検知・対応までの時間を短縮する：
+    - 侵害後の活動を早期に検知することに注力する
+    - 脅威を迅速に排除するための対応能力を定期的にテスト・改善する
+    - カナリートークンなどの欺瞞技術を活用し、侵害を早期に特定する
+3. 攻撃者が目的を達成するまでの時間を延長する： 
+	- 特権昇格の容易な標的を除去する
+    - ペネトレーションテストを実施し脆弱性を特定・軽減する
 
-These objectives aim to prevent breaches by reducing entry points (so defenders have to respond less frequently), improving detection and response times (so defenders get early notifications of attacker's initial access), and making it harder for attackers to achieve their goals (to buy time for the detection and response capabilities of the defenders).
+これらの目標は、侵入経路を削減（防御側の対応頻度を低減）、検知・対応時間の改善（攻撃者の初期アクセスを早期に通知）、攻撃目標達成の困難化（防御側の検知・対応能力に時間を稼ぐ）を通じて侵害を防止することを目的としています。
 
 ### Defenders' Objectives (1)
 
-1. Reduce the number of ways attackers gain initial access 
-2. Lower the time to detect and respond to attackers 
-3. Increase the time for attackers to accomplish their goal
+1. 攻撃者が初期アクセスを得る手段を減らす
+2. 攻撃者を検知し対応するまでの時間を短縮する
+3. 攻撃者が目的を達成するまでの時間を延ばす
 
 ![[スクリーンショット 2026-03-02 10.24.01.png]]
 
-This slide focuses on the first objective: Reduce the number of ways attackers gain initial access. 
+このスライドは最初の目標に焦点を当てています：攻撃者が初期アクセスを得る手段を減らすこと。
 
-No matter how many advantages you have, if you get in enough fights, you will lose. Seek to fight less often.
+どれほど優位性を持っていようと、十分な数の戦いをすれば負けます。戦う機会を減らすことを目指しましょう。
 
 ### Defenders' Objectives (2)
 
-1. Reduce the number of ways attackers gain initial access
-2. Lower the time to detect and respond to attackers
-3. Increase the time for attackers to accomplish their goal
+1. 攻撃者が初期アクセスを得る手段を減らす
+2. 攻撃者の検知と対応までの時間を短縮する
+3. 攻撃者が目的を達成するまでの時間を延ばす
 
 ![[スクリーンショット 2026-03-02 10.26.39.png]]
 
-This slide focuses on the second objective: Lower the time to detect and respond to attackers. 
+このスライドは第二の目標に焦点を当てています：攻撃者の検知と対応にかかる時間を短縮する。
 
-Reducing the time it takes to detect and respond to threats is crucial for minimizing damage. The analogy of a shorter racetrack signifies the importance of speeding up detection and response capabilities. Faster detection and response can help prevent attackers from completing their objectives. 
+脅威の検知と対応にかかる時間を短縮することは、被害を最小限に抑えるために極めて重要です。短いレーストラックの比喩は、検知と対応能力の迅速化の重要性を示しています。より迅速な検知と対応は、攻撃者が目的を達成するのを防ぐのに役立ちます。
 
-Implement strategies like early detection of post-exploitation activities, regularly testing and improving response capabilities, and utilizing deception technologies like Canarytokens to quickly identify breaches. By doing so, defenders can stay ahead of attackers and reduce the impact of potential breaches.
+侵害後の活動を早期に検知する戦略、対応能力の定期的なテストと改善、カナリートークンなどの欺瞞技術を活用した侵害の迅速な特定などを実施します。これにより防御側は攻撃者に先んじ、潜在的な侵害の影響を軽減できます。
 
 ### Defenders' Objectives (3)
 
-1. Reduce the number of ways attackers gain initial access 
-2. Lower the time to detect and respond to attackers 
-3. Increase the time for attackers to accomplish their goal
+1. 攻撃者が初期アクセスを得る手段を減らす
+2. 攻撃者を検知し対応するまでの時間を短縮する
+3. 攻撃者が目的を達成するまでの時間を延ばす
 
 ![[スクリーンショット 2026-03-02 10.27.51.png]]
 
-This slide focuses on the third objective: Increase the time for attackers to accomplish their goal. 
+このスライドは第三の目標に焦点を当てています：攻撃者が目的を達成するまでの時間を延長すること。
 
-Extending the time it takes for attackers to complete their objectives gives defenders more time to detect and respond to threats. The longer racetrack symbolizes the need to make the attacker's path more complicated and time-consuming. 
+攻撃者が目的を達成するまでの時間を延ばすことで、防御側は脅威を検知し対応する時間を確保できます。長いレーストラックは、攻撃者の経路をより複雑で時間のかかるものにする必要性を象徴しています。
 
-Strategies include removing easy targets for privilege escalation and conducting regular penetration testing to identify and mitigate vulnerabilities. By increasing the difficulty and time required for attackers to achieve their goals, defenders can better manage and contain potential breaches, ultimately improving overall security.
+対策としては、権限昇格の容易な標的を除去することや、脆弱性を特定・軽減するための定期的なペネトレーションテストの実施などが挙げられます。攻撃者が目標を達成する難度と所要時間を高めることで、防御側は潜在的な侵害をより効果的に管理・封じ込め、最終的に全体的なセキュリティを向上させることができます。
 
 ### Ideal vs. Acceptable Timelines
 
-- Defenders can't win unless they know about each intrusion! 
-- Defenders' three jobs 
-	- Ideal: Defenders can detect and respond (eradicating attackers' presence) before attackers have spread the infection 
-	- Minimum: Defenders detect and respond before the breach 
-- Incidents don't stop when attackers are detected! 
-- "Shell is only the beginning": Carlos Perez's mantra for attackers 
-- "Detection is only the beginning": Mantra for defenders
+- 防御側は侵入を把握しなければ勝利できない！
+- 防御側の3つの任務
+    - 理想：攻撃者が感染を拡散させる前に検知・対応（攻撃者の存在を根絶）
+    - 最低限：侵害発生前に検知・対応
+- 攻撃者が検知されてもインシデントは終わらない！
+- 「シェルは始まりに過ぎない」：攻撃者向けカルロス・ペレスの信条
+- 「検知は始まりに過ぎない」：防御者向け信条
 
-Ideally, defenders would detect and respond to threats quickly enough to eradicate attackers before they can spread. This requires highly effective monitoring and response capabilities but minimizes the damage done by the attacker, minimizes the amount of information attackers are able to gain before they're kicked out, and asymmetrically costs attackers more than defenders (as attackers often invest significantly into their initial access). 
+理想的には、防御者は脅威を迅速に検知・対応し、攻撃者が拡散する前に排除できる。これには高度な監視・対応能力が必要だが、攻撃者の被害を最小化し、排除前に得られる情報量を抑え、攻撃者側に非対称的なコストを課す（初期アクセスに多大な投資を行う傾向があるため）。
 
-Ultimately, though, defenders need to at least detect and respond before the breach occurs. Otherwise, what's the point of having human defenders? Again, no wall is so tall or so strong that it can't be breached. 
+しかし最終的には、防御側は少なくとも侵害発生前に検知・対応する必要がある。さもなければ、人間の防御者が存在する意味はなくなる。繰り返すが、どんなに高く強固な壁でも突破されないわけではない。
 
-Detection is only the beginning of the response process. Continuous monitoring and action are required to fully address and eliminate threats. 
+検知は対応プロセスの始まりに過ぎない。脅威を完全に解決し排除するには、継続的な監視と行動が求められる。
 
-Defenders must be vigilant and proactive, knowing that successful defense depends on early detection and swift, effective response to every intrusion.
+防御側は警戒を怠らず、積極的に行動しなければならない。防御の成功は、あらゆる侵入を早期に検知し、迅速かつ効果的に対応することにかかっていることを認識すべきである。
 
 ### Only Five Ways In (Initial Access)
 
-Organizations have far more than just internet-facing services to attack:
-1. Employees who can run code 
-2. Remote methods of connectivity (VPN, VDI, RDP) 
-3. Internal networks with DHCP
-4. Third-party software 
-5. Public-facing software (such as Exchange, MOVEit, JetBrains)
+組織が攻撃対象とするのはインターネットに公開されたサービスだけではありません：
+1. コードを実行できる従業員
+2. リモート接続手段（VPN、VDI、RDP）
+3. DHCPを備えた内部ネットワーク
+4. サードパーティ製ソフトウェア
+5. 公開ソフトウェア（Exchange、MOVEit、JetBrainsなど）
 
 ![[スクリーンショット 2026-03-02 10.31.26.png]]
 
-Here, we show attackers five methods of initial access, illustrating how the attack surface of an organization is more than merely their public-facing assets.
+ここでは、攻撃者に対して5つの初期アクセス手法を示し、組織の攻撃対象領域が単なる公開資産以上のものであることを説明します。
 
-1. Employees Who Can Run Code: Targeted primarily through phishing campaigns. Phishing aims to deceive employees into executing malicious code or revealing sensitive credentials, leveraging the access privileges of unsuspecting employees to infiltrate systems. Remember, phishing can be more than just via email! 
-2. Remote Connectivity Methods (VPN, VDI, RDP): These are exploited by attackers logging on remotely. Vulnerabilities in remote access technologies or poor security practices (such as weak passwords and lack of multi-factor authentication) can allow unauthorized access to an organization's internal network. 
-3. Internal Networks with DHCP: Attackers can insert rogue devices into the network. These devices can be configured to exploit DHCP functionalities to maliciously alter network configurations or intercept network traffic, compromising internal communication. 
-4. Third-Party Software: Often a vector for supply chain attacks. Attackers exploit vulnerabilities in third-party software products that are integral to business operations to compromise downstream systems and data. 
-5. Public-Facing Software (such as Exchange, MOVEit, JetBrains): Typically involved in "real" exploitation scenarios, where attackers directly exploit known vulnerabilities in software that is accessible from the internet, often resulting in data breaches or further network compromise.
+1. コードを実行可能な従業員：主にフィッシング攻撃を標的とする。フィッシングは、従業員を騙して悪意のあるコードを実行させたり、機密の認証情報を開示させたりすることを目的とし、警戒心の低い従業員のアクセス権限を利用してシステムに侵入する。フィッシングはメール経由だけではないことを覚えておこう！
+2. リモート接続方法（VPN、VDI、RDP）：これらは攻撃者がリモートでログインすることで悪用される。リモートアクセス技術の脆弱性や不十分なセキュリティ対策（脆弱なパスワードや多要素認証の欠如など）により、組織の内部ネットワークへの不正アクセスが可能となる。
+3. DHCPを実装した内部ネットワーク：攻撃者は不正なデバイスをネットワークに潜入させることが可能。これらのデバイスはDHCP機能を悪用し、ネットワーク設定を改ざんしたり通信を傍受したりして内部通信を侵害するよう設定される。
+4. サードパーティ製ソフトウェア：サプライチェーン攻撃の媒介となることが多い。攻撃者は業務に不可欠なサードパーティ製ソフトウェア製品の脆弱性を悪用し、下流のシステムやデータを侵害する。
+5. 公開ソフトウェア（Exchange、MOVEit、JetBrainsなど）：通常「実際の」悪用シナリオに関与し、攻撃者がインターネットからアクセス可能なソフトウェアの既知の脆弱性を直接悪用する。これによりデータ侵害やさらなるネットワーク侵害が発生することが多い。
 
-Reference: https://malcomvetter.medium.com/how-we-breached-your-network-755e40f52d85
+Reference:`https://malcomvetter.medium.com/how-we-breached-your-network-755e40f52d85`
 
 ### Class Theme (Hiboxy Introduction)
 
-- Hiboxy is our class's target company 
-	- They make 3D-printed zippers; very hightech! 
-- The CEO (Mark Cruz) wants to know what business risks he's facing
-- What's the initial scope? Just Mark's card.
+- Hiboxyは当クラスの対象企業です
+    - 同社は3Dプリント製ファスナーを製造しており、非常にハイテクです！
+- CEO（マーク・クルーズ）は自社が直面するビジネスリスクを把握したいと考えています
+- 初期範囲は？マークのカードのみです。
 
-This class focuses on Hiboxy, a company that specializes in producing 3D-printed zippers, representing a significant advancement in textile manufacturing technology. The CEO, Mark Cruz, is concerned about the potential business risks that could impact his company. Understanding these risks is crucial for strategic planning and maintaining the competitive edge of his high-tech business.
+本クラスでは、3Dプリント製ファスナーの製造に特化した企業「Hiboxy」に焦点を当てます。同社は繊維製造技術における重要な進歩を体現しています。CEOのマーク・クルーズ氏は、自社に影響を及ぼす可能性のあるビジネスリスクを懸念しています。これらのリスクを理解することは、戦略的計画立案とハイテクビジネスの競争優位性維持に不可欠です。
 
-1. Company Overview: Hiboxy stands out in the manufacturing sector with its innovative approach to producing zippers using 3D printing technology. This method likely presents unique challenges and opportunities, from production efficiency to intellectual property concerns. 
-2. CEO's Concern: Mark Cruz, as the CEO, has expressed a desire to thoroughly understand the risks facing Hiboxy. His proactive approach suggests a focus on both immediate operational risks and longterm strategic vulnerabilities that could influence the company's success. 
-3. . Initial Scope: The focus is initially narrowed to understanding the risks as they pertain directly to the CEO, Mark Cruz, possibly indicating a personal approach to leadership and decision-making within the company.
+1. 会社概要：Hiboxyは3Dプリント技術を用いた革新的ジッパー製造手法で製造業において際立っている。この手法は生産効率から知的財産権問題まで、特有の課題と機会をもたらすと考えられる。
+2. CEOの懸念：マーク・クルーズCEOはHiboxyが直面するリスクを徹底的に理解したい意向を示している。この積極的な姿勢は、会社の成功に影響を与え得る当面の運営リスクと長期的な戦略的脆弱性の双方に焦点を当てていることを示唆している。
+3. 初期範囲：焦点は当初、CEOであるマーク・クルーズに直接関連するリスクの理解に絞られており、これは社内のリーダーシップと意思決定に対する個人的なアプローチを示唆している可能性がある。
 
-We also see Mark's business card, possibly obtained via a first meeting at a conference.
+また、会議での初対面で入手したと思われるマークの名刺も確認できる。
 
 ### Reconnaissance (in Brief)
 
-- Reconnaissance: Exploration to find useful information for a given purpose 
-	- Invest in some recon before the first scoping call! 
-	- How does email flow to the client? 
-		- On-premises Exchange? Microsoft 365? ProofPoint? 
-	- What's the username format? Password requirements? 
-	- What's the email address format? Breached credentials? 
-	- Any single-factor authentication services exposed to the Internet? 
-		- Especially those backed by on-prem Active Directory!
+- 偵察：特定の目的のために有用な情報を探す探索活動
+    - 最初のスコープ確認会議の前に偵察に投資せよ！
+    - クライアントへのメールフローは？
+        - オンプレミスExchange？Microsoft 365？ProofPoint？
+    - ユーザー名形式は？パスワード要件は？
+	- メールアドレスの形式は？漏洩した認証情報は？
+    - インターネットに公開されている単一要素認証サービスは？
+        - 特にオンプレミスActive Directoryで管理されているものは注意！
 
-The slide emphasizes the criticality of conducting reconnaissance before the initial scoping call with a client. This initial investigation lays the groundwork for a more informed and effective engagement strategy.
+このスライドは、クライアントとの初回スコープ打ち合わせ前に偵察を実施することの重要性を強調しています。この初期調査が、より情報に基づいた効果的なエンゲージメント戦略の基盤を築きます。
 
-1. Purpose of Reconnaissance: The aim is to gather actionable intelligence that can be used to tailor the approach to the specific environment and vulnerabilities of the client. 
-2. Key Areas of Focus:
-	- Email Systems: Understanding the email infrastructure, such as whether the client uses Onpremises Exchange, Microsoft 365, or ProofPoint, helps in assessing potential vectors for phishing or direct compromise. 
-	- Authentication Protocols: Information on username and password formats and any recent breaches of credentials can guide the development of penetration testing tactics focused on credential stuffing or brute force attacks 
-	- Authentication Security: Identifying if there are any single-factor authentication systems, particularly those tied to on-prem Active Directory, exposed to the internet. These systems can often be targeted for initial access due to their lower security compared to multi-factor systems.
+1. 偵察の目的：クライアントの特定環境と脆弱性に合わせたアプローチを構築するための実用的な情報を収集すること。
+2. 重点調査領域：
+    - メールシステム：オンプレミスExchange、Microsoft 365、ProofPointなどのメールインフラ理解は、フィッシングや直接的な侵害の潜在的経路評価に有用。
+	- 認証プロトコル：ユーザー名・パスワードの形式や最近の認証情報漏洩に関する情報は、クレデンシャルスタッフィングやブルートフォース攻撃に焦点を当てたペネトレーションテスト戦術の開発に役立ちます。
+    - 認証セキュリティ：特にオンプレミスActive Directoryに紐づく単一要素認証システムがインターネットに公開されていないかを特定します。これらのシステムは多要素認証システムに比べてセキュリティが低いため、初期アクセス手段として標的とされることが多々あります。
 
-This reconnaissance phase is vital for identifying the weakest links and potential attack vectors within a client's infrastructure, thereby enabling a more targeted and effective security assessment.
+この偵察フェーズは、クライアントのインフラ内における最も脆弱な部分や潜在的な攻撃ベクトルを特定するために極めて重要であり、より的を絞った効果的なセキュリティ評価を可能にします。
 
 ### Features Are Forever
 
 ![[スクリーンショット 2026-03-02 10.38.33.png]]
 
-"Hackers don't break in. We log in." 
+「ハッカーは侵入しない。私たちはログインする」
 
-Cybersecurity expert Keren Elazari succinctly captures a critical aspect of contemporary cybersecurity challenges on the podcast "How Real Is It?". 
+サイバーセキュリティ専門家ケレン・エラザリは、ポッドキャスト「How Real Is It?」で現代のサイバーセキュリティ課題の核心を簡潔に言い当てた。
 
-This quote shows the evolution of hacking tactics from forceful entry (e.g., breaking through security barriers, such as exploitation of public-facing systems) to subtler methods, such as phishing, social engineering, or using stolen credentials. These tactics exploit the normal functionalities of systems ("features") rather than their weaknesses ("bugs"), which can make them harder to detect and prevent. 
+この引用は、ハッキング戦術が「強制侵入」（例：公開システムへの脆弱性悪用などセキュリティ障壁の突破）から、フィッシング、ソーシャルエンジニアリング、盗まれた認証情報の利用といったより巧妙な手法へ進化したことを示している。これらの戦術はシステムの弱点（「バグ」）ではなく、通常の機能（「特徴」）を悪用するため、検知や防御が困難になり得る。
 
-Organizations must therefore adopt a more comprehensive approach to security, one that goes beyond patching vulnerabilities to include managing and securing user identities and access privileges. 
+したがって組織は、脆弱性のパッチ適用を超えた包括的なセキュリティアプローチを採用する必要がある。具体的には、ユーザーIDとアクセス権限の管理・保護を包含する手法だ。
 
-The emphasis on logging in rather than breaking in shows that cybersecurity is increasingly about understanding and mitigating risks associated with user behavior and access management. 
+「侵入」ではなく「ログイン」に重点が置かれる傾向は、サイバーセキュリティがユーザー行動とアクセス管理に伴うリスクの理解・軽減へと重点を移しつつあることを示している。
 
 Reference: https://www.youtube.com/watch?v=6BqpU4V0Ypk
 
@@ -461,91 +459,89 @@ Reference: https://www.youtube.com/watch?v=6BqpU4V0Ypk
 
 ![[スクリーンショット 2026-03-02 10.40.08.png]]
 
-**Microsoft 365:** Often used by organizations for collaboration and communication, Microsoft 365 might be secured with only a password, making it a prime target for credential stuffing or phishing attacks.
+**Microsoft 365:** 組織間でコラボレーションやコミュニケーションに広く利用されるMicrosoft 365は、パスワードのみで保護されている場合が多く、資格情報の流用攻撃やフィッシング攻撃の格好の標的となります。
 
-**Remote Desktop Protocol (RDP):** Critical for remote administration but also a common entry point for attackers if only protected by 1FA, due to the direct access it provides to a system's desktop environment.
+**リモートデスクトッププロトコル (RDP):** リモート管理に不可欠ですが、システムデスクトップ環境への直接アクセスを提供する特性上、1FAのみで保護されている場合、攻撃者にとって一般的な侵入経路となります。
 
-**Virtual Private Networks (VPNs):** While VPNs secure the transmission of data across networks, using 1FA can make them vulnerable to interception and unauthorized access, particularly if compromised credentials are used.
+**仮想プライベートネットワーク (VPN):** ネットワーク間でのデータ伝送を保護する一方で、1FAのみを使用すると、特に侵害された認証情報が使用された場合、傍受や不正アクセスに対して脆弱になる可能性があります。
 
-**Microsoft Exchange:** As a widely used email server, Exchange systems secured with 1FA are at risk of being compromised, leading to potential data breaches and access to sensitive communications.
+**Microsoft Exchange:** 広く使用されているメールサーバーとして、1FAのみで保護されたExchangeシステムは侵害されるリスクがあり、データ漏洩や機密通信へのアクセスにつながる可能性があります。
 
-**Active Directory:** Federation Services (ADFS): This service extends the capabilities of Active Directory to systems outside the corporate firewall and is particularly sensitive because it handles authentication across these boundaries. Entra ID is sometimes configured to use on-prem Active Directory for authentication via ADFS, which means Active Directory is essentially exposed externally.
+**Active Directory: フェデレーションサービス (ADFS):** このサービスはActive Directoryの機能を企業ファイアウォール外のシステムに拡張し、境界を越えた認証を扱うため特に敏感です。Entra IDはADFS経由の認証にオンプレミスActive Directoryを使用するよう設定されることがあり、これによりActive Directoryは実質的に外部に晒されます。
 
-**Enterprise Websites:** Often public-facing and therefore accessible to attackers, websites that use 1FA for administrative access can be easily compromised, leading to defacement, data theft, or worse.
+**エンタープライズWebサイト:** 多くの場合公開されており攻撃者にアクセス可能なため、管理アクセスに1FAを使用するWebサイトは容易に侵害され、改ざん、データ窃取、あるいはそれ以上の被害を招く恐れがあります。
 
-Identifying and upgrading these systems to use multi-factor authentication (MFA) can significantly reduce the risk of unauthorized access and is a recommended step in strengthening an organization's security posture.
+これらのシステムを特定し、多要素認証（MFA）へアップグレードすることで、不正アクセスのリスクを大幅に低減できます。これは組織のセキュリティ態勢を強化するための推奨される対策です。
 
 ### NTLMRecon
-
-- NTLMRecon scans URLs, hosts, and subnets for HTTP endpoints that perform NTLMSSP authentication
-	- − Similar to Nmap's http-ntlm-info.nse script 
-- Scans 50+ paths and submits fake authentication requests
-- Gathers the following information about identified hosts
-	- AD Domain Name
-	- Server name 
-	- DNS Domain Name 
-	- FQDN 
-	- Parent DNS Domain 
-- Output is saved to a CSV file
+- NTLMReconは、NTLMSSP認証を行うHTTPエンドポイントを対象にURL、ホスト、サブネットをスキャンします
+    - Nmapのhttp-ntlm-info.nseスクリプトと同様の動作
+- 50以上のパスをスキャンし、偽の認証リクエストを送信
+- 特定されたホストについて以下の情報を収集
+	- ADドメイン名
+    - サーバー名
+    - DNSドメイン名
+    - FQDN
+    - 親DNSドメイン
+- 出力はCSVファイルに保存
 NTLMRecon: https://github.com/pwnfoo/NTLMRecon/
 
-NTLMRecon scans URLs, hosts, and subnets for HTTP endpoints that perform NTLMSSP authentication. While Nmap's http-ntlm-info.nse scrip provides similar information, it requires additional configuration to check specific paths, pages, or subdirectories for NTLMSSP authentication. NTMLRecon includes a list of 50 common paths without additional configuration, but it also allows users to specify a custom wordlist with **--wordlist**. 
+NTLMReconは、NTLMSSP認証を実行するHTTPエンドポイントを対象にURL、ホスト、サブネットをスキャンします。Nmapのhttp-ntlm-info.nseスクリプトも同様の情報を提供しますが、特定のパス、ページ、サブディレクトリでNTLMSSP認証を確認するには追加設定が必要です。NTLMReconは追加設定なしで50の一般的なパスリストを含みますが、**--wordlist**オプションでカスタムワードリストを指定することも可能です。
 
-To install and configure NTLMRecon, clone it from GitHub and run setup.py: 
+NTLMReconのインストールと設定には、GitHubからクローンしsetup.pyを実行します：
 
-`$ git clone https://github.com/pwnfoo/NTLMRecon.git` 
-`$ cd NTLMRecon` 
+`$ git clone https://github.com/pwnfoo/NTLMRecon.git`
+`$ cd NTLMRecon`
 `$ python3 setup.py install`
 
 ### Attacking NTLMSSP
 
-- Internal Attacks 
-	- HTTP NTLM endpoints are vulnerable to relay attacks 
-- External Attacks 
-	- Hosts that allow NTLM authentication are limited to single-factor auth 
-	- Target these systems with credential stuffing and password spray attacks 
-	- NTLM also leaks domain and server information, which is often for the internal domain 
-- NTLMRecon will identify potential targets
+- 内部攻撃
+    - HTTP NTLMエンドポイントは中継攻撃に対して脆弱である
+- 外部攻撃
+    - NTLM認証を許可するホストは単一要素認証に限定される
+    - これらのシステムを標的としたクレデンシャルスタッフィングおよびパスワードスプレー攻撃を実施する
+    - NTLMはドメインおよびサーバー情報（多くの場合内部ドメイン向け）も漏洩する
+- NTLMReconは潜在的な標的を特定する
 
 ```
 $ ntlmrecon --input 10.130.10.0/24 --outfile ntlmrecon_10.130.10.0.csv [+] Brute-forcing 50 endpoints on https://10.130.10.1 [+] Brute-forcing 50 endpoints on https://10.130.10.2 [+] Brute-forcing 50 endpoints on https://10.130.10.3 [+] Brute-forcing 50 endpoints on https://10.130.10.4 [+] https://10.130.10.4/CertServ has NTLM authentication enabled!
 ```
 
-Identifying NTLMSSP endpoints is helpful both internally and externally. On internal networks, NTLSMSSP endpoints can be targeted with relay attacks because, unlike SMB, there is no way to prevent an NTLM relay to an HTTP endpoint. Externally, NTLMSSP endpoints provide an opportunity for multifactor authentication (MFA) bypass. NTLM does not support MFA, so targeting exposed NTLMSSP endpoints with password sprays and credential stuffing attacks can be very effective.
+NTLMSSPエンドポイントの特定は、内部・外部双方において有用です。内部ネットワークでは、SMBとは異なりHTTPエンドポイントへのNTLM中継を防止する手段がないため、NTLMSSPエンドポイントが中継攻撃の標的となり得ます。外部においては、NTLMSSPエンドポイントは多要素認証（MFA）の回避手段となり得ます。NTLMはMFAをサポートしていないため、公開されたNTLMSSPエンドポイントを対象としたパスワードスプレー攻撃やクレデンシャルスタッフィング攻撃は非常に効果的です。
 
 ### Credential Stuffing, in Brief (1)
 
-1. People reuse passwords (often 1–5 pw patterns/person) 
-2. Sites are compromised 
-3. Organizations use 1FA externally
+1. ユーザーはパスワードを再利用する（1人あたり1～5種類のパターンが一般的）
+2. サイトが侵害される
+3. 組織は外部向け単一認証（1FA）を採用している
 
-The result? Third-party breaches affect companies via employees' reused passwords.
+その結果？ 第三者の情報漏洩が、従業員の再利用パスワードを通じて企業に影響を及ぼす。
 
 ![[スクリーンショット 2026-03-02 10.48.42.png]]
 
-A widespread behavior among internet users is the reuse of passwords across multiple platforms. It's common for individuals to use the same one to five password patterns across various services. This habit significantly increases vulnerability because once one password is compromised, it can potentially provide access to several accounts owned by the same user.
+インターネットユーザーの間で広く見られる行動として、複数のプラットフォームでパスワードを再利用する習慣がある。個人は様々なサービスで同じ1～5種類のパスワードパターンを使用することが一般的だ。この習慣は脆弱性を大幅に増大させる。なぜなら、1つのパスワードが漏洩すると、同じユーザーが所有する複数のアカウントへのアクセスを潜在的に可能にしてしまうからだ。
 
-Websites and services often suffer data breaches, leading to large volumes of user credentials being exposed. The attackers for these breaches don't have to release the breached credentials publicly, but they commonly do. These credentials can include usernames, passwords, and other personally identifiable information (PII).
+ウェブサイトやサービスは頻繁にデータ侵害に遭い、大量のユーザー認証情報が流出する。侵害した認証情報を公開する必要はないが、攻撃者は通常そうする。これらの認証情報には、ユーザー名、パスワード、その他の個人識別情報（PII）が含まれる。
 
-Many organizations still rely on single-factor authentication for external access to systems, which only requires a username and password. This form of authentication does not provide sufficient security against the types of attacks that exploit stolen or reused credentials. 
+多くの組織では、システムへの外部アクセスに依然として単一要素認証（ユーザー名とパスワードのみ）に依存しています。この認証方式は、盗まれた認証情報や再利用された認証情報を悪用する攻撃に対して十分なセキュリティを提供しません。
 
-The combination of these three elements leads to a situation where third-party breaches have a domino effect, impacting not just the directly breached service but also other organizations where the same credentials are reused. The comic panels in the slide humorously contrast the common misconception of hacking—as a dramatic physical infiltration—with the reality that many hacks are simply about exploiting known credentials across different systems. 
+これら3つの要素が組み合わさることで、第三者の侵害がドミノ効果を引き起こし、直接侵害されたサービスだけでなく、同じ認証情報が再利用されている他の組織にも影響が及ぶ状況が生じます。スライドの漫画パネルは、ハッキングを劇的な物理的侵入と誤解する一般的な認識と、実際には多くのハッキングが単に既知の認証情報を異なるシステム間で悪用する行為に過ぎないという現実をユーモラスに対比しています。
 
-Don't worry, there will be future xkcd references in class! 
-
+ご心配なく、今後の授業でもxkcdの引用が登場します！
 Obligatory xkcd reference: https://xkcd.com/2176/
 
 ### Credential Stuffing, in Brief (2)
 
 ![[スクリーンショット 2026-03-02 10.49.38.png]]
 
-Here, we show a step-by-step example of a credential stuffing attack, showing how easy it can be using publicly available breach data and toolsets.
+ここでは、公開されている侵害データとツールセットを用いて、クレデンシャルスタッフィング攻撃がいかに容易に行えるかを段階的に示す例を紹介します。
 
-1. Credential Harvesting: The attacker begins by extracting potential credentials from a compiled list of breached data (COMB.txt) that specifically targets email addresses at the fake domain 'archer.zzz'. The command uses filters and saves these credentials into a file named 'creds.txt'. 
-2. Credential Verification: Before attempting the actual attack, the first three credentials are verified to check their format and potential usability. This step ensures that the credentials are correctly formatted and plausible before they are used in an attack. 
-3. Executing the Attack: Using the hydra tool, a well-known software for performing automated login attempts, the attacker tries to log into the 'krg.archer.zzz' mail server using the credentials saved in 'creds.txt'. The output shows that one of the login attempts was successful, indicating that the password for 'sarcher@archer.zzz' was 'Sploosh123!'.
+1.  認証情報の収集：攻撃者はまず、偽ドメイン「archer.zzz」のメールアドレスを特に標的とした侵害データ（COMB.txt）のリストから、潜在的な認証情報を抽出します。このコマンドはフィルタを使用し、これらの認証情報を「creds.txt」というファイルに保存します。
+2. 認証情報の検証：実際の攻撃を試みる前に、最初の3つの認証情報を検証し、その形式と使用可能性を確認します。このステップにより、攻撃に使用する前に認証情報が正しい形式で、かつ妥当であることを保証します。
+3. 攻撃の実行：自動ログイン試行ツールとして知られるhydraを使用し、攻撃者は'creds.txt'に保存された認証情報で'krg.archer.zzz'メールサーバーへのログインを試みます。出力結果から、'sarcher@archer.zzz'のパスワードが'Sploosh123!'であることが判明し、ログインが成功したことが示されました。
 
-The successful login highlights the critical vulnerability associated with reused passwords and singlefactor authentication systems. This demonstration underscores the importance of using multi-factor authentication and maintaining rigorous password policies to defend against such attacks. Additionally, it shows the practical application of tools available for such purposes, reminding organizations of the need to secure their systems against credential stuffing by regularly updating their cybersecurity measures.
+このログイン成功は、パスワードの再利用と単一要素認証システムに関連する重大な脆弱性を浮き彫りにしています。本実証は、多要素認証の採用と厳格なパスワードポリシーの維持が、こうした攻撃を防ぐ上で重要であることを強調しています。さらに、このような目的に利用可能なツールの実用的な応用例を示し、組織がサイバーセキュリティ対策を定期的に更新することで、クレデンシャルスタッフィング攻撃からシステムを保護する必要性を改めて認識させるものです。
 
 ### Credential Stuffing (The Commands)
 
@@ -557,291 +553,291 @@ $ head –n 3 creds.txt
 $ hydra –C creds.txt krg.archer.zzz imap
 ```
 
-Here, we look at the commands used in a credential stuffing attack, specifically tailored to exploit email credentials from a breach compilation targeting the domain 'archer.zzz'.
+ここでは、資格情報詰め込み攻撃で使用されるコマンドを検証します。特に「archer.zzz」ドメインを対象とした侵害データ集積からメール認証情報を悪用するために特化されています。
 
-1. Command for Extracting Credentials: The 'rg' (Ripgrep) command is utilized to search through a large dataset (COMB.txt), which contains breached email and password combinations. The parameter --iN specifies a case-insensitive search, focusing on lines that start with one or more characters not including the '@' symbol, followed by '@archer.zzz:', identifying email addresses from a specific domain. 
-2. Verifying Credentials: The head -n 3 creds.txt command is used to quickly verify the format and plausibility of the top three entries in the 'creds.txt' file, ensuring that the data extracted is correctly formatted and usable for the next step in the attack. 
-3. Using Hydra for Credential Stuffing: The last command, hydra -C, commands Hydra to attempt logins on the 'krq.archer.zzz' mail server using the IMAP protocol with the credentials listed in 'creds.txt'. This illustrates the practical use of Hydra to automate the login process using discovered credentials, highlighting the tool's efficiency in testing multiple combinations quickly.
+1. 認証情報抽出コマンド:
+   大規模データセット（COMB.txt）内の侵害されたメールとパスワードの組み合わせを検索するために「rg」（Ripgrep）コマンドが使用されます。--iN パラメータは大文字小文字を区別しない検索を指定し、'@'記号を含まない1文字以上で始まり、その後ろに'@archer.zzz:'が続く行（特定ドメインのメールアドレス）に焦点を当てます。
+2. 認証情報の検証: head -n 3 creds.txt コマンドは、'creds.txt'ファイルの上位3件のエントリの形式と妥当性を迅速に検証し、抽出されたデータが正しくフォーマットされ、攻撃の次のステップで使用可能であることを確認します。
+3. Hydraによるクレデンシャルスタッフィング: 最後のコマンド `hydra -C` は、HydraにIMAPプロトコルを用いて「krq.archer.zzz」メールサーバーへのログインを試行させます。認証情報は「creds.txt」に記載されたものを使用します。これは発見された認証情報でログインプロセスを自動化するHydraの実用例を示し、多数の組み合わせを迅速にテストするツールの効率性を強調しています。
 
 ### Software for Testing: Prepackaged Suites
 
-- SANS Slingshot includes many of the tools to get you started in pen testing
-- Other Linux distributions can also be helpful 
-	- Kali Linux by Offensive Security: https://www.kali.org/ 
-	- Parrot Linux from Parrot Security: https://parrotsec.org/ 
-	- Black Arch Linux: https://blackarch.org/ 
-	- Ubuntu or Debian with PTF: https://github.com/trustedsec/ptf
+- SANS Slingshotには、ペネトレーションテストを始めるための多くのツールが含まれています
+- 他のLinuxディストリビューションも有用です
+    - Offensive Security提供のKali Linux: https://www.kali.org/
+    - Parrot Security提供のParrot Linux: https://parrotsec.org/
+    - Black Arch Linux: https://blackarch.org/
+    - PTF搭載のUbuntuまたはDebian: https://github.com/trustedsec/ptf
 
-Remember, we've tested the provided Linux and Windows VMs, which have the lab directions and other files needed for the labs!
+提供されているLinuxおよびWindows仮想マシンは、ラボの指示やラボに必要なその他のファイルがテスト済みであることを忘れないでください！
 
-First, you need software for your testing regimen. With this course, you received a copy of the SEC560 Linux virtual machine. Furthermore, this VMware image includes tools pre-installed and, in many cases, preconfigured so that you can apply them directly in your own testing. 
+まず、テスト手順用のソフトウェアが必要です。このコースでは、SEC560 Linux仮想マシンのコピーを受け取っています。さらに、このVMwareイメージにはツールがプリインストールされており、多くの場合プリコンフィグ済みであるため、自身のテストに直接適用できます。
 
-Another useful source of tools is the bootable Linux distributions various people have made freely available, loaded with useful assessment and attack tools. A solid set of tools is included in Kali Linux, created and maintained by Offensive Security. Numerous similar Linux images for pen testing are also available, but Kali is one of the best because of its comprehensive set of tools, compatibility with a wide range of hardware, and carefully designed organization and layout.
+有用なツールの別の入手先として、様々な開発者が無償で公開しているブータブルLinuxディストリビューションがあります。これらは有用な評価ツールや攻撃ツールを豊富に搭載しています。Offensive Securityが開発・保守するKali Linuxには堅牢なツールセットが含まれています。ペネトレーションテスト用の類似Linuxイメージは多数存在しますが、Kaliは包括的なツールセット、幅広いハードウェアとの互換性、入念に設計された構成とレイアウトにより、最高峰の一つと言えます。
 
 ### An Important Note: Command Prompts
 
 ![[スクリーンショット 2026-03-02 10.58.27.png]]
 
-- We work with numerous different shells and switch often 
-- Be aware of shells within shells: Linux → Metasploit → Meterpreter → … 
-- The labs and notes indicate the prompts 
-	- Windows cmd.exe: C:\> 
-	- Windows PowerShell: PS C:\> 
-	- Linux (non-root): $ or % 
-	- Linux (root): # 
-	- msfconsole: msf > 
-	- Meterpreter: meterpreter >
+- 様々なシェルを頻繁に切り替えて作業する
+- シェル内シェルに注意：Linux → Metasploit → Meterpreter → …
+- ラボとノートにプロンプトが表示される
+    - Windows cmd.exe: C:\> 
+	- Windows PowerShell: PS C:\>
+    - Linux (非root): $ または %
+    - Linux (root): #
+    - msfconsole: msf >
+    - Meterpreter: meterpreter >
 
-Please make sure you enter commands at the right prompt!
+正しいプロンプトでコマンドを入力してください！
 
-Throughout this course, we use numerous different shells, both in our operating system and within Metasploit. We frequently change between these different shells as we switch back and forth between Linux and Windows, as well as within different aspects of Metasploit. Sometimes, even on a single page in the book, you use two or even three different types of shells to do something and then observe the results. 
+本コースでは、オペレーティングシステム内およびMetasploit内で、数多くの異なるシェルを使用します。LinuxとWindowsの間を行き来する際や、Metasploitの異なる機能内で作業する際、これらの異なるシェルを頻繁に切り替えます。時には、書籍の単一ページ内でさえ、何かを行うために2つ、あるいは3つの異なるタイプのシェルを使用し、その結果を観察することもあります。
 
-All the labs and notes were carefully written to indicate the proper shell you are supposed to use at any given time by including the shell prompt right before each command you are supposed to type. That is, each lab command is preceded by the prompt indicating which shell to use. The shell types you encounter throughout this class include:
+すべての実習とノートは、各コマンド入力直前に適切なシェルプロンプトを表示することで、その時点で使用するべきシェルを明確に示すよう慎重に作成されています。つまり、各実習コマンドの前には、使用するシェルを示すプロンプトが付いています。このクラスで遭遇するシェルタイプには以下が含まれます：
 
-Double-check at each lab step that you are entering the proper command into the proper shell. Otherwise, a given lab step will not work for you properly.
+各実習ステップで、適切なコマンドを適切なシェルに入力していることを必ず再確認してください。そうしないと、その実習ステップが正しく動作しません。
 
 ### Networking
 
-- VPN address will be 10.254.X.X 
-	- tun0 on Linux, Ethernet2 on Windows 
-- NAT addresses: will vary depending on your system! 
-	- It will commonly be 172.16.X.X or 192.168.X.X, but it could be different 
-- Network mask and DNS are set automatically 
-- In your VMs, we have helpers that show your IP address in the UI 
-	- Windows IP addresses can lag by up to a minute
+- VPNアドレスは10.254.X.Xとなります
+    - Linuxではtun0、WindowsではEthernet2
+- NATアドレス：システムによって異なります！
+	- 通常は172.16.X.Xまたは192.168.X.Xですが、異なる場合もあります
+- ネットワークマスクとDNSは自動設定されます
+- VM内には、UIでIPアドレスを表示するヘルパーが用意されています
+    - WindowsのIPアドレス表示は最大1分遅延する場合があります
 
 ![[スクリーンショット 2026-03-02 11.02.14.png]]
 
-All the VMs will use DHCP to dynamically acquire IP addresses and network information.
+すべての仮想マシンはDHCPを使用してIPアドレスとネットワーク情報を動的に取得します。
 
-Your VMs will be configured to use NAT, where the network connectivity will be shared with the computer, and the VMs are not directly accessible on the local network. The VMs will be able to communicate with each other.
+仮想マシンはNATを使用するように設定され、ネットワーク接続はホストコンピュータと共有されます。仮想マシンはローカルネットワーク上で直接アクセスできませんが、相互に通信可能です。
 
-Many of the labs will require that you connect to the SANS-hosted infrastructure using a VPN. To configure the VPN, follow the directions in your workbook (electronic or paper).
+多くの実習では、VPNを使用してSANSがホストするインフラストラクチャに接続する必要があります。VPNの設定については、ワークブック（電子版または紙版）の指示に従ってください。
 
-You will not use your host system in any of the lab networks; however, your host will get an IP address on the lab network (for in-person classes), so make sure you have the latest software patches and host protections in place.
+実習ネットワークではホストシステムを使用しませんが、対面授業の場合、ホストシステムは実習ネットワーク上でIPアドレスを取得します。そのため、最新のソフトウェアパッチとホスト保護対策が適用されていることを確認してください。
 
 ### Remote Connectivity via VPN
 
 ![[スクリーンショット 2026-03-02 11.09.02.png]]
 
-Depending on how you are using your local VM, you may need to use the IP address for the local interface or the VPN interface. If you are setting up a connection directly between your VMs, then use the address assigned to the eth0 interface on Linux or the Ethernet0 interface on Windows. 
+ローカルVMの使用方法に応じて、ローカルインターフェースまたはVPNインターフェースのIPアドレスを使用する必要があります。VM間で直接接続を設定する場合は、Linuxのeth0インターフェースまたはWindowsのEthernet0インターフェースに割り当てられたアドレスを使用してください。
 
-If you need to have a remote target connect to your VM, such as an exploit callback, use your Windows or Linux tun0 interface and associated IP address or the Ethernet 2 interface on Windows.
+リモートターゲット（エクスプロイトコールバックなど）が仮想マシンに接続する必要がある場合は、WindowsまたはLinuxのtun0インターフェースと関連するIPアドレス、またはWindowsのEthernet 2インターフェースを使用してください。
 
 ## Building an Infrastructure
 
-- For Pen Testing
-	- Attack software 
-	- Hardware 
-	- Network infrastructure
-- For Testing Tools and Techniques
-	- Target software 
-		- Active Directory domain controller
-		- Target hosts and services 
-	- Hardware 
-	- Network infrastructure
+- ペネトレーションテスト用
+    - 攻撃対象ソフトウェア
+    - ハードウェア
+    - ネットワークインフラ
+- テストツールおよび手法用
+    - 対象ソフトウェア
+        - Active Directoryドメインコントローラー
+        - 対象ホストおよびサービス
+    - ハードウェア
+    - ネットワークインフラ
 
-Your first time running a tool shouldn't be in someone else's production network!
+初めてツールを実行する際は、他人の本番ネットワークで行うべきではありません！
 
 ![[スクリーンショット 2026-03-02 11.22.03.png]]
 
-Before we begin pen testing, we need systems from which we can test and systems that we can use as a test lab, such as for testing new tools and techniques. These two pieces will likely be separate, but we need the systems, nonetheless. Your needs may differ from what is presented here. This is designed to be a baseline infrastructure, which you can expand or modify based on your needs.
+ペネトレーションテストを開始する前に、テスト対象となるシステムと、テストラボとして使用できるシステム（新しいツールや技術のテスト用など）が必要です。これら2つは別々の環境となる可能性が高いですが、いずれにせよシステムは必須です。お客様の要件はここで提示する内容と異なる場合があります。これは基盤となるインフラストラクチャとして設計されており、必要に応じて拡張または変更が可能です。
 
 ### Building a Lab
 
-Test new tools and techniques in your lab! A broken lab is fine; breaking production systems is a big problem!
+ラボ環境で新ツールや技術をテストしよう！ラボ環境が壊れても問題ないが、本番システムを壊すのは大問題だ！
 
-- Use VMs: Easily revert, store, clone, and build systems 
-- Servers: Active Directory, File Servers, IIS; Multiple Linux distros 
-- End user: Windows 11, Ubuntu, Fedora 
-- Licensing:
-	- Linux: Typically free. RHEL requires a paid subscription, but Fedora is very similar 
-	- Windows: Use free trials or pay for a license
+- VMの利用：システムの復元・保存・クローン作成・構築が容易
+- サーバー：Active Directory、ファイルサーバー、IIS；複数Linuxディストリビューション
+- エンドユーザー：Windows 11、Ubuntu、Fedora
+- ライセンス：
+	- Linux：通常無料。RHELは有料サブスクリプションが必要だが、Fedoraはほぼ同等
+    - Windows：無料トライアル利用またはライセンス購入
 
-Virtual machines are a great way for offensive personnel to build, test, revert quickly, and clone test systems. The VMs can be run in the cloud, on the tester's laptop, or even on old hardware. 
+仮想マシンは、攻撃担当者がテストシステムを構築・テスト・迅速な復元・複製を行う優れた手段です。クラウド上、テスターのノートPC、あるいは古いハードウェア上でも実行可能です。
 
-You should test new tools in a laboratory environment to make sure you understand how they work and their potential impacts on a target machine. Such laboratory testing and analysis is especially vital for free tools downloaded from the internet because of concerns about quality, the potential to crash a target, and hidden functionality that could compromise the test systems. 
+新しいツールは実験環境でテストし、その動作原理と対象マシンへの潜在的な影響を確実に理解すべきです。特にインターネットからダウンロードした無料ツールについては、品質面での懸念、対象マシンのクラッシュリスク、テストシステムを危険に晒す可能性のある隠れた機能の存在から、こうした実験室でのテストと分析が極めて重要です。
 
-It is important to have a good lab that consists of many of the same systems and software you will see in the target environment. Obviously, the lab can't contain all possible combinations or all software, but a representative sampling is good for our purposes. 
+ターゲット環境で見られるシステムやソフトウェアの多くを再現した、優れたラボ環境を構築することが重要です。当然ながら、ラボに全ての組み合わせやソフトウェアを網羅することは不可能ですが、代表的なサンプルを揃えることが目的達成には有効です。
 
-We must have systems that resemble a wide range of target networks. Most networks use a Windows Domain and, therefore, a Domain Controller (we'll discuss attacking the Windows Domain later in this course). Similarly, most of these networks include Windows file servers and web servers. You could combine these two roles into one system to save on physical resources and licensing. Of course, the most widely used end-user system in the enterprise is Windows, so we'll need one of those systems in our lab. 
+多様なターゲットネットワークを模したシステムが必要です。ほとんどのネットワークはWindowsドメインを使用しており、したがってドメインコントローラーが必要です（Windowsドメインへの攻撃については本コースの後半で説明します）。同様に、これらのネットワークのほとんどはWindowsファイルサーバーとWebサーバーを含みます。物理リソースとライセンスを節約するため、これら2つの役割を1つのシステムに統合することも可能です。もちろん、企業内で最も広く使用されているエンドユーザーシステムはWindowsであるため、ラボ環境にもそのシステムが必要です。
 
-Unfortunately, using Windows in a lab is more difficult due to licensing. You can pay for licenses and can have as many different targets as you like, including older server and end-user systems. Many people have much tighter budgetary constraints that limit them to free systems only. We do not recommend or condone stealing or otherwise bypassing the legal licensing requirements set by Microsoft (or other vendors). Microsoft offers free VMs for testing; however, it is limited to the latest operating system, and the licensing window is limited. 
+残念ながら、ラボ環境でのWindows利用はライセンスの制約により困難です。ライセンスを購入すれば、古いサーバーやエンドユーザーシステムを含め、任意の数の異なるターゲット環境を構築できます。しかし多くの場合、予算が厳しく無料システムのみに制限されるケースがほとんどです。マイクロソフト（または他のベンダー）が定める法的ライセンス要件を、不正取得やその他の方法で回避する行為は推奨も容認もいたしません。Microsoftはテスト用無料VMを提供していますが、最新OSに限定され、ライセンス期間も制限されています。
 
-On the Linux side, we can use a range of free Linux systems. For example, Ubuntu is a common free Linux distribution found in enterprises. While most of the installs and updates for Linux are free, some are not. For example, Red Hat updates are not free, but it is very similar to Fedora.
+Linux側では、様々な無料Linuxシステムを利用可能です。例えばUbuntuは企業環境で一般的な無料Linuxディストリビューションです。Linuxのインストールや更新の大半は無料ですが、一部有料のものもあります。例えばRed Hatの更新は有料ですが、Fedoraと非常に類似しています。
 
 ### Systems Used for Internal Testing
 
-Use a "leave behind" or "drop box" system for long-running tasks and remote access.
-- Physical: Laptop or Minicomputer 
-	- Use full disk encryption or wipe the device before return shipping 
-	- Note: Internal policies often allow corporate-owned devices on the network but require extra paperwork for third-party-owned devices 
-- Virtual: Custom VM
-	- Target is responsible for destruction 
-	- Requires internal team to provision, set up, and configure
+長期実行タスクやリモートアクセスには「残置」または「ドロップボックス」システムを使用する。
+- 物理環境：ノートPCまたはミニコンピュータ
+    - 返送前にフルディスク暗号化またはデバイス消去を実施
+    - 注記：社内ポリシーでは企業所有デバイスのネットワーク接続を許可する一方、第三者所有デバイスには追加書類を要求する場合が多い
+- 仮想環境：カスタムVM
+	- 対象組織が廃棄責任を負う
+    - 内部チームによるプロビジョニング、セットアップ、設定が必要
 
-If you're physically on the same network as the targets, use Bridged networking, not NAT!
+対象組織と物理的に同一ネットワーク上にいる場合、NATではなくブリッジドネットワークを使用すること！
 
-Next, we need the actual systems that will be used for the testing. The needs for internal testing and external testing are different. 
+次に、テストに使用する実際のシステムが必要です。内部テストと外部テストでは要件が異なります。
 
-For internal testing, we can use a "leave behind" or "drop box" for long-running tasks. We can also use this for remote-internal or pseudo-internal testing, which allows the penetration testers to work remotely but have internal access to their desired testing systems. The drop box could be physical, such as a laptop or a minicomputer. If you use full disk encryption (FDE) on the system, the target will then have to unlock the disk when initially booted or on reboot. Alternatively, the host OS could be booted without a key, and then the sensitive client data could be stored in an encrypted container using a key known to the pen testers. If there is any unencrypted data on the system, ensure it is properly scrubbed before shipping. You never want to ship unencrypted sensitive target data through the mail or a public shipping company. If that system is lost, it could be considered a reportable breach. 
+内部テストでは、長時間実行タスク用に「常駐型」または「ドロップボックス」を利用可能。リモート内部テストや疑似内部テストにも適用でき、ペネトレーションテスターがリモート作業しながら対象テストシステムへの内部アクセスを可能にする。ドロップボックスは物理デバイス（ノートPCやミニコンピュータなど）でも可。システムにフルディスク暗号化（FDE）を適用している場合、ターゲットは初回起動時または再起動時にディスクのロック解除が必要となります。あるいは、ホストOSをキーなしで起動し、機密クライアントデータをペネトレーションテスターが知るキーを使用した暗号化コンテナに保存する方法もあります。システム上に未暗号化データが存在する場合、発送前に適切に消去してください。機密性の高いターゲットデータを暗号化せずに郵便や一般配送会社で発送することは絶対に避けてください。当該システムが紛失した場合、報告義務のある情報漏洩とみなされる可能性があります。
 
-To get around the shipping issue, some third-party testers will sell or expense the drop box to the client as part of the contract. This also solves another common issue: internal access. Some organizations have strict policies as to what systems are allowed on the network. Corporate assets are allowed on the network, but third-party-owned assets require extra verification, documentation, and paperwork. If the organization owns the physical drop box device, then it is often easier to get the device on the network. 
+配送問題を回避するため、一部の外部テスト機関は契約の一部としてドロップボックスをクライアントに販売または経費処理します。これにより別の一般的な問題、すなわち内部アクセス問題も解決されます。組織によってはネットワーク接続を許可するシステムについて厳格なポリシーを設けている場合があります。企業資産はネットワーク接続が許可されますが、第三者所有資産には追加の検証・文書化・手続きが必要です。物理的なドロップボックス端末を組織が所有する場合、ネットワーク接続が容易になる傾向があります。
 
-You could create a custom VM configured to connect back to the pen testers, and no shipping is ever required. However, this often requires extra action from the internal team to provision, set up, and configure the VM.
+ペネトレーションテスターと接続するカスタムVMを構築すれば、配送は一切不要です。ただし、内部チームによるVMのプロビジョニング・設定・構成作業が追加で必要となる場合が多いです。
 
 ### Dedicated Test Systems
 
-Use unique, dedicated systems for each client
-- Ideally, even unique systems per engagement
-- Reduces likelihood of cross-contaminated reports or going out of scope 
-- Many testers use VMs since it is easier to start clean 
-- Do not use your day-to-day, surfing, or email system for testing 
-- Testing systems will not have security tools, such as firewalls or AV/EDR
-- External Testing: Build a new system in the cloud for each test
+各クライアントごとに専用のシステムを使用する
+- 理想的には、契約ごとに専用のシステムを用意する
+- レポートの相互汚染や範囲外作業の発生リスクを低減
+- クリーンな状態から開始しやすいVMを多くのテスターが利用
+- 日常業務・ネット閲覧・メールシステムをテストに使用しない
+- テストシステムにはファイアウォールやAV/EDRなどのセキュリティツールをインストールしない
+- 外部テスト：テストごとにクラウド上で新規システムを構築
 
-Scrub client data and testing VMs at the conclusion of a test.
+テスト終了時にはクライアントデータとテスト用VMを消去すること
 
-Next, you need the actual systems that will be doing the testing. We recommend that you use systems that are dedicated to testing and are unique for each engagement.
+次に、実際にテストを実行するシステムが必要です。テスト専用で、案件ごとに個別のシステムを使用することを推奨します。
 
-- Disabled defenses: The attack systems will not have defensive software such as AV/EDR, and it will often have its firewall disabled. These modifications decrease the defensive strength of the system should it come under attack from an adversary. You don't want these features disabled on your day-today system. 
-- Uptime: The testing systems will often need to be available and online for weeks or months. If you were to run the attack from your laptop (or even a VM on your laptop), the test could be impacted if you carry your laptop to another location (network change) or perform your day-to-day tasks (installing software, rebooting, patching). 
-- Prevent data leakage: If you use unique systems for each test, it is less likely that the data from one test will end up in the data from another test. This is especially important for third-party testers where the test data is likely to be from different organizations where such an action could be considered a breach of confidentiality. Such cross-contamination could lead to embarrassment, loss of trust, and even legal action.
+- 防御機能の無効化：攻撃用システムにはAV/EDRなどの防御ソフトウェアがインストールされず、ファイアウォールも無効化されることが多い。これらの変更により、敵対者からの攻撃を受けた場合のシステムの防御力が低下する。日常業務システムでこれらの機能を無効化すべきではない。
+- 稼働時間：テストシステムは数週間から数ヶ月間、稼働状態を維持する必要があることが多い。ノートPC（またはノートPC上の仮想マシン）から攻撃を実行する場合、ノートPCを別の場所へ移動（ネットワーク変更）したり日常業務（ソフトウェアインストール、再起動、パッチ適用）を実行したりすると、テストに影響が生じる可能性があります。
+- データ漏洩の防止：テストごとに専用システムを使用すれば、あるテストのデータが別のテストのデータに混入するリスクが低減されます。これは特に、テストデータが異なる組織から提供される可能性が高いサードパーティテスターにとって重要です。このような行為は機密保持違反と見なされる可能性があります。このようなデータの混入は、不名誉な事態、信頼の喪失、さらには法的措置につながる恐れがあります。
 
-At the conclusion of a test, be sure to clean the target data from the test systems. You can't lose data you don't have.
+テスト終了時には、テストシステムから対象データを確実に消去してください。存在しないデータは失うこともありません。
 
 ### Sources for Free Tools and Exploits
-
 - Exploit-DB: exploit-db.com 
-	- Sorted by remote, local, web app, denial of service, shellcode, and papers 
-- MITRE CVE Repository: cve.org 
-	- Latest information about vulnerabilities 
+    - リモート、ローカル、Webアプリ、サービス拒否、シェルコード、論文別に分類 
+- MITRE CVE リポジトリ: cve.org 
+    - 脆弱性に関する最新情報 
 - GitHub: github.com 
-	- Search by CVE or vulnerability name 
-	- Warning: Some people lie on the internet
+    - CVEまたは脆弱性名で検索可能 
+    - 警告: インターネット上では虚偽の情報が流通する場合があります
 
-We are not endorsing these sites or the tools they distribute. Remember to be careful! Always test exploits and tools in your lab!
+当サイトはこれらのサイトや配布ツールを推奨するものではありません。注意を怠らないでください！エクスプロイトやツールは必ずラボ環境でテストしてください！
 
-Although there are numerous exploit and attack tool repositories on the internet, some of the most comprehensive archives that are updated on a regular basis include the Exploit Database and Packet Storm Security. Other sites come and go on a regular basis, but these sites are long-standing and tend to have relatively higher-quality tools. 
+インターネット上には数多くのエクスプロイトや攻撃ツールのリポジトリが存在しますが、定期的に更新される最も包括的なアーカイブとしては、Exploit DatabaseとPacket Storm Securityが挙げられます。他のサイトは頻繁に出現・消滅しますが、これらのサイトは長年にわたり運営されており、比較的質の高いツールを提供している傾向があります。
 
-The Exploit Database (https://www.exploit-db.com/, or exploit-db for short) is maintained by the same group that maintains Kali Linux, Offensive Security. Its site hosts more than 10,000 exploits and sorts them into useful categories, such as Remote Exploits, Local Exploits, Web Applications, Denial of Service/Proof of Concept, Shellcode, and Papers. For each exploit in these categories, it lists the platform (Windows, Linux, PHP, and so on) and the author. 
+Exploit Database（https://www.exploit-db.com/、略称 exploit-db）は、Kali Linux を管理する Offensive Security グループが運営しています。同サイトには 10,000 件以上のエクスプロイトがホストされ、リモートエクスプロイト、ローカルエクスプロイト、Web アプリケーション、サービス拒否/概念実証、シェルコード、論文といった有用なカテゴリに分類されています。各カテゴリのエクスプロイトには、対象プラットフォーム（Windows、Linux、PHPなど）と作成者が明記されています。
 
-Note that we are not endorsing these sites or the tools that they distribute. These sites have been quite controversial, and you need to be careful with any code you download. Be careful downloading tools from sources you have not vetted, as malicious attackers routinely release fake exploits that will actually compromise your attacking system (https://www.bleepingcomputer.com/news/security/fake-microsoftexchange-proxynotshell-exploits-for-sale-on-github/). 
+※当サイトはこれらのサイトや配布ツールを推奨するものではありません。これらのサイトはかなり物議を醸しており、ダウンロードするコードには細心の注意が必要です。検証済みのソース以外からのツールダウンロードには特に注意が必要です。悪意のある攻撃者は、攻撃システム自体を侵害する偽のエクスプロイトを日常的に公開しています（https://www.bleepingcomputer.com/news/security/fake-microsoftexchange-proxynotshell-exploits-for-sale-on-github/）。
 
-Beyond the tool and exploit sites, numerous vulnerability research sites are also available. Although these sites do not distribute exploit code freely, they do publish information about vulnerabilities. These detailed vulnerability descriptions are invaluable in letting a tester know that there is an issue with a system type or service version discovered in a test. Even though an exploit might not be available (in fact, an exploit may have never been publicly released or even created), the tester still needs to understand the vulnerabilities so that they can be included in the test report. 
+ツールやエクスプロイトサイト以外にも、数多くの脆弱性研究サイトが存在する。これらのサイトはエクスプロイトコードを自由に配布しないものの、脆弱性に関する情報を公開している。こうした詳細な脆弱性説明は、テストで発見されたシステム種別やサービスバージョンに問題があることをテスターに知らせる上で非常に貴重である。エクスプロイトが入手できない場合（実際、エクスプロイトが公に公開されたことがない、あるいは作成すらされていない可能性もある）であっても、テスターは脆弱性を理解し、テストレポートに含める必要があります。
 
-Some of the best sites with vulnerability research and detailed descriptions are the following sites:
-- The United States Computer Emergency Readiness Team (US-CERT) (https://www.cisa.gov/newsevents/cybersecurity-advisories), maintained by the US Department of Homeland Security (DHS) 
-- The Common Vulnerabilities and Exposures (CVE) repository operated by MITRE (https://cve.mitre.org/)
+脆弱性研究と詳細な説明を提供する優れたサイトの一部は以下の通りです：
+- 米国国土安全保障省（DHS）が運営する米国コンピュータ緊急対応チーム（US-CERT）（https://www.cisa.gov/newsevents/cybersecurity-advisories）
+- MITREが運営する共通脆弱性情報（CVE）リポジトリ（https://cve.mitre.org/）
 
 ### Tools for Penetration Testing Teams
 
-- Knowledge base 
-	- Must be easy to search and update or it won't be used 
-	- Share tools and techniques for specific attacks 
-	- Internal teams can share remediations and solutions 
-	- Tools: OneNote, Confluence, Wiki 
-- Storage − In-house tools, code, artifacts found in target environment 
-	- Tools: File share, SharePoint, cloud storage, Git 
-- Central code repository (Git, CVS, SVN, Mercurial, TFS/VSTS)
-- Chat (secured) 
-- Secure credential sharing 
-	- You need a secure way to share credentials with your team 
-	- Tools: 1Password (includes 2FA), LastPass, KeePass 
-- Common finding repository 
-	- Don't rewrite the same finding every time; tweak it for the specific case 
-	- Tools: Excel, Word, DB, Git 
-- Collaborative report writing 
-	- Tools: M365, Google Docs, Git 
-- Pen Test specific (less common) 
-	- Tools: Dradis, PlexTrac
+- ナレッジベース
+    - 検索と更新が容易でなければ活用されない
+    - 特定の攻撃に対するツールや手法を共有
+    - 内部チームが対策や解決策を共有可能
+    - ツール: OneNote、Confluence、Wiki 
+- ストレージ − 社内ツール、コード、対象環境で発見されたアーティファクト
+    - ツール：ファイル共有、SharePoint、クラウドストレージ、Git
+- 中央コードリポジトリ（Git、CVS、SVN、Mercurial、TFS/VSTS）
+- チャット（セキュア）
+- セキュアな認証情報共有
+    - チームと認証情報を安全に共有する手段が必要
+    - ツール：1Password（2FA対応）、LastPass、KeePass
+- 共通発見事項リポジトリ
+    - 同じ発見事項を毎回書き直す必要なし；特定ケースに合わせて調整 
+	- ツール: Excel、Word、DB、Git
+- 共同レポート作成
+    - ツール: M365、Google Docs、Git
+- ペネトレーションテスト特化（比較的稀）
+    - ツール: Dradis、PlexTrac
 
-Most penetration testers work as part of a team. Even if you are working by yourself, it is important to take good notes so you can save yourself time on future engagements. We recommend that you have a knowledge base containing tools, techniques, and command examples to make your attacks more efficient. Also, this is a great way to share with your team, especially new or junior members. The specific tool isn't as important as the process, but some of the common tools used are Confluence, a wiki, or OneNote. This must be easy to use, search, and update, or your team won't use it.
+ほとんどのペネトレーションテスターはチームの一員として活動します。単独で作業する場合でも、将来の業務で時間を節約できるよう、適切なメモを取ることが重要です。攻撃効率化のため、ツール・手法・コマンド例をまとめたナレッジベースの構築を推奨します。これは特に新人やジュニアメンバーとの情報共有にも有効です。具体的なツールはプロセスほど重要ではありませんが、Confluence、Wiki、OneNoteなどが一般的です。チームが活用するには、操作・検索・更新が容易であることが必須です。
 
-You will need storage for data specific to the engagement. You will often find keys, certificates, and other artifacts that are useful in the penetration test that you need to (securely) share with other team members. This could be an internal file share, SharePoint, cloud storage, or a Git repository. This needs to be easily accessible and updatable by the team members. Remember to clean up this data when the test is complete!
+エンゲージメント固有のデータを保存するストレージも必要です。ペネトレーションテストで有用な鍵、証明書、その他のアーティファクトを頻繁に見つけ、それらを（安全に）他のチームメンバーと共有する必要があります。これには内部ファイル共有、SharePoint、クラウドストレージ、Gitリポジトリなどが該当します。チームメンバーが容易にアクセス・更新できることが必須です。テスト終了後は必ずこのデータをクリーンアップしてください！
 
-Your team will often have in-house code that needs to be shared with team members. Most teams these days use Git. Other common version control software includes CVS, SVN, Mercurial, and the Microsoft Team Foundation Server (TFS) or Visual Studio Team Services (VSTS).
+チームでは、メンバー間で共有する必要のある社内コードが頻繁に発生します。現在ではほとんどのチームがGitを利用しています。その他の一般的なバージョン管理ソフトウェアには、CVS、SVN、Mercurial、Microsoft Team Foundation Server（TFS）またはVisual Studio Team Services（VSTS）などがあります。
 
-Your team needs to communicate, so a secure chat mechanism is important. Signal and Telegram offer great security, but the scalability for an enterprise-ready tool is lacking. Microsoft Teams, while somewhat behind the curve in the world of chat, offers retention policies to make cleanup automatic. Similarly, Slack offers a retention policy at their paid tier. Many teams using internal services, such as IRC, allow the pen testers to have more control over the data.
+チーム間のコミュニケーションには安全なチャット機能が不可欠です。SignalやTelegramは優れたセキュリティを提供しますが、企業向けツールとしての拡張性に欠けます。Microsoft Teamsはチャット分野ではやや遅れているものの、自動クリーンアップを実現する保存ポリシーを提供します。同様にSlackも有料プランで保存ポリシーを提供しています。IRCなどの内部サービスを利用する多くのチームでは、ペネトレーションテスターがデータをより細かく制御できます。
 
-Clients will give you credentials, you will likely acquire new credentials (cracking, guessing, or even cleartext), and you possibly will even create accounts in the target network. It is important to securely share that information with your teammates. There are a number of password vaulting tools that can be useful here, including 1Password, LastPass, and KeePass. One nice benefit of 1Password is that it also allows you to store some 2FA tokens.
+クライアントから認証情報を提供され、新たな認証情報を取得する（クラッキング、推測、あるいは平文での取得）可能性があり、対象ネットワークにアカウントを作成することさえあるでしょう。これらの情報をチームメンバーと安全に共有することが重要です。1Password、LastPass、KeePassなど、パスワード管理ツールが有用です。1Passwordの利点は、2段階認証トークンも保存できる点です。
 
-Finally, we need ways to write reports in a consistent manner. It is a timesaver to have a repository for common vulnerabilities and findings. These findings are pre-vetted prior to going into the report. This allows you to have a good quality base for the finding and you can tweak the finding for the particular scenario or target. This is a tremendous time-saver. The findings in the repository should not contain any target information, making it much safer to copy into a report. Be very careful never to copy data between reports, as this can lead to data leakage. The authors of this course have heard of multiple instances where one target's name or details ended up in a report for a different target. This can be embarrassing and undermine your credibility.
+最後に、一貫性のある報告書作成手法が必要です。共通の脆弱性や発見事項を保管するリポジトリを用意すれば時間を節約できます。これらの発見事項は報告書に組み込む前に事前審査済みです。これにより発見事項の質が保証され、特定のシナリオやターゲットに合わせて調整可能になります。これは非常に大きな時間節約になります。リポジトリ内の発見事項にはターゲット情報が含まれていないため、報告書への転載が安全です。レポート間のデータコピーは絶対に避けてください。データ漏洩の原因となります。本コースの執筆者は、ある対象の名称や詳細が別の対象のレポートに混入した事例を複数耳にしています。これは恥ずかしい事態であり、信頼性を損なう恐れがあります。
 
-To make report writing easier for multiple people, having a collaborative reporting environment is nice because it saves time. Ideally, this allows multiple people to work on the report (and even the same portion of the report) at the same time. Services like Google Docs and SharePoint with Microsoft Office allow for this kind of shared editing. Some penetration testers use version control software (e.g., Git, SVN) to manage reporting, but in the author's experience, this can lead to a number of code/edit conflicts that take extra time to resolve.
+複数人でのレポート作成を容易にするため、共同編集環境の整備が有効です。時間を節約できるからです。理想的には、複数人が同時に報告書（場合によっては同一セクション）を編集できる環境が望ましい。Google DocsやMicrosoft OfficeのSharePointなどのサービスは、この種の共同編集を可能にする。一部のペネトレーションテスターはバージョン管理ソフトウェア（例：Git、SVN）で報告書を管理するが、筆者の経験上、これは解決に余分な時間を要するコード/編集の競合を引き起こす可能性がある。
 
-Some penetration testers use collaborative tools specifically designed for penetration testing. The two most common ones are Dradis and Lair.
+一部のペネトレーションテスターは、ペネトレーションテスト専用に設計された共同作業ツールを使用します。最も一般的なものはDradisとLairです。
 
-The Dradis tool is a Ruby-on-Rails project designed for recording information among multiple penetration testers working on one or more projects together. The Dradis server runs on Windows, Linux, or macOS and features multiple client options: a command-line client, several different thick client applications, or a web-based interface.
+Dradisツールは、複数のペネトレーションテスターが1つ以上のプロジェクトで共同作業する際の情報記録を目的としたRuby on Railsプロジェクトです。DradisサーバーはWindows、Linux、macOS上で動作し、コマンドラインクライアント、複数の厚いクライアントアプリケーション、またはウェブベースのインターフェースといった複数のクライアントオプションを備えています。
 
-All results are organized as a hierarchical tree, typically organized starting by overall project, then split according to functional areas of the target infrastructure (for example, DMZ/intranet/extranet, servers/network devices/clients, or other applicable divisions of the test's scope), then separated by individual devices, down to individual ports on those devices, and then through findings and notes associated with each port.
+すべての結果は階層ツリーとして整理され、通常はプロジェクト全体から始まり、対象インフラの機能領域（例：DMZ/イントラネット/エクストラネット、サーバー/ネットワーク機器/クライアント、またはテスト範囲のその他の適用可能な区分）に応じて分割され、個々のデバイスごとに分離され、それらのデバイス上の個々のポートまで細分化され、各ポートに関連する発見事項や注記を通じて表示されます。
 
-With Dradis, a tester can import results from the Nmap port scanning tool, the Nessus or Qualys network vulnerability scanning tools, the Nikto web server scanning tool, or the Burp web application attack tool. In addition, the tester can manually enter findings and notes or add analytical notes to results already imported.
+Dradisを使用すれば、テスターはNmapポートスキャンツール、NessusまたはQualysネットワーク脆弱性スキャンツール、Niktoウェブサーバースキャンツール、Burpウェブアプリケーション攻撃ツールからの結果をインポートできます。さらに、テスターは手動で発見事項やメモを入力したり、既にインポートされた結果に分析メモを追加したりすることも可能です。
 
 ## Linux for Penetration Testers
 
 ### Linux vs. Windows
 
-Windows and Linux are simply tools (or toolboxes) 
-- Many attack tools work better/only on Linux
-- Domain operations are often easier on Windows 
-- Switch between them as needed (VMs)
-- macOS is acceptable, but use VMs 
-	- macOS is required for some iOS mobile testing
+WindowsとLinuxは単なるツール（あるいはツールボックス）である
+- 多くの攻撃ツールはLinux上でより効果的に動作する／Linux上でのみ動作する
+- ドメイン操作はWindows上の方が容易な場合が多い
+- 必要に応じて両者を切り替える（仮想マシン）
+- macOSも許容範囲だが、仮想マシンを使用する
+    - 一部のiOSモバイルテストにはmacOSが必須
 
-That said, Linux is an OS penetration testers need to understand. We need to briefly go through Linux basics to make sure everyone is on the same page.
+とはいえ、Linuxはペネトレーションテスターが理解すべきOSである。全員が共通認識を持つため、Linuxの基本を簡単に確認しましょう。
 
-A common question among penetration testers and ethical hackers is, "Should I focus my skills and toolbox on Linux or Windows?" When confronted with this question, we recommend that your pen test toolset include both operating systems side by side, working together to maximize your efficiency and capabilities. The truth is that some tools work better on Linux, whereas others work better on Windows. Some tools work just fine on both, whereas other tools have been released for only one of those platforms. Thus, if you choose to work in only one OS or at least just focus on that OS, you'll be missing out on a lot of useful tools and techniques. To improve productivity and streamline workflow, we recommend virtualizing one of these two OSs, perhaps using VMware, and running the two simultaneously on the same hardware so that you can quickly switch between them.
+ペネトレーションテスターや倫理的ハッカーの間でよく聞かれる質問が「スキルやツールボックスはLinuxとWindowsのどちらに集中すべきか？」です。この問いに対しては、両OSを並行して活用し、効率と能力を最大化するツールセットを構築することを推奨します。実際、Linuxで動作が優れるツールもあれば、Windowsで優れるツールもあるからです。両OSで問題なく動作するツールもあれば、特定のプラットフォーム専用にリリースされたツールも存在します。したがって、単一のOSのみを使用するか、少なくともそのOSに集中することを選択した場合、多くの有用なツールや技術を逃すことになります。生産性を向上させワークフローを効率化するため、VMwareなどを使用してこれら2つのOSのいずれかを仮想化し、同じハードウェア上で同時に実行することを推奨します。これにより、OS間の切り替えを迅速に行えます。
 
-The entire question posed at the start of the preceding paragraph illustrates a mindset that should be transcended. Don't think of them as two different operating systems. Think of them as one set of tools that you use in your penetration testing and ethical hacking job. As a carpenter or plumber would use the best tool that is available and convenient for a given job, so should you. To continue with that analogy, don't think of Windows and Linux as two different toolboxes; instead, they are two different compartments in your single toolbox.
+前段落冒頭の質問自体が、超えるべき思考パターンを示しています。これらを「異なるOS」と捉えるのではなく、「ペネトレーションテストや倫理的ハッキング業務で使用するツール群」と考えるべきです。大工や配管工が作業に適した最良の道具を選ぶように、あなたも同様に選択すべきです。この比喩を続けるなら、WindowsとLinuxを別々の工具箱と考えるのではなく、単一の工具箱内の二つの異なる収納スペースと捉えるべきです。
 
-Some of you are no doubt wondering whether macOS is an acceptable platform for penetration testing and ethical hacking. It is—with remarkable stability and ease of use. However, there are some tools for Linux and Windows that simply will not run on macOS, no matter how hard you try to get them installed. Thus, if you plan to use macOS, make sure you get a virtualization solution for it (such as VMware Fusion or Parallels) so that you can also run both Windows and Linux on top of macOS.
+macOSがペネトレーションテストや倫理的ハッキングに適したプラットフォームかどうか疑問に思う方もいるでしょう。答えはイエスです。驚くべき安定性と使いやすさを備えています。ただし、LinuxやWindows向けのツールの中には、どんなにインストールを試みてもmacOSでは動作しないものがあります。したがってmacOSを使用する場合は、VMware FusionやParallelsなどの仮想化ソリューションを導入し、macOS上でWindowsとLinuxの両方を実行できるようにしてください。
 
-In this course, we will be using our Linux VM to perform our attacks. Linux is the Operating System (OS) used by the vast majority of offensive personnel. Many tools work better or work only in Linux. Also, the package management system in many of the Linux distributions makes the configuration and setup of the tools quite easy. While we will be using Linux a lot, remember that both Windows and Linux are simply tools, and we should switch between them as needed to be efficient.
+本コースでは、攻撃の実行にLinux仮想マシン（VM）を使用します。Linuxは攻撃側の技術者の大多数が使用するOSです。多くのツールはLinux環境でより良く動作するか、Linux環境でのみ動作します。また、多くのLinuxディストリビューションのパッケージ管理システムにより、ツールの設定やセットアップが非常に容易になります。Linuxを多用しますが、WindowsもLinuxも単なるツールであり、効率的に作業するため必要に応じて切り替えるべきであることを覚えておいてください。
 
-560vm is based on Ubuntu. Inside our VM, we will be using the Bourne Again Shell (Bash) as our shell on the command line. There are other Linux distributions and shells, each of which does things a little differently, but the core functionally is the same.
+560vmはUbuntuをベースとしています。VM内部では、コマンドラインシェルとしてBourne Again Shell（Bash）を使用します。他のLinuxディストリビューションやシェルも存在し、それぞれ動作が若干異なりますが、中核的な機能は同じです。
 
 ### Users: Root and Non-root
 
-- Principle of least privilege: Only use elevated privileges when necessary
-	- As attackers, we can often exploit deficiencies in least privilege 
-- Non-root users − Have a prompt with a $ (sometimes % in other shells) 
-	- Home directory similar to: /home/username 
-- Root users 
-	- Have a prompt with a # 
-	- Home directory: /root
-- As root, create a (backdoor) account: useradd username 
-- Change your password with passwd 
-	- Change another user's password (must be root): passwd username
+- 最小権限の原則：必要な場合にのみ昇格された権限を使用する
+    - 攻撃者として、最小権限の欠陥を悪用できる場合が多い
+- 非rootユーザー − プロンプトが$（他のシェルでは%の場合あり）
+    - ホームディレクトリ例：/home/username
+- rootユーザー
+    - プロンプトが#
+    - ホームディレクトリ：/root
+- rootとして（バックドア）アカウントを作成: useradd ユーザー名
+- passwdでパスワードを変更
+    - 他ユーザーのパスワード変更（root権限必須）: passwd ユーザー名
 
-Pen Test Tip: See if you can access other user's home directories, history files, and keys
+ペネトレーションテストのヒント: 他のユーザーのホームディレクトリ、履歴ファイル、鍵へのアクセスが可能か確認する
 
-The principle of least privilege "states that only the minimum access necessary to perform an operation should be granted, and that access should be granted only for the minimum amount of time necessary" (US-CERT).
+最小権限の原則は「操作を実行するために必要な最小限のアクセス権のみを付与し、そのアクセス権は必要な最小限の時間のみ付与されるべきである」と規定している（US-CERT）。
 
-Attackers will often abuse shortcomings in the execution of the principle to escalate permissions or move from a non-privileged user to a privileged user. On a Linux system, the prompt will change depending on the user's access level. Also, the home directories for "root" and regular users are, by default, in different locations.
+攻撃者は、この原則の実行上の欠点を悪用して権限を昇格させたり、非特権ユーザーから特権ユーザーへ移行したりすることが多い。Linuxシステムでは、ユーザーアクセスレベルに応じてプロンプトが変化する。また、「root」と一般ユーザーのホームディレクトリは、デフォルトで異なる場所に配置される。
 
-- Non-root users: 
-	- Have a prompt with a $ or % 
-	- Home directory similar to: /home/username 
-- Root users:
-	- Have a prompt with a # 
-	- Home directory: /root
+- 非rootユーザー:
+    - プロンプトに$または%が付く
+    - ホームディレクトリ例: /home/username
+- rootユーザー:
+    - プロンプトに#が付く
+    - ホームディレクトリ: /root
 
-If you want to create an account, such as a backdoor for persistence, you can use the useradd command. The command takes the following options:
+永続化のためのバックドアなどアカウントを作成するには、useraddコマンドを使用できる。このコマンドは以下のオプションを取ります：
 
-useradd [options] LOGIN 
-	-d HOME_DIR 
-	-e EXPIRE_DATE (format YYYY-MM-DD) 
-	-u UID (numeric user ID, must be unique unless -o is used. Users with a UID of zero are granted root-level access)
+useradd [オプション] ユーザー名
+    -d ホームディレクトリ
+    -e 有効期限 (YYYY-MM-DD形式)
+    -u UID (数値ユーザーID。-oオプションを使用しない限り一意である必要がある。UIDが0のユーザーはrootレベルのアクセス権を付与される)
 
-See more options by running: man useradd
+詳細なオプションは以下で確認できます：man useradd
 
 ### Who Am I?
 
- - Attackers will often gain access to a system and have no idea who they are or what access they have
-	- The shell prompt is not always visible to an attacker
-- Get your username with whoami 
-- Get your user ID and group IDs with id
+- 攻撃者はシステムへのアクセス権を得ても、自分が誰なのか、どのアクセス権を持っているのかを把握していないことが多い
+    - シェルプロンプトは攻撃者に常に表示されるとは限らない
+- whoami でユーザー名を取得する
+- id でユーザーIDとグループIDを取得する
 
 ```
 whoami 
@@ -854,37 +850,37 @@ id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-When you successfully exploit a system, often, you will not know the level of access you have or the user you are running as. One of the first things to do is run the whoami command to determine your user. To get more information about your access, you can use the id command to get your numeric user ID and your group memberships. In the example below, we have access as a regular user (clark), and then, using a privilege escalation exploit, we gain root permissions.
+システムへの侵入に成功しても、多くの場合、自分がどのレベルのアクセス権を持っているか、あるいはどのユーザーとして実行されているかはわからない。まず最初に行うべきことの一つは、whoamiコマンドを実行して自分のユーザーを特定することだ。アクセス権に関する詳細情報を得るには、idコマンドを使用して数値のユーザーIDと所属グループを取得できる。以下の例では、一般ユーザー（clark）としてアクセスした後、権限昇格エクスプロイトを使用してroot権限を取得しています。
 
 ### Linux Filesystem Structure
 
-- The top of the file system is called / (root) 
-- The filesystem can vary for different distributions of Linux and BSD
+- ファイルシステムの最上位ディレクトリは / (ルート) と呼ばれます
+- ファイルシステムの構造は、Linux や BSD のディストリビューションによって異なる場合があります
 
-TIP The /etc directory contains a number of interesting files, including configuration files, account information (in passwd), and hashes (in shadow). This is often a useful location to search.
+ヒント: /etc ディレクトリには、設定ファイル、アカウント情報 (passwd ファイル内)、ハッシュ (shadow ファイル内) など、多くの有用なファイルが含まれています。検索対象として有用な場所です。
 
 ![[スクリーンショット 2026-03-02 12.08.04.png]]
 
-- /bin and /sbin contain executable programs. 
-- /root is the root login account's home directory. This is hugely important because if you log in directly as root, this will be your initial location in the directory structure. If you log in as an individual user other than root, you'll be put in that user's directory, typically somewhere inside of /home. 
-- /dev stores devices (drives, terminals, etc.). 
-- /etc holds configuration items, like the account information (stored in /etc/passwd) and hashed passwords (stored in /etc/shadow). 
-- /home contains users' home directories. 
-- /lib contains common libraries.
-- /mnt is where various remote and temporary file systems (CD-ROMs, floppies, etc.) are attached. 
-- /proc is a virtual file system used to store kernel info. 
-- /tmp is for temporary data and is usually cleared at reboot. 
-- /usr holds user programs and other data. 
-- /var holds many different items, including logs (/var/log/). 
-- /opt stores optional items and is often a location for specialized tools that have been added to a distribution.
+- /bin と /sbin には実行可能プログラムが含まれます。
+- /root は root ログインアカウントのホームディレクトリです。これは非常に重要です。root として直接ログインした場合、ディレクトリ構造における初期位置となるためです。root 以外の個別ユーザーとしてログインすると、そのユーザーのディレクトリ（通常は /home 内のどこか）に配置されます。
+- /dev にはデバイス（ドライブ、端末など）が格納されます。
+- /etc には設定項目が保持されます。アカウント情報（/etc/passwd に保存）やハッシュ化されたパスワード（/etc/shadow に保存）などが該当します。
+- /home にはユーザーのホームディレクトリが含まれます。
+- /lib には共通ライブラリが含まれます。
+- /mnt は CD-ROM やフロッピーディスクなど、各種リモートファイルシステムや一時ファイルシステムをマウントする場所です。
+- /proc はカーネル情報を格納するための仮想ファイルシステムです。
+- /tmp は一時データ用で、通常は再起動時にクリアされます。
+- /usr はユーザープログラムやその他のデータを保持します。
+- /var はログ（/var/log/）を含む様々な項目を保持します。
+- /opt はオプション項目を格納し、ディストリビューションに追加された専用ツールの配置場所となることが多い。
 
 ### Navigating the Filesystem
 
 ![[スクリーンショット 2026-03-02 12.12.25.png]]
 
-We can use the cd command to change directories. This moves our current location to the new location. The shell will often show us our current directory, but if we want to print the working directory, we can use the pwd command.
+ディレクトリを変更するにはcdコマンドを使用できます。これにより現在の位置が新しい位置に移動します。シェルは現在のディレクトリを表示することが多いですが、作業ディレクトリを出力したい場合はpwdコマンドを使用できます。
 
-When referencing files or directories, we can use their absolute path or the location relative to our current location. The absolute path is the full path to the object. The command below uses absolute pathing:
+ファイルやディレクトリを参照する際には、絶対パスまたは現在の位置からの相対パスを使用できます。絶対パスとはオブジェクトへの完全なパスです。以下のコマンドは絶対パスを使用しています：
 
 ```
 sec560@560vm:~$ cd /var/log 
@@ -892,7 +888,7 @@ sec560@560vm:/var/log$ pwd
 /var/log
 ```
 
-Relative pathing references the location relative to our current location and does not use the leading slash (/). We can use .. ("dot dot") to access the parent directory (go up one level). This command uses relative pathing and changes our current working directory to /var, but only because we are currently in a directory under var:
+相対パスは現在の位置からの相対的な場所を参照し、先頭のスラッシュ(/)を使用しません。..（「ドットドット」）を使用して親ディレクトリ（1つ上のレベル）にアクセスできます。このコマンドは相対パスを使用し、現在の作業ディレクトリを/varに変更しますが、これは現在var配下のディレクトリにいる場合に限ります：
 
 ```
 sec560@560vm:/var/log$ cd .. 
@@ -900,7 +896,7 @@ sec560@560vm:/var$ pwd
 /var
 ```
 
-This command also uses relative pathing to move to the log directory in our current directory (var):
+このコマンドも相対パスを使用して、現在のディレクトリ（var）内のログディレクトリに移動します：
 
 ```
 sec560@560vm:/var$ cd log
@@ -908,14 +904,14 @@ sec560@560vm:/var/log$ pwd
 /var/log
 ```
 
-Your home directory is aliased as ~ (tilde). To move to your home directory, you can use
+ホームディレクトリは ~ (チルダ) というエイリアス名で呼ばれます。ホームディレクトリに移動するには、次のコマンドを使用できます。
 
 ```
 sec560@560vm:/var/log$ cd ~ 
 sec560@560vm:~$
 ```
 
-If we use the cd command without a directory, it will take us to our home directory.
+ディレクトリを指定せずにcdコマンドを使用すると、ホームディレクトリに移動します。
 
 ```
 sec560@560vm:/var/log$ cd 
@@ -926,7 +922,7 @@ sec560@560vm:~$
 
 ![[スクリーンショット 2026-03-02 13.31.51.png]]
 
-When you gain access to a system, you often do not know your current working directory. To get this location on Linux, we can use the pwd (print working directory) command. In a continuous shell, such as with the terminal, you can change directories and the shell remembers the change. The example below shows a continuous shell where we can't see the shell prompt.
+システムにアクセスした際、現在の作業ディレクトリがわからないことがよくあります。Linuxでこの場所を取得するには、pwd（print working directory）コマンドを使用できます。ターミナルなどの継続的シェルでは、ディレクトリを変更してもシェルがその変更を記憶します。以下の例は、シェルプロンプトが表示されない継続的シェルを示しています。
 
 ```
 pwd 
@@ -940,66 +936,66 @@ pwd
 
 ![[スクリーンショット 2026-03-02 15.22.35.png]]
 
-The ls command is used to "list" files. By default, the command will only show the file names. The default option will also skip hidden files. On Linux, an object is hidden when the first character is a dot (.). To see these hidden files, we can use the -a option to show "all" objects. Use the -l (lowercase L) to show the long format, which includes the type and permissions, link count, owner, group, file size, timestamp, and name.
+lsコマンドはファイルを「一覧表示」するために使用されます。デフォルトでは、このコマンドはファイル名のみを表示します。デフォルトでは隠しファイルも表示されません。Linuxでは、オブジェクトの先頭文字がドット(.)の場合、隠しファイルとして扱われます。隠しファイルを表示するには、-aオプションを使用して「すべての」オブジェクトを表示します。-l（小文字のL）オプションを使用すると、タイプと権限、リンク数、所有者、グループ、ファイルサイズ、タイムスタンプ、名前を含む詳細形式で表示されます。
 
 ### Permissions—File Mode Bits
 
 ![[スクリーンショット 2026-03-02 15.23.24.png]]
 
-Permissions are broken into four parts: 
-1. Type: The first letter in the permission is the type of the object. The most common letters you will see are: 
-	- Directory: d 
-	- Regular file: - 
-	- Symbolic link: l 
-2. User (owner): These are the permissions given to the user who owns the file. We use the term "user" since "owner" starts with an "o," and we need to differentiate between the user (u) and other (o) when using commands like chmod (discussed later). 
-3. Group: These are the permissions given to the members of the group assigned to the file. 
-4. Other: These are the permissions given to everyone who is not an owner or the relevant group. In certain cases, this is referred to as the "world" permissions. 
+権限は4つの部分に分かれます：
+1. タイプ：権限の最初の文字はオブジェクトのタイプを示します。最もよく見かける文字は次の通りです：
+    - ディレクトリ：d
+    - 通常ファイル：-
+    - シンボリックリンク：l
+2. ユーザー（所有者）：ファイルの所有者であるユーザーに付与される権限です。「所有者」は「o」で始まるため、chmod（後述）などのコマンド使用時にユーザー（u）とその他（o）を区別する必要があるため、「ユーザー」という用語を使用します。
+3. グループ：ファイルに割り当てられたグループのメンバーに付与される権限です。
+4. その他: 所有者や関連グループに属さない全員に付与される権限です。場合によっては「world」権限とも呼ばれます。
 
-The User, Group, and Other permissions are broken down into three pieces. If there is a letter in the relevant position, then the permission is granted. If it is a minus/dash (-), then the permission is not granted. The permissions in order are: 
-1. r: Read – Grants the permission to read the file or directory 
-2. w: Write – Grants the permission to write to the file or directory 
-3. x: Execute – For files, it grants the permission to run or execute the file. For directories, it grants permissions to enter the directory and access files and directories inside.
+ユーザー、グループ、その他の権限は3つの要素で構成されます。該当位置に文字があれば権限が許可され、マイナス/ダッシュ（-）であれば権限が許可されません。権限の順序は以下の通りです：
+1. r: 読み取り – ファイルまたはディレクトリを読み取る権限を付与
+2. w: 書き込み – ファイルまたはディレクトリに書き込む権限を付与
+3. x: 実行 – ファイルの場合、ファイルを実行する権限を付与。ディレクトリの場合、ディレクトリに入り内部のファイルやディレクトリにアクセスする権限を付与。
 
-There is another special permission that can be applied to files instead of the "x". An "s" in the first (user) or second (group) is the SETUID or SETGID bit, respectively. SETUID means the executable runs under the context of the user (owner). Likewise, the SETGID bit means the executable will run under the context of the specified group.
+ファイルには「x」の代わりに適用できる別の特別な権限があります。最初の（ユーザー）または2番目（グループ）の「s」は、それぞれSETUIDビットまたはSETGIDビットです。SETUIDは、実行ファイルがユーザー（所有者）のコンテキストで実行されることを意味します。同様に、SETGIDビットは、実行ファイルが指定されたグループのコンテキストで実行されることを意味します。
 
 ### Changing File Permissions
 
 ![[スクリーンショット 2026-03-02 15.27.01.png]]
 
-The chmod command changes file permissions and can use either symbolic mode or octal mode. 
+chmodコマンドはファイルのアクセス権を変更し、シンボリックモードまたはオクタルモードのいずれかを使用できます。
 
-Symbolic mode uses intuitive characters to represent the permissions changes. The parameters specify the target of the change, a modifier, and the permission to modify.
+シンボリックモードは、アクセス権の変更を直感的な文字で表現します。パラメータは変更の対象、修飾子、変更するアクセス権を指定します。
 
-Target: 
-- u : user (owner) 
-- g : group 
-- o : other
-- a : all (user, group, others)
+対象:
+- u : ユーザー（所有者）
+- g : グループ
+- o : その他
+- a : 全て（ユーザー、グループ、その他）
 
-Modifiers: 
-`+`: add permission
-`-`: remove permission 
-`=` : set specific permission  
-Permissions: 
-- r : read
-- w : write
-- x : execute
+修飾子:
+`+`: 権限を追加
+`-`: 権限を削除
+`=` : 特定の権限を設定
+権限:
+- r : 読み取り
+- w : 書き込み
+- x : 実行
 
-Octal mode uses numeric values to set specific permissions. Each target has three permissions, which are assigned a number. The permission's numeric representations are then added together to summarize the target's permission with a single number. If a permission isn't set, it is treated as 0. The values are:
+8進モードでは数値を使用して特定の権限を設定します。各対象には3つの権限があり、それぞれに数値が割り当てられます。各権限の数値表現を合計することで、対象の権限を単一の数値で要約します。権限が設定されていない場合は0と扱われます。値は以下の通りです：
 
-- 4 – read (r) 
-- 2 – write (w) 
-- 1 – execute (x) 
-- 0 – not set (-)
+- 4 – 読み取り (r)
+- 2 – 書き込み (w)
+- 1 – 実行 (x)
+- 0 – 未設定 (-)
 
-Permissions of rwx are represented by the numeric value of 7, which is the result of adding 4+2+1.
+rwxの権限は数値7で表され、これは4+2+1の合計です。
 
-File example: The default permissions for a file displayed by ls -l are -rw-rw-r--, which in octal would be 664:
+ファイル例: ls -lで表示されるファイルのデフォルト権限は-rw-rw-r--であり、8進数では664となります:
 
-- Type: - this is a file 
-- User: rw- = 4+2+0 = 6 
-- Group: rw- = 4+2+0 = 6 
-- Others: r-- = 4+0+0 = 4
+- タイプ: - これはファイルです
+- ユーザー: rw- = 4+2+0 = 6
+- グループ: rw- = 4+2+0 = 6
+- その他: r-- = 4+0+0 = 4
 
 ### Escalating with SETUID
 
