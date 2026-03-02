@@ -222,3 +222,197 @@ This slide emphasizes the need for defenders to quickly detect and respond to at
 The combination of quick detection and response with delaying attackers' actions leads to preventing breaches, illustrating the importance of efficient monitoring and swift defensive actions.
 
 ### Preventing Breaches (2)
+
+To prevent successful breaches, defenders need to both detect and respond to attackers who gain initial access, before attackers accomplish their goal.
+
+![[スクリーンショット 2026-03-02 10.18.24.png]]
+
+This slide highlights the consequences of delayed detection and response in preventing breaches. It illustrates the following points:
+
+- Longer Detection and Response Timeline: If defenders take too long to detect and respond to threats, it increases the likelihood of a successful breach. This is all too common due to failed detective controls, erroneous marking of alerts as false positives, shift changes or outsourced SOC offering differing capabilities, etc. 
+- Shorter Privilege Escalation and Actions on Objective Timeline: Attackers quickly escalate privileges and achieve their objectives if not promptly countered.
+
+Imagine an attacker gaining access via credential stuffing and VPN (or RDP), followed by Kerberoasting for privileges, followed by domain-wide ransomware. This sort of attack can happen in minutes, not hours or days.
+
+### Defenders' Three Objectives
+
+1. This slide outlines three key objectives for defenders to enhance their security posture: Reduce the number of ways attackers gain initial access: 
+	- Consolidate remote support tools and monitor for unauthorized usage. 
+	- Minimize the external attack surface by securing 1FA services and Exchange servers. 
+	- Remove endpoint code execution methods like macros, AutoDDE, and Quick Assist 
+2. Lower the time to detect and respond to an attacker: 
+	- Focus on detecting post-exploitation activities early. 
+	- Regularly test and improve response capabilities to quickly eradicate threats. 
+	- Use deception technologies like Canarytokens to identify breaches early. 
+3. Increase the time for an attacker to accomplish their goal: 
+	- Remove easy targets for privilege escalation. 
+	- Conduct penetration testing to identify and mitigate vulnerabilities. 
+
+These objectives aim to prevent breaches by reducing entry points (so defenders have to respond less frequently), improving detection and response times (so defenders get early notifications of attacker's initial access), and making it harder for attackers to achieve their goals (to buy time for the detection and response capabilities of the defenders).
+
+### Defenders' Objectives (1)
+
+1. Reduce the number of ways attackers gain initial access 
+2. Lower the time to detect and respond to attackers 
+3. Increase the time for attackers to accomplish their goal
+
+![[スクリーンショット 2026-03-02 10.24.01.png]]
+
+This slide focuses on the first objective: Reduce the number of ways attackers gain initial access. No matter how many advantages you have, if you get in enough fights, you will lose. Seek to fight less often.
+
+### Defenders' Objectives (2)
+
+1. Reduce the number of ways attackers gain initial access
+2. Lower the time to detect and respond to attackers
+3. Increase the time for attackers to accomplish their goal
+
+![[スクリーンショット 2026-03-02 10.26.39.png]]
+
+This slide focuses on the second objective: Lower the time to detect and respond to attackers. Reducing the time it takes to detect and respond to threats is crucial for minimizing damage. The analogy of a shorter racetrack signifies the importance of speeding up detection and response capabilities. Faster detection and response can help prevent attackers from completing their objectives. Implement strategies like early detection of post-exploitation activities, regularly testing and improving response capabilities, and utilizing deception technologies like Canarytokens to quickly identify breaches. By doing so, defenders can stay ahead of attackers and reduce the impact of potential breaches.
+
+### Defenders' Objectives (3)
+
+1. Reduce the number of ways attackers gain initial access 
+2. Lower the time to detect and respond to attackers 
+3. Increase the time for attackers to accomplish their goal
+
+![[スクリーンショット 2026-03-02 10.27.51.png]]
+
+This slide focuses on the third objective: Increase the time for attackers to accomplish their goal. Extending the time it takes for attackers to complete their objectives gives defenders more time to detect and respond to threats. The longer racetrack symbolizes the need to make the attacker's path more complicated and time-consuming. Strategies include removing easy targets for privilege escalation and conducting regular penetration testing to identify and mitigate vulnerabilities. By increasing the difficulty and time required for attackers to achieve their goals, defenders can better manage and contain potential breaches, ultimately improving overall security.
+
+### Ideal vs. Acceptable Timelines
+
+- Defenders can't win unless they know about each intrusion! 
+- Defenders' three jobs 
+	- Ideal: Defenders can detect and respond (eradicating attackers' presence) before attackers have spread the infection 
+	- Minimum: Defenders detect and respond before the breach 
+- Incidents don't stop when attackers are detected! 
+- "Shell is only the beginning": Carlos Perez's mantra for attackers 
+- "Detection is only the beginning": Mantra for defenders
+
+Ideally, defenders would detect and respond to threats quickly enough to eradicate attackers before they can spread. This requires highly effective monitoring and response capabilities but minimizes the damage done by the attacker, minimizes the amount of information attackers are able to gain before they're kicked out, and asymmetrically costs attackers more than defenders (as attackers often invest significantly into their initial access). Ultimately, though, defenders need to at least detect and respond before the breach occurs. Otherwise, what's the point of having human defenders? Again, no wall is so tall or so strong that it can't be breached. Detection is only the beginning of the response process. Continuous monitoring and action are required to fully address and eliminate threats. Defenders must be vigilant and proactive, knowing that successful defense depends on early detection and swift, effective response to every intrusion.
+
+### Only Five Ways In (Initial Access)
+
+Organizations have far more than just internet-facing services to attack:
+1. Employees who can run code 
+2. Remote methods of connectivity (VPN, VDI, RDP) 
+3. Internal networks with DHCP
+4. Third-party software 
+5. Public-facing software (such as Exchange, MOVEit, JetBrains)
+
+![[スクリーンショット 2026-03-02 10.31.26.png]]
+
+Here, we show attackers five methods of initial access, illustrating how the attack surface of an organization is more than merely their public-facing assets.
+
+1. Employees Who Can Run Code: Targeted primarily through phishing campaigns. Phishing aims to deceive employees into executing malicious code or revealing sensitive credentials, leveraging the access privileges of unsuspecting employees to infiltrate systems. Remember, phishing can be more than just via email! 
+2. Remote Connectivity Methods (VPN, VDI, RDP): These are exploited by attackers logging on remotely. Vulnerabilities in remote access technologies or poor security practices (such as weak passwords and lack of multi-factor authentication) can allow unauthorized access to an organization's internal network. 
+3. Internal Networks with DHCP: Attackers can insert rogue devices into the network. These devices can be configured to exploit DHCP functionalities to maliciously alter network configurations or intercept network traffic, compromising internal communication. 
+4. Third-Party Software: Often a vector for supply chain attacks. Attackers exploit vulnerabilities in third-party software products that are integral to business operations to compromise downstream systems and data. 
+5. Public-Facing Software (such as Exchange, MOVEit, JetBrains): Typically involved in "real" exploitation scenarios, where attackers directly exploit known vulnerabilities in software that is accessible from the internet, often resulting in data breaches or further network compromise.
+
+Reference: https://malcomvetter.medium.com/how-we-breached-your-network-755e40f52d85
+
+### Class Theme (Hiboxy Introduction)
+
+- Hiboxy is our class's target company 
+	- They make 3D-printed zippers; very hightech! 
+- The CEO (Mark Cruz) wants to know what business risks he's facing
+- What's the initial scope? Just Mark's card.
+
+This class focuses on Hiboxy, a company that specializes in producing 3D-printed zippers, representing a significant advancement in textile manufacturing technology. The CEO, Mark Cruz, is concerned about the potential business risks that could impact his company. Understanding these risks is crucial for strategic planning and maintaining the competitive edge of his high-tech business.
+
+1. Company Overview: Hiboxy stands out in the manufacturing sector with its innovative approach to producing zippers using 3D printing technology. This method likely presents unique challenges and opportunities, from production efficiency to intellectual property concerns. 
+2. CEO's Concern: Mark Cruz, as the CEO, has expressed a desire to thoroughly understand the risks facing Hiboxy. His proactive approach suggests a focus on both immediate operational risks and longterm strategic vulnerabilities that could influence the company's success. 
+3. . Initial Scope: The focus is initially narrowed to understanding the risks as they pertain directly to the CEO, Mark Cruz, possibly indicating a personal approach to leadership and decision-making within the company.
+
+We also see Mark's business card, possibly obtained via a first meeting at a conference.
+
+### Reconnaissance (in Brief)
+
+- Reconnaissance: Exploration to find useful information for a given purpose 
+	- Invest in some recon before the first scoping call! 
+	- How does email flow to the client? 
+		- On-premises Exchange? Microsoft 365? ProofPoint? 
+	- What's the username format? Password requirements? 
+	- What's the email address format? Breached credentials? 
+	- Any single-factor authentication services exposed to the Internet? 
+		- Especially those backed by on-prem Active Directory!
+
+The slide emphasizes the criticality of conducting reconnaissance before the initial scoping call with a client. This initial investigation lays the groundwork for a more informed and effective engagement strategy.
+
+1. Purpose of Reconnaissance: The aim is to gather actionable intelligence that can be used to tailor the approach to the specific environment and vulnerabilities of the client. 
+2. Key Areas of Focus:
+	- Email Systems: Understanding the email infrastructure, such as whether the client uses Onpremises Exchange, Microsoft 365, or ProofPoint, helps in assessing potential vectors for phishing or direct compromise. 
+	- Authentication Protocols: Information on username and password formats and any recent breaches of credentials can guide the development of penetration testing tactics focused on credential stuffing or brute force attacks 
+	- Authentication Security: Identifying if there are any single-factor authentication systems, particularly those tied to on-prem Active Directory, exposed to the internet. These systems can often be targeted for initial access due to their lower security compared to multi-factor systems.
+
+This reconnaissance phase is vital for identifying the weakest links and potential attack vectors within a client's infrastructure, thereby enabling a more targeted and effective security assessment.
+
+### Features Are Forever
+
+![[スクリーンショット 2026-03-02 10.38.33.png]]
+
+"Hackers don't break in. We log in." 
+
+Cybersecurity expert Keren Elazari succinctly captures a critical aspect of contemporary cybersecurity challenges on the podcast "How Real Is It?". This quote shows the evolution of hacking tactics from forceful entry (e.g., breaking through security barriers, such as exploitation of public-facing systems) to subtler methods, such as phishing, social engineering, or using stolen credentials. These tactics exploit the normal functionalities of systems ("features") rather than their weaknesses ("bugs"), which can make them harder to detect and prevent. Organizations must therefore adopt a more comprehensive approach to security, one that goes beyond patching vulnerabilities to include managing and securing user identities and access privileges. The emphasis on logging in rather than breaking in shows that cybersecurity is increasingly about understanding and mitigating risks associated with user behavior and access management. 
+
+Reference: https://www.youtube.com/watch?v=6BqpU4V0Ypk
+
+### Finding Single-Factor Auth
+
+![[スクリーンショット 2026-03-02 10.40.08.png]]
+
+**Microsoft 365:** Often used by organizations for collaboration and communication, Microsoft 365 might be secured with only a password, making it a prime target for credential stuffing or phishing attacks.
+
+**Remote Desktop Protocol (RDP):** Critical for remote administration but also a common entry point for attackers if only protected by 1FA, due to the direct access it provides to a system's desktop environment.
+
+**Virtual Private Networks (VPNs):** While VPNs secure the transmission of data across networks, using 1FA can make them vulnerable to interception and unauthorized access, particularly if compromised credentials are used.
+
+**Microsoft Exchange:** As a widely used email server, Exchange systems secured with 1FA are at risk of being compromised, leading to potential data breaches and access to sensitive communications.
+
+**Active Directory:** Federation Services (ADFS): This service extends the capabilities of Active Directory to systems outside the corporate firewall and is particularly sensitive because it handles authentication across these boundaries. Entra ID is sometimes configured to use on-prem Active Directory for authentication via ADFS, which means Active Directory is essentially exposed externally.
+
+**Enterprise Websites:** Often public-facing and therefore accessible to attackers, websites that use 1FA for administrative access can be easily compromised, leading to defacement, data theft, or worse.
+
+Identifying and upgrading these systems to use multi-factor authentication (MFA) can significantly reduce the risk of unauthorized access and is a recommended step in strengthening an organization's security posture.
+
+### NTLMRecon
+
+- NTLMRecon scans URLs, hosts, and subnets for HTTP endpoints that perform NTLMSSP authentication
+	- − Similar to Nmap's http-ntlm-info.nse script 
+- Scans 50+ paths and submits fake authentication requests
+- Gathers the following information about identified hosts
+	- AD Domain Name
+	- Server name 
+	- DNS Domain Name 
+	- FQDN 
+	- Parent DNS Domain 
+- Output is saved to a CSV file
+NTLMRecon: https://github.com/pwnfoo/NTLMRecon/
+
+NTLMRecon scans URLs, hosts, and subnets for HTTP endpoints that perform NTLMSSP authentication. While Nmap's http-ntlm-info.nse scrip provides similar information, it requires additional configuration to check specific paths, pages, or subdirectories for NTLMSSP authentication. NTMLRecon includes a list of 50 common paths without additional configuration, but it also allows users to specify a custom wordlist with **--wordlist**. 
+
+To install and configure NTLMRecon, clone it from GitHub and run setup.py: 
+
+`$ git clone https://github.com/pwnfoo/NTLMRecon.git` 
+`$ cd NTLMRecon` 
+`$ python3 setup.py install`
+
+### Attacking NTLMSSP
+
+- Internal Attacks 
+	- HTTP NTLM endpoints are vulnerable to relay attacks 
+- External Attacks 
+	- Hosts that allow NTLM authentication are limited to single-factor auth 
+	- Target these systems with credential stuffing and password spray attacks 
+	- NTLM also leaks domain and server information, which is often for the internal domain 
+- NTLMRecon will identify potential targets
+
+```
+$ ntlmrecon --input 10.130.10.0/24 --outfile ntlmrecon_10.130.10.0.csv [+] Brute-forcing 50 endpoints on https://10.130.10.1 [+] Brute-forcing 50 endpoints on https://10.130.10.2 [+] Brute-forcing 50 endpoints on https://10.130.10.3 [+] Brute-forcing 50 endpoints on https://10.130.10.4 [+] https://10.130.10.4/CertServ has NTLM authentication enabled!
+```
+
+Identifying NTLMSSP endpoints is helpful both internally and externally. On internal networks, NTLSMSSP endpoints can be targeted with relay attacks because, unlike SMB, there is no way to prevent an NTLM relay to an HTTP endpoint. Externally, NTLMSSP endpoints provide an opportunity for multifactor authentication (MFA) bypass. NTLM does not support MFA, so targeting exposed NTLMSSP endpoints with password sprays and credential stuffing attacks can be very effective.
+
+### 
