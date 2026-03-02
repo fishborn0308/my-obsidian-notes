@@ -928,17 +928,72 @@ pwd
 /etc
 ```
 
+### Listing Files
 
+![[スクリーンショット 2026-03-02 15.22.35.png]]
 
+The ls command is used to "list" files. By default, the command will only show the file names. The default option will also skip hidden files. On Linux, an object is hidden when the first character is a dot (.). To see these hidden files, we can use the -a option to show "all" objects. Use the -l (lowercase L) to show the long format, which includes the type and permissions, link count, owner, group, file size, timestamp, and name.
 
+### Permissions—File Mode Bits
 
+![[スクリーンショット 2026-03-02 15.23.24.png]]
 
+Permissions are broken into four parts: 
+1. Type: The first letter in the permission is the type of the object. The most common letters you will see are: 
+	- Directory: d 
+	- Regular file: - 
+	- Symbolic link: l 
+2. User (owner): These are the permissions given to the user who owns the file. We use the term "user" since "owner" starts with an "o," and we need to differentiate between the user (u) and other (o) when using commands like chmod (discussed later). 
+3. Group: These are the permissions given to the members of the group assigned to the file. 
+4. Other: These are the permissions given to everyone who is not an owner or the relevant group. In certain cases, this is referred to as the "world" permissions. 
 
+The User, Group, and Other permissions are broken down into three pieces. If there is a letter in the relevant position, then the permission is granted. If it is a minus/dash (-), then the permission is not granted. The permissions in order are: 
+1. r: Read – Grants the permission to read the file or directory 
+2. w: Write – Grants the permission to write to the file or directory 
+3. x: Execute – For files, it grants the permission to run or execute the file. For directories, it grants permissions to enter the directory and access files and directories inside.
 
+There is another special permission that can be applied to files instead of the "x". An "s" in the first (user) or second (group) is the SETUID or SETGID bit, respectively. SETUID means the executable runs under the context of the user (owner). Likewise, the SETGID bit means the executable will run under the context of the specified group.
 
+### Changing File Permissions
 
+![[スクリーンショット 2026-03-02 15.27.01.png]]
 
+The chmod command changes file permissions and can use either symbolic mode or octal mode. 
 
+Symbolic mode uses intuitive characters to represent the permissions changes. The parameters specify the target of the change, a modifier, and the permission to modify.
+
+Target: 
+- u : user (owner) 
+- g : group 
+- o : other
+- a : all (user, group, others)
+
+Modifiers: 
+`+`: add permission
+`-`: remove permission 
+`=` : set specific permission  
+Permissions: 
+- r : read
+- w : write
+- x : execute
+
+Octal mode uses numeric values to set specific permissions. Each target has three permissions, which are assigned a number. The permission's numeric representations are then added together to summarize the target's permission with a single number. If a permission isn't set, it is treated as 0. The values are:
+
+- 4 – read (r) 
+- 2 – write (w) 
+- 1 – execute (x) 
+- 0 – not set (-)
+
+Permissions of rwx are represented by the numeric value of 7, which is the result of adding 4+2+1.
+
+File example: The default permissions for a file displayed by ls -l are -rw-rw-r--, which in octal would be 664:
+
+- Type: - this is a file 
+- User: rw- = 4+2+0 = 6 
+- Group: rw- = 4+2+0 = 6 
+- Others: r-- = 4+0+0 = 4
+
+### Escalating with SETUID
 
 
 
