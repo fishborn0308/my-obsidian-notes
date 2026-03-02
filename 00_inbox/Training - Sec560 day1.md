@@ -1,6 +1,6 @@
-# Training - Sec560 day1
+# Miniature Engagement, Recon, and Scanning
 
-## Miniature Engagement, Recon, and Scanning
+## Miniature Engagement
 
 ### The Mindset of Penetration Testing
 
@@ -52,22 +52,22 @@ Risk is defined as the potential for loss or damage. Risk is often calculated as
 
 ![[スクリーンショット 2026-03-02 9.29.16.png]]
 
-### Penetration Testing
+#### Penetration Testing
 Penetration testing focuses on identifying vulnerabilities in a target that could allow an attacker to penetrate the computer or network and steal, damage, or corrupt data. Penetration testers (pen testers) will use tools similar to the malicious attackers. Sometimes, the malicious actors even take tools and techniques from penetration testers. As the name implies, penetration testing requires penetration (if possible). A test that forbids penetration is not a penetration test. Sometimes, targets ask for a penetration test but then disallow exploitation, password guessing, and other activities that would allow the testers to verify flaws and find second-order vulnerabilities. These handcuffed tests are more akin to vulnerability assessments.
 
-### Red Team
+#### Red Team
 Red teams are focused on testing the effectiveness of the entire security program. They emulate the Tactics, Techniques, and Procedures (TTPs) of real-world adversaries with the goal of measuring weaknesses in defense, detection, and response. Red teams use many of the same tools as penetration testers; however, they have a different focus. The red team is focused on identifying deficiencies in the blue team's (defenders) ability to detect, respond, and eradicate a threat. A red team only uses vulnerabilities that help them accomplish their goal, while penetration testers are most often tasked with finding many vulnerabilities. Penetration testing is focused on finding flaws, understanding their business risks, and helping the organization improve its security stance. The red team's primary job is to help make the blue team better equipped to detect and respond to attacks. To put it simply, penetration testing focuses on the defenses (technology), and the red team focuses on the defenders (people).
 
 #### Purple Team 
 Purple teams are cross-functional teams where the red and blue teams work together. The closer the interaction, the better. This type of assessment includes metrics on blue's ability to identify, detect, and SEC560 | Enterprise Penetration Testing Pen Test, Red Team, Purple Team, Vuln Assessment, Audit Identify flaws that attackers could cause business harm with (testing preventive controls) Pen Test Red Team Designed to test detection and response capabilities Cross-functional team of red and blue teamers, and/or tightening the feedback loop between offense and defense Purple Team Identify, quantify, and rank vulnerabilities (no exploitation) Vulnerability Assessment Security Audit Audit implies testing against a particular set of standards 11 12 respond to an attack. The testing should be documented to show advances in detection and response capabilities. These metrics can be used to justify investments in tools and training.
 
-### Vulnerability Assessment
+#### Vulnerability Assessment
 Many people use the phrases vulnerability assessments and security assessments to describe the work done by penetration testers and ethical hackers, but there is a subtle distinction between a penetration test and a security assessment. A penetration test is focused on getting in or stealing data. The emphasis is on penetrating the target environment by exploiting discovered vulnerabilities. Vulnerability assessments and security assessments are focused on finding vulnerabilities, often without regard to actually exploiting them and getting in. Thus, penetration testing often goes deeper, with its goal of taking over systems and stealing data, whereas security and vulnerability assessments are broader, involving the process of looking for security flaws. These assessments also often include policy and procedure reviews, which are usually not included in penetration testing. The table on the previous slide shows the differences between the different types of assessments. Of course, each can vary to some degree, with penetration testing having the greatest variability. A penetration tester is often tasked with finding all vulnerabilities, even those that aren't exploitable.
 
-### Security Audit 
+#### Security Audit 
 Finally, we have the phrase security audit. An audit implies that we are measuring things against a fixed, predetermined, rigorous set of standards. These audits are almost always done with detailed checklists. Some penetration testing and ethical hacking organizations have created their own internal checklists of items that need to be covered in a test, but these checklists aren't as detailed as those for comprehensive audits. Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
 
-### Penetration Testing Goals
+#### Penetration Testing Goals
 
 Penetration testing is demonstrating business risk from realistic attackers: 
 - Modeling real-world adversaries 
@@ -122,7 +122,11 @@ Both malicious attackers and professional penetration testers/ethical hackers ap
 - In the Exploitation phase, attackers exploit target systems to compromise them, possibly getting control of them or causing a denial-of-service attack. 
 - Post-exploitation is what happens after the initial compromise. Both penetration testers and malicious attackers use their access to pivot and move throughout the target environment.
 
-Although legitimate tests often include the previously listed phases, malicious attackers often go further than the Rules of Engagement allow for a professional penetration test. The next phase, often used by a malicious attacker to maintain access to and control of a target machine, involves setting up the compromised machine so that the attacker can keep control over it, with techniques such as installing backdoors and planting rootkits. Malicious attackers also often use a final phase, Covering the Tracks, in which they employ log editing, file hiding, and covert channels to hide their activities on a system. Please note that the best of the attackers (both the good guys and the evil ones) are pragmatists. They don't always proceed from reconnaissance to scanning to gaining access and so on. Sure, they use these steps, but they are likely to jump around among them as events and discoveries warrant. For example, during the recon phase, attackers may discover an exploitable flaw that they will use to gain access directly, temporarily bypassing scanning. Then, after they gain access to one machine, they may go back and start scanning. From a professional testing perspective, though, be careful when jumping out of order among these steps, making sure that you return to the earlier phases to conduct a comprehensive test.
+Although legitimate tests often include the previously listed phases, malicious attackers often go further than the Rules of Engagement allow for a professional penetration test. The next phase, often used by a malicious attacker to maintain access to and control of a target machine, involves setting up the compromised machine so that the attacker can keep control over it, with techniques such as installing backdoors and planting rootkits. Malicious attackers also often use a final phase, Covering the Tracks, in which they employ log editing, file hiding, and covert channels to hide their activities on a system. 
+
+Please note that the best of the attackers (both the good guys and the evil ones) are pragmatists. They don't always proceed from reconnaissance to scanning to gaining access and so on. Sure, they use these steps, but they are likely to jump around among them as events and discoveries warrant. For example, during the recon phase, attackers may discover an exploitable flaw that they will use to gain access directly, temporarily bypassing scanning. Then, after they gain access to one machine, they may go back and start scanning. 
+
+From a professional testing perspective, though, be careful when jumping out of order among these steps, making sure that you return to the earlier phases to conduct a comprehensive test.
 
 ### Recent Enterprise Breaches: Learning from Reality
 
@@ -153,10 +157,16 @@ Although legitimate tests often include the previously listed phases, malicious 
 	- For most orgs, they see nothing until steps 3 and 4
 
 **Pros of the Cyber Kill Chain**
-Industry Recognition: The Cyber Kill Chain model is well-regarded across the cybersecurity industry, known for its effectiveness in organizing the stages of cyber threats. Focus on Attacker's Actions: The model is structured around the actions of an attacker, allowing defenders to anticipate and counteract each stage of an attack effectively. Preventative Strategy: By identifying and disrupting any stage of the kill chain, it is possible to stop the attack process altogether. This "break the chain, break the attack" approach underlines the potential to mitigate threats before they reach their objectives.
+Industry Recognition: The Cyber Kill Chain model is well-regarded across the cybersecurity industry, known for its effectiveness in organizing the stages of cyber threats. 
+
+Focus on Attacker's Actions: The model is structured around the actions of an attacker, allowing defenders to anticipate and counteract each stage of an attack effectively. 
+
+Preventative Strategy: By identifying and disrupting any stage of the kill chain, it is possible to stop the attack process altogether. This "break the chain, break the attack" approach underlines the potential to mitigate threats before they reach their objectives.
 
 **Cons of the Cyber Kill Chain** 
-Visibility and Detection Challenges: One significant drawback of the model is that many organizations do the model). This late detection makes proactive defense challenging and often leaves organizations reactive to threats rather than preemptive.
+Visibility and Detection Challenges: One significant drawback of the model is that many organizations do 
+
+the model). This late detection makes proactive defense challenging and often leaves organizations reactive to threats rather than preemptive.
 
 ### MITRE ATT&CK
 
@@ -167,7 +177,13 @@ Visibility and Detection Challenges: One significant drawback of the model is th
 - The framework includes Groups, which track sets of related activity to a common adversary group (such as APT1, FIN7, etc.)
 - Great resource for learning specific tools and techniques as well as understanding the playbook of real-world attackers
 
-MITRE ATT&CK (pronounced "attack") is a knowledge base of attack tactics based on real-world attackers. The framework includes many techniques (and sub-techniques) used by good and bad attackers. It is a valuable resource for learning new tools and techniques. The techniques are grouped together into "tactics." For example, the "Initial Access" tactic includes the techniques Exploit Public Facing Application, Phishing, and Valid Accounts, among others. The tactics and techniques are pieces used by an attacker. ATT&CK also includes "Groups," which is a set of related activities tracked to a common adversary group (e.g., APT1, FIN7). These provide the story of various breaches, which we can use to learn when and how to use specific attacks. The combination of the Groups and the Tactics/Techniques make ATT&CK a valuable resource to develop our own offensive skills. MITRE ATT&CK Matrix for Enterprise can be found at https://attack.mitre.org/.
+MITRE ATT&CK (pronounced "attack") is a knowledge base of attack tactics based on real-world attackers. The framework includes many techniques (and sub-techniques) used by good and bad attackers. It is a valuable resource for learning new tools and techniques. The techniques are grouped together into "tactics." For example, the "Initial Access" tactic includes the techniques Exploit Public Facing Application, Phishing, and Valid Accounts, among others. 
+
+The tactics and techniques are pieces used by an attacker. ATT&CK also includes "Groups," which is a set of related activities tracked to a common adversary group (e.g., APT1, FIN7). These provide the story of various breaches, which we can use to learn when and how to use specific attacks. 
+
+The combination of the Groups and the Tactics/Techniques make ATT&CK a valuable resource to develop our own offensive skills. 
+
+MITRE ATT&CK Matrix for Enterprise can be found at https://attack.mitre.org/.
 
 ### Attackers Want Your Data
 
@@ -178,13 +194,23 @@ MITRE ATT&CK (pronounced "attack") is a knowledge base of attack tactics based o
 		- Unprotected databases such as MongoDB
 	- If the entire breach is a wget command, you have no time for detection and response!
 
-Open Amazon S3 Buckets: Misconfigured S3 buckets are a common error that can lead to massive data leaks. These buckets, if not properly secured, can be accessed without authorization using simple web requests. Vulnerabilities in File Transfer Software: Tools like MOVEit and GoAnywhere, designed for secure file transfer, have had vulnerabilities discovered in recent years that could allow attackers to exploit them and gain unauthorized access. Unprotected Databases: Databases such as MongoDB that are left unprotected on the internet can be accessed and downloaded without needing sophisticated hacking techniques. Consequences of Quick Breaches: An entire data breach could be conducted with a single wget command, leaving virtually no time for detection and response. This goes to show the importance of proactive security measures and defense in depth. There are no walls so high, nor so strong, that they cannot be breached. We need time for our detection and response capabilities.
+Open Amazon S3 Buckets: Misconfigured S3 buckets are a common error that can lead to massive data leaks. These buckets, if not properly secured, can be accessed without authorization using simple web requests. 
+
+Vulnerabilities in File Transfer Software: Tools like MOVEit and GoAnywhere, designed for secure file transfer, have had vulnerabilities discovered in recent years that could allow attackers to exploit them and gain unauthorized access. 
+
+Unprotected Databases: Databases such as MongoDB that are left unprotected on the internet can be accessed and downloaded without needing sophisticated hacking techniques. 
+
+Consequences of Quick Breaches: An entire data breach could be conducted with a single wget command, leaving virtually no time for detection and response. This goes to show the importance of proactive security measures and defense in depth. 
+
+There are no walls so high, nor so strong, that they cannot be breached. We need time for our detection and response capabilities.
 
 ### Let's Keep Things Simple
 
 ![[スクリーンショット 2026-03-02 10.11.42.png]]
 
-Here, we aim to simplify your understanding of the typical progression of an attack, breaking it down into three critical phases that reflect the attacker's pathway from initial entry to achieving their ultimate objectives. Attackers want your data. Since that data is often inside your environment, attackers need inside. Since that data requires privileges that not everyone has access to, attackers often need privileges as well.
+Here, we aim to simplify your understanding of the typical progression of an attack, breaking it down into three critical phases that reflect the attacker's pathway from initial entry to achieving their ultimate objectives. 
+
+Attackers want your data. Since that data is often inside your environment, attackers need inside. Since that data requires privileges that not everyone has access to, attackers often need privileges as well.
 
 **Initial Access** 
 The first step for an attacker is gaining access to the internal network or systems. This can be accomplished through various methods, such as phishing, exploiting vulnerabilities, or using stolen credentials.
@@ -206,7 +232,13 @@ The final phase involves the attackers executing their intended actions, which c
 	- Defenders race to detect and respond (eradicating attackers' presence)
 - Whoever wins the race wins the incident
 
-This slide highlights the inevitability of harm once attackers breach your perimeter, comparing it to a trespasser in a building or an unchecked illness. Once inside, the attacker has started a race: Attackers race to escalate privileges and achieve their objectives, such as data theft or system disruption. Defenders, starting only when they detect the attacker's presence, must quickly respond to eradicate the attackers and prevent damage. The race begins only when defenders detect the breach, emphasizing the importance of detective controls for early detection. Whoever wins this race—attackers or defenders—determines the incident's outcome. Rapid detection and response are crucial to maintaining security.
+This slide highlights the inevitability of harm once attackers breach your perimeter, comparing it to a trespasser in a building or an unchecked illness. Once inside, the attacker has started a race: 
+
+Attackers race to escalate privileges and achieve their objectives, such as data theft or system disruption. 
+
+Defenders, starting only when they detect the attacker's presence, must quickly respond to eradicate the attackers and prevent damage. 
+
+The race begins only when defenders detect the breach, emphasizing the importance of detective controls for early detection. Whoever wins this race—attackers or defenders—determines the incident's outcome. Rapid detection and response are crucial to maintaining security.
 
 ### Preventing Breaches (1)
 
@@ -258,7 +290,9 @@ These objectives aim to prevent breaches by reducing entry points (so defenders 
 
 ![[スクリーンショット 2026-03-02 10.24.01.png]]
 
-This slide focuses on the first objective: Reduce the number of ways attackers gain initial access. No matter how many advantages you have, if you get in enough fights, you will lose. Seek to fight less often.
+This slide focuses on the first objective: Reduce the number of ways attackers gain initial access. 
+
+No matter how many advantages you have, if you get in enough fights, you will lose. Seek to fight less often.
 
 ### Defenders' Objectives (2)
 
@@ -268,7 +302,11 @@ This slide focuses on the first objective: Reduce the number of ways attackers g
 
 ![[スクリーンショット 2026-03-02 10.26.39.png]]
 
-This slide focuses on the second objective: Lower the time to detect and respond to attackers. Reducing the time it takes to detect and respond to threats is crucial for minimizing damage. The analogy of a shorter racetrack signifies the importance of speeding up detection and response capabilities. Faster detection and response can help prevent attackers from completing their objectives. Implement strategies like early detection of post-exploitation activities, regularly testing and improving response capabilities, and utilizing deception technologies like Canarytokens to quickly identify breaches. By doing so, defenders can stay ahead of attackers and reduce the impact of potential breaches.
+This slide focuses on the second objective: Lower the time to detect and respond to attackers. 
+
+Reducing the time it takes to detect and respond to threats is crucial for minimizing damage. The analogy of a shorter racetrack signifies the importance of speeding up detection and response capabilities. Faster detection and response can help prevent attackers from completing their objectives. 
+
+Implement strategies like early detection of post-exploitation activities, regularly testing and improving response capabilities, and utilizing deception technologies like Canarytokens to quickly identify breaches. By doing so, defenders can stay ahead of attackers and reduce the impact of potential breaches.
 
 ### Defenders' Objectives (3)
 
@@ -278,7 +316,11 @@ This slide focuses on the second objective: Lower the time to detect and respond
 
 ![[スクリーンショット 2026-03-02 10.27.51.png]]
 
-This slide focuses on the third objective: Increase the time for attackers to accomplish their goal. Extending the time it takes for attackers to complete their objectives gives defenders more time to detect and respond to threats. The longer racetrack symbolizes the need to make the attacker's path more complicated and time-consuming. Strategies include removing easy targets for privilege escalation and conducting regular penetration testing to identify and mitigate vulnerabilities. By increasing the difficulty and time required for attackers to achieve their goals, defenders can better manage and contain potential breaches, ultimately improving overall security.
+This slide focuses on the third objective: Increase the time for attackers to accomplish their goal. 
+
+Extending the time it takes for attackers to complete their objectives gives defenders more time to detect and respond to threats. The longer racetrack symbolizes the need to make the attacker's path more complicated and time-consuming. 
+
+Strategies include removing easy targets for privilege escalation and conducting regular penetration testing to identify and mitigate vulnerabilities. By increasing the difficulty and time required for attackers to achieve their goals, defenders can better manage and contain potential breaches, ultimately improving overall security.
 
 ### Ideal vs. Acceptable Timelines
 
@@ -290,7 +332,13 @@ This slide focuses on the third objective: Increase the time for attackers to ac
 - "Shell is only the beginning": Carlos Perez's mantra for attackers 
 - "Detection is only the beginning": Mantra for defenders
 
-Ideally, defenders would detect and respond to threats quickly enough to eradicate attackers before they can spread. This requires highly effective monitoring and response capabilities but minimizes the damage done by the attacker, minimizes the amount of information attackers are able to gain before they're kicked out, and asymmetrically costs attackers more than defenders (as attackers often invest significantly into their initial access). Ultimately, though, defenders need to at least detect and respond before the breach occurs. Otherwise, what's the point of having human defenders? Again, no wall is so tall or so strong that it can't be breached. Detection is only the beginning of the response process. Continuous monitoring and action are required to fully address and eliminate threats. Defenders must be vigilant and proactive, knowing that successful defense depends on early detection and swift, effective response to every intrusion.
+Ideally, defenders would detect and respond to threats quickly enough to eradicate attackers before they can spread. This requires highly effective monitoring and response capabilities but minimizes the damage done by the attacker, minimizes the amount of information attackers are able to gain before they're kicked out, and asymmetrically costs attackers more than defenders (as attackers often invest significantly into their initial access). 
+
+Ultimately, though, defenders need to at least detect and respond before the breach occurs. Otherwise, what's the point of having human defenders? Again, no wall is so tall or so strong that it can't be breached. 
+
+Detection is only the beginning of the response process. Continuous monitoring and action are required to fully address and eliminate threats. 
+
+Defenders must be vigilant and proactive, knowing that successful defense depends on early detection and swift, effective response to every intrusion.
 
 ### Only Five Ways In (Initial Access)
 
@@ -355,7 +403,13 @@ This reconnaissance phase is vital for identifying the weakest links and potenti
 
 "Hackers don't break in. We log in." 
 
-Cybersecurity expert Keren Elazari succinctly captures a critical aspect of contemporary cybersecurity challenges on the podcast "How Real Is It?". This quote shows the evolution of hacking tactics from forceful entry (e.g., breaking through security barriers, such as exploitation of public-facing systems) to subtler methods, such as phishing, social engineering, or using stolen credentials. These tactics exploit the normal functionalities of systems ("features") rather than their weaknesses ("bugs"), which can make them harder to detect and prevent. Organizations must therefore adopt a more comprehensive approach to security, one that goes beyond patching vulnerabilities to include managing and securing user identities and access privileges. The emphasis on logging in rather than breaking in shows that cybersecurity is increasingly about understanding and mitigating risks associated with user behavior and access management. 
+Cybersecurity expert Keren Elazari succinctly captures a critical aspect of contemporary cybersecurity challenges on the podcast "How Real Is It?". 
+
+This quote shows the evolution of hacking tactics from forceful entry (e.g., breaking through security barriers, such as exploitation of public-facing systems) to subtler methods, such as phishing, social engineering, or using stolen credentials. These tactics exploit the normal functionalities of systems ("features") rather than their weaknesses ("bugs"), which can make them harder to detect and prevent. 
+
+Organizations must therefore adopt a more comprehensive approach to security, one that goes beyond patching vulnerabilities to include managing and securing user identities and access privileges. 
+
+The emphasis on logging in rather than breaking in shows that cybersecurity is increasingly about understanding and mitigating risks associated with user behavior and access management. 
 
 Reference: https://www.youtube.com/watch?v=6BqpU4V0Ypk
 
@@ -425,9 +479,17 @@ The result? Third-party breaches affect companies via employees' reused password
 
 ![[スクリーンショット 2026-03-02 10.48.42.png]]
 
-A widespread behavior among internet users is the reuse of passwords across multiple platforms. It's common for individuals to use the same one to five password patterns across various services. This habit significantly increases vulnerability because once one password is compromised, it can potentially provide access to several accounts owned by the same user. Websites and services often suffer data breaches, leading to large volumes of user credentials being exposed. The attackers for these breaches don't have to release the breached credentials publicly, but they commonly do. These credentials can include usernames, passwords, and other personally identifiable information (PII). Many organizations still rely on single-factor authentication for external access to systems, which only requires a username and password. This form of authentication does not provide sufficient security against the types of attacks that exploit stolen or reused credentials. The combination of these three elements leads to a situation where third-party breaches have a domino effect, impacting not just the directly breached service but also other organizations where the same credentials are reused. The comic panels in the slide humorously contrast the common misconception of hacking—as a dramatic physical infiltration—with the reality that many hacks are simply about exploiting known credentials across different systems. Don't worry, there will be future xkcd references in class! Obligatory xkcd 
+A widespread behavior among internet users is the reuse of passwords across multiple platforms. It's common for individuals to use the same one to five password patterns across various services. This habit significantly increases vulnerability because once one password is compromised, it can potentially provide access to several accounts owned by the same user.
 
-reference: https://xkcd.com/2176/
+Websites and services often suffer data breaches, leading to large volumes of user credentials being exposed. The attackers for these breaches don't have to release the breached credentials publicly, but they commonly do. These credentials can include usernames, passwords, and other personally identifiable information (PII).
+
+Many organizations still rely on single-factor authentication for external access to systems, which only requires a username and password. This form of authentication does not provide sufficient security against the types of attacks that exploit stolen or reused credentials. 
+
+The combination of these three elements leads to a situation where third-party breaches have a domino effect, impacting not just the directly breached service but also other organizations where the same credentials are reused. The comic panels in the slide humorously contrast the common misconception of hacking—as a dramatic physical infiltration—with the reality that many hacks are simply about exploiting known credentials across different systems. 
+
+Don't worry, there will be future xkcd references in class! 
+
+Obligatory xkcd reference: https://xkcd.com/2176/
 
 ### Credential Stuffing, in Brief (2)
 
@@ -468,7 +530,9 @@ Here, we look at the commands used in a credential stuffing attack, specifically
 
 Remember, we've tested the provided Linux and Windows VMs, which have the lab directions and other files needed for the labs!
 
-First, you need software for your testing regimen. With this course, you received a copy of the SEC560 Linux virtual machine. Furthermore, this VMware image includes tools pre-installed and, in many cases, preconfigured so that you can apply them directly in your own testing. Another useful source of tools is the bootable Linux distributions various people have made freely available, loaded with useful assessment and attack tools. A solid set of tools is included in Kali Linux, created and maintained by Offensive Security. Numerous similar Linux images for pen testing are also available, but Kali is one of the best because of its comprehensive set of tools, compatibility with a wide range of hardware, and carefully designed organization and layout.
+First, you need software for your testing regimen. With this course, you received a copy of the SEC560 Linux virtual machine. Furthermore, this VMware image includes tools pre-installed and, in many cases, preconfigured so that you can apply them directly in your own testing. 
+
+Another useful source of tools is the bootable Linux distributions various people have made freely available, loaded with useful assessment and attack tools. A solid set of tools is included in Kali Linux, created and maintained by Offensive Security. Numerous similar Linux images for pen testing are also available, but Kali is one of the best because of its comprehensive set of tools, compatibility with a wide range of hardware, and carefully designed organization and layout.
 
 ### An Important Note: Command Prompts
 
@@ -486,7 +550,9 @@ First, you need software for your testing regimen. With this course, you receive
 
 Please make sure you enter commands at the right prompt!
 
-Throughout this course, we use numerous different shells, both in our operating system and within Metasploit. We frequently change between these different shells as we switch back and forth between Linux and Windows, as well as within different aspects of Metasploit. Sometimes, even on a single page in the book, you use two or even three different types of shells to do something and then observe the results. All the labs and notes were carefully written to indicate the proper shell you are supposed to use at any given time by including the shell prompt right before each command you are supposed to type. That is, each lab command is preceded by the prompt indicating which shell to use. The shell types you encounter throughout this class include:
+Throughout this course, we use numerous different shells, both in our operating system and within Metasploit. We frequently change between these different shells as we switch back and forth between Linux and Windows, as well as within different aspects of Metasploit. Sometimes, even on a single page in the book, you use two or even three different types of shells to do something and then observe the results. 
+
+All the labs and notes were carefully written to indicate the proper shell you are supposed to use at any given time by including the shell prompt right before each command you are supposed to type. That is, each lab command is preceded by the prompt indicating which shell to use. The shell types you encounter throughout this class include:
 
 Double-check at each lab step that you are entering the proper command into the proper shell. Otherwise, a given lab step will not work for you properly.
 
@@ -517,3 +583,125 @@ You will not use your host system in any of the lab networks; however, your host
 Depending on how you are using your local VM, you may need to use the IP address for the local interface or the VPN interface. If you are setting up a connection directly between your VMs, then use the address assigned to the eth0 interface on Linux or the Ethernet0 interface on Windows. 
 
 If you need to have a remote target connect to your VM, such as an exploit callback, use your Windows or Linux tun0 interface and associated IP address or the Ethernet 2 interface on Windows.
+
+## Building an Infrastructure
+
+- For Pen Testing
+	- Attack software 
+	- Hardware 
+	- Network infrastructure
+- For Testing Tools and Techniques
+	- Target software 
+		- Active Directory domain controller
+		- Target hosts and services 
+	- Hardware 
+	- Network infrastructure
+
+Your first time running a tool shouldn't be in someone else's production network!
+
+![[スクリーンショット 2026-03-02 11.22.03.png]]
+
+Before we begin pen testing, we need systems from which we can test and systems that we can use as a test lab, such as for testing new tools and techniques. These two pieces will likely be separate, but we need the systems, nonetheless. Your needs may differ from what is presented here. This is designed to be a baseline infrastructure, which you can expand or modify based on your needs.
+
+### Building a Lab
+
+Test new tools and techniques in your lab! A broken lab is fine; breaking production systems is a big problem!
+
+- Use VMs: Easily revert, store, clone, and build systems 
+- Servers: Active Directory, File Servers, IIS; Multiple Linux distros 
+- End user: Windows 11, Ubuntu, Fedora 
+- Licensing:
+	- Linux: Typically free. RHEL requires a paid subscription, but Fedora is very similar 
+	- Windows: Use free trials or pay for a license
+
+Virtual machines are a great way for offensive personnel to build, test, revert quickly, and clone test systems. The VMs can be run in the cloud, on the tester's laptop, or even on old hardware. 
+
+You should test new tools in a laboratory environment to make sure you understand how they work and their potential impacts on a target machine. Such laboratory testing and analysis is especially vital for free tools downloaded from the internet because of concerns about quality, the potential to crash a target, and hidden functionality that could compromise the test systems. 
+
+It is important to have a good lab that consists of many of the same systems and software you will see in the target environment. Obviously, the lab can't contain all possible combinations or all software, but a representative sampling is good for our purposes. 
+
+We must have systems that resemble a wide range of target networks. Most networks use a Windows Domain and, therefore, a Domain Controller (we'll discuss attacking the Windows Domain later in this course). Similarly, most of these networks include Windows file servers and web servers. You could combine these two roles into one system to save on physical resources and licensing. Of course, the most widely used end-user system in the enterprise is Windows, so we'll need one of those systems in our lab. 
+
+Unfortunately, using Windows in a lab is more difficult due to licensing. You can pay for licenses and can have as many different targets as you like, including older server and end-user systems. Many people have much tighter budgetary constraints that limit them to free systems only. We do not recommend or condone stealing or otherwise bypassing the legal licensing requirements set by Microsoft (or other vendors). Microsoft offers free VMs for testing; however, it is limited to the latest operating system, and the licensing window is limited. 
+
+On the Linux side, we can use a range of free Linux systems. For example, Ubuntu is a common free Linux distribution found in enterprises. While most of the installs and updates for Linux are free, some are not. For example, Red Hat updates are not free, but it is very similar to Fedora.
+
+### Systems Used for Internal Testing
+
+Use a "leave behind" or "drop box" system for long-running tasks and remote access.
+- Physical: Laptop or Minicomputer 
+	- Use full disk encryption or wipe the device before return shipping 
+	- Note: Internal policies often allow corporate-owned devices on the network but require extra paperwork for third-party-owned devices 
+- Virtual: Custom VM
+	- Target is responsible for destruction 
+	- Requires internal team to provision, set up, and configure
+
+If you're physically on the same network as the targets, use Bridged networking, not NAT!
+
+Next, we need the actual systems that will be used for the testing. The needs for internal testing and external testing are different. 
+
+For internal testing, we can use a "leave behind" or "drop box" for long-running tasks. We can also use this for remote-internal or pseudo-internal testing, which allows the penetration testers to work remotely but have internal access to their desired testing systems. The drop box could be physical, such as a laptop or a minicomputer. If you use full disk encryption (FDE) on the system, the target will then have to unlock the disk when initially booted or on reboot. Alternatively, the host OS could be booted without a key, and then the sensitive client data could be stored in an encrypted container using a key known to the pen testers. If there is any unencrypted data on the system, ensure it is properly scrubbed before shipping. You never want to ship unencrypted sensitive target data through the mail or a public shipping company. If that system is lost, it could be considered a reportable breach. 
+
+To get around the shipping issue, some third-party testers will sell or expense the drop box to the client as part of the contract. This also solves another common issue: internal access. Some organizations have strict policies as to what systems are allowed on the network. Corporate assets are allowed on the network, but third-party-owned assets require extra verification, documentation, and paperwork. If the organization owns the physical drop box device, then it is often easier to get the device on the network. 
+
+You could create a custom VM configured to connect back to the pen testers, and no shipping is ever required. However, this often requires extra action from the internal team to provision, set up, and configure the VM.
+
+### Dedicated Test Systems
+
+Use unique, dedicated systems for each client
+- Ideally, even unique systems per engagement
+- Reduces likelihood of cross-contaminated reports or going out of scope 
+- Many testers use VMs since it is easier to start clean 
+- Do not use your day-to-day, surfing, or email system for testing 
+- Testing systems will not have security tools, such as firewalls or AV/EDR
+- External Testing: Build a new system in the cloud for each test
+
+Scrub client data and testing VMs at the conclusion of a test.
+
+Next, you need the actual systems that will be doing the testing. We recommend that you use systems that are dedicated to testing and are unique for each engagement.
+
+- Disabled defenses: The attack systems will not have defensive software such as AV/EDR, and it will often have its firewall disabled. These modifications decrease the defensive strength of the system should it come under attack from an adversary. You don't want these features disabled on your day-today system. 
+- Uptime: The testing systems will often need to be available and online for weeks or months. If you were to run the attack from your laptop (or even a VM on your laptop), the test could be impacted if you carry your laptop to another location (network change) or perform your day-to-day tasks (installing software, rebooting, patching). 
+- Prevent data leakage: If you use unique systems for each test, it is less likely that the data from one test will end up in the data from another test. This is especially important for third-party testers where the test data is likely to be from different organizations where such an action could be considered a breach of confidentiality. Such cross-contamination could lead to embarrassment, loss of trust, and even legal action.
+
+At the conclusion of a test, be sure to clean the target data from the test systems. You can't lose data you don't have.
+
+### Sources for Free Tools and Exploits
+
+- Exploit-DB: exploit-db.com 
+	- Sorted by remote, local, web app, denial of service, shellcode, and papers 
+- MITRE CVE Repository: cve.org 
+	- Latest information about vulnerabilities 
+- GitHub: github.com 
+	- Search by CVE or vulnerability name 
+	- Warning: Some people lie on the internet
+
+We are not endorsing these sites or the tools they distribute. Remember to be careful! Always test exploits and tools in your lab!
+
+Although there are numerous exploit and attack tool repositories on the internet, some of the most comprehensive archives that are updated on a regular basis include the Exploit Database and Packet Storm Security. Other sites come and go on a regular basis, but these sites are long-standing and tend to have relatively higher-quality tools. 
+
+The Exploit Database (https://www.exploit-db.com/, or exploit-db for short) is maintained by the same group that maintains Kali Linux, Offensive Security. Its site hosts more than 10,000 exploits and sorts them into useful categories, such as Remote Exploits, Local Exploits, Web Applications, Denial of Service/Proof of Concept, Shellcode, and Papers. For each exploit in these categories, it lists the platform (Windows, Linux, PHP, and so on) and the author. 
+
+Note that we are not endorsing these sites or the tools that they distribute. These sites have been quite controversial, and you need to be careful with any code you download. Be careful downloading tools from sources you have not vetted, as malicious attackers routinely release fake exploits that will actually compromise your attacking system (https://www.bleepingcomputer.com/news/security/fake-microsoftexchange-proxynotshell-exploits-for-sale-on-github/). 
+
+Beyond the tool and exploit sites, numerous vulnerability research sites are also available. Although these sites do not distribute exploit code freely, they do publish information about vulnerabilities. These detailed vulnerability descriptions are invaluable in letting a tester know that there is an issue with a system type or service version discovered in a test. Even though an exploit might not be available (in fact, an exploit may have never been publicly released or even created), the tester still needs to understand the vulnerabilities so that they can be included in the test report. 
+
+Some of the best sites with vulnerability research and detailed descriptions are the following sites:
+- The United States Computer Emergency Readiness Team (US-CERT) (https://www.cisa.gov/newsevents/cybersecurity-advisories), maintained by the US Department of Homeland Security (DHS) 
+- The Common Vulnerabilities and Exposures (CVE) repository operated by MITRE (https://cve.mitre.org/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
