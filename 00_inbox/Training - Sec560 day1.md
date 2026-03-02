@@ -914,6 +914,19 @@ sec560@560vm:/var/log$ cd
 sec560@560vm:~$
 ```
 
+### Where Am I?
+
+![[スクリーンショット 2026-03-02 13.31.51.png]]
+
+When you gain access to a system, you often do not know your current working directory. To get this location on Linux, we can use the pwd (print working directory) command. In a continuous shell, such as with the terminal, you can change directories and the shell remembers the change. The example below shows a continuous shell where we can't see the shell prompt.
+
+```
+pwd 
+/var/www 
+cd /etc 
+pwd 
+/etc
+```
 
 
 
