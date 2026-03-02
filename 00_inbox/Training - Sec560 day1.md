@@ -907,7 +907,12 @@ sec560@560vm:/var/log$ cd ~
 sec560@560vm:~$
 ```
 
+If we use the cd command without a directory, it will take us to our home directory.
 
+```
+sec560@560vm:/var/log$ cd 
+sec560@560vm:~$
+```
 
 
 
