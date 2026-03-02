@@ -999,7 +999,31 @@ rwxの権限は数値7で表され、これは4+2+1の合計です。
 
 ### Escalating with SETUID
 
+![[スクリーンショット 2026-03-03 8.39.44.png]]
 
+SETUIDビットが設定された実行可能ファイルを実行すると、そのファイルの所有者になります。これは通常、強力なrootユーザーです。これらのファイルを見つけるには、findコマンドを使用できます。
+
+```
+$ find / -perm -4000 -ls 2>/dev/null
+-rwsr-xr-x 1 root root 43088 Sep 16 2020 /bin/mount
+-rwsr-xr-x 1 root root 44664 Mar 22 2019 /bin/su
+-rwsr-xr-x 1 root root 64424 Jun 28 2019 /bin/ping
+-rwsr-xr-x 1 root root 26696 2020年9月16日 /bin/umount
+-rwsr-xr-x 1 root root 30800 2016年8月11日 /bin/fusermount
+-rwsr-xr-x 1 root root 149080 Jan 19 2021 /usr/bin/sudo
+-rwsrwxrwx 1 root root 50472 Jun 5 2021
+/usr/local/bin/updater
+```
+
+上記のコマンドでは、検索開始位置を指定します。/ はドライブ全体を意味します。次に、-perm -4000 で SETUID ビットが設定されたファイルを検索します。4000 の前のダッシュ（-）は重要で、正確な権限ではなくマスクを指定します。
+
+これらのファイルの一部は、SETUID ビットを有効にするために管理者によって変更されている可能性があります。上記の例では、「updater」実行ファイルが安全でない権限を持っています。このファイルは「世界書き込み可能」と呼ばれ、つまり任意のユーザー（その他）がファイルに書き込み可能であり、SETUIDビットとSETGIDビットが設定されています。
+
+攻撃者はこのファイルを任意の実行可能ファイルで上書きし、root権限で実行できます。これは非常に容易な特権昇格です！
+
+### Escalation
+
+![[スクリーンショット 2026-03-03 8.40.24.png]]
 
 
 
