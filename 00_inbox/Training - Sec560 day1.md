@@ -67,7 +67,7 @@ Many people use the phrases vulnerability assessments and security assessments t
 ### Security Audit 
 Finally, we have the phrase security audit. An audit implies that we are measuring things against a fixed, predetermined, rigorous set of standards. These audits are almost always done with detailed checklists. Some penetration testing and ethical hacking organizations have created their own internal checklists of items that need to be covered in a test, but these checklists aren't as detailed as those for comprehensive audits. Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
 
-## Penetration Testing Goals
+### Penetration Testing Goals
 
 Penetration testing is demonstrating business risk from realistic attackers: 
 - Modeling real-world adversaries 
@@ -82,7 +82,7 @@ A formal definition of penetration testing is as follows:
 
 The key is that the vulnerability identification and exploitation should always be business-focused. The penetration test findings should always focus on the organizational risk, not just the technical risk. Many organizations use ethical hacking and penetration testing to find security flaws before their adversaries do. After applying their security policies, procedures, and technology, organizations can use thorough penetration tests to see how effective their security is in light of an actual attack, albeit by friendly attackers. An added benefit of ethical hacking and penetration testing is that because they show real vulnerabilities and indicate what a malicious attacker might be capable of achieving, they can get management's attention. Decision makers, when presented with the carefully formulated results of a test in business terms, are more likely to provide resources and attention to improve the security stance of an organization.
 
-## Types of Penetration Tests
+### Types of Penetration Tests
 
 - Network services test
 	- One of the most common 
@@ -103,4 +103,122 @@ The key is that the vulnerability identification and exploitation should always 
 There are numerous kinds of penetration tests:
 
 - **Network services test:** One of the most common types of tests, it involves finding target systems on the network, looking for openings in their underlying operating systems and available network services, and then exploiting them remotely. Some of these network service tests happen remotely across the internet, targeting the organization's perimeter networks. Others are launched locally from the target's own facilities to evaluate the security of the internal network, seeing what kinds of vulnerabilities an internal user could discover.
-- **Assumed breach test:** Designed to find vulnerabilities in the network once an attacker has gained access to a system in the network. This is a fantastic way to find issues in Active Directory permissions, file permissions (excessive sharing on file shares), and client-side software. • Web application test: These tests look for security vulnerabilities in web-based applications and APIs. • Social engineering test: Involves attempting to trick a user into revealing sensitive information, such as a password, or possibly convincing a user to click a link in an email. These tests are often conducted via email or over the phone, targeting selected users and evaluating processes, procedures, and user awareness. • Wireless security test: These tests involve exploring a target's physical environment to find unauthorized wireless access points or authorized wireless access points with security weaknesses. • Physical security test: This test looks for flaws in the physical security practices of a target organization. Testers might attempt to gain access to buildings and rooms or to take laptops, desktops, or recycling bins out of target facilities. A dumpster diving test is a variation of a physical security analysis. Physical testing must be conducted carefully to ensure that the testers do not get hurt or arrested during their work. • Product security test: This test focuses on one specific product. It could be hardware or software. In this kind of test, you look for security flaws in products that can be used in the tester's laboratory systems. Such tests look for flaws in the software, such as exploitable buffer overflow conditions, SEC560 | Enterprise Penetration Testing Types of Penetration Tests • Network services test − One of the most common • Assumed breach test • Web application test • Social engineering test − Email-based or phone-based • Wireless security test − Not just Wi-Fi • Physical security test • Product security test − Could be software package or hardware (e.g., IoT) − Breaking or bypassing encryption on local data or intercepted traffic • Enterprise penetration test − Pen testing the whole company − If it can be in scope, it's in scope 14 15 privilege escalation flaws, and the exposure of unencrypted sensitive data. These tests could focus on bypassing or breaking the encryption of data stored on a local system or across the network. • Enterprise penetration test: This test has as its scope, to a first approximation, everything that the company has the authority to grant the penetration tester to test. Some exclusions may still apply, but the tester should emphasize that removing systems from the scope of the enterprise penetration test reduces the fidelity of the results.
+- **Assumed breach test:** Designed to find vulnerabilities in the network once an attacker has gained access to a system in the network. This is a fantastic way to find issues in Active Directory permissions, file permissions (excessive sharing on file shares), and client-side software. 
+- **Web application test:** These tests look for security vulnerabilities in web-based applications and APIs. 
+- **Social engineering test:** Involves attempting to trick a user into revealing sensitive information, such as a password, or possibly convincing a user to click a link in an email. These tests are often conducted via email or over the phone, targeting selected users and evaluating processes, procedures, and user awareness. 
+- **Wireless security test:** These tests involve exploring a target's physical environment to find unauthorized wireless access points or authorized wireless access points with security weaknesses. 
+- **Physical security test:** This test looks for flaws in the physical security practices of a target organization. Testers might attempt to gain access to buildings and rooms or to take laptops, desktops, or recycling bins out of target facilities. A dumpster diving test is a variation of a physical security analysis. Physical testing must be conducted carefully to ensure that the testers do not get hurt or arrested during their work. 
+- **Product security test:** This test focuses on one specific product. It could be hardware or software. In this kind of test, you look for security flaws in products that can be used in the tester's laboratory systems. Such tests look for flaws in the software, such as exploitable buffer overflow conditions, SEC560 | Enterprise Penetration Testing Types of Penetration Tests • Network services test − One of the most common Assumed breach test • Web application test • Social engineering test − Email-based or phone-based • Wireless security test − Not just Wi-Fi • Physical security test • Product security test − Could be software package or hardware (e.g., IoT) − Breaking or bypassing encryption on local data or intercepted traffic • Enterprise penetration test − Pen testing the whole company − If it can be in scope, it's in scope 14 15 privilege escalation flaws, and the exposure of unencrypted sensitive data. These tests could focus on bypassing or breaking the encryption of data stored on a local system or across the network. 
+- **Enterprise penetration test:** This test has as its scope, to a first approximation, everything that the company has the authority to grant the penetration tester to test. Some exclusions may still apply, but the tester should emphasize that removing systems from the scope of the enterprise penetration test reduces the fidelity of the results.
+
+### Attack Phases
+
+![[スクリーンショット 2026-03-02 9.51.35.png]]
+
+Both malicious attackers and professional penetration testers/ethical hackers apply various phases in their attacks. Attacks are often separated into these phases:
+
+- Reconnaissance is the process of investigating the target organization to gather information about it from publicly available sources, such as domain registration services, websites, and so on. Some people include techniques such as social engineering and dumpster diving in the recon phase. 
+- Scanning is the process of finding openings in the target organization, such as internet gateways, available systems, listening ports, and vulnerability lists. 
+- In the Exploitation phase, attackers exploit target systems to compromise them, possibly getting control of them or causing a denial-of-service attack. 
+- Post-exploitation is what happens after the initial compromise. Both penetration testers and malicious attackers use their access to pivot and move throughout the target environment.
+
+Although legitimate tests often include the previously listed phases, malicious attackers often go further than the Rules of Engagement allow for a professional penetration test. The next phase, often used by a malicious attacker to maintain access to and control of a target machine, involves setting up the compromised machine so that the attacker can keep control over it, with techniques such as installing backdoors and planting rootkits. Malicious attackers also often use a final phase, Covering the Tracks, in which they employ log editing, file hiding, and covert channels to hide their activities on a system. Please note that the best of the attackers (both the good guys and the evil ones) are pragmatists. They don't always proceed from reconnaissance to scanning to gaining access and so on. Sure, they use these steps, but they are likely to jump around among them as events and discoveries warrant. For example, during the recon phase, attackers may discover an exploitable flaw that they will use to gain access directly, temporarily bypassing scanning. Then, after they gain access to one machine, they may go back and start scanning. From a professional testing perspective, though, be careful when jumping out of order among these steps, making sure that you return to the earlier phases to conduct a comprehensive test.
+
+### Recent Enterprise Breaches: Learning from Reality
+
+- Change Healthcare 
+	- Root cause: Missing MFA on public-facing Citrix server 
+	- Impact: $2+ billion in damages with nation-wide disruption 
+	- Lesson: Basic controls prevent catastrophic breaches 
+- Snowflake 
+	- Method: Infostealer → stolen credentials → 160+ victims 
+	- Victims: Ticketmaster (560M records), AT&T, Santander Bank 
+	- Lesson: Risks in your supply chain and third parties = risks to your enterprise
+- Ransomware Evolution 
+	- RansomHub: 434 victims in first year 
+	- Healthcare: 92% of organizations targeted in last 12 months 
+	- Average payment: $2.73 million (double/triple extortion now standard) 
+	- Lesson: Ransomware remains #1 threat 
+- Living Off The Land (LOL) 
+	- Many incidents use only legitimate tools (PowerShell, WMI, CertUtil, rundll32) 
+	- Even when using C2, attackers often "shell out" to native binaries such as whoami, nltest
+
+### Lockheed Martin Cyber Kill Chain
+
+- Pros:
+	- Industry recognition 
+	- Focus on attacker's actions and viewpoint 
+	- Breaking the chain breaks the attack 
+- Cons: 
+	- For most orgs, they see nothing until steps 3 and 4
+
+**Pros of the Cyber Kill Chain**
+Industry Recognition: The Cyber Kill Chain model is well-regarded across the cybersecurity industry, known for its effectiveness in organizing the stages of cyber threats. Focus on Attacker's Actions: The model is structured around the actions of an attacker, allowing defenders to anticipate and counteract each stage of an attack effectively. Preventative Strategy: By identifying and disrupting any stage of the kill chain, it is possible to stop the attack process altogether. This "break the chain, break the attack" approach underlines the potential to mitigate threats before they reach their objectives.
+
+**Cons of the Cyber Kill Chain** 
+Visibility and Detection Challenges: One significant drawback of the model is that many organizations do the model). This late detection makes proactive defense challenging and often leaves organizations reactive to threats rather than preemptive.
+
+### MITRE ATT&CK
+
+- MITRE ATT&CK framework is a knowledge base of attack tactics based on realworld attackers
+- Techniques are grouped together into tactics
+	- Phishing and Valid Accounts techniques are part of the Initial Access tactic
+	- Techniques have multiple procedures (PsExec.exe vs Metasploit's psexec)
+- The framework includes Groups, which track sets of related activity to a common adversary group (such as APT1, FIN7, etc.)
+- Great resource for learning specific tools and techniques as well as understanding the playbook of real-world attackers
+
+MITRE ATT&CK (pronounced "attack") is a knowledge base of attack tactics based on real-world attackers. The framework includes many techniques (and sub-techniques) used by good and bad attackers. It is a valuable resource for learning new tools and techniques. The techniques are grouped together into "tactics." For example, the "Initial Access" tactic includes the techniques Exploit Public Facing Application, Phishing, and Valid Accounts, among others. The tactics and techniques are pieces used by an attacker. ATT&CK also includes "Groups," which is a set of related activities tracked to a common adversary group (e.g., APT1, FIN7). These provide the story of various breaches, which we can use to learn when and how to use specific attacks. The combination of the Groups and the Tactics/Techniques make ATT&CK a valuable resource to develop our own offensive skills. MITRE ATT&CK Matrix for Enterprise can be found at https://attack.mitre.org/.
+
+### Attackers Want Your Data
+
+- Breach: Unauthorized access to protected information
+	- Some attacks begin and end in one step:
+		- Open Amazon S3 buckets
+		- Public-facing exploitable systems such as 2025's Microsoft SharePoint, Citrix NetScaler, Palo Alto GlobalProtect, Ivanti VPN, and SonicWall
+		- Unprotected databases such as MongoDB
+	- If the entire breach is a wget command, you have no time for detection and response!
+
+Open Amazon S3 Buckets: Misconfigured S3 buckets are a common error that can lead to massive data leaks. These buckets, if not properly secured, can be accessed without authorization using simple web requests. Vulnerabilities in File Transfer Software: Tools like MOVEit and GoAnywhere, designed for secure file transfer, have had vulnerabilities discovered in recent years that could allow attackers to exploit them and gain unauthorized access. Unprotected Databases: Databases such as MongoDB that are left unprotected on the internet can be accessed and downloaded without needing sophisticated hacking techniques. Consequences of Quick Breaches: An entire data breach could be conducted with a single wget command, leaving virtually no time for detection and response. This goes to show the importance of proactive security measures and defense in depth. There are no walls so high, nor so strong, that they cannot be breached. We need time for our detection and response capabilities.
+
+### Let's Keep Things Simple
+
+![[スクリーンショット 2026-03-02 10.11.42.png]]
+
+Here, we aim to simplify your understanding of the typical progression of an attack, breaking it down into three critical phases that reflect the attacker's pathway from initial entry to achieving their ultimate objectives. Attackers want your data. Since that data is often inside your environment, attackers need inside. Since that data requires privileges that not everyone has access to, attackers often need privileges as well.
+
+**Initial Access** 
+The first step for an attacker is gaining access to the internal network or systems. This can be accomplished through various methods, such as phishing, exploiting vulnerabilities, or using stolen credentials.
+
+**Privileges** 
+Once inside, attackers often seek to escalate their privileges to gain higher levels of access. This can involve exploiting system weaknesses, configuration errors, or using social engineering tactics to gain the necessary permissions to access more sensitive areas of the network.
+
+**Actions on Objective**
+The final phase involves the attackers executing their intended actions, which could be data theft, deploying malware, or conducting other malicious activities designed to fulfill their initial objectives. This phase represents the culmination of the attack process and is ultimately what the attackers aim to achieve through their efforts.
+
+### Initial Access Eventually Becomes a Breach
+
+![[スクリーンショット 2026-03-02 10.15.55.png]]
+
+- Attackers inside your perimeter will eventually cause harm 
+	- Much like a trespasser inside your building or an unchecked illness
+- Once attackers have gained Initial Access, it starts a race: 
+	- Attackers race to gain necessary Privileges for their Actions on Objective 
+	- Defenders race to detect and respond (eradicating attackers' presence)
+- Whoever wins the race wins the incident
+
+This slide highlights the inevitability of harm once attackers breach your perimeter, comparing it to a trespasser in a building or an unchecked illness. Once inside, the attacker has started a race: Attackers race to escalate privileges and achieve their objectives, such as data theft or system disruption. Defenders, starting only when they detect the attacker's presence, must quickly respond to eradicate the attackers and prevent damage. The race begins only when defenders detect the breach, emphasizing the importance of detective controls for early detection. Whoever wins this race—attackers or defenders—determines the incident's outcome. Rapid detection and response are crucial to maintaining security.
+
+### Preventing Breaches (1)
+
+To prevent successful breaches, defenders need to both detect and respond to attackers who gain initial access, before attackers accomplish their goal.
+
+![[スクリーンショット 2026-03-02 10.17.06.png]]
+
+This slide emphasizes the need for defenders to quickly detect and respond to attackers to prevent successful breaches. It highlights the following points:
+
+- Shorter Detection and Response Timeline: Defenders must rapidly detect and respond to threats to minimize potential damage. 
+- Longer Privilege Escalation and Actions on Objective Timeline: Slowing down attackers' progress provides defenders more time to act.
+
+The combination of quick detection and response with delaying attackers' actions leads to preventing breaches, illustrating the importance of efficient monitoring and swift defensive actions.
+
+### Preventing Breaches (2)
