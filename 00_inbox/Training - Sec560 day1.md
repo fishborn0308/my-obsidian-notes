@@ -17,7 +17,15 @@ Help defenders to improve
 
 Balance between these two is crucial for success
 
-At the outset of this class, let's briefly explore the mindset of penetration testers and ethical hackers. That's what our job is: find flaws that enable attackers to do evil on target machines so that an organization can better understand its business risks and resolve vulnerabilities before mayhem ensues. However, to successfully achieve that goal, penetration testers and ethical hackers must maintain a mindset that involves two often contradictory-sounding concepts. First, a penetration tester or ethical hacker must be flexible and pragmatic, thinking outside the box. To be successful, you need to think differently than most traditional system administrators or network architects, trying to solve problems in often untraditional ways. But at the same time, as you wield your pragmatic style, you have to be thorough, methodical, and careful. To be valuable, your work must be understandable and reproducible so that the target organization can understand its vulnerabilities and risks and take action to mitigate the flaws. You need to take good notes and produce a high-quality report that presents your findings in a digestible form for people who don't perform penetration testing or ethical hacking professionally—people who may not share your pragmatic, "think-differently" mindset. Some people struggle with this mindset, erring by allowing one side to dominate over the other. However, many people can resolve this conflict between these two mindsets, thus balancing them. To be a successful penetration tester, you need to strive for this balance.
+At the outset of this class, let's briefly explore the mindset of penetration testers and ethical hackers. 
+
+That's what our job is: find flaws that enable attackers to do evil on target machines so that an organization can better understand its business risks and resolve vulnerabilities before mayhem ensues. However, to successfully achieve that goal, penetration testers and ethical hackers must maintain a mindset that involves two often contradictory-sounding concepts. 
+
+First, a penetration tester or ethical hacker must be flexible and pragmatic, thinking outside the box. To be successful, you need to think differently than most traditional system administrators or network architects, trying to solve problems in often untraditional ways. 
+
+But at the same time, as you wield your pragmatic style, you have to be thorough, methodical, and careful. To be valuable, your work must be understandable and reproducible so that the target organization can understand its vulnerabilities and risks and take action to mitigate the flaws. You need to take good notes and produce a high-quality report that presents your findings in a digestible form for people who don't perform penetration testing or ethical hacking professionally—people who may not share your pragmatic, "think-differently" mindset. 
+
+Some people struggle with this mindset, erring by allowing one side to dominate over the other. However, many people can resolve this conflict between these two mindsets, thus balancing them. To be a successful penetration tester, you need to strive for this balance.
 
 ### Vulnerability, Exploit, Threat, Risk
 
@@ -46,7 +54,17 @@ An exploit is a code or technique that takes advantage of a vulnerability. Here 
 A threat is an agent or actor that can cause harm. More broadly, it is anything that can cause harm. A threat could be the organized crime attacker attempting to steal credit card numbers, but it also could be the user who accidentally clicks the wrong button. A threat doesn't even have to be human. A worm is a threat since the code is what is propagating and causing damage. Similarly, our own security tools can be considered a threat in certain contexts. A web application vulnerability scanner will crawl the website and submit data. If the scanner is pointed at a production website with production data, what would happen if the scanner "clicked" the delete button? Scanners will attempt to avoid sensitive actions, but things like these do happen. This is one of the reasons it is important to have backups and to have test systems. 
 
 #### Risk
-Risk is defined as the potential for loss or damage. Risk is often calculated as (Probability of Occurrence) * (Potential Impact). The potential impact is a number we can calculate with a reasonable degree of certainty; however, the likelihood is a much more contentious number. Often, the likelihood (and ultimately the risk value itself) comes down to the expert opinion of the security team. The team uses its collective knowledge and experience to determine the risk and ultimately provide guidance to the business. Balancing the risk with organizational needs is one of the fundamental goals of the security team. Unfortunately, many security teams are viewed as roadblocks—hindering the organization instead of enabling it to develop and progress securely. As a penetration tester, part of your role is to estimate the risk related to the vulnerabilities you uncover. This is a powerful and important role. Junior testers will often overestimate the risk of vulnerabilities. Their reports will often be top-heavy, where most of the risks are categorized as high or critical. As penetration testers mature, they learn to understand the risk and how it plays into the organizational processes. Understanding the risks and identifying them accordingly helps the organization prioritize remediation efforts. We can simplify the risk by thinking about it as the intersection of threat, vulnerability, and risk. If we can reduce or eliminate one of these pieces, the risk is reduced or eliminated, respectively. We can limit access to the system, preventing a threat from accessing the service. Similarly, if the system no longer has sensitive data (Personally Identifiable Information / PII, passwords, etc.), then there is no risk since it provides the attacker no value, and no data can be lost, stolen, or destroyed. We can implement filtering tools to prevent an exploit from working. For example, we could use a WAF (web application firewall) to filter the characters of what would trigger the vulnerability. Similarly, an Intrusion Prevention System (IPS) could prevent specific actions against the target system that would trigger an exploit. In both cases, the vulnerability still exists, but it can't be exploited. Note: Be careful with this approach, as attackers will often change signatures or encoding to bypass these tools. Finally, we could remove the risk by patching the vulnerability.
+Risk is defined as the potential for loss or damage. Risk is often calculated as (Probability of Occurrence) * (Potential Impact). The potential impact is a number we can calculate with a reasonable degree of certainty; however, the likelihood is a much more contentious number. Often, the likelihood (and ultimately the risk value itself) comes down to the expert opinion of the security team. The team uses its collective knowledge and experience to determine the risk and ultimately provide guidance to the business. Balancing the risk with organizational needs is one of the fundamental goals of the security team. Unfortunately, many security teams are viewed as roadblocks—hindering the organization instead of enabling it to develop and progress securely. 
+
+As a penetration tester, part of your role is to estimate the risk related to the vulnerabilities you uncover. This is a powerful and important role. Junior testers will often overestimate the risk of vulnerabilities. Their reports will often be top-heavy, where most of the risks are categorized as high or critical. 
+
+As penetration testers mature, they learn to understand the risk and how it plays into the organizational processes. Understanding the risks and identifying them accordingly helps the organization prioritize remediation efforts.
+
+We can simplify the risk by thinking about it as the intersection of threat, vulnerability, and risk. If we can reduce or eliminate one of these pieces, the risk is reduced or eliminated, respectively. We can limit access to the system, preventing a threat from accessing the service. Similarly, if the system no longer has sensitive data (Personally Identifiable Information / PII, passwords, etc.), then there is no risk since it provides the attacker no value, and no data can be lost, stolen, or destroyed. 
+
+We can implement filtering tools to prevent an exploit from working. For example, we could use a WAF (web application firewall) to filter the characters of what would trigger the vulnerability. Similarly, an Intrusion Prevention System (IPS) could prevent specific actions against the target system that would trigger an exploit. In both cases, the vulnerability still exists, but it can't be exploited. Note: Be careful with this approach, as attackers will often change signatures or encoding to bypass these tools. 
+
+Finally, we could remove the risk by patching the vulnerability.
 
 ### Pen Test, Red Team, Purple Team, Vuln Assessment, Audit
 
@@ -56,16 +74,30 @@ Risk is defined as the potential for loss or damage. Risk is often calculated as
 Penetration testing focuses on identifying vulnerabilities in a target that could allow an attacker to penetrate the computer or network and steal, damage, or corrupt data. Penetration testers (pen testers) will use tools similar to the malicious attackers. Sometimes, the malicious actors even take tools and techniques from penetration testers. As the name implies, penetration testing requires penetration (if possible). A test that forbids penetration is not a penetration test. Sometimes, targets ask for a penetration test but then disallow exploitation, password guessing, and other activities that would allow the testers to verify flaws and find second-order vulnerabilities. These handcuffed tests are more akin to vulnerability assessments.
 
 #### Red Team
-Red teams are focused on testing the effectiveness of the entire security program. They emulate the Tactics, Techniques, and Procedures (TTPs) of real-world adversaries with the goal of measuring weaknesses in defense, detection, and response. Red teams use many of the same tools as penetration testers; however, they have a different focus. The red team is focused on identifying deficiencies in the blue team's (defenders) ability to detect, respond, and eradicate a threat. A red team only uses vulnerabilities that help them accomplish their goal, while penetration testers are most often tasked with finding many vulnerabilities. Penetration testing is focused on finding flaws, understanding their business risks, and helping the organization improve its security stance. The red team's primary job is to help make the blue team better equipped to detect and respond to attacks. To put it simply, penetration testing focuses on the defenses (technology), and the red team focuses on the defenders (people).
+Red teams are focused on testing the effectiveness of the entire security program. They emulate the Tactics, Techniques, and Procedures (TTPs) of real-world adversaries with the goal of measuring weaknesses in defense, detection, and response. Red teams use many of the same tools as penetration testers; however, they have a different focus. The red team is focused on identifying deficiencies in the blue team's (defenders) ability to detect, respond, and eradicate a threat. A red team only uses vulnerabilities that help them accomplish their goal, while penetration testers are most often tasked with finding many vulnerabilities. 
+
+Penetration testing is focused on finding flaws, understanding their business risks, and helping the organization improve its security stance. The red team's primary job is to help make the blue team better equipped to detect and respond to attacks. To put it simply, penetration testing focuses on the defenses (technology), and the red team focuses on the defenders (people).
 
 #### Purple Team 
 Purple teams are cross-functional teams where the red and blue teams work together. The closer the interaction, the better. This type of assessment includes metrics on blue's ability to identify, detect, and SEC560 | Enterprise Penetration Testing Pen Test, Red Team, Purple Team, Vuln Assessment, Audit Identify flaws that attackers could cause business harm with (testing preventive controls) Pen Test Red Team Designed to test detection and response capabilities Cross-functional team of red and blue teamers, and/or tightening the feedback loop between offense and defense Purple Team Identify, quantify, and rank vulnerabilities (no exploitation) Vulnerability Assessment Security Audit Audit implies testing against a particular set of standards 11 12 respond to an attack. The testing should be documented to show advances in detection and response capabilities. These metrics can be used to justify investments in tools and training.
 
 #### Vulnerability Assessment
-Many people use the phrases vulnerability assessments and security assessments to describe the work done by penetration testers and ethical hackers, but there is a subtle distinction between a penetration test and a security assessment. A penetration test is focused on getting in or stealing data. The emphasis is on penetrating the target environment by exploiting discovered vulnerabilities. Vulnerability assessments and security assessments are focused on finding vulnerabilities, often without regard to actually exploiting them and getting in. Thus, penetration testing often goes deeper, with its goal of taking over systems and stealing data, whereas security and vulnerability assessments are broader, involving the process of looking for security flaws. These assessments also often include policy and procedure reviews, which are usually not included in penetration testing. The table on the previous slide shows the differences between the different types of assessments. Of course, each can vary to some degree, with penetration testing having the greatest variability. A penetration tester is often tasked with finding all vulnerabilities, even those that aren't exploitable.
+Many people use the phrases vulnerability assessments and security assessments to describe the work done by penetration testers and ethical hackers, but there is a subtle distinction between a penetration test and a security assessment. 
+
+A penetration test is focused on getting in or stealing data. The emphasis is on penetrating the target environment by exploiting discovered vulnerabilities. 
+
+Vulnerability assessments and security assessments are focused on finding vulnerabilities, often without regard to actually exploiting them and getting in. 
+
+Thus, penetration testing often goes deeper, with its goal of taking over systems and stealing data, whereas security and vulnerability assessments are broader, involving the process of looking for security flaws. These assessments also often include policy and procedure reviews, which are usually not included in penetration testing. 
+
+The table on the previous slide shows the differences between the different types of assessments. Of course, each can vary to some degree, with penetration testing having the greatest variability. A penetration tester is often tasked with finding all vulnerabilities, even those that aren't exploitable.
 
 #### Security Audit 
-Finally, we have the phrase security audit. An audit implies that we are measuring things against a fixed, predetermined, rigorous set of standards. These audits are almost always done with detailed checklists. Some penetration testing and ethical hacking organizations have created their own internal checklists of items that need to be covered in a test, but these checklists aren't as detailed as those for comprehensive audits. Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
+Finally, we have the phrase security audit. An audit implies that we are measuring things against a fixed, predetermined, rigorous set of standards. These audits are almost always done with detailed checklists. 
+
+Some penetration testing and ethical hacking organizations have created their own internal checklists of items that need to be covered in a test, but these checklists aren't as detailed as those for comprehensive audits. 
+
+Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
 
 #### Penetration Testing Goals
 
@@ -80,7 +112,11 @@ A formal definition of penetration testing is as follows:
 
 >Penetration testing involves modeling the techniques used by real-world computer attackers to find vulnerabilities and, under controlled circumstances, to exploit those flaws in a professional, safe manner according to a carefully designed scope and Rules of Engagement to determine business risk and potential impact, all with the goal of helping the organization improve security practices.
 
-The key is that the vulnerability identification and exploitation should always be business-focused. The penetration test findings should always focus on the organizational risk, not just the technical risk. Many organizations use ethical hacking and penetration testing to find security flaws before their adversaries do. After applying their security policies, procedures, and technology, organizations can use thorough penetration tests to see how effective their security is in light of an actual attack, albeit by friendly attackers. An added benefit of ethical hacking and penetration testing is that because they show real vulnerabilities and indicate what a malicious attacker might be capable of achieving, they can get management's attention. Decision makers, when presented with the carefully formulated results of a test in business terms, are more likely to provide resources and attention to improve the security stance of an organization.
+The key is that the vulnerability identification and exploitation should always be business-focused. The penetration test findings should always focus on the organizational risk, not just the technical risk. 
+
+Many organizations use ethical hacking and penetration testing to find security flaws before their adversaries do. After applying their security policies, procedures, and technology, organizations can use thorough penetration tests to see how effective their security is in light of an actual attack, albeit by friendly attackers. 
+
+An added benefit of ethical hacking and penetration testing is that because they show real vulnerabilities and indicate what a malicious attacker might be capable of achieving, they can get management's attention. Decision makers, when presented with the carefully formulated results of a test in business terms, are more likely to provide resources and attention to improve the security stance of an organization.
 
 ### Types of Penetration Tests
 
@@ -689,6 +725,203 @@ Beyond the tool and exploit sites, numerous vulnerability research sites are als
 Some of the best sites with vulnerability research and detailed descriptions are the following sites:
 - The United States Computer Emergency Readiness Team (US-CERT) (https://www.cisa.gov/newsevents/cybersecurity-advisories), maintained by the US Department of Homeland Security (DHS) 
 - The Common Vulnerabilities and Exposures (CVE) repository operated by MITRE (https://cve.mitre.org/)
+
+### Tools for Penetration Testing Teams
+
+- Knowledge base 
+	- Must be easy to search and update or it won't be used 
+	- Share tools and techniques for specific attacks 
+	- Internal teams can share remediations and solutions 
+	- Tools: OneNote, Confluence, Wiki 
+- Storage − In-house tools, code, artifacts found in target environment 
+	- Tools: File share, SharePoint, cloud storage, Git 
+- Central code repository (Git, CVS, SVN, Mercurial, TFS/VSTS)
+- Chat (secured) 
+- Secure credential sharing 
+	- You need a secure way to share credentials with your team 
+	- Tools: 1Password (includes 2FA), LastPass, KeePass 
+- Common finding repository 
+	- Don't rewrite the same finding every time; tweak it for the specific case 
+	- Tools: Excel, Word, DB, Git 
+- Collaborative report writing 
+	- Tools: M365, Google Docs, Git 
+- Pen Test specific (less common) 
+	- Tools: Dradis, PlexTrac
+
+Most penetration testers work as part of a team. Even if you are working by yourself, it is important to take good notes so you can save yourself time on future engagements. We recommend that you have a knowledge base containing tools, techniques, and command examples to make your attacks more efficient. Also, this is a great way to share with your team, especially new or junior members. The specific tool isn't as important as the process, but some of the common tools used are Confluence, a wiki, or OneNote. This must be easy to use, search, and update, or your team won't use it.
+
+You will need storage for data specific to the engagement. You will often find keys, certificates, and other artifacts that are useful in the penetration test that you need to (securely) share with other team members. This could be an internal file share, SharePoint, cloud storage, or a Git repository. This needs to be easily accessible and updatable by the team members. Remember to clean up this data when the test is complete!
+
+Your team will often have in-house code that needs to be shared with team members. Most teams these days use Git. Other common version control software includes CVS, SVN, Mercurial, and the Microsoft Team Foundation Server (TFS) or Visual Studio Team Services (VSTS).
+
+Your team needs to communicate, so a secure chat mechanism is important. Signal and Telegram offer great security, but the scalability for an enterprise-ready tool is lacking. Microsoft Teams, while somewhat behind the curve in the world of chat, offers retention policies to make cleanup automatic. Similarly, Slack offers a retention policy at their paid tier. Many teams using internal services, such as IRC, allow the pen testers to have more control over the data.
+
+Clients will give you credentials, you will likely acquire new credentials (cracking, guessing, or even cleartext), and you possibly will even create accounts in the target network. It is important to securely share that information with your teammates. There are a number of password vaulting tools that can be useful here, including 1Password, LastPass, and KeePass. One nice benefit of 1Password is that it also allows you to store some 2FA tokens.
+
+Finally, we need ways to write reports in a consistent manner. It is a timesaver to have a repository for common vulnerabilities and findings. These findings are pre-vetted prior to going into the report. This allows you to have a good quality base for the finding and you can tweak the finding for the particular scenario or target. This is a tremendous time-saver. The findings in the repository should not contain any target information, making it much safer to copy into a report. Be very careful never to copy data between reports, as this can lead to data leakage. The authors of this course have heard of multiple instances where one target's name or details ended up in a report for a different target. This can be embarrassing and undermine your credibility.
+
+To make report writing easier for multiple people, having a collaborative reporting environment is nice because it saves time. Ideally, this allows multiple people to work on the report (and even the same portion of the report) at the same time. Services like Google Docs and SharePoint with Microsoft Office allow for this kind of shared editing. Some penetration testers use version control software (e.g., Git, SVN) to manage reporting, but in the author's experience, this can lead to a number of code/edit conflicts that take extra time to resolve.
+
+Some penetration testers use collaborative tools specifically designed for penetration testing. The two most common ones are Dradis and Lair.
+
+The Dradis tool is a Ruby-on-Rails project designed for recording information among multiple penetration testers working on one or more projects together. The Dradis server runs on Windows, Linux, or macOS and features multiple client options: a command-line client, several different thick client applications, or a web-based interface.
+
+All results are organized as a hierarchical tree, typically organized starting by overall project, then split according to functional areas of the target infrastructure (for example, DMZ/intranet/extranet, servers/network devices/clients, or other applicable divisions of the test's scope), then separated by individual devices, down to individual ports on those devices, and then through findings and notes associated with each port.
+
+With Dradis, a tester can import results from the Nmap port scanning tool, the Nessus or Qualys network vulnerability scanning tools, the Nikto web server scanning tool, or the Burp web application attack tool. In addition, the tester can manually enter findings and notes or add analytical notes to results already imported.
+
+## Linux for Penetration Testers
+
+### Linux vs. Windows
+
+Windows and Linux are simply tools (or toolboxes) 
+- Many attack tools work better/only on Linux
+- Domain operations are often easier on Windows 
+- Switch between them as needed (VMs)
+- macOS is acceptable, but use VMs 
+	- macOS is required for some iOS mobile testing
+
+That said, Linux is an OS penetration testers need to understand. We need to briefly go through Linux basics to make sure everyone is on the same page.
+
+A common question among penetration testers and ethical hackers is, "Should I focus my skills and toolbox on Linux or Windows?" When confronted with this question, we recommend that your pen test toolset include both operating systems side by side, working together to maximize your efficiency and capabilities. The truth is that some tools work better on Linux, whereas others work better on Windows. Some tools work just fine on both, whereas other tools have been released for only one of those platforms. Thus, if you choose to work in only one OS or at least just focus on that OS, you'll be missing out on a lot of useful tools and techniques. To improve productivity and streamline workflow, we recommend virtualizing one of these two OSs, perhaps using VMware, and running the two simultaneously on the same hardware so that you can quickly switch between them.
+
+The entire question posed at the start of the preceding paragraph illustrates a mindset that should be transcended. Don't think of them as two different operating systems. Think of them as one set of tools that you use in your penetration testing and ethical hacking job. As a carpenter or plumber would use the best tool that is available and convenient for a given job, so should you. To continue with that analogy, don't think of Windows and Linux as two different toolboxes; instead, they are two different compartments in your single toolbox.
+
+Some of you are no doubt wondering whether macOS is an acceptable platform for penetration testing and ethical hacking. It is—with remarkable stability and ease of use. However, there are some tools for Linux and Windows that simply will not run on macOS, no matter how hard you try to get them installed. Thus, if you plan to use macOS, make sure you get a virtualization solution for it (such as VMware Fusion or Parallels) so that you can also run both Windows and Linux on top of macOS.
+
+In this course, we will be using our Linux VM to perform our attacks. Linux is the Operating System (OS) used by the vast majority of offensive personnel. Many tools work better or work only in Linux. Also, the package management system in many of the Linux distributions makes the configuration and setup of the tools quite easy. While we will be using Linux a lot, remember that both Windows and Linux are simply tools, and we should switch between them as needed to be efficient.
+
+560vm is based on Ubuntu. Inside our VM, we will be using the Bourne Again Shell (Bash) as our shell on the command line. There are other Linux distributions and shells, each of which does things a little differently, but the core functionally is the same.
+
+### Users: Root and Non-root
+
+- Principle of least privilege: Only use elevated privileges when necessary
+	- As attackers, we can often exploit deficiencies in least privilege 
+- Non-root users − Have a prompt with a $ (sometimes % in other shells) 
+	- Home directory similar to: /home/username 
+- Root users 
+	- Have a prompt with a # 
+	- Home directory: /root
+- As root, create a (backdoor) account: useradd username 
+- Change your password with passwd 
+	- Change another user's password (must be root): passwd username
+
+Pen Test Tip: See if you can access other user's home directories, history files, and keys
+
+The principle of least privilege "states that only the minimum access necessary to perform an operation should be granted, and that access should be granted only for the minimum amount of time necessary" (US-CERT).
+
+Attackers will often abuse shortcomings in the execution of the principle to escalate permissions or move from a non-privileged user to a privileged user. On a Linux system, the prompt will change depending on the user's access level. Also, the home directories for "root" and regular users are, by default, in different locations.
+
+- Non-root users: 
+	- Have a prompt with a $ or % 
+	- Home directory similar to: /home/username 
+- Root users:
+	- Have a prompt with a # 
+	- Home directory: /root
+
+If you want to create an account, such as a backdoor for persistence, you can use the useradd command. The command takes the following options:
+
+useradd [options] LOGIN 
+	-d HOME_DIR 
+	-e EXPIRE_DATE (format YYYY-MM-DD) 
+	-u UID (numeric user ID, must be unique unless -o is used. Users with a UID of zero are granted root-level access)
+
+See more options by running: man useradd
+
+### Who Am I?
+
+ - Attackers will often gain access to a system and have no idea who they are or what access they have
+	- The shell prompt is not always visible to an attacker
+- Get your username with whoami 
+- Get your user ID and group IDs with id
+
+```
+whoami 
+clark 
+id 
+uid=1000(clark) gid=1000(clark) groups=1000(clark),24(cdrom),27(sudo)… ./exploit 
+whoami 
+root 
+id 
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+When you successfully exploit a system, often, you will not know the level of access you have or the user you are running as. One of the first things to do is run the whoami command to determine your user. To get more information about your access, you can use the id command to get your numeric user ID and your group memberships. In the example below, we have access as a regular user (clark), and then, using a privilege escalation exploit, we gain root permissions.
+
+### Linux Filesystem Structure
+
+- The top of the file system is called / (root) 
+- The filesystem can vary for different distributions of Linux and BSD
+
+TIP The /etc directory contains a number of interesting files, including configuration files, account information (in passwd), and hashes (in shadow). This is often a useful location to search.
+
+![[スクリーンショット 2026-03-02 12.08.04.png]]
+
+- /bin and /sbin contain executable programs. 
+- /root is the root login account's home directory. This is hugely important because if you log in directly as root, this will be your initial location in the directory structure. If you log in as an individual user other than root, you'll be put in that user's directory, typically somewhere inside of /home. 
+- /dev stores devices (drives, terminals, etc.). 
+- /etc holds configuration items, like the account information (stored in /etc/passwd) and hashed passwords (stored in /etc/shadow). 
+- /home contains users' home directories. 
+- /lib contains common libraries.
+- /mnt is where various remote and temporary file systems (CD-ROMs, floppies, etc.) are attached. 
+- /proc is a virtual file system used to store kernel info. 
+- /tmp is for temporary data and is usually cleared at reboot. 
+- /usr holds user programs and other data. 
+- /var holds many different items, including logs (/var/log/). 
+- /opt stores optional items and is often a location for specialized tools that have been added to a distribution.
+
+### Navigating the Filesystem
+
+![[スクリーンショット 2026-03-02 12.12.25.png]]
+
+We can use the cd command to change directories. This moves our current location to the new location. The shell will often show us our current directory, but if we want to print the working directory, we can use the pwd command.
+
+When referencing files or directories, we can use their absolute path or the location relative to our current location. The absolute path is the full path to the object. The command below uses absolute pathing:
+
+```
+sec560@560vm:~$ cd /var/log 
+sec560@560vm:/var/log$ pwd 
+/var/log
+```
+
+Relative pathing references the location relative to our current location and does not use the leading slash (/). We can use .. ("dot dot") to access the parent directory (go up one level). This command uses relative pathing and changes our current working directory to /var, but only because we are currently in a directory under var:
+
+```
+sec560@560vm:/var/log$ cd .. 
+sec560@560vm:/var$ pwd
+/var
+```
+
+This command also uses relative pathing to move to the log directory in our current directory (var):
+
+```
+sec560@560vm:/var$ cd log
+sec560@560vm:/var/log$ pwd
+/var/log
+```
+
+Your home directory is aliased as ~ (tilde). To move to your home directory, you can use
+
+```
+sec560@560vm:/var/log$ cd ~ 
+sec560@560vm:~$
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
