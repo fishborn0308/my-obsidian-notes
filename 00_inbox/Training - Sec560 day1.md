@@ -415,4 +415,105 @@ $ ntlmrecon --input 10.130.10.0/24 --outfile ntlmrecon_10.130.10.0.csv [+] Brute
 
 Identifying NTLMSSP endpoints is helpful both internally and externally. On internal networks, NTLSMSSP endpoints can be targeted with relay attacks because, unlike SMB, there is no way to prevent an NTLM relay to an HTTP endpoint. Externally, NTLMSSP endpoints provide an opportunity for multifactor authentication (MFA) bypass. NTLM does not support MFA, so targeting exposed NTLMSSP endpoints with password sprays and credential stuffing attacks can be very effective.
 
-### 
+### Credential Stuffing, in Brief (1)
+
+1. People reuse passwords (often 1–5 pw patterns/person) 
+2. Sites are compromised 
+3. Organizations use 1FA externally
+
+The result? Third-party breaches affect companies via employees' reused passwords.
+
+![[スクリーンショット 2026-03-02 10.48.42.png]]
+
+A widespread behavior among internet users is the reuse of passwords across multiple platforms. It's common for individuals to use the same one to five password patterns across various services. This habit significantly increases vulnerability because once one password is compromised, it can potentially provide access to several accounts owned by the same user. Websites and services often suffer data breaches, leading to large volumes of user credentials being exposed. The attackers for these breaches don't have to release the breached credentials publicly, but they commonly do. These credentials can include usernames, passwords, and other personally identifiable information (PII). Many organizations still rely on single-factor authentication for external access to systems, which only requires a username and password. This form of authentication does not provide sufficient security against the types of attacks that exploit stolen or reused credentials. The combination of these three elements leads to a situation where third-party breaches have a domino effect, impacting not just the directly breached service but also other organizations where the same credentials are reused. The comic panels in the slide humorously contrast the common misconception of hacking—as a dramatic physical infiltration—with the reality that many hacks are simply about exploiting known credentials across different systems. Don't worry, there will be future xkcd references in class! Obligatory xkcd 
+
+reference: https://xkcd.com/2176/
+
+### Credential Stuffing, in Brief (2)
+
+![[スクリーンショット 2026-03-02 10.49.38.png]]
+
+Here, we show a step-by-step example of a credential stuffing attack, showing how easy it can be using publicly available breach data and toolsets.
+
+1. Credential Harvesting: The attacker begins by extracting potential credentials from a compiled list of breached data (COMB.txt) that specifically targets email addresses at the fake domain 'archer.zzz'. The command uses filters and saves these credentials into a file named 'creds.txt'. 
+2. Credential Verification: Before attempting the actual attack, the first three credentials are verified to check their format and potential usability. This step ensures that the credentials are correctly formatted and plausible before they are used in an attack. 
+3. Executing the Attack: Using the hydra tool, a well-known software for performing automated login attempts, the attacker tries to log into the 'krg.archer.zzz' mail server using the credentials saved in 'creds.txt'. The output shows that one of the login attempts was successful, indicating that the password for 'sarcher@archer.zzz' was 'Sploosh123!'.
+
+The successful login highlights the critical vulnerability associated with reused passwords and singlefactor authentication systems. This demonstration underscores the importance of using multi-factor authentication and maintaining rigorous password policies to defend against such attacks. Additionally, it shows the practical application of tools available for such purposes, reminding organizations of the need to secure their systems against credential stuffing by regularly updating their cybersecurity measures.
+
+### Credential Stuffing (The Commands)
+
+![[スクリーンショット 2026-03-02 10.51.37.png]]
+
+```
+$ rg -iN '^[^@]+@archer.zzz:' COMB.txt > creds.txt 
+$ head –n 3 creds.txt 
+$ hydra –C creds.txt krg.archer.zzz imap
+```
+
+Here, we look at the commands used in a credential stuffing attack, specifically tailored to exploit email credentials from a breach compilation targeting the domain 'archer.zzz'.
+
+1. Command for Extracting Credentials: The 'rg' (Ripgrep) command is utilized to search through a large dataset (COMB.txt), which contains breached email and password combinations. The parameter --iN specifies a case-insensitive search, focusing on lines that start with one or more characters not including the '@' symbol, followed by '@archer.zzz:', identifying email addresses from a specific domain. 
+2. Verifying Credentials: The head -n 3 creds.txt command is used to quickly verify the format and plausibility of the top three entries in the 'creds.txt' file, ensuring that the data extracted is correctly formatted and usable for the next step in the attack. 
+3. Using Hydra for Credential Stuffing: The last command, hydra -C, commands Hydra to attempt logins on the 'krq.archer.zzz' mail server using the IMAP protocol with the credentials listed in 'creds.txt'. This illustrates the practical use of Hydra to automate the login process using discovered credentials, highlighting the tool's efficiency in testing multiple combinations quickly.
+
+### Software for Testing: Prepackaged Suites
+
+- SANS Slingshot includes many of the tools to get you started in pen testing
+- Other Linux distributions can also be helpful 
+	- Kali Linux by Offensive Security: https://www.kali.org/ 
+	- Parrot Linux from Parrot Security: https://parrotsec.org/ 
+	- Black Arch Linux: https://blackarch.org/ 
+	- Ubuntu or Debian with PTF: https://github.com/trustedsec/ptf
+
+Remember, we've tested the provided Linux and Windows VMs, which have the lab directions and other files needed for the labs!
+
+First, you need software for your testing regimen. With this course, you received a copy of the SEC560 Linux virtual machine. Furthermore, this VMware image includes tools pre-installed and, in many cases, preconfigured so that you can apply them directly in your own testing. Another useful source of tools is the bootable Linux distributions various people have made freely available, loaded with useful assessment and attack tools. A solid set of tools is included in Kali Linux, created and maintained by Offensive Security. Numerous similar Linux images for pen testing are also available, but Kali is one of the best because of its comprehensive set of tools, compatibility with a wide range of hardware, and carefully designed organization and layout.
+
+### An Important Note: Command Prompts
+
+![[スクリーンショット 2026-03-02 10.58.27.png]]
+
+- We work with numerous different shells and switch often 
+- Be aware of shells within shells: Linux → Metasploit → Meterpreter → … 
+- The labs and notes indicate the prompts 
+	- Windows cmd.exe: C:\> 
+	- Windows PowerShell: PS C:\> 
+	- Linux (non-root): $ or % 
+	- Linux (root): # 
+	- msfconsole: msf > 
+	- Meterpreter: meterpreter >
+
+Please make sure you enter commands at the right prompt!
+
+Throughout this course, we use numerous different shells, both in our operating system and within Metasploit. We frequently change between these different shells as we switch back and forth between Linux and Windows, as well as within different aspects of Metasploit. Sometimes, even on a single page in the book, you use two or even three different types of shells to do something and then observe the results. All the labs and notes were carefully written to indicate the proper shell you are supposed to use at any given time by including the shell prompt right before each command you are supposed to type. That is, each lab command is preceded by the prompt indicating which shell to use. The shell types you encounter throughout this class include:
+
+Double-check at each lab step that you are entering the proper command into the proper shell. Otherwise, a given lab step will not work for you properly.
+
+### Networking
+
+- VPN address will be 10.254.X.X 
+	- tun0 on Linux, Ethernet2 on Windows 
+- NAT addresses: will vary depending on your system! 
+	- It will commonly be 172.16.X.X or 192.168.X.X, but it could be different 
+- Network mask and DNS are set automatically 
+- In your VMs, we have helpers that show your IP address in the UI 
+	- Windows IP addresses can lag by up to a minute
+
+![[スクリーンショット 2026-03-02 11.02.14.png]]
+
+All the VMs will use DHCP to dynamically acquire IP addresses and network information.
+
+Your VMs will be configured to use NAT, where the network connectivity will be shared with the computer, and the VMs are not directly accessible on the local network. The VMs will be able to communicate with each other.
+
+Many of the labs will require that you connect to the SANS-hosted infrastructure using a VPN. To configure the VPN, follow the directions in your workbook (electronic or paper).
+
+You will not use your host system in any of the lab networks; however, your host will get an IP address on the lab network (for in-person classes), so make sure you have the latest software patches and host protections in place.
+
+### Remote Connectivity via VPN
+
+![[スクリーンショット 2026-03-02 11.09.02.png]]
+
+Depending on how you are using your local VM, you may need to use the IP address for the local interface or the VPN interface. If you are setting up a connection directly between your VMs, then use the address assigned to the eth0 interface on Linux or the Ethernet0 interface on Windows. 
+
+If you need to have a remote target connect to your VM, such as an exploit callback, use your Windows or Linux tun0 interface and associated IP address or the Ethernet 2 interface on Windows.
