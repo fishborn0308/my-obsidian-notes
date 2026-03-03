@@ -1059,19 +1059,22 @@ PORT     STATE SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 3.12 seconds
 ```
+
+Nmapは、上記のようにスキャン完了までの合計時間を表示します。
+
+また、スニッファの出力も確認してください。あなたのマシンからターゲットに向けて大量のSYNパケット（S）が送信されているはずです。3ウェイハンドシェイクを完了させるため、比較的少数のSYN-ACKが返ってくるほか、あなたのマシンからACKが送信されます。
+
+ただし、この実行ではNmapは全てのTCPポートをスキャンしていません。/usr/share/nmap/nmap-servicesファイルに示されているように、最も頻繁に使用される上位100ポート（-Fオプションのため。デフォルトでは上位1,000ポート）をスキャンしています。-p 0-オプションで全ポートをスキャンする場合、このコマンドは5分以上かかる可能性があります。全ポートをスキャンしたい場合は、ラボを初回完了後に実施してください。--top-ports 3000 でより多くのポートをスキャンした場合の結果を見てみましょう。
+
+
+
 ```
-Nmap displays the total time it takes to complete the scan, as shown above.
-
-Also, look at the output of your sniffer. You should see a lot of SYN packets (S) going from your machine to the target. There will be a relatively smaller number of SYN-ACKs coming back, as well as ACKs going from your machine, to complete the three-way handshake.
-
-Nmap did not scan all TCP ports with that invocation, however. It scanned the top 100 most frequently used ports (due to -F, otherwise it'd be the top 1,000), as indicated in the /usr/share/nmap/nmap-services file. If we were to scan all ports using -p 0-, this command will likely take 5 minutes or more. If you'd like to scan all the ports, please do so after you have completed the lab the first time. Let's see what the results look like if we scan more ports using --top-ports 3000.
-
-Command
-
 sudo nmap -n -sT 10.130.10.33 --top-ports 3000
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ sudo nmap -n -sT 10.130.10.33 --top-ports 3000
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:12 UTC
 Nmap scan report for 10.130.10.33
@@ -1083,18 +1086,22 @@ PORT     STATE SERVICE
 5985/tcp open  wsman
 
 Nmap done: 1 IP address (1 host up) scanned in 14.40 seconds
+```
 
-This scan took longer, but notice Nmap discovered more open ports. Of course, the more ports you scan the longer it will take. This is the time versus accuracy trade off. We can check all 65,536 ports, but that is going to take a long time (approximately 65 times longer than 1,000 ports). This may not be a problem on a small number of hosts, but the scan may be prohibitively slow an a larger network or target range.
-3: Output Formats
+このスキャンは時間がかかりましたが、Nmapがより多くの開いているポートを発見したことに注目してください。もちろん、スキャンするポート数が多いほど時間はかかります。これは時間と精度のトレードオフです。65,536ポートすべてをチェックすることは可能ですが、非常に長い時間がかかります（1,000ポートのスキャンの約65倍）。ホスト数が少ない場合は問題ないかもしれませんが、大規模なネットワークやターゲット範囲ではスキャンが著しく遅くなる可能性があります。
+3: 出力形式
 
-Next, look at the output format files that Nmap can create via the -oA option. Rerun your -sT scan with the default ports, storing your results in all the major format styles (-oA to indicate Normal, Greppable, and XML output). Store your results in files in the /tmp directory with a base name of scan, which indicates the scan type and the IP address of the target. We'll also speed up the scan with -F (scan only the top 100 ports) and -T4 (decrease timeouts and scan in parallel).
+次に、-oAオプションでNmapが生成できる出力形式ファイルを確認します。デフォルトポートで-sTスキャンを再実行し、主要な全形式（-oAでNormal、Greppable、XML出力を指定）で結果を保存します。結果を/tmpディレクトリに保存し、ファイル名にはスキャン種別とターゲットIPアドレスを示す「scan」を接頭辞として付けます。さらに-F（上位100ポートのみスキャン）と-T4（タイムアウト短縮と並列スキャン）でスキャンを高速化します。
 
-Command
 
+
+```
 sudo nmap -n -sT 10.130.10.0/24 -oA /tmp/scan -F -T4
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ sudo nmap -n -sT 10.130.10.0/24 -oA /tmp/scan -F -T4
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:13 UTC
 Nmap scan report for 10.130.10.4
@@ -1120,48 +1127,57 @@ PORT     STATE SERVICE
 Nmap done: 256 IP addresses (13 hosts up) scanned in 10.07 seconds
 
 Then get a list of the files associated with the scan inside of /tmp.
+```
 
-Command
 
+
+```
 ls -l /tmp/scan*
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ ls -l /tmp/scan*
 -rw-r--r-- 1 root root  2627 Aug 14 18:13 /tmp/scan.gnmap
 -rw-r--r-- 1 root root  3065 Aug 14 18:13 /tmp/scan.nmap
 -rw-r--r-- 1 root root 19786 Aug 14 18:13 /tmp/scan.xml
+```
 
-You should see three files with the same base name but with a different extension:
+同じ基本名で拡張子が異なる3つのファイルを確認してください：
 
-    Greppable form with a .gnmap suffix
-    Normal form with a .nmap suffix
-    XML form with a .xml suffix
+    .gnmap 拡張子の検索可能な形式
+    .nmap 拡張子の通常形式
+    .xml 拡張子のXML形式
 
-Use the less to review the .nmap file (press q to quit):
-
+less コマンドで .nmap ファイルを確認してください（q を押すと終了します）：
 Command
 
+```
 less /tmp/scan.nmap
+```
 
-You'll see that the file contains the same information displayed on the screen during a scan.
+スキャン中に画面に表示される情報と同じ内容がファイルに含まれていることがわかります。
 
-Next, let's take a look at the .xml output file (press q to quit):
+次に、.xml出力ファイルを確認しましょう（終了するにはqを押してください）：
 
-Command
 
+
+```
 less /tmp/scan.xml
+```
 
-This file is XML, and much less readable by humans. However, this format can be read by other tools including GoWitness (which is covered later in this course).
+このファイルはXML形式であり、人間が直接読むには非常に読みにくいです。ただし、この形式はGoWitness（このコースの後半で取り上げます）を含む他のツールで読み取ることができます。
 
-Finally, let's view the contents of the .gnmap using cat.
+最後に、catコマンドを使って.gnmapの内容を表示してみましょう。
 
-Command
 
+```
 cat /tmp/scan.gnmap
+```
 
-Expected Results
 
+```
 sec560@560vm:~$ cat /tmp/scan.gnmap
 # Nmap 7.94SVN scan initiated Wed Aug 14 18:13:03 2024 as: nmap -n -sT -oA /tmp/scan -F -T4 10.130.10.0/24
 Host: 10.130.10.4 ()    Status: Up
@@ -1171,18 +1187,23 @@ Host: 10.130.10.5 ()    Ports: 80/open/tcp//http///, 445/open/tcp//microsoft-ds/
 Host: 10.130.10.6 ()    Status: Up
 Host: 10.130.10.6 ()    Ports: 80/open/tcp//http///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (98)
 ...trimmed for brevity...
+```
 
-Note that all the results for a given host are stored on one line with each open port and associated service identified. This format is easy to search using grep. In fact, let's do that now!
-4: Finding Hosts by Open Port
+特定のホストに関する全結果は1行にまとめられ、開いているポートと関連サービスが識別されます。この形式はgrepによる検索が容易です。さっそく実行してみましょう！
 
-Let's find all the systems listening on port 389, the port used by LDAP.
+### 4: Finding Hosts by Open Port
 
-Command
+LDAPで使用されるポートであるポート389でリスニングしているすべてのシステムを見つけましょう。
 
+
+
+```
 grep 389/open /tmp/scan.gnmap
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ grep 389/open /tmp/scan.gnmap
 Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (93)
 Host: 10.130.10.5 ()    Ports: 80/open/tcp//http///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server/// Ignored State: filtered (97)
@@ -1191,21 +1212,26 @@ Host: 10.130.10.7 ()    Ports: 135/open/tcp//msrpc///, 445/open/tcp//microsoft-d
 Host: 10.130.10.21 ()   Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server/// Ignored State: filtered (96)
 Host: 10.130.10.23 ()   Ports: 135/open/tcp//msrpc///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///   Ignored State: filtered (97)
 ...truncated for brevity...
+```
 
-If you look closely, you'll see that the only .4 system is listening on port 389, but other hosts show up in this list. This is because 389 is part of 3389. If we want to look for exactly 389, we'll have to use a different command. Notice that before the port number there is a space. We can use grep's -w option to "Select only those lines containing matches that form whole words" (as described in the output of man grep).
+よく見ると、.4システムはポート389でリスニングしているだけなのに、このリストには他のホストも表示されていることがわかります。これは389が3389の一部だからです。正確に389を検索したい場合は、別のコマンドを使用する必要があります。ポート番号の前にスペースがある点に注意してください。grepの-wオプションを使用すると、「一致する語が完全な単語を形成する行のみを選択する」（man grepの出力に記載）ことができます。
 
-Command
 
+
+```
 grep -w 389/open /tmp/scan.gnmap
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ grep -w 389/open /tmp/scan.gnmap
 Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (93)
+```
 
-Let's now look for the number of hosts listening on port 445 using wc -l (lowercase L).
+では、wc -l（小文字のL）を使用して、ポート445でリスニングしているホストの数を確認しましょう。
 
-We can use the wc -l command to get the number of hosts with port 445 open.
+wc -l コマンドを使用すると、ポート445が開いているホストの数を取得できます。
 
 Command
 
