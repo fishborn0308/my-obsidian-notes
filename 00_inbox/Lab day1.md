@@ -1233,25 +1233,31 @@ Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec
 
 wc -l コマンドを使用すると、ポート445が開いているホストの数を取得できます。
 
-Command
 
+```
 grep -w 445/open /tmp/scan.gnmap | wc -l
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ grep -w 445/open /tmp/scan.gnmap | wc -l
 7
+```
 
-The wc command is used to get a "word count" and the -l (lowercase L) option tells the command to return the number of lines. Notice that there are 7 systems listening on port 445.
+wcコマンドは「単語数」を取得するために使用され、-l（小文字のL）オプションは行数を返すよう指示します。ポート445でリスニングしているシステムが7つあることに注意してください。
 
-If we want a list of systems listening on port 445, we can extract the IP address using cut. We'll specify the delimiter with -d, using the space ' ' as the delimiter. The IP address is the second field, which we can select with -f 2.
+ポート445でリスニングしているシステムのリストが必要な場合、cutコマンドでIPアドレスを抽出できます。区切り文字は-dオプションで指定し、スペース ' ' を区切り文字として使用します。IPアドレスは2番目のフィールドであり、-f 2 で選択できます。
 
-Command
 
+
+```
 grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
 10.130.10.4
 10.130.10.5
@@ -1260,54 +1266,66 @@ sec560@560vm:~$ grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
 10.130.10.23
 10.130.10.25
 10.130.10.44
+```
 
-5: The nmap-services File
+### 5: The nmap-services File
 
-Next, review the ports in the nmap-services file (the file from which Nmap gets its list of most frequent ports to scan) by running:
 
-Command
+次に、nmap-servicesファイル（Nmapがスキャンする頻度の高いポートのリストを取得するファイル）内のポートを確認します。以下のコマンドを実行します：
 
+
+
+
+```
 less /usr/share/nmap/nmap-services
+```
 
-The format of this file includes the service name (for example, ftp), the associated port and protocol (for example, 21/tcp), the relative frequency with which the given port was discovered during Fyodor's widespread internet scanning research, and an optional comment. Note that the ports themselves are typically TCP or UDP; however, some are associated with the Stream Control Transmission Protocol (SCTP), an alternative Layer 4 protocol defined by RFC 4960.
-6: UDP Scanning
+このファイルの形式には、サービス名（例：ftp）、関連するポートとプロトコル（例：21/tcp）、Fyodorによる広範なインターネットスキャン調査中に特定ポートが検出された相対頻度、およびオプションのコメントが含まれます。ポート自体は通常TCPまたはUDPですが、一部はRFC 4960で定義された代替レイヤ4プロトコルであるストリーム制御伝送プロトコル（SCTP）に関連付けられていることに注意してください。
 
-Now that you've looked at TCP port scanning with Nmap, try UDP port scanning. We discussed earlier that Linux kernels throttle ICMP port unreachable responses so that they send only one every second. You'll see that one-message-per-second behavior now because 10.130.10.10 is a Linux machine. Keep your tcpdump sniffer running, showing packets going to and from host 10.130.10.10.
+### 6: UDP Scanning
 
-Now invoke Nmap to perform a UDP port scan of 10.130.10.10 using -sU
+NmapによるTCPポートスキャンを確認したところで、次はUDPポートスキャンを試してみましょう。先述したように、LinuxカーネルはICMPポート到達不能応答を1秒に1回のみ送信するよう制御しています。10.130.10.10がLinuxマシンであるため、この1秒に1パケットという挙動が確認できるはずです。tcpdumpスニッファを実行し続け、10.130.10.10ホストとの間で送受信されるパケットを表示させておいてください。
 
-Command
+次に、-sUオプションを使用して10.130.10.10のUDPポートスキャンを実行するため、Nmapを起動します。
 
+
+```
 sudo nmap -n -sU 10.130.10.10
+```
 
-In your sniffer output, you will likely see several UDP packets and some ICMP port unreachables sent periodically.
+スニッファの出力には、複数のUDPパケットと、定期的に送信されるICMPポート到達不能応答が表示されるでしょう。
 
-In your Nmap window, press the spacebar to get a status report. You will likely see that the scan is only a small percentage done, depending on your system speed and the network speed.
+Nmapウィンドウでスペースキーを押すとステータスレポートが表示されます。システム速度やネットワーク速度にもよりますが、スキャンがわずかな割合しか完了していないことが確認できるはずです。
 
-Your output will be similar to what is shown below:
+出力は以下のような形式になります：
 
-Expected Results
+
 
 Press the spacebar to see the status.
 
+```
 sec560@560vm:~$ sudo nmap -n -sU 10.130.10.10
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:18 UTC
 Stats: 0:00:12 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
 UDP Scan Timing: About 2.57% done; ETC: 18:27 (0:08:13 remaining)
+```
 
-Slow!
+遅い！
 
-This scan is very slow. Press CTRL-C to stop Nmap before the scan completes.
-7: Targeted UDP Scan
+このスキャンは非常に遅いです。スキャンが完了する前に、Nmapを停止するにはCtrl+Cを押してください。
 
-Now rerun an Nmap UDP scan of the target, this time focusing on a narrower list of ports: 53,111,414,500-501. Target the .4 and .10 hosts.
+### 7: Targeted UDP Scan
 
-Command
+対象に対してNmap UDPスキャンを再実行し、今回はより狭いポート範囲（53、111、414、500-501）に焦点を当てます。対象は.4および.10のホストです。
 
+
+
+```
 sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501
+```
 
-Expected Results
 
+```
 sec560@560vm:~$ sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:19 UTC
 Nmap scan report for 10.130.10.4
@@ -1331,19 +1349,23 @@ PORT    STATE  SERVICE
 501/udp closed stmf
 
 Nmap done: 2 IP addresses (2 hosts up) scanned in 3.94 seconds
+```
 
-Notice that the ports show up as open|filtered on the .4 (Windows Domain Controller) host.
+.4（Windows ドメイン コントローラー）ホストでは、ポートが open|filtered と表示されることに注意してください。
 
-On the .10 (Linux) host, all the ports are closed. At first glance, this can be confusing. This is why we often want to use the --open option to only show open ports.
+.10（Linux）ホストでは、すべてのポートが closed です。一見すると混乱する可能性があります。このため、開いているポートのみを表示するために --open オプションを使用することがよくあります。
 
-If we run the command again using --open it is much more obvious that Nmap did not find any listening UDP ports on 10.130.10.10:
+--openオプションを使用してコマンドを再実行すると、Nmapが10.130.10.10:10でリスニング状態のUDPポートを一切検出できなかったことがより明確になります：
 
-Command
 
+
+```
 sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501 --open
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501 --open
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:19 UTC
 Nmap scan report for 10.130.10.4
@@ -1357,7 +1379,8 @@ PORT    STATE         SERVICE
 501/udp open|filtered stmf
 
 Nmap done: 2 IP addresses (2 hosts up) scanned in 1.98 seconds
+```
 
-Conclusion
+### 結論
 
-In this lab, we have seen how Nmap scans sweep through a target environment to identify potential target systems. We also explored various options for TCP and UDP scanning, along with the really useful --open Nmap command line option.
+本実習では、Nmapスキャンが対象環境を走査して潜在的なターゲットシステムを特定する方法を学びました。また、TCPおよびUDPスキャンの各種オプションに加え、非常に有用な--open Nmapコマンドラインオプションについても探求しました。
