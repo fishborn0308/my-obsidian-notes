@@ -957,10 +957,381 @@ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut
 このコマンドからは出力はありません。
 
 稼働中のIPアドレスとポートを特定することで、Nmapを含む他のツールに適切なターゲットリストを提供し、スキャンを高速化できます。
-結論
+
+### 結論
 
 本ラボでは、Masscanがポートスキャンを高速に実行する手段であることを確認しました。ただし、スキャン速度が速すぎてターゲットインフラをダウンさせないよう注意が必要です。Masscanはポートスキャンに特化したツールです。
 
 今後のラボでは、Nmapの高度な機能、特にOSフィンガープリンティングとバージョンスキャンについて検討します。これらはターゲットマシン上で動作するOSの種類やソフトウェアのバージョン情報を収集する手法です。この情報は、攻撃対象を絞り込み、特定のツールやエクスプロイトを用いてターゲット環境へのアクセスを得る上で、ペネトレーションテスターにとって極めて有用です。
 
 さらに、GoWitnessを使用して組織内でアクセス可能なウェブサイトを素早く確認します。これにより、ペネトレーションテスターは興味深いウェブサイトを迅速に特定できます。
+
+## Lab 1.4: Nmap
+
+### Background
+
+Masscanで概要を把握した後は、特定のシステムに関する詳細な情報が必要です。Nmapを使用して標的を絞ったスキャンを実施し、正確なサービスバージョン、オペレーティングシステム、潜在的な脆弱性を特定します。
+
+偵察により、Windowsドメインコントローラー、Linuxサーバー、および初期アクセス獲得後の足掛かりとなり得る各種サービスが明らかになります。詳細なサービス列挙は、今後の攻撃におけるエクスプロイト戦略の指針となります。
+
+### 1: Initial Scan
+
+ターゲットサブネットのスキャンを実行しましょう。
+
+```
+nmap -n 10.130.10.1-10
+```
+
+```
+sec560@560vm:~$ nmap -n 10.130.10.1-10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:08 UTC
+Nmap scan report for 10.130.10.5
+Host is up (0.083s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+
+Nmap scan report for 10.130.10.6
+Host is up (0.082s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+3389/tcp open  ms-wbt-server
+
+Nmap scan report for 10.130.10.10
+Host is up (0.086s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+23/tcp   open  telnet
+80/tcp   open  http
+9100/tcp open  jetdirect
+
+Nmap done: 10 IP addresses (3 hosts up) scanned in 11.85 seconds
+```
+
+-n オプションは、Nmap がドメイン名を解決しないことを意味します。Nmap スキャン実行中に p キーを押すとパケット単位のログ記録が有効になり、Shift-p で無効になります。
+
+講義で説明したように、Nmapはroot権限で実行されていない限りICMPパケットを送信できません。先ほどのコマンドをsudoまたはrootユーザーで実行すれば、ICMPパケットも確認できるでしょう。
+
+また、vキーとdキーをそれぞれ複数回押して、詳細出力とデバッグ情報を表示してみてください。入力が追いつかない場合は、スキャンを再実行してからキーを押すことを試みてください。
+
+### 2: Scanning 10.130.10.33
+
+次に、ターゲットマシン10.130.10.33に対してTCPポートスキャンを実行します。
+
+新しいターミナルを開く
+
+tcpdumpを起動し、ネットワーク10.130.10.0/24に関連するトラフィックを表示するように設定します（名前解決は行いません）。
+
+パケットを監視するためのスニッファを実行できるよう、新しいターミナルウィンドウを起動します：
+
+
+```
+sudo tcpdump -i tun0 -nn net 10.130.10.0/24
+```
+
+
+
+以下のコマンドを実行するまで、パケットは表示されません。
+
+次に、元のNmapターミナルウィンドウに戻り、10.130.10.33ホストをスキャンするためにNmapを呼び出します。TCP接続スキャン（完全なスリーウェイハンドシェイク）を実行します：
+
+
+
+```
+sudo nmap -n -sT 10.130.10.33 -F
+```
+
+
+```
+sec560@560vm:~$ sudo nmap -n -sT 10.130.10.33 -F
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:11 UTC
+Nmap scan report for 10.130.10.33
+Host is up (0.075s latency).
+Not shown: 98 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+1433/tcp open  ms-sql-s
+3389/tcp open  ms-wbt-server
+
+
+Nmap done: 1 IP address (1 host up) scanned in 3.12 seconds
+```
+```
+Nmap displays the total time it takes to complete the scan, as shown above.
+
+Also, look at the output of your sniffer. You should see a lot of SYN packets (S) going from your machine to the target. There will be a relatively smaller number of SYN-ACKs coming back, as well as ACKs going from your machine, to complete the three-way handshake.
+
+Nmap did not scan all TCP ports with that invocation, however. It scanned the top 100 most frequently used ports (due to -F, otherwise it'd be the top 1,000), as indicated in the /usr/share/nmap/nmap-services file. If we were to scan all ports using -p 0-, this command will likely take 5 minutes or more. If you'd like to scan all the ports, please do so after you have completed the lab the first time. Let's see what the results look like if we scan more ports using --top-ports 3000.
+
+Command
+
+sudo nmap -n -sT 10.130.10.33 --top-ports 3000
+
+Expected Results
+
+sec560@560vm:~$ sudo nmap -n -sT 10.130.10.33 --top-ports 3000
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:12 UTC
+Nmap scan report for 10.130.10.33
+Host is up (0.078s latency).
+Not shown: 2997 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+1433/tcp open  ms-sql-s
+3389/tcp open  ms-wbt-server
+5985/tcp open  wsman
+
+Nmap done: 1 IP address (1 host up) scanned in 14.40 seconds
+
+This scan took longer, but notice Nmap discovered more open ports. Of course, the more ports you scan the longer it will take. This is the time versus accuracy trade off. We can check all 65,536 ports, but that is going to take a long time (approximately 65 times longer than 1,000 ports). This may not be a problem on a small number of hosts, but the scan may be prohibitively slow an a larger network or target range.
+3: Output Formats
+
+Next, look at the output format files that Nmap can create via the -oA option. Rerun your -sT scan with the default ports, storing your results in all the major format styles (-oA to indicate Normal, Greppable, and XML output). Store your results in files in the /tmp directory with a base name of scan, which indicates the scan type and the IP address of the target. We'll also speed up the scan with -F (scan only the top 100 ports) and -T4 (decrease timeouts and scan in parallel).
+
+Command
+
+sudo nmap -n -sT 10.130.10.0/24 -oA /tmp/scan -F -T4
+
+Expected Results
+
+sec560@560vm:~$ sudo nmap -n -sT 10.130.10.0/24 -oA /tmp/scan -F -T4
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:13 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.081s latency).
+Not shown: 93 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+389/tcp  open  ldap
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+
+[...trimmed for brevity...]
+
+Nmap scan report for 10.130.10.45
+Host is up (0.079s latency).
+Not shown: 99 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+
+Nmap done: 256 IP addresses (13 hosts up) scanned in 10.07 seconds
+
+Then get a list of the files associated with the scan inside of /tmp.
+
+Command
+
+ls -l /tmp/scan*
+
+Expected Results
+
+sec560@560vm:~$ ls -l /tmp/scan*
+-rw-r--r-- 1 root root  2627 Aug 14 18:13 /tmp/scan.gnmap
+-rw-r--r-- 1 root root  3065 Aug 14 18:13 /tmp/scan.nmap
+-rw-r--r-- 1 root root 19786 Aug 14 18:13 /tmp/scan.xml
+
+You should see three files with the same base name but with a different extension:
+
+    Greppable form with a .gnmap suffix
+    Normal form with a .nmap suffix
+    XML form with a .xml suffix
+
+Use the less to review the .nmap file (press q to quit):
+
+Command
+
+less /tmp/scan.nmap
+
+You'll see that the file contains the same information displayed on the screen during a scan.
+
+Next, let's take a look at the .xml output file (press q to quit):
+
+Command
+
+less /tmp/scan.xml
+
+This file is XML, and much less readable by humans. However, this format can be read by other tools including GoWitness (which is covered later in this course).
+
+Finally, let's view the contents of the .gnmap using cat.
+
+Command
+
+cat /tmp/scan.gnmap
+
+Expected Results
+
+sec560@560vm:~$ cat /tmp/scan.gnmap
+# Nmap 7.94SVN scan initiated Wed Aug 14 18:13:03 2024 as: nmap -n -sT -oA /tmp/scan -F -T4 10.130.10.0/24
+Host: 10.130.10.4 ()    Status: Up
+Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (93)
+Host: 10.130.10.5 ()    Status: Up
+Host: 10.130.10.5 ()    Ports: 80/open/tcp//http///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server/// Ignored State: filtered (97)
+Host: 10.130.10.6 ()    Status: Up
+Host: 10.130.10.6 ()    Ports: 80/open/tcp//http///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (98)
+...trimmed for brevity...
+
+Note that all the results for a given host are stored on one line with each open port and associated service identified. This format is easy to search using grep. In fact, let's do that now!
+4: Finding Hosts by Open Port
+
+Let's find all the systems listening on port 389, the port used by LDAP.
+
+Command
+
+grep 389/open /tmp/scan.gnmap
+
+Expected Results
+
+sec560@560vm:~$ grep 389/open /tmp/scan.gnmap
+Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (93)
+Host: 10.130.10.5 ()    Ports: 80/open/tcp//http///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server/// Ignored State: filtered (97)
+Host: 10.130.10.6 ()    Ports: 80/open/tcp//http///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (98)
+Host: 10.130.10.7 ()    Ports: 135/open/tcp//msrpc///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///   Ignored State: filtered (97)
+Host: 10.130.10.21 ()   Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server/// Ignored State: filtered (96)
+Host: 10.130.10.23 ()   Ports: 135/open/tcp//msrpc///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///   Ignored State: filtered (97)
+...truncated for brevity...
+
+If you look closely, you'll see that the only .4 system is listening on port 389, but other hosts show up in this list. This is because 389 is part of 3389. If we want to look for exactly 389, we'll have to use a different command. Notice that before the port number there is a space. We can use grep's -w option to "Select only those lines containing matches that form whole words" (as described in the output of man grep).
+
+Command
+
+grep -w 389/open /tmp/scan.gnmap
+
+Expected Results
+
+sec560@560vm:~$ grep -w 389/open /tmp/scan.gnmap
+Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///    Ignored State: filtered (93)
+
+Let's now look for the number of hosts listening on port 445 using wc -l (lowercase L).
+
+We can use the wc -l command to get the number of hosts with port 445 open.
+
+Command
+
+grep -w 445/open /tmp/scan.gnmap | wc -l
+
+Expected Results
+
+sec560@560vm:~$ grep -w 445/open /tmp/scan.gnmap | wc -l
+7
+
+The wc command is used to get a "word count" and the -l (lowercase L) option tells the command to return the number of lines. Notice that there are 7 systems listening on port 445.
+
+If we want a list of systems listening on port 445, we can extract the IP address using cut. We'll specify the delimiter with -d, using the space ' ' as the delimiter. The IP address is the second field, which we can select with -f 2.
+
+Command
+
+grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
+
+Expected Results
+
+sec560@560vm:~$ grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
+10.130.10.4
+10.130.10.5
+10.130.10.7
+10.130.10.21
+10.130.10.23
+10.130.10.25
+10.130.10.44
+
+5: The nmap-services File
+
+Next, review the ports in the nmap-services file (the file from which Nmap gets its list of most frequent ports to scan) by running:
+
+Command
+
+less /usr/share/nmap/nmap-services
+
+The format of this file includes the service name (for example, ftp), the associated port and protocol (for example, 21/tcp), the relative frequency with which the given port was discovered during Fyodor's widespread internet scanning research, and an optional comment. Note that the ports themselves are typically TCP or UDP; however, some are associated with the Stream Control Transmission Protocol (SCTP), an alternative Layer 4 protocol defined by RFC 4960.
+6: UDP Scanning
+
+Now that you've looked at TCP port scanning with Nmap, try UDP port scanning. We discussed earlier that Linux kernels throttle ICMP port unreachable responses so that they send only one every second. You'll see that one-message-per-second behavior now because 10.130.10.10 is a Linux machine. Keep your tcpdump sniffer running, showing packets going to and from host 10.130.10.10.
+
+Now invoke Nmap to perform a UDP port scan of 10.130.10.10 using -sU
+
+Command
+
+sudo nmap -n -sU 10.130.10.10
+
+In your sniffer output, you will likely see several UDP packets and some ICMP port unreachables sent periodically.
+
+In your Nmap window, press the spacebar to get a status report. You will likely see that the scan is only a small percentage done, depending on your system speed and the network speed.
+
+Your output will be similar to what is shown below:
+
+Expected Results
+
+Press the spacebar to see the status.
+
+sec560@560vm:~$ sudo nmap -n -sU 10.130.10.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:18 UTC
+Stats: 0:00:12 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
+UDP Scan Timing: About 2.57% done; ETC: 18:27 (0:08:13 remaining)
+
+Slow!
+
+This scan is very slow. Press CTRL-C to stop Nmap before the scan completes.
+7: Targeted UDP Scan
+
+Now rerun an Nmap UDP scan of the target, this time focusing on a narrower list of ports: 53,111,414,500-501. Target the .4 and .10 hosts.
+
+Command
+
+sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501
+
+Expected Results
+
+sec560@560vm:~$ sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:19 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.085s latency).
+
+PORT    STATE         SERVICE
+53/udp  open          domain
+111/udp open|filtered rpcbind
+414/udp open|filtered infoseek
+500/udp open|filtered isakmp
+501/udp open|filtered stmf
+
+Nmap scan report for 10.130.10.10
+Host is up (0.077s latency).
+
+PORT    STATE  SERVICE
+53/udp  closed domain
+111/udp closed rpcbind
+414/udp closed infoseek
+500/udp closed isakmp
+501/udp closed stmf
+
+Nmap done: 2 IP addresses (2 hosts up) scanned in 3.94 seconds
+
+Notice that the ports show up as open|filtered on the .4 (Windows Domain Controller) host.
+
+On the .10 (Linux) host, all the ports are closed. At first glance, this can be confusing. This is why we often want to use the --open option to only show open ports.
+
+If we run the command again using --open it is much more obvious that Nmap did not find any listening UDP ports on 10.130.10.10:
+
+Command
+
+sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501 --open
+
+Expected Results
+
+sec560@560vm:~$ sudo nmap -n -sU 10.130.10.4,10 -p 53,111,414,500-501 --open
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-14 18:19 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.078s latency).
+
+PORT    STATE         SERVICE
+53/udp  open|filtered domain
+111/udp open|filtered rpcbind
+414/udp open|filtered infoseek
+500/udp open|filtered isakmp
+501/udp open|filtered stmf
+
+Nmap done: 2 IP addresses (2 hosts up) scanned in 1.98 seconds
+
+Conclusion
+
+In this lab, we have seen how Nmap scans sweep through a target environment to identify potential target systems. We also explored various options for TCP and UDP scanning, along with the really useful --open Nmap command line option.
