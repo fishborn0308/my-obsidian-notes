@@ -546,3 +546,421 @@ Scanning 1 hosts [65536 ports/host]
 sec560@560vm:~/Desktop$
 ```
 
+macOSでVMware Fusionの警告が表示されましたか？
+
+macOSでVMware Fusionを使用している場合、「仮想マシンがすべてのネットワーク通信を監視しようとしており、管理者権限が必要です」というVMware Fusionの警告が表示されることがあります。このプロンプトでは安全に「キャンセル」をクリックできます。
+
+You should see the local.masscan file in the /tmp directory.
+
+```
+ls -l /tmp/local.masscan
+```
+
+```
+sec560@560vm:~/Desktop$ ls -l /tmp/local.masscan 
+-rw-r--r-- 1 root root 273 Mar  3 02:08 /tmp/local.masscan
+sec560@560vm:~/Desktop$ 
+```
+
+このスキャンはローカルシステムに対して実行したため、結果は特に興味深いものではありません。重要なのはMasscanの実行方法を理解することです。
+
+ターゲットネットワーク全体に対する完全なポートスキャンは、Masscanを使用しても時間がかかります。時間を節約するため、~/labs/masscan_10.130.10.0_24_full.bin に完全なMasscanバイナリファイルが用意されています。分析にはこれを使用します。
+
+提供されたファイル内のMasscan結果を確認しましょう。
+
+### 3: Converting the Scan to XML
+
+Masscanによるスキャンがいかに簡単かは既にご覧いただきました。時間を節約するため、以下のオプションを使用したMasscanのバイナリ出力を提供します。注意：実行に時間がかかりすぎるため、これらのオプションは使用しないでください！
+
+    --ports 0-65535: 全てのTCPポートをチェック
+    --rate 15000: 1秒あたり最大15,000パケットを送信（他のスキャン実行者がいないラボ環境では安全）
+    --banners: SYN-ACK後のRSTパケット送信を中止し、ACK（完全接続確立）後にサーバー送信データ（SSHやSMTPバナーなど）を解析
+    --src-port=55555: 指定した送信元ポート。ファイアウォールルールでRSTパケットを制御可能
+    -oB ~/labs/masscan_10.130.10.0_24_full.bin: バイナリ出力を保存
+    -e tun0: VPNインターフェースを指定
+    10.130.10.0/24: スキャン対象ネットワーク範囲
+
+このファイルを使ってMasscanの各種出力を確認しましょう。--readscanオプションで既存のバイナリ形式を読み込み、任意の出力形式でファイルを書き出せます。出力形式は以下の通り：
+
+    -oX: XML
+    -oG: Grep対応形式
+    -oJ: JSON形式
+    -oL: リスト形式
+
+まず--readscanオプションでXML形式に変換し、ファイルをfull.xmlとして保存します。次にlessコマンドでファイルの内容を確認します。
+
+```
+masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oX /tmp/masscan_10.130.10.0_24_full.xml
+less /tmp/masscan_10.130.10.0_24_full.xml
+```
+
+XML形式は人間が直接閲覧するものではありませんが、他のツール（GoWitnessや脆弱性スキャナーなど）との連携に優れています。lessコマンドを終了するにはqと入力してください。
+そのファイル名について気になりますか？
+
+多くの人が使うよりも冗長ではありますが、明確で説明的なファイル名を付ける時間を取ることで、実際のペネトレーションテスト中に避けられない混乱を軽減できると筆者は考えています。ファイル名はツール名（masscan_）、対象ネットワーク（10.130.10.0/24）、スキャンタイプ（_full）、出力形式（.xmlと.bin）を示しています。これは特にディレクトリ内に複数のファイルがある場合に有用です。
+
+より読みやすい形式であるGrepable形式を見てみましょう。
+
+### 4: Grepable Format
+
+バイナリ形式からgrep可能な形式（-oGオプションを使用）を抽出し、ファイルをfull.grepとして保存する。
+
+
+
+```
+masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oG /tmp/masscan_10.130.10.0_24_full.gnmap
+```
+
+
+
+```
+sec560@560vm:~$ masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oG /tmp/masscan_10.130.10.0_24_full.gnmap
+[+] --readscan ~/labs/masscan_10.130.10.0_24_full.bin
+```
+
+Let's view the sorted grepable format by using the cat command with the full.grep file.
+
+
+
+```
+cat /tmp/masscan_10.130.10.0_24_full.gnmap | sort
+```
+
+
+
+```
+sec560@560vm:~$ cat /tmp/masscan_10.130.10.0_24_full.gnmap | sort
+Host: 10.130.10.10 ()   Port: 22    Service: ssh    Banner: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14\xd9\x8f\xde\xc2\xd5\x05\xcc\x13\xfb\xa9\xe3\xf09cb\xa9\x00\x00\x011sntrup761x25519-sha512@openssh.com,[...trimmed...]
+Host: 10.130.10.10 ()   Port: 23    Service: ssh    Banner: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14%Z\x9b\x8d\xe5\xd8\x912.\xcc\xd9\xd6\x01\x93\xb5@\x00\x00\x011sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,[...trimmed...]
+Host: 10.130.10.10 ()   Port: 80    Service: http   Banner: HTTP/1.1 200 OK\x0d\x0aServer: nginx/1.24.0 (Ubuntu)\x0d\x0aDate: Tue, 24 Sep 2024 04:22:22 GMT\x0d\x0aContent-Type: text/html\x0d\x0aContent-Length: 615\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:16:10 GMT\x0d\x0aConnection: close\x0d\x0aETag: \x2266e224ba-267\x22\x0d\x0aAccept-Ranges: bytes\x0d\x0a\x0d
+Host: 10.130.10.10 ()   Port: 80    Service: http.server    Banner: nginx/1.24.0 (Ubuntu)
+Host: 10.130.10.10 ()   Port: 80    Service: title  Banner: Welcome to nginx!
+Host: 10.130.10.11 ()   Port: 22    Service: ssh    Banner: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14\xe6s=A;\xa1\xfb\xe9\x22\xae\xbcz\x86\x87\x18O\x00\x00\x011sntrup761x25519-sha512@openssh.com,
+...truncated for brevity...
+```
+
+Nmap形式では、特定のホストの全ポートが1行にまとめられます。効果はほぼ同じですが、Masscanのgrep対応形式は各システム/ポートの組み合わせが別々の行に表示される点で若干異なります。
+
+また、ポート22と80のバナー情報にも注目してください。Masscanは--bannersオプション使用時にこの情報を保存します。Masscanにはバージョン情報を抽出する機能が含まれていないため、これは手動で行う必要があります。
+
+次に、環境内でポート53をリッスンしているすべてのDNSサービスをgrepで検出します。
+
+
+
+```
+grep -w 53/open /tmp/masscan_10.130.10.0_24_full.gnmap
+```
+
+`-w (--word-regexp): パターンを単語として検索する。完全一致
+
+```
+sec560@560vm:~$ grep -w 53/open /tmp/masscan_10.130.10.0_24_full.gnmap
+Timestamp: 1727151766   Host: 10.130.10.4 ()    Ports: 53/open/tcp//domain//
+```
+
+ポート53でリスニングしているDNSサーバーが1台あることがすぐにわかります。このサービスにはバナーが表示されていないことに注意してください。これは、DNSがクライアントからリクエストが送信されるまで応答を送信しないためです。
+
+次に、ポート445でリスニングしているホストを探して、Windowsシステムと思われるものを素早く検索します。
+
+
+```
+grep -w 445/open /tmp/masscan_10.130.10.0_24_full.gnmap
+```
+
+
+```
+sec560@560vm:~$ grep -w 445/open /tmp/masscan_10.130.10.0_24_full.gnmap
+Timestamp: 1727151580   Host: 10.130.10.21 ()   Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151634   Host: 10.130.10.7 ()    Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151644   Host: 10.130.10.25 ()   Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151649   Host: 10.130.10.23 ()   Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151680   Host: 10.130.10.5 ()    Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151688   Host: 10.130.10.4 ()    Ports: 445/open/tcp//microsoft-ds//
+Timestamp: 1727151777   Host: 10.130.10.44 ()   Ports: 445/open/tcp//microsoft-ds//
+```
+
+ポート445が開いているホストの数を数えましょう：
+
+
+```
+grep -w 445/open /tmp/masscan_10.130.10.0_24_full.gnmap | wc -l
+```
+
+
+
+```
+sec560@560vm:~$ grep -w 445/open /tmp/masscan_10.130.10.0_24_full.gnmap | wc -l
+7
+```
+
+確認できる限り、ポート445でリスニング状態かつアクセス可能なシステムは7つ存在し、おそらくWindowsシステムである。
+
+### 5: JSON Format
+
+バイナリ形式からJSON形式を抽出（-oJオプションを使用）し、ファイルをfull.jsonとして保存する。
+
+
+
+```
+masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oJ /tmp/masscan_10.130.10.0_24_full.json
+```
+
+それでは、JSONファイルの最初の数行を見てみましょう。
+
+
+
+```
+head /tmp/masscan_10.130.10.0_24_full.json
+```
+
+
+
+```
+sec560@560vm:~$ head /tmp/masscan_10.130.10.0_24_full.json
+[
+{   "ip": "10.130.10.11",   "timestamp": "1727151519", "ports": [ {"port": 80, "proto": "tcp", "status": "open", "reason": "syn-ack", "ttl": 63} ] }
+,
+{   "ip": "10.130.10.6",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "status": "open", "reason": "syn-ack", "ttl": 127} ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "http.server", "banner": "nginx/1.24.0 (Ubuntu)"} } ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "title", "banner": "Welcome to nginx!"} } ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "http", "banner": "HTTP/1.1 200 OK\u000d\u000aServer: nginx/1.24.0 (Ubuntu)\u000d\u000aDate: Tue, 24 Sep 2024 04:18:42 GMT\u000d\u000aContent-Type: text/html\u000d\u000aContent-Length: 615\u000d\u000aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\u000d\u000aConnection: close\u000d\u000aETag: \u002266e224dd-267\u0022\u000d\u000aAccept-Ranges: bytes\u000d\u000a\u000d"} } ] }
+```
+
+XML形式と同様に、これは人間が直接読むことを意図したものではありません。他のツールによって解析され利用されることを想定して設計されています。なお、JSON形式にもバナー情報が含まれています。
+別のツールでJSONを解析したいですか？
+
+### 6: List Format
+
+バイナリ形式からリスト形式（-oLオプション使用）を抽出し、出力をfull.txtとして保存する。
+
+
+
+```
+masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oL /tmp/masscan_10.130.10.0_24_full.txt
+```
+
+
+
+```
+sec560@560vm:~$ masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oL /tmp/masscan_10.130.10.0_24_full.txt
+[+] --readscan /home/sec560/labs/masscan_10.130.10.0_24_full.bin
+```
+
+では、新しく作成したファイルの内容を見てみましょう。
+
+
+
+```
+head -n 15 /tmp/masscan_10.130.10.0_24_full.txt
+```
+
+
+```
+sec560@560vm:~$ head -n 15 /tmp/masscan_10.130.10.0_24_full.txt
+#masscan
+open tcp 80 10.130.10.11 1727151519
+open tcp 80 10.130.10.6 1727151523
+banner tcp 80 10.130.10.11 1727151523 http.server nginx/1.24.0 (Ubuntu)
+banner tcp 80 10.130.10.11 1727151523 title Welcome to nginx!
+banner tcp 80 10.130.10.11 1727151523 http HTTP/1.1 200 OK\x0d\x0aServer: nginx/1.24.0 (Ubuntu)\x0d\x0aDate: Tue, 24 Sep 2024 04:18:42 GMT\x0d\x0aContent-Type: text/html\x0d\x0aContent-Length: 615\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\x0d\x0aConnection: close\x0d\x0aETag: \x2266e224dd-267\x22\x0d\x0aAccept-Ranges: bytes\x0d\x0a\x0d
+open tcp 3389 10.130.10.21 1727151524
+banner tcp 80 10.130.10.6 1727151526 http.server Microsoft-IIS/10.0
+banner tcp 80 10.130.10.6 1727151526 title IIS Windows Server
+banner tcp 80 10.130.10.6 1727151526 http HTTP/1.1 200 OK\x0d\x0aContent-Type: text/html\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:28:42 GMT\x0d\x0aAccept-Ranges: bytes\x0d\x0aETag: \x2282b3d57a24db1:0\x22\x0d\x0aServer: Microsoft-IIS/10.0\x0d\x0aDate: Tue, 24 Sep 2024 04:18:45 GMT\x0d\x0aConnection: close\x0d\x0aContent-Length: 703\x0d\x0a\x0d
+open tcp 3389 10.130.10.5 1727151531
+open tcp 135 10.130.10.7 1727151534
+open tcp 8172 10.130.10.25 1727151536
+open tcp 5985 10.130.10.21 1727151539
+open tcp 5985 10.130.10.23 1727151539
+```
+
+この形式は読み取りがはるかに簡単です。列は次の通りです：
+
+    タイプ: open または banner
+    プロトコル: 常に tcp
+    ポート: この項目のポート番号
+    IPアドレス: 項目のアドレス
+    タイムスタンプ: エントリのエポック時間
+    追加情報: banner 行の場合、プロトコル（例では http）とバナーを表示
+
+grepを使用してtcp 22を検索すると、ポート22の結果を確認できます。
+
+
+
+```
+grep -w 'tcp 22' /tmp/masscan_10.130.10.0_24_full.txt
+```
+
+
+
+```
+sec560@560vm:~$ grep -w 'tcp 22' /tmp/masscan_10.130.10.0_24_full.txt
+open tcp 22 10.130.10.22 1727151568
+banner tcp 22 10.130.10.22 1727151599 ssh SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14(\x82\x18\xf5\xbc\xe4\x9am\xea\xe2s\x00;\xa9\x03 \x00\x00\x011sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org[...trimmed...]
+```
+
+ここでは、SSHサーバーが開いている10.130.10.22とその関連バナーを確認できます。
+
+再度grepを使用し、ポート25（SMTP）をリッスンしているシステムを探します。
+
+
+
+```
+grep -w 'tcp 25' /tmp/masscan_10.130.10.0_24_full.txt
+```
+
+
+
+```
+sec560@560vm:~$ grep -w 'tcp 25' /tmp/masscan_10.130.10.0_24_full.txt
+open tcp 25 10.130.10.25 1727151674
+banner tcp 25 10.130.10.25 1727151706 ssl TLS/1.2 cipher:0xc030, mail01, mail01, mail01.hiboxy.com
+banner tcp 25 10.130.10.25 1727151706 X509 MIIDBzCCAe+gAwIBAgIQODDHsNbjBZNBr4Q8jkb1izANBgkqhkiG9w0BAQUFADARMQ8wDQYDVQQDEwZtYWlsMDEwHhcNMjQwOTExMjM1NTUyWhcNMjkwOTExMjM1NTUyWjARMQ8wDQYDVQQDEwZtYWlsMDEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDF/T7gFVULRoivsyQQQjJIdbLydrPKEKdlaoA8akwan4LDX8hT+OoISu19i0/Khdn8Xy6DUZSY3dGeMZPBO149CNeyiSXQVOr38BDPBL2mxJhdBjf3BKFe2H0CspBdo7vCDkLnVoKCYahUdpgkO5kL8m51g7nTH5L117L48nX2NJg7W5kTcFp6fBfCdAKBZk79f+8udN4gKCVJf+YcUIeyKpezziGdbQXowAGI5KhXM21iwbKMrDVW/Bw8cQlgNgtq7/gBG4xVQmIc57msgbMozZiIEUmNjbEzLmOlEz1La/AUWb4QeBVW3m/Py4UPgJ3OuRFyC6nwKEKNxb4cjqARAgMBAAGjWzBZMA4GA1UdDwEB/wQEAwIFoDAkBgNVHREEHTAbggZtYWlsMDGCEW1haWwwMS5oaWJveHkuY29tMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcNAQEFBQADggEBAAY9K0ea6ExbNZdkc6VavH0U1VnudcdGpTSc6v+K+rWiUC3W/yE96/zWMbPoBoZcdFUA269H9DZK4z0yTQL9queIY7I2XuldS3vPRuiTLlo5V93wM5YgWWmfmpFdX4gcbqi9catyzmuMIGJIYjguPUfSSmBeRU/7hb9J5bplJ3eoKYc+4msRrh6gvQNYvm0CdaQ9wnpHRbYRKc5KsLjYGJgaMf700lqOyRjMLARw1m8pJnK/z42h2zjLue2Sn1KCFNscl8m0NTu7BUfwYWInZuE6bZxlKubSNCKNk7fXjhUkXdOHH7/TIycg02bWKXGK53froqvkJiWOPULI6h1ur0g=
+banner tcp 25 10.130.10.25 1727151706 smtp 220 mail01.hiboxy.com Microsoft ESMTP MAIL Service ready at Tue, 24 Sep 2024 04:21:14 +0000\x0a250-mail01.hiboxy.com Hello [10.254.252.3]\x0a250-SIZE 37748736\x0a250-PIPELINING\x0a250-DSN\x0a250-ENHANCEDSTATUSCODES\x0a250-STARTTLS\x0a250-X-ANONYMOUSTLS\x0a250-AUTH NTLM\x0a250-X-EXPS GSSAPI NTLM\x0a250-8BITMIME\x0a250-BINARYMIME\x0a250-CHUNKING\x0a250-SMTPUTF8\x0a250 XRDST\x0a220 2.0.0 SMTP server ready
+```
+
+10.130.10.25 システムの SMTP バナーも、ホスト名が mail01.hiboxy.com であることを示しています。
+
+### 7: Extracting Live Hosts and Ports
+
+Greppable (.gnmap) 出力の一部を見てみましょう。
+
+```
+Timestamp: 1727151519   Host: 10.130.10.11 ()   Ports: 80/open/tcp//http//
+Timestamp: 1727151523   Host: 10.130.10.6 ()    Ports: 80/open/tcp//http//
+Host: 10.130.10.11 ()   Port: 80    Service: http.server    Banner: nginx/1.24.0 (Ubuntu)
+```
+
+各ポートの状態は出力で1行ずつ表示され、バナー情報は別の行に表示されることに注意してください。
+
+grepを使用して/open/tcp/を含むすべての行を検索しましょう。これを行うには、grepコマンドを使用できます：
+
+
+
+```
+grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap
+```
+
+
+```
+sec560@560vm:~$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap
+Timestamp: 1727151519   Host: 10.130.10.11 ()   Ports: 80/open/tcp//http//
+Timestamp: 1727151523   Host: 10.130.10.6 ()    Ports: 80/open/tcp//http//
+Timestamp: 1727151524   Host: 10.130.10.21 ()   Ports: 3389/open/tcp//ms-wbt-server//
+Timestamp: 1727151531   Host: 10.130.10.5 ()    Ports: 3389/open/tcp//ms-wbt-server//
+...output truncated for brevity...
+```
+
+ポートを取得したい場合、awkコマンドを使用できます。awkはcutコマンドよりも優れており、複数の連続した区切り文字を処理できます（masscanは列を揃えるために必要に応じてスペースを追加するため）。awkを使用して4番目のフィールド（ポート番号）を出力できます。
+
+まず、出力の4番目のフィールドである稼働中のホストを取得します：
+
+
+
+```
+grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $4}' | sort -uV
+```
+
+
+
+```
+sec560@560vm:~$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $4}' | sort -uV
+10.130.10.4
+10.130.10.5
+10.130.10.6
+10.130.10.7
+10.130.10.10
+10.130.10.11
+10.130.10.21
+10.130.10.22
+10.130.10.23
+10.130.10.25
+10.130.10.33
+10.130.10.44
+10.130.10.45
+```
+
+ソートオプション:
+
+    u: 一意の値のみを返す
+    V: バージョン番号の自然順ソート（IPアドレスでも有効！）
+
+稼働中のホストを、nmapなどの他のツールが利用できる形式で/tmp/10.130.10.0_24_alivehosts.txtのようなファイルに保存できます。この作業は演習としてお任せします。
+
+次に、組織内のすべてのリスニングポートのリストを取得します。ポートは7番目のフィールドに含まれているため、そこから始めましょう:
+
+
+
+```
+grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | sort -uV | head
+```
+
+
+
+```
+sec560@560vm:~$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | sort -uV | head
+22/open/tcp//ssh//
+23/open/tcp//telnet//
+25/open/tcp//smtp//
+53/open/tcp//domain//
+80/open/tcp//http//
+135/open/tcp//epmap//
+139/open/tcp//netbios-ssn//
+389/open/tcp//ldap//
+443/open/tcp//https//
+444/open/tcp//snpp//
+```
+
+次に、`cut` を使ってそれらのユニークなポート番号のみを取得しましょう：
+
+
+
+```
+grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut -d '/' -f 1 | sort -un
+```
+
+
+
+```
+sec560@560vm:~$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut -d '/' -f 1 | sort -un
+22
+23
+25
+53
+80
+135
+139
+389
+443
+444
+445
+464
+465
+475
+476
+477
+587
+[...truncated for brevity...]
+```
+
+次に、開いているポートを open_ports.txt というファイルに保存します。このファイルは nmap などの他のツールが利用できる形式で保存します。
+
+
+
+```
+grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut -d '/' -f 1 | sort -un | tr '\n' ',' | sed 's/,$//' > /tmp/10.130.10.0_24_openports.txt
+```
+
+このコマンドからは出力はありません。
+
+稼働中のIPアドレスとポートを特定することで、Nmapを含む他のツールに適切なターゲットリストを提供し、スキャンを高速化できます。
+結論
+
+本ラボでは、Masscanがポートスキャンを高速に実行する手段であることを確認しました。ただし、スキャン速度が速すぎてターゲットインフラをダウンさせないよう注意が必要です。Masscanはポートスキャンに特化したツールです。
+
+今後のラボでは、Nmapの高度な機能、特にOSフィンガープリンティングとバージョンスキャンについて検討します。これらはターゲットマシン上で動作するOSの種類やソフトウェアのバージョン情報を収集する手法です。この情報は、攻撃対象を絞り込み、特定のツールやエクスプロイトを用いてターゲット環境へのアクセスを得る上で、ペネトレーションテスターにとって極めて有用です。
+
+さらに、GoWitnessを使用して組織内でアクセス可能なウェブサイトを素早く確認します。これにより、ペネトレーションテスターは興味深いウェブサイトを迅速に特定できます。
