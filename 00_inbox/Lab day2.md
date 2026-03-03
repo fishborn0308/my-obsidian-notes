@@ -543,10 +543,13 @@ smb-bruteに依存しないスクリプトを確認するには、-Lオプショ
 
 Command
 
+```
 grep -L smb-brute /usr/share/nmap/scripts/smb*
+```
 
 Expected Results
 
+```
 sec560@560vm:~$ grep -L smb-brute /usr/share/nmap/scripts/smb*
 /usr/share/nmap/scripts/smb2-capabilities.nse
 /usr/share/nmap/scripts/smb2-security-mode.nse
@@ -563,26 +566,29 @@ sec560@560vm:~$ grep -L smb-brute /usr/share/nmap/scripts/smb*
 /usr/share/nmap/scripts/smb-vuln-ms17-010.nse
 /usr/share/nmap/scripts/smb-vuln-webexec.nse
 /usr/share/nmap/scripts/smb-webexec-exploit.nse
+```
 
-Just because a script doesn't list smb-brute.nse as a dependency doesn't mean it doesn't depend on it, though. For instance, smb-ls.nse lists smb-enum-shares as a dependency, and smb-enum-shares depends on smb-brute. So, to get the most out of NSE scripts, it's helpful to know the requirements of the various scripts. For the SMB scripts, most need valid credentials, which can be provided with --script-args. For example, the smb-psexec script allows us to provide a username and password in the administrators group as well as one or more commands we want to run in a configuration file, and this script will attempt to cause any targets that it discovers communicating using SMB to run the commands. It operates in a fashion similar to the Microsoft Sysinternals' PsExec.exe. The Nmap option looks like this:
+スクリプトが smb-brute.nse を依存関係として列挙していないからといって、それが依存していないとは限らない。例えば、smb-ls.nse は smb-enum-shares を依存関係として列挙しており、smb-enum-shares は smb-brute に依存している。したがって、NSE スクリプトを最大限に活用するには、各種スクリプトの要件を把握することが有用である。SMBスクリプトの大半は有効な認証情報を必要とし、これは--script-argsで指定可能です。例えばsmb-psexecスクリプトでは、管理者グループのユーザー名とパスワード、および実行したいコマンドを1つ以上設定ファイルで指定できます。このスクリプトは、SMB通信を発見したターゲットに対してコマンド実行を試みます。動作はMicrosoft SysinternalsのPsExec.exeと類似しています。Nmapオプションの例：
 
-Command Line Option
+コマンドラインオプション
 
 --script-args=smbuser=ADMIN_USER,smbpass=ADMIN_PASSWORD,config=CONFIG_FILE_NAME
 
-Unauthenticated scans aren't the only limitation of many of the SMB NSE scripts, as we'll see in a just a moment.
-9: The smb2-security-mode Script
+認証不要のスキャンは、多くのSMB NSEスクリプトの唯一の制限ではありません。その点については後ほど説明します。
+9: smb2-security-modeスクリプト
 
-Since we rarely have credentials at this stage of a penetration test, let's take a look at some of the SMB NSE scripts that don't require authentication. The smb2-security-mode.nse script "determines the message signing configuration in SMBv2 servers for all supported dialects." We'll discuss the implications of this setting later in this course, but the more secure option is to require SMB signing. Requiring SMB signing helps to prevent SMB relay attacks.
+ペネトレーションテストのこの段階では認証情報を入手していることは稀です。そこで、認証を必要としないSMB NSEスクリプトをいくつか見ていきましょう。smb2-security-mode.nseスクリプトは「SMBv2サーバーにおける全対応ダイアレクトのメッセージ署名設定を判定する」。この設定の影響については本コース後半で詳述するが、より安全な選択肢はSMB署名の強制である。SMB署名の強制はSMB中継攻撃の防止に寄与する。
 
-Let's look at this configuration of the targets in our environment.
-
+環境内のターゲットにおけるこの設定を確認しよう。
 Command
 
+```
 sudo nmap -n -PS445 -p 445 --script=smb2-security-mode --open 10.130.10.0/24
+```
 
-Expected Results
 
+
+```
 sec560@560vm:~$ sudo nmap -n -PS445 -p 445 --script=smb2-security-mode --open 10.130.10.0/24
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-12 01:28 UTC
 Nmap scan report for 10.130.10.4
@@ -607,18 +613,22 @@ Host script results:
 |   3:1:1: 
 |_    Message signing enabled but not required
 ... truncated for brevity ...
+```
 
-10.130.10.4 has the more secure configuration that requires signing. The .5 system does not require signing. This would be a finding we'd put into our report delivered to the target. SMB signing is the best defense against relay attacks, which we'll discuss later in the course.
-10: The smb-protocols Script
+10.130.10.4 は署名が必要なより安全な設定です。.5 システムは署名を必要としません。これは対象に提出する報告書に記載する所見となります。SMB 署名は中継攻撃に対する最善の防御策であり、これについてはコースの後半で説明します。
+10: smb-protocolsスクリプト
 
-In the past few years we've seen a number of attacks against the SMBv1 protocol. The most notable was the EternalBlue exploits in 2017. The SMBv1 protocol should be disabled across the network. Let's use this script check if any systems are running this protocol. For the sake of speed, let's look just at the 10.130.10.4, and 10.130.10.44 systems.
+過去数年間、SMBv1プロトコルに対する数多くの攻撃が確認されています。最も顕著なのは2017年のEternalBlueエクスプロイトです。SMBv1プロトコルはネットワーク全体で無効化すべきです。このスクリプトを使用して、このプロトコルを実行しているシステムがないか確認しましょう。速度を考慮し、10.130.10.4 と 10.130.10.44 のシステムのみを対象とします。
 
 Command
 
+```
 sudo nmap -n -PS445 -p 445 --open --script=smb-protocols 10.130.10.4,44
+```
 
 Expected Results
 
+```
 sec560@560vm:~$ sudo nmap -n -PS445 -p 445 --open --script=smb-protocols 10.130.10.4,44
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-12 01:33 UTC
 Nmap scan report for 10.130.10.4
@@ -653,18 +663,23 @@ Host script results:
 |_    3:1:1
 
 Nmap done: 2 IP addresses (2 hosts up) scanned in 12.92 seconds
+```
 
-Notice that the 10.130.10.44 system has SMBv1 enabled. This would be written up as a finding in your final report. Let's look more into this system to determine more of the risk.
-11: OS Fingerprinting
+10.130.10.44 システムでは SMBv1 が有効化されていることに注意してください。これは最終報告書において発見事項として記載されます。このシステムをさらに調査し、リスクの詳細を特定しましょう。
 
-It's helpful to know what OS we're targeting when we start thinking about attacks beyond port scanning, like password guessing or exploitation. We'll learn later that exploits tend to target specific versions of specific operating systems. And even if we're targeting an application that can run on multiple operating systems, we have to pick a payload compatible with the host OS. Nmap has an OS fingerprinting feature, which we can use with the -O parameter. Unfortunately, as you'll soon see, it's not very accurate. Let's try it against these 10.130.10.4, 10.130.10.10, and 10.130.10.44.
+### 11: OS Fingerprinting
+
+ポートスキャンを超えた攻撃（パスワード推測やエクスプロイトなど）を検討する際、対象OSを把握しておくことは有益です。後述するように、エクスプロイトは特定のOSの特定バージョンを標的とする傾向があります。また、複数OSで動作するアプリケーションを標的とする場合でも、ホストOSと互換性のあるペイロードを選択する必要があります。NmapにはOSフィンガープリンティング機能があり、-Oパラメータで利用できます。残念ながら、すぐにわかるように、その精度は高くありません。10.130.10.4、10.130.10.10、10.130.10.44に対して試してみましょう。
 
 Command
 
+```
 sudo nmap -n -F -O 10.130.10.4,10,44
+```
 
 Expected Results
 
+```
 sec560@560vm:~$ sudo nmap -n -F -O 10.130.10.4,10,44
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-12 16:30 UTC
 Nmap scan report for 10.130.10.4
@@ -719,19 +734,23 @@ No OS matches for host
 
 OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 3 IP addresses (3 hosts up) scanned in 14.47 seconds
+```
 
-You can see that Nmap couldn't detect the OS for any of the hosts. Nmap’s OS fingerprinting sends a series of crafted TCP, UDP, and ICMP probes to a target and records subtle differences in responses. It then compares these response patterns against /usr/share/nmap/nmap-os-db to infer the most likely operating system and version.
+NmapがどのホストのOSも検出できなかったことがわかります。NmapのOSフィンガープリンティングは、ターゲットに対して一連の細工を施したTCP、UDP、ICMPプローブを送信し、応答の微妙な差異を記録します。その後、これらの応答パターンを/usr/share/nmap/nmap-os-dbと比較し、最も可能性の高いオペレーティングシステムとバージョンを推測します。
 
-For hosts 10.130.10.4 and 10.130.10.44, Nmap says, "OSScan results may be unreliable because we could not find at least 1 open and 1 closed port". For .10, Nmap says "No exact OS matches" and provides a fingerprint you can submit to the project if you know the remote OS.
+ホスト10.130.10.4と10.130.10.44については、Nmapは「OSScanの結果は信頼性が低い可能性があります。少なくとも1つの開いているポートと1つの閉じたポートが見つからなかったため」と表示しています。10.10については「正確なOSの一致が見つかりませんでした」と表示され、リモートOSがわかっている場合にプロジェクトへ提出できるフィンガープリントが提供されます。
 
-Looking back, the version scans gave us more information, but it was still pretty broad, Linux or Windows. If we want more information on a Windows system, we can use the smb-os-discovery.nse script. Let's run this against the hosts in our target network and look at the results. Let's try it against 10.130.10.4 and 10.130.10.44.
+振り返ると、バージョンスキャンではより多くの情報が得られましたが、それでもLinuxかWindowsという大まかな範囲に留まっていました。Windowsシステムについてさらに情報を得たい場合は、smb-os-discovery.nseスクリプトを使用できます。これをターゲットネットワーク内のホストに対して実行し、結果を見てみましょう。10.130.10.4と10.130.10.44に対して試してみます。
 
 Command
 
+```
 sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44
+```
 
 Expected Results
 
+```
 sec560@560vm:~$ sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-12 05:47 UTC
 Nmap scan report for 10.130.10.4
@@ -757,15 +776,19 @@ Host script results:
 |_  System time: 2025-09-12T05:47:53+00:00
 
 Nmap done: 2 IP addresses (2 hosts up) scanned in 3.56 seconds
+```
 
-The script detects that 10.130.10.44 is running Window Server 2022 Datacenter 20348, the hostname of 10.130.10.44 is file01, and the domain is hiboxy.com. This is useful information that we may need later in our pen test! We didn't get any results for 10.130.10.4, though. Let's add Nmap's debug option (-d) to the end of the command to figure out why.
+スクリプトは、10.130.10.44 が Windows Server 2022 Datacenter 20348 を実行中であり、10.130.10.44 のホスト名は file01、ドメインは hiboxy.com であることを検出しました。これはペネトレーションテストの後半で必要になる可能性のある有用な情報です！ただし10.130.10.4については結果が得られませんでした。原因を特定するため、コマンド末尾にNmapのデバッグオプション(-d)を追加してみましょう。
 
 Command
 
+```
 sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44 -d
+```
 
 Expected Results
 
+```
 sec560@560vm:~$ sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44 -d
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-12 05:56 UTC
 ... truncated for brevity ...
@@ -786,16 +809,19 @@ NSE: [smb-os-discovery 10.130.10.44] SMB: Login as \guest failed (NT_STATUS_ACCO
 NSE: Finished smb-os-discovery against 10.130.10.44.
 Completed NSE at 05:56, 3.38s elapsed
 ... truncated for brevity ...
+```
 
-In the debug output, we can see that Nmap "Couldn't negotiate an SMBv1 connection" with 10.130.10.4. For 10.130.10.44, it created an SMBv1 connection, but it failed to authenticate. The authentication attempt is all that's needed to gather a remote Windows system's details. If you were to use -d with the rest of the SMB script, you'd see many of them fail to run for the same reason. Recall from the smb-protocols.nse script in step 10 that 10.130.10.44 was the only system running SMBv1. So, while the SMB scripts look useful, many don't work without SMBv1, which was disabled by default starting with Windows 10 and Windows Server 2016. We still see SMBv1, but we shouldn't count on it being enabled to aid in OS detection.
+デバッグ出力では、Nmapが10.130.10.4に対して「SMBv1接続のネゴシエーションに失敗」したことを確認できます。10.130.10.44に対してはSMBv1接続を確立しましたが、認証に失敗しました。リモートWindowsシステムの詳細情報を収集するには、この認証試行だけで十分です。SMBスクリプトの残りの部分に-dオプションを適用すると、同様の理由で多くのスクリプトが実行に失敗する様子が確認できるでしょう。ステップ10のsmb-protocols.nseスクリプトで確認した通り、10.130.10.44がSMBv1を稼働している唯一のシステムでした。したがって、SMBスクリプトは有用に見えますが、Windows 10およびWindows Server 2016以降でデフォルト無効化されたSMBv1なしでは多くの機能が動作しません。SMBv1は依然として存在しますが、OS検出の補助として有効化されていることを期待すべきではありません。
 
-Lets look at some better means of fingerprinting Windows.
-12: Better OS Fingerprinting Techniques
+Windowsのフィンガープリンティングに有効な代替手法を検討しましょう。
 
-While Nmap's OS Detection feature doesn't provide us much useful information, we have other options. Recall in Step 4 where we were able to manually determine the distribution version of Ubuntu by analyzing nginx and SSH software version. There are NSE scripts to gather information from protocols that perform NTLMv1 and NTLMv2 authentication from Windows that can help us do this manually, as well.
+### 12: Better OS Fingerprinting Techniques
 
-*ntlm-info NSE Scripts
+NmapのOS検出機能はあまり有用な情報を提供しませんが、他の選択肢があります。ステップ4でnginxとSSHのソフトウェアバージョンを分析し、Ubuntuのディストリビューションバージョンを手動で特定できたことを思い出してください。WindowsからNTLMv1およびNTLMv2認証を行うプロトコルから情報を収集するNSEスクリプトも存在し、これを使って手動で同様の作業を行うことも可能です。
 
+*ntlm-info NSEスクリプト
+
+```
 sec560@560vm:~$ ls -1 /usr/share/nmap/scripts/*ntlm*
 /usr/share/nmap/scripts/http-ntlm-info.nse
 /usr/share/nmap/scripts/imap-ntlm-info.nse
@@ -805,6 +831,7 @@ sec560@560vm:~$ ls -1 /usr/share/nmap/scripts/*ntlm*
 /usr/share/nmap/scripts/rdp-ntlm-info.nse
 /usr/share/nmap/scripts/smtp-ntlm-info.nse
 /usr/share/nmap/scripts/telnet-ntlm-info.nse
+```
 
 Let's scan try using rdp-ntlm-info against 10.130.10.4 and 10.130.10.44 to see if we get useful information.
 
