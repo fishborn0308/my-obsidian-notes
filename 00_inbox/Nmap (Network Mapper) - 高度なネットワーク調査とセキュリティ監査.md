@@ -62,6 +62,25 @@ tags:
 | `-oG <file>` | Grep可能な形式で出力。 |
 | `-oA <basename>` | 上記3つ全ての形式で同時出力。 |
 
+### スキャンクエリの確認
+
+`https://nmap.org/book/vscan-fileformat.html`
+
+Nmapはnmap-service-probesというファイルを使用します。このファイルは/usr/share/nmapディレクトリに配置されている。
+このファイル内で、"Probe"で始まる行はターゲットサービスに送信するメッセージを示し、"match"で始まる行はプローブへの応答に基づいてサービスを識別するためのシグネチャです。
+
+- **カテゴリ毎のスキャンクエリの確認**
+
+```
+grep -v ^# /usr/share/nmap/nmap-service-probes | cut -d' ' -f1 | sort | uniq -c
+```
+
+- **Apacheに関連するスキャンクエリの確認**
+
+```
+grep -m1 Apache /usr/share/nmap/nmap-service-probes
+```
+
 ### NSE (Nmap Scripting Engine)
 `-sC` または `--script=<category>` を使用して、脆弱性診断や高度な探索を自動化します。
 - `default`: 標準的なスクリプト群を実行。
@@ -70,10 +89,9 @@ tags:
 
 #### NSEスクリプトの確認
 
-`https://nmap.org/book/vscan-fileformat.html`
+NSE用に定義された全スクリプトのインベントリを含むファイル
 
-Nmapはnmap-service-probesというファイルを使用します。このファイルは/usr/share/nmapディレクトリに配置されている。
-このファイル内で、"Probe"で始まる行はターゲットサービスに送信するメッセージを示し、"match"で始まる行はプローブへの応答に基づいてサービスを識別するためのシグネチャです。
+`/usr/share/nmap/scripts/script.db`
 
 - **カテゴリ毎のNSEスクリプトの確認**
 
@@ -81,10 +99,17 @@ Nmapはnmap-service-probesというファイルを使用します。このファ
 grep -v ^# /usr/share/nmap/nmap-service-probes | cut -d' ' -f1 | sort | uniq -c
 ```
 
-- **Apache二巻NSEスクリプトの確認**
+
+- **カテゴリ毎のNSEスクリプトの確認**
 
 ```
 grep -v ^# /usr/share/nmap/nmap-service-probes | cut -d' ' -f1 | sort | uniq -c
+```
+
+- **Apacheに関連するNSEスクリプトの確認**
+
+```
+grep -m1 Apache /usr/share/nmap/nmap-service-probes
 ```
 ---
 

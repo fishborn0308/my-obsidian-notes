@@ -140,7 +140,7 @@ sudo iptables -A INPUT -p tcp --dport 55555 -j DROP
 - `--src-port=55555`を指定する
 
 ```
-sudo masscan --ports 0-65535 --rate 15000 <font color="#ff0000">--src-port=55555</font> -oB /tmp/local.masscan 127.0.0.1
+sudo masscan --ports 0-65535 --rate 15000 --src-port=55555 -oB /tmp/local.masscan 127.0.0.1
 ```
 
 
