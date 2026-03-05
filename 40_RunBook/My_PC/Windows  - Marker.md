@@ -1,3 +1,15 @@
+---
+created: 2026-01-24 10:09
+modified: 2026-02-20 16:15
+tags:
+  - Marker
+  - pdf
+  - llama
+  - qwen
+  - deepseek
+  - python
+  - pip
+---
 # 【完全版】PDF→Markdown変換環境「Marker」構築マニュアル
 
 このマニュアルは、Windows環境において、C++ビルドエラーを回避しつつ高精度なPDF解析環境を構築するための手順です。
@@ -70,7 +82,7 @@ PowerShell
 
 ```
 # 単一ファイルの変換（日本語指定）
-marker_single "入力ファイル.pdf" --output_dir ./output --lang_load japanese
+marker_single "入力ファイル.pdf" --output_dir ./output
 ```
 
 ---
