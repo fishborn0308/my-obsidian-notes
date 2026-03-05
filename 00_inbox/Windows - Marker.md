@@ -32,7 +32,7 @@ marker_single "入力ファイルパス" --output_dir "出力先フォルダ" --
 ### 基本構文
 
 ```powershell
-marker "入力フォルダパス" "出力フォルダパス" --langs Japanese --workers 4
+marker "入力フォルダパス" --output_dir "出力フォルダパス" --langs Japanese --workers 4
 
 ```
 
