@@ -686,5 +686,259 @@ sec560@560vm:~/Downloads$
 ```
 
 ```
+sec560@560vm:~/Downloads$ sudo nmap -n -p 25 10.130.10.25 -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:04 UTC
+Nmap scan report for 10.130.10.25
+Host is up (0.16s latency).
+
+PORT   STATE SERVICE VERSION
+25/tcp open  smtp    Microsoft Exchange smtpd
+Service Info: Host: mail01.hiboxy.com; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.84 seconds
+sec560@560vm:~/Downloads$
+```
+
+```
+sec560@560vm:~/Downloads$ nc -nv 10.130.10.25 25
+(UNKNOWN) [10.130.10.25] 25 (smtp) open
+220 mail01.hiboxy.com Microsoft ESMTP MAIL Service ready at Fri, 6 Mar 2026 02:05:32 +0000
+^C
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+ec560@560vm:~/Downloads$ grep 'Microsoft ESMTP MAIL Service ready' /usr/share/nmap/nmap-service-probes
+match smtp m|^220 ([-\w_.]+) Microsoft ESMTP MAIL Service ready at| p/Microsoft Exchange smtpd/ o/Windows/ h/$1/ cpe:/a:microsoft:exchange_server/ cpe:/o:microsoft:windows/a
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ nc -nvC 10.130.10.25 25
+(UNKNOWN) [10.130.10.25] 25 (smtp) open
+220 mail01.hiboxy.com Microsoft ESMTP MAIL Service ready at Fri, 6 Mar 2026 02:06:50 +0000
+ehlo
+250-mail01.hiboxy.com Hello [10.254.252.58]
+250-SIZE 37748736
+250-PIPELINING
+250-DSN
+250-ENHANCEDSTATUSCODES
+250-STARTTLS
+250-X-ANONYMOUSTLS
+250-AUTH NTLM
+250-X-EXPS GSSAPI NTLM
+250-8BITMIME
+250-BINARYMIME
+250-CHUNKING
+250-SMTPUTF8
+250 XRDST
+mail from:<pentest@hiboxy.com>
+rcpt to:<bgreen@hiboxy.com>
+data
+Subject: Test Email
+
+I used Netcat to send an unauthenticated email!
+
+Sincerely,
+Your Friendly Neighborhood Pen Tester
+.
+250 2.1.0 Sender OK
+250 2.1.5 Recipient OK
+354 Start mail input; end with <CRLF>.<CRLF>
+250 2.6.0 <0c963663-38ee-4418-9fdc-54217034cc85@mail01.hiboxy.com> [InternalId=523986010113, Hostname=mail01.hiboxy.com] 1590 bytes in 0.103, 15.038 KB/sec Queued mail for delivery
+quit
+221 2.0.0 Service closing transmission channel
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -F 10.130.10.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:27 UTC
+Nmap scan report for 10.130.10.10
+Host is up (0.18s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+23/tcp   open  telnet
+80/tcp   open  http
+9100/tcp open  jetdirect
+
+Nmap done: 1 IP address (1 host up) scanned in 0.94 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -sT -F --open 10.130.10.10 -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:28 UTC
+Nmap scan report for 10.130.10.10
+Host is up (0.17s latency).
+Not shown: 96 closed tcp ports (conn-refused)
+PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.14 (Ubuntu Linux; protocol 2.0)
+23/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.14 (Ubuntu Linux; protocol 2.0)
+80/tcp   open  http       nginx 1.24.0 (Ubuntu)
+9100/tcp open  jetdirect?
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.64 seconds
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+sec560@560vm:~/Downloads$ head /usr/share/nmap/scripts/script.db
+Entry { filename = "acarsd-info.nse", categories = { "discovery", "safe", } }
+Entry { filename = "address-info.nse", categories = { "default", "safe", } }
+Entry { filename = "afp-brute.nse", categories = { "brute", "intrusive", } }
+Entry { filename = "afp-ls.nse", categories = { "discovery", "safe", } }
+Entry { filename = "afp-path-vuln.nse", categories = { "exploit", "intrusive", "vuln", } }
+Entry { filename = "afp-serverinfo.nse", categories = { "default", "discovery", "safe", } }
+Entry { filename = "afp-showmount.nse", categories = { "discovery", "safe", } }
+Entry { filename = "ajp-auth.nse", categories = { "auth", "default", "safe", } }
+Entry { filename = "ajp-brute.nse", categories = { "brute", "intrusive", } }
+Entry { filename = "ajp-headers.nse", categories = { "discovery", "safe", } }
+sec560@560vm:~/Downloads$
+```
+
+```
+sec560@560vm:~/Downloads$ wc -l /usr/share/nmap/scripts/script.db
+605 /usr/share/nmap/scripts/script.db
+sec560@560vm:~/Downloads$
+```
+
+```
+sec560@560vm:~/Downloads$ grep safe /usr/share/nmap/scripts/script.db | wc -l
+grep discovery /usr/share/nmap/scripts/script.db | wc -l
+grep intrusive /usr/share/nmap/scripts/script.db | wc -l
+348
+310
+213
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n --open -F --script=ssh-auth-methods 10.130.10.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:31 UTC
+Nmap scan report for 10.130.10.10
+Host is up (0.18s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-auth-methods: 
+|   Supported authentication methods: 
+|     publickey
+|_    password
+23/tcp   open  telnet
+80/tcp   open  http
+9100/tcp open  jetdirect
+
+Nmap done: 1 IP address (1 host up) scanned in 1.96 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ nc -nv -w 1 10.130.10.10 23
+(UNKNOWN) [10.130.10.10] 23 (telnet) open
+SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
+^C
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n --open -F --script=ssh-auth-methods 10.130.10.10 -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:33 UTC
+Nmap scan report for 10.130.10.10
+Host is up (0.18s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.14 (Ubuntu Linux; protocol 2.0)
+| ssh-auth-methods: 
+|   Supported authentication methods: 
+|     publickey
+|_    password
+23/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.14 (Ubuntu Linux; protocol 2.0)
+| ssh-auth-methods: 
+|   Supported authentication methods: 
+|     publickey
+|_    password
+80/tcp   open  http       nginx 1.24.0 (Ubuntu)
+|_http-server-header: nginx/1.24.0 (Ubuntu)
+9100/tcp open  jetdirect?
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 9.03 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ ls /usr/share/nmap/scripts/smb*.nse
+/usr/share/nmap/scripts/smb2-capabilities.nse
+/usr/share/nmap/scripts/smb2-security-mode.nse
+/usr/share/nmap/scripts/smb2-time.nse
+/usr/share/nmap/scripts/smb2-vuln-uptime.nse
+/usr/share/nmap/scripts/smb-brute.nse
+/usr/share/nmap/scripts/smb-double-pulsar-backdoor.nse
+/usr/share/nmap/scripts/smb-enum-domains.nse
+/usr/share/nmap/scripts/smb-enum-groups.nse
+/usr/share/nmap/scripts/smb-enum-processes.nse
+/usr/share/nmap/scripts/smb-enum-services.nse
+/usr/share/nmap/scripts/smb-enum-sessions.nse
+/usr/share/nmap/scripts/smb-enum-shares.nse
+/usr/share/nmap/scripts/smb-enum-users.nse
+/usr/share/nmap/scripts/smb-flood.nse
+/usr/share/nmap/scripts/smb-ls.nse
+/usr/share/nmap/scripts/smb-mbenum.nse
+/usr/share/nmap/scripts/smb-os-discovery.nse
+/usr/share/nmap/scripts/smb-print-text.nse
+/usr/share/nmap/scripts/smb-protocols.nse
+/usr/share/nmap/scripts/smb-psexec.nse
+/usr/share/nmap/scripts/smb-security-mode.nse
+/usr/share/nmap/scripts/smb-server-stats.nse
+/usr/share/nmap/scripts/smb-system-info.nse
+/usr/share/nmap/scripts/smb-vuln-conficker.nse
+/usr/share/nmap/scripts/smb-vuln-cve2009-3103.nse
+/usr/share/nmap/scripts/smb-vuln-cve-2017-7494.nse
+/usr/share/nmap/scripts/smb-vuln-ms06-025.nse
+/usr/share/nmap/scripts/smb-vuln-ms07-029.nse
+/usr/share/nmap/scripts/smb-vuln-ms08-067.nse
+/usr/share/nmap/scripts/smb-vuln-ms10-054.nse
+/usr/share/nmap/scripts/smb-vuln-ms10-061.nse
+/usr/share/nmap/scripts/smb-vuln-ms17-010.nse
+/usr/share/nmap/scripts/smb-vuln-regsvc-dos.nse
+/usr/share/nmap/scripts/smb-vuln-webexec.nse
+/usr/share/nmap/scripts/smb-webexec-exploit.nse
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep -l smb-brute /usr/share/nmap/scripts/smb*
+/usr/share/nmap/scripts/smb-brute.nse
+/usr/share/nmap/scripts/smb-enum-domains.nse
+/usr/share/nmap/scripts/smb-enum-groups.nse
+/usr/share/nmap/scripts/smb-enum-processes.nse
+/usr/share/nmap/scripts/smb-enum-sessions.nse
+/usr/share/nmap/scripts/smb-enum-shares.nse
+/usr/share/nmap/scripts/smb-enum-users.nse
+/usr/share/nmap/scripts/smb-flood.nse
+/usr/share/nmap/scripts/smb-os-discovery.nse
+/usr/share/nmap/scripts/smb-psexec.nse
+/usr/share/nmap/scripts/smb-security-mode.nse
+/usr/share/nmap/scripts/smb-server-stats.nse
+/usr/share/nmap/scripts/smb-system-info.nse
+/usr/share/nmap/scripts/smb-vuln-conficker.nse
+/usr/share/nmap/scripts/smb-vuln-cve2009-3103.nse
+/usr/share/nmap/scripts/smb-vuln-cve-2017-7494.nse
+/usr/share/nmap/scripts/smb-vuln-ms06-025.nse
+/usr/share/nmap/scripts/smb-vuln-ms07-029.nse
+/usr/share/nmap/scripts/smb-vuln-ms08-067.nse
+/usr/share/nmap/scripts/smb-vuln-regsvc-dos.nse
+sec560@560vm:~/Downloads$ 
+```
+
+```
 
 ```
