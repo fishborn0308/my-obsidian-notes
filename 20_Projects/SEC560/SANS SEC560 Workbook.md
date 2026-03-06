@@ -940,5 +940,909 @@ sec560@560vm:~/Downloads$
 ```
 
 ```
+sec560@560vm:~/Downloads$ grep -L smb-brute /usr/share/nmap/scripts/smb*
+/usr/share/nmap/scripts/smb2-capabilities.nse
+/usr/share/nmap/scripts/smb2-security-mode.nse
+/usr/share/nmap/scripts/smb2-time.nse
+/usr/share/nmap/scripts/smb2-vuln-uptime.nse
+/usr/share/nmap/scripts/smb-double-pulsar-backdoor.nse
+/usr/share/nmap/scripts/smb-enum-services.nse
+/usr/share/nmap/scripts/smb-ls.nse
+/usr/share/nmap/scripts/smb-mbenum.nse
+/usr/share/nmap/scripts/smb-print-text.nse
+/usr/share/nmap/scripts/smb-protocols.nse
+/usr/share/nmap/scripts/smb-vuln-ms10-054.nse
+/usr/share/nmap/scripts/smb-vuln-ms10-061.nse
+/usr/share/nmap/scripts/smb-vuln-ms17-010.nse
+/usr/share/nmap/scripts/smb-vuln-webexec.nse
+/usr/share/nmap/scripts/smb-webexec-exploit.nse
+sec560@560vm:~/Downloads$ 
+```
+
+`--script-args=smbuser=ADMIN_USER,smbpass=ADMIN_PASSWORD,config=CONFIG_FILE_NAME`
 
 ```
+sec560@560vm:~/Downloads$ sudo nmap -n -PS445 -p 445 --script=smb2-security-mode --open 10.130.10.0/24
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:36 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.17s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+Nmap scan report for 10.130.10.5
+Host is up (0.17s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap scan report for 10.130.10.7
+Host is up (0.17s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap scan report for 10.130.10.21
+Host is up (0.18s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap scan report for 10.130.10.23
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap scan report for 10.130.10.25
+Host is up (0.17s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+Nmap scan report for 10.130.10.44
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap done: 256 IP addresses (10 hosts up) scanned in 12.73 seconds
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -PS445 -p 445 --open --script=smb-protocols 10.130.10.4,44
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:37 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+
+Nmap scan report for 10.130.10.44
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+
+Nmap done: 2 IP addresses (2 hosts up) scanned in 14.40 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -F -O 10.130.10.4,10,44
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:38 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.16s latency).
+Not shown: 93 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+389/tcp  open  ldap
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+No OS matches for host
+
+Nmap scan report for 10.130.10.10
+Host is up (0.16s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+23/tcp   open  telnet
+80/tcp   open  http
+9100/tcp open  jetdirect
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.94SVN%E=4%D=3/6%OT=22%CT=7%CU=43484%PV=Y%DS=2%DC=I%G=Y%TM=69AA3
+OS:E36%P=x86_64-pc-linux-gnu)SEQ(SP=107%GCD=1%ISR=10B%TI=Z%CI=Z%TS=A)SEQ(SP
+OS:=107%GCD=1%ISR=10B%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M551ST11NWA%O2=M551ST11NWA
+OS:%O3=M551NNT11NWA%O4=M551ST11NWA%O5=M551ST11NWA%O6=M551ST11)WIN(W1=F4B3%W
+OS:2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=F507%O=M551NN
+OS:SNWA%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y
+OS:%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR
+OS:%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=N)U1(R=Y%DF
+OS:=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40
+OS:%CD=S)
+
+Network Distance: 2 hops
+
+Nmap scan report for 10.130.10.44
+Host is up (0.16s latency).
+Not shown: 96 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+No OS matches for host
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 3 IP addresses (3 hosts up) scanned in 17.71 seconds
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:39 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Nmap scan report for 10.130.10.44
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows Server 2022 Datacenter 20348 (Windows Server 2022 Datacenter 6.3)
+|   Computer name: file01
+|   NetBIOS computer name: FILE01\x00
+|   Domain name: hiboxy.com
+|   Forest name: hiboxy.com
+|   FQDN: file01.hiboxy.com
+|_  System time: 2026-03-06T02:39:24+00:00
+
+Nmap done: 2 IP addresses (2 hosts up) scanned in 5.21 seconds
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -p 445 --open --script=smb-os-discovery.nse 10.130.10.4,44 -d
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:39 UTC
+--------------- Timing report ---------------
+  hostgroups: min 1, max 100000
+  rtt-timeouts: init 1000, min 100, max 10000
+  max-scan-delay: TCP 1000, UDP 1000, SCTP 1000
+  parallelism: min 0, max 0
+  max-retries: 10, host-timeout: 0
+  min-rate: 0, max-rate: 0
+---------------------------------------------
+NSE: Using Lua 5.4.
+NSE: Arguments from CLI: 
+NSE: Loaded 1 scripts for scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 02:39
+Completed NSE at 02:39, 0.00s elapsed
+Initiating Ping Scan at 02:39
+Scanning 2 hosts [4 ports/host]
+Packet capture filter (device tun0): dst host 10.254.252.58 and (icmp or icmp6 or ((tcp) and (src host 10.130.10.4 or src host 10.130.10.44)))
+We got a ping packet back from 10.130.10.44: id = 2161 seq = 0 checksum = 63374
+We got a ping packet back from 10.130.10.4: id = 35742 seq = 0 checksum = 29793
+Completed Ping Scan at 02:39, 0.18s elapsed (2 total hosts)
+Overall sending rates: 45.17 packets / s, 1716.56 bytes / s.
+Initiating SYN Stealth Scan at 02:39
+Scanning 2 hosts [1 port/host]
+Packet capture filter (device tun0): dst host 10.254.252.58 and (icmp or icmp6 or ((tcp) and (src host 10.130.10.4 or src host 10.130.10.44)))
+Discovered open port 445/tcp on 10.130.10.44
+Discovered open port 445/tcp on 10.130.10.4
+Completed SYN Stealth Scan at 02:39, 0.17s elapsed (2 total ports)
+Overall sending rates: 11.46 packets / s, 504.35 bytes / s.
+NSE: Script scanning 2 hosts.
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 02:39
+NSE: Starting smb-os-discovery against 10.130.10.4.
+NSE: Starting smb-os-discovery against 10.130.10.44.
+NSE: [smb-os-discovery 10.130.10.4] SMB: Added account '' to account list
+NSE: [smb-os-discovery 10.130.10.4] SMB: Added account 'guest' to account list
+NSE: [smb-os-discovery 10.130.10.4] Couldn't negotiate a SMBv1 connection:SMB: Failed to receive bytes: ERROR
+NSE: Finished smb-os-discovery against 10.130.10.4.
+NSE: [smb-os-discovery 10.130.10.44] SMB: Added account '' to account list
+NSE: [smb-os-discovery 10.130.10.44] SMB: Added account 'guest' to account list
+NSE: [smb-os-discovery 10.130.10.44] SMB: Login as \guest failed (NT_STATUS_ACCOUNT_DISABLED)
+NSE: Finished smb-os-discovery against 10.130.10.44.
+Completed NSE at 02:40, 4.81s elapsed
+Nmap scan report for 10.130.10.4
+Host is up, received echo-reply ttl 127 (0.16s latency).
+Scanned at 2026-03-06 02:39:55 UTC for 2s
+
+PORT    STATE SERVICE      REASON
+445/tcp open  microsoft-ds syn-ack ttl 127
+
+Host script results:
+| smb-os-discovery: 
+|_  ERROR: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+Final times for host: srtt: 163658 rttvar: 122784  to: 654794
+
+Nmap scan report for 10.130.10.44
+Host is up, received echo-reply ttl 127 (0.16s latency).
+Scanned at 2026-03-06 02:39:55 UTC for 5s
+
+PORT    STATE SERVICE      REASON
+445/tcp open  microsoft-ds syn-ack ttl 127
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows Server 2022 Datacenter 20348 (Windows Server 2022 Datacenter 6.3)
+|   Computer name: file01
+|   NetBIOS computer name: FILE01\x00
+|   Domain name: hiboxy.com
+|   Forest name: hiboxy.com
+|   FQDN: file01.hiboxy.com
+|_  System time: 2026-03-06T02:39:58+00:00
+Final times for host: srtt: 163011 rttvar: 122302  to: 652219
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 02:40
+Completed NSE at 02:40, 0.00s elapsed
+Read from /usr/bin/../share/nmap: nmap-protocols nmap-services.
+Nmap done: 2 IP addresses (2 hosts up) scanned in 5.22 seconds
+           Raw packets sent: 10 (392B) | Rcvd: 4 (144B)
+sec560@560vm:~/Downloads$ 
+
+```
+
+```
+sec560@560vm:~/Downloads$ ls -1 /usr/share/nmap/scripts/*ntlm*
+/usr/share/nmap/scripts/http-ntlm-info.nse
+/usr/share/nmap/scripts/imap-ntlm-info.nse
+/usr/share/nmap/scripts/ms-sql-ntlm-info.nse
+/usr/share/nmap/scripts/nntp-ntlm-info.nse
+/usr/share/nmap/scripts/pop3-ntlm-info.nse
+/usr/share/nmap/scripts/rdp-ntlm-info.nse
+/usr/share/nmap/scripts/smtp-ntlm-info.nse
+/usr/share/nmap/scripts/telnet-ntlm-info.nse
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -n -PS3389 -p 3389 --open 10.130.10.4,44 --script rdp-ntlm-info
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:42 UTC
+Nmap scan report for 10.130.10.4
+Host is up (0.16s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-ntlm-info: 
+|   Target_Name: HIBOXY
+|   NetBIOS_Domain_Name: HIBOXY
+|   NetBIOS_Computer_Name: DC01
+|   DNS_Domain_Name: hiboxy.com
+|   DNS_Computer_Name: dc01.hiboxy.com
+|   DNS_Tree_Name: hiboxy.com
+|   Product_Version: 10.0.20348
+|_  System_Time: 2026-03-06T02:42:14+00:00
+
+Nmap scan report for 10.130.10.44
+Host is up (0.16s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-ntlm-info: 
+|   Target_Name: HIBOXY
+|   NetBIOS_Domain_Name: HIBOXY
+|   NetBIOS_Computer_Name: FILE01
+|   DNS_Domain_Name: hiboxy.com
+|   DNS_Computer_Name: file01.hiboxy.com
+|   DNS_Tree_Name: hiboxy.com
+|   Product_Version: 10.0.20348
+|_  System_Time: 2026-03-06T02:42:14+00:00
+
+Nmap done: 2 IP addresses (2 hosts up) scanned in 1.24 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+`https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info`
+
+`Product_Version: 10.0.20348`
+
+```
+sec560@560vm:~/Downloads$ nmap -n -PS445 -p 445 10.130.10.0/24 --open -oG - | awk '/445.open/ { print $2 }' |tee 445.tcp
+10.130.10.4
+10.130.10.5
+10.130.10.7
+10.130.10.21
+10.130.10.23
+10.130.10.25
+10.130.10.44
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ nxc smb 445.tcp
+[*] First time use detected
+[*] Creating home directory structure
+[*] Creating missing folder logs
+[*] Creating missing folder modules
+[*] Creating missing folder protocols
+[*] Creating missing folder workspaces
+[*] Creating missing folder obfuscated_scripts
+[*] Creating missing folder screenshots
+[*] Creating missing folder logs/sam
+[*] Creating missing folder logs/lsa
+[*] Creating missing folder logs/ntds
+[*] Creating missing folder logs/dpapi
+[*] Creating default workspace
+[*] Initializing RDP protocol database
+[*] Initializing MSSQL protocol database
+[*] Initializing VNC protocol database
+[*] Initializing WINRM protocol database
+[*] Initializing WMI protocol database
+[*] Initializing FTP protocol database
+[*] Initializing SMB protocol database
+[*] Initializing SSH protocol database
+[*] Initializing NFS protocol database
+[*] Initializing LDAP protocol database
+[*] Copying default configuration file
+SMB         10.130.10.7     445    CA01             [*] Windows Server 2022 Build 20348 x64 (name:CA01) (domain:hiboxy.com) (signing:False) (SMBv1:False)
+SMB         10.130.10.25    445    MAIL01           [*] Windows Server 2022 Build 20348 x64 (name:MAIL01) (domain:hiboxy.com) (signing:True) (SMBv1:False)
+SMB         10.130.10.23    445    RDP01            [*] Windows Server 2022 Build 20348 x64 (name:RDP01) (domain:hiboxy.com) (signing:False) (SMBv1:False)
+SMB         10.130.10.44    445    FILE01           [*] Windows Server 2022 Build 20348 x64 (name:FILE01) (domain:hiboxy.com) (signing:False) (SMBv1:True)
+SMB         10.130.10.21    445    JUMP01           [*] Windows Server 2022 Build 20348 x64 (name:JUMP01) (domain:hiboxy.com) (signing:False) (SMBv1:False)
+SMB         10.130.10.4     445    DC01             [*] Windows Server 2022 Build 20348 x64 (name:DC01) (domain:hiboxy.com) (signing:True) (SMBv1:False)
+SMB         10.130.10.5     445    WEB01            [*] Windows Server 2022 Build 20348 (name:WEB01) (domain:hiboxy.com) (signing:False) (SMBv1:False)
+Running nxc against 7 targets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap -v -p*http* -oG -
+# Nmap 7.94SVN scan initiated Fri Mar  6 02:44:59 2026 as: nmap -v -p*http* -oG -
+# Ports scanned: TCP(63;80,280,443,488,591,593,623,777,808,832,1183-1184,2381,2688,2851,3106,3128,3227,3816,4035-4036,4180,4848-4849,5554,5800-5803,5988-5990,6443,6480,6770-6771,6788,6842,7443,7627,7677,8000,8008,8080,8088,8243,8280,8443-8444,8765,8910,8990-8991,9294-9295,9443,9762,16992-16993,20002-20003,24680,27504) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+WARNING: No targets were specified, so 0 hosts scanned.
+# Nmap done at Fri Mar  6 02:44:59 2026 -- 0 IP addresses (0 hosts up) scanned in 0.01 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+ec560@560vm:~/Downloads$ sudo nmap -n -p*http* --open 10.130.10.0/24 --script reverse-index --max-retries 0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:45 UTC
+Warning: 10.130.10.1 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.2 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.3 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.8 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.9 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.13 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.14 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.15 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.16 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.17 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.18 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.19 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.20 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.24 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.27 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.28 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.29 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.30 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.31 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.32 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.36 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.37 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.38 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.39 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.40 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.41 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.42 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.43 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.46 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.49 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.50 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.51 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.52 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.53 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.54 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.57 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.58 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.59 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.60 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.61 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.62 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.65 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.66 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.67 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.68 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.69 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.70 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.71 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.72 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.75 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.78 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.79 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.80 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.81 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.82 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.83 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.86 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.87 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.88 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.89 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.90 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.91 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.94 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.95 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.96 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.97 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.98 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.99 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.100 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.101 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.104 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.107 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.108 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.109 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.110 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.111 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.112 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.115 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.116 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.117 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.118 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.119 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.120 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.123 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.124 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.125 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.126 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.127 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.128 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.129 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.130 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.133 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.136 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.137 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.138 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.139 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.140 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.141 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.144 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.145 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.146 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.147 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.148 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.149 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.152 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.153 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.154 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.155 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.156 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.157 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.158 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.159 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.162 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.165 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.166 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.167 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.168 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.169 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.170 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.173 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.174 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.175 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.176 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.177 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.180 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.181 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.182 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.183 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.184 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.185 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.186 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.187 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.190 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.193 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.194 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.195 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.196 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.197 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.198 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.199 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.200 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.201 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.202 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.203 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.204 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.205 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.206 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.207 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.208 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.209 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.210 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.211 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.212 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.213 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.214 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.215 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.216 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.217 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.218 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.219 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.220 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.221 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.222 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.223 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.224 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.225 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.226 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.227 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.228 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.229 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.230 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.231 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.232 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.233 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.234 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.235 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.236 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.237 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.238 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.239 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.240 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.241 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.242 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.245 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.246 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.247 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.248 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.249 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.250 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.251 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.252 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.253 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.254 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.255 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.12 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.26 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.47 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.48 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.55 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.56 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.63 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.64 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.76 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.85 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.92 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.93 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.102 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.103 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.105 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.106 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.113 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.114 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.121 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.122 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.131 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.132 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.134 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.135 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.142 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.143 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.150 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.151 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.160 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.161 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.163 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.164 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.171 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.172 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.178 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.179 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.188 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.189 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.191 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.192 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.0 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.34 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.35 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.244 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.77 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.73 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.74 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.84 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.243 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.25 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.33 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.21 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.7 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.5 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.23 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.6 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.44 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.4 giving up on port because retransmission cap hit (0).
+Warning: 10.130.10.45 giving up on port because retransmission cap hit (0).
+Nmap scan report for 10.130.10.4
+Host is up (0.17s latency).
+Not shown: 62 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT    STATE SERVICE
+593/tcp open  http-rpc-epmap
+
+Nmap scan report for 10.130.10.5
+Host is up (0.17s latency).
+Not shown: 62 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap scan report for 10.130.10.6
+Host is up (0.17s latency).
+Not shown: 62 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap scan report for 10.130.10.10
+Host is up (0.16s latency).
+Not shown: 62 closed tcp ports (reset)
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap scan report for 10.130.10.11
+Host is up (0.16s latency).
+Not shown: 62 closed tcp ports (reset)
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap scan report for 10.130.10.25
+Host is up (0.16s latency).
+Not shown: 59 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+593/tcp open  http-rpc-epmap
+808/tcp open  ccproxy-http
+
+Post-scan script results:
+| reverse-index: 
+|   80/tcp: 10.130.10.5, 10.130.10.6, 10.130.10.10, 10.130.10.11, 10.130.10.25
+|   443/tcp: 10.130.10.25
+|   593/tcp: 10.130.10.4, 10.130.10.25
+|_  808/tcp: 10.130.10.25
+Nmap done: 256 IP addresses (13 hosts up) scanned in 11.28 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ sudo nmap 10.130.10.0/24 -n -p80,443 -PS80,443 --script http-headers,http-methods,http-robots.txt,http-auth-finder -oA /tmp/webservers
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:46 UTC
+Nmap scan report for 10.130.10.5
+Host is up (0.17s latency).
+
+PORT    STATE    SERVICE
+80/tcp  open     http
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+| http-headers: 
+|   Content-Length: 1706
+|   Content-Type: text/html
+|   Last-Modified: Fri, 01 Jan 2049 00:00:00 GMT
+|   Accept-Ranges: bytes
+|   ETag: W/"0c0d66a3a44f61:0"
+|   Server: Microsoft-IIS/10.0
+|   Date: Fri, 06 Mar 2026 02:46:59 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+443/tcp filtered https
+
+Nmap scan report for 10.130.10.6
+Host is up (0.17s latency).
+
+PORT    STATE    SERVICE
+80/tcp  open     http
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+| http-headers: 
+|   Content-Length: 703
+|   Content-Type: text/html
+|   Last-Modified: Sun, 01 Mar 2026 00:23:15 GMT
+|   Accept-Ranges: bytes
+|   ETag: "e0dd8c9811a9dc1:0"
+|   Server: Microsoft-IIS/10.0
+|   Date: Fri, 06 Mar 2026 02:46:59 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+443/tcp filtered https
+
+Nmap scan report for 10.130.10.10
+Host is up (0.17s latency).
+
+PORT    STATE  SERVICE
+80/tcp  open   http
+| http-headers: 
+|   Server: nginx/1.24.0 (Ubuntu)
+|   Date: Fri, 06 Mar 2026 02:47:00 GMT
+|   Content-Type: text/html
+|   Content-Length: 615
+|   Last-Modified: Sun, 01 Mar 2026 00:09:23 GMT
+|   Connection: close
+|   ETag: "69a383b3-267"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+| http-methods: 
+|_  Supported Methods: GET HEAD
+443/tcp closed https
+
+Nmap scan report for 10.130.10.11
+Host is up (0.17s latency).
+
+PORT    STATE  SERVICE
+80/tcp  open   http
+| http-headers: 
+|   Server: nginx/1.24.0 (Ubuntu)
+|   Date: Fri, 06 Mar 2026 02:47:00 GMT
+|   Content-Type: text/html
+|   Content-Length: 615
+|   Last-Modified: Sun, 01 Mar 2026 00:09:42 GMT
+|   Connection: close
+|   ETag: "69a383c6-267"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+| http-methods: 
+|_  Supported Methods: GET HEAD
+443/tcp closed https
+
+Nmap scan report for 10.130.10.22
+Host is up (0.17s latency).
+
+PORT    STATE  SERVICE
+80/tcp  closed http
+443/tcp closed https
+
+Nmap scan report for 10.130.10.25
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+80/tcp  open  http
+| http-headers: 
+|   Server: Microsoft-IIS/10.0
+|   Date: Fri, 06 Mar 2026 02:47:00 GMT
+|   Connection: close
+|   Content-Length: 0
+|   
+|_  (Request type: GET)
+443/tcp open  https
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+
+Nmap done: 256 IP addresses (6 hosts up) scanned in 14.91 seconds
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ mkdir gowitness && cd gowitness
+sec560@560vm:~/Downloads/gowitness$ gowitness scan nmap -f /tmp/webservers.xml --write-db -s screenshots 
+2026/03/06 02:48:03 INFO result 🤖 target=http://10.130.10.6:80 status-code=200 title="IIS Windows Server" have-screenshot=true
+2026/03/06 02:48:04 INFO result 🤖 target=http://10.130.10.5:80 status-code=200 title="" have-screenshot=true
+2026/03/06 02:48:07 INFO result 🤖 target=http://10.130.10.10:80 status-code=200 title="Welcome to nginx!" have-screenshot=true
+2026/03/06 02:48:11 INFO result 🤖 target=http://10.130.10.11:80 status-code=200 title="Welcome to nginx!" have-screenshot=true
+2026/03/06 02:48:19 INFO result 🤖 target=https://10.130.10.25:443 status-code=200 title=Outlook have-screenshot=true
+sec560@560vm:~/Downloads/gowitness$ 
+```
+
+```
+sec560@560vm:~/Downloads/gowitness$ gowitness report server
+2026/03/06 02:49:51 INFO starting web server host=127.0.0.1 port=7171
+
+```
+
+`http://127.0.0.1:7171/`
+
+## Lab 2.2 - Password Guessing
+
+
+- 10.130.10.10: A Linux web server
+- 10.130.10.4: A Windows Domain controller
+
+対象組織にはパスワードポリシーが存在し、すべてのパスワードは8文字以上であること、かつ以下の5つの基準のうち3つを満たすことが要求されていると仮定する：
+
+    番号
+    大文字
+    小文字
+    特殊文字
+    その他の文字
+
+これは非常に標準的なポリシーです。「5つのカテゴリのうち3つ」が、マイクロソフトが「複雑な」パスワードと定義する基準
+
+`https://www.skullsecurity.org/wiki/Passwords`
+
+
+```
+sec560@560vm:~/Downloads$ head /opt/passwords/facebook-f.last-100.txt
+jsmith
+ssmith
+skhan
+msmith
+skumar
+csmith
+asmith
+jjohnson
+dsmith
+akhan
+sec560@560vm:~/Downloads$ 
+```
+
