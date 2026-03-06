@@ -2,7 +2,7 @@
 
 # Workbook Sections 1-3
 
-![](_page_0_Picture_2.jpeg)
+![](SEC560_WorkBook1_page_0_Picture_2.jpeg)
 
 © 2025 SANS Institute. All rights reserved to SANS Institute.
 
@@ -87,7 +87,7 @@ We are always excited to hear your feedback on the course materials. Is there a 
 
 Thank you!!
 
-![](_page_3_Picture_10.jpeg)
+![](SEC560_WorkBook1_page_3_Picture_10.jpeg)
 
 ## *Lab 1.1: Credential Stuffing to a Breach*
 
@@ -149,7 +149,7 @@ The lab demonstrates that breaches don't have to be complicated to be effective,
 
 In reviewing Hiboxy's external network presence, you have already found an exposed RDP server using Shodan:
 
-![](_page_5_Figure_7.jpeg)
+![](SEC560_WorkBook1_page_5_Figure_7.jpeg)
 
 #### Note
 
@@ -356,7 +356,7 @@ While we could try variations of breached passwords, or try other usernames usin
 
 Let's log on using our found credentials. Pick one of the three accounts to log in with, then start the built-in RDP client on Windows.
 
-![](_page_12_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_12_Figure_0.jpeg)
 
 #### Note
 
@@ -364,15 +364,15 @@ Your output, naturally, may vary from the Get-Random command.
 
 That last command ( mstsc) will launch the Remote Desktop Connection application, which should look like the following:
 
-![](_page_12_Picture_4.jpeg)
+![](SEC560_WorkBook1_page_12_Picture_4.jpeg)
 
 Enter 10.130.10.23 as the destination computer, then click Show Options. Enter the username you randomly chose above, including the domain (such as hiboxy\hmoore). Under the Local Resources tab, click More... and ensure that Drives is checked, as shown below:
 
-![](_page_13_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_13_Figure_0.jpeg)
 
 Click OK to confirm the local devices, then accept the remote connection by clicking Connect when prompted:
 
-![](_page_13_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_13_Figure_2.jpeg)
 
 Then enter the password for the account you chose above.
 
@@ -384,31 +384,31 @@ hiboxy.com\hmoore:Shane1\*\* hiboxy.com\sbishop:Ethnogeographically1 hiboxy.com\
 
 After logging on, you should see a desktop like the following:
 
-![](_page_14_Picture_1.jpeg)
+![](SEC560_WorkBook1_page_14_Picture_1.jpeg)
 
 Excellent! An authenticated internal session with the ability to run arbitrary code is a powerful position for attackers. Let's start by gathering information about the environment. We'll use Active Directory Explorer (ADExplorer) to examine the Active Directory environment of Hiboxy. We'll also be able to take a snapshot of the Hiboxy AD environment for analysis on our own machine, as well as discover and exfiltrate some other sensitive data.
 
 Click the Windows folder icon in the lower-left corner of the screen:
 
-![](_page_14_Picture_4.jpeg)
+![](SEC560_WorkBook1_page_14_Picture_4.jpeg)
 
 Next, click This PC in the resulting *File Explorer* window. Under *Redirected drives and folders*, double-click on C on SEC560- WINDOWS:
 
-![](_page_15_Picture_1.jpeg)
+![](SEC560_WorkBook1_page_15_Picture_1.jpeg)
 
 Next, browse to the bin directory, then double-click on ADExplorer:
 
-![](_page_15_Picture_3.jpeg)
+![](SEC560_WorkBook1_page_15_Picture_3.jpeg)
 
 If prompted, accept the license agreement by clicking Agree. Once ADExplorer is open, leave the connection information blank (it will default to the current Active Directory domain) and click OK:
 
-![](_page_16_Picture_0.jpeg)
+![](SEC560_WorkBook1_page_16_Picture_0.jpeg)
 
 A view of Hiboxy's Active Directory environment will appear, similar to Active Directory Users and Computers. You can navigate through the tree on the left side of the window to explore the environment if you like.
 
 Click File in the top-left corner of the window, then click Create Snapshot. Click the ellipsis (...) to choose a location to save the snapshot, click the Desktop shortcut under the *Quick access* menu on the left, enter Hiboxy-snapshot in the *File name:* field, click Save, then click OK:
 
-![](_page_17_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_17_Figure_0.jpeg)
 
 You can now close ADExplorer. Next, we'll exfiltrate the snapshot. Right-click on the Hiboxy-snapshot file on the desktop and click Cut, then right-click into the still-open *File Explorer* window and click Paste. This will move the snapshot to the Windows 11 VM's C:\bin directory.
 
@@ -418,7 +418,7 @@ ADExplorer could save directly to the C:\bin directory, but it would take longer
 
 Go ahead and close the Remote Desktop connection by clicking the X in the top middle area of the screen:
 
-![](_page_17_Picture_5.jpeg)
+![](SEC560_WorkBook1_page_17_Picture_5.jpeg)
 
 #### *5: Analyzing Exfiltrated ADExplorer Data*
 
@@ -426,7 +426,7 @@ Even if Hiboxy were to notice the RDP connection and exfiltration of the snapsho
 
 Next, go ahead and open up ADExplorer, this time on our Windows 11 VM. You can find the ADExplorer executable in the C:\bin directory. Open it up (accepting the EULA if asked), then choose the Enter the path of a previous snapshot to load. radio button. Click the ellipsis button (...) to the right of the Path: text window, navigate to the C:\bin directory, select the Hiboxy-snapshot file, then click Save:
 
-![](_page_18_Picture_1.jpeg)
+![](SEC560_WorkBook1_page_18_Picture_1.jpeg)
 
 Click OK to load the snapshot. You should see the same view of the Hiboxy Active Directory environment that you saw on the RDP server.
 
@@ -494,13 +494,13 @@ In order to receive email, a company needs to publish MX records in DNS. These r
 
 Open a PowerShell terminal by clicking the "Terminal" link on your Desktop to run the following:
 
-![](_page_21_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_21_Figure_0.jpeg)
 
 Your exact columns may differ, depending on the size of your PowerShell window. Here, we see that emails sent to @lowes.com addresses are sent to Microsoft 365 ( mail.protection.outlook.com ). In other words, email flows directly to Microsoft from the source email server.
 
 What other options are there? Some companies use third-party email security services, such as ProofPoint or Mimecast, to filter email before it reaches their mail servers. Let's look at an example of a company that uses ProofPoint -- SANS.
 
-![](_page_21_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_21_Figure_3.jpeg)
 
 #### Curious about a Linux equivalent to Resolve-DnsName?
 
@@ -576,11 +576,11 @@ Due to how routers send traffic to each other via BGP, we can look up the public
 
 We'll use the Hurricane Electric BGP Toolkit to look up ASNs and IP ranges. Let's look up the ASNs owned by Home Depot:
 
-![](_page_25_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_25_Figure_4.jpeg)
 
 Next, click on AS10967 or click on this link to see more information about Home Depot's ASN:
 
-![](_page_26_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_26_Figure_0.jpeg)
 
 This page tells us there are 52 IPv4 prefixes (since last updated) and 0 IPv6 prefixes (since last updated) announced by Home Depot. Click on the Prefixes v4 tab to see the list of IPv4 pre fixes:
 
@@ -696,11 +696,11 @@ Certificate Transparency is a wonderful thing. It provides a public log of all T
 
 There are multiple Certificate Transparency search engines available, but we'll use crt.sh for this example. Let's look up certificates issued for Clinton County, Indiana by clicking on this link , which should show results like this:
 
-![](_page_29_Picture_12.jpeg)
+![](SEC560_WorkBook1_page_29_Picture_12.jpeg)
 
 While it's not bad to peruse the results manually for smaller organizations like Clinton County, Indiana, larger organizations can have hundreds or thousands of results. Fortunately, crt.sh provides a way to download the results in JSON format as well. Click the small icon labelled "JSON" as shown below:
 
-![](_page_29_Figure_14.jpeg)
+![](SEC560_WorkBook1_page_29_Figure_14.jpeg)
 
 We can use PowerShell to parse the JSON results and save the unique domain names (from the name\_value field, which can have multiple lines) to a file. Run the following inside PowerShell:
 
@@ -736,7 +736,7 @@ At the time of testing, Clinton County still has an Exchange server exposed to t
 
 If it looks like the following, NTLM authentication is enabled:
 
-![](_page_31_Picture_2.jpeg)
+![](SEC560_WorkBook1_page_31_Picture_2.jpeg)
 
 This is problematic for defenders, because it means that an attacker can attempt to brute force passwords against the Exchange server directly, even if MFA is enabled for OWA. Later, we'll use password guessing utilities like THC-Hydra on the internal side, though NTLMRecon can be used externally to websites with NTLM authentication enabled as we manually found above.
 
@@ -1281,7 +1281,7 @@ Also, try hitting the v and d keys multiple times each for verbosity and debug i
 
 Next, let's conduct a TCP port scan of target machine 10.130.10.33.
 
-![](_page_52_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_52_Figure_3.jpeg)
 
 Next, back in your original Nmap terminal window, invoke Nmap to scan the 10.130.10.33 host, doing a TCP connect scan (full three-way handshake):
 
@@ -1643,7 +1643,7 @@ Wow! There are only 184 unique probes that can identify over 11,723 different se
 
 Now, let's use grep to look at the first Apache match:
 
-![](_page_65_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_65_Figure_4.jpeg)
 
 Notice the string Apache mod\_ftpd and other information that Nmap uses to identify this particular service.
 
@@ -2045,7 +2045,7 @@ Since we rarely have credentials at this stage of a penetration test, let's take
 
 Let's look at this configuration of the targets in our environment.
 
-![](_page_82_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_82_Figure_3.jpeg)
 
 10.130.10.4 has the more secure configuration that requires signing. The .5 system does not require signing. This would be a
 
@@ -2063,7 +2063,7 @@ Notice that the 10.130.10.44 system has SMBv1 enabled. This would be written up 
 
 It's helpful to know what OS we're targeting when we start thinking about attacks beyond port scanning, like password guessing or exploitation. We'll learn later that exploits tend to target speci fic versions of specific operating systems. And even if we're targeting an application that can run on multiple operating systems, we have to pick a payload compatible with the host OS. Nmap has an OS fingerprinting feature, which we can use with the -O parameter. Unfortunately, as you'll soon see, it's not very accurate. Let's try it against these 10.130.10.4, 10.130.10.10, and 10.130.10.44.
 
-![](_page_85_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_85_Figure_0.jpeg)
 
 #### Expected Results
 
@@ -2225,7 +2225,7 @@ You can see the rdp-ntlm-info output looks similar to smb-os-discovery, but it d
 
 There are other tools that do a great job of identifying Windows versions, too. One example is NetExec. You used it in Lab 1.1 to do a password spray against 10.130.10.23 . What you may not have noticed is how well it identifies and displays the OS version of its targets. Let's create a quick list of systems listening on port 445.
 
-![](_page_92_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_92_Figure_2.jpeg)
 
 Now, let's use that list as input to NetExec to detect the Windows versions of system.
 
@@ -2297,7 +2297,7 @@ There are over 130 HTTP related Nmap scripts. We're going to look at a four that
 |                                                                                                                            |  |  |  |  |
 |                                                                                                                            |  |  |  |  |
 
-![](_page_97_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_97_Figure_0.jpeg)
 
 ```
 If you don't see the http-auth-finder result, try scanning again.
@@ -2392,19 +2392,19 @@ Leaving that terminal running, open a new browser tab and browse to http://127.0
 
 The first page you'll see is the GoWitness Dashboard. It's more interesting with larger scans. For now, let's look at the Gallery of sites it scanned. Towards the top of the window, click the "Gallery" button.
 
-![](_page_101_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_101_Figure_1.jpeg)
 
 The gallery displays a thumbnail for each of the sites GoWitness scanned. We can quickly look through the results for anything interesting. Let's start by looking at the results for 10.130.10.5:80 , which is the Hiboxy website.
 
-![](_page_102_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_102_Figure_0.jpeg)
 
 On the Hiboxy site results page, take a moment and review the information in the Network Log, Console Log, and Request Headers. Then use the "Next" button in the upper left to browse through the other results.
 
-![](_page_103_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_103_Figure_0.jpeg)
 
 After clicking "Next" a few times, you'll see the Outlook Web Access results. This is a site we can target with password guessing attacks that we'll talk about in the next section. GoWitness and similar screenshot tools make it easy for us to visually inspect scan results and identify potential targets to attack. This is especially helpful when we're scanning hundreds or thousands of systems.
 
-![](_page_104_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_104_Figure_0.jpeg)
 
 #### Conclusion
 
@@ -2550,7 +2550,7 @@ Try a few more more options:
 
 You should find the password for a number of users. Expand the box below to see the users' passwords you should have found.
 
-![](_page_109_Figure_7.jpeg)
+![](SEC560_WorkBook1_page_109_Figure_7.jpeg)
 
 #### *2: The dictionary*
 
@@ -2939,7 +2939,7 @@ In the Windows 11 VM we will start with the AADInternals's AAD and M365 Kill Cha
 
 To launch AADInternals tools, open a PowerShell prompt and run the following commands.
 
-![](_page_122_Picture_11.jpeg)
+![](SEC560_WorkBook1_page_122_Picture_11.jpeg)
 
 #### *2: Invoke-AADIntReconAsOutsider*
 
@@ -3015,7 +3015,7 @@ There are several items to note that we would want to consider in part of our at
 
 Now that we have a valid domain, we can target users for enumeration. In a real engagement, you'd want to pull together all of the usernames and email addresses you might have enumerated during the renaissance phase. We can provide Invoke-AADIntUserEnumerationAsOutsider to determine if a username or email address is valid at the tenant.
 
-![](_page_125_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_125_Figure_3.jpeg)
 
 There are 3 APIs that this module hits for the attack:
 
@@ -3527,7 +3527,7 @@ On the Windows VM, logged in as Clark, let's attempt an SMB session to \\windows
 - Click the Windows Search box at the top of the start menu. 2.
 - Type \\windows01 in the search box and hit enter 3.
 
-![](_page_143_Picture_7.jpeg)
+![](SEC560_WorkBook1_page_143_Picture_7.jpeg)
 
 The connection will hang for a few seconds, after which it will return "Access is Denied" and request credentials.
 
@@ -3535,7 +3535,7 @@ It's important to note that, at this point, your Windows machine already attempt
 
 After Windows authenticates a number of times, you will be presented with this dialog. You can simply close it; we already grabbed the hashes!
 
-![](_page_144_Picture_0.jpeg)
+![](SEC560_WorkBook1_page_144_Picture_0.jpeg)
 
 #### *4: Review NTLMv2 challenge/response hash*
 
@@ -3659,7 +3659,7 @@ Go to your Linux virtual machine. Here we first run our tcpdump sniffer to grab 
 
 In the first terminal, run tcpdump as follows:
 
-![](_page_148_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_148_Figure_0.jpeg)
 
 The -n tells it to show numeric ports and IP addresses rather port names and host names while the v makes tcpdump print out how many packets it has received so far. The -w option causes tcpdump to put its packets in a packet capture file for us. We'll focus only on packets associated with port 445.
 
@@ -3877,11 +3877,11 @@ Log into your Windows VM as the sec560 user with the password sec560.
 
 On the Desktop, right click on the Terminal icon and select "Run as administrator"
 
-![](_page_157_Picture_5.jpeg)
+![](SEC560_WorkBook1_page_157_Picture_5.jpeg)
 
 Next, use tar to extract the Apache Cassandra to the C:\CourseFiles\ directory.
 
-![](_page_157_Figure_7.jpeg)
+![](SEC560_WorkBook1_page_157_Figure_7.jpeg)
 
 The last thing we need to do before switching to our Linux VM is to run Apache Cassandra.
 
@@ -3938,7 +3938,7 @@ You can see there are over 2,500 exploits in Metasploit!
 
 We're going to be exploiting Cassandra on Windows. Let's search for that exploit.
 
-![](_page_161_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_161_Figure_0.jpeg)
 
 Unfortunately, there are no "exploits" specifically for Cassandra, only an auxiliary module. Remember at the beginning we said the vulnerability is a miscon figured RMI/JMX interface. Let's search "jmx" and specify that we want an exploit by specifying type:exploit :
 
@@ -4255,7 +4255,7 @@ Type background to go back to the Metasploit console.
 
 At the msf > prompt, we are now interacting with Metasploit, not with Meterpreter on the compromised host. Let's take a look at sessions .
 
-![](_page_175_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_175_Figure_2.jpeg)
 
 In this case, you can see the session is 1 . Yours may be different.
 
@@ -4265,7 +4265,7 @@ The numbered sessions are convenient, but we may end up with multiple shells and
 
 Let's now interact with our session.
 
-![](_page_176_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_176_Figure_2.jpeg)
 
 #### *5: Meterpreter*
 
@@ -4319,7 +4319,7 @@ Let's take a look at options we have with the ps command by looking at the help.
 
 Let's find Cassandra's java.exe process using -S .
 
-![](_page_179_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_179_Figure_2.jpeg)
 
 We don't know which one our shell is in, but we can find out with getpid :
 
@@ -4347,7 +4347,7 @@ Next, let's find out where we are in the directory structure. The particular com
 
 Now let's get a directory listing:
 
-![](_page_181_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_181_Figure_2.jpeg)
 
 #### *6: Shell*
 
@@ -4601,7 +4601,7 @@ Next, launch a folder window by clicking the sec560's Home shortcut on the Linux
 
 You should see your screenshot, showing the console of the Windows VM.
 
-![](_page_191_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_191_Figure_2.jpeg)
 
 #### *8: Upgrading Meterpreter & Migrating Processes*
 
@@ -4712,7 +4712,7 @@ It should be the number associated with explorer.exe. If so, you just hopped bet
 
 A common way to demonstrate keystroke logging is to use Notepad. Your Windows VM doesn't have Notepad, so we'll use VS Code. Double click on the VS Code shortcut on your Windows VM Desktop.
 
-![](_page_195_Picture_10.jpeg)
+![](SEC560_WorkBook1_page_195_Picture_10.jpeg)
 
 Return to your Linux VM and meterpreter session and run the command keyscan\_start .
 
@@ -4958,7 +4958,7 @@ Note the output displayed on the screen. We can see the following actions taken 
 
 Now we are inside our Meterpreter session. To see the user account we are running as, let's run getuid .
 
-![](_page_208_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_208_Figure_1.jpeg)
 
 We have local SYSTEM privileges on the machine. So we started with an admin user (bgreen) and used the credentials to get code execution as local SYSTEM via psexec.
 
@@ -5127,11 +5127,11 @@ When migrating, do not migrate into any of the processes named svchost.exe. In t
 
 We'll then migrate into one of the 64-bit SYSTEM processes (spoolsv.exe ) using the following command:
 
-![](_page_214_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_214_Figure_0.jpeg)
 
 Verify that your Meterpreter is 64-bit by running the command below and analyzing the Meterpreter line. The Meterpreter line should now say x64.
 
-![](_page_214_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_214_Figure_2.jpeg)
 
 Now that we are in a 64-bit process, we can load Mimikatz with the following command:
 
@@ -5288,7 +5288,7 @@ In your output, you should see a line that says 3000 | LM... This indicates that
 
 To determine the hash type number needed to crack salted MD5 Linux hashes (also known as md5crypt), please run:
 
-![](_page_221_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_221_Figure_3.jpeg)
 
 Here we see that we should invoke Hashcat with -m 500 to crack these hashes, which are associated with *"Operating Systems"*.
 
@@ -5803,7 +5803,7 @@ You can run everything from here, but let's set up multiplayer mode.
 
 At this point, you should see a prompt that looks like this:
 
-![](_page_240_Figure_5.jpeg)
+![](SEC560_WorkBook1_page_240_Figure_5.jpeg)
 
 Take a look at the help.
 
@@ -5970,15 +5970,15 @@ We ran the server as root so it can listen on TCP port 443. This also means that
 
 Let's practice the import process on our local system. First, we'll look at the options with .
 
-![](_page_246_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_246_Figure_0.jpeg)
 
 Import the configuration file using the import subcommand.
 
-![](_page_246_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_246_Figure_2.jpeg)
 
 Now we can connect to the server. Run the command, and use the down arrow key to selector arrow to zerocool@LINUX\_ETH\_IP... and pres Enter .
 
-![](_page_247_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_247_Figure_0.jpeg)
 
 After you select the right user and press Enter, you will be presented with the prompt. Notice in your server terminal window that it show [\*] zerocool has joined the game .
 
@@ -5998,7 +5998,7 @@ Let's start a simple https listener.
 
 Notice that it said job #2 . Let's take a look at the jobs.
 
-![](_page_249_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_249_Figure_1.jpeg)
 
 The first job running on port 31337 is for remote user (multiplayer). We also have our https listener running on the default port 443.
 
@@ -6157,7 +6157,7 @@ moment. It can take 30 seconds or longer sometimes for the sessions to be displa
 
 Take a look at our session with sessions .
 
-![](_page_255_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_255_Figure_4.jpeg)
 
 (Your output may vary slightly from the above.)
 
@@ -6233,11 +6233,11 @@ The most interesting commands are going to be in the and
 
 Let's first get some information on the compromised system.
 
-![](_page_258_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_258_Figure_1.jpeg)
 
 The getuid and getgid commands return the SID of the user and group, respectively. This isn't terribly useful information (at least, until we get to Active Directory attacks!). The whoami command is much better for now.
 
-![](_page_258_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_258_Figure_3.jpeg)
 
 If you want all this information (and more) with a single command, run the info command.
 
@@ -6386,7 +6386,7 @@ P.S. Good OPSEC is *way* more important in Red Team engagements, or any other so
 
 You'll see we now have an interactive PowerShell prompt. We can run any PowerShell command. Run ls c:\ to look at the root of the drive.
 
-![](_page_263_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_263_Figure_0.jpeg)
 
 Exit of out of this shell by typing exit . We'll try some other tools to learn about other systems.
 
@@ -6654,13 +6654,13 @@ Notice that our dummy exploit has no options. For the payload, we need to set th
 
 Confirm the settings are correct by running show options again.
 
-![](_page_276_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_276_Figure_1.jpeg)
 
 Notice that eth0 is automatically expanded into the IP address associated with the eth0 interface.
 
 We can setup our listener to receive multiple connections so we don't have to restart the listener. We can do that by setting ExitOnSession to false . We'll also set the AutoLoadExtensions to load stdapi,priv
 
-![](_page_276_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_276_Figure_4.jpeg)
 
 Let's launch the listener running it as a job ( -j ) and not interacting with new connections ( -z ).
 
@@ -6707,7 +6707,7 @@ Command
 
 Normally, we'd generate a VBA macro to put in an Office document and use that for social engineering; however, our Windows VM does not have Office installed. To keep things simple for our first payload, let's just make an EXE. We'll get more advanced later in the lab.
 
-![](_page_278_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_278_Figure_2.jpeg)
 
 Let's copy the file over to Windows.
 
@@ -6730,7 +6730,7 @@ Command
 
 Switch to Windows and open a PowerShell prompt using the Terminal shortcut on the Windows desktop. Then run the following command.
 
-![](_page_279_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_279_Figure_4.jpeg)
 
 Let's launch the payload!
 
@@ -6850,7 +6850,7 @@ Dload Upload Total Spent Left Speed
 
 On your desktop you will now see installer.iso . Double click the file to mount it. Then, double click the SETUP.MSI file to run it.
 
-![](_page_284_Picture_0.jpeg)
+![](SEC560_WorkBook1_page_284_Picture_0.jpeg)
 
 Click Yes on the User Account Control prompt.
 
@@ -6975,7 +6975,7 @@ We're going to use two tools, one from the SAMBA suite and the other from the Im
 
 First, we will use smbclient to connect to the c\$ share. From here, we could browse the entire file system of the remote host.
 
-![](_page_289_Figure_4.jpeg)
+![](SEC560_WorkBook1_page_289_Figure_4.jpeg)
 
 Once connected to the C\$ share, we can upload our payload. The syntax for smbclient is very similar to that of an FTP client.
 
@@ -7526,13 +7526,13 @@ If you need to be reminded how to configuration operators...
 
 in the Multiplayer Mode step.
 
-![](_page_309_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_309_Figure_0.jpeg)
 
-![](_page_309_Figure_1.jpeg)
+![](SEC560_WorkBook1_page_309_Figure_1.jpeg)
 
 Start an HTTPS listener.
 
-![](_page_310_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_310_Figure_0.jpeg)
 
 Now, let's generate a payload. We'll call it install.exe . You'll download this in a moment as the notadmin user to simulate the user falling for a fake installer or phishing campaign.
 
@@ -7588,11 +7588,11 @@ You are only running two commands on the Windows system, but if you'd like to us
 
 After logging in, we need to grab our payload. To retrieve it, we need to open a terminal. Right click on the Start menu, and then select Windows PowerShell.
 
-![](_page_313_Picture_0.jpeg)
+![](SEC560_WorkBook1_page_313_Picture_0.jpeg)
 
 Once you have a terminal, use curl to download the payload and then run it.
 
-![](_page_313_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_313_Figure_2.jpeg)
 
 Congratulations! Notadmin fell for your phish, and you compromised your Windows VM...again! Now that we have downloaded
 
@@ -7652,17 +7652,17 @@ PowerSploit includes a pure PowerShell script called PowerUp.ps1. It runs a seri
 
 If you are using an Apple silicon system, you'll need to background armory commands, you will need to use your session again.
 
-![](_page_316_Figure_0.jpeg)
+![](SEC560_WorkBook1_page_316_Figure_0.jpeg)
 
 Great! Let's install it with armory install .
 
-![](_page_316_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_316_Figure_2.jpeg)
 
 alias execute-
 
 assembly. So, just like we needed specify -i or -p when we used execute-assembly, we'll need to do the same with SharpUp. Let's see what it can do.
 
-![](_page_316_Figure_5.jpeg)
+![](SEC560_WorkBook1_page_316_Figure_5.jpeg)
 
 | Command    |  |  |
 |------------|--|--|
@@ -7843,9 +7843,9 @@ If you are using an Apple silicon system, you'll need to background your session
 
 Good work! Now let's put that payload to work! We'll change directories into C:\Program Files\VideoStream\ , and then upload the payload.
 
-![](_page_321_Figure_2.jpeg)
+![](SEC560_WorkBook1_page_321_Figure_2.jpeg)
 
-![](_page_321_Figure_3.jpeg)
+![](SEC560_WorkBook1_page_321_Figure_3.jpeg)
 
 We're so close now! At this point, we just need to stop and start the service. I know what you're thinking...
 
@@ -7891,7 +7891,7 @@ whoami
 
 Great! As they say in Germany, "Reboot tut gut!" (It's pronounced so they all rhyme, and you can even buy t-shirts with the saying.)
 
-![](_page_323_Figure_13.jpeg)
+![](SEC560_WorkBook1_page_323_Figure_13.jpeg)
 
 Remember to use your session again before executing the next set of commands.
 

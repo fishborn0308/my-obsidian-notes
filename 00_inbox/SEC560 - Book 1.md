@@ -122,9 +122,9 @@ Some penetration testing and ethical hacking organizations have created their ow
 
 Our focus in this class is not on auditing. SANS has numerous other classes that address security audits in detail. Our focus is on ethical hacking and penetration testing.
 
-![](_page_14_Picture_0.jpeg)
+![](SEC560_Book1_page_14_Picture_0.jpeg)
 
-![](_page_14_Picture_1.jpeg)
+![](SEC560_Book1_page_14_Picture_1.jpeg)
 
 ### **Penetration Testing Goals**
 
@@ -146,7 +146,7 @@ Many organizations use ethical hacking and penetration testing to find security 
 
 An added benefit of ethical hacking and penetration testing is that because they show real vulnerabilities and indicate what a malicious attacker might be capable of achieving, they can get management's attention. Decision makers, when presented with the carefully formulated results of a test in business terms, are more likely to provide resources and attention to improve the security stance of an organization.
 
-![](_page_15_Picture_2.jpeg)
+![](SEC560_Book1_page_15_Picture_2.jpeg)
 
 ### **Types of Penetration Tests**
 
@@ -184,7 +184,7 @@ An added benefit of ethical hacking and penetration testing is that because they
 
 • Common attack phases for both pen testers and malicious attackers
 
-![](_page_17_Picture_5.jpeg)
+![](SEC560_Book1_page_17_Picture_5.jpeg)
 
 - Malicious attackers and red teams often go further:
   - − Maintaining access
@@ -205,7 +205,7 @@ Please note that the best of the attackers (both the good guys and the evil ones
 
 From a professional testing perspective, though, be careful when jumping out of order among these steps, making sure that you return to the earlier phases to conduct a comprehensive test.
 
-![](_page_18_Picture_2.jpeg)
+![](SEC560_Book1_page_18_Picture_2.jpeg)
 
 # **Recent Enterprise Breaches: Learning from Reality**
 
@@ -269,7 +269,7 @@ Ransomware continues evolving and expanding:
 
 #### 19
 
-![](_page_20_Picture_2.jpeg)
+![](SEC560_Book1_page_20_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -285,7 +285,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_20_Picture_10.jpeg)
+![](SEC560_Book1_page_20_Picture_10.jpeg)
 
 - Getting Started
 - Miniature Engagement
@@ -314,7 +314,7 @@ Lab 1.4: Nmap
 - Cons:
   - − For most orgs, they see nothing until steps 3 and 4
 
-![](_page_21_Picture_9.jpeg)
+![](SEC560_Book1_page_21_Picture_9.jpeg)
 
 #### **Pros of the Cyber Kill Chain**
 
@@ -358,7 +358,7 @@ MITRE ATT&CK Matrix for Enterprise can be found at https://attack.mitre.org/.
     - Unprotected databases such as MongoDB
   - − If the entire breach is a **wget** command, you have no time for detection and response!
 
-![](_page_23_Picture_9.jpeg)
+![](SEC560_Book1_page_23_Picture_9.jpeg)
 
 Open Amazon S3 Buckets: Misconfigured S3 buckets are a common error that can lead to massive data leaks. These buckets, if not properly secured, can be accessed without authorization using simple web requests.
 
@@ -370,17 +370,17 @@ Consequences of Quick Breaches: An entire data breach could be conducted with a 
 
 There are no walls so high, nor so strong, that they cannot be breached. We need time for our detection and response capabilities.
 
-![](_page_24_Figure_2.jpeg)
+![](SEC560_Book1_page_24_Figure_2.jpeg)
 
 # **Let's Keep Things Simple**
 
 Attackers' goals often require three distinct phases:
 
-![](_page_24_Picture_5.jpeg)
+![](SEC560_Book1_page_24_Picture_5.jpeg)
 
-![](_page_24_Picture_7.jpeg)
+![](SEC560_Book1_page_24_Picture_7.jpeg)
 
-![](_page_24_Picture_9.jpeg)
+![](SEC560_Book1_page_24_Picture_9.jpeg)
 
 1: Initial Access 2: Privileges 3: Actions on Objective
 
@@ -411,7 +411,7 @@ The final phase involves the attackers executing their intended actions, which c
   - − Defenders race to detect and respond (eradicating attackers' presence)
 - Whoever wins the race wins the incident
 
-![](_page_25_Picture_9.jpeg)
+![](SEC560_Book1_page_25_Picture_9.jpeg)
 
 Defenders can't start racing until they detect the attacker! Detective controls let you pick up the controller.
 
@@ -423,13 +423,13 @@ Defenders, starting only when they detect the attacker's presence, must quickly 
 
 The race begins only when defenders detect the breach, emphasizing the importance of detective controls for early detection. Whoever wins this race—attackers or defenders—determines the incident's outcome. Rapid detection and response are crucial to maintaining security.
 
-![](_page_26_Picture_2.jpeg)
+![](SEC560_Book1_page_26_Picture_2.jpeg)
 
 ### **Preventing Breaches (1)**
 
 To prevent successful breaches, defenders need to both **detect** and **respond** to attackers who gain initial access, **before** attackers accomplish their goal.
 
-![](_page_26_Picture_5.jpeg)
+![](SEC560_Book1_page_26_Picture_5.jpeg)
 
 This slide emphasizes the need for defenders to quickly detect and respond to attackers to prevent successful breaches. It highlights the following points:
 
@@ -442,7 +442,7 @@ The combination of quick detection and response with delaying attackers' actions
 
 To prevent successful breaches, defenders need to both **detect** and **respond** to attackers who gain initial access, **before** attackers accomplish their goal.
 
-![](_page_27_Picture_4.jpeg)
+![](SEC560_Book1_page_27_Picture_4.jpeg)
 
 This slide highlights the consequences of delayed detection and response in preventing breaches. It illustrates the following points:
 
@@ -481,7 +481,7 @@ This slide outlines three key objectives for defenders to enhance their security
 
 These objectives aim to prevent breaches by reducing entry points (so defenders have to respond less frequently), improving detection and response times (so defenders get early notifications of attacker's initial access), and making it harder for attackers to achieve their goals (to buy time for the detection and response capabilities of the defenders).
 
-![](_page_29_Picture_1.jpeg)
+![](SEC560_Book1_page_29_Picture_1.jpeg)
 
 # **Defenders' Objectives (1)**
 
@@ -489,13 +489,13 @@ These objectives aim to prevent breaches by reducing entry points (so defenders 
 - 2. Lower the time to detect and respond to attackers
 - 3. Increase the time for attackers to accomplish their goal
 
-![](_page_29_Picture_6.jpeg)
+![](SEC560_Book1_page_29_Picture_6.jpeg)
 
 This slide focuses on the first objective: **Reduce the number of ways attackers gain initial access**.
 
 No matter how many advantages you have, if you get in enough fights, you will lose. Seek to fight less often.
 
-![](_page_30_Picture_2.jpeg)
+![](SEC560_Book1_page_30_Picture_2.jpeg)
 
 # **Defenders' Objectives (2)**
 
@@ -503,7 +503,7 @@ No matter how many advantages you have, if you get in enough fights, you will lo
 - 2. **Lower the time to detect and respond to attackers**
 - 3. Increase the time for attackers to accomplish their goal
 
-![](_page_30_Picture_7.jpeg)
+![](SEC560_Book1_page_30_Picture_7.jpeg)
 
 This slide focuses on the second objective: **Lower the time to detect and respond to attackers**.
 
@@ -517,7 +517,7 @@ Implement strategies like early detection of post-exploitation activities, regul
 - 2. Lower the time to detect and respond to attackers
 - 3. **Increase the time for attackers to accomplish their goal**
 
-![](_page_31_Picture_7.jpeg)
+![](SEC560_Book1_page_31_Picture_7.jpeg)
 
 This slide focuses on the third objective: **Increase the time for attackers to accomplish their goal**.
 
@@ -544,7 +544,7 @@ Detection is only the beginning of the response process. Continuous monitoring a
 
 Defenders must be vigilant and proactive, knowing that successful defense depends on early detection and swift, effective response to every intrusion.
 
-![](_page_33_Figure_0.jpeg)
+![](SEC560_Book1_page_33_Figure_0.jpeg)
 
 Here, we show attackers five methods of initial access, illustrating how the attack surface of an organization is more than merely their public-facing assets.
 
@@ -565,7 +565,7 @@ Here, we show attackers five methods of initial access, illustrating how the att
 - The CEO (Mark Cruz) wants to know what business risks he's facing
 - What's the initial scope? Just Mark's card.
 
-![](_page_34_Picture_7.jpeg)
+![](SEC560_Book1_page_34_Picture_7.jpeg)
 
 This class focuses on Hiboxy, a company that specializes in producing 3D-printed zippers, representing a significant advancement in textile manufacturing technology. The CEO, Mark Cruz, is concerned about the potential business risks that could impact his company. Understanding these risks is crucial for strategic planning and maintaining the competitive edge of his high-tech business.
 
@@ -588,7 +588,7 @@ We also see Mark's business card, possibly obtained via a first meeting at a con
   - − Any single-factor authentication services exposed to the Internet?
     - Especially those backed by on-prem Active Directory!
 
-![](_page_35_Picture_11.jpeg)
+![](SEC560_Book1_page_35_Picture_11.jpeg)
 
 The slide emphasizes the criticality of conducting reconnaissance before the initial scoping call with a client. This initial investigation lays the groundwork for a more informed and effective engagement strategy.
 
@@ -600,7 +600,7 @@ The slide emphasizes the criticality of conducting reconnaissance before the ini
 
 This reconnaissance phase is vital for identifying the weakest links and potential attack vectors within a client's infrastructure, thereby enabling a more targeted and effective security assessment.
 
-![](_page_36_Picture_0.jpeg)
+![](SEC560_Book1_page_36_Picture_0.jpeg)
 
 #### **Features Are Forever**
 
@@ -622,7 +622,7 @@ The emphasis on logging in rather than breaking in shows that cybersecurity is i
 
 • https://www.youtube.com/watch?v=6BqpU4V0Ypk
 
-![](_page_37_Figure_0.jpeg)
+![](SEC560_Book1_page_37_Figure_0.jpeg)
 
 **Microsoft 365**: Often used by organizations for collaboration and communication, Microsoft 365 might be secured with only a password, making it a prime target for credential stuffing or phishing attacks.
 
@@ -638,7 +638,7 @@ The emphasis on logging in rather than breaking in shows that cybersecurity is i
 
 Identifying and upgrading these systems to use multi-factor authentication (MFA) can significantly reduce the risk of unauthorized access and is a recommended step in strengthening an organization's security posture.
 
-![](_page_38_Picture_2.jpeg)
+![](SEC560_Book1_page_38_Picture_2.jpeg)
 
 #### **NTLMRecon**
 
@@ -663,7 +663,7 @@ To install and configure NTLMRecon, clone it from GitHub and run setup.py:
 - \$ cd NTLMRecon
 - \$ python3 setup.py install
 
-![](_page_39_Picture_1.jpeg)
+![](SEC560_Book1_page_39_Picture_1.jpeg)
 
 # **Attacking NTLMSSP**
 
@@ -691,7 +691,7 @@ On internal networks, NTLSMSSP endpoints can be targeted with relay attacks beca
 
 Externally, NTLMSSP endpoints provide an opportunity for multifactor authentication (MFA) bypass. NTLM does not support MFA, so targeting exposed NTLMSSP endpoints with password sprays and credential stuffing attacks can be very effective.
 
-![](_page_40_Picture_2.jpeg)
+![](SEC560_Book1_page_40_Picture_2.jpeg)
 
 # **Credential Stuffing, in Brief (1)**
 
@@ -701,11 +701,11 @@ Externally, NTLMSSP endpoints provide an opportunity for multifactor authenticat
 
 The result? Third-party breaches affect companies via employees' reused passwords.
 
-![](_page_40_Picture_8.jpeg)
+![](SEC560_Book1_page_40_Picture_8.jpeg)
 
-![](_page_40_Picture_9.jpeg)
+![](SEC560_Book1_page_40_Picture_9.jpeg)
 
-![](_page_40_Picture_10.jpeg)
+![](SEC560_Book1_page_40_Picture_10.jpeg)
 
 A widespread behavior among internet users is the reuse of passwords across multiple platforms. It's common for individuals to use the same one to five password patterns across various services. This habit significantly increases vulnerability because once one password is compromised, it can potentially provide access to several accounts owned by the same user.
 
@@ -719,7 +719,7 @@ Don't worry, there will be future xkcd references in class!
 
 Obligatory xkcd reference: https://xkcd.com/2176/
 
-![](_page_41_Figure_0.jpeg)
+![](SEC560_Book1_page_41_Figure_0.jpeg)
 
 Here, we show a step-by-step example of a credential stuffing attack, showing how easy it can be using publicly available breach data and toolsets.
 
@@ -729,7 +729,7 @@ Here, we show a step-by-step example of a credential stuffing attack, showing ho
 
 The successful login highlights the critical vulnerability associated with reused passwords and singlefactor authentication systems. This demonstration underscores the importance of using multi-factor authentication and maintaining rigorous password policies to defend against such attacks. Additionally, it shows the practical application of tools available for such purposes, reminding organizations of the need to secure their systems against credential stuffing by regularly updating their cybersecurity measures.
 
-![](_page_42_Picture_2.jpeg)
+![](SEC560_Book1_page_42_Picture_2.jpeg)
 
 ### **Credential Stuffing (The Commands)**
 
@@ -760,7 +760,7 @@ Here, we look at the commands used in a credential stuffing attack, specifically
 
 • SANS Slingshot includes many of the tools to get you started in pen testing
 
-![](_page_43_Picture_4.jpeg)
+![](SEC560_Book1_page_43_Picture_4.jpeg)
 
 - Other Linux distributions can also be helpful
   - − Kali Linux by Offensive Security: https://www.kali.org/
@@ -781,7 +781,7 @@ Another useful source of tools is the bootable Linux distributions various peopl
 - Black Arch Linux: https://blackarch.org/
 - PTF (Penetration Testers Framework): https://github.com/trustedsec/ptf
 
-![](_page_44_Figure_0.jpeg)
+![](SEC560_Book1_page_44_Figure_0.jpeg)
 
 Throughout this course, we use numerous different shells, both in our operating system and within Metasploit. We frequently change between these different shells as we switch back and forth between Linux and Windows, as well as within different aspects of Metasploit. Sometimes, even on a single page in the book, you use two or even three different types of shells to do something and then observe the results.
 
@@ -806,7 +806,7 @@ All the labs and notes were carefully written to indicate the proper shell you a
 - In your VMs, we have helpers that show your IP address in the UI
   - − Windows IP addresses can lag by up to a minute
 
-![](_page_45_Figure_9.jpeg)
+![](SEC560_Book1_page_45_Figure_9.jpeg)
 
 All the VMs will use DHCP to dynamically acquire IP addresses and network information.
 
@@ -842,7 +842,7 @@ Depending on how you are using your local VM, you may need to use the IP address
 
 If you need to have a remote target connect to your VM, such as an exploit callback, use your Windows or Linux **tun0** interface and associated IP address or the Ethernet 2 interface on Windows.
 
-![](_page_47_Picture_0.jpeg)
+![](SEC560_Book1_page_47_Picture_0.jpeg)
 
 # **Credential Stuffing to a Breach**
 
@@ -850,7 +850,7 @@ Refer to the lab workbook for instructions.
 
 47
 
-![](_page_48_Picture_2.jpeg)
+![](SEC560_Book1_page_48_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -883,7 +883,7 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_49_Picture_2.jpeg)
+![](SEC560_Book1_page_49_Picture_2.jpeg)
 
 # **Building Infrastructure**
 
@@ -905,7 +905,7 @@ Before we begin pen testing, we need systems from which we can test and systems 
 
 49
 
-![](_page_50_Picture_1.jpeg)
+![](SEC560_Book1_page_50_Picture_1.jpeg)
 
 # **Building a Lab**
 
@@ -930,7 +930,7 @@ Unfortunately, using Windows in a lab is more difficult due to licensing. You ca
 
 On the Linux side, we can use a range of free Linux systems. For example, Ubuntu is a common free Linux distribution found in enterprises. While most of the installs and updates for Linux are free, some are not. For example, Red Hat updates are not free, but it is very similar to Fedora.
 
-![](_page_51_Picture_2.jpeg)
+![](SEC560_Book1_page_51_Picture_2.jpeg)
 
 ### **Systems Used for Internal Testing**
 
@@ -943,7 +943,7 @@ Use a "leave behind" or "drop box" system for long-running tasks and remote acce
   - − Target is responsible for destruction
   - − Requires internal team to provision, set up, and configure
 
-![](_page_51_Picture_11.jpeg)
+![](SEC560_Book1_page_51_Picture_11.jpeg)
 
 If you're physically on the same network as the targets, use Bridged networking, not NAT!
 
@@ -957,9 +957,9 @@ You could create a custom VM configured to connect back to the pen testers, and 
 
 The pictured PC is the Minisforum EM780: https://www.amazon.com/MINISFORUM-Mercury-PCIe4-0- 3xUSB3-2-Adapter/dp/B0B5GJLCFB.
 
-![](_page_52_Picture_0.jpeg)
+![](SEC560_Book1_page_52_Picture_0.jpeg)
 
-![](_page_52_Picture_1.jpeg)
+![](SEC560_Book1_page_52_Picture_1.jpeg)
 
 ### **Dedicated Test Systems**
 
@@ -992,11 +992,11 @@ At the conclusion of a test, be sure to clean the target data from the test syst
   - − Search by CVE or vulnerability name
   - − Warning: Some people lie on the internet
 
-![](_page_53_Picture_11.jpeg)
+![](SEC560_Book1_page_53_Picture_11.jpeg)
 
-![](_page_53_Picture_12.jpeg)
+![](SEC560_Book1_page_53_Picture_12.jpeg)
 
-![](_page_53_Picture_13.jpeg)
+![](SEC560_Book1_page_53_Picture_13.jpeg)
 
 We are not endorsing these sites or the tools they distribute. Remember to be careful! Always test exploits and tools in your lab!
 
@@ -1013,7 +1013,7 @@ Some of the best sites with vulnerability research and detailed descriptions are
 - The United States Computer Emergency Readiness Team (US-CERT) (https://www.cisa.gov/newsevents/cybersecurity-advisories), maintained by the US Department of Homeland Security (DHS)
 - 52 • The Common Vulnerabilities and Exposures (CVE) repository operated by MITRE (https://cve.mitre.org/)
 
-![](_page_54_Picture_2.jpeg)
+![](SEC560_Book1_page_54_Picture_2.jpeg)
 
 # **Tools for Penetration Testing Teams**
 
@@ -1061,7 +1061,7 @@ All results are organized as a hierarchical tree, typically organized starting b
 
 With Dradis, a tester can import results from the Nmap port scanning tool, the Nessus or Qualys network vulnerability scanning tools, the Nikto web server scanning tool, or the Burp web application attack tool. In addition, the tester can manually enter findings and notes or add analytical notes to results already imported.
 
-![](_page_56_Picture_2.jpeg)
+![](SEC560_Book1_page_56_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1104,9 +1104,9 @@ Windows and Linux are simply tools (or toolboxes)
 - macOS is acceptable, but use VMs
   - − macOS is required for some iOS mobile testing
 
-![](_page_57_Picture_9.jpeg)
+![](SEC560_Book1_page_57_Picture_9.jpeg)
 
-![](_page_57_Picture_10.jpeg)
+![](SEC560_Book1_page_57_Picture_10.jpeg)
 
 That said, Linux is an OS penetration testers need to understand. We need to briefly go through Linux basics to make sure everyone is on the same page.
 
@@ -1160,7 +1160,7 @@ useradd [options] LOGIN
 
 See more options by running: man useradd
 
-![](_page_60_Picture_1.jpeg)
+![](SEC560_Book1_page_60_Picture_1.jpeg)
 
 #### **Who Am I?**
 
@@ -1196,7 +1196,7 @@ id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-![](_page_61_Figure_0.jpeg)
+![](SEC560_Book1_page_61_Figure_0.jpeg)
 
 - /bin and /sbin contain executable programs.
 - /root is the root login account's home directory. This is hugely important because if you log in directly as root, this will be your initial location in the directory structure. If you log in as an individual user other than root, you'll be put in that user's directory, typically somewhere inside of /home.
@@ -1211,7 +1211,7 @@ uid=0(root) gid=0(root) groups=0(root)
 - /var holds many different items, including logs (/var/log/).
 - /opt stores optional items and is often a location for specialized tools that have been added to a distribution.
 
-![](_page_62_Figure_0.jpeg)
+![](SEC560_Book1_page_62_Figure_0.jpeg)
 
 We can use the cd command to change directories. This moves our current location to the new location. The shell will often show us our current directory, but if we want to print the working directory, we can use the pwd command.
 
@@ -1252,7 +1252,7 @@ sec560@560vm:/var/log\$ cd
 
 sec560@560vm:~\$
 
-![](_page_64_Figure_0.jpeg)
+![](SEC560_Book1_page_64_Figure_0.jpeg)
 
 When you gain access to a system, you often do not know your current working directory. To get this location on Linux, we can use the pwd (print working directory) command. In a continuous shell, such as with the terminal, you can change directories and the shell remembers the change. The example below shows a continuous shell where we can't see the shell prompt.
 
@@ -1270,11 +1270,11 @@ You need to do this:
 
 ls /etc/apache2
 
-![](_page_65_Figure_0.jpeg)
+![](SEC560_Book1_page_65_Figure_0.jpeg)
 
 The **ls** command is used to "list" files. By default, the command will only show the file names. The default option will also skip hidden files. On Linux, an object is hidden when the first character is a dot (.). To see these hidden files, we can use the **-**a option to show "all" objects. Use the **-l** (lowercase L) to show the long format, which includes the type and permissions, link count, owner, group, file size, timestamp, and name.
 
-![](_page_66_Figure_0.jpeg)
+![](SEC560_Book1_page_66_Figure_0.jpeg)
 
 Permissions are broken into four parts:
 
@@ -1294,7 +1294,7 @@ The User, Group, and Other permissions are broken down into three pieces. If the
 
 There is another special permission that can be applied to files instead of the "x". An "s" in the first (user) or second (group) is the SETUID or SETGID bit, respectively. SETUID means the executable runs under the context of the user (owner). Likewise, the SETGID bit means the executable will run under the context of the specified group.
 
-![](_page_67_Picture_2.jpeg)
+![](SEC560_Book1_page_67_Picture_2.jpeg)
 
 ### **Changing File Permissions**
 
@@ -1346,7 +1346,7 @@ Type: - this is a file
 
 User: rw- = 4+2+0 = 6 Group: rw- = 4+2+0 = 6 Others: r-- = 4+0+0 = 4
 
-![](_page_68_Picture_2.jpeg)
+![](SEC560_Book1_page_68_Picture_2.jpeg)
 
 #### **Escalating with SETUID**
 
@@ -1445,7 +1445,7 @@ Password: root account password
 
 root@560vm:~#
 
-![](_page_70_Picture_0.jpeg)
+![](SEC560_Book1_page_70_Picture_0.jpeg)
 
 The above table shows other common commands used in Linux.
 
@@ -1453,7 +1453,7 @@ The above table shows other common commands used in Linux.
 
 • https://redsiege.com/sans-cheat
 
-![](_page_71_Picture_2.jpeg)
+![](SEC560_Book1_page_71_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1486,7 +1486,7 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_72_Picture_2.jpeg)
+![](SEC560_Book1_page_72_Picture_2.jpeg)
 
 # **We Need Capabilities, Not Specific Tools**
 
@@ -1498,7 +1498,7 @@ Lab 1.4: Nmap
   - − Rubeus, Impacket, and Mimikatz can all perform many Kerberos attacks
   - − Certify and Certipy can both attack Active Directory Certificate Services
 
-![](_page_72_Picture_11.jpeg)
+![](SEC560_Book1_page_72_Picture_11.jpeg)
 
 Focus on strategy first! Strategy, Tactics, Techniques, then Procedures, in that order.
 
@@ -1512,7 +1512,7 @@ To illustrate the importance of tool flexibility:
 
 Prioritize planning from the top down: start with a broad strategy, then narrow down to tactics, techniques, and procedures. This structured approach ensures that tactical decisions are informed by strategic objectives, enhancing the effectiveness of cybersecurity measures. This philosophy mirrors traditional military strategy but is adapted for the cyber domain, where flexibility and adaptability are paramount for success.
 
-![](_page_73_Picture_1.jpeg)
+![](SEC560_Book1_page_73_Picture_1.jpeg)
 
 ### **The Three Rules of Reporting**
 
@@ -1550,7 +1550,7 @@ The test then occurs, potentially lasting from a day to many months.
 
 To conclude, the team then analyzes the results, trying to discern their business implications. The technical details and business implications are described in detail in a final report. As findings are addressed, single-issue retests could occur, or an entire comprehensive retest may happen. Some tests conclude with a wrap-up final presentation.
 
-![](_page_75_Picture_2.jpeg)
+![](SEC560_Book1_page_75_Picture_2.jpeg)
 
 #### **Documented Permission**
 
@@ -1612,9 +1612,9 @@ Finally, you will need to determine communication methods and points of contact.
 
 We'll go through each of these items in more depth in the following module.
 
-![](_page_78_Picture_0.jpeg)
+![](SEC560_Book1_page_78_Picture_0.jpeg)
 
-![](_page_78_Picture_1.jpeg)
+![](SEC560_Book1_page_78_Picture_1.jpeg)
 
 ### **Goals**
 
@@ -1635,7 +1635,7 @@ Understanding and acknowledging these goals will help guide the entire test as w
 
 You might get the answer you expect, but that's all right. It is better to ask the question and get the answer you expect rather than to assume and be wrong. Being wrong means the focus of the test is incorrect and can greatly impact the value of the test.
 
-![](_page_79_Picture_2.jpeg)
+![](SEC560_Book1_page_79_Picture_2.jpeg)
 
 # **Scope**
 
@@ -1668,7 +1668,7 @@ Many software as a service (SaaS) providers prohibit customers from conducting t
 
 Always remember that **permission** is the only difference between an authorized penetration test and a crime.
 
-![](_page_81_Picture_1.jpeg)
+![](SEC560_Book1_page_81_Picture_1.jpeg)
 
 ### **Rules of Engagement**
 
@@ -1694,9 +1694,9 @@ Of course, the Rules of Engagement should explicitly state the start and end dat
 
 Some penetration tests and ethical hacking projects run around the clock, whereas others with more sensitive infrastructures and business needs require testing during off-hours or weekends only. When such off-hours tests are conducted by a third-party company, there is often an additional charge for such offhours testing. Also, such limited testing time windows require a longer total duration to complete the test.
 
-![](_page_83_Picture_0.jpeg)
+![](SEC560_Book1_page_83_Picture_0.jpeg)
 
-![](_page_83_Picture_1.jpeg)
+![](SEC560_Book1_page_83_Picture_1.jpeg)
 
 #### **Announced vs. Unannounced Tests**
 
@@ -1718,7 +1718,7 @@ However, unannounced tests also have a downside. The system or network administr
 
 Also, to prevent controversy about such tests, make sure that target personnel know that they could occur at any time and are just a normal part of the way the organization does business.
 
-![](_page_84_Picture_1.jpeg)
+![](SEC560_Book1_page_84_Picture_1.jpeg)
 
 #### **Zero-Knowledge vs. Full-Knowledge Testing**
 
@@ -1743,7 +1743,7 @@ In the end, full-knowledge testing tends to be more cost-effective because the a
 
 84
 
-![](_page_85_Picture_2.jpeg)
+![](SEC560_Book1_page_85_Picture_2.jpeg)
 
 ### **Be Careful Viewing Data on Compromised Systems**
 
@@ -1762,7 +1762,7 @@ We recommend that your default Rules of Engagement allow the testers to view con
 
 Although the default policy is usually to avoid accessing sensitive user data, in some tests, it may be appropriate to sample small amounts of sensitive user data to confirm access and assess the business impact. Such access should be done sparingly and only with written permission from target system personnel. Also, try to focus more on counting the number of sensitive records you can access (based on file length, number of lines, number of files, number of rows in a database table, or other metrics based on the type of data and the form of access you've gained) than on retrieving the sensitive content.
 
-![](_page_86_Picture_2.jpeg)
+![](SEC560_Book1_page_86_Picture_2.jpeg)
 
 #### **Kickoff Call**
 
@@ -1791,7 +1791,7 @@ During the debriefing, the team should discuss what the team has done so far and
 
 If a daily call is too onerous given the busy schedules of target environment personnel, consider conducting a debriefing call twice per week during the duration of the test.
 
-![](_page_88_Picture_2.jpeg)
+![](SEC560_Book1_page_88_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1823,7 +1823,7 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_89_Picture_2.jpeg)
+![](SEC560_Book1_page_89_Picture_2.jpeg)
 
 #### **Motivation**
 
@@ -1844,7 +1844,7 @@ Knowledge of the internal infrastructure can help us save time by informing test
 
 Ideally, we should dedicate some time for reconnaissance during our testing. If the target pushes back on spending time performing reconnaissance, we could cut back the recon portion of the test or borrow time from the rest of the test. While performing good OSINT is a valuable skill to develop, you can often get good results from junior testers and interns. In a compliance-based test (i.e., internal PCI), you could skip the recon phase, but for tests that include social engineering, this phase is a must. If the engagement is a full Red Team, even more recon time is necessary.
 
-![](_page_90_Picture_1.jpeg)
+![](SEC560_Book1_page_90_Picture_1.jpeg)
 
 ### **Traffic**
 
@@ -1885,7 +1885,7 @@ Information on the target infrastructure helps us target the right software thro
 
 User information is often the most directly useful information. If we, the testers, are lucky (and the target isn't), we may be able to find breached credentials for users at the target organization and immediately log in. If the credentials don't immediately work, we know the types of passwords used by people in the organization. We can also learn about the hierarchy and organizational structure, which can help with phishing or social engineering as well as "admin hunting."
 
-![](_page_92_Picture_0.jpeg)
+![](SEC560_Book1_page_92_Picture_0.jpeg)
 
 ### **Social Engineering and Recon Ethics**
 
@@ -1958,9 +1958,9 @@ We can use recent press releases and new articles as a pretext for social engine
 
 An HTA, or "HTML Application," is a Microsoft Windows program consisting of HTML and one or more scripting languages, such as VBScript or JScript. The HTML is used to generate the user interface, and the
 
-![](_page_96_Picture_0.jpeg)
+![](SEC560_Book1_page_96_Picture_0.jpeg)
 
-![](_page_96_Picture_1.jpeg)
+![](SEC560_Book1_page_96_Picture_1.jpeg)
 
 ### **Gather Competitive Intelligence**
 
@@ -2017,7 +2017,7 @@ Next, we can focus on email services. Very commonly, we'll see hostnames contain
 
 Finally, we look for hosts that indicate the use of organizational credentials such as 'login', 'portal', 'sso', 'adfs', or 'remote'. Single Sign-On (SSO) and Active Directory Federated Services (ADFS) are goldmines for access since they both allow signing in once to access multiple services. Login, portal, and remote are also worth investigating because they can indicate VPN access or other organizational services.
 
-![](_page_99_Picture_2.jpeg)
+![](SEC560_Book1_page_99_Picture_2.jpeg)
 
 #### **DNSRecon**
 
@@ -2152,7 +2152,7 @@ verification=Z0fOVJB0oLvstFlL9BBVBnL…
 
 Some output lines have been truncated for brevity.
 
-![](_page_102_Picture_2.jpeg)
+![](SEC560_Book1_page_102_Picture_2.jpeg)
 
 # **DNSDumpster**
 
@@ -2177,7 +2177,7 @@ found, leading to further recon and attack surface.
 
 DNSDumpster is located at https://dnsdumpster.com.
 
-![](_page_103_Figure_0.jpeg)
+![](SEC560_Book1_page_103_Figure_0.jpeg)
 
 Here, we see DNSDumpster listing A records for sans.org. On the left, the domain and subdomain are listed. Below each domain name (listed from left to right), there are options to see:
 
@@ -2189,7 +2189,7 @@ Here, we see DNSDumpster listing A records for sans.org. On the left, the domain
 
 In the center, we see the IP address and DNS lookup information for the IP. On the right, we can see the detected ASN for the IP address.
 
-![](_page_104_Figure_0.jpeg)
+![](SEC560_Book1_page_104_Figure_0.jpeg)
 
 On the left, DNSDumpster is displaying the MX and TXT records. According to the MX records, the target is using Proofpoint for email filtering. We can use this information to tailor our phishing attacks to bypass this provider. In the TXT records, we can see different methods of verifying email authenticity from sans.org through the Sender Policy Framework (SPF) declaration (not shown here). They also give us an idea of what kinds of software platforms the target is using, such as ExactTarget, Clearslide, and SalesForce. On the right, DNSDumpster displays a breakdown of the ASNs associated with the discovered subdomains. We can see that SANS has their own ASN which gives us further IP address ranges and netblocks to explore for additional attack surface.
 
@@ -2210,13 +2210,13 @@ Query the registries for IP ranges to find additional targets.
   - − Nothing at all
   - − A huge address space, far bigger than that allotted to this one organization (you are likely seeing the whole ISP)
 
-![](_page_105_Picture_14.jpeg)
+![](SEC560_Book1_page_105_Picture_14.jpeg)
 
-![](_page_105_Picture_15.jpeg)
+![](SEC560_Book1_page_105_Picture_15.jpeg)
 
-![](_page_105_Picture_16.jpeg)
+![](SEC560_Book1_page_105_Picture_16.jpeg)
 
-![](_page_105_Picture_17.jpeg)
+![](SEC560_Book1_page_105_Picture_17.jpeg)
 
 Another important element of reconnaissance involves determining the IP address blocks that are assigned to the target organization. There are several Regional Internet Registries (RIRs) that store this information in WHOIS databases. By surfing to the appropriate website, a user can provide a company name or domain name and retrieve official address assignments, including IPv4 and IPv6 addresses. Most records also include the CIDR (Classless Inter-Domain Routing) block, telling us the size of the target network. The American Registry for Internet Numbers (ARIN) covers North America, including the United States, Canada, and certain Caribbean islands. The Réseaux IP Européens Network Coordination Centre (RIPE NCC) is the RIR for Europe, the Middle East, and parts of Central Asia. The Asia Pacific Network Information Centre (APNIC) covers the Asia-Pacific region. The Latin American and Caribbean Internet Address Registry (LACNIC) encompasses Latin America and most of the Caribbean. AfriNIC covers the continent of Africa.
 
@@ -2228,15 +2228,15 @@ When searching for an IP address block for a company, for example, we may get th
 
 back that do not apply to only the organization we searched for but instead apply to its entire ISP. Thus, we have to be careful when targeting the results we receive from a Regional Internet Registry, verifying that they are actually within the scope of our test.
 
-![](_page_107_Figure_0.jpeg)
+![](SEC560_Book1_page_107_Figure_0.jpeg)
 
 Certificate Transparency (CT) Logs is a system to log and monitor the issuance of TLS certificates. The logs include the names used by the certificates. Searching these logs allows you to find hostnames that you would likely not get through active scanning. Also, many web servers respond differently based on the host header and will not respond with any HTML content if you omit or use the wrong header. This makes it much more effective for web recon and subsequent web testing.
 
 The logs also allow you to identify servers that aren't in or on a netblock controlled by the organization. You will need to confirm with the target that the sites are in scope and are not run by a third-party provider. If the sites are hosted by another party, you will need approval from that party to perform any penetration testing. This is often as simple as having the target contact the organization. Some hosting providers allow pen testing without approval, provided you meet their testing guidelines. There are some providers that will not allow any testing of their systems.
 
-![](_page_108_Picture_0.jpeg)
+![](SEC560_Book1_page_108_Picture_0.jpeg)
 
-![](_page_108_Picture_2.jpeg)
+![](SEC560_Book1_page_108_Picture_2.jpeg)
 
 #### **Shodan**
 
@@ -2252,17 +2252,17 @@ Shodan is a search engine for devices on the internet. Shodan regularly scans th
 
 If the user is desensitized to the SSL certificate errors being presented during interactions with the service, the user may not notice that the domain name is slightly changed, which can lead to successful attacks. Finally, Shodan provides geolocation data about the IP address of the host. This can help identify hosts that may be out of scope such as ISP infrastructure inside of a target ASN or netblock.
 
-![](_page_109_Figure_0.jpeg)
+![](SEC560_Book1_page_109_Figure_0.jpeg)
 
 Here, we see a screenshot of Shodan's results for isc.sans.org. In the upper-left corner, we see the IP address, ISP that is hosting the device, ASN, and last time Shodan scanned the device. The lower-left corner shows web technologies in use on detected web services. On the right, the open ports are listed with the output from service enumeration for each port listed below.
 
-![](_page_110_Figure_0.jpeg)
+![](SEC560_Book1_page_110_Figure_0.jpeg)
 
 Hunter.io compiles large lists of intel on organizations based on OSINT scans performed by their team. These lists contain contact names and email addresses as well as, occasionally, phone numbers and job titles. The best part about Hunter.io is that it shows the common email address format for the detected email addresses. At a glance, you can find the format and then use that to build potential email addresses for employee names found in later recon steps. Unfortunately, the free access to Hunter.io recently came to an end. They are now offering 10 contact results and the email format for free. Additional contact info will require a subscription.
 
 Here, we can see Hunter.io search results for the sans.org domain. Hunter.io returned 216 results containing employee names, email addresses, and (in some cases) phone numbers and job titles. Another great thing about Hunter.io results is that they show you the observed email format. According to the search results, sans.org is using the format {first initial}{last name} for their email addresses. When combining this pattern with recon gathered in other steps, such as LinkedIn recon and document metadata analysis, we can start building continually growing lists of valid email addresses for later social engineering attacks.
 
-![](_page_111_Picture_2.jpeg)
+![](SEC560_Book1_page_111_Picture_2.jpeg)
 
 #### **Public Breach Data of Credentials**
 
@@ -2291,7 +2291,7 @@ The US Department of Justice released guidance on the legality of accessing brea
 
 Finally, there are torrents with the data available. I'll leave it as an exercise for the reader to seek out links to find what is mentioned here. Again, caution should be taken when downloading these materials.
 
-![](_page_113_Picture_0.jpeg)
+![](SEC560_Book1_page_113_Picture_0.jpeg)
 
 #### SEC560 | Enterprise Penetration Testing 112
 
@@ -2310,7 +2310,7 @@ Finally, there are torrents with the data available. I'll leave it as an exercis
   - − Craigslist for the regions in question
   - − Various local job boards as appropriate
 
-![](_page_113_Picture_15.jpeg)
+![](SEC560_Book1_page_113_Picture_15.jpeg)
 
 Most organizations have job requisition information available on the internet as they look to hire new staff. These job requests often contain detailed information about the technical environment of the enterprise. For example, if the target organization is looking for IIS administrators, we now know something about the web servers it uses. If it seeks skilled Checkpoint firewall admins, we have information about at least some of its firewalls. If it is looking for developers with Cold Fusion experience, we now know a little more about some of its web applications. What's more, if the job req is still active, we know that the target organization does not have enough experienced staff members to handle that part of its infrastructure. After all, if it did have the expertise already in-house—why would it be seeking to hire people with those skills?
 
@@ -2326,9 +2326,9 @@ You can narrow down your results further by inserting terms such as Information 
 
 In addition, a thorough tester should look for job reqs on various job-hunting sites, such as Monster.com. On Monster.com, the Information Technology, Internet/E-commerce, and Telecomm categories are helpful. You can even narrow down your searches based on geographic areas.
 
-![](_page_114_Picture_0.jpeg)
+![](SEC560_Book1_page_114_Picture_0.jpeg)
 
-![](_page_114_Picture_2.jpeg)
+![](SEC560_Book1_page_114_Picture_2.jpeg)
 
 # **Employee Roles**
 
@@ -2348,9 +2348,9 @@ LinkedIn is a great platform for performing reconnaissance against an organizati
 
 Additionally, you can profile charities and causes that the organization supports or view awards and recognition that the company has received. All of these bits of information go toward creating social engineering scenarios in later stages of the attack chain. Unfortunately, LinkedIn has become aware of these abuses of its platform and is trying to close loopholes that we, as pen testers, use during profiling an organization. It is becoming increasingly difficult to masquerade as employees of an organization that your account is not a part of as well as to view the employee profiles without having connections in their organization. There are ways around these limitations, but they require investments of time and effort to build LinkedIn profiles. As we will see on the following slides, there are still tools out there that can help with searching LinkedIn.
 
-![](_page_115_Picture_0.jpeg)
+![](SEC560_Book1_page_115_Picture_0.jpeg)
 
-![](_page_115_Picture_2.jpeg)
+![](SEC560_Book1_page_115_Picture_2.jpeg)
 
 #### **GatherContacts**
 
@@ -2368,7 +2368,7 @@ Another great tool for LinkedIn reconnaissance is the Burp Suite extension Gathe
 
 The great thing about this tool is that it can gather employee names and job titles without needing LinkedIn credentials. Once GatherContacts is installed and configured, simply search for 'site:linkedin.com/in *"Company Name"*' and scroll through the results. GatherContacts will automatically extract the relevant data to a text file determined during configuration. There are some downsides to using GatherContacts. First, you will not be gathering email addresses against the target (though email addresses are often variations of the employee's name). Another downside is that results can contain LinkedIn profiles that are not directly employed by the target organization. If the LinkedIn profile mentions the target organization as a previous employer or (in SANS' case) used their services and/or gained certification from them, the results may have profiles of non-existent employees. This is especially prevalent when your target is an educational institution.
 
-![](_page_116_Figure_0.jpeg)
+![](SEC560_Book1_page_116_Figure_0.jpeg)
 
 Here, we can see a sample of the search results for the following query:
 
@@ -2376,15 +2376,15 @@ site:linkedin.com/in 'SANS Institute'
 
 On the right, the resulting text file has been imported into Microsoft Excel as a tab-delimited data file. The columns show the employees' names, titles, and places of business. The latter columns can help with determining whether the resulting LinkedIn profile is valid for your search terms.
 
-![](_page_117_Picture_0.jpeg)
+![](SEC560_Book1_page_117_Picture_0.jpeg)
 
-![](_page_117_Picture_1.jpeg)
+![](SEC560_Book1_page_117_Picture_1.jpeg)
 
 # **Reconnaissance and OSINT**
 
 Refer to the lab workbook for instructions.
 
-![](_page_118_Picture_2.jpeg)
+![](SEC560_Book1_page_118_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2419,11 +2419,11 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_119_Picture_0.jpeg)
+![](SEC560_Book1_page_119_Picture_0.jpeg)
 
 118
 
-![](_page_119_Picture_1.jpeg)
+![](SEC560_Book1_page_119_Picture_1.jpeg)
 
 ### **Goals of Scanning Phase**
 
@@ -2447,7 +2447,7 @@ We then want a list of potential vulnerabilities, which may be determined from t
 
 We want to do all this in a manner that minimizes the chance of damaging the target machines, although there is always a possibility that our interactions could cause a target system or service to slow down or crash.
 
-![](_page_120_Figure_0.jpeg)
+![](SEC560_Book1_page_120_Figure_0.jpeg)
 
 As previously mentioned, the goal of the scanning phase is to learn about the target environment using active probing. To achieve this goal, we'll perform multiple types of scans. Here is the list of scans and the goal of each:
 
@@ -2481,7 +2481,7 @@ Each stage of this example workflow is designed to build upon the previous step,
 - 3. **Finding Running Services**: Once active hosts and ports have been identified, Nmap is used again to perform unauthenticated scans to determine what services are running on these hosts. This step is crucial for identifying potential security weaknesses that could be exploited.
 - 4. **Application-Specific Scanning**: The results from the Nmap scans are then used to feed into specialized tools according to the type of application or service running on the hosts. For instance, web servers might be analyzed using EyeWitness, which can capture web server screenshots and provide further insights into potential vulnerabilities.
 
-![](_page_123_Picture_2.jpeg)
+![](SEC560_Book1_page_123_Picture_2.jpeg)
 
 ### **Strategies for Handling Large Scans (1)**
 
@@ -2502,7 +2502,7 @@ If we take port 0 into account, there are 65,536 TCP and 65,536 UDP ports. For 1
 
 Clearly, there must be a better way.
 
-![](_page_124_Figure_0.jpeg)
+![](SEC560_Book1_page_124_Figure_0.jpeg)
 
 We have several options to effectively handle large scans. The specific approach chosen for a given test will ultimately be a management decision, informed by the recommendations of the target organization's technical personnel and possibly the testers themselves.
 
@@ -2520,7 +2520,7 @@ Separate Network Discovery: By separating the host discovery step from the port 
 
 The decision to use specific methods for handling large scans often requires input from management and an assessment of priorities for the test. While many penetration testers will prefer one of these methods, we can often combine methods to achieve a more robust scan result while meeting the target organization's goals and reducing the amount of work effort and scope in the scan.
 
-![](_page_126_Picture_2.jpeg)
+![](SEC560_Book1_page_126_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2569,7 +2569,7 @@ packets are lost, TCP automatically retransmits them. If they arrive out of orde
 
 UDP is connectionless. The UDP software makes no attempt to associate streams of packets together. As far as UDP is concerned, each packet is completely independent and unrelated to other packets. No attempt is made by UDP for retransmission or resequencing. If a packet is lost via UDP, it's up to the higher-layer application to resend it.
 
-![](_page_128_Picture_0.jpeg)
+![](SEC560_Book1_page_128_Picture_0.jpeg)
 
 Here is the TCP header. Note that it includes a source port and a destination port; each is 16 bits in length. The source port is the port on the originating machine that emitted the packet. The destination port
 
@@ -2579,7 +2579,7 @@ proper order.
 
 We also have the TCP Flags, which are incredibly important for tracking the state of a given TCP connection.
 
-![](_page_129_Picture_2.jpeg)
+![](SEC560_Book1_page_129_Picture_2.jpeg)
 
 # **TCP Flags**
 
@@ -2593,7 +2593,7 @@ We also have the TCP Flags, which are incredibly important for tracking the stat
   - − URG: Check the Urgent pointer in the header
   - − PSH: Push data immediately
 
-![](_page_129_Picture_13.jpeg)
+![](SEC560_Book1_page_129_Picture_13.jpeg)
 
 Defined by RFC 3168
 
@@ -2620,7 +2620,7 @@ Each of these control bits can be set independently of the others. Thus, we can 
 - Legitimate TCP connections start with a three-way handshake
 - communicate the packet order
 
-![](_page_130_Picture_4.jpeg)
+![](SEC560_Book1_page_130_Picture_4.jpeg)
 
 Every legitimate TCP connection begins with the TCP three-way handshake, which is used to exchange sequence numbers so that lost packets can be retransmitted, and packets can be placed in the proper order.
 
@@ -2632,14 +2632,14 @@ To complete the three-way handshake, machine A responds with an ACK packet, whic
 
 We have now exchanged sequence numbers. All packets going from A to B will have increasing sequence numbers starting at ISNA+1, going up by a value of 1 for each byte of data transmitted in the payloads of A-to-B packets. Likewise, all responses back from B will have sequence numbers starting at ISNB+1 and going up for each byte of data from B to A. In essence, we have two streams of sequence numbers in this series of packets: one from A to B (originally based on ISNA) and the other from B to A (originally based on ISNB).
 
-![](_page_131_Picture_2.jpeg)
+![](SEC560_Book1_page_131_Picture_2.jpeg)
 
 # **Handshake Happens Regardless of Higher-Level Protocol**
 
 - The three-way handshake happens regardless of the layer 7 protocol!
 - If you SSH to a web server, the handshake still happens, but there would be an error at the application layer
 
-![](_page_131_Picture_6.jpeg)
+![](SEC560_Book1_page_131_Picture_6.jpeg)
 
 When you send a SYN to an open port, the kernel (TCP/IP stack) of the remote operating system itself gives you the SYN-ACK. The program itself is unaware of the inprogress connection.
 
@@ -2649,7 +2649,7 @@ Thus, even if we don't know what service is listening on the target port, we can
 
 For example, if we use an SSH client to connect to a web server, the three-way handshake will still happen.
 
-![](_page_132_Figure_0.jpeg)
+![](SEC560_Book1_page_132_Figure_0.jpeg)
 
 To understand the different options we have with TCP port scanning, let's explore TCP behavior under different conditions in more detail. Suppose machine A is used to scan machine B to determine if a given port is open or closed. We start by sending in a SYN packet. There are numerous possible responses.
 
@@ -2660,7 +2660,7 @@ listening ports.
 
 As penetration testers or ethical hackers, we like to see packets with the RST Control Bit set to 1 coming back from closed ports during our scan because they make the scanning process significantly faster. Rather than having to wait for a timeout before we can move on to another port, we know quickly that this port is closed and move on immediately upon receiving the packet with the RST Control Bit set to 1.
 
-![](_page_133_Figure_0.jpeg)
+![](SEC560_Book1_page_133_Figure_0.jpeg)
 
 • **Case 3:** We send in a SYN packet and get nothing back. Nmap will try to retransmit the packet, but if nothing is received back within a certain timeout, the port will be marked as "filtered" as well. In all likelihood, either there is nothing listening on the end system (which has been configured via a personal firewall to silently drop all packets to closed ports), or a firewall is blocking our inbound SYN packet (again, silently rejecting it). After a few retries, we can safely assume the port is effectively
 
@@ -2672,7 +2672,7 @@ Each of these = cases is summarized well on the Nmap man page, which states:
 
 • https://nmap.org/book/man-port-scanning-techniques.html (under -sS)
 
-![](_page_134_Picture_1.jpeg)
+![](SEC560_Book1_page_134_Picture_1.jpeg)
 
 #### **UDP Header**
 
@@ -2694,7 +2694,7 @@ Here is the UDP header. Note its relative simplicity when compared to the TCP he
 
 Specifically, note that there are no Control Bits in UDP, nor is there a sense of the "status" of a "connection" since UDP doesn't establish connections. Because of these characteristics, our options for scanning UDP ports are far more limited than they are for TCP port scanning.
 
-![](_page_135_Figure_0.jpeg)
+![](SEC560_Book1_page_135_Figure_0.jpeg)
 
 To see why UDP scanning is less reliable and often slower than TCP scanning, consider the cases that could occur when we perform a UDP port scan.
 
@@ -2709,7 +2709,7 @@ By the way, there are variants of Case 2 in which the target system sends other 
 
 • https://nmap.org/book/man-port-scanning-techniques.html (under -sU)
 
-![](_page_136_Figure_0.jpeg)
+![](SEC560_Book1_page_136_Figure_0.jpeg)
 
 Now, we get to the hard case.
 
@@ -2760,7 +2760,7 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_139_Picture_2.jpeg)
+![](SEC560_Book1_page_139_Picture_2.jpeg)
 
 ### **Masscan vs. Nmap**
 
@@ -2791,7 +2791,7 @@ Nmap will send a packet and then wait for a response, consuming resources on the
 
 Alternatively, if we use the same source port for all our SYN packets (e.g., 61000), all the packets will be returned to that port (61000). This way the Kernel will not process the SYN-ACK packets (since they are dropped) and will not send the RESET. Masscan still sees the SYN-ACK packet since it essentially runs as a sniffer. We could use a host firewall to drop all the packets destined for that port (61000).
 
-![](_page_140_Picture_2.jpeg)
+![](SEC560_Book1_page_140_Picture_2.jpeg)
 
 #### **Masscan Introduction**
 
@@ -2826,7 +2826,7 @@ Masscan is written by Robert Graham and is available here:
 
 140
 
-![](_page_141_Picture_1.jpeg)
+![](SEC560_Book1_page_141_Picture_1.jpeg)
 
 # **Masscan Output**
 
@@ -2870,7 +2870,7 @@ Other tools can't directly read this format, but we can convert to other formats
 masscan --readscan masscan_10net.bin -oX masscan_10net.xml
 ```
 
-![](_page_142_Picture_2.jpeg)
+![](SEC560_Book1_page_142_Picture_2.jpeg)
 
 - We will often want to extract the list of:
   - − All hosts with a given port open
@@ -2918,9 +2918,9 @@ grep /open/ masscan_10net.gnmap | cut -d/ -f 1 | cut -d ' ' -f 2,4 |
 sed -e 's/ /:/g' | sort -uV > myscan-host-port.txt
 ```
 
-![](_page_143_Picture_0.jpeg)
+![](SEC560_Book1_page_143_Picture_0.jpeg)
 
-![](_page_144_Picture_2.jpeg)
+![](SEC560_Book1_page_144_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2953,7 +2953,7 @@ Lab 1.3: Masscan
 
 Lab 1.4: Nmap
 
-![](_page_145_Picture_1.jpeg)
+![](SEC560_Book1_page_145_Picture_1.jpeg)
 
 # **Nmap Port Scanner**
 
@@ -2966,7 +2966,7 @@ Lab 1.4: Nmap
 
 nmap -Pn -n 10.130.10.0/24 -T4 10.130.11.0/24 -oA nmap\_10.130.10.0\_24
 
-![](_page_145_Picture_10.jpeg)
+![](SEC560_Book1_page_145_Picture_10.jpeg)
 
 Nmap scans can take a long time! Press any key while running to see the elapsed time, hosts completed so far, percentage done, and an estimate of time remaining
 
@@ -3034,7 +3034,7 @@ basename.xml.
 
 146
 
-![](_page_147_Picture_2.jpeg)
+![](SEC560_Book1_page_147_Picture_2.jpeg)
 
 ### **Nmap and Address Probing**
 
@@ -3064,7 +3064,7 @@ The specific probe packets were chosen by the Nmap development team based on sta
 
 By default, Nmap will scan only the target if it gets a response to the messages described here. If it doesn't get a response, Nmap gives up on that address. To make Nmap skip this probe phase, the -Pn option can be used. This -Pn option does the same thing as the -P0 option. More recent reference works on Nmap refer to the -Pn option to minimize confusion between -P0 (zero, used for not probing) and -PO (the uppercase letter O, used for IP protocol pings, which send a specified IP packet with a given number in the protocol field of the IP header).
 
-![](_page_149_Picture_2.jpeg)
+![](SEC560_Book1_page_149_Picture_2.jpeg)
 
 ### **Nmap Network Probe/Sweeping Options**
 
@@ -3092,11 +3092,11 @@ As we've discussed, the -Pn option tells Nmap not to probe at all. Some of the o
 
 Nmap includes options beyond this list, as well, but these are some of the most useful.
 
-![](_page_150_Picture_0.jpeg)
+![](SEC560_Book1_page_150_Picture_0.jpeg)
 
 149
 
-![](_page_150_Picture_1.jpeg)
+![](SEC560_Book1_page_150_Picture_1.jpeg)
 
 ### **Nmap Timing and Limitations**
 
@@ -3118,7 +3118,7 @@ The host group size is dynamically determined by Nmap. Alternatively, you can co
 
 While Nmap is a useful tool, if all we care about is finding open ports as fast as possible, we can use other tools.
 
-![](_page_151_Picture_2.jpeg)
+![](SEC560_Book1_page_151_Picture_2.jpeg)
 
 ### **Fast Internal Network Discovery with DNS: Concept and Command**
 
@@ -3141,7 +3141,7 @@ Host: 10.0.0.1 (rt1.example.com) Status: Unknown
 
 Identifying in-use network ranges within large address spaces like RFC1918 is crucial for efficient penetration testing. A full nmap -sn scan on a /8 network can take hours. Nmap's List Scan (-sL) provides a much faster method by performing reverse DNS lookups for specified IP ranges. It does not send packets to the target IPs themselves but queries DNS servers. A DNS response often implies the corresponding network segment is in use. Using --dns-servers <IP> with -sL directs Nmap to use specific DNS servers, enabling parallel queries and significantly boosting performance compared to relying on the system resolver. Recent Nmap versions (7.96+) have further optimized DNS resolution, making this technique even more effective. The -oG - option outputs results in grepable format to stdout, which can be piped to tee to save to a file (ptrs.gnmap in this case) while also viewing on screen. Sampling (e.g., checking a few IPs per /24) can further reduce time for very large ranges but may miss sparsely populated networks.
 
-![](_page_152_Picture_2.jpeg)
+![](SEC560_Book1_page_152_Picture_2.jpeg)
 
 #### **Fast Internal Network Discovery with DNS: Parsing Results**
 
@@ -3213,7 +3213,7 @@ nmap -sT 10.130.10.10 -p 0-65535
 
 Alternatively, to check only a specific list of ports, you could invoke Nmap with -p 22,23,25,80,445 to measure only those ports. If you want to mix TCP and UDP ports, you can preface TCP ports with T: and UDP ports with U: in this list. By default, Nmap scans ports in a range or list in a random order. The -r flag makes Nmap scan linearly (in increasing port order).
 
-![](_page_155_Picture_2.jpeg)
+![](SEC560_Book1_page_155_Picture_2.jpeg)
 
 ### **Nmap TCP Port Scan Types: Connect Scan**
 
@@ -3222,7 +3222,7 @@ Alternatively, to check only a specific list of ports, you could invoke Nmap wit
   - − Can run with or without root or admin privileges
   - − Safer against more fragile systems vs. the default SYN or half-open scan that sends a RESET instead of an ACK (**-sS** is the default with root)
 
-![](_page_155_Picture_8.jpeg)
+![](SEC560_Book1_page_155_Picture_8.jpeg)
 
 Nmap offers numerous types of TCP port scan options, most of which are based on triggering the behavior of target machines with various TCP Control Bits set.
 
@@ -3238,7 +3238,7 @@ Because a connection never occurs, the target system is less likely to log this 
 
 Because it doesn't fully follow normal TCP behavior with a three-way handshake, this kind of scan requires root privileges so that Nmap can formulate the packets associated with the scan.
 
-![](_page_156_Picture_2.jpeg)
+![](SEC560_Book1_page_156_Picture_2.jpeg)
 
 # **Nmap UDP Scans**
 
@@ -3262,9 +3262,9 @@ Nmap includes functionality that tries to detect if the target machine is thrott
 
 • https://github.com/nmap/nmap/commit/3f1ad0742e04cd994435adfe46e24d65222e02eb
 
-![](_page_157_Picture_0.jpeg)
+![](SEC560_Book1_page_157_Picture_0.jpeg)
 
-![](_page_158_Picture_2.jpeg)
+![](SEC560_Book1_page_158_Picture_2.jpeg)
 
 #### **Conclusion**
 

@@ -2,7 +2,7 @@
 
 # Domain Privilege Escalation and Lateral Movement
 
-![](_page_0_Picture_3.jpeg)
+![](SEC560_Book4_page_0_Picture_3.jpeg)
 
 © 2025 SANS Institute. All rights reserved to SANS Institute.
 
@@ -36,19 +36,19 @@ Governing Law: This CLA shall be governed by the laws of the State of Maryland, 
 
 Courseware licensed to User under this CLA may be subject to export laws and regulations of the United States of America and other jurisdictions. User warrants he or she is not listed (i) on any sanction programs list maintained by the U.S. Office of Foreign Assets Control within the U.S. Treasury Department ("OFAC"), or (ii) denied party list maintained by the U.S. Bureau of Industry and Security within the U.S. Department of Commerce ("BIS"). User agrees to not allow access to any Courseware to any person or entity in a U.S. embargoed country or in violation of a U.S. export control law or regulation. User agrees to cooperate with SANS Institute as necessary for SANS Institute to comply with export requirements and recordkeeping required by OFAC, BIS or other governmental agency.
 
-![](_page_2_Picture_0.jpeg)
+![](SEC560_Book4_page_2_Picture_0.jpeg)
 
-![](_page_2_Picture_1.jpeg)
+![](SEC560_Book4_page_2_Picture_1.jpeg)
 
 ## **Domain Privilege Escalation and Lateral Movement**
 
 ENTERPRISE PENETRATION TESTING
 
-![](_page_3_Figure_0.jpeg)
+![](SEC560_Book4_page_3_Figure_0.jpeg)
 
-![](_page_4_Figure_0.jpeg)
+![](SEC560_Book4_page_4_Figure_0.jpeg)
 
-![](_page_5_Picture_2.jpeg)
+![](SEC560_Book4_page_5_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -64,7 +64,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_5_Picture_10.jpeg)
+![](SEC560_Book4_page_5_Picture_10.jpeg)
 
 - Kerberos
 - Kerberoasting
@@ -93,9 +93,9 @@ Lab 4.6: Impacket
 - Pivoting
   - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_6_Picture_0.jpeg)
+![](SEC560_Book4_page_6_Picture_0.jpeg)
 
-![](_page_6_Picture_1.jpeg)
+![](SEC560_Book4_page_6_Picture_1.jpeg)
 
 ## **Kerberos: Introduction**
 
@@ -120,7 +120,7 @@ Before Kerberos was introduced, pre–Active Directory Windows domains (Windows 
 
 If Kerberos cannot be used (various reasons apply), Windows will fall back to NTLMv1/NTLMv2 authentication.
 
-![](_page_7_Picture_1.jpeg)
+![](SEC560_Book4_page_7_Picture_1.jpeg)
 
 ## **Simple Kerberos: How It Works**
 
@@ -147,7 +147,7 @@ At this point, you are met by a ride operator and you present the ride ticket (S
 
 The operator looks at the ticket and checks whether it is legitimate (correct date and right ride). You are then directed to your seat. At this stage, the ride operator doesn't look at your ID (password) or the special pass (TGT), just the paper ticket (Service Ticket). You can only use the ride ticket for the one ride you requested—it won't work for a different ride. If the time and name match, it is time to enjoy the ride!
 
-![](_page_8_Figure_0.jpeg)
+![](SEC560_Book4_page_8_Figure_0.jpeg)
 
 The diagram above shows the simple flow of information during Kerberos authentication. Let's discuss what's happening in the flow.
 
@@ -165,7 +165,7 @@ To access the service (e.g., a file share), the client will send the ticket to t
 
 Since the file server also trusts Kerberos (the TGS), it will accept tickets and grant access to the service once it has validated through cryptographic means that this is an authentic ticket issued by the TGS trusted by the service. The service will then decide if the user should have access and what level of access.
 
-![](_page_9_Picture_1.jpeg)
+![](SEC560_Book4_page_9_Picture_1.jpeg)
 
 ## **Kerberos: Three Long-Term Keys**
 
@@ -187,7 +187,7 @@ Compromising any of these keys represents a security risk. There is, however, on
 
 The PAC contains information about the user's authorization and privileges (e.g., group memberships). With the krbtgt hash, it is possible to forge the PAC to contain any desired privileges in the domain.
 
-![](_page_10_Figure_0.jpeg)
+![](SEC560_Book4_page_10_Figure_0.jpeg)
 
 In Active Directory, when a client successfully authenticates to a domain controller (DC), the client is given a Ticket Granting Ticket (TGT).
 
@@ -197,7 +197,7 @@ Kerberos works with tickets—cryptographically secured pieces of data that gran
 
 A TGT is the ticket a client receives first. It is a ticket for the krbtgt service and can thus be used to request other tickets. By default, a TGT is valid for 10 hours. When it expires, Windows will automatically and transparently request a new one.
 
-![](_page_11_Figure_0.jpeg)
+![](SEC560_Book4_page_11_Figure_0.jpeg)
 
 The TGT is the first ticket received by the client and contains the following information:
 
@@ -221,7 +221,7 @@ An authenticator message (encrypted using the Client/TGS session key)
 
 The encrypted TGT and a ticket request (referencing a certain Service Principal Name, or SPN)
 
-![](_page_12_Figure_0.jpeg)
+![](SEC560_Book4_page_12_Figure_0.jpeg)
 
 If the KDC receives a TGS-REQ with a valid TGT, it will send back a response, the TGS-REP. The KDC will validate whether the service to which the client requests access exists and subsequently create a Service Ticket (ST) that is sent back. It's important to note that the KDC does not do any validation of privileges. The target service will do that by itself by reviewing the PAC included in the ST (see below).
 
@@ -230,9 +230,9 @@ If the KDC receives a TGS-REQ with a valid TGT, it will send back a response, th
 - A client portion, which is encrypted using the Client/TGS session key (so this can be decrypted by the client).
 - A server portion, which is encrypted using the target long-term key (the password hash of the target service). This server portion also includes the PAC of the user. It is this ST that the user will subsequently submit to the service they are trying to access.
 
-![](_page_13_Picture_0.jpeg)
+![](SEC560_Book4_page_13_Picture_0.jpeg)
 
-![](_page_13_Picture_1.jpeg)
+![](SEC560_Book4_page_13_Picture_1.jpeg)
 
 ## **Service Principal Name**
 
@@ -257,15 +257,15 @@ The setspn.exe tool, built into Windows, is used to manually create this SPN-to-
 
 Registration requires significant privileges on the domain and can't be done by ordinary users.
 
-![](_page_14_Figure_0.jpeg)
+![](SEC560_Book4_page_14_Figure_0.jpeg)
 
 To access the service, the user presents the Service Ticket (ST) to the target server. Recall that the ST is encrypted using the password hash of the account whose Service Principal Name is being requested. The service decrypts the ticket and then uses the content of the ticket to decide whether the user should have access and at what level. The service decides based on the user details in the Privilege Attribute Certificate (PAC), which includes username, RID, and group memberships.
 
 Notice that the DC doesn't decide if the user has access. Instead, this is done by the target service. If the DC had to decide, it would need to be a supercomputer! It would have to know about all the objects (files, directories, databases, tables, rows, columns, etc.) in the entire domain, and there would be a lot of extra requests to the DC.
 
-![](_page_15_Figure_0.jpeg)
+![](SEC560_Book4_page_15_Figure_0.jpeg)
 
-![](_page_16_Picture_2.jpeg)
+![](SEC560_Book4_page_16_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -281,7 +281,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_16_Picture_10.jpeg)
+![](SEC560_Book4_page_16_Picture_10.jpeg)
 
 - Kerberos
 - Kerberoasting
@@ -300,7 +300,7 @@ Section 6: CTF and Next Steps
 - Pivoting
   - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_17_Figure_0.jpeg)
+![](SEC560_Book4_page_17_Figure_0.jpeg)
 
 If the KDC receives a TGS-REQ with a valid TGT, it will send back a response, a TGS-REP. The KDC will validate whether the service to which the client requests access exists and subsequently create and send back a Service Ticket (ST). It's important to note that the KDC does not do any validation of privileges. The target service will do that by itself by reviewing the PAC included in the ST (see below).
 
@@ -316,19 +316,19 @@ A server portion, which is encrypted using the target long-term key (the passwor
 
 A client can request a ticket for any service (SPN) registered in the domain.
 
-![](_page_18_Picture_4.jpeg)
+![](SEC560_Book4_page_18_Picture_4.jpeg)
 
 The client does not need permissions to the service
 
-![](_page_18_Picture_6.jpeg)
+![](SEC560_Book4_page_18_Picture_6.jpeg)
 
 The service could be inaccessible due to a firewall
 
-![](_page_18_Picture_8.jpeg)
+![](SEC560_Book4_page_18_Picture_8.jpeg)
 
 The service could be offline
 
-![](_page_18_Picture_10.jpeg)
+![](SEC560_Book4_page_18_Picture_10.jpeg)
 
 The physical server could be recycled, as long as the SPN exists
 
@@ -358,9 +358,9 @@ Kerberoast attack: Request service tickets and then crack the hashes offline
 - Which tickets should be requested?
 - There are two types of accounts:
 
-![](_page_19_Picture_7.jpeg)
+![](SEC560_Book4_page_19_Picture_7.jpeg)
 
-![](_page_19_Picture_8.jpeg)
+![](SEC560_Book4_page_19_Picture_8.jpeg)
 
 • We want SPNs/tickets tied to user (not computer) accounts
 
@@ -374,7 +374,7 @@ User accounts: These account passwords are set by a user or admin. This means th
 
 19
 
-![](_page_20_Picture_1.jpeg)
+![](SEC560_Book4_page_20_Picture_1.jpeg)
 
 ## **setspn.exe**
 
@@ -407,7 +407,7 @@ Multiple tools exist to get tickets:
 - Other C2 features, manual with PowerShell or extracted from RAM
 - Stealth tip: Go slow to bypass detections
 
-![](_page_21_Figure_7.jpeg)
+![](SEC560_Book4_page_21_Figure_7.jpeg)
 
 We need to gather tickets that might be crackable. Multiple tools exist to do this.
 
@@ -419,9 +419,9 @@ Tickets exist in memory, so any method of requesting a ticket will work (e.g., u
 
 Some defensive tools will look for a user requesting a large number of tickets, so it may be stealthier to request one or two tickets at a time.
 
-![](_page_22_Picture_0.jpeg)
+![](SEC560_Book4_page_22_Picture_0.jpeg)
 
-![](_page_22_Picture_1.jpeg)
+![](SEC560_Book4_page_22_Picture_1.jpeg)
 
 ## **Kerberoast Attack Steps**
 
@@ -448,7 +448,7 @@ This attack is even more powerful since accounts used for services rarely have t
 
 This technique was discovered by Tim Medin in 2014.
 
-![](_page_23_Picture_1.jpeg)
+![](SEC560_Book4_page_23_Picture_1.jpeg)
 
 ## **AES vs. RC4**
 
@@ -485,7 +485,7 @@ hashcat -O --benchmark -m 19700
 - https://learn.microsoft.com/en-us/openspecs/windows\_protocols/ms-kile/936a4878-9462-4753-aac8- 087cd3ca4625
 - https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd
 
-![](_page_24_Picture_2.jpeg)
+![](SEC560_Book4_page_24_Picture_2.jpeg)
 
 ## **Which SPN-Enabled Accounts to Target?**
 
@@ -518,7 +518,7 @@ Here are some examples of potentially interesting accounts (from adsecurity.org)
 
 These are just some examples of interesting accounts. During a typical penetration test, you will see many others that are customary to the organization. Proper account and group membership enumeration will help you target interesting accounts!
 
-![](_page_25_Picture_2.jpeg)
+![](SEC560_Book4_page_25_Picture_2.jpeg)
 
 ## **Troubleshooting Kerberos Operations**
 
@@ -530,9 +530,9 @@ These are just some examples of interesting accounts. During a typical penetrati
   - − Having troubles with Kerberos operations or attacks? Check the time! If you're outside a 5-minute window (default), authentication will fail.
   - − This is less commonly an issue on domain-joined hosts
 
-![](_page_26_Picture_0.jpeg)
+![](SEC560_Book4_page_26_Picture_0.jpeg)
 
-![](_page_27_Picture_2.jpeg)
+![](SEC560_Book4_page_27_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -571,7 +571,7 @@ Lab 4.5: Lateral Movement from Linux
 - Pivoting
   - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_28_Figure_0.jpeg)
+![](SEC560_Book4_page_28_Figure_0.jpeg)
 
 Due to AD's size and complexity, it's often difficult for administrators to retain a good overview of how privileges are assigned across the environment. We can leverage this to spot excessive privileges, which can be used in lateral movement.
 
@@ -579,7 +579,7 @@ Once we've obtained (limited) administrator privileges (e.g., on all workstation
 
 A tool that facilitates this attack is BloodHound, which generates a diagram of active sessions and relationships in the Active Directory. On the slide above, we can see an example of such a diagram. In a few steps, Greg could easily steal the hashes of Jeff, thereby obtaining Domain Admin privileges.
 
-![](_page_29_Picture_2.jpeg)
+![](SEC560_Book4_page_29_Picture_2.jpeg)
 
 ## **BloodHound Overview**
 
@@ -603,7 +603,7 @@ Bloodhound extracts information from the domain and domain computers, including:
 
 The data is collected via "ingestors," available in PowerShell, C#, and Python. The data is then imported into a "graph database" that leverages relationships between entities. We can then query the database to find attack paths in Active Directory and on the network. The technique uses Graph Theory to model the relationship between objects. Many times, this tool will find unintended attack paths and relationships that can lead to full domain compromise.
 
-![](_page_30_Picture_2.jpeg)
+![](SEC560_Book4_page_30_Picture_2.jpeg)
 
 ## **BloodHound Workflow**
 
@@ -666,7 +666,7 @@ ComputerOnly: Only collect user sessions and local groups from domain-joined sys
 
 More information can be found at https://github.com/BloodHoundAD/SharpHound3.
 
-![](_page_32_Picture_2.jpeg)
+![](SEC560_Book4_page_32_Picture_2.jpeg)
 
 ## **Advanced Ingestion and OPSEC**
 
@@ -682,21 +682,21 @@ More information can be found at https://github.com/BloodHoundAD/SharpHound3.
 
 A powerful technique is to run the ingestor from your own attack machine, proxying its traffic through a compromised host. This is a significant OPSEC win. You can use BloodHound.py or RustHound, which are designed for non-Windows systems. By setting up a SOCKS proxy with a tool like chisel or even a reverse SSH tunnel, you can direct all of the ingestor's LDAP and SAMR traffic through your compromised foothold. The primary benefit is that the "malicious" tool and its activity (like running SharpHound.exe) are never visible on the endpoint, making detection much harder for defenders.
 
-![](_page_33_Figure_0.jpeg)
+![](SEC560_Book4_page_33_Figure_0.jpeg)
 
 After uploading your JSON files, the fun begins. The BloodHound UI comes pre-loaded with a list of incredibly useful queries. The most famous is "Find Shortest Paths to Domain Admins," which should always be one of the first things you run. However, don't stop there. As we've seen, Kerberoasting is a powerful attack. The query to find paths that start with a Kerberoastable user is a goldmine. It tells you exactly which user accounts you can target to get a crackable hash, and how that user's access leads directly to Domain Admin.
 
-![](_page_34_Figure_0.jpeg)
+![](SEC560_Book4_page_34_Figure_0.jpeg)
 
 In the graph on the slide, we can see the result of one of the queries. BloodHound uses a Neo4j database to store all of the information and provide it in a visual web interface for analysis. In this specific case, a user attempted to find the shortest path to getting to Domain Administrator. It appears there are two available paths, which can be clearly seen in the diagram.
 
 As a next step, we would now authenticate to one of the first machines in the graph and attempt to steal the credentials of the next user in the attack path. Note that, in this specific case, there are only two computer hops; a real-life graph of an enterprise environment will likely look more complex!
 
-![](_page_35_Picture_0.jpeg)
+![](SEC560_Book4_page_35_Picture_0.jpeg)
 
 34
 
-![](_page_35_Picture_1.jpeg)
+![](SEC560_Book4_page_35_Picture_1.jpeg)
 
 ## **Marking Targets: Owned Principals, High Value Targets**
 
@@ -709,7 +709,7 @@ Tag entities to have better starting points and broader endpoints; both work mor
 - To mark an entity, right-click and select the appropriate option
 - Queries are designed to start from owned principal and/or end at high-value targets, allowing for more efficient pathing
 
-![](_page_35_Picture_10.jpeg)
+![](SEC560_Book4_page_35_Picture_10.jpeg)
 
 Reminder: The real goal is demonstrating potential for business harm. Domain Admin is a useful stepping stone, but not the goal itself!
 
@@ -723,9 +723,9 @@ A High Value Target is something you designate as important. Some entities are a
 
 Both of these tags work with built-in queries. You can set your starting point to be Owned Principals or the endpoint to be the High Value Target. Both cases help you find the shortest path from what you currently have access to to the goal data, systems, or accounts.
 
-![](_page_36_Picture_0.jpeg)
+![](SEC560_Book4_page_36_Picture_0.jpeg)
 
-![](_page_37_Picture_2.jpeg)
+![](SEC560_Book4_page_37_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -764,9 +764,9 @@ Lab 4.5: Lateral Movement from Linux
 - Pivoting
   - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_38_Picture_0.jpeg)
+![](SEC560_Book4_page_38_Picture_0.jpeg)
 
-![](_page_38_Picture_1.jpeg)
+![](SEC560_Book4_page_38_Picture_1.jpeg)
 
 ## **Abusing Active Directory Certificate Services (AD CS)**
 
@@ -814,7 +814,7 @@ Overall, AD CS is a critical component of any organization's security infrastruc
 
 39
 
-![](_page_40_Picture_1.jpeg)
+![](SEC560_Book4_page_40_Picture_1.jpeg)
 
 ## **Active Directory Certificate Services Overview (2)**
 
@@ -833,7 +833,7 @@ Organizations commonly use PKI for a range of purposes, such as generating and t
 
 AD CS is an essential tool for organizations that want to establish a secure and trusted environment for their users and devices. PKI is the underlying technology that enables this trust and encryption by using digital certificates issued by trusted CAs. Common use cases for PKI in organizations include TLS certificates for HTTPS sites, authentication via certificates for wireless and VPN connections, and encrypting email communications. AD CS is widely deployed in organizations using Active Directory, providing a flexible and scalable solution for managing digital certificates centrally.
 
-![](_page_41_Picture_2.jpeg)
+![](SEC560_Book4_page_41_Picture_2.jpeg)
 
 ## **Terms**
 
@@ -856,7 +856,7 @@ Before we get into attacking AD CS, we need to understand some of the common ter
 
 • https://posts.specterops.io/certified-pre-owned-d95910965cd2
 
-![](_page_42_Picture_2.jpeg)
+![](SEC560_Book4_page_42_Picture_2.jpeg)
 
 ### **How Does an Internal CA Work?**
 
@@ -867,7 +867,7 @@ Before we get into attacking AD CS, we need to understand some of the common ter
 
 An internal Certificate Authority (CA) is a trusted server used to issue and manage digital certificates within an organization. The CA is trusted by the organization, typically via GPO and AD, which means that any digital certificates issued by the CA are automatically trusted by devices and services within the organization. This enables secure communication and authentication between devices and services, both internally and with external entities that trust the organization's CA. Since the CA is trusted by the organization, any digital certificates issued by that CA are also trusted. This enables secure communication between devices and services within the organization as well as with external entities that trust the organization's CA. These certificates can also be used for authentication.
 
-![](_page_43_Picture_2.jpeg)
+![](SEC560_Book4_page_43_Picture_2.jpeg)
 
 ## **AD:CS Misconfigurations Allowing for Privilege Escalation**
 
@@ -892,7 +892,7 @@ These vulnerabilities arise from misconfigurations, not missing security patches
 
 43
 
-![](_page_44_Picture_1.jpeg)
+![](SEC560_Book4_page_44_Picture_1.jpeg)
 
 ## **ESC1**
 
@@ -922,11 +922,11 @@ Enabling subjectAltName in the template allows enrollees to request a certificat
 
 • https://posts.specterops.io/certified-pre-owned-d95910965cd2
 
-![](_page_45_Figure_0.jpeg)
+![](SEC560_Book4_page_45_Figure_0.jpeg)
 
 This CA configuration allows any authenticated user in the domain to request a certificate. The **Security** tab of the Certificate Server snap-in (certsrv.msc) defines what users or groups are allowed to request a certificate from the CA. In the example, **Authenticated Users** are allowed to request a certificate. This effectively permits any low-privilege user in the domain to request a certificate, including all members of **Domain Users**.
 
-![](_page_46_Figure_0.jpeg)
+![](SEC560_Book4_page_46_Figure_0.jpeg)
 
 This template misconfiguration enables users to request and receive certificates without any approvals or interactions by third parties. This interface is accessed within the Certificate server snap-in by rightclicking on Certificate Templates and selecting Manage, right-clicking the appropriate template name and selecting Properties, and then selecting the Issuance Requirements tab.
 
@@ -934,13 +934,13 @@ If the first box is checked, the requested certificate is placed into a pending 
 
 An enrollment agent is a user or group of users who must sign a Certificate Signing Request (CSR). When enabled, this setting requires one (or more) designated enrollment agents to sign the request before the certificate is issued. When the box is not checked, CSRs do not require any additional signatures and will automatically be sent to the manager for approval or issued immediately if no manager approval is required.
 
-![](_page_47_Figure_0.jpeg)
+![](SEC560_Book4_page_47_Figure_0.jpeg)
 
 This template misconfiguration allows low-privilege users to enroll (request and obtain) certificates. This interface can be accessed by using the Certificate Templates Properties window discussed in the previous slide and then selecting the Security tab.
 
 In this example, the Domain Users group has been added to the list of groups and users who may enroll for a certificate. Note the Enroll box has been checked.
 
-![](_page_48_Figure_0.jpeg)
+![](SEC560_Book4_page_48_Figure_0.jpeg)
 
 This template configuration defines for what purposes a requested certificate may be used. This interface can be accessed using the Certificate Templates Properties window discussed in the previous slide and selecting the Extensions tab. A Certificate Template can define one or more EKUs (Extended Key Usages) for an issued certificate. If a certificate EKU enables one or more authentication purposes, the certificate can be used to authenticate according to the use defined by the EKU.
 
@@ -952,7 +952,7 @@ This template configuration defines for what purposes a requested certificate ma
 - Any Purpose
 - No EKU
 
-![](_page_49_Figure_0.jpeg)
+![](SEC560_Book4_page_49_Figure_0.jpeg)
 
 This template misconfiguration allows users to request certificates on behalf of other users. This interface can be accessed using the Certificate Templates Properties window discussed in the previous slide and selecting the Subject Name tab.
 
@@ -977,17 +977,17 @@ CAs and templates, identify vulnerable CA and template configurations, and abuse
 
 Certi is a Python implementation of Certify based on the Impacket library. Certi can enumerate vulnerable configurations that can be used to exploit ESC1, ESC2, and ESC3.
 
-![](_page_51_Figure_0.jpeg)
+![](SEC560_Book4_page_51_Figure_0.jpeg)
 
 Certify can be used to identify vulnerable CA configurations. In this example, certify.exe cas has reported that NT AUTHORITY\Authenticated Users has enrollment rights to the rslabs-RSLABS-DC01- CA CA. This configuration allows any authenticated users in the rslabs.lan domain to enroll certificates.
 
-![](_page_52_Figure_0.jpeg)
+![](SEC560_Book4_page_52_Figure_0.jpeg)
 
 Certify can also be used to find vulnerable certificate templates. In this example, certify.exe find /vulnerable has found that the UserAuth template includes ENROLLEE\_SUPPLIES\_SUBJECT in the msPKI-Certificate-Name-Flag attribute. This is the enrollee-supplied subject (subjectAltName) component of ESC1. This setting enables certificate requesters to request certificates for any users in the domain, including domain admin users. Without mitigating controls, this setting enables complete domain takeover. In domains where mitigations prevent Certificate Signing Requests (CSRs) with SANs set for domain admins, this configuration can still be abused to impersonate other domain users.
 
 Certify has also reported that authorized signatures are not required for CSRs. In other words, the CSR does not need to be signed by other users in the domain prior to issuance.
 
-![](_page_53_Figure_0.jpeg)
+![](SEC560_Book4_page_53_Figure_0.jpeg)
 
 In this example, Certify has also reported that the Extended Key Usage (EKU) permits authentication. As seen here, the pkiextendedkeyusage attribute includes Client Authentication. This means any certificates issued using this template can be used to authenticate a user. While not reported in the Certify output, manager approval is not required. This is implied by Certify reporting the template as vulnerable.
 
@@ -995,7 +995,7 @@ Finally, Certify has reported that Domain Users can enroll for certificates usin
 
 Collectively, these individual misconfigurations add up to the AD CS ESC1 vulnerability!
 
-![](_page_54_Figure_0.jpeg)
+![](SEC560_Book4_page_54_Figure_0.jpeg)
 
 This example shows Certify being used by RSLABS\wilsonp, a low-privileged user with only membership in the Domain Users group. The requester specifies the CA using the fully qualified domain name and CA name, /ca:rslabs-dc01.rslabs.lan\rslabs-RSLABS-DC01-CA. The requester specifies the template name using /template:UserAuth. Finally, the requester specifies the name of the account the requester wants to impersonate. In this case, the requester wishes to impersonate a domain admin, angletonj\_dadm, and uses /altname:angletonj\_dadm to perform the request.
 
@@ -1020,7 +1020,7 @@ Note: While you will be prompted for a certificate password, it is not necessary
 
 Upon completion, openssl will save the converted certificate as cert.pfx.
 
-![](_page_56_Figure_0.jpeg)
+![](SEC560_Book4_page_56_Figure_0.jpeg)
 
 Rubeus is a C# toolset for Kerberos interaction and abuse. Rubeus is available from https://github.com/GhostPack/Rubeus.
 
@@ -1032,7 +1032,7 @@ In this example, the requester used the /nowrap argument to prevent line-wrappin
 
 As seen in this example, the low-privileged user, wilsonp, has successfully requested a TGT for the domain admin user, angletonj\_dadm, using Rubeus.
 
-![](_page_57_Figure_0.jpeg)
+![](SEC560_Book4_page_57_Figure_0.jpeg)
 
 To use the base64-encoded ticket recovered in the previous step, use Rubeus's ptt (pass-the-ticket) function. This function mimics the Mimikatz kerberos::ptt function. The ptt function submits the TGT for the current logon session, allowing the attacker to use the newly requested TGT in their session.
 
@@ -1042,29 +1042,29 @@ The user imports the Kerberos TGT into their session using the ptt command and s
 
 Finally, we confirm the privilege escalation by attempting to view the C\$ share on the domain controller. This time, we see the contents of the drive, confirming privilege escalation. We've successfully impersonated the domain admin!
 
-![](_page_58_Figure_0.jpeg)
+![](SEC560_Book4_page_58_Figure_0.jpeg)
 
 **Note:** Only one TGT can be applied to a logon session at a time. Using ptt will purge the existing user's logon session. You can list details about the current logon session and associated Kerberos tickets using the klist command. In this slide, we see the username of the current logon session is wilsonp, the lowprivileged user. However, as we have used the ptt command to add the domain admin's ticket to our session, the current KRBTGT is for the domain admin, angletonj\_dadm.
 
 To restore wilsonp's logon session and Kerberos tickets, we can purge angletonj\_dadm's tickets using Rubeus's purge command: rubeus.exe purge.
 
-![](_page_59_Figure_0.jpeg)
+![](SEC560_Book4_page_59_Figure_0.jpeg)
 
 Certipy can be used to enumerate CAs and templates. Certipy will also identify vulnerable CA configurations. Certipy generates data in text, JSON, and BloodHound-ingestible formats. In this example, certipy find has identified the CA for the rslabs.lan domain and has generated output for our review. The default naming format for Certipy output is YYYYMMDDhhmmss\_Certipy.[txt|json|zip].
 
-![](_page_60_Figure_0.jpeg)
+![](SEC560_Book4_page_60_Figure_0.jpeg)
 
 In this example, certipy find has reported several issues with the UserAuth template. The UserAuth template supports client authentication. The template also includes ENROLLEE\_SUPPLIES\_SUBJECT in the msPKI-Certificate-Name-Flag attribute. This is the enrollee-supplied subject (subjectAltName) component of ESC1.
 
 Certipy has also reported that the template does not require management approval and that authorized signatures are not required for Certificate Signing Requests (CSRs). In other words, the CSR does not need to be signed by other users in the domain prior to issuance.
 
-![](_page_61_Figure_0.jpeg)
+![](SEC560_Book4_page_61_Figure_0.jpeg)
 
 Finally, Certipy has reported that Domain Users can enroll for certificates using this template. Effectively, any authenticated user in the domain can request certificates for any user in the domain. If this template did not include Domain Users, it may still be exploitable if other unprivileged user groups are defined in the Enrollment Rights section. Exploitation of this vulnerability would require control of a user account in the named group.
 
 Finally, Certipy reports that the template is vulnerable to ESC1 and provides the collective reasons why.
 
-![](_page_62_Figure_0.jpeg)
+![](SEC560_Book4_page_62_Figure_0.jpeg)
 
 This example shows Certipy being used to request a certificate for a domain admin, angletonj\_dadm, using the wilsonp@rslabs.lan account, a low-privileged user with only membership in the Domain Users group.
 
@@ -1082,7 +1082,7 @@ Finally, the requester specifies the domain controller's IP address using the -d
 
 As noted in the output, the CA responded that the certificate request was successful and saved the .pfx to angletonj\_dadm\_rslabs-dc01.pfx.
 
-![](_page_63_Figure_0.jpeg)
+![](SEC560_Book4_page_63_Figure_0.jpeg)
 
 To use the .pfx retrieved in the previous step, use Certipy's auth function. This function makes use of Dirk-jan Mollema's (@\_dirkjan) PKINITtools project to retrieve an NT hash from the impersonated account using the certificate retrieved previously using the req function.
 
@@ -1096,7 +1096,7 @@ Note that Certipy prompts whether to use the UPN (User Principal Name) identity 
 
 63
 
-![](_page_64_Picture_1.jpeg)
+![](SEC560_Book4_page_64_Picture_1.jpeg)
 
 ## **ESC4 (1)**
 
@@ -1117,11 +1117,11 @@ Misconfigured ACEs could allow attackers to reconfigure a template, such as chan
 - https://posts.specterops.io/certified-pre-owned-d95910965cd2
 - https://specterops.io/wp-content/uploads/sites/3/2022/06/an\_ace\_up\_the\_sleeve.pdf
 
-![](_page_65_Figure_0.jpeg)
+![](SEC560_Book4_page_65_Figure_0.jpeg)
 
 This template misconfiguration enables users to modify the template configuration by enabling Write permissions. A template may also be misconfigured to grant users Full Control.
 
-![](_page_66_Picture_1.jpeg)
+![](SEC560_Book4_page_66_Picture_1.jpeg)
 
 ## **ESC4: Permission Descriptions**
 
@@ -1141,23 +1141,23 @@ While the template security management tab allows setting Full Control and Write
 - WriteDacl: Can modify object access control to grant FullControl
 - WriteProperty: Can edit any object properties
 
-![](_page_67_Figure_0.jpeg)
+![](SEC560_Book4_page_67_Figure_0.jpeg)
 
 Templates vulnerable to ESC4 can be identified with Certify. As with ESC1, we can identify vulnerable templates using the following command: certify.exe find /vulnerable. In this example, we see that the ServerAuthenticationTest template grants enrollment rights to AuthenticatedUsers. The template is also configured to allow the enrollee to supply the subject. An attacker with control of a lowprivileged account could request a certificate for a domain admin with this template. However, as the template's EKU is set to Server Authentication, certificates issued with this template cannot be used to perform client authentication to AD.
 
-![](_page_68_Figure_0.jpeg)
+![](SEC560_Book4_page_68_Figure_0.jpeg)
 
 This example details identifying a template vulnerable to ESC4. We see that the template grants Authenticated Users the WriteOwner, WriteDacl, and WriteProperty permissions. This allows an attacker with a low-privileged account to modify the template to allow privilege escalation. An attacker can abuse this misconfiguration to reconfigure the template. As the template's EKU is configured for Server Authentication, an attacker may wish to change the EKU to enable Client Authentication.
 
-![](_page_69_Figure_0.jpeg)
+![](SEC560_Book4_page_69_Figure_0.jpeg)
 
 We can enumerate templates vulnerable to ESC4 using Certipy with the certipy find command. Upon first review, the ServerAuthenticationTest template shown here does not appear to be vulnerable. The template EKU is configured for Server Authentication and does not permit Client Authentication or any other uses. The template does allow members of Authenticated Users to enroll, however.
 
-![](_page_70_Figure_0.jpeg)
+![](SEC560_Book4_page_70_Figure_0.jpeg)
 
 Similar to Certify, Certipy reports that the template grants the WriteOwner, WriteDacl, and WriteProperty permissions to Authenticated Users. As the rslabs\wilsonp is a member of the Authenticated Users group, Certipy tells us that the template is vulnerable to ESC4.
 
-![](_page_71_Figure_0.jpeg)
+![](SEC560_Book4_page_71_Figure_0.jpeg)
 
 When a template is vulnerable to ESC4, Certipy can be used to overwrite the template configuration to make it vulnerable to ESC1. This example shows Certipy being used to update a template using the wilsonp@rslabs.lan account, a low-privileged user with only membership in the Domain Users group.
 
@@ -1167,27 +1167,27 @@ Finally, the requester specifies the domain controller's IP address using the -d
 
 As noted in the output, Certipy saved the original template configuration as ServerAuthenticationTest.json. Certipy informs us that the certificate was updated successfully.
 
-![](_page_72_Figure_0.jpeg)
+![](SEC560_Book4_page_72_Figure_0.jpeg)
 
 After executing the certipy template, we can verify the changes using the certipy find command. As we see here, Certipy made significant changes to the template to enable ESC1. We see that the template EKU has been updated from Server Authentication to include Client Authentication, Enrollment Agent, and Any Purpose.
 
 We also see that Certipy has made significant changes to the template permissions. In addition to granting Authenticated Users the Full Control permission, Certipy also removed all other users and groups from the defined permissions.
 
-![](_page_73_Figure_0.jpeg)
+![](SEC560_Book4_page_73_Figure_0.jpeg)
 
 As we already know, Certipy also tells us which ESC vectors a template is vulnerable to. As seen here, the certify template command not only modified the template to enable ESC1, but it also enabled the ESC2 and ESC3 vectors. We can now use Certipy, Certify, and other tools to exploit the ESC1 vulnerability to recover the NTLM hash of a target user or to request a TGT to impersonate the user.
 
-![](_page_74_Figure_0.jpeg)
+![](SEC560_Book4_page_74_Figure_0.jpeg)
 
 While an attacker may not revert template configuration changes made to effect privilege escalation, as ethical penetration testers, it is vital that we not leave our clients more vulnerable after a test than they were before the test. While it is often necessary to make changes in an environment to enable privilege escalation and lateral movement, it is crucial that we revert those changes. In the previous step, Certipy reported that it saved the original template configuration to a .json file. After abusing ESC1 to escalate privileges, we can use Certipy to revert those changes. We simply need to remove the -save-old argument and replace it with the -configuration <ConfigurationName> argument.
 
 As we see in this example, we have restored the original template configuration by supplying the .json file name, ServerAuthenticationTest.json, to the -configuration argument. Certipy reports that the original template was restored successfully.
 
-![](_page_75_Figure_0.jpeg)
+![](SEC560_Book4_page_75_Figure_0.jpeg)
 
 As you'd expect, we can verify that Certipy has reverted the changes using the certipy find command. As shown in this example, the template no longer permits certificates enrolled using this template to be used for Client Authentication, Enrollment Agent, or Any Purpose. We've used Certipy to identify and exploit a template vulnerable to ESC4 as well as to restore the environment to the original, pre-testing configuration.
 
-![](_page_76_Picture_2.jpeg)
+![](SEC560_Book4_page_76_Picture_2.jpeg)
 
 ## **ESC8 (1)**
 
@@ -1220,7 +1220,7 @@ Enabling subjectAltName in the template allows enrollees to request a certificat
 
 • https://posts.specterops.io/certified-pre-owned-d95910965cd2
 
-![](_page_77_Picture_2.jpeg)
+![](SEC560_Book4_page_77_Picture_2.jpeg)
 
 ## **ESC8 (2)**
 
@@ -1236,13 +1236,13 @@ In addition to the tools we've already discussed, other tools can be used to per
 - Ntlmrelayx.py: https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py (ESC8)
 - ADCSPwn: https://github.com/bats3c/ADCSPwn (ESC8)
 
-![](_page_78_Picture_1.jpeg)
+![](SEC560_Book4_page_78_Picture_1.jpeg)
 
 ## **Attacking Active Directory Certificate Services (AD CS) with ESC1**
 
 Refer to the lab workbook for instructions.
 
-![](_page_79_Picture_2.jpeg)
+![](SEC560_Book4_page_79_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -1290,7 +1290,7 @@ Lab 4.6: Impacket
 
 Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_80_Picture_2.jpeg)
+![](SEC560_Book4_page_80_Picture_2.jpeg)
 
 ## **Why Lateral Movement?**
 
@@ -1300,13 +1300,13 @@ Lab 4.7: C2 Pivoting and Pass-the-Hash
   - − WMI, RDP, SMB, schtasks
 - **Tooling**: Built-in binaries, C2 frameworks, proxied offensive tooling (such as Impacket)
 
-![](_page_80_Picture_9.jpeg)
+![](SEC560_Book4_page_80_Picture_9.jpeg)
 
 So, an attacker is on a box. What now? That first machine is just the beachhead. The real goal is almost always somewhere else—a domain controller, a file server with sensitive data, a payment processing system. Lateral movement is the art of getting from that initial point of compromise to the systems that actually matter. It's the difference between a contained incident and a full-blown crisis. The defender's job is to minimize initial access, then quickly respond to any initial compromise before the attacker can move laterally and escalate privileges. Industry data shows that "breakout time," the leap from the first machine to the second, can happen in under two hours.
 
 flagged. Instead, they use the tools already built into Windows. Think PowerShell, WMI, RDP. By using legitimate tools for malicious ends, it can look just like another system administrator doing their job.
 
-![](_page_81_Picture_2.jpeg)
+![](SEC560_Book4_page_81_Picture_2.jpeg)
 
 ## **The Windows Toolbox: Hacking in the Original Sense**
 
@@ -1324,7 +1324,7 @@ Forget the Hollywood image of hacking. Real-world network intrusion is about dee
 
 This creates a massive challenge. How do you spot the malicious use of a legitimate tool? This is where projects like LOLBAS—Living Off the Land Binaries, Scripts, and Libraries—become invaluable. LOLBAS is a community-driven catalog of every known way a built-in Windows tool can be used for offensive purposes. For defenders, it's a goldmine for building high-fidelity detection rules based not on *what* tool is run, but *how* it's run.
 
-![](_page_82_Figure_0.jpeg)
+![](SEC560_Book4_page_82_Figure_0.jpeg)
 
 - interaction (social engineering) required
 - **Trade-Offs**: Leaves clear logs (service creation, process execution, etc), but this activity often blends in with legitimate system administration, making detection difficult
@@ -1333,7 +1333,7 @@ Lateral movement isn't a single technique; it's a category of them. An attacker 
 
 That's why this module focuses on authenticated remote execution. Using stolen credentials to interact with protocols like SMB or WMI is far more dependable than hoping a user clicks a link. The trade-off for the attacker is that it leaves a clearer audit trail. The challenge for us is finding that malicious signal in the noise of everyday administrative traffic.
 
-![](_page_83_Picture_2.jpeg)
+![](SEC560_Book4_page_83_Picture_2.jpeg)
 
 ## **The Prerequisite: Credential Abuse**
 
@@ -1348,9 +1348,9 @@ easier with things like single sign-on, LSASS caches our credential material in 
 
 For an attacker, this is a treasure trove. They use tools like the infamous Mimikatz to reach into that memory and pull out plaintext passwords, NTLM hashes, and Kerberos tickets. Because running mimikatz.exe directly is a surefire way to get caught, they've adapted. A common trick is to use a legitimate utility, like Task Manager, to create a memory dump of the LSASS process. They can then take that file offline and run Mimikatz against it safely, getting the credentials without tripping alarms on the endpoint. Alternately, the attacker could pause a VM, then download the .vmem file (if using VMware) and extract it themselves, or grab the hibernate file off a laptop (hiberfil.sys) and extract LSASS memory out of it, et cetera.
 
-![](_page_84_Picture_0.jpeg)
+![](SEC560_Book4_page_84_Picture_0.jpeg)
 
-![](_page_84_Picture_1.jpeg)
+![](SEC560_Book4_page_84_Picture_1.jpeg)
 
 ## **Credential Replay: Pass-the-Hash (PtH)**
 
@@ -1364,7 +1364,7 @@ Pass-the-Hash is a classic, beautiful attack that exploits a fundamental aspect 
 
 An attacker with a hash doesn't need to waste time cracking it (though as a penetration tester, you should still start a password cracking job!). They can simply "pass" it directly to the authentication protocol to log into another machine. It's clean, efficient, and devastatingly effective. From a forensics perspective, the key indicator is found on the machine launching the attack: a Windows Logon Event ID 4624 with Logon Type 9, which signals that a process provided explicit credentials, rather than using the user's current logon session. While this may happen legitimately, it's less common than using integrated authentication via SSO.
 
-![](_page_85_Picture_2.jpeg)
+![](SEC560_Book4_page_85_Picture_2.jpeg)
 
 ## **Vector: Remote Service Abuse (The PsExec Family)**
 
@@ -1379,15 +1379,15 @@ An attacker with a hash doesn't need to waste time cracking it (though as a pene
 
 The pattern made famous by the PsExec tool is a staple for remote code execution. It's pure Living off the Land. First, the attacker uses stolen credentials to connect to the hidden ADMIN\$ share on the target machine via SMB (port 445). They upload their payload. Then, using the remote procedure call (RPC) interface, they connect to the Service Control Manager and create a new Windows service that points to their payload. When they start that service, it runs with the highest privileges: NT AUTHORITY\SYSTEM. For cleanup, they simply delete the service. This leaves behind a very clear footprint: Event ID 7045, "A new service was installed in the system."
 
-![](_page_86_Picture_2.jpeg)
+![](SEC560_Book4_page_86_Picture_2.jpeg)
 
 ## **PsExec Family: Tooling & Tradeoffs**
 
-![](_page_86_Picture_4.jpeg)
+![](SEC560_Book4_page_86_Picture_4.jpeg)
 
-![](_page_86_Picture_5.jpeg)
+![](SEC560_Book4_page_86_Picture_5.jpeg)
 
-![](_page_86_Picture_6.jpeg)
+![](SEC560_Book4_page_86_Picture_6.jpeg)
 
 #### • **Sysinternals PsExec.exe**
 
@@ -1423,7 +1423,7 @@ sc \\TargetComputer start MalSvc sc \\TargetComputer delete MalSvc
 
 An attacker doesn't even need a special tool like PsExec. They can do the exact same thing manually using command-line tools built right into Windows. After using net.exe to map a drive and copy their payload, they can use sc.exe to remotely create, start, and delete a service. This can be even stealthier because every tool involved is a trusted, Microsoft-signed binary (depending on the service binary you choose). It's important to remember that deleting the service does *not* stop the process; it only removes the registration entry, making forensics harder.
 
-![](_page_88_Picture_2.jpeg)
+![](SEC560_Book4_page_88_Picture_2.jpeg)
 
 ## **Vector: Windows Management Instrumentation (WMI)**
 
@@ -1438,9 +1438,9 @@ An attacker doesn't even need a special tool like PsExec. They can do the exact 
 
 WMI is a system administrator's best friend and, therefore, an attacker's playground. The simplest method is direct execution: an attacker remotely calls the Create method within the Win32\_Process class to launch a program. The dead giveaway is the process ancestry: your payload will appear as a child process of WmiPrvSE.exe, which could have a detective control inside the environment. A much stealthier approach is a permanent WMI Event Subscription. The attacker sets up a trigger (like a user logon) and an action (run my code). When the event fires, the core WMI service executes the payload directly, avoiding the suspicious WmiPrvSE.exe parentage entirely.
 
-![](_page_89_Picture_0.jpeg)
+![](SEC560_Book4_page_89_Picture_0.jpeg)
 
-![](_page_89_Picture_2.jpeg)
+![](SEC560_Book4_page_89_Picture_2.jpeg)
 
 ## **Vector: Windows Remote Management (WinRM)**
 
@@ -1456,7 +1456,7 @@ WMI is a system administrator's best friend and, therefore, an attacker's playgr
 
 WinRM is the modern protocol for Windows management, and it's what PowerShell Remoting is built on. It's a gift to attackers for two reasons. First, it communicates over standard HTTP/S ports, which are almost never blocked internally. Second, it is enabled by default on all Windows Server versions. It's a built-in, reliable, and stealthy highway for lateral movement. When a command is run via WinRM, it spawns under a wsmprovhost.exe process, giving defenders a clear parent process to monitor for suspicious activity.
 
-![](_page_90_Picture_2.jpeg)
+![](SEC560_Book4_page_90_Picture_2.jpeg)
 
 ## **Vector: Remote Desktop Protocol (RDP)**
 
@@ -1467,7 +1467,7 @@ WinRM is the modern protocol for Windows management, and it's what PowerShell Re
 
 RDP is ubiquitous, making it a go-to for attackers with valid credentials. A standard interactive logon gives them a full desktop, but it also creates a Logon Type 10 event (Event ID 4624), which logs their source IP. More advanced attackers can abuse RDP features like client drive mapping to exfiltrate data. Even more dangerous is session hijacking. An attacker with admin rights on a server can use a built-in utility (tscon.exe) to take over another user's disconnected session, instantly gaining all of that user's permissions without needing their password.
 
-![](_page_91_Picture_2.jpeg)
+![](SEC560_Book4_page_91_Picture_2.jpeg)
 
 ## **Advanced Vectors**
 
@@ -1481,9 +1481,9 @@ RDP is ubiquitous, making it a go-to for attackers with valid credentials. A sta
 
 The abuse doesn't stop there. Attackers can leverage obscure features like DCOM to remotely instantiate applications like the Microsoft Management Console (mmc.exe) and use its internal methods to run commands. In a SQL Server environment, they can pivot through misconfigured Linked Servers or use CLR integration to execute .NET code directly inside the sqlservr.exe process. These techniques underscore a key point: attackers exploit features, not just flaws.
 
-![](_page_92_Picture_0.jpeg)
+![](SEC560_Book4_page_92_Picture_0.jpeg)
 
-![](_page_92_Picture_1.jpeg)
+![](SEC560_Book4_page_92_Picture_1.jpeg)
 
 ## **Advanced Vector: Authentication Coercion**
 
@@ -1495,7 +1495,7 @@ The abuse doesn't stop there. Attackers can leverage obscure features like DCOM 
 
 This is where things get really interesting. Instead of hunting for credentials, an attacker can force a machine to give them up. Authentication coercion attacks abuse legitimate functions in Windows protocols that cause a victim machine—ideally a Domain Controller—to try and authenticate to the attacker. Exploits with names like PetitPotam and PrinterBug do exactly this. They send a specially crafted RPC request telling the server to fetch a file from a location the attacker controls. When the server tries to connect, it dutifully presents its credentials.
 
-![](_page_93_Picture_2.jpeg)
+![](SEC560_Book4_page_93_Picture_2.jpeg)
 
 ## **Critical Risk: The NTLMv1 Downgrade Attack**
 
@@ -1507,7 +1507,7 @@ This is where things get really interesting. Instead of hunting for credentials,
 
 The NTLMv1 protocol is fundamentally broken. Its cryptography is so weak that a captured Net-NTLMv1 hash can be cracked in a few hours by consumer GPUs (like the Nvidia RTX 4090 or 5090). An attacker can combine a coercion exploit with a tool like Responder to force a victim to downgrade to this broken protocol. When they crack the resulting hash, they don't get the password—they get the account's full NT hash. This is the ultimate prize. If the coerced account was a Domain Controller, the game is over. The only real defense is to disable NTLMv1 across your entire domain.
 
-![](_page_94_Picture_2.jpeg)
+![](SEC560_Book4_page_94_Picture_2.jpeg)
 
 ## **The Payoff: Coercion to Relay to Domain Compromise**
 
@@ -1521,15 +1521,15 @@ The NTLMv1 protocol is fundamentally broken. Its cryptography is so weak that a 
 
 Instead of cracking the hash, an attacker can relay it in real-time. The most devastating example is the ESC8 attack, which targets Active Directory Certificate Services (AD CS). The attacker coerces a Domain Controller to authenticate to them, but instead of capturing the hash, they forward (relay) the authentication attempt to the AD CS web server. Posing as the Domain Controller, they request a certificate. With that certificate, they can get a Kerberos ticket as the DC and use it to perform a DCSync attack, dumping every credential in the domain. Since domain controllers use their computer account for synchronizing credentials (DCSync), control over that domain controller computer account means control over the domain.
 
-![](_page_95_Picture_0.jpeg)
+![](SEC560_Book4_page_95_Picture_0.jpeg)
 
-![](_page_95_Picture_1.jpeg)
+![](SEC560_Book4_page_95_Picture_1.jpeg)
 
 # **Lateral Movement from Windows**
 
 Refer to the lab workbook for instructions.
 
-![](_page_96_Picture_2.jpeg)
+![](SEC560_Book4_page_96_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -1568,7 +1568,7 @@ Lab 4.5: Lateral Movement from Linux
 - Pivoting
 - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_97_Picture_2.jpeg)
+![](SEC560_Book4_page_97_Picture_2.jpeg)
 
 ## **Linux**
 
@@ -1587,7 +1587,7 @@ Many times, SSH requires a private key to authenticate to the system. This is a 
 
 As we'll see, Windows has many more protocols used for remote authentication and administration. This exposes many more ports and increases the likelihood that a mistake has been made that we can use to access those systems. Let's jump into Windows Lateral movement now.
 
-![](_page_98_Picture_1.jpeg)
+![](SEC560_Book4_page_98_Picture_1.jpeg)
 
 ## **SSH Local Port Forwarding**
 
@@ -1596,7 +1596,7 @@ As we'll see, Windows has many more protocols used for remote authentication and
 
 attacker \$ **ssh -L 127.0.0.1:8888:dev-web:80 user@pivot**
 
-![](_page_98_Picture_6.jpeg)
+![](SEC560_Book4_page_98_Picture_6.jpeg)
 
 attacker \$ **curl http://127.0.0.1:8888** Welcome to the internal webserver on dev-web You appear to be coming from the pivot system
 
@@ -1628,7 +1628,7 @@ Reverse port forwarding (also called remote port forwarding) is similar to local
 
 This is not commonly used and is only utilized in more complex situations. As such, it is not discussed in depth here.
 
-![](_page_100_Figure_0.jpeg)
+![](SEC560_Book4_page_100_Figure_0.jpeg)
 
 Reverse port forwarding (also called remote port forwarding) is similar to local port forwarding, except reversed. In this case, the listener runs on the remote system and connects back to a service accessible from our attacker system.
 
@@ -1648,7 +1648,7 @@ The reverse port forward can connect to a nearby web server too. This would make
 
 You may have noticed that the listeners we've used bind to ports above 1024 since you must have root access to bind to a port below 1024 (by default). Most SSH configurations do not allow root users to log in, so this is not possible without additional port redirection via the remote firewall.
 
-![](_page_101_Figure_0.jpeg)
+![](SEC560_Book4_page_101_Figure_0.jpeg)
 
 In the two previously discussed types of port forwarding, local and reverse, exactly one port is forwarded to exactly one other port. This is an excellent capability, but it can be onerous to set up many connections if you want to connect to many internal systems. The solution to this problem is to use dynamic port forwarding. To establish a dynamic port forward, use this command:
 
@@ -1666,19 +1666,19 @@ The TCP connection setup (SYN-SYN/ACK-ACK) is slowed, so the initial connection 
 
 This usually doesn't matter unless the application attempts to establish a large number of connections. For this reason, using NMAP through a SOCKS proxy is very, very slow.
 
-![](_page_102_Figure_0.jpeg)
+![](SEC560_Book4_page_102_Figure_0.jpeg)
 
 Next, we'll use SSH port forwarding to access the 10.130.11.13 system on port 445. First, we'll set up a local port forward; then, we'll configure Metasploit to use a dynamic port forwarding by configuring a SOCKS proxy.
 
-![](_page_103_Picture_0.jpeg)
+![](SEC560_Book4_page_103_Picture_0.jpeg)
 
-![](_page_103_Picture_1.jpeg)
+![](SEC560_Book4_page_103_Picture_1.jpeg)
 
 # **Lateral Movement from Linux**
 
 Refer to the lab workbook for instructions.
 
-![](_page_104_Picture_2.jpeg)
+![](SEC560_Book4_page_104_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -1726,11 +1726,11 @@ Lab 4.6: Impacket
 
 Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_105_Picture_0.jpeg)
+![](SEC560_Book4_page_105_Picture_0.jpeg)
 
 104
 
-![](_page_105_Picture_1.jpeg)
+![](SEC560_Book4_page_105_Picture_1.jpeg)
 
 ## **Overview**
 
@@ -1752,7 +1752,7 @@ Impacket has a number of "example" tools. Don't let the name fool you—the "exa
 
 Impacket is available at https://github.com/fortra/impacket.
 
-![](_page_106_Picture_2.jpeg)
+![](SEC560_Book4_page_106_Picture_2.jpeg)
 
 ## **Kerberos**
 
@@ -1770,7 +1770,7 @@ The ticketer.py tool is used to generate forged tickets and is used in the Golde
 
 We'll discuss Kerberos in more depth later, including using these tools.
 
-![](_page_107_Picture_2.jpeg)
+![](SEC560_Book4_page_107_Picture_2.jpeg)
 
 ## **Extracting Hashes**
 
@@ -1806,7 +1806,7 @@ The secretsdump.py tool uses various techniques to dump hashes and other secret 
 
 • https://www.coresecurity.com/core-labs/impacket
 
-![](_page_108_Picture_2.jpeg)
+![](SEC560_Book4_page_108_Picture_2.jpeg)
 
 ## **Impacket for Remote Execution**
 
@@ -1832,9 +1832,9 @@ As mentioned, Impacket includes a number of tools for remote execution. The tool
 
 The above is from https://www.coresecurity.com/core-labs/impacket.
 
-![](_page_109_Picture_0.jpeg)
+![](SEC560_Book4_page_109_Picture_0.jpeg)
 
-![](_page_109_Picture_1.jpeg)
+![](SEC560_Book4_page_109_Picture_1.jpeg)
 
 ## **Impacket Syntax**
 
@@ -1860,7 +1860,7 @@ We can optionally put the password on the command line after the username and a 
 
 Additionally, the command can be omitted, and the tool will provide an interactive shell. Not all tools support this feature.
 
-![](_page_110_Picture_1.jpeg)
+![](SEC560_Book4_page_110_Picture_1.jpeg)
 
 ## **smbexec.py vs. wmiexec.py**
 
@@ -1890,9 +1890,9 @@ The two tools, smbexec,py and wmiexec.py, are similar in what they do. How they 
 - Fewer Event Log entries since it does not create a service
 - Uses three TCP ports: 135, 445, and a dynamically allocated high port (for DCOM)
 
-![](_page_111_Picture_0.jpeg)
+![](SEC560_Book4_page_111_Picture_0.jpeg)
 
-![](_page_112_Picture_2.jpeg)
+![](SEC560_Book4_page_112_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -1929,7 +1929,7 @@ Lab 4.2: BloodHound
 - Pivoting
 - Lab 4.7: C2 Pivoting and Pass-the-Hash
 
-![](_page_113_Figure_0.jpeg)
+![](SEC560_Book4_page_113_Figure_0.jpeg)
 
 As you have seen, attackers can guess or crack passwords associated with a target system. However, both guessing and cracking require iterating through a series of password guesses, which could take a lot of time, depending on the complexity of the password hashing/crypto algorithm, the complexity of the passwords, and the number of resources the attacker can throw at the problem.
 
@@ -1954,7 +1954,7 @@ What are the advantages of pass-the-hash attacks? First, the attacker doesn't ha
 
 However, this form of attack does require the attacker to get access to the hashes in the first place, possibly dumping them from the target machine using admin privileges. But if the attacker already has admin privileges, why bother using pass-the-hash to obtain, well, the same admin privileges? Because with pass-the-hash, the attacker can directly utilize the Windows file and print sharing clients and management software. That's flexible access, without requiring any time-consuming password cracking or guessing.
 
-![](_page_115_Figure_0.jpeg)
+![](SEC560_Book4_page_115_Figure_0.jpeg)
 
 You'll notice that when we authenticate, Windows uses the hash as a starting point, not the original password. This means that if we have the hash, we can authenticate to the remote system just like a regular user.
 
@@ -1964,7 +1964,7 @@ Imagine if Windows didn't store the hash (or original password), then every time
 
 This issue is fundamentally due to the single sign-on feature of the Windows Domain.
 
-![](_page_116_Picture_2.jpeg)
+![](SEC560_Book4_page_116_Picture_2.jpeg)
 
 ## **Microsoft's Pass-the-Hash Mitigations**
 
@@ -1987,7 +1987,7 @@ All the on-premises authentication protocols (LANMAN Challenge/Response, NTLMv1,
 
 Will Schroeder has a great blog post on this subject that can help to further clarify KB2871997 and LocalAccountTokenFilterPolicy at redsiege.com/560/pth-mitigation.
 
-![](_page_117_Picture_2.jpeg)
+![](SEC560_Book4_page_117_Picture_2.jpeg)
 
 ## **C2 Frameworks and Pass-the-Hash**
 
@@ -2003,7 +2003,7 @@ Just because you have a hash that allows you access to other resources doesn't m
 
 Let your cracker run while you pass the hash. Cracking this password could allow you to access nondomain systems. Also, this password could be a clue to other passwords. A simple example would be a user having a password of Password1 in the domain and then using Password2 to access some other nondomain systems. Just because you can pass-the-hash, doesn't mean you shouldn't crack. Plus, cracking the password can demonstrate weaknesses in password selection or the password policy, both of which are important findings.
 
-![](_page_118_Picture_2.jpeg)
+![](SEC560_Book4_page_118_Picture_2.jpeg)
 
 ## **Metasploit's PsExec and Pass-the-Hash**
 
@@ -2023,7 +2023,7 @@ msf > exploit
 
 Metasploit's PsExec exploit supports pass-the-hash capabilities. The Metasploit user configures the SMBUser variable with an admin username and SMBPass as that administrator's hash in LM:NT format. It's just that easy. Metasploit's PsExec exploit can realize that we are using a hash here instead of a password and launch its attack using pass-the-hash, making the target run the Metasploit payload.
 
-![](_page_119_Picture_2.jpeg)
+![](SEC560_Book4_page_119_Picture_2.jpeg)
 
 ## **When to Use Each Password Attack Technique?**
 
@@ -2051,7 +2051,7 @@ If you have another type of password hash (salted or not), look to see if John t
 
 And finally, if you have Windows hashes and SMB access to a target environment but don't actually care what the passwords are, you can gain access to the target using pass-the-hash techniques in tools such as Mimikatz, Metasploit PsExec, and the Nmap NSE SMB scripts.
 
-![](_page_120_Picture_2.jpeg)
+![](SEC560_Book4_page_120_Picture_2.jpeg)
 
 ## **Course Roadmap**
 
@@ -2102,7 +2102,7 @@ Metasploit includes a route command to pivot through an already-exploited host v
 - Carries follow-on exploits and payloads across Meterpreter session
 - Don't confuse this with Meterpreter's route command, which displays or changes the routing tables on victims
 
-![](_page_121_Figure_6.jpeg)
+![](SEC560_Book4_page_121_Figure_6.jpeg)
 
 Metasploit includes a built-in feature for pivoting attacks through already-established Meterpreter sessions, implemented in the Metasploit route command. Do not confuse the Metasploit (msf) route command with the Meterpreter route command. The latter is used to manage the routing tables on a target box that has been compromised using the Meterpreter payload. The msf route command is used to direct all traffic for a given target subnet from the attacker's Metasploit machine through a given Meterpreter session on a compromised victim machine to another potential victim.
 
@@ -2112,7 +2112,7 @@ The syntax of the route command to add a pivot includes providing the subnet add
 
 (For example, to attack an individual (Victim2), we'd enter the full IP address of Victim2 and use a netmask of 255.255.255.255.) We then specify which Meterpreter session number to route the traffic over. Finally, we configure and launch our attack against Victim2. All traffic from Metasploit to Victim2 will be carried over the Meterpreter session through Victim1, giving us some nice pivot action.
 
-![](_page_122_Picture_2.jpeg)
+![](SEC560_Book4_page_122_Picture_2.jpeg)
 
 ## **Meterpreter Autoroute**
 
@@ -2135,7 +2135,7 @@ run post/multi/manage/autoroute CMD=add SUBNET=10.0.0.0 NETMASK=255.0.0.0
 
 After this command is executed in an existing Meterpreter session, all traffic to the 10.0.0.0/8 network would flow through the session and compromised host on the way to the targeted systems.
 
-![](_page_123_Picture_2.jpeg)
+![](SEC560_Book4_page_123_Picture_2.jpeg)
 
 ## **Port Forwarding Through a Meterpreter Session**
 
@@ -2185,25 +2185,25 @@ msf > set SRVPORT 9000
 msf > run
 ```
 
-![](_page_124_Figure_0.jpeg)
+![](SEC560_Book4_page_124_Figure_0.jpeg)
 
 For this lab, you'll attack machine 10.130.10.5 using credentials from a previously compromised user (hiboxy\bgreen). We'll grab hashes from this system and use those credentials to access other systems in the target network. The whole point of this lab is that you can grab LANMAN and NT hashes and use them for admin access of a target machine without even cracking them. Note that as you proceed through this lab, you never need to know what the actual value of the "antivirus" administrative-level password is. You simply use its hashed form to gain access.
 
-![](_page_125_Figure_0.jpeg)
+![](SEC560_Book4_page_125_Figure_0.jpeg)
 
 Earlier, we saw how psexec can grab hashes from a target Windows machine. Let's try another approach, still with the same goal of retrieving the hashes from our target, but this time by sending our SMB through some pivots. The .10.21 system is directly accessible on port 445, but the .11.13 system is not. Let's pivot!
 
 We are going to use Metasploit's psexec module to launch our attack over SMB, getting the Meterpreter to run on the accessible 10.130.10.21 system. Then, we'll use the .10.21 system to attack the 11.13 system.
 
-![](_page_126_Picture_0.jpeg)
+![](SEC560_Book4_page_126_Picture_0.jpeg)
 
-![](_page_126_Picture_1.jpeg)
+![](SEC560_Book4_page_126_Picture_1.jpeg)
 
 # **C2 Pivoting and Pass-the-Hash**
 
 Refer to the lab workbook for instructions.
 
-![](_page_127_Picture_2.jpeg)
+![](SEC560_Book4_page_127_Picture_2.jpeg)
 
 ## **Conclusion: Domain Privilege Escalation and Lateral Movement**
 
@@ -2230,7 +2230,7 @@ Lateral movement techniques showed us how to leverage both native Windows tools 
 
 Our next section, SEC560.5, will focus on maintaining our hard-won access through persistence techniques and evading the defensive controls that organizations deploy to detect and prevent our activities.
 
-![](_page_129_Picture_0.jpeg)
+![](SEC560_Book4_page_129_Picture_0.jpeg)
 
 General inquiries: info@sans.org Registration: registration@sans.org Tuition: tuition@sans.org Press: press@sans.org 301-654-SANS (7267)
 

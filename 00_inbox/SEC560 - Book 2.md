@@ -45,7 +45,7 @@ When invoked with the --version-trace option, Nmap displays each step of its ver
 - Receives data from the network and puts it on Standard Output (STDOUT)
 - Messages from Netcat itself are put on Standard Error (STDERR)
 
-![](_page_8_Figure_10.jpeg)
+![](SEC560_Book2_page_8_Figure_10.jpeg)
 
 Netcat is a general-purpose TCP and UDP network widget for Linux/UNIX and Windows, sending data to or from a given TCP or UDP port or listening for data to come in on a given TCP or UDP port. That's really it from a functionality perspective. But with those essential capabilities, we can use Netcat for all kinds of network-related tasks that penetration testers and ethical hackers may face every day. Netcat is available in many forms. The most common form, which we cover in this class, is the one installed by default on many variants of Linux. There is also a great version of Netcat for Windows, which we also cover and use in this class. The Nmap development team reimplemented most of Netcat's features in its tool called ncat, which includes SSL encryption capabilities.
 
@@ -55,7 +55,7 @@ When Netcat receives data from the network, it places it on Standard Output. Sta
 
 Alternatively, we could use Netcat with the -e *program* option, which tells Netcat to execute a program only after a connection is made (for TCP) or data arrives (for UDP). Also, -e has the effect not only of passing whatever Netcat receives on the network to the Standard Input of the program but also of sending the Standard Output of the program back across the network via Netcat. An important property of Netcat involves its use of Standard Error. Any messages from Netcat associated with what it's doing on the network are sent to Standard Error. Reading and interacting with this form of Netcat commentary is useful, as you will see.
 
-![](_page_9_Figure_0.jpeg)
+![](SEC560_Book2_page_9_Figure_0.jpeg)
 
 These are the most important command line options for Netcat. Although there are (many) others, knowing these can help you diagnose Netcat's use in about 95% of circumstances. The format is:
 
@@ -72,7 +72,7 @@ The targetIP is simply the other side's IP address or domain name. It is require
 - -w*N*: Timeout for connects, waits for N seconds. A Netcat client or listener with this option waits for N seconds to make a connection. If the connection doesn't happen in that time, Netcat stops running. If a connection does occur, Netcat sends or retrieves data. Then, after Standard In has been closed for a total of N seconds, Netcat stops running.
 - -u: UDP mode (The default is TCP)
 
-![](_page_10_Picture_1.jpeg)
+![](SEC560_Book2_page_10_Picture_1.jpeg)
 
 #### **Some Netcat Uses: Banner Grabbing**
 
@@ -117,7 +117,7 @@ In the screenshot on the slide, we used Netcat to connect to 10.130.10.10 on TCP
 
 We connected to 10.130.10.10 on TCP port 80. Nothing was immediately displayed, so we entered HEAD / HTTP/1.0, followed by Enter, Enter. The system told us that it was running Nginx along with its version number and underlying operating system type. Although these connection strings can be altered to fool an attacker, they usually tell the truth.
 
-![](_page_11_Picture_2.jpeg)
+![](SEC560_Book2_page_11_Picture_2.jpeg)
 
 # **Automating Banner Grabbing**
 
@@ -150,7 +150,7 @@ $ echo "" | nc -nvw2 [targetIP] [port-range]
 
 This will echo nothing onto Standard Output, piping that through a Netcat client. We echo nothing to force the closure of Standard Input. Remember, the wait option in Netcat (-wN) will wait for N seconds on an open port after there is no information on Standard Input. If we don't do this echo "", our Netcat client will hang on the first open port, waiting forever for Standard Input from the keyboard, so we purposely echo nothing to close off Standard Input. You'll see how this works in a lab shortly. We echo our nothing into a Netcat client (nc), verbosely printing output (-v) so we can see when a connection is made, not resolving names (-n) to keep clutter out of our output, waiting no more than 2 seconds to make a connection or after a connection is made (-w2) of the target IP address on the target range of ports. In the screenshot on the slide, you can see that we directed the scan at 10.130.10.10, finding some interesting listening ports that didn't return data (TCP 80) and some that did (TCP 22, and 21).
 
-![](_page_12_Picture_2.jpeg)
+![](SEC560_Book2_page_12_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -166,7 +166,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_12_Picture_10.jpeg)
+![](SEC560_Book2_page_12_Picture_10.jpeg)
 
 - Version Scanning with Nmap and Netcat
 - Visual Scanning with GoWitness
@@ -190,9 +190,9 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_13_Picture_0.jpeg)
+![](SEC560_Book2_page_13_Picture_0.jpeg)
 
-![](_page_13_Picture_1.jpeg)
+![](SEC560_Book2_page_13_Picture_1.jpeg)
 
 # **GoWitness**
 
@@ -210,7 +210,7 @@ GoWitness helps you visually triage systems quickly so you can be more efficient
 
 GoWitness is a web server reconnaissance tool written in Go that helps you visually triage large numbers of systems quickly during penetration tests by taking screenshots of web server home pages and capturing header information to speed analysis. Available at https://github.com/sensepost/gowitness/, it accepts flexible input formats including text files with URLs (one per line), Nmap and Nessus XML files, and CIDR ranges as targets. The tool runs a server where hosts can be scanned through a form page, and it stores detailed information about sites—including server headers, cookies, and other metadata—in a SQLite database. GoWitness can also run at regular intervals, making it useful as a monitoring solution for tracking changes in web infrastructure over time.
 
-![](_page_14_Picture_2.jpeg)
+![](SEC560_Book2_page_14_Picture_2.jpeg)
 
 #### **Running a Scan**
 
@@ -246,13 +246,13 @@ In our example, we'll scan a list of servers in an Nmap XML file, write the resu
 - **--write-db**: Saves discovered hosts and scan data into gowitness's SQLite database.
 - **-s screenshots**: Directory to save captured screenshots of web services.
 
-![](_page_15_Figure_0.jpeg)
+![](SEC560_Book2_page_15_Figure_0.jpeg)
 
 GoWitness can produce a report or run a server to view the results. There is also a dashboard with statistics about the hosts and scan details. The dashboard is more useful with very large scans. Hosts in the report are grouped by these categories. If a report is produced, the screenshots and data are packed into a Zip file.
 
-![](_page_16_Picture_0.jpeg)
+![](SEC560_Book2_page_16_Picture_0.jpeg)
 
-![](_page_16_Picture_1.jpeg)
+![](SEC560_Book2_page_16_Picture_1.jpeg)
 
 # **EyeWitness**
 
@@ -273,7 +273,7 @@ EyeWitness is available in two formats: Python for Linux systems and a .NET C# a
 
 Available at https://github.com/RedSiege/EyeWitness
 
-![](_page_17_Figure_0.jpeg)
+![](SEC560_Book2_page_17_Figure_0.jpeg)
 
 EyeWitness provides an easy way to get a feel for what kinds of web services are available in the target network. While it tries to identify "high value" targets, testers should always review all results.
 
@@ -283,7 +283,7 @@ Do a quick search using your favorite search engine, looking for the name of the
 
 dell idrac default password
 
-![](_page_18_Picture_2.jpeg)
+![](SEC560_Book2_page_18_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -323,7 +323,7 @@ Section 6: CTF and Next Steps
 
 18
 
-![](_page_19_Picture_1.jpeg)
+![](SEC560_Book2_page_19_Picture_1.jpeg)
 
 # **Methods for Discovering Vulnerabilities**
 
@@ -357,7 +357,7 @@ We analyze this issue of the safety of exploitation in further detail at the sta
 
 It's also important to note that not all vulnerabilities lead to exploitation. Many vulnerabilities don't let an attacker take over a machine at all. Instead, they could be associated with information leakage or other problems. As penetration testers and ethical hackers, we are interested in all kinds of vulnerabilities in a target environment. Our jobs involve reporting on the issues we discover, regardless of whether they can be exploited. Obviously, exploitable vulnerabilities have higher importance than non-exploitable issues, but all discovered flaws should be reported.
 
-![](_page_21_Picture_2.jpeg)
+![](SEC560_Book2_page_21_Picture_2.jpeg)
 
 #### **Scanner Goals**
 
@@ -389,7 +389,7 @@ Application scanners typically identify vulnerabilities in one specific applicat
 
 Penetration testers often use general-purpose scanners to quickly identify vulnerabilities across the network. To dig into a specific issue or application, or to secondarily confirm a vulnerability, a pen tester may use an application-specific scanner.
 
-![](_page_22_Picture_1.jpeg)
+![](SEC560_Book2_page_22_Picture_1.jpeg)
 
 # **Scan Types**
 
@@ -416,7 +416,7 @@ Agent-based scans are similar to authenticated scans in that the scan can find d
 
 For penetration testers, an unauthenticated scan is most common (if vulnerability scanning is done at all). Sometimes, but much less often, the penetration tester will be given credentials for scanning, or the target will provide scan results from an authenticated scan. While a penetration tester may get results from an agent-based scan, they won't be allowed to deploy their own agent to perform a scan.
 
-![](_page_23_Picture_2.jpeg)
+![](SEC560_Book2_page_23_Picture_2.jpeg)
 
 # **Safe Checks and Dangerous Plugins**
 
@@ -453,7 +453,7 @@ Results are a guide; adjust risk and recommendations as needed.
   - − Provide solutions specific to the target
 - While understanding vulnerability scanner output and tweaking scans is important, it is not the focus of this course (SEC460 covers this topic in depth)
 
-![](_page_24_Picture_15.jpeg)
+![](SEC560_Book2_page_24_Picture_15.jpeg)
 
 Scan results include an estimated risk associated with each issue. These results should be used as a guide and should not be copy/pasted into your report. You should adjust the results based on your experience and the potential impact on/to the target system/service.
 
@@ -467,7 +467,7 @@ Another key piece of scanner output is the recommendations and mitigations. The 
 
 While it is important to understand how to use a vulnerability scanner and digest its output, it is not the focus of this course. If you want to dive more deeply into vulnerability management, the process, and the configuration of vulnerability scanners, SANS offers an entire six-section course on the subject, SEC460: Enterprise and Cloud | Threat and Vulnerability Assessment. The course covers the entire vulnerability management process with sections on vulnerability scanner placement, configuration, and results interpretation.
 
-![](_page_26_Picture_2.jpeg)
+![](SEC560_Book2_page_26_Picture_2.jpeg)
 
 # **Nmap Version Scan as Vulnerability Scanner?**
 
@@ -486,7 +486,7 @@ It's important to note that while the version scan outputs can give you insight 
 
 However, outside of its version scanning functionality, Nmap has been extended to include a powerful feature to allow it to have complex interactions with targets using scripts to measure for vulnerabilities. This feature is called the Nmap Scripting Engine (NSE).
 
-![](_page_27_Picture_2.jpeg)
+![](SEC560_Book2_page_27_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -524,7 +524,7 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_28_Picture_2.jpeg)
+![](SEC560_Book2_page_28_Picture_2.jpeg)
 
 # **Nmap Scripting Engine**
 
@@ -580,7 +580,7 @@ To get details about the function of each script as well as potential arguments 
 
 For those scripts that support arguments, you can send the arguments by adding --script-args *arguments* to your command line invocation.
 
-![](_page_30_Picture_2.jpeg)
+![](SEC560_Book2_page_30_Picture_2.jpeg)
 
 # **NSE Script Categories**
 
@@ -662,7 +662,7 @@ In the scripts directory, there are several dozen scripts. Some of the more inte
 - A script that looks for Windows shells on TCP port 8888, which could easily be altered to look for them elsewhere
 - A script that analyzes whether an SMTP server can be used as a mail relay, thus leaving it open to abuse by spammers
 
-![](_page_33_Picture_2.jpeg)
+![](SEC560_Book2_page_33_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -678,7 +678,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_33_Picture_10.jpeg)
+![](SEC560_Book2_page_33_Picture_10.jpeg)
 
 - Visual Scanning with GoWitness
 - Vulnerability Scanning and Analysis
@@ -717,7 +717,7 @@ Lab 2.5: Metasploit and Meterpreter
   - − Modern operating systems have increased entropy when selecting initial values
   - − Better fingerprinting if the host returns RST on closed port (rare in modern networks)
 
-![](_page_34_Picture_9.jpeg)
+![](SEC560_Book2_page_34_Picture_9.jpeg)
 
 If possible, use OS-specific version scans instead of OS fingerprinting (like IIS, SMB, or SSH versions tied to OS releases)
 
@@ -743,7 +743,7 @@ It is important to note that Nmap focuses on active fingerprinting. That is, Nma
 |  |                                                                                   |
 |  |                                                                                   |
 
-![](_page_36_Picture_1.jpeg)
+![](SEC560_Book2_page_36_Picture_1.jpeg)
 
 # **Simple OS Categorization**
 
@@ -801,7 +801,7 @@ PORT STATE SERVICE VERSION
 
 Software version headers frequently reveal operating system information, with services like FTP, Telnet, SMTP, and SSH commonly exposing these details in their banners. These headers sometimes include not just the service name but also manufacturers, product version numbers, and even specific build numbers that provide valuable intelligence. The software versions themselves can be used to pinpoint exact OS versions—for example, OpenSSH 9.6p1 is specifically associated with Ubuntu 24.04, allowing us to deduce the underlying operating system from application-level banner information alone. There is a fantastic cheat sheet available at https://0xdf.gitlab.io/cheatsheets/os, which cross-references package repositories, Microsoft release information, and software versions to help determine operating systems.
 
-![](_page_38_Picture_1.jpeg)
+![](SEC560_Book2_page_38_Picture_1.jpeg)
 
 # **NTLMv1 & NTLMv2 for OS Fingerprinting**
 
@@ -828,7 +828,7 @@ PORT STATE SERVICE
 
 While Nmap's OS Detection feature doesn't provide us with much useful information, we have other options. There are NSE scripts to gather information from protocols that perform NTLMv1 and NTLMv2 authentication from Windows that can help us do this manually, as well.
 
-![](_page_39_Picture_2.jpeg)
+![](SEC560_Book2_page_39_Picture_2.jpeg)
 
 # **Identifying Network Devices**
 
@@ -859,13 +859,13 @@ For CDP: tcpdump -nn -v -I eth0 -s 1500 'ether[20:2] == 0x2000'
 For LLDP: tcpdump -nn -v -I eth0 -s 1500 'ether[12:2] == 0x88cc'
 ```
 
-![](_page_40_Picture_1.jpeg)
+![](SEC560_Book2_page_40_Picture_1.jpeg)
 
 # **Version Scanning, OS Detection, NSE, and GoWitness**
 
 Refer to the lab workbook for instructions.
 
-![](_page_41_Picture_2.jpeg)
+![](SEC560_Book2_page_41_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -910,7 +910,7 @@ Lab 2.4: Responder
 
 Lab 2.5: Metasploit and Meterpreter
 
-![](_page_42_Picture_2.jpeg)
+![](SEC560_Book2_page_42_Picture_2.jpeg)
 
 # **Background**
 
@@ -953,7 +953,7 @@ Before we can do any type of password attack or exploit any services, we need to
 
 We are going to discuss password guessing attacks next, followed by exploitation. We'll discuss payload attacks later in this course after we introduce C2 frameworks.
 
-![](_page_44_Picture_2.jpeg)
+![](SEC560_Book2_page_44_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -990,7 +990,7 @@ Section 6: CTF and Next Steps
 
 Lab 2.5: Metasploit and Meterpreter
 
-![](_page_45_Picture_2.jpeg)
+![](SEC560_Book2_page_45_Picture_2.jpeg)
 
 # **Password Guessing vs. Password Cracking**
 
@@ -1019,7 +1019,7 @@ Password guessing implies you are guessing one or more passwords against a syste
 
 With password cracking, you're not up against any lockout policies, as the login system isn't aware of how many times you've attempted to guess/hash/compare the stolen hash on your own machine.
 
-![](_page_46_Picture_2.jpeg)
+![](SEC560_Book2_page_46_Picture_2.jpeg)
 
 # **The Importance of Passwords**
 
@@ -1035,7 +1035,7 @@ Some less-experienced penetration testers fall into the mindset that exploits ar
 
 Although a good exploit of a target machine can go a long way, after that system is conquered, attackers often turn to password attacks to get access to other systems. In other words, neither exploits nor password attacks are sufficient by themselves for a solid penetration test. We need both.
 
-![](_page_47_Picture_2.jpeg)
+![](SEC560_Book2_page_47_Picture_2.jpeg)
 
 # **Credential Stuffing**
 
@@ -1053,7 +1053,7 @@ When a user uses the same password across multiple sites/entities, they are crea
 
 Organizations are trying to minimize the risk by adding extra security to passwords by adding 2FA/MFA or switching to "passwordless" authentication. In reality, passwordless authentication just moves the authentication to some other organization, such as your email provider or mobile carrier.
 
-![](_page_48_Figure_0.jpeg)
+![](SEC560_Book2_page_48_Figure_0.jpeg)
 
 The goal of a penetration test is to mimic the actions of a real-world attacker. The evil attackers are using leaked credentials from breaches, and we need to, too. There are a few paid services that allow you to search compromised credentials, most notably dehashed.com and leakcheck.net. To save costs or to customize their search capabilities, some penetration testers maintain their own breach databases where they manually import dumped credentials.
 
@@ -1082,7 +1082,7 @@ With a password spray attack, the attacker targets a large number of users with 
 
 An evil attacker does not care about account lockout and the potential for a denial of services. As penetration testers, we must take care not to hinder business operations and must, therefore, be careful to prevent account lockout.
 
-![](_page_50_Picture_2.jpeg)
+![](SEC560_Book2_page_50_Picture_2.jpeg)
 
 # **Making Good Guesses with a Custom Dictionary**
 
@@ -1110,7 +1110,7 @@ The number of passwords used in a password guessing attack is very small. Often,
 
 Common bad passwords used for password guessing include the CompanyName1 and Password1. Both of these passwords will pass most of the password complexity rules that require an uppercase letter, a lowercase letter, and a digit. Another very good guess is derived from the organization's password rotation policy. Users get tired of coming up with new passwords and use a scheme to remember passwords. If the password rotation policy requires a change every 90 days, then users will many times use a password of <season><year>; if monthly, then <month><year>. These schemes will pass most password complexity requirements and thwart the password repeat detection. Also, the previous season/month as well as the next season/month may work, as you won't know when users were last required to change their password.
 
-![](_page_51_Picture_1.jpeg)
+![](SEC560_Book2_page_51_Picture_1.jpeg)
 
 # **Trimming Word Lists with Hydra's pw-inspector**
 
@@ -1142,9 +1142,9 @@ The -c [count] option tells pw-inspector how many password criteria a given word
 - **-p**: The password must contain at least one printable character that is neither alphabetic nor numeric, which includes !@#\$%^&\*().
 - **-s**: The password must include characters not included in the other lists (such as nonprintable ASCII characters).
 
-![](_page_52_Picture_0.jpeg)
+![](SEC560_Book2_page_52_Picture_0.jpeg)
 
-![](_page_52_Picture_1.jpeg)
+![](SEC560_Book2_page_52_Picture_1.jpeg)
 
 # **Guessing Usernames**
 
@@ -1178,7 +1178,7 @@ It's important to note that account lockout is an issue for password guessing at
 
 While conducting a password-guessing attack, you may want to have personnel associated with the target environment monitor systems to determine if any accounts have been locked out by your work. Microsoft provides some separately downloadable free tools for Windows environments that can help with this tracking. The LockoutStatus.exe tool pulls information about locked-out accounts from Active Directory, letting an administrator pull the status regularly to see if accounts have been locked out recently while a test is running. Furthermore, the ALockout.dll tool helps troubleshoot account lockout problems by generating a text file showing the names of applications that are causing account lockout to happen in a Windows environment.
 
-![](_page_54_Picture_1.jpeg)
+![](SEC560_Book2_page_54_Picture_1.jpeg)
 
 #### **Account Lockout on Windows**
 
@@ -1293,7 +1293,7 @@ There are many different tools for password guessing. The most commonly used pas
 
 The choice of tool is often based on the protocol and authentication type, but for a given protocol and authentication type, there are often multiple tools that accomplish the same task, so the choice comes down to being a personal one. For example, Patator and Hydra both cover a lot of the common protocols. Some penetration testers like the simplicity of Hydra, while others like the granularity of Patator.
 
-![](_page_58_Picture_1.jpeg)
+![](SEC560_Book2_page_58_Picture_1.jpeg)
 
 # **THC-Hydra**
 
@@ -1398,13 +1398,13 @@ hydra [options] smb2 -m workgroup:{DOMAINNAME}
 
 Replace DOMAINNAME with the domain used in your target environment, such as hiboxy. The {} (curly braces) are required. Also, the keyword workgroup is required even though we are targeting the domain.
 
-![](_page_62_Picture_1.jpeg)
+![](SEC560_Book2_page_62_Picture_1.jpeg)
 
 # **Password Guessing**
 
 Refer to the lab workbook for instructions.
 
-![](_page_63_Picture_2.jpeg)
+![](SEC560_Book2_page_63_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1442,7 +1442,7 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_64_Picture_2.jpeg)
+![](SEC560_Book2_page_64_Picture_2.jpeg)
 
 #### **Azure**
 
@@ -1453,9 +1453,9 @@ Section 6: CTF and Next Steps
 - Microsoft Statement: 95% of Fortune 500s use Azure
 - Many companies are "accidentally" using Azure through their Office apps
 
-![](_page_64_Picture_10.jpeg)
+![](SEC560_Book2_page_64_Picture_10.jpeg)
 
-![](_page_64_Picture_11.jpeg)
+![](SEC560_Book2_page_64_Picture_11.jpeg)
 
 Over its long history, Microsoft has created a multitude of online services. Microsoft has had a consumerfacing set of online services like Microsoft Hotmail, Microsoft Accounts, and even today, Xbox Cloud. What about business or enterprise services? Microsoft started its online history somewhat haphazardly. Consumer accounts and security issues show up in backward-compatibility challenges that Microsoft has to support across its user base.
 
@@ -1516,7 +1516,7 @@ To assess cloud assets' security, we will focus on using the CLI tools that prov
 - Azure's RBAC (Role Based Access Control) IAM permissions are set *within* Azure, **not** Entra ID
   - − This is unique to Azure, as Entra ID can set scopes for third parties like Office
 
-![](_page_67_Picture_9.jpeg)
+![](SEC560_Book2_page_67_Picture_9.jpeg)
 
 When setting up Azure, you will have an Entra ID environment for the user and group management. Unlike the standard on-premises Active Directory ("Active Directory: Domain Services") system, Entra ID and Azure are almost intertwined. It is accessible from within the Azure Portal. It is also required for Azure to communicate. Entra ID has many built-in roles that can be used when communicating with thirdparty systems like Microsoft Office or, in the case of the graphic shown, Microsoft 365.
 
@@ -1530,7 +1530,7 @@ Entra ID roles can be used for specific Microsoft Services such as Microsoft 365
 
 • https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles
 
-![](_page_68_Picture_2.jpeg)
+![](SEC560_Book2_page_68_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1568,7 +1568,7 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_69_Picture_2.jpeg)
+![](SEC560_Book2_page_69_Picture_2.jpeg)
 
 #### **Microsoft Entra ID**
 
@@ -1589,7 +1589,7 @@ Microsoft Entra ID is the authentication and authorization system from Microsoft
 
 One of the system features is called Desktop SSO (or Seamless SSO), which provides the user with a seamless user experience once they are logged in to either the Entra ID domain by joining with Entra ID or using AD DS join. With this Seamless SSO command, a user can open a web browser, which can authenticate the user by leveraging the user's domain authentication or Entra ID authentication within the system.
 
-![](_page_70_Figure_0.jpeg)
+![](SEC560_Book2_page_70_Figure_0.jpeg)
 
 To better understand Entra ID, it is best to first understand how the user experience and the authentication system operate. It is also good to look at how the different parts of the system are supposed to operate and how they are not supposed to operate. Abuse will occur in the parts of the system that have to support protocols or mechanisms that might not have been designed with security in mind. Suppose a user wants to log in to a Microsoft Property, such as one of the following:
 
@@ -1602,7 +1602,7 @@ To better understand Entra ID, it is best to first understand how the user exper
 
 The first thing that happens is that Microsoft's authentication system detects that the email (or User Principal Name) is registered with an Entra ID tenant and will be forwarded to a Microsoft Sign In page that may seem familiar to you. This flow (usually an OpenID Connect Code Flow) will occur with a command-line interface tool launching a browser. At this point, it's also good to know that many of the systems that are known as "fat clients" will generally have a registered application in the Entra ID system, and these clients will send that application identifier as a client identifier in the system. This includes clients like Outlook, Word, Azure CLI, PowerShell CLI, and others.
 
-![](_page_71_Figure_0.jpeg)
+![](SEC560_Book2_page_71_Figure_0.jpeg)
 
 To make the authentication flow work, any property integrated with Entra ID, including Azure, will redirect you back to the Entra ID login endpoint, which points to login.microsoftonline.com. This is not the only authentication endpoint; other API endpoints handle authentication that we can also abuse and sometimes do not respect newer technologies like password-less authentications and MFA.
 
@@ -1618,11 +1618,11 @@ The following are the important components of this URL to key in on:
 
 Other components are useful for OAuth and OpenID Connect as well, but for now, the preceding fields are the ones relevant to our conversation.
 
-![](_page_72_Figure_0.jpeg)
+![](SEC560_Book2_page_72_Figure_0.jpeg)
 
 The username is now entered into the page, and Entra ID will perform some checks. It will check to make sure that the domain in question is registered. Some domains will be federated; in other words, their IdP is not in Entra ID but instead hosted on another IdP. If you are an Okta or Ping Federate user, this will be where you are redirected to those systems. If not, the next check is whether the User Principal Name, which you may recognize as the "username," is valid. If the username and password are accurate, the next check is a conditional access policy check. Can the user log in? Does the user's signal match the policy? What are the signals? Is the browser user agent string Windows Edge or Mobile? Does the user need to perform MFA? Is the user in a trusted location, or does the user require MFA? These items are validated to ensure that the user can get key material.
 
-![](_page_73_Figure_0.jpeg)
+![](SEC560_Book2_page_73_Figure_0.jpeg)
 
 Several things will happen now that we have a valid username and password. The first is that the Entra ID system will generate and provide a JWT (JSON Web Token), which serves as the authorization token as well as the identifier of the user. The system will also redirect us to the redirect\_uri value stated in the second portion of this set of slides. Regardless of whatever the redirect\_uri was set to, it will ask for and receive the access\_token. This value will be used to validate the user. We now see how a user can leverage Entra ID to perform authentication and authorization to third parties in this flow. We will see more of this in our labs and over the following few modules.
 
@@ -1646,7 +1646,7 @@ The most significant change you will see between Entra ID and Microsoft's on-pre
 
 scope of a virtual machine in Azure, the entire subscription, and the permission to read or write. Using a scope, you can control the ability to "write" changes to a virtual machine, but not a network group. Understanding scope is critical because it will impact what we can do in the system and, perhaps, how to escalate privileges.
 
-![](_page_76_Picture_1.jpeg)
+![](SEC560_Book2_page_76_Picture_1.jpeg)
 
 # **Identity Architectures in Microsoft**
 
@@ -1669,7 +1669,7 @@ The second type of system discussed in this class is Microsoft Entra ID or Entra
 
 The third type of server we will only lightly discuss here is the cloud-hosted Microsoft Entra Domain Services (Entra DS). Its primary purpose is to help facilitate legacy SMB and Active Directory access to servers running in the Azure Cloud. The cloud-hosted version of Active Directory has much fewer options and is more secure than the on-premises Active Directory. It cannot have users added to it—that is, the users from Entra ID. It doesn't support some of the more insecure features of Active Directory.
 
-![](_page_77_Picture_1.jpeg)
+![](SEC560_Book2_page_77_Picture_1.jpeg)
 
 # **Synchronization and Federation**
 
@@ -1696,7 +1696,7 @@ ADFS Federation works much like a federation to other third parties. Similar to 
 
 • https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-password-hashsynchronization
 
-![](_page_78_Picture_2.jpeg)
+![](SEC560_Book2_page_78_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1740,7 +1740,7 @@ Section 6: CTF and Next Steps
 - AADInternals from Dr. Nestori Syynimaa (@DrAzureAD) is one of these tools − Found on his blog at https://aadinternals.com/
 - A collection of PowerShell modules useful in both discovery and recon and in attack of Entra ID
 
-![](_page_79_Picture_6.jpeg)
+![](SEC560_Book2_page_79_Picture_6.jpeg)
 
 AADInternals is a collection of PowerShell scripts created by Dr. Nestori Syynimaa (@DrAzureAD), who maintains a blog at https://aadinternals.com/. The toolchain comes from many hours of reverse engineering Entra ID calls, as many of the features within the toolchain come from undocumented API calls.
 
@@ -1764,7 +1764,7 @@ Importing the AADInternals collection to the current PowerShell session is accom
 
 • https://aadinternals.com/aadinternals/#install-aadintptaspy
 
-![](_page_80_Picture_2.jpeg)
+![](SEC560_Book2_page_80_Picture_2.jpeg)
 
 #### **AADInternals Recon**
 
@@ -1825,7 +1825,7 @@ We must be careful and aware of throttling, detection, and rate limiting by the 
 
 • Red Siege Information Security: https://www.redsiege.com/m365
 
-![](_page_82_Figure_0.jpeg)
+![](SEC560_Book2_page_82_Figure_0.jpeg)
 
 Using the GetCredentialType endpoint for correct username enumeration on Azure involves three steps.
 
@@ -1903,7 +1903,7 @@ IfExists Result: \(.IfExistsResult) Throttle Result:
 
 84
 
-![](_page_85_Picture_1.jpeg)
+![](SEC560_Book2_page_85_Picture_1.jpeg)
 
 # **Username Enumeration: OAuth Token Endpoint (1)**
 
@@ -1984,7 +1984,7 @@ An error code of 50034 signifies that the user doesn't exist on the tenant.
 
 • Azure AADSTS Error Codes: https://docs.microsoft.com/en-us/azure/activedirectory/develop/reference-aadsts-error-codes#aadsts-error-codes
 
-![](_page_87_Figure_0.jpeg)
+![](SEC560_Book2_page_87_Figure_0.jpeg)
 
 For many years, Microsoft Exchange Online has supported legacy authentication. Legacy authentication refers to clients using Basic Authentication in their authentication requests, such as the Office 2010 client or any client using an older mail protocol such as IMAP or POP3. These older clients don't support modern authentication. Microsoft is pushing its customers to use modern authentication or OAuth 2.0 framework. These legacy authentication protocols include Exchange ActiveSync (EAS), Autodiscover, MAP4, POP3, Authenticated SMTP, and Exchange Online PowerShell.
 
@@ -2005,7 +2005,7 @@ As penetration testers, we need to know that multiple tools can still be used to
 - Exchange Online to retire Basic auth for Client Submission (SMTP AUTH): https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-clientsubmission-smtp-auth/4114750
 - Current Microsoft guidance: https://learn.microsoft.com/en-us/exchange/clients-and-mobile-inexchange-online/deprecation-of-basic-authentication-exchange-online
 
-![](_page_89_Picture_2.jpeg)
+![](SEC560_Book2_page_89_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2043,7 +2043,7 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_90_Figure_0.jpeg)
+![](SEC560_Book2_page_90_Figure_0.jpeg)
 
 Password spraying can be an effective technique for password guessing that involves sending requests for a list of all known usernames (or guessing from a list of potential usernames) with a single password attempt. We must be careful of account lockout and ensure that enough time passes between each spray. This technique will help prevent account lockout since only one password is attempted for all users rather than sending many password attempts against a single user. This method is more effective than brute force or word list guessing and can yield excellent results. After guessing a single password, the penetration tester can start reconnaissance with an initial foothold—an authenticated user account.
 
@@ -2062,7 +2062,7 @@ Since Azure is evolving its defensive countermeasures against this technique, ne
 - TrevorSpray: https://github.com/blacklanternsecurity/TREVORspray
 - Spray365: https://github.com/MarkoH17/Spray365
 
-![](_page_92_Picture_2.jpeg)
+![](SEC560_Book2_page_92_Picture_2.jpeg)
 
 # **Password Spraying Tool: TrevorSpray**
 
@@ -2130,7 +2130,7 @@ lockout-delay 60
 - TrevorSpray Github: https://github.com/blacklanternsecurity/TREVORspray
 - TrevorSpray Blog: https://github.com/blacklanternsecurity/TREVORspray/blob/trevorsprayv2/blogpost.md
 
-![](_page_94_Picture_2.jpeg)
+![](SEC560_Book2_page_94_Picture_2.jpeg)
 
 # **Password Spraying Tool: Spray365**
 
@@ -2201,7 +2201,7 @@ Entra Smart Lockout detects password spraying tools and invalidates their result
 
 *AADSTS50053: IdsLocked* - The account is locked because the user tried to sign in too many times with an incorrect user ID or password. The user is blocked due to repeated sign-in attempts.
 
-![](_page_96_Figure_9.jpeg)
+![](SEC560_Book2_page_96_Figure_9.jpeg)
 
 Both TrevorSpray and Spray365 detect Smart Lockout and support rotation of IP addresses!
 
@@ -2229,9 +2229,9 @@ Why does this matter? As Azure penetration testers, this feature matters to us b
 
 • Protect user accounts from attacks with Microsoft Entra smart lockout: https://learn.microsoft.com/enus/entra/identity/authentication/howto-password-smart-lockout
 
-![](_page_98_Picture_0.jpeg)
+![](SEC560_Book2_page_98_Picture_0.jpeg)
 
-![](_page_98_Picture_1.jpeg)
+![](SEC560_Book2_page_98_Picture_1.jpeg)
 
 # **Bypass Strategies for Avoiding Lockout**
 
@@ -2251,7 +2251,7 @@ The second option is to use a cloud API gateway service. For a long time, tester
 
 The third option is to avoid using the same Entra ID APIs to prevent lockout via a single API.
 
-![](_page_99_Picture_2.jpeg)
+![](SEC560_Book2_page_99_Picture_2.jpeg)
 
 # **Bypassing Technique: Rotating IP Addresses**
 
@@ -2294,15 +2294,15 @@ Result notes: This spray took just under 6 hours to complete against 1,013 Entra
 
 In some cases of more aggressive settings, Azure will start to detect malicious password spraying after 300 requests, invalidating the entire penetration test for that scan attempt.
 
-![](_page_101_Picture_0.jpeg)
+![](SEC560_Book2_page_101_Picture_0.jpeg)
 
-![](_page_101_Picture_1.jpeg)
+![](SEC560_Book2_page_101_Picture_1.jpeg)
 
 # **Azure Recon and Password Attacks**
 
 Refer to the lab workbook for instructions.
 
-![](_page_102_Picture_2.jpeg)
+![](SEC560_Book2_page_102_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2339,7 +2339,7 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_103_Picture_2.jpeg)
+![](SEC560_Book2_page_103_Picture_2.jpeg)
 
 #### **Kerberos and NTLMv2**
 
@@ -2376,7 +2376,7 @@ Relaying an SMB connection using NTLMv2, thereby obtaining access to a target sy
 
 We will discuss both attack strategies in depth! Note that for both attack strategies, it would be useful for the attacker to lure victims into connecting to their machines (as this would allow them to both sniff the NTLMv2 challenge-response AND relay SMB connections). How could we achieve this?
 
-![](_page_105_Picture_2.jpeg)
+![](SEC560_Book2_page_105_Picture_2.jpeg)
 
 # **Sniffing Windows Challenge/Response Authentication**
 
@@ -2387,7 +2387,7 @@ We will discuss both attack strategies in depth! Note that for both attack strat
   - − On the system being authenticated to
 - Or trick the user into doing challenge/response authentication with the attacker's machine
 
-![](_page_105_Picture_10.jpeg)
+![](SEC560_Book2_page_105_Picture_10.jpeg)
 
 For a final approach to grabbing hashes, by sniffing challenge/response authentication from the network as users authenticate to file servers or domain controllers, the attacker can gather hashes suitable for cracking.
 
@@ -2418,7 +2418,7 @@ Finally, we need to crack. We can crack the hashes with Hashcat.
 
 PCredz is available at https://github.com/lgandx/PCredz.
 
-![](_page_107_Figure_0.jpeg)
+![](SEC560_Book2_page_107_Figure_0.jpeg)
 
 # **Extracting Hashes with PCredz**
 
@@ -2450,7 +2450,7 @@ sec560@560vm:~\$ cd /opt/PCredz/
 
 sec560@560vm:/opt/PCredz\$ python3 ./Pcredz -f /tmp/winauth.pcap
 
-![](_page_108_Picture_2.jpeg)
+![](SEC560_Book2_page_108_Picture_2.jpeg)
 
 # **Getting the Hashes from PCredz's Log File**
 
@@ -2466,7 +2466,7 @@ With Hashcat and mode 5600, we can use a command like this:
 
 \$ hashcat -w 3 -a 0 -m 5600 NTLMv2.txt password.lst
 
-![](_page_109_Picture_2.jpeg)
+![](SEC560_Book2_page_109_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2503,11 +2503,11 @@ Section 6: CTF and Next Steps
 - Metasploit and Meterpreter
   - Lab 2.5: Metasploit and Meterpreter
 
-![](_page_110_Picture_0.jpeg)
+![](SEC560_Book2_page_110_Picture_0.jpeg)
 
 109
 
-![](_page_110_Picture_1.jpeg)
+![](SEC560_Book2_page_110_Picture_1.jpeg)
 
 # **Overview**
 
@@ -2536,7 +2536,7 @@ Both protocols allow hosts on the same subnet to resolve hostnames by sending re
 
 The latest version of Responder can be found here: https://github.com/lgandx/Responder.
 
-![](_page_111_Figure_0.jpeg)
+![](SEC560_Book2_page_111_Figure_0.jpeg)
 
 In the screenshot, we can see Responder fulfilling its bidding: It's capturing an NTLM(v2) challenge/response hash from a system. We can deduce the following:
 
@@ -2546,7 +2546,7 @@ The victim username is SEC560STUDENT\clark
 
 Responder tricked the victim into connecting by "poisoning" the resolution for hostname "WINDOWS01".
 
-![](_page_112_Figure_0.jpeg)
+![](SEC560_Book2_page_112_Figure_0.jpeg)
 
 Another interesting attack opportunity using Responder is to leverage the "Autodetect Proxy Settings." Automatic proxy detection is a feature by which a Web Proxy is automatically identified by the system; this feature is also known as Web Proxy Auto-Discovery (WPAD). When automatic proxy detection is enabled, the system's WebProxy class attempts to locate the proxy configuration script using the following steps:
 
@@ -2560,7 +2560,7 @@ In case all of the above does not return a result, the settings configured in th
 
 As we saw earlier, Responder will provide the answer the host is looking for; it will respond to the "WPAD" NBT-NS/LLMNR resolution request. As designed, the hosts that pick up the name resolution will now start using the Responder host as their web proxy. This is a pretty effective Man-in-the-Middle attack. Now Responder can take this a step further; it can be configured to force NTLM authentication. When enforced, the hosts using Responder as their proxy server will now include their NTLM authentication in their requests.
 
-![](_page_113_Picture_2.jpeg)
+![](SEC560_Book2_page_113_Picture_2.jpeg)
 
 # **Other Tricks to Obtain NetNTLMv2 Challenge/Response**
 
@@ -2587,7 +2587,7 @@ Embedding an SMB share to an image in web application source code. If the victim
 
 • https://redsiege.com/560/netntlm
 
-![](_page_114_Picture_0.jpeg)
+![](SEC560_Book2_page_114_Picture_0.jpeg)
 
 So, how can we now use these NTLMv2 challenges and responses? As we will see in the next few slides, relaying them is an interesting attack vector! There are other options, however. We could also try to deduce the password by launching dictionary or brute force attacks against the challenge response. In this case, we would take the challenge and attempt all possible passwords/hashes to calculate a response identical to the one that was captured. When it's found, we have the valid credentials that were entered.
 
@@ -2603,7 +2603,7 @@ password\_list.txt is the dictionary file including all passwords we want to try
 
 cracked.txt is where we want to write our output
 
-![](_page_115_Figure_0.jpeg)
+![](SEC560_Book2_page_115_Figure_0.jpeg)
 
 SMB relaying is an attack where we relay attempted NTLMv2 authentication against our machine to another system in order to obtain unauthorized access to this machine. Typical use cases include automated vulnerability scanners, which are scripts created by administrators. So, how does it actually work?
 
@@ -2625,7 +2625,7 @@ In order to "close the loop," we forward an "authentication failure" message to 
 
 For simplicity reasons, we've omitted a possible "domain-based" environment in the diagram above (the Windows server does local authentication). In a domain-based environment, the Windows server would forward the challenge and response to a domain controller.
 
-![](_page_116_Figure_0.jpeg)
+![](SEC560_Book2_page_116_Figure_0.jpeg)
 
 For maximum effect, we could combine Responder with the SMB relaying attack! The initial authentication request required by the SMB relay attack could be obtained by Responder's multicast resolution capabilities (using NBT-NS or LLMNR)! Consider the following attack flow:
 
@@ -2649,7 +2649,7 @@ If authorized, the target Windows server grants us authentication.
 
 In order to "close the loop," we forward an "authentication failure" message to the victim.
 
-![](_page_117_Picture_2.jpeg)
+![](SEC560_Book2_page_117_Picture_2.jpeg)
 
 # **Responder Attacks: Understanding the Defenses**
 
@@ -2677,7 +2677,7 @@ Isolate clients using, for example, private VLANs. This prevents hosts from comm
 
 # **Responder Limitations**
 
-![](_page_118_Picture_3.jpeg)
+![](SEC560_Book2_page_118_Picture_3.jpeg)
 
 - A DNS lookup must fail before name resolution can be poisoned
 - Hardened Windows systems do not use NBT-NS, LLMNR, or mDNS
@@ -2697,9 +2697,9 @@ Lastly, while not a limitation of Responder itself, real threat actors are rarel
 
 While penetration tests should call out all validated vulnerabilities, it is equally important to characterize the risk appropriately. There may be other vulnerabilities or misconfigurations that are more likely to be attacked by a threat actor. Since our job is to emulate real-world, realistic adversaries, it's counterproductive to emphasize the business risk from a flaw that is less commonly exploited by real-world adversaries.
 
-![](_page_119_Picture_0.jpeg)
+![](SEC560_Book2_page_119_Picture_0.jpeg)
 
-![](_page_119_Picture_2.jpeg)
+![](SEC560_Book2_page_119_Picture_2.jpeg)
 
 # **Active Directory Integrated DNS Attacks**
 
@@ -2720,13 +2720,13 @@ A more effective option for penetration testers is to create a wildcard (\*) DNS
 
 • https://www.netspi.com/blog/technical/network-penetration-testing/exploiting-adidns/
 
-![](_page_120_Figure_0.jpeg)
+![](SEC560_Book2_page_120_Figure_0.jpeg)
 
 While traditional Responder attacks are limited to the broadcast domain of the attacking system, a wildcard DNS record can be used to attack any system in the enterprise. This includes hosts in different subnets, and even hosts in different locations.
 
 Because of the increased scope of the attack, it is important to use this carefully. Creating a wildcard record could produce more traffic than anticipated. It's also possible that the attack will compromise credentials from systems and users that are out of scope, such as systems or users on a partner company's network. This attack should be discussed in-depth during the Rules of Engagement phase of pre-test planning.
 
-![](_page_121_Picture_2.jpeg)
+![](SEC560_Book2_page_121_Picture_2.jpeg)
 
 # **Creating a Wildcard DNS Record**
 
@@ -2757,9 +2757,9 @@ PS C:\Tools\Powermad> Disable-ADIDNSNode -Node \* -Verbose
 
 DNSUpdate's only purpose is to create DNS records via LDAP as an authenticated user. It is included with the additional tools and scripts that come with Responder.
 
-![](_page_122_Picture_0.jpeg)
+![](SEC560_Book2_page_122_Picture_0.jpeg)
 
-![](_page_123_Picture_2.jpeg)
+![](SEC560_Book2_page_123_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2802,7 +2802,7 @@ Lab 2.3: Azure Recon and Password Attacks
 
 Lab 2.5: Metasploit and Meterpreter
 
-![](_page_124_Picture_2.jpeg)
+![](SEC560_Book2_page_124_Picture_2.jpeg)
 
 # **What Is Exploitation?**
 
@@ -2838,7 +2838,7 @@ Of course, any of these actions is significant and could impact a production env
 - Exploitation leads to post-exploitation
   - − Helps us understand the business risks due to discovered vulnerabilities
 
-![](_page_125_Picture_11.jpeg)
+![](SEC560_Book2_page_125_Picture_11.jpeg)
 
 Why would we consider exploiting a target machine during a test? First, keep in mind that not all tests actually involve exploitation. Some target organizations merely want a list of potential vulnerabilities, or even just open ports for their test results, without any more detailed confirmation of the exploitability of the targets.
 
@@ -2877,7 +2877,7 @@ Another concern with exploitation involves inadvertently attacking the wrong sys
 
 Because of all these concerns, not only should exploitation be discussed with the target organization in the context of the whole project, but it should also be addressed on a system-by-system basis. That is, before running exploits against a particular machine, check with target organization personnel to make sure the given target is in scope and to find out whether accessing it or viewing data from it has any implications.
 
-![](_page_127_Picture_2.jpeg)
+![](SEC560_Book2_page_127_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2935,7 +2935,7 @@ A penetration tester may need to use any of these kinds of exploits during a pro
 
 New vulnerabilities that fit into these three categories are discovered on a regular basis. Penetration testers and ethical hackers need to stay abreast of current issues as well as important vulnerabilities and related exploits from the recent past.
 
-![](_page_129_Figure_0.jpeg)
+![](SEC560_Book2_page_129_Figure_0.jpeg)
 
 the network for incoming data
 
@@ -2949,7 +2949,7 @@ Of course, for a service-side exploit to work, the attacker must get packets to 
 
 After the attacker gains access to one machine inside the firewall (perhaps with a service-side exploit or even with one of the client-side exploits we'll discuss later), the attacker can use that system to pivot, exploiting other systems.
 
-![](_page_130_Figure_0.jpeg)
+![](SEC560_Book2_page_130_Figure_0.jpeg)
 
 In the past few years, the number of service-side vulnerabilities and public exploits for those flaws has shrunk. They haven't disappeared, but gone are the heady days of 2000 to 2004 when a new service-side vulnerability seemed to appear every few weeks. Attackers have adapted, and as penetration testers and ethical hackers, we must adapt too if we want to find the kinds of flaws that are commonly exploited today. **Whenever a penetration test or ethical hacking project includes client-side exploitation within scope, the successful compromise of at least one target is common.**
 
@@ -2986,7 +2986,7 @@ If software does all three of the below, it will *always* have vulns:
 - − Limits the damage of exploitation
 - − Incredibly rare outside of web browsers and AV/EDR
 
-![](_page_131_Picture_11.jpeg)
+![](SEC560_Book2_page_131_Picture_11.jpeg)
 
 Google's "Rule of 2" is a security principle that aims to predict the vulnerability footprint of a software system based on three critical risk factors. If a software system encompasses all three factors, it is almost guaranteed to harbor vulnerabilities:
 
@@ -2998,7 +2998,7 @@ Google's "Rule of 2" is a security principle that aims to predict the vulnerabil
 
 According to Google, the combination of these three factors creates a high-risk environment where vulnerabilities are not just possible but are likely. This guideline underscores the importance of cautious design choices in software development, promoting the use of safer languages, rigorous input validation, and robust isolation techniques to mitigate potential security threats.
 
-![](_page_132_Picture_2.jpeg)
+![](SEC560_Book2_page_132_Picture_2.jpeg)
 
 # **Notable Client-Side Exploits: Commonly Vulnerable Software**
 
@@ -3013,7 +3013,7 @@ According to Google, the combination of these three factors creates a high-risk 
 - Runtime environments:
   - − Java
 
-![](_page_132_Picture_14.jpeg)
+![](SEC560_Book2_page_132_Picture_14.jpeg)
 
 On the client side, there are a plethora of exploitable vulnerabilities. The target applications tend to fall into one of these categories:
 
@@ -3025,7 +3025,7 @@ On the client side, there are a plethora of exploitable vulnerabilities. The tar
 
 These aren't the only exploitable client programs available, but these categories tend to offer testers the most fertile attack surface.
 
-![](_page_133_Picture_2.jpeg)
+![](SEC560_Book2_page_133_Picture_2.jpeg)
 
 # **Mounting a Client-Side Exploitation Campaign**
 
@@ -3063,7 +3063,7 @@ Guardrails can be an important piece of your payloads to reduce the likelihood o
 
 134
 
-![](_page_135_Picture_1.jpeg)
+![](SEC560_Book2_page_135_Picture_1.jpeg)
 
 # **Using Payloads on Target Systems**
 
@@ -3082,7 +3082,7 @@ After we develop an inventory of client-side programs, how can we then test whet
 
 **Email with links:** The tester could send email with links that point back to the tester's machines with exploits ready to be served. Target personnel would have to click these links, of course, to automatically invoke the appropriate client software to access the tester's environment. The Core IMPACT commercial exploitation tool includes functionality that will automatically generate and send email containing links. Alternatively, you could generate such email manually. Be careful in determining who you send these email messages to, making sure that such recipient personnel are explicitly in the project's scope.
 
-![](_page_136_Picture_2.jpeg)
+![](SEC560_Book2_page_136_Picture_2.jpeg)
 
 # **Use Appropriate, Representative Client Machines**
 
@@ -3097,7 +3097,7 @@ Use a computer and account from a recently separated employee to get the best "r
 
 When performing this client-side testing, make sure that target personnel use a representative sample of one or more client machines to access your test environment. Quite often, when conducting such tests, target personnel say, "OK, I'm almost ready to access your systems, but let me just update my patches first." This happens all the time and is, unfortunately, not an adequate test of the risks faced by the target organization. Make sure that a stock laptop that has the same patch level as the common users in the target environment is employed. You also may want to have this understanding included in the project's Rules of Engagement or scoping agreement.
 
-![](_page_137_Picture_2.jpeg)
+![](SEC560_Book2_page_137_Picture_2.jpeg)
 
 # **Local Privilege Escalation Exploits**
 
@@ -3112,7 +3112,7 @@ When performing this client-side testing, make sure that target personnel use a 
 
 # Target Machine
 
-![](_page_137_Picture_12.jpeg)
+![](SEC560_Book2_page_137_Picture_12.jpeg)
 
 Besides service-side and client-side exploits, a third category of exploit often becomes important when a tester compromises a machine: local privilege escalation exploits. With these issues, an attacker must first have some form of access to a machine, with the ability to run commands on it with limited privileges. The attacker may have gotten such access by using a client-side or service-side exploit of a program running with limited privileges. Or the attacker may have successfully guessed a password to a lowerprivileged account. Alternatively, the attacker may have sniffed a password from the network as it passed by a machine on which the attacker already gained high-privileged access to run a sniffer. The password gathered by the sniffer may provide limited-privilege access to an account on another system.
 
@@ -3122,7 +3122,7 @@ After the attacker attains superuser privileges, they can then read any file on 
 
 Many organizations do not patch local privilege escalation vulnerabilities quickly because most vendors do not rate such issues as Critical. Microsoft, as well as many other vendors, tends to rate such issues as Important, at best.
 
-![](_page_138_Picture_2.jpeg)
+![](SEC560_Book2_page_138_Picture_2.jpeg)
 
 # **Local Privilege Escalation Attack Categories and Suites**
 
@@ -3153,7 +3153,7 @@ Meterpreter getsystem command and post modules in more detail during the Metaspl
 
 • linPEASS: https://github.com/carlospolop/PEASS-ng
 
-![](_page_140_Picture_2.jpeg)
+![](SEC560_Book2_page_140_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -3198,7 +3198,7 @@ Lab 2.4: Responder
 
 Lab 2.5: Metasploit and Meterpreter
 
-![](_page_141_Picture_2.jpeg)
+![](SEC560_Book2_page_141_Picture_2.jpeg)
 
 # **Metasploit Exploitation Framework**
 
@@ -3212,7 +3212,7 @@ Lab 2.5: Metasploit and Meterpreter
   - − Tested and used most frequently on Debian-derived Linux, though
   - − General advice: Use the best-supported platform whenever possible
 
-![](_page_141_Picture_13.jpeg)
+![](SEC560_Book2_page_141_Picture_13.jpeg)
 
 The Metasploit Framework (sometimes abbreviated MSF) is a free, open-source exploitation framework. There are similar tools available on a commercial basis, such as Rapid7's Metasploit Pro, Raphael Mudge's Cobalt Strike, Core Security Technologies' IMPACT, and Immunity's CANVAS. But even testers who have access to such commercial tools often augment their arsenal with the free version of Metasploit, a tremendous tool for attacks.
 
@@ -3222,7 +3222,7 @@ Also, with a large arsenal of exploits, the framework can standardize the usage 
 
 Metasploit runs on Linux, macOS, and Windows. However, according to the Metasploit documentation for some versions of the tool, "The Metasploit Framework is only partially supported on the Windows platform. If you would like to access most of the Framework features from Windows, we recommend using a virtualization environment, such as VMware, with a supported Linux distribution .…" There is no detailed documentation for which feature may be broken on Windows, so your best bet is to install it on another type of system, such as Linux. If a given feature happens to not function properly in Metasploit on Windows during a penetration test, you will get a false sense of the true vulnerability status of the target machine, making your test far less valuable. Use it on Linux or macOS to help ensure it functions properly.
 
-![](_page_142_Figure_0.jpeg)
+![](SEC560_Book2_page_142_Figure_0.jpeg)
 
 141
 
@@ -3236,7 +3236,7 @@ Metasploit also includes post modules. Penetration testers use these after succe
 
 Many security researchers release new exploits on a regular basis for newly discovered vulnerabilities as Metasploit modules that are integrated into the Metasploit framework and ready to use. Some researchers work on new payloads, creating new capabilities usable by the exploits already included in Metasploit.
 
-![](_page_143_Picture_2.jpeg)
+![](SEC560_Book2_page_143_Picture_2.jpeg)
 
 # **Useful Metasploit User Interfaces**
 
@@ -3294,7 +3294,7 @@ Now let's zoom in on the exploits. In Metasploit, the exploits are sorted by ope
 
 Each directory of exploits for a given operating system contains exploits that target software that is built into that operating system, as well as third-party programs that run on the operating system. For example, the Windows directory contains exploits not only for Windows but also for tools that run on Windows, such as antivirus tools, backup programs, games, mail servers (IMAP and POP3), and so on.
 
-![](_page_146_Picture_2.jpeg)
+![](SEC560_Book2_page_146_Picture_2.jpeg)
 
 # **Windows Exploits**
 
@@ -3350,7 +3350,7 @@ The folks at Rapid7 have ranked exploits within Metasploit based on their likeli
 - **stagers**: Tiny shellcode that first loads the stage, communicating with the attacker in numerous flexible fashions
 - **stages**: The "real" payload, loaded by the stager or embedded into a single.
 
-![](_page_148_Figure_7.jpeg)
+![](SEC560_Book2_page_148_Figure_7.jpeg)
 
 Next, let's look at the payloads, which come in the following forms:
 
@@ -3446,7 +3446,7 @@ The stager's job is to load a stage into memory and provide communication abilit
 
 It's important to note that both 32-bit (x86) and 64-bit (x64) versions of the Meterpreter, Shell, and VNCinject stages are available.
 
-![](_page_152_Figure_0.jpeg)
+![](SEC560_Book2_page_152_Figure_0.jpeg)
 
 The Meterpreter is named after a fusion of the words Metasploit and Interpreter. Most of the hard-core development work in the Meterpreter was done by Skape. This Metasploit payload offers an attacker a self-contained command shell environment that runs from within the memory space of an exploited process. Thus, the Meterpreter doesn't create a separate running process like most other Metasploit payloads and other exploitation tools. Such an extraneous, attacker-created process might be noticed by an investigator. Instead, the Meterpreter is just another DLL loaded into one of the processes on the target machine. The Meterpreter can be extended with additional DLLs sent after the initial overall Meterpreter module is loaded.
 
@@ -3474,7 +3474,7 @@ Some of the base commands included in the Meterpreter follow:
 
 **shell**: Launch a command shell and interact with it.
 
-![](_page_154_Picture_0.jpeg)
+![](SEC560_Book2_page_154_Picture_0.jpeg)
 
 The Meterpreter includes numerous useful commands for interacting with processes on a compromised target machine. Some of the most useful process-related commands follow:
 
@@ -3520,7 +3520,7 @@ The Meterpreter offers numerous commands associated with interacting with the fi
 
 **edit**: This command causes Metasploit to open a file in a terminal-based editor program. By default, the editor used is typically vi. To insert text, press the "i" key. To append text to a line, press the "a" key. To delete characters, press the "x" key. To get out of edit mode, press "Esc". To save, press ":" and then "w" and then "Enter". To quit, press ":" and "q" and "Enter". To force a write or a quit, follow the "w" or "q" with an "!". This class isn't a tutorial on vi. However, if you are unfamiliar with vi, that list of options should get you started. If you already know vi, you will be happy with the edit option of the Meterpreter.
 
-![](_page_156_Figure_0.jpeg)
+![](SEC560_Book2_page_156_Figure_0.jpeg)
 
 The Meterpreter includes a handful of commands for interacting with the network interface of the target machine. Although not fully robust, these commands include most of the functionality that a penetration tester would want:
 
@@ -3536,13 +3536,13 @@ meterpreter > portfwd add -l 9999 -p 22 -r Target2
 
 This command makes the attacker's machine (not Target1) listen on TCP port 9999. Any connection that comes in on this port will be forwarded across the Meterpreter session between the attacker's machine and Target1. Then, the connection will be forwarded from Target1 to TCP port 22 on Target2. That way, the attacker can make a TCP connection on the attacker's own machine (either by using a client running on that box to connect to localhost or from a separate remote system connecting to the attacker's machine on TCP 9999). The result is a nice pivot through the attacker's machine, through the Meterpreter session, through Target1, and to Target2.
 
-![](_page_157_Figure_0.jpeg)
+![](SEC560_Book2_page_157_Figure_0.jpeg)
 
 The Meterpreter includes several features for interacting with the console of the target machine. First, it includes the screenshot command, which grabs a JPEG capture of the current user's desktop on the target machine and transfers the file to the penetration tester's system. Metasploit automatically launches the browser to view the image.
 
 The idletime command makes the Meterpreter display the amount of time (in hours, minutes, and seconds) that the GUI of the victim machine has been idle, without user interaction. Thus, the attacker can get a sense of whether a person is sitting in front of the machine. A long idle time implies that the machine is being ignored.
 
-![](_page_158_Picture_2.jpeg)
+![](SEC560_Book2_page_158_Picture_2.jpeg)
 
 # **Meterpreter Functionality: Keystroke Logger**
 
@@ -3561,7 +3561,7 @@ The keyscan\_start command causes the system to poll every 30 milliseconds for k
 
 The keyscan\_stop command tells the Meterpreter to stop gathering all keystrokes.
 
-![](_page_159_Picture_2.jpeg)
+![](SEC560_Book2_page_159_Picture_2.jpeg)
 
 #### **Meterpreter Functionality: Pivoting Using Metasploit's route Command**
 
@@ -3595,7 +3595,7 @@ To make this clearer, consider this scenario, illustrated by the commands and fi
 
 The syntax of the route command to add a pivot includes providing the subnet address to which we want our traffic routed over the Meterpreter session, followed by a netmask to indicate which bits of that subnet address are relevant. (For example, to attack an individual Victim2, we'd enter the full IP address of Victim2 and use a netmask of 255.255.255.255.) We then specify which Meterpreter session number to route the traffic over. Finally, we configure and launch our attack against Victim2. All traffic from Metasploit to Victim2 will be carried over the Meterpreter session through Victim1, giving us some nice pivot action.
 
-![](_page_160_Picture_2.jpeg)
+![](SEC560_Book2_page_160_Picture_2.jpeg)
 
 # **Meterpreter Functionality: Additional Modules**
 
@@ -3623,7 +3623,7 @@ The appropriate module will be loaded into the memory of the target machine, ext
 
 Other people could write additional extensions for the Meterpreter, giving it new capabilities bundled together in another DLL. One of the most powerful aspects of the Meterpreter is its modular extendibility.
 
-![](_page_161_Picture_2.jpeg)
+![](SEC560_Book2_page_161_Picture_2.jpeg)
 
 # **Overview: Lab 2.5: Metasploit and Meterpreter**
 
@@ -3632,7 +3632,7 @@ In this lab, we'll exploit a vulnerable version of the Apache Cassandra for Wind
 - And inject a reverse shell Meterpreter payload
 - Apache Cassandra is a Java based open source NoSQL database server
 
-![](_page_161_Picture_7.jpeg)
+![](SEC560_Book2_page_161_Picture_7.jpeg)
 
 service that you put on your Windows machine temporarily. Specifically, going to exploit an older version of Apache Cassandra. Up to version 2.1.3, Apache Cassandra created an unauthenticated RMI/JMX interface, which allows us to execute arbitrary Java code by submitting a malicious RMI request. Our Metasploit payload will consist of the Java Meterpreter stage, loaded via the reverse\_http stager, making a connection from the exploited box back to our Linux system..
 

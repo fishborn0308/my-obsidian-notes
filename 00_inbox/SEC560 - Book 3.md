@@ -4,7 +4,7 @@
 
 Post-Exploitation
 
-![](_page_0_Picture_3.jpeg)
+![](SEC560_Book3_page_0_Picture_3.jpeg)
 
 © 2025 SANS Institute. All rights reserved to SANS Institute.
 
@@ -40,7 +40,7 @@ Courseware licensed to User under this CLA may be subject to export laws and reg
 
 **SEC560.3**
 
-![](_page_2_Picture_1.jpeg)
+![](SEC560_Book3_page_2_Picture_1.jpeg)
 
 # **Post-Exploitation**
 
@@ -58,13 +58,13 @@ The section concludes with privilege escalation in both Linux and Windows, reinf
 
 Let's get going!
 
-![](_page_3_Figure_0.jpeg)
+![](SEC560_Book3_page_3_Figure_0.jpeg)
 
-![](_page_4_Figure_0.jpeg)
+![](SEC560_Book3_page_4_Figure_0.jpeg)
 
 #### 4
 
-![](_page_5_Picture_2.jpeg)
+![](SEC560_Book3_page_5_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -80,7 +80,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_5_Picture_10.jpeg)
+![](SEC560_Book3_page_5_Picture_10.jpeg)
 
 - Passwords and Credential Access
 - Password Representations
@@ -124,7 +124,7 @@ Lab 3.2: Cracking Passwords with Hashcat
   - − Does not lock out accounts
   - − Many orders of magnitude faster than guessing
 
-![](_page_6_Picture_13.jpeg)
+![](SEC560_Book3_page_6_Picture_13.jpeg)
 
 The phrases "password guessing" and "password cracking" are often used interchangeably by information security professionals. But these terms do have different meanings and profoundly different implications for testers.
 
@@ -166,7 +166,7 @@ In contrast, password cracking happens on the attacker's own turf: on one or mor
 |                                                                                                                           |  |  |  |  |  |
 |                                                                                                                           |  |  |  |  |  |
 
-![](_page_8_Picture_1.jpeg)
+![](SEC560_Book3_page_8_Picture_1.jpeg)
 
 # **Synced Passwords**
 
@@ -184,7 +184,7 @@ It's important to realize that every account you can compromise (always operatin
 
 One somewhat subtle implication of this synchronization of user passwords involves cracking passwords even from systems that the tester has already conquered. Consider this scenario: An attacker exploits one system, gaining UID 0 privileges on the box. With these privileges, the attacker can grab the encrypted passwords from the machine, move them to the attacker's system, and crack them. "But," you might think, "why bother, given that the attacker already has complete control over that box with UID 0?" The answers involve password synchronization. Any passwords cracked from accounts (even accounts without UID 0) on the machine the tester has already conquered could be useful in accessing other systems. In fact, those accounts may have limited privileges on the system the attacker first conquered, but have superuser privileges on other systems. Thus, whenever testers get a file of encrypted/hashed passwords, they should start running a password cracking tool to maximize the time that can be spent analyzing those passwords. Having separate systems dedicated to password cracking is a useful resource for professional penetration testers and ethical hackers.
 
-![](_page_9_Picture_1.jpeg)
+![](SEC560_Book3_page_9_Picture_1.jpeg)
 
 #### **Dictionaries**
 
@@ -213,7 +213,7 @@ Whenever you create or update a dictionary file for password cracking or guessin
 $ cat wordlist.txt | sort | uniq > dictionary.txt
 ```
 
-![](_page_10_Picture_1.jpeg)
+![](SEC560_Book3_page_10_Picture_1.jpeg)
 
 # **Making Good Guesses with a Custom Dictionary**
 
@@ -239,7 +239,7 @@ Mangling rules are used to modify or "mangle" words. For example, the word passw
 
 Robin Wood's Custom Word List generator (CeWL) spiders a target website and builds a list of unique words. This list is better for password cracking than (online) password guessing. CeWL is written by Robin "DigiNinja" Wood and is available at http://www.digininja.org/projects/cewl.php.
 
-![](_page_12_Picture_0.jpeg)
+![](SEC560_Book3_page_12_Picture_0.jpeg)
 
 # **Update Your Dictionary**
 
@@ -251,7 +251,7 @@ As your password cracking tool runs, it may successfully crack some passwords. T
 
 With the user's successfully cracked password from one machine now in your word list, you have a much better chance of determining the variations to the passwords that the same user applied on other systems. Although this technique is immensely helpful, it does have some post-project implications. Your dictionary file now includes successfully cracked passwords for the target organization. That's sensitive information and should be disposed of at the end of the project. If you choose to keep the dictionary, be aware that it is very sensitive. As you compile lists of cracked passwords of various targets, this will become a valuable repository of working passwords. Before you do so, make sure you are allowed to per your rules of engagement.
 
-![](_page_13_Figure_0.jpeg)
+![](SEC560_Book3_page_13_Figure_0.jpeg)
 
 A tip for improving speed is to use commercial cloud resources to crack passwords. Amazon and other cloud vendors allow users to quickly and easily spin up systems for a variety of tasks, including password cracking.
 
@@ -261,9 +261,9 @@ NPK is "a distributed hash-cracking platform built entirely of serverless compon
 
 NPK is available at https://github.com/c6fc/npk.
 
-![](_page_14_Picture_0.jpeg)
+![](SEC560_Book3_page_14_Picture_0.jpeg)
 
-![](_page_14_Picture_1.jpeg)
+![](SEC560_Book3_page_14_Picture_1.jpeg)
 
 # **Passwords without Cracking**
 
@@ -283,7 +283,7 @@ And finally, sometimes you don't need to actually crack a password but can inste
 
 14
 
-![](_page_15_Picture_1.jpeg)
+![](SEC560_Book3_page_15_Picture_1.jpeg)
 
 # **Be Careful**
 
@@ -309,9 +309,9 @@ Another gotcha to avoid in password attacks involves leaking password informatio
 
 When you get a copy of the original password file, be careful not to alter the file in any way. Also, remember that the encrypted or hashed passwords are sensitive information, even though the passwords aren't cleartext. You should strive to move them across the network in an encrypted fashion if possible. On Linux or UNIX, you can move passwords around with Secure Shell (assuming you have shell/terminal access to the target). On Windows, you can dump hashes using the Meterpreter, and they'll be moved across the encrypted Meterpreter session using TLS.
 
-![](_page_17_Picture_0.jpeg)
+![](SEC560_Book3_page_17_Picture_0.jpeg)
 
-![](_page_17_Picture_1.jpeg)
+![](SEC560_Book3_page_17_Picture_1.jpeg)
 
 # **At the Completion of the Test**
 
@@ -335,7 +335,7 @@ In addition, when the project is complete, make sure you securely delete all pas
 
 When reporting on passwords, don't forget to properly redact passwords and password hashes. The common exception to this rule is when the password is default or blank, or matches the username.
 
-![](_page_18_Picture_2.jpeg)
+![](SEC560_Book3_page_18_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -351,7 +351,7 @@ Section 5: Persistence and Evading Controls
 
 Section 6: CTF and Next Steps
 
-![](_page_18_Picture_10.jpeg)
+![](SEC560_Book3_page_18_Picture_10.jpeg)
 
 - Passwords and Credential Access
 - Password Representations
@@ -380,7 +380,7 @@ Lab 3.5: Seatbelt
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_19_Picture_2.jpeg)
+![](SEC560_Book3_page_19_Picture_2.jpeg)
 
 # **Windows Password Representations in the SAM**
 
@@ -395,11 +395,11 @@ On a Windows machine, local accounts are stored in the Security Account Manager 
 
 The LANMAN hash is extremely weak, for reasons we shall soon see, whereas the NT hash is stronger but not great. Windows NT, 2000, XP, and 2003 store both hashes by default in the SAM database, whereas Windows Vista, Windows 7, Windows 2008, Windows 2012, and Windows 8/8.1 store only the NT hash in the SAM database. The Windows Vista, 7, 2008, 2012, 8/8.1/10/11, and Windows Server 2016/2019/2022 configuration can be altered, however, to make it store the LANMAN hash for backward compatibility with older infrastructures, but such a configuration is not common.
 
-![](_page_20_Picture_0.jpeg)
+![](SEC560_Book3_page_20_Picture_0.jpeg)
 
 19
 
-![](_page_20_Picture_1.jpeg)
+![](SEC560_Book3_page_20_Picture_1.jpeg)
 
 # **Windows Password Representations in AD**
 
@@ -416,7 +416,7 @@ The ntds.dit file is locked on a running domain controller machine, so it can't 
 
 With the ntds.dit file, a penetration tester can use secretsdump.py from the Impacket project located at https://github.com/SecureAuthCorp/impacket/blob/master/examples/secretsdump.py.
 
-![](_page_21_Figure_0.jpeg)
+![](SEC560_Book3_page_21_Figure_0.jpeg)
 
 Let's analyze the two methods used to formulate password representations for storage in the SAM database: LANMAN and NT hashes. The LANMAN hash algorithm is notoriously weak, designed more than two decades ago. It takes various cryptographic shortcuts that make it particularly easy to crack. It should be briefly noted that the so-called LANMAN hash is not a hash at all but a cryptographic one-way function (sometimes abbreviated OWF) that relies on the DES algorithm. Despite the more appropriate term LANMAN OWF, we use the common terminology nearly everyone applies in the information security industry of LANMAN hashes.
 
@@ -424,7 +424,7 @@ If an account has a password that is 14 characters or less (that is, if the pass
 
 To formulate the LANMAN hash of a password, Windows takes the less-than-15-character password and pads it to make it exactly 14 characters long. Fixed padding is used. All alphabetic characters are converted to uppercase, weakening the password representation because the attacker doesn't need to guess the case properly to crack the password. The 14-character result is then broken into two 7-character pieces, a colossal problem because an attacker can crack the two halves independently of each other. Instead of trying to break one 14-character password, the attacker needs to break only two 7-character passwords, a much easier feat. Then, each of those 7-character pieces is used as a DES key to encrypt a constant of KGS!@#\$%. The results are concatenated together and stored in the SAM database.
 
-![](_page_22_Figure_0.jpeg)
+![](SEC560_Book3_page_22_Figure_0.jpeg)
 
 The NT algorithm is simultaneously simpler and far stronger than LANMAN. The user's password is hashed using a straight MD4 hash algorithm. Passwords of up to 127 characters are supported on modern Windows machines. The NT hash algorithm preserves the alphabetic case of a password and doesn't do any of the splitting actions of LANMAN.
 
@@ -436,7 +436,7 @@ The authoritative claim on maximum length is from Steve Syfuhs, who works for Mi
 
 • https://x.com/SteveSyfuhs/status/1187546331939667968
 
-![](_page_23_Picture_2.jpeg)
+![](SEC560_Book3_page_23_Picture_2.jpeg)
 
 # **Windows Challenge/Response on the Network**
 
@@ -453,7 +453,7 @@ Likewise, NT hashes are not the same as NTLMv1 and NTLMv2. The suffixes of v1 an
 
 Now, let's explore these network authentication schemes used by Windows in more detail.
 
-![](_page_24_Picture_0.jpeg)
+![](SEC560_Book3_page_24_Picture_0.jpeg)
 
 # **LANMAN Challenge/Response**
 
@@ -465,7 +465,7 @@ Now, let's explore these network authentication schemes used by Windows in more 
   - − Using each piece as a DES key to encrypt the challenge
 - NTLMv1 does the same thing, except it uses NT hash as a starting point for this operation
 
-![](_page_24_Picture_9.jpeg)
+![](SEC560_Book3_page_24_Picture_9.jpeg)
 
 SEC560 | Enterprise Penetration Testing
 
@@ -473,7 +473,7 @@ For LANMAN Challenge/Response authentication, a client indicates to a server (su
 
 It's important to note that both the LANMAN Challenge/Response and the NTLMv1 response use exactly the same padding, splitting, and encrypting steps. The only difference is that the LANMAN Challenge/Response starts with the LANMAN hash, whereas the NTLMv1 challenge/response starts with the NT hash.
 
-![](_page_25_Figure_0.jpeg)
+![](SEC560_Book3_page_25_Figure_0.jpeg)
 
 In the LANMAN Challenge/Response protocol, the server sends a challenge to the client. The client starts with the LANMAN hash, which is 16 bytes long. Note that we are talking about the LANMAN hash here, which is 16 bytes long, not the original LANMAN password, which is up to 14 characters long. The 16 bytes of the LANMAN hash are padded with fixed padding to make them exactly 21 bytes long. They are then broken into three seven-character pieces, which we can call LM part 1, LM part 2, and LM part 3. The third part consists only of the last 2 bytes of a user's password hash with some padding. Each of these three 7-byte pieces is used as a DES key to encrypt the challenge, resulting in Response parts 1, 2, and 3. The Response parts are concatenated together and sent to the server.
 
@@ -481,7 +481,7 @@ The exact same process applies for NTLMv1, but it starts with the 16-byte NT has
 
 With either LANMAN Challenge/Response or NTLMv1, an attacker could sniff both the challenge and the response off of the network and try to crack them—guessing, encrypting, and comparing which passwords would yield the sniffed response from the sniffed challenge. Note that cracking these challenges is more work than cracking LANMAN hashes stored in the SAM database because more cryptographic operations are required with the DES algorithm applied to three different piece parts of either the LANMAN or NT hashes.
 
-![](_page_26_Picture_0.jpeg)
+![](SEC560_Book3_page_26_Picture_0.jpeg)
 
 - from server challenge by: − Creating the HMAC-MD5 of username and domain name with NT hash as the key
 - − The result is called the NTLMv2 One-Way Function (OWF)
@@ -491,13 +491,13 @@ NTLMv2 was devised as a response to password cracking tools released in the late
 
 Cracking sniffed NTLMv2 challenge/response exchanges is still possible, but it tends to be considerably slower than cracking LANMAN and NT hashes from the SAM or LANMAN Challenge/Response and NTLMv1 sniffed from the network, often an order of magnitude slower. Still, for a patient tester in an all-NTLMv2 environment, these hashes can be cracked.
 
-![](_page_27_Figure_0.jpeg)
+![](SEC560_Book3_page_27_Figure_0.jpeg)
 
 The NTLMv2 challenge/response algorithm is based on a user's NT hash stored in the SAM database or cached for that user's account. The client sends an authentication request to the server, including the username, which responds with a challenge. The software on the client then starts with the user's NT hash, which it uses as a key in the keyed hash algorithm HMAC-MD5 to hash the user account name and the domain name. This result (the username/domain name hashed with the key of the user's NT hash) is then used as a key in another round of HMAC-MD5 hashing, this time with the hash applied to the server challenge and a Client Challenge Blob (Binary Large OBject). The blob is comprised of a number of elements, including the domain to authenticate against, the timestamp, and a cryptographically unique nonce. This result is called the NTLMv2 response, which is sent to the server along with the client challenge. The server applies the same operations to determine if the client has demonstrated that it is in possession of the account's NT hash.
 
 Note that cracking NTLMv2 requires sniffing the server challenge and the response, which includes the client challenge. Furthermore, when cracking, the algorithm must fold the username and domain name into the algorithm, along with a timestamp of when the exchange occurred. Clearly, there is a lot more cryptographic work in cracking NTLMv2 challenge responses than the earlier authentication mechanisms from Microsoft.
 
-![](_page_28_Picture_2.jpeg)
+![](SEC560_Book3_page_28_Picture_2.jpeg)
 
 # **CAC and Smartcards**
 
@@ -535,7 +535,7 @@ The crypt(3) library, described in Section 3 of the man pages, which covers C li
 
 The particular algorithm used by crypt(3) varies based on Linux and UNIX system type. Historically, many UNIX flavors relied on a traditional DES-based password scheme. Some systems still use this method today, and we'll cover that shortly. A common alternative to the traditional DES scheme relies on the MD5 algorithm. In /etc/passwd or /etc/shadow, password representations using MD5 are prefaced by \$1\$, followed by the salt, followed by the hashed (in multiple rounds) salt/password combination. We'll analyze that process in more detail as well. Other routines used by some Linux and UNIX variants include BSDi's extended DES (in which the password hashes in /etc/passwd or /etc/shadow start with \_ (an underscore character)) and a Blowfish-based routine created by Niels Provos and David Mazieres, whose password hashes begin with a \$2\$ or \$2a\$. A \$5\$ prefix indicates password representations created using the SHA-256 algorithm, while \$6\$ indicates SHA-512. Likely, \$y\$ indicates yescrypt, which is in use as of the latest Linux distros (for example, Ubuntu 24.04 and Fedora 35+).
 
-![](_page_30_Figure_0.jpeg)
+![](SEC560_Book3_page_30_Figure_0.jpeg)
 
 The process starts with a user's password, which can be any length, and a salt. The length of the salt depends on the exact hashing algorithm. The password and salt are hashed together using the MD5 algorithm (for md5crypt), creating an interim result. This result is then hashed again along with the original password and salt, creating a new interim result, which is again hashed with the original password and salt. This process is applied iteratively a thousand times (and more on some Linux systems that implement a variable number of iterations). In a given round, the interim result, password, and salt are interleaved in different orders for each round. The resulting password representation is stored in the password field of /etc/passwd or /etc/shadow, preceded by a \$1\$, followed by the salt, followed by a \$ and the password representation, as in:
 
@@ -549,7 +549,7 @@ strategy but with a different algorithm and
 
 sha256crypt and sha512crypt hashing algorithms are supported in some Linux distributions and use a similar strategy of mixing in the salt over multiple rounds but use a different hash algorithm (SHA-256 or SHA-512, of course) and a different number of rounds. The default number of rounds for SHA-256 and SHA-512 for Linux passwords is 5,000.
 
-![](_page_31_Picture_2.jpeg)
+![](SEC560_Book3_page_31_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -608,7 +608,7 @@ Because of the inherent weaknesses of storing passwords in world-readable /etc/p
 
 A penetration tester or ethical hacker who gains limited account access to a Linux or UNIX machine can read /etc/passwd to determine if password representations are stored in it simply by looking at the second field of each line of this colon-delimited file. If there is an "x" or an "\*" or a "!!" in this entry, the password for the given account is not present, possibly because it is not set or is located in /etc/shadow. If the passwords are located in /etc/shadow, the attacker then must access the target with UID 0 privileges to get a copy of /etc/shadow for cracking.
 
-![](_page_33_Picture_2.jpeg)
+![](SEC560_Book3_page_33_Picture_2.jpeg)
 
 # **Obtaining Windows Password Representations**
 
@@ -663,7 +663,7 @@ To extract hashes, the Meterpreter must be running inside of a process with admi
 
 Instead, the priv hashdump extractor runs from within the memory of the exploited process. This brings some significant advantages for attackers. First, it doesn't require the attacker to have NetBIOS or SMB protocol access to the target machine. Instead, the attacker extracts the hashes using the communications session established between the attacker and the Meterpreter running inside the memory of a target machine process. Furthermore, the priv module doesn't copy anything to the target machine's file system. It is entirely memory resident, running as a DLL inside of the victim process. Thus, it provides less evidence for forensic investigators to recover.
 
-![](_page_35_Picture_2.jpeg)
+![](SEC560_Book3_page_35_Picture_2.jpeg)
 
 # **Dumping Hashes from Domain Controllers**
 
@@ -678,7 +678,7 @@ Instead, the priv hashdump extractor runs from within the memory of the exploite
 
 Using Volume Shadow Copies (VSS) for hash extraction from a domain controller involves creating backups of system files, even if write-protected. This method, described by Tim Tomes and Mark Baggett, employs the VSSOwn tool, enabling penetration testers to manage VSS via the command line. After gaining shell access to the target system, the tester runs vssown.vbs, creates a backup, and extracts crucial files (ntds.dit along with the SYSTEM and SAM registry hives) using the copy command. These steps allow the use of secretsdump.py from the Impacket toolkit to extract hashes from the local files.
 
-![](_page_36_Picture_2.jpeg)
+![](SEC560_Book3_page_36_Picture_2.jpeg)
 
 #### **NTDSUtil**
 
@@ -745,13 +745,13 @@ Originally released as a separate executable (mimikatz.exe) with an associated D
 
 Let's look at an example of Mimikatz in action in a screenshot. (We'll do a hands-on lab on it shortly as well.) On this slide, we can see a Meterpreter prompt from a compromised target Windows system. The pen tester then loads the Mimikatz Kiwi module into the Meterpreter by running load kiwi. The Meterpreter's capabilities are extended, including a new command called creds\_all. This command pulls cleartext passwords from the LSASS process, where they are stored for various Windows features. After running creds\_all, we can see the cleartext password on the screen of sansnight.
 
-![](_page_39_Picture_1.jpeg)
+![](SEC560_Book3_page_39_Picture_1.jpeg)
 
 # **MSF psexec, hashdump, and Mimikatz**
 
 Refer to the lab workbook for instructions.
 
-![](_page_40_Picture_2.jpeg)
+![](SEC560_Book3_page_40_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -815,7 +815,7 @@ Lab 3.5: Seatbelt
   - − Complex command line
   - − With many options for fine-tuning attacks
 
-![](_page_41_Picture_14.jpeg)
+![](SEC560_Book3_page_41_Picture_14.jpeg)
 
 Hashcat is a multithreaded tool for cracking passwords on CPUs and GPUs. It can achieve speeds in the billions of combinations per second for unsalted hashes on a CPU (tested with an AMD 5700G) and approximately 300 billion combinations per second on an RTX 4090 for the NT hashing algorithm, implementing more than 470 different password hash algorithms, including LANMAN, salted MD5, and more. That is a HUGE number of password algorithms.
 
@@ -823,7 +823,7 @@ Although most current GPU password cracking tools focus on CUDA on graphic cards
 
 Hashcat runs on Windows and Linux, and Hashcat performance between the two operating systems is virtually identical.
 
-![](_page_42_Picture_2.jpeg)
+![](SEC560_Book3_page_42_Picture_2.jpeg)
 
 # **Hashcat: Specifying Hash Types**
 
@@ -847,7 +847,7 @@ To see the multitude of hash types supported by Hashcat, you could simply invoke
 
 The list on the slide above is an excerpt from the Hashcat wiki at https://hashcat.net/wiki/doku.php?id=example\_hashes.
 
-![](_page_43_Picture_2.jpeg)
+![](SEC560_Book3_page_43_Picture_2.jpeg)
 
 #### **Hashcat Potfile, Show, and Restore**
 
@@ -864,7 +864,7 @@ Hashcat includes a potfile that contains all the hashes and passwords Hashcat ha
 
 Hashcat also includes a --restore feature so that you can resume execution where you last left off if you need to interrupt a given Hashcat run and start it again later.
 
-![](_page_44_Figure_0.jpeg)
+![](SEC560_Book3_page_44_Figure_0.jpeg)
 
 A really nice feature of Hashcat is the ability to support multiple dictionary files right at the command line by just placing the name of each file one after another. That way, we don't have to merge word list files and can keep them separate if they represent different types of information for our password guesses. It's important to note that Hashcat does *not* utilize usernames and GECOS fields to formulate its password guesses for the guess/encrypt/compare cycle of password cracking. But we can create a dictionary file of usernames and GECOS fields and feed them into Hashcat as a second and third dictionary file so that it will attempt those names as potential passwords. We'll do that in the next lab for usernames.
 
@@ -874,7 +874,7 @@ Hashcat also supports word mangling rules, but Hashcat comes with a multitude of
 
 At the Hashcat command line, we can specify one or more rules files by using the -r option, followed by the list of rules files we want Hashcat to utilize.
 
-![](_page_45_Picture_2.jpeg)
+![](SEC560_Book3_page_45_Picture_2.jpeg)
 
 ### **Masks**
 
@@ -942,7 +942,7 @@ As you can see, this gives us a very simple way to modify our guesses and, ideal
 
 46
 
-![](_page_47_Picture_1.jpeg)
+![](SEC560_Book3_page_47_Picture_1.jpeg)
 
 #### **Hashcat Status and Temp Sensor**
 
@@ -950,13 +950,13 @@ As you can see, this gives us a very simple way to modify our guesses and, ideal
 - Hashcat provides an estimate of how long the entire run will take in its status
 - If your hardware supports a temperature sensor, Hashcat can abort if the system gets too hot
 
-![](_page_47_Figure_6.jpeg)
+![](SEC560_Book3_page_47_Figure_6.jpeg)
 
 As Hashcat runs, it provides a periodic status indicator, showing the percentage of progress it has made through the current run, as well as an estimate of its completion time for iterating through all the rules against the given dictionary file(s). By hitting the s key, you can also manually get the status from Hashcat. And if you hit the p key, Hashcat will cease operation, allowing you to invoke it again later with the --restore feature.
 
 Also, if your system has an internal temperature sensor and installed drivers to interface with it, Hashcat can abort its run if it senses the machine heating up too much. That way, the entire system won't shut down if it overheats, but just Hashcat will stop running.
 
-![](_page_48_Picture_2.jpeg)
+![](SEC560_Book3_page_48_Picture_2.jpeg)
 
 #### **Pipal and Reporting on Cracked Password**
 
@@ -972,15 +972,15 @@ Cracking passwords is a crucial part of penetration testing. We must not forget 
 
 To perform this analysis, we can use a tool such as Pipal. Pipal is written by DigiNinja (Robin Wood) and is available at https://digi.ninja/projects/pipal.php. For the analysis to be useful, we need to crack a significant number of passwords, usually by dumping the hashes from a domain controller and cracking a portion of those passwords.
 
-![](_page_49_Picture_0.jpeg)
+![](SEC560_Book3_page_49_Picture_0.jpeg)
 
-![](_page_49_Picture_1.jpeg)
+![](SEC560_Book3_page_49_Picture_1.jpeg)
 
 # **Cracking Passwords with Hashcat**
 
 Refer to the lab workbook for instructions.
 
-![](_page_50_Picture_2.jpeg)
+![](SEC560_Book3_page_50_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1025,9 +1025,9 @@ Lab 3.5: Seatbelt
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_51_Picture_0.jpeg)
+![](SEC560_Book3_page_51_Picture_0.jpeg)
 
-![](_page_51_Picture_1.jpeg)
+![](SEC560_Book3_page_51_Picture_1.jpeg)
 
 #### **Assumed Breach**
 
@@ -1069,7 +1069,7 @@ Testing the initial access mechanisms, which we discussed in 560.1, is still imp
 
 Those are great defenses, but it only takes a single failure to end up with catastrophic results. If we assume one of these will fail, we can fast forward the test to save time and money, with the goal of more efficiently determining the risk to the organization.
 
-![](_page_53_Picture_1.jpeg)
+![](SEC560_Book3_page_53_Picture_1.jpeg)
 
 # **Access via 0-Day**
 
@@ -1089,7 +1089,7 @@ The real reason this position is misguided is that attackers are routinely insid
 
 Ultimately, we need to go back to the real reason we are testing the security of the organization! What are the goals? Are the goals to test AV/EDR? Is it to test other preventive controls? Is it to test the detection capability of the blue team? We cannot answer these questions without input from the target organization, which is why penetration testing is always a collaborative effort.
 
-![](_page_54_Picture_2.jpeg)
+![](SEC560_Book3_page_54_Picture_2.jpeg)
 
 # **Test Assumptions**
 
@@ -1111,11 +1111,11 @@ Finally, since the testers aren't given access or credentials, they need to expl
 
 There is absolutely a need for a traditional penetration test, especially in less mature organizations. The question is, how can we change our test to make it even more valuable and to help organizations make better security decisions?
 
-![](_page_55_Picture_0.jpeg)
+![](SEC560_Book3_page_55_Picture_0.jpeg)
 
 54
 
-![](_page_55_Picture_1.jpeg)
+![](SEC560_Book3_page_55_Picture_1.jpeg)
 
 # **Analyzing Modern Attacks**
 
@@ -1154,7 +1154,7 @@ After we have access, whether it be through ceded access or through traditional 
 
 Now that we have access, let's move on to post-exploitation!
 
-![](_page_57_Picture_2.jpeg)
+![](SEC560_Book3_page_57_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1237,13 +1237,13 @@ The C2 Matrix is a review of public C2, including a list of features, and allows
 - Available at thec2matrix.com
   - − Ask the Matrix: ask.thec2matrix.com
 
-![](_page_59_Picture_10.jpeg)
+![](SEC560_Book3_page_59_Picture_10.jpeg)
 
 The C2 Matrix is an attempt to review all the publicly available C2 Frameworks. It includes public (free) C2 as well as paid products. The goal is to help you select the best C2 for your needs—needs based on the target organization, target types, C2 features, communication methods, and test design. Not all C2 will have the features you need, and this tool helps you make the best tradeoff decisions. For example, at the time of this writing, no C2 supports HTTP3 and multiplayer (multiple team members sharing the server). Therefore, you need to make a choice. If you really need HTTP3, then Merlin is your only option, but it does not support multiplayer.
 
 The Matrix includes an "ask" feature where you can select the options you need, and you'll see the list update with C2 that meets your requirements: ask.thec2matrix.com
 
-![](_page_60_Picture_0.jpeg)
+![](SEC560_Book3_page_60_Picture_0.jpeg)
 
 The data behind the C2 Matrix is stored in a Google Sheet. The original sheet was put together by SANS Instructor Jorge Orchilles (Verizon), Bryson Bort (Scythe), and Adam Mashinchi (CrowdStrike). Each C2 is reviewed by various evaluators. Not all C2 is fully vetted. If you'd like to contribute to the project, contact the author of this course (@JeffMcJunkin on Twitter) or Jorge Orchilles (@jorgeorchilles).
 
@@ -1251,7 +1251,7 @@ The data behind the C2 Matrix is stored in a Google Sheet. The original sheet wa
 
 • https://docs.google.com/spreadsheets/d/1b4mUxa6cDQuTV2BPC6aA-GR4zGZi0ooPYtBe4IgPsSc
 
-![](_page_61_Picture_2.jpeg)
+![](SEC560_Book3_page_61_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1299,7 +1299,7 @@ Lab 3.5: Seatbelt
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_62_Figure_0.jpeg)
+![](SEC560_Book3_page_62_Figure_0.jpeg)
 
 Over the past several years, security researchers have released several different toolsets that give penetration testers post-exploitation capabilities for establishing persistence, escalating privileges, and performing lateral movement. Unfortunately, antivirus companies also have access to these tools and rapidly create detections for the payloads. Ronan Kervella and Joe Demesy of BishopFox set out to create a framework that could run on all major operating systems using Golang while also creating options to fully obfuscate implant payloads. Additionally, they open-sourced the entire project to encourage customization and crowd-sourced feature additions.
 
@@ -1312,7 +1312,7 @@ Separating the C2 server and operator client gives the tester more flexibility i
 - Per-binary dynamic code generation and obfuscation
 - A focus on pen test / red team operations
 
-![](_page_63_Figure_6.jpeg)
+![](SEC560_Book3_page_63_Figure_6.jpeg)
 
 pairs are created for each instance. This cryptographic communication prevents someone from determining commands and responses you issue to the implants and, even more importantly, does not allow a blue teamer to decrypt all implant communications if one implant is reverse-engineered and the RSA key is disclosed.
 
@@ -1326,7 +1326,7 @@ implant code will be dynamically generated to help get around antivirus signatur
 
 •
 
-![](_page_64_Picture_2.jpeg)
+![](SEC560_Book3_page_64_Picture_2.jpeg)
 
 #### **Features Supporting Offensive Operations**
 
@@ -1370,7 +1370,7 @@ command. Now the tester can precisely repeat actions during, for example, a purp
 |                                                                                                                                                     |  |  |  |  |
 |                                                                                                                                                     |  |  |  |  |
 
-![](_page_66_Picture_1.jpeg)
+![](SEC560_Book3_page_66_Picture_1.jpeg)
 
 - Windows
   - − Portable Executable or Service Executable
@@ -1510,7 +1510,7 @@ References:
 
 • •
 
-![](_page_74_Picture_2.jpeg)
+![](SEC560_Book3_page_74_Picture_2.jpeg)
 
 - Armory packages are either extensions or aliases
 - Extensions work in Windows implants by reflectively loading a DLL that can pass callbacks to the C2 server
@@ -1562,9 +1562,9 @@ Reference:
 
 •
 
-![](_page_76_Picture_0.jpeg)
+![](SEC560_Book3_page_76_Picture_0.jpeg)
 
-![](_page_77_Picture_2.jpeg)
+![](SEC560_Book3_page_77_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1611,7 +1611,7 @@ Lab 3.5: Seatbelt
 
 Lab 3.6: Windows Privilege Escalation
 
-![](_page_78_Picture_2.jpeg)
+![](SEC560_Book3_page_78_Picture_2.jpeg)
 
 # **Features (Payloads), Not Bugs**
 
@@ -1654,7 +1654,7 @@ Payloads used by malicious attackers and penetration testers are most commonly:
 
 • https://github.com/bhdresh/SocialEngineeringPayloads
 
-![](_page_80_Picture_0.jpeg)
+![](SEC560_Book3_page_80_Picture_0.jpeg)
 
 # **Using Macros**
 
@@ -1663,7 +1663,7 @@ Payloads used by malicious attackers and penetration testers are most commonly:
 - By default, macros are not blocked but can be blocked via GPO or ADMX
 - Social engineering is commonly used to trick the user into enabling macros
 
-![](_page_80_Picture_6.jpeg)
+![](SEC560_Book3_page_80_Picture_6.jpeg)
 
 Macros are included in Microsoft Office as a tool for automation within all of the Office products, including Word, Excel, and PowerPoint. Despite the potential security risks, Macros are not blocked by default and must be explicitly disabled by administrators, usually through GPO. This feature is valuable for many organizations, particularly in certain departments such as finance. However, Macros can also be used by attackers to embed payloads and gain remote access. This often requires social engineering to convince a target to open the document and enable the Macros. Macro-enabled Office files from 2007 or later have the extension .docm or .xlsm, while Office 2003 formats use .doc or .xls.
 
@@ -1675,15 +1675,15 @@ To disable Macros, follow the guidance from Microsoft here:
 
 • https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked
 
-![](_page_81_Figure_0.jpeg)
+![](SEC560_Book3_page_81_Figure_0.jpeg)
 
 Macros are written in VBA (Visual Basic for Applications). Macros used by attackers are commonly designed to load shellcode and execute it. The payload can be exported from various Command and Control (C2) frameworks, or a custom loader may be used with the shellcode. The default loader templates are often detected by AV/EDR and require custom changes to bypass these technologies.
 
-![](_page_82_Figure_0.jpeg)
+![](SEC560_Book3_page_82_Figure_0.jpeg)
 
 • As of 2017, some products don't support DDE anymore, but Excel and Outlook do still by default!
 
-![](_page_82_Picture_2.jpeg)
+![](SEC560_Book3_page_82_Picture_2.jpeg)
 
 The Dynamic Data Exchange (DDE) protocol enables applications to exchange or share data. DDE can also be used to execute arbitrary commands. As of 2017, some products no longer support DDE; however, Excel and Outlook still do by default. We can use this capability to run code of our choosing without a Macro or having the document renamed to the "m" version (xslm vs. xlsx).
 
@@ -1691,13 +1691,13 @@ The Dynamic Data Exchange (DDE) protocol enables applications to exchange or sha
 
 • https://dmcxblue.gitbook.io/red-team-notes/initial-acces/spear-phishing/macroless
 
-![](_page_83_Figure_0.jpeg)
+![](SEC560_Book3_page_83_Figure_0.jpeg)
 
-![](_page_83_Figure_1.jpeg)
+![](SEC560_Book3_page_83_Figure_1.jpeg)
 
 The ISO file format was originally used to store uncompressed copies of optical drives, such as CDs or DVDs, and can be used to hold files of our choosing. Modern operating systems allow users to access the contents of an ISO file by simply double-clicking it. Attackers often take advantage of this by putting executables in the ISO file and tricking a user into opening it. The benefit to attackers is that this may not
 
-![](_page_84_Picture_1.jpeg)
+![](SEC560_Book3_page_84_Picture_1.jpeg)
 
 # **Zip File**
 
@@ -1712,7 +1712,7 @@ It is important to exercise caution when opening zip files from untrusted source
 
 Similar attacks can also occur using other file formats such as 7-Zip and RAR.
 
-![](_page_85_Figure_0.jpeg)
+![](SEC560_Book3_page_85_Figure_0.jpeg)
 
 Attackers are using LNK (shortcut) files by embedding malicious code into them and distributing them through various means, such as email attachments, removable drives, and malicious websites. When the user clicks on the LNK file, it can launch an executable that infects the user's computer with malware. This type of attack is particularly dangerous because LNK files are often associated with trusted applications and can be easily disguised to look legitimate. To help protect against LNK-based attacks, it is important to be cautious when opening files from untrusted sources and to keep your security software up to date.
 
@@ -1722,9 +1722,9 @@ Attackers are using LNK (shortcut) files by embedding malicious code into them a
 - https://www.trendmicro.com/en\_us/research/18/j/malware-targeting-brazil-uses-legitimate-windowscomponents-wmi-and-certutil-as-part-of-its-routine.html (image credit)
 - https://medium.com/@threathuntingteam/msxsl-exe-and-wmic-exe-a-way-to-proxy-code-execution-8d524f642b75
 
-![](_page_86_Picture_0.jpeg)
+![](SEC560_Book3_page_86_Picture_0.jpeg)
 
-![](_page_87_Picture_2.jpeg)
+![](SEC560_Book3_page_87_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -1853,7 +1853,7 @@ To move files to a target machine, testers could rely on various services and th
   - − Netcat
     - Is it installed? If not, this is a chicken-and-egg problem
 
-![](_page_92_Picture_10.jpeg)
+![](SEC560_Book3_page_92_Picture_10.jpeg)
 
 - − Others
 - Must have appropriate client and server installed
@@ -1956,7 +1956,7 @@ Copy the long string and then decompress it, like this:
 
 PowerShell can also be used to accomplish this task, but the commands are more verbose and are not shown here.
 
-![](_page_96_Picture_2.jpeg)
+![](SEC560_Book3_page_96_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2020,9 +2020,9 @@ Situational awareness is understanding the target environment. Once we gain acce
 
 If one system has a specific AV/EDR or endpoint agent, it is likely that other systems will have the same. This can help us better evade these tools as well as understand which tools and techniques we should avoid or which may be more effective. We may adjust our techniques to be stealthier against specific defensive and monitoring tools.
 
-![](_page_98_Picture_0.jpeg)
+![](SEC560_Book3_page_98_Picture_0.jpeg)
 
-![](_page_98_Picture_1.jpeg)
+![](SEC560_Book3_page_98_Picture_1.jpeg)
 
 # **File Pilfering**
 
@@ -2043,7 +2043,7 @@ If we gain access to a server, especially a web server, it may contain source co
 
 If you have access to a user system, look at the files on the user's desktop and documents for passwords. It is, unfortunately, all too common for users to store passwords in office documents on their desktop or documents directory.
 
-![](_page_99_Picture_2.jpeg)
+![](SEC560_Book3_page_99_Picture_2.jpeg)
 
 # **More Stuff to Pilfer: Targeting Information**
 
@@ -2067,7 +2067,7 @@ Additional information items that a pen tester may want to consider grabbing inc
 
 There are many more possibilities here, and penetration testers should think carefully about information resources to grab when they've successfully compromised a target machine.
 
-![](_page_100_Picture_2.jpeg)
+![](SEC560_Book3_page_100_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2111,7 +2111,7 @@ Lab 3.2: Cracking Passwords with Hashcat
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_101_Picture_2.jpeg)
+![](SEC560_Book3_page_101_Picture_2.jpeg)
 
 #### **Accounts**
 
@@ -2148,7 +2148,7 @@ Groups are used to provide access to certain items on the system. Look specifica
 
 The sudo group allows users to use the sudo command, which effectively makes the user a root account. On some systems, the "wheel" group is used to allow access to the su command. Remember that the sudo command requires the current user's password, and su requires the target account (typically root) password.
 
-![](_page_103_Picture_2.jpeg)
+![](SEC560_Book3_page_103_Picture_2.jpeg)
 
 # **Find Interesting Files (1)**
 
@@ -2187,7 +2187,7 @@ We can also look in the /home directory for readable (-perm -4) .bash\_history f
 
 \$ find /home -name .bash\_history -perm -4 2>/dev/null
 
-![](_page_104_Picture_2.jpeg)
+![](SEC560_Book3_page_104_Picture_2.jpeg)
 
 # **Find Interesting Files (2)**
 
@@ -2209,7 +2209,7 @@ We can also look around the files system for files containing specific strings (
 
 104
 
-![](_page_105_Picture_1.jpeg)
+![](SEC560_Book3_page_105_Picture_1.jpeg)
 
 # **Local File Pilfering**
 
@@ -2226,7 +2226,7 @@ Password files can be especially useful so an attacker can crack them and use th
 
 Crypto keys stored on an end system can, likewise, be useful in demonstrating the risk of a vulnerability. The pen tester may access stored SSH public and private keys for clients and servers. Similarly, the public and secret keyrings of a Pretty Good Privacy (PGP) or Gnu Privacy Guard (GnuPG) installation may prove useful. Of course, the attacker would need the victim's passphrase associated with such keys to use them. However, because many users manually synchronize the passwords for their crypto keys with their operating system password, the tester may have already determined the associated password.
 
-![](_page_106_Picture_2.jpeg)
+![](SEC560_Book3_page_106_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2294,7 +2294,7 @@ The path environment variable shows you where the shell searches in the file sys
 
 C:\> set path
 
-![](_page_108_Picture_1.jpeg)
+![](SEC560_Book3_page_108_Picture_1.jpeg)
 
 # **Searching the File System**
 
@@ -2355,7 +2355,7 @@ Then, you can add that user to the local administrators group with:
 
 C:\> net localgroup administrators *logon\_name* /add
 
-![](_page_110_Picture_0.jpeg)
+![](SEC560_Book3_page_110_Picture_0.jpeg)
 
 The first command that can give us a surprising amount of information is net user *USERNAME* /domain. The output from this command will list the domain groups where our user is currently enrolled. Not only will the group names give away the employee's work function in the company, but they can also point you to fileshares and resources where your user will have access. Another interesting bit of information is the logon script location. In larger organizations, the logon script location can be many folders deep in the SYSVOL share. As we will see later, the SYSVOL share holds a lot of potential for credentials in plaintext files. Also, the logon script file extension can help with determining whitelisted file types for payload execution. Logon scripts usually use the file extensions CMD, BAT, and VBS but can also include whitelisted executables and user-writable locations. Finally, the output from net user can also reveal where user data is backed up. In virtual environments and commonly in larger organizations, we find that the user data folders are backed up to a central file share. We can check for access to other users' data folders here as well as access to backup files.
 
@@ -2365,7 +2365,7 @@ net1.exe was added as a new binary to address some issues with calling "net user
 
 • https://web.archive.org/web/20140830150320/http://support.microsoft.com/kb/240195
 
-![](_page_111_Picture_2.jpeg)
+![](SEC560_Book3_page_111_Picture_2.jpeg)
 
 # **Local Groups**
 
@@ -2377,7 +2377,7 @@ net1.exe was added as a new binary to address some issues with calling "net user
 
 Another useful net command is checking localgroup memberships such as Administrators or Remote Desktop Users. We can quickly identify high-value domain users and group names in the administrators or RDP user local groups without having to send a query to the domain. Additionally, our list of target accounts and groups will start to develop here. We can also look for non-default local users or groups in these groups. Often, companies create a gold image to put in all of their virtual machines and physical hosts. These images will have default local accounts set with the same password throughout the domain. Once we escalate privileges, we can disclose the credentials and potentially perform lateral movement.
 
-![](_page_112_Picture_2.jpeg)
+![](SEC560_Book3_page_112_Picture_2.jpeg)
 
 # **Domain Groups**
 
@@ -2405,7 +2405,7 @@ net group "Domain Admins" /domain
 
 These commands may fail in some organizations, but it is still useful to attempt them.
 
-![](_page_113_Picture_2.jpeg)
+![](SEC560_Book3_page_113_Picture_2.jpeg)
 
 # **Deleting Windows Users and Accounts (Clean Up)**
 
@@ -2429,9 +2429,9 @@ Then, after all group memberships have been revoked, the account can be deleted 
 
 C:\> net user *logon\_name* /del
 
-![](_page_114_Picture_0.jpeg)
+![](SEC560_Book3_page_114_Picture_0.jpeg)
 
-![](_page_114_Picture_1.jpeg)
+![](SEC560_Book3_page_114_Picture_1.jpeg)
 
 #### **Analyzing a System: Determining Firewall Settings**
 
@@ -2492,7 +2492,7 @@ Finally, if you are familiar with formulating regular expressions—powerful and
 
 C:\> type file | findstr regex
 
-![](_page_117_Picture_2.jpeg)
+![](SEC560_Book3_page_117_Picture_2.jpeg)
 
 # **Analyzing Windows: Interacting with the Registry**
 
@@ -2530,7 +2530,7 @@ To make any of these commands work remotely, we prepend \\MachineName before the
 
 117
 
-![](_page_118_Picture_1.jpeg)
+![](SEC560_Book3_page_118_Picture_1.jpeg)
 
 #### **PowerView**
 
@@ -2562,11 +2562,11 @@ Many PowerShell scripts used by pen testers are heavily signatured by defensive 
 - PowerView: https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
 - Chameleon: https://github.com/klezVirus/chameleon
 
-![](_page_119_Picture_0.jpeg)
+![](SEC560_Book3_page_119_Picture_0.jpeg)
 
 118
 
-![](_page_119_Picture_1.jpeg)
+![](SEC560_Book3_page_119_Picture_1.jpeg)
 
 # **Active Directory Explorer (AD Explorer)**
 
@@ -2587,7 +2587,7 @@ The output file from AD Explorer is not a common format. It has, however, been r
 - https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer
 - https://github.com/c3c/ADExplorerSnapshot.py
 
-![](_page_120_Picture_2.jpeg)
+![](SEC560_Book3_page_120_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2636,7 +2636,7 @@ Lab 3.5: Seatbelt
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_121_Picture_2.jpeg)
+![](SEC560_Book3_page_121_Picture_2.jpeg)
 
 #### **Seatbelt and Overview**
 
@@ -2652,7 +2652,7 @@ Lab 3.5: Seatbelt
   - − Rubeus: Toolset for raw Kerberos interaction and abuses
   - − More tools listed here: https://specterops.gitbook.io/ghostpack/
 
-![](_page_121_Picture_15.jpeg)
+![](SEC560_Book3_page_121_Picture_15.jpeg)
 
 Seatbelt is a C# project that "performs a number of security-oriented host-survey 'safety checks' relevant from both offensive and defensive security perspectives." Seatbelt is part of GhostPack, which includes the following tools:
 
@@ -2667,7 +2667,7 @@ Information on GhostPack can be found at https://specterops.gitbook.io/ghostpack
 
 Seatbelt is licensed under the BSD 3-Clause license and is available at https://github.com/GhostPack/Seatbelt.
 
-![](_page_122_Picture_1.jpeg)
+![](SEC560_Book3_page_122_Picture_1.jpeg)
 
 # **Executing Checks**
 
@@ -2704,7 +2704,7 @@ By default, when you run Seatbelt, it will show an ASCII art seatbelt. This can 
 
 We can save the output by using -outputfile="filename.txt". If we change the extension to .json, the tool will save the output in JSON format.
 
-![](_page_123_Picture_0.jpeg)
+![](SEC560_Book3_page_123_Picture_0.jpeg)
 
 Seatbelt groups offer us a simple way to run a number of checks that target the same type of information. Below is a list of the groups and the information the checks target:
 
@@ -2730,9 +2730,9 @@ Seatbelt groups offer us a simple way to run a number of checks that target the 
 
 **All**: Executes all checks
 
-![](_page_124_Picture_0.jpeg)
+![](SEC560_Book3_page_124_Picture_0.jpeg)
 
-![](_page_125_Picture_2.jpeg)
+![](SEC560_Book3_page_125_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2774,7 +2774,7 @@ Lab 3.1: MSF psexec, hashdump, and Mimikatz
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_126_Picture_1.jpeg)
+![](SEC560_Book3_page_126_Picture_1.jpeg)
 
 # **Why PrivEsc?**
 
@@ -2800,7 +2800,7 @@ We often need to escalate privileges on a system so we can access more useful in
 
 **Impersonation** – If we have root/system level access, we can gain access to other users and the systems and data they have access to.
 
-![](_page_127_Picture_2.jpeg)
+![](SEC560_Book3_page_127_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -2850,7 +2850,7 @@ Lab 3.5: Seatbelt
 
 Privilege escalation techniques vary by operating system. We'll now look at privilege escalation on Linux.
 
-![](_page_128_Picture_1.jpeg)
+![](SEC560_Book3_page_128_Picture_1.jpeg)
 
 # **Why Linux?**
 
@@ -2868,7 +2868,7 @@ Many organizations treat Linux systems differently than Windows systems, especia
 
 128
 
-![](_page_129_Picture_1.jpeg)
+![](SEC560_Book3_page_129_Picture_1.jpeg)
 
 # **Kernel Exploits**
 
@@ -2931,7 +2931,7 @@ As mentioned on the previous page, we may be able to modify the configuration fi
 
 This command identifies files that are writable by the current user.
 
-![](_page_132_Picture_2.jpeg)
+![](SEC560_Book3_page_132_Picture_2.jpeg)
 
 #### **SETUID**
 
@@ -2979,7 +2979,7 @@ To look for a file with either (logical OR), we need to use a slightly more comp
 
 \$ find / -perm -4000 -o -perm -2000 2>/dev/null
 
-![](_page_134_Picture_2.jpeg)
+![](SEC560_Book3_page_134_Picture_2.jpeg)
 
 #### **GTFOBins**
 
@@ -3015,7 +3015,7 @@ If the executable can be run with sudo, gain a privileged shell with:
 
 • https://gtfobins.github.io
 
-![](_page_135_Picture_2.jpeg)
+![](SEC560_Book3_page_135_Picture_2.jpeg)
 
 #### **Course Roadmap**
 
@@ -3063,9 +3063,9 @@ Lab 3.5: Seatbelt
 - Windows Privilege Escalation
   - Lab 3.6: Windows Privilege Escalation
 
-![](_page_136_Picture_0.jpeg)
+![](SEC560_Book3_page_136_Picture_0.jpeg)
 
-![](_page_136_Picture_2.jpeg)
+![](SEC560_Book3_page_136_Picture_2.jpeg)
 
 #### **Common Windows Privilege Escalation Flaws**
 
@@ -3118,13 +3118,13 @@ Even when Windows environments are configured according to a "least privilege" p
 
 The first place to look when assessing the local file system is for unattend.xml files in C:\Windows\Panther. These files are used during an automated setup process and will often contain local administrator or domain credentials with administrator-level privileges to your host. Unfortunately for us, these credentials are often stripped out after the computer is finished setting up, but not always. Also, the presence of this file is a good indicator that the testing host was provisioned from a gold image and tells us that the local credentials are probably used elsewhere in the network.
 
-![](_page_138_Picture_0.jpeg)
+![](SEC560_Book3_page_138_Picture_0.jpeg)
 
 Unattended installs are ideal in larger organizations where it would be too time-consuming to perform wide-scale deployments manually. If Windows administrators fail to properly clean up after this process, an XML file called "Unattend.xml" is left on the local system. An example of such a file is included above.
 
 As you can see, it includes the password in a base64 encoded format, which means it can be very easily decoded.
 
-![](_page_139_Picture_2.jpeg)
+![](SEC560_Book3_page_139_Picture_2.jpeg)
 
 # **Group Policy Preference Files**
 
@@ -3144,7 +3144,7 @@ While highly useful, the storage mechanism used for such credentials is insecure
 
 Although Microsoft addressed this vulnerability in MS14-025, existing GPPs with passwords were not removed (this has to be performed manually). Let's see how we can find these!
 
-![](_page_140_Figure_0.jpeg)
+![](SEC560_Book3_page_140_Figure_0.jpeg)
 
 In order to find these passwords in an environment, you could run the following from any domainauthenticated user session:
 
@@ -3162,7 +3162,7 @@ Finally, on the bottom right, we see the GPP Metasploit module automatically ext
 
 Next to Metasploit modules, several PowerShell scripts exist that will do the same thing, which, of course, reduces the detection rate of such tools.
 
-![](_page_141_Picture_0.jpeg)
+![](SEC560_Book3_page_141_Picture_0.jpeg)
 
 Unquoted paths with spaces can be a serious issue in Windows Services configurations. Let's analyze an example.
 
@@ -3176,7 +3176,7 @@ The picture on the right is a screenshot of Video Stream server installed on a W
 
 The VMware Tools service is clearly **not vulnerable** to the issue, as the executable path is properly delimited using quotes. The Video Stream service, however, raises some questions. Can you think of how we could abuse this?
 
-![](_page_142_Figure_0.jpeg)
+![](SEC560_Book3_page_142_Figure_0.jpeg)
 
 If the service path contains spaces and is not surrounded by quotation marks, then Windows has to guess where to find the service executable. Spaces in the command could either be part of the file path or indicate command-line arguments!
 
@@ -3210,7 +3210,7 @@ Here is an excellent command line to find these types of services on our own mac
 
 wmic service get name,displayname,pathname,startmode |findstr /i "Auto" | findstr /i /v "C:\Windows\\" | findstr /i /v """
 
-![](_page_144_Figure_0.jpeg)
+![](SEC560_Book3_page_144_Figure_0.jpeg)
 
 Microsoft has continued to improve the security in each version of Windows and, as a result, has reduced the operating system's attack surface. One of the most common and widespread security holes has been the granting of administrator privileges to otherwise standard users, often to resolve application and configuration issues. User Account Control (UAC) is a security component that enables users to perform common tasks as non-administrators or as administrators without having to switch users, log off, or use Run As. User accounts that are members of the local Administrators group run most applications as a standard user. By separating user and administrator functions, UAC helps users move toward using standard user rights by default. So, if a user is logged on as a local administrator, then UAC disables a user's administrator rights and prompts the user when their administrator rights are required. If a user logs on as a standard user, they are asked to provide the credentials of an administrator account if they attempt to perform any task that requires administrator rights. Ultimately, the user has control over when to use administrator privileges, as UAC does not have the ability to be controlled via centralized policy.
 
@@ -3218,7 +3218,7 @@ By default, standard users and administrators access resources and run apps in t
 
 When an administrator logs on, two separate access tokens are created for the user: A standard user access token and an administrator access token. The standard user access token contains the same user-specific information as the administrator access token, but the administrative Windows privileges and SIDs are removed. The standard user access token is used to start apps that do not perform administrative tasks (standard user apps). The standard user access token is then used to display the desktop (explorer.exe). Explorer.exe is the parent process from which all other user-initiated processes inherit their access token. As a result, all apps run as a standard user unless a user provides consent or credentials to approve an app to use a full administrative access token.
 
-![](_page_145_Picture_2.jpeg)
+![](SEC560_Book3_page_145_Picture_2.jpeg)
 
 #### **UAC Levels**
 
@@ -3260,7 +3260,7 @@ PowerShell Empire uses several bypass UAC techniques. In hardened Windows 10 env
 
 An interesting tool that tries 30+ UAC bypass techniques can be found at https://github.com/hfiref0x/UACME.
 
-![](_page_148_Picture_2.jpeg)
+![](SEC560_Book3_page_148_Picture_2.jpeg)
 
 # **Privilege Escalation Tools**
 
@@ -3289,7 +3289,7 @@ PowerUp is a collection of PowerShell modules primarily used for privilege escal
 
 Another great PowerShell utility from Will Schroeder (harmj0y) is PowerUp. This tool searches for common misconfigurations locally and reports on how to exploit them. For example, PowerUp searches for user-modifiable service binaries, writable registry keys where binaries would be executed automatically, autologon credentials stored in the registry, and DLL hijacking opportunities. While not all of these misconfigurations will lead to privilege escalation, they will, at the very least, give you persistence on the host. We use this tool on every test and, if we get stuck during the attack chain, on hosts where we've moved laterally.
 
-![](_page_150_Picture_2.jpeg)
+![](SEC560_Book3_page_150_Picture_2.jpeg)
 
 #### **LOLBAS**
 
@@ -3324,15 +3324,15 @@ Or to execute a file in an alternate data stream:
 
 bitsadmin /create 1 bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\playfolder\cmd.exe bitsadmin /SetNotifyCmdLine 1 c:\playfolder\1.txt:cmd.exe NULL bitsadmin /RESUME 1 bitsadmin /complete 1
 
-![](_page_151_Picture_0.jpeg)
+![](SEC560_Book3_page_151_Picture_0.jpeg)
 
-![](_page_151_Picture_1.jpeg)
+![](SEC560_Book3_page_151_Picture_1.jpeg)
 
 # **Windows Privilege Escalation**
 
 Refer to the lab workbook for instructions.
 
-![](_page_152_Picture_0.jpeg)
+![](SEC560_Book3_page_152_Picture_0.jpeg)
 
 General inquiries: info@sans.org Registration: registration@sans.org Tuition: tuition@sans.org Press: press@sans.org 301-654-SANS (7267)
 
