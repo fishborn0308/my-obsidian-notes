@@ -3,9 +3,18 @@
 
 ## Lab 1.3 - Masscan
 
+### Linux
+
+#### 1: Scan Preparation
 
 ```
 sec560@560vm:~/Downloads$ sudo iptables -A INPUT -p tcp --dport 55555 -j DROP
+sec560@560vm:~/Downloads$
+```
+
+#### 2: Initial Scan
+
+```
 sec560@560vm:~/Downloads$ sudo masscan --ports 0-65535 --rate 15000 --src-port=55555 -oB /tmp/local.masscan 127.0.0.1
 Starting masscan 1.3.9-integration (http://bit.ly/14GZzcT) at 2026-03-06 01:31:51 GMT
 Initiating SYN Stealth Scan
@@ -174,9 +183,38 @@ Timestamp: 1727151877	Host: 10.130.10.25 ()	Ports: 2525/open/tcp//unknown//
 sec560@560vm:~/Downloads$ 
 ```
 
+#### 3: Converting the Scan to XML
+
 ```
-sec560@560vm:~/Downloads$ grep -w 53/open /tmp/masscan_10.130.10.0_24_full.gnma
-grep: /tmp/masscan_10.130.10.0_24_full.gnma: No such file or directory
+sec560@560vm:~/Downloads$ masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oX /tmp/masscan_10.130.10.0_24_full.xml
+less /tmp/masscan_10.130.10.0_24_full.xml
+[+] --readscan /home/sec560/labs/masscan_10.130.10.0_24_full.bin
+sec560@560vm:~/Downloads$ 
+```
+
+```
+<?xml version="1.0"?>
+<!-- masscan v1.0 scan -->
+<nmaprun scanner="masscan" start="1772772137" version="1.0-BETA"  xmloutputversion="1.03">
+<scaninfo type="syn" protocol="tcp" />
+<host endtime="1727151519"><address addr="10.130.10.11" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/></port></ports></host>
+<host endtime="1727151523"><address addr="10.130.10.6" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/></port></ports></host>
+<host endtime="1727151523"><address addr="10.130.10.11" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="63" /><service name="http.server" banner="nginx/1.24.0 (Ubuntu)"></service></port></ports></host>
+<host endtime="1727151523"><address addr="10.130.10.11" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="63" /><service name="title" banner="Welcome to nginx!"></service></port></ports></host>
+<host endtime="1727151523"><address addr="10.130.10.11" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="63" /><service name="http" banner="HTTP/1.1 200 OK\x0d\x0aServer: nginx/1.24.0 (Ubuntu)\x0d\x0aDate: Tue, 24 Sep 2024 04:18:42 GMT\x0d\x0aContent-Type: text/html\x0d\x0aContent-Length: 615\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\x0d\x0aConnection: close\x0d\x0aETag: \x2266e224dd-267\x22\x0d\x0aAccept-Ranges: bytes\x0d\x0a\x0d"></service></port></ports></host>
+<host endtime="1727151524"><address addr="10.130.10.21" addrtype="ipv4"/><ports><port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/></port></ports></host>
+<host endtime="1727151526"><address addr="10.130.10.6" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="127" /><service name="http.server" banner="Microsoft-IIS/10.0"></service></port></ports></host>
+<host endtime="1727151526"><address addr="10.130.10.6" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="127" /><service name="title" banner="IIS Windows Server"></service></port></ports></host>
+<host endtime="1727151526"><address addr="10.130.10.6" addrtype="ipv4"/><ports><port protocol="tcp" portid="80"><state state="open" reason="response" reason_ttl="127" /><service name="http" banner="HTTP/1.1 200 OK\x0d\x0aContent-Type: text/html\x0d\x0aLast-Modified: Wed, 11 Sep 2024 23:28:42 GMT\x0d\x0aAccept-Ranges: bytes\x0d\x0aETag: \x2282b3d57a24db1:0\x22\x0d\x0aServer: Microsoft-IIS/10.0\x0d\x0aDate: Tue, 24 Sep 2024 04:18:45 GMT\x0d\x0aConnection: close\x0d\x0aContent-L:
+
+
+```
+
+#### 4: Grepable Format
+
+```
+sec560@560vm:~/Downloads$ grep -w 53/open /tmp/masscan_10.130.10.0_24_full.gnmap
+Timestamp: 1727151766	Host: 10.130.10.4 ()	Ports: 53/open/tcp//domain//
 sec560@560vm:~/Downloads$ 
 ```
 
@@ -196,6 +234,41 @@ sec560@560vm:~/Downloads$
 sec560@560vm:~/Downloads$ grep -w 445/open /tmp/masscan_10.130.10.0_24_full.gnmap | wc -l
 7
 sec560@560vm:~/Downloads$
+```
+
+#### 5: JSON Format
+
+```
+sec560@560vm:~/Downloads$ masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oJ /tmp/masscan_10.130.10.0_24_full.json
+[+] --readscan /home/sec560/labs/masscan_10.130.10.0_24_full.bin
+sec560@560vm:~/Downloads$ 
+```
+
+```
+sec560@560vm:~/Downloads$ head /tmp/masscan_10.130.10.0_24_full.json
+[
+{   "ip": "10.130.10.11",   "timestamp": "1727151519", "ports": [ {"port": 80, "proto": "tcp", "status": "open", "reason": "syn-ack", "ttl": 63} ] }
+,
+{   "ip": "10.130.10.6",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "status": "open", "reason": "syn-ack", "ttl": 127} ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "http.server", "banner": "nginx/1.24.0 (Ubuntu)"} } ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "title", "banner": "Welcome to nginx!"} } ] }
+,
+{   "ip": "10.130.10.11",   "timestamp": "1727151523", "ports": [ {"port": 80, "proto": "tcp", "service": {"name": "http", "banner": "HTTP/1.1 200 OK\u000d\u000aServer: nginx/1.24.0 (Ubuntu)\u000d\u000aDate: Tue, 24 Sep 2024 04:18:42 GMT\u000d\u000aContent-Type: text/html\u000d\u000aContent-Length: 615\u000d\u000aLast-Modified: Wed, 11 Sep 2024 23:16:45 GMT\u000d\u000aConnection: close\u000d\u000aETag: \u002266e224dd-267\u0022\u000d\u000aAccept-Ranges: bytes\u000d\u000a\u000d"} } ] }
+sec560@560vm:~/Downloads$ 
+```
+
+#### 6: List Format
+
+```
+sec560@560vm:~/Downloads$ masscan --readscan ~/labs/masscan_10.130.10.0_24_full.bin -oL /tmp/masscan_10.130.10.0_24_full.txt
+[+] --readscan /home/sec560/labs/masscan_10.130.10.0_24_full.bin
+sec560@560vm:~/Downloads$ 
+```
+
+```
+
 ```
 
 ## Lab 1.4: Nmap
@@ -3250,6 +3323,10 @@ sec560@560vm:~/Downloads$
 
 ## Lab 2.3: Azure Recon and Password Attacks
 
-### Linux
+### 1: Loading AADInternals
+
+#### Windows
+
+#### Linux
 
 
