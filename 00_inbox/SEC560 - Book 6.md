@@ -48,33 +48,33 @@ Courseware licensed to User under this CLA may be subject to export laws and reg
 
 •
 
-- − These challenges will test your ability to apply the right knowledge at the right time
-- − Bonus: Some challenges will test at the edges of what we discussed
+- − これらの課題は、適切な知識を適切なタイミングで適用する能力を試します
+- − ボーナス：一部の課題では、これまで議論した内容の限界領域が試されます
 
-### • **Agenda:**
+### • **アジェンダ：**
 
-- − CTF setup
-- − Joining the event
-- − Rules of Engagement and CTF hints
-- − Initial Access
+- − CTFのセットアップ
+- − イベントへの参加方法
+- − ルール・オブ・エンゲージメントとCTFのヒント
+- − 初期アクセス
 
-Section 6 is focused primarily on the CTF. Expect lab time, not lecture!
+第6セクションは主にCTFに焦点を当てます。講義ではなく、実習時間となります！
 
 ![](SEC560_Book6_page_6_Picture_1.jpeg)
 
 ### **The Scenario**
 
-- After demonstrating business risk to Hiboxy, you've been referred to Lucadon Financial, which has recently acquired Halicron Bank
-- Both Lucadon and Halicron are in scope for this CTF, with the goal of determining their susceptibility to a breach
-- Networks in scope:
-  - − 10.130.9.0/24 (start here)
+- ヒボクシー社にビジネスリスクを提示した後、最近ハリクロン銀行を買収したルカドン・フィナンシャル社に紹介されました
+- 本CTFの対象範囲にはルカドン社とハリクロン社の両方が含まれ、侵害に対する脆弱性を特定することが目的です
+- 対象ネットワーク:
+  - − 10.130.9.0/24 (ここから開始)
   - − 10.130.10.0/24
   - − 10.130.11.0/24
   - − 10.130.12.0/24
   - − 10.130.13.0/24
-- Entra ID tenants in scope:
-  - − halicronbank.com
-  - − (For Microsoft 365 only, with read-only email access)
+- 対象範囲のEntra IDテナント:
+  - halicronbank.com
+  - (Microsoft 365専用、メールへの読み取り専用アクセス権付き)
 
 ![](SEC560_Book6_page_6_Picture_14.jpeg)
 
@@ -86,38 +86,38 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
 ![](SEC560_Book6_page_7_Picture_4.jpeg)
 
-- 1. Use your host to browse to https://connect.labs.sans.org (log in using SANS SSO if needed)
-- 2. Download this event's **sec560-ctf-range.ovpn** file
-- 3. Transfer .ovpn file to both VMs
-- 4. Disconnect from Sections 1-5 **sec560-labs-range.ovpn**, connect with new OpenVPN profile
+- 1. ホストから https://connect.labs.sans.org にアクセス（必要に応じて SANS SSO でログイン）
+- 2. 本イベントの **sec560-ctf-range.ovpn** ファイルをダウンロード
+- 3. .ovpn ファイルを両方の VM に転送
+- 4. セクション1～5の**sec560-labs-range.ovpn**接続を切断し、新しいOpenVPNプロファイルで接続
 
-- 1. Use your host to browse to https://ranges.io
-- 2. Click **Sign up with SANS** and register using SANS SSO
-- 3. Register for the SEC560 OnDemand event using the twoword event code inside **My Labs** in your **SANS Portal**
+- 1. ホストからhttps://ranges.ioにアクセス
+- 2. **SANSでサインアップ**をクリックし、SANS SSOで登録
+- 3. **SANSポータル**内の**マイラボ**にある2語のイベントコードを使用して、SEC560オンデマンドイベントに登録
 
 # **Question Types and Hinting System**
 
-- **Flag Questions**: If a question asks for a flag, it will already be in the format SEC560{some-text-here}
-  - − You'll never have to add the curly braces yourself
-  - − Found a flag, but don't see the question? You'll find the appropriate question soon
-- **Integer Questions**: Answer with the numerical answer
-  - − Example question: How many sections does the SEC560 courseware contain?
-  - − Example answer: 6
-- **Case-Sensitive Questions**: Answer with the correct case for the text
-  - − Example: Fluffybunny12! is not the same password as FLUFFYbunny12!
-- Hints are available for all non-trivia questions, and cost a trivial single point
-  - − Don't hesitate to take a hint if you're stuck for more than 3-5 minutes
-  - − Optimize for your learning, not some scoreboard
+- **フラグ問題**: フラグを要求する問題では、既に SEC560{some-text-here} の形式で記述されています
+  - − 中括弧を自分で追加する必要はありません
+  - − フラグは見つかったが問題が見当たらない場合、該当する問題はすぐに見つかります
+- **整数問題**: 数値で回答してください
+  - − 例題: SEC560コースウェアには何セクション含まれていますか？
+  - − 例解答: 6
+- **大文字小文字区別問題**: 正しい大文字小文字でテキストを回答してください
+  - − 例: Fluffybunny12! と FLUFFYbunny12! は異なるパスワードです
+- ヒントはトリビア以外の全問題で利用可能。コストはわずかな1ポイント
+  - − 3～5分以上詰まったら、遠慮なくヒントを活用してください
+  - − スコアボードではなく、自身の学習効果を最優先に
 
 ![](SEC560_Book6_page_9_Picture_2.jpeg)
 
 ### **Initial Game Hints**
 
-- **Password Guessing**: There are only five main methods of initial access, but authentication is huge
-  - − Hint: Plan for password guessing, which requires both username(s) and password(s).
-  - − Where can you find usernames?
-- **Authenticated Enumeration**: After authentication as **any** user, you should get an authoritative list of **all** users from that system
-  - − Hint: Impacket's GetADUsers.py was featured in an early lab
+- **パスワード推測**: 初期アクセスには主に5つの方法しかありませんが、認証は非常に重要です
+  - − ヒント: ユーザー名とパスワードの両方が必要なパスワード推測を想定してください。
+  - − ユーザー名はどこで入手できますか？
+- **認証済み列挙**: **任意の**ユーザーとして認証後、そのシステム上の**全**ユーザーを網羅する権威あるリストを取得すべき
+  - − ヒント: 初期ラボでImpacketのGetADUsers.pyが紹介された
 
 ![](SEC560_Book6_page_9_Picture_10.jpeg)
 
@@ -127,16 +127,16 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
 • https://malcomvetter.medium.com/how-we-breached-your-network-755e40f52d85
 
-# **Let the Games Begin!**
+#**ゲーム開始！**
 
-- You now have permission to begin the CTF against the SEC560 OpenVPN environment associated with this event:
-  - − **10.130.9.0/24** (start here!)
+- 本イベントに関連するSEC560 OpenVPN環境に対するCTFを開始する許可が与えられました：
+  - − **10.130.9.0/24** (ここから開始！)
   - − 10.130.10.0/24
   - − 10.130.11.0/24
   - − 10.130.12.0/24
   - − 10.130.13.0/24
-  - − Microsoft 365 for halicronbank.com (you can log in, but no other attacks)
-- Note: Take breaks as you need them. Sometimes time away from a given challenge is the most efficient way to make progress
+  - − halicronbank.com向けMicrosoft 365（ログインは可能ですが、その他の攻撃は不可）
+- 注：必要に応じて休憩を取ってください。特定の課題から離れることが、最も効率的な進歩の方法となる場合があります
 
 ![](SEC560_Book6_page_10_Picture_11.jpeg)
 
@@ -146,31 +146,31 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
 ### **SEC560 Capture the Flag**
 
-- **Objective:** Apply the skills learned throughout the week in a hands-on, teambased competition
-  - − Today's challenges will test your ability to apply the right knowledge at the right time
-  - − Bonus: Some challenges will test at the edges of what we discussed
-- **Agenda:**
-  - − CTF setup
-  - − Team formation and communication
-  - − Joining the event
-  - − Rules of Engagement and CTF hints
-  - − Initial Access
+- **目的：** 1週間で学んだスキルを、実践的なチーム対抗戦を通じて応用する
+  - − 本日の課題では、適切な知識を適切なタイミングで適用する能力が試されます
+  - − ボーナス：一部の課題では、これまで議論した内容の限界領域が試されます
+- **アジェンダ：**
+  - − CTFの準備
+  - − チーム編成とコミュニケーション
+  - − イベントへの参加
+  - − ルール・オブ・エンゲージメントとCTFのヒント
+  - − 初期アクセス
 
 Section 6 is focused primarily on the CTF. Expect lab time, not lecture!
 
 ### **The Scenario**
 
-- After demonstrating business risk to Hiboxy, you've been referred to Lucadon Financial, which has recently acquired Halicron Bank
-- Both Lucadon and Halicron are in scope for this CTF, with the goal of determining their susceptibility to a breach
-- Networks in scope:
-  - − 10.130.9.0/24 (start here)
+- Hiboxy社にビジネスリスクを提示した後、最近Halicron銀行を買収したLucadon Financial社に紹介されました
+- Lucadon社とHalicron銀行の両方が本CTFの対象範囲であり、侵害に対する脆弱性を判定することが目的です
+- 対象ネットワーク:
+  - − 10.130.9.0/24 (ここから開始)
   - − 10.130.10.0/24
   - − 10.130.11.0/24
   - − 10.130.12.0/24
   - − 10.130.13.0/24
-- Entra ID tenants in scope:
+- 対象範囲のEntra IDテナント:
   - − halicronbank.com
-  - − (For Microsoft 365 only, with read-only email access)
+  - − (Microsoft 365専用、メールへの読み取り専用アクセス権付き)
 
 ![](SEC560_Book6_page_13_Picture_14.jpeg)
 
@@ -184,14 +184,14 @@ You'll need OpenVPN connectivity and CTF access (ranges.io) to compete:
 
 ![](SEC560_Book6_page_14_Picture_5.jpeg)
 
-- 1. Use your host to browse to https://connect.labs.sans.org (log in using SANS SSO if needed)
-- 2. Download this event's **sec560-ctf-range.ovpn** file
-- 3. Transfer .ovpn file to both VMs
-- 4. Disconnect from Sections 1-5 **sec560-labs-range.ovpn**, connect with new OpenVPN profile
+- 1. ホストから https://connect.labs.sans.org にアクセス（必要に応じて SANS SSO でログイン）
+- 2. 本イベントの **sec560-ctf-range.ovpn** ファイルをダウンロード
+- 3. .ovpn ファイルを両方の VM に転送
+- 4. セクション1～5の**sec560-labs-range.ovpn**接続を切断し、新しいOpenVPNプロファイルで接続
 
-- 1. Use your host to browse to https://ranges.io
-- 2. Click **Sign up with SANS** and register using SANS SSO
-- 3. Register for your event and team with the three-word event code (detailed shortly)
+- 1. ホストマシンで https://ranges.io にアクセス
+- 2. **SANSでサインアップ**をクリックし、SANS SSOで登録
+- 3. 3語のイベントコード（後述）でイベントとチームに登録
 
 ![](SEC560_Book6_page_15_Picture_2.jpeg)
 
