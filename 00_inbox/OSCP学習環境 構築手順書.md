@@ -78,22 +78,29 @@ sudo apt install -y pipx && pipx ensurepath
 
 2. **便利なユーティリティ:**
 ```bash
-sudo apt install -y tmux rlwrap seclists curl enum4linux-ng flameshot
+# ペネトレーションテスト・実戦用ツールのインストール
+sudo apt install -y rlwrap netexec seclists curl enum4linux-ng flameshot
 
 ```
 
 ```bash
+# ターミナル・ユーティリティ・フォントのインストール
 sudo apt update
 sudo apt install -y kitty tmux zoxide fzf \
     zsh-autosuggestions zsh-syntax-highlighting \
     fonts-jetbrains-mono
-    
+
+# Tmux プラグインマネージャー (TPM) の導入    
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# デフォルトターミナルの切り替え
 sudo update-alternatives --config x-terminal-emulator # Kittyを選択
 ```
 
-3. **AutoRecon (推奨自動化ツール):**
+3. **Git経由のインストール**
+
+* ***AutoRecon (推奨自動化ツール):**
+
 ```bash
 # 依存関係のインストール後、pipx等でインストール
 sudo apt install -y seclists curl dnsrecon nbtscan nikto nmap onesixtyone oscanner smbclient smbmap sslscan ccze
@@ -101,13 +108,50 @@ pipx install git+https://github.com/Tib3rius/AutoRecon.git
 
 ```
 
-4. **主要ツールのインストール:**
+* **RustScan:**
+
+```bash
+# GitHubのリリースページから最新の.debをダウンロード（2026年現在の最新版を確認してください）
+wget https://github.com/RustScan/RustScan/releases/download/2.3.0/rustscan_2.3.0_amd64.deb
+
+# インストール
+sudo dpkg -i rustscan_2.3.0_amd64.deb
+
+# 依存関係でエラーが出た場合の修正
+sudo apt --fix-broken install -y
+
+# 確認
+rustscan --version
+```
+
+4. **Pythonツールのインストール:**
 * `pipx install impacket` (ネットワーク攻撃)
 * `pipx install updog` (アップロード対応HTTPサーバ)
 
 5. **PrivEsc（権限昇格）スクリプトの配置:**
 * `~/oscp/scripts/` に `LinPeas.sh` や `WinPEAS.exe` をダウンロードして配置。
 
+```bash
+# 保存用ディレクトリの作成
+mkdir -p ~/oscp/scripts/windows/privesc
+cd ~/oscp/scripts/windows/privesc
+
+# 1. Juicy Potato (Windows 2012/2016用)
+wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe
+
+# 2. Rogue Potato (Windows 2019 / Windows 10用)
+# ※リポジトリから最新のバイナリを取得
+wget https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.exe
+
+# 3. PrintSpoofer (Juicyが効かない最新環境の定番)
+wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
+
+# 4. GodPotato (最新の汎用Potato)
+wget https://github.com/BeichenDream/GodPotato/releases/download/V1.20/GodPotato-Net4.exe
+
+# 5. WinPEAS (列挙ツールの定番)
+wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany.exe
+```
 
 ---
 
@@ -136,6 +180,8 @@ bind C-a send-prefix
 # 【直感分割】 | で縦分割、 - で横分割
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
+# Prefix + r で設定ファイルを再読み込みする
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
 # マウス有効化・履歴拡張
 set -g mouse on
