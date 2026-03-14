@@ -6,7 +6,7 @@
 | --- | --- |
 | **プラットフォーム** | **VMware Workstation / Player** (公式推奨の安定性) |
 | **イメージ** | [Kali VMware 64-bit (Pre-built)](https://www.google.com/search?q=https://www.kali.org/get-kali/%23kali-virtual-machines) |
-| **基本設定** | RAM: 8GB推奨, CPU: 2コア以上, **日本語フォント** (`fonts-noto-cjk`) |
+| **基本設定** | RAM: 8GB推奨, CPU: 2コア以上, グラフィックメモリ: 2GB, 3Dアクセラレータあり **日本語フォント** (`fonts-noto-cjk`) |
 | **ディレクトリ構造** | `~/oscp/` (labs, exam, scripts, tools) を作成して整理 |
 
 ---
