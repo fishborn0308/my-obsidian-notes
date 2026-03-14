@@ -306,7 +306,31 @@ eval "$(zoxide init zsh --cmd z)"
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# ターゲット設定関数 (Hosts自動追記・タグ付き)
+# --- 1. 情報更新ロジック (precmd) ---
+# プロンプトが表示される直前に、IP情報などを一括更新します
+refresh_oscp_prompt() {
+    # 自局IPの取得 (tun0優先)
+    local my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+    [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+    CURRENT_MY_IP="${my_ip:-N/A}"
+
+    # ターゲット情報の組み立て
+    if [ -n "$ip" ]; then
+        if [ -n "$fqdn" ]; then
+            TARGET_STATUS="%F{red}[T: $ip ($fqdn)]%f"
+        else
+            TARGET_STATUS="%F{red}[T: $ip]%f"
+        fi
+    else
+        TARGET_STATUS=""
+    fi
+}
+
+# zshのフックに登録
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd refresh_oscp_prompt
+
+# --- 2. ターゲット設定関数 (改良版) ---
 target() {
     if [ -z "$1" ]; then
         echo "Usage: target <IP> [FQDN]"
@@ -315,14 +339,12 @@ target() {
 
     export ip="$1"
     export target="$1"
-    local tag="# OSCP_TARGET"
+    unset fqdn # 前のターゲット情報をクリア
+    local tag="# TARGET"
     
-    # --- 【追加】ディレクトリ自動作成 & 移動 ---
-    # ~/oscp/labs/10.10.10.101 のようなディレクトリを作る
-    export workdir="$HOME/oscp/labs/$ip"
+    export workdir="$HOME/labs/$ip"
     mkdir -p "$workdir"
     cd "$workdir"
-    # -----------------------------------------
 
     if [ -n "$2" ]; then
         export fqdn="$2"
@@ -332,33 +354,20 @@ target() {
 
     echo "[+] Target: $ip (${fqdn:-no fqdn})"
     echo "[+] Switched to: $workdir"
-    getent hosts "${fqdn:-$ip}"
 }
 
-# 一括クリーンアップ
 target_clear() {
-    sudo sed -i "/# OSCP_TARGET/d" /etc/hosts
+    sudo sed -i "/# TARGET/d" /etc/hosts
     unset ip target fqdn
     echo "[!] Environment & Hosts cleared."
 }
 
-# プロンプトの右側にターゲット情報を表示する設定
-# IPが設定されている時だけ、赤文字で [T: IP (FQDN)] と表示します
-set_rprompt() {
-    if [ -n "$ip" ]; then
-        if [ -n "$fqdn" ]; then
-            echo "%F{red}[T: $ip ($fqdn)]%f"
-        else
-            echo "%F{red}[T: $ip]%f"
-        fi
-    else
-        echo ""
-    fi
-}
-
-# プロンプトが表示されるたびに上記関数を呼び出す
+# --- 3. プロンプトの定義 ---
 setopt prompt_subst
-RPROMPT='$(set_rprompt)'
+# 左側：[L: 自局IP] パス #
+PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
+# 右側：[T: 相手IP]
+RPROMPT='${TARGET_STATUS}'
 
 # Ligolo-ng の設定用 (TUNデバイス作成)
 setup_ligolo() {
@@ -376,7 +385,10 @@ alias update-tools='find ~/tools/git -maxdepth 2 -name .git -type d -execdir git
 alias pserv="python3 -m http.server 80"
 alias udot="updog -p 80"
 alias icat="kitty +kitten icat"
-
+# 自分のIPを簡潔に表示 (IPv4のみ)
+alias myip="ip -br -4 a"
+# VPNのIPだけを「値だけ」取り出す (よりシンプルに書けます)
+alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
 ```
 
 ### `~/.config/kitty/kitty.conf` (視認性重視)
