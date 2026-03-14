@@ -51,7 +51,7 @@ xset -dpms
 | **`~/logs`**          |     Tmuxからのログを保存        |  Tmuxの自動ログ保存先              |
 
 ```bash
-mkdir -p ~/{labs,tools/scripts,tools/git}
+mkdir -p ~/{labs,logs,tools/scripts,tools/git}
 
 ```
 
@@ -75,9 +75,7 @@ sudo apt install -y pipx && pipx ensurepath
 
 2. **便利なユーティリティ:**
 ```bash
-sudo apt install -y tmux rlwrap seclists curl enum4linux-ng kitty fonts-jetbrains-mono
-
-sudo update-alternatives --config x-terminal-emulator # Kittyを選択
+sudo apt install -y tmux rlwrap seclists curl enum4linux-ng
 
 ```
 
@@ -91,7 +89,6 @@ pipx install git+https://github.com/Tib3rius/AutoRecon.git
 
 4. **主要ツールのインストール:**
 * `pipx install impacket` (ネットワーク攻撃)
-* `pipx install netexec` (AD列挙・攻撃)
 * `pipx install updog` (アップロード対応HTTPサーバ)
 
 5. **PrivEsc（権限昇格）スクリプトの配置:**
@@ -101,6 +98,18 @@ pipx install git+https://github.com/Tib3rius/AutoRecon.git
 ---
 
 ## 5. ターミナル & マルチプレクサ設定
+
+```bash
+sudo apt update
+sudo apt install -y kitty tmux zoxide fzf \
+    zsh-autosuggestions zsh-syntax-highlighting \
+    fonts-jetbrains-mono
+    
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+sudo update-alternatives --config x-terminal-emulator # Kittyを選択
+```
+
 
 ### `~/.tmux.conf` (直感操作重視)
 
