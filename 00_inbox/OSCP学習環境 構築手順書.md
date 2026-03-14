@@ -15,8 +15,8 @@
 
 1. **システム更新:**
 ```bash
-sudo apt update && sudo apt full-upgrade -y
-
+# パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
+sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
 ```
 
 
@@ -153,14 +153,30 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ターゲット設定関数 (Hosts自動追記・タグ付き)
 target() {
-    export ip="$1" target="$1"
+    if [ -z "$1" ]; then
+        echo "Usage: target <IP> [FQDN]"
+        return 1
+    fi
+
+    export ip="$1"
+    export target="$1"
     local tag="# OSCP_TARGET"
+    
+    # --- 【追加】ディレクトリ自動作成 & 移動 ---
+    # ~/oscp/labs/10.10.10.101 のようなディレクトリを作る
+    export workdir="$HOME/oscp/labs/$ip"
+    mkdir -p "$workdir"
+    cd "$workdir"
+    # -----------------------------------------
+
     if [ -n "$2" ]; then
         export fqdn="$2"
         sudo sed -i "/ $fqdn/d; /^$ip /d" /etc/hosts
         echo "$ip $fqdn $tag" | sudo tee -a /etc/hosts > /dev/null
     fi
-    echo "[+] Target: $ip ($fqdn)"
+
+    echo "[+] Target: $ip (${fqdn:-no fqdn})"
+    echo "[+] Switched to: $workdir"
     getent hosts "${fqdn:-$ip}"
 }
 
@@ -170,6 +186,24 @@ target_clear() {
     unset ip target fqdn
     echo "[!] Environment & Hosts cleared."
 }
+
+# プロンプトの右側にターゲット情報を表示する設定
+# IPが設定されている時だけ、赤文字で [T: IP (FQDN)] と表示します
+set_rprompt() {
+    if [ -n "$ip" ]; then
+        if [ -n "$fqdn" ]; then
+            echo "%F{red}[T: $ip ($fqdn)]%f"
+        else
+            echo "%F{red}[T: $ip]%f"
+        fi
+    else
+        echo ""
+    fi
+}
+
+# プロンプトが表示されるたびに上記関数を呼び出す
+setopt prompt_subst
+RPROMPT='$(set_rprompt)'
 
 # メンテナンス・便利エイリアス
 alias gclone='cd ~/tools/git && git clone'
@@ -231,14 +265,26 @@ selection_background  #ebdbb2
 
 
 
----
+## トラブルシューティング・ガイド
 
-3. **Burp Suite:** 初期設定ウィザードを済ませ、ブラウザのFoxyProxyを設定。
+### 1. リポジトリ・アップデートの失敗
 
-## 6. ノート・レポート環境
+**症状:** `apt update` を実行すると "Repository changed its 'Suite' value" や GPGエラーが出て更新できない。
+**原因:** 古いイメージのリポジトリ情報や署名キーが期限切れ、または構造が変わっているため。
 
-* **Obsidian**（またはCherryTree）をインストール。
-* OSCP用のテンプレート（列挙、試行ログ、権限昇格メモ）を読み込む。
+**解決コマンド:**
+
+```bash
+# リリース情報の変更を明示的に許可して更新
+sudo apt update --allow-releaseinfo-change
+
+# 署名キーのエラーが出る場合（最新のキーリングを導入）
+wget -q -O - https://archive.kali.org/archive-key.asc | sudo apt-key add
+
+# 標準の sources.list を強制再生成（中身が壊れている場合）
+echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" | sudo tee /etc/hosts /etc/apt/sources.list
+
+```
 
 
 
