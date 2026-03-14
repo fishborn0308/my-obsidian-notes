@@ -79,7 +79,8 @@ sudo apt install -y pipx && pipx ensurepath
 2. **便利なユーティリティ:**
 ```bash
 # ペネトレーションテスト・実戦用ツールのインストール
-sudo apt install -y rlwrap netexec seclists curl enum4linux-ng flameshot
+sudo apt install -y rlwrap netexec seclists curl enum4linux-ng \
+	flameshot rustscan
 
 ```
 
@@ -108,32 +109,55 @@ pipx install git+https://github.com/Tib3rius/AutoRecon.git
 
 ```
 
-* **RustScan:**
-
-```bash
-# GitHubのリリースページから最新の.debをダウンロード（2026年現在の最新版を確認してください）
-wget https://github.com/RustScan/RustScan/releases/download/2.3.0/rustscan_2.3.0_amd64.deb
-
-# インストール
-sudo dpkg -i rustscan_2.3.0_amd64.deb
-
-# 依存関係でエラーが出た場合の修正
-sudo apt --fix-broken install -y
-
-# 確認
-rustscan --version
-```
-
 4. **Pythonツールのインストール:**
 * `pipx install impacket` (ネットワーク攻撃)
 * `pipx install updog` (アップロード対応HTTPサーバ)
 
-5. **PrivEsc（権限昇格）スクリプトの配置:**
+4. **Enumeration（列挙）の配置:**
 * `~/oscp/scripts/` に `LinPeas.sh` や `WinPEAS.exe` をダウンロードして配置。
 
 ```bash
 # 保存用ディレクトリの作成
-mkdir -p ~/oscp/scripts/windows/privesc
+mkdir -p ~/tools/scripts/windows/enumeration
+cd ~/tools/scripts/windows/enumeration
+
+# 1. Seatbelt (GhostPackの主力ツール)
+# ※ビルド済みのものを探すか、自身でビルドしたものを配置
+# 公式: https://github.com/GhostPack/Seatbelt
+# (OSCPでは最新のビルド済みバイナリを整理しておくのが定石です)
+
+# 2. SharpUp (特権昇格のチェックに特化したC#ツール)
+# ※ビルド済みのものを探すか、自身でビルドしたものを配置
+# https://github.com/GhostPack/SharpUp
+
+# 3. PowerUp.ps1 (PowerShellベースの定番)
+wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1
+
+# 4. WinPEAS (列挙ツールの定番)
+wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany.exe
+```
+
+```bash
+# 保存用ディレクトリの作成
+mkdir -p ~/tools/scripts/linux/enumeration
+cd ~/tools/scripts/linux/enumeration
+
+# 1. LinPEAS (最強の自動列挙スクリプト)
+wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh
+
+# 2. Linux Exploit Suggester (カーネル脆弱性診断)
+wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
+
+# 3. pspy (プロセスのリアルタイム監視：cronジョブの特定に便利)
+# ※最近はバイナリ版を落としておくのが楽です
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+```
+
+5. **PrivEsc（権限昇格）の配置:**
+
+```bash
+# 保存用ディレクトリの作成
+mkdir -p ~/tools/scripts/windows/privesc
 cd ~/oscp/scripts/windows/privesc
 
 # 1. Juicy Potato (Windows 2012/2016用)
@@ -141,18 +165,49 @@ wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe
 
 # 2. Rogue Potato (Windows 2019 / Windows 10用)
 # ※リポジトリから最新のバイナリを取得
-wget https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.exe
+wget https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip
 
 # 3. PrintSpoofer (Juicyが効かない最新環境の定番)
 wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
 
 # 4. GodPotato (最新の汎用Potato)
 wget https://github.com/BeichenDream/GodPotato/releases/download/V1.20/GodPotato-Net4.exe
-
-# 5. WinPEAS (列挙ツールの定番)
-wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany.exe
 ```
 
+1. **Pivoting/tunneling(トンネル・横展開)の配置:**
+
+```bash
+# 保存用ディレクトリ
+mkdir -p ~/tools/scripts/tunneling/chisel
+cd ~/oscp/scripts/tunneling/chisel
+
+# 最新リリースの取得 (Linux 64bit用とWindows 64bit用)
+# ※バージョン番号は適宜最新を確認してください
+wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz
+wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_windows_amd64.gz
+
+# 解凍
+gunzip *.gz
+mv chisel_1.9.1_linux_amd64 chisel
+mv chisel_1.9.1_windows_amd64 chisel.exe
+chmod +x chisel
+```
+
+```bash
+# 保存用ディレクトリ
+mkdir -p ~/tools/scripts/tunneling/ligolo
+cd ~/oscp/scripts/tunneling/ligolo
+
+# Proxy (Kali側) と Agent (ターゲット側) を取得
+wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_proxy_0.5.2_linux_amd64.tar.gz
+wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_agent_0.5.2_linux_amd64.tar.gz
+wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_agent_0.5.2_windows_amd64.zip
+
+# 解凍して整理
+tar -xvf ligolo-ng_proxy_0.5.2_linux_amd64.tar.gz proxy
+tar -xvf ligolo-ng_agent_0.5.2_linux_amd64.tar.gz agent
+unzip ligolo-ng_agent_0.5.2_windows_amd64.zip -d agent_win
+```
 ---
 
 ## 5. ターミナル & マルチプレクサ & スクリーンショット設定
