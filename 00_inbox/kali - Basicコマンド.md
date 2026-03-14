@@ -253,6 +253,169 @@ OSCPの作業中、特に複数のインターフェース（VPN, ローカル, 
 	* **自分のIPを簡潔に表示:** `myip` `ip -br -4 a`
 	* **VPNのIPだけを値だけ取り出す:** `vpnip` `ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1`
 
+## 10. ファイアウォール関連 (ufw / iptables)
+
+Kali Linuxではデフォルトで `ufw` (Uncomplicated Firewall) が入っていますが、無効になっていることが多いです。試験中は「意図せずブロックしていないか」を確認するのが鉄則です。
+
+| 操作 | コマンド | 備考 |
+| --- | --- | --- |
+| **状態確認** | `sudo ufw status` | `inactive` なら全開放状態。 |
+| **FWを無効化** | `sudo ufw disable` | **[推奨]** 試験中はトラブル防止のためOFFが基本。 |
+| **特定のポートを許可** | `sudo ufw allow 4444/tcp` | シェルを待機するポートを個別に開ける。 |
+| **ルールを全リセット** | `sudo ufw reset` | 設定がぐちゃぐちゃになった時に。 |
+
+### 💡 接続が来ない時のデバッグ
+
+`iptables` のルールが複雑に絡んでいる場合、以下のコマンドでパケットが「DROP（破棄）」されていないか確認します。
+
+```bash
+# DROPされている通信をリアルタイムで監視
+sudo watch -n 1 "iptables -L -n -v | grep DROP"
+
+```
+
+---
+
+## 11. システムサービス管理 (systemctl)
+
+ツールが動かないときや、設定を変更した後は `systemctl` でサービスの状態を制御します。
+
+### 基本操作
+
+```bash
+# サービスの起動
+sudo systemctl start <サービス名>
+
+# サービスの停止
+sudo systemctl stop <サービス名>
+
+# サービスの再起動（設定変更後など）
+sudo systemctl restart <サービス名>
+
+# 状態確認（動いているか、エラーが出ていないか）
+sudo systemctl status <サービス名>
+
+```
+
+### OSCPでよく使うサービス名
+
+* **`postgresql`**: `msfconsole` (Metasploit) を使う前に起動が必要。
+* **`ssh`**: 自分のKaliに他から入りたい時。
+* **`docker`**: Dockerコンテナベースのツールを使う時。
+* **`neo4j`**: `BloodHound` を使うためのデータベース。
+
+### 実戦で役立つ「トラブル回避」設定
+
+#### ① 起動時に自動実行させない（永続化の解除）
+
+試験環境をクリーンに保つため、不要なサービスは自動起動をオフにしておくのが賢明です。
+
+```bash
+# 自動起動を無効にする
+sudo systemctl disable <サービス名>
+
+# 逆に、常に動かしておきたい場合
+sudo systemctl enable <サービス名>
+
+```
+
+#### ② 「ポートが既に使われている」エラーの対処
+
+`nc` や `python3 -m http.server` を起動しようとして「Address already in use」と出た場合、古いプロセスが残っています。
+
+```bash
+# ポート80を使っているプロセスのPIDを特定して殺す
+sudo fuser -k 80/tcp
+
+```
+
+---
+
+## 12.テスト系コマンド（Verification Commands）
+
+### 1. 名前解決とネットワークの疎通確認
+
+`/etc/hosts` の設定や DNS が正しく機能しているかを確認します。
+
+| コマンド | 用途 | OSCPでの活用シーン |
+| --- | --- | --- |
+| **`getent hosts <名前>`** | `/etc/hosts` や DNS から IP を引く | `target` 関数実行後、Kali が正しく名前を認識したか確認。 |
+| **`ping -c 3 $ip`** | 生存確認（ICMP） | そもそもネットワーク的に繋がっているか。 |
+| **`traceroute -n $ip`** | 経路の確認 | VPN 経由で正しいゲートウェイを通っているか。 |
+| **`dig @$ip version.bind txt chaos`** | DNS サーバーの調査 | ターゲットが DNS の場合に、バージョン情報を抜く。 |
+
+---
+
+### 2. 自分の待ち受け（リスナー）確認
+
+リバースシェルが届かないとき、自分の Kali が正しくポートを開けて待っているかを確認します。
+
+```bash
+# 指定したポート（例: 4444）で待ち受けているプロセスを表示
+# 自分のシェルが nc や msfconsole で開いているか確認
+ss -tulnp | grep 4444
+
+# 外部（ターゲット）から自分のポートが見えるかテスト
+# 別のペインから実行
+nc -zv $(vpnip) 4444
+
+```
+
+---
+
+### 3. リバースシェルの「導通」テスト (tcpdump)
+
+「ペイロードは実行したはずなのに、シェルが返ってこない」という時の最強のデバッグ手段です。
+
+```bash
+# VPNインターフェース(tun0)を流れる特定のポートの通信を監視
+# これを実行したままペイロードを叩き、パケットが来れば「相手は送っている」と判断できる
+sudo tcpdump -i tun0 port 4444
+
+```
+
+---
+
+### 4. 認証・権限のテスト (NetExec / Impacket)
+
+取得した認証情報（ユーザー名・パスワード）が有効かどうかをテストします。
+
+```bash
+# SMBの認証テスト（Pwn3d! が出れば管理者権限あり）
+nxc smb $ip -u 'user' -p 'pass'
+
+# WinRM が有効でログイン可能かテスト
+nxc winrm $ip -u 'user' -p 'pass'
+
+# Kerberos プレ認証が通るか確認
+impacket-GetNPUsers -dc-ip $ip -no-pass -usersfile users.txt domain.local/
+
+```
+
+---
+
+### 5. 転送したファイルの整合性テスト
+
+ファイルをターゲットに送ったあと、壊れていないか確認するためにハッシュ値を取ります。
+
+```bash
+# Kali 側
+md5sum binary.exe
+
+# Windows (PowerShell) 側
+Get-FileHash -Algorithm MD5 .\binary.exe
+
+```
+
+---
+
+### 6. ネットワークとサービスの統合確認フロー
+
+1. **サービスの確認:** `sudo systemctl status apache2` (サービス自体は動いているか？)
+2. **ポートの開放確認:** `ss -antp | grep 80` (自分のマシン内でポートがListenしているか？)
+3. **FWの確認:** `sudo ufw status` (外部からのパケットを遮断していないか？)
+4. **外部からの疎通確認:** 別のターミナルから `nc -zv $(vpnip) 80` (自分自身に外から繋がるか？)
+
 ### 最後に：OSCP試験当日のルーティン
 
 1. **Kitty**を起動し、**Tmux**を開始。
