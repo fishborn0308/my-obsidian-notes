@@ -52,7 +52,10 @@ xset -dpms
 
 ```bash
 mkdir -p ~/{labs,logs,tools/scripts,tools/git}
-
+# configファイルの作成
+mkdir -p ~/.config/kitty
+touch ~/.config/kitty/kitty.conf
+touch ~/.tmux.conf
 ```
 
 * `logs/`: Tmuxの自動ログ保存先
@@ -75,8 +78,19 @@ sudo apt install -y pipx && pipx ensurepath
 
 2. **便利なユーティリティ:**
 ```bash
-sudo apt install -y tmux rlwrap seclists curl enum4linux-ng
+sudo apt install -y tmux rlwrap seclists curl enum4linux-ng flameshot
 
+```
+
+```bash
+sudo apt update
+sudo apt install -y kitty tmux zoxide fzf \
+    zsh-autosuggestions zsh-syntax-highlighting \
+    fonts-jetbrains-mono
+    
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+sudo update-alternatives --config x-terminal-emulator # Kittyを選択
 ```
 
 3. **AutoRecon (推奨自動化ツール):**
@@ -97,18 +111,18 @@ pipx install git+https://github.com/Tib3rius/AutoRecon.git
 
 ---
 
-## 5. ターミナル & マルチプレクサ設定
+## 5. ターミナル & マルチプレクサ & スクリーンショット設定
 
-```bash
-sudo apt update
-sudo apt install -y kitty tmux zoxide fzf \
-    zsh-autosuggestions zsh-syntax-highlighting \
-    fonts-jetbrains-mono
-    
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+### スクリーンショット（Flameshot）の設定
 
-sudo update-alternatives --config x-terminal-emulator # Kittyを選択
-```
+OSCPのレポートには「実行したコマンド」と「結果」の証拠が不可欠です。
+
+1. **起動確認:**
+ターミナルで `flameshot gui` を実行し、範囲選択ができるか確認します。
+2. **ショートカット登録 (重要):**
+Kaliの [Settings] > [Keyboard] > [Application Shortcuts] から、以下のショートカットを登録すると効率が劇的に上がります。
+* **Command:** `flameshot gui`
+* **Shortcut:** `Print` キー（または好みのキー）
 
 
 ### `~/.tmux.conf` (直感操作重視)
@@ -146,6 +160,33 @@ run '~/.tmux/plugins/tpm/tpm'
 ### `~/.zshrc` エッセンス (自動化・効率化)
 
 ```bash
+
+sed -i -e "s/^alias ll='ls -l'/alias ll='ls -alF'/" \
+       -e "s/^HISTSIZE=1000$/HISTSIZE=10000/" \
+       -e "s/^SAVEHIST=2000$/SAVEHIST=10000/" ~/.zshrc
+
+# 書き換え内容の確認
+grep -E "alias ll|HISTSIZE|SAVEHIST" ~/.zshrc
+
+# 設定の反映
+source ~/.zshrc
+```
+
+```bash
+vim ~/.zshrc
+
+# 設定の反映
+source ~/.zshrc
+
+```
+
+
+```bash
+
+# 履歴設定 (過去のコマンドを数万件保持)
+setopt HIST_IGNORE_ALL_DUPS  # 重複を記録しない
+setopt SHARE_HISTORY         # 別ウィンドウの履歴も即座に共有
+
 # --- ツール連携設定 (Simple & Modern) ---
 
 # fzf (曖昧検索) の初期化：これだけで Ctrl+R などが有効化されます
