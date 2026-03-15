@@ -426,5 +426,7 @@
   "autoAcceptEdits": false,
   "chatHistorySortStrategy": "recent",
   "projectListSortStrategy": "recent",
-  "userSystemPromptsFolder": "copilot/system-prompts"
+  "userSystemPromptsFolder": "copilot/system-prompts",
+  "enableMiyo": false,
+  "selfHostSearchProvider": "firecrawl"
 }

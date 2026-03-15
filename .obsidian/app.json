@@ -1,3 +1,8 @@
 {
-  "promptDelete": false
+  "promptDelete": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "00_inbox",
+  "attachmentFolderPath": "99_Assets/${filename}",
+  "tabSize": 2,
+  "useTab": false
 }

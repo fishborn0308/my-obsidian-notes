@@ -278,8 +278,9 @@
   "lintOnFileChange": false,
   "displayLintOnFileChangeNotice": false,
   "settingsConvertedToConfigKeyValues": true,
+  "additionalFileExtensions": [],
   "foldersToIgnore": [
-    "40_RunBook/Templates"
+    "80_Templates"
   ],
   "filesToIgnore": [],
   "linterLocale": "system-default",
