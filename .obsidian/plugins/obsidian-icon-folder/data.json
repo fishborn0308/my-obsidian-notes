@@ -6,13 +6,18 @@
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
+      "LiChartColumnDecreasing",
+      "LiTemplaterIcon",
+      "LiMonitor",
+      "LiBookOpenText",
+      "LiMailQuestion",
+      "LiMemos",
       "LiArchiveX",
       "LiArchive",
       "LiAirplay",
-      "LiAppWindow",
-      "LiAlignStartVertical"
+      "LiAppWindow"
     ],
-    "recentlyUsedIconsSize": 5,
+    "recentlyUsedIconsSize": 25,
     "rules": [
       {
         "rule": "inbox",
@@ -37,6 +42,30 @@
         "icon": "LiImages",
         "for": "everything",
         "order": 6
+      },
+      {
+        "rule": "Log",
+        "icon": "LiLogs",
+        "for": "everything",
+        "order": 6
+      },
+      {
+        "rule": "Prompt",
+        "icon": "LiSearch",
+        "for": "everything",
+        "order": 5
+      },
+      {
+        "rule": "Cheatsheets",
+        "icon": "LiNotepadText",
+        "for": "everything",
+        "order": 6
+      },
+      {
+        "rule": "Templates",
+        "icon": "LiBookTemplate",
+        "for": "everything",
+        "order": 7
       }
     ],
     "extraMargin": {
@@ -51,7 +80,7 @@
     "iconInFrontmatterEnabled": false,
     "iconInFrontmatterFieldName": "icon",
     "iconColorInFrontmatterFieldName": "iconColor",
-    "iconsBackgroundCheckEnabled": false,
+    "iconsBackgroundCheckEnabled": true,
     "iconsInNotesEnabled": true,
     "iconsInLinksEnabled": true,
     "iconIdentifier": ":",
@@ -59,14 +88,8 @@
     "debugMode": false,
     "useInternalPlugins": false
   },
-  "20_Prompt": "LiAppWindow",
-  "30_Training": "LiAppWindow",
-  "40_Cheatsheets": {
-    "iconName": "LiAppWindow",
-    "iconColor": "#050506"
-  },
-  "50_Machines": "LiAirplay",
+  "30_Training": "LiChartColumnDecreasing",
+  "50_Machines": "LiMonitor",
   "70_My_PC": "LiApple",
-  "80_Templates": "LiArchive",
-  "50_Machines/00_Log": "LiArchiveX"
+  "60_Methodology": "LiBookOpenText"
 }

@@ -26,7 +26,7 @@
   "fileColors": [
     {
       "path": "30_Training",
-      "color": "8yzj6BoelEVe6jyzqsFT5"
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
     },
     {
       "path": "90_Archive",
@@ -34,11 +34,11 @@
     },
     {
       "path": "40_Cheatsheets",
-      "color": "8yzj6BoelEVe6jyzqsFT5"
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
     },
     {
       "path": "50_Machines",
-      "color": "8yzj6BoelEVe6jyzqsFT5"
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
     },
     {
       "path": "99_Assets",
@@ -46,7 +46,7 @@
     },
     {
       "path": "70_My_PC",
-      "color": "UT2o1AzrSf6tMEjYyUQO5"
+      "color": "8yzj6BoelEVe6jyzqsFT5"
     },
     {
       "path": "80_Templates",
@@ -55,6 +55,10 @@
     {
       "path": "20_Prompt",
       "color": "6hfjeTFewZYr3tp9iNr-_"
+    },
+    {
+      "path": "60_Methodology",
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
     }
   ]
 }

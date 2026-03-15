@@ -1,6 +1,6 @@
 {
   "command_timeout": 5,
-  "templates_folder": "40_RunBook/Templates",
+  "templates_folder": "80_Templates",
   "templates_pairs": [
     [
       "",
