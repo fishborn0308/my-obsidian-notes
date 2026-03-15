@@ -25,16 +25,36 @@
   ],
   "fileColors": [
     {
-      "path": "20_Projects",
-      "color": "6hfjeTFewZYr3tp9iNr-_"
-    },
-    {
-      "path": "00_inbox",
-      "color": "UT2o1AzrSf6tMEjYyUQO5"
+      "path": "30_Training",
+      "color": "8yzj6BoelEVe6jyzqsFT5"
     },
     {
       "path": "90_Archive",
       "color": "hzGng0GEYIywReCGwDB63"
+    },
+    {
+      "path": "40_Cheatsheets",
+      "color": "8yzj6BoelEVe6jyzqsFT5"
+    },
+    {
+      "path": "50_Machines",
+      "color": "8yzj6BoelEVe6jyzqsFT5"
+    },
+    {
+      "path": "99_Assets",
+      "color": "hzGng0GEYIywReCGwDB63"
+    },
+    {
+      "path": "70_My_PC",
+      "color": "UT2o1AzrSf6tMEjYyUQO5"
+    },
+    {
+      "path": "80_Templates",
+      "color": "hzGng0GEYIywReCGwDB63"
+    },
+    {
+      "path": "20_Prompt",
+      "color": "6hfjeTFewZYr3tp9iNr-_"
     }
   ]
 }

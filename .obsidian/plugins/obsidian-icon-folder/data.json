@@ -6,58 +6,37 @@
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
-      "LiApple"
+      "LiArchiveX",
+      "LiArchive",
+      "LiAirplay",
+      "LiAppWindow",
+      "LiAlignStartVertical"
     ],
     "recentlyUsedIconsSize": 5,
     "rules": [
       {
-        "rule": "00_inbox",
+        "rule": "inbox",
         "icon": "LiInbox",
         "for": "everything",
         "order": 0
       },
       {
-        "rule": "10_Daily",
+        "rule": "Daily",
         "icon": "LiCalendar",
         "for": "everything",
         "order": 1
       },
       {
-        "rule": "20_Projects",
-        "icon": "LiTerminalSquare",
-        "for": "everything",
-        "order": 2
-      },
-      {
-        "rule": "30_Knowledge",
-        "icon": "LiBrain",
-        "for": "everything",
-        "order": 3
-      },
-      {
-        "rule": "40_RunBook",
-        "icon": "LiBookText",
-        "for": "everything",
-        "order": 5
-      },
-      {
-        "rule": "90_Archive",
+        "rule": "Archive",
         "icon": "LiArchive",
         "for": "everything",
         "order": 5
       },
       {
-        "rule": "99_Assets",
+        "rule": "Assets",
         "icon": "LiImages",
         "for": "everything",
         "order": 6
-      },
-      {
-        "rule": "40_RunBook/Templates",
-        "icon": "LiLayoutTemplate",
-        "for": "everything",
-        "order": 7,
-        "useFilePath": true
       }
     ],
     "extraMargin": {
@@ -80,5 +59,14 @@
     "debugMode": false,
     "useInternalPlugins": false
   },
-  "80_My_PC": "LiApple"
+  "20_Prompt": "LiAppWindow",
+  "30_Training": "LiAppWindow",
+  "40_Cheatsheets": {
+    "iconName": "LiAppWindow",
+    "iconColor": "#050506"
+  },
+  "50_Machines": "LiAirplay",
+  "70_My_PC": "LiApple",
+  "80_Templates": "LiArchive",
+  "50_Machines/00_Log": "LiArchiveX"
 }
