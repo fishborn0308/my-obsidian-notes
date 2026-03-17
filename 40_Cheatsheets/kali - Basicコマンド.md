@@ -1,7 +1,10 @@
 # Basicコマンド
 
 ## 日常的なメンテナンス
-
+```bash
+# パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+```
 ##  1. ターミナル操作（Kitty & Zsh）
 
 まずは、爆速でコマンドを打ち、履歴を遡るための基本操作です。
