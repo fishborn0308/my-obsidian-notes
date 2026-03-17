@@ -53,8 +53,9 @@ xset -dpms
 | **`~/tools/scripts/C#`** | プログラム保管庫 | ここからコピーして配置、Windowsでコンパイルしたものを保管       |
 | **`~/tools/scripts/python`** | pythonスクリプト保管庫 | ここからコピーして配置、アップデート等の管理       |
 | **`~/tools/scripts/powershell`** |  powershellスクリプト保管庫 | ここからコピーして配置、アップデート等の管理       |
-| **`~/labs`**          | 各マシンの攻略ログ・成果物         | マシン名/IPごとのサブフォルダ管理      |
-| **`~/logs`**          |     Tmuxからのログを保存        |  Tmuxの自動ログ保存先              |
+| **`~/Transfer/linux`**         | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成 |
+| **`~/Transfer/Windows`**          | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成|
+| **`~/Vault`**          |     obsidianのworkディレクトリ        |  mdファイルの管理        |
 
 ```bash
 mkdir -p ~/{labs,logs,tools/scripts,tools/git}
@@ -63,12 +64,6 @@ mkdir -p ~/.config/kitty
 touch ~/.config/kitty/kitty.conf
 touch ~/.tmux.conf
 ```
-
-* `logs/`: Tmuxの自動ログ保存先
-* `labs/`: 各攻略マシンの作業用（IP or FQDNごとにサブフォルダ作成）
-* `tools/`: `/opt` に入れるまでもない軽量ツール
-	* `scripts/`: 自作や編集するスクリプト（LinPeas等）
-	* `git/`: GitHubからクローンしたスクリプト群
 
 ---
 
