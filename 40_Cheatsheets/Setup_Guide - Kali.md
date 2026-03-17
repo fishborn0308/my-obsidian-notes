@@ -53,9 +53,17 @@ xset -dpms
 | **`~/tools/scripts/C#`** | プログラム保管庫 | ここからコピーして配置、Windowsでコンパイルしたものを保管       |
 | **`~/tools/scripts/python`** | pythonスクリプト保管庫 | ここからコピーして配置、アップデート等の管理       |
 | **`~/tools/scripts/powershell`** |  powershellスクリプト保管庫 | ここからコピーして配置、アップデート等の管理       |
+| **`~/tools/set/Recon`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/Enumration`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/Exploit`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/Post-Exploitation`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/AD`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
 | **`~/Transfer/linux`**         | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成 |
 | **`~/Transfer/Windows`**          | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成|
 | **`~/Vault`**          |     obsidianのworkディレクトリ        |  mdファイルの管理        |
+| **`~/Vault/Result/$ip`**          |    コマンドの実行結果、$ip.md、tmuxのlogを保管        |  .zshrcのtarget関数で自動作成        |
+| **`~/Vault/Result/$ip/asset`**          |    tmuxのlogを自動保存        |  tmuxの拡張機能を使用       |
+
 
 ```bash
 mkdir -p ~/{labs,logs,tools/scripts,tools/git}
