@@ -526,7 +526,7 @@ sudo reboot
 ```bash
 # どこが容量を食っているか確認
 df -h
-du -sh ~/oscp/logs/* | sort -rh | head -n 5
+du -sh ~/Vault/Result/$ip/assets/* | sort -rh | head -n 5
 
 # 不要なキャッシュの削除
 sudo apt clean
