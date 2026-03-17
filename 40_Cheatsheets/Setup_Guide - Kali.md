@@ -11,7 +11,6 @@ modified: 2026-03-14 14:43
 | **プラットフォーム** | **VMware Workstation / Player** (公式推奨の安定性) |
 | **イメージ** | [Kali VMware 64-bit (Pre-built)](https://www.google.com/search?q=https://www.kali.org/get-kali/%23kali-virtual-machines) |
 | **基本設定** | RAM: 8GB推奨, CPU: 2コア以上, グラフィックメモリ: 2GB, 3Dアクセラレータあり **日本語フォント** (`fonts-noto-cjk`) |
-| **ディレクトリ構造** | `~/oscp/` (labs, exam, scripts, tools) を作成して整理 |
 
 ---
 
@@ -37,7 +36,7 @@ sudo apt install -y fonts-noto-cjk
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.session idle-delay 0
 xset s off
-xset -dpms
+xset -dpms # 修正
 
 ```
 
@@ -56,17 +55,18 @@ xset -dpms
 | **`~/tools/set/Recon`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
 | **`~/tools/set/Enumration`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
 | **`~/tools/set/Exploit`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
-| **`~/tools/set/Post-Exploitation`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/Post-Exploitation/linux`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
+| **`~/tools/set/Post-Exploitation/Windows`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
 | **`~/tools/set/AD`** | カテゴリ分けした使用ツール | gitやscriptsからコピーして配置       |
 | **`~/Transfer/linux`**         | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成 |
 | **`~/Transfer/Windows`**          | 配送用のスクリプトやプログラムを配置         | Pivoting、Privilege_Escalation、Reverseshellディレクトリを作成|
 | **`~/Vault`**          |     obsidianのworkディレクトリ        |  mdファイルの管理        |
-| **`~/Vault/Result/$ip`**          |    コマンドの実行結果、$ip.md、tmuxのlogを保管        |  .zshrcのtarget関数で自動作成        |
-| **`~/Vault/Result/$ip/asset`**          |    tmuxのlogを自動保存        |  tmuxの拡張機能を使用       |
+| **`~/Vault/Result/$ip`**          |   $ip.md        |  .zshrcのtarget関数で自動作成        |
+| **`~/Vault/Result/$ip/assets`**          |    tmuxのlog、スクショを自動保存、コマンドのアウトプットファイルの保存        |  tmuxの拡張機能を使用       |
 
 
 ```bash
-mkdir -p ~/{labs,logs,tools/scripts,tools/git}
+mkdir -p ~/{labs,logs,tools/scripts,tools/git}# 修正
 # configファイルの作成
 mkdir -p ~/.config/kitty
 touch ~/.config/kitty/kitty.conf
@@ -259,8 +259,8 @@ set -g history-limit 10000
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-logging'
 
-# ログの保存先を ~/oscp/logs に変更（ディレクトリは先に作っておく）
-set -g @logging-path "~/oscp/logs"
+# ログの保存先を ~/Vault/$ip/assets に変更（ディレクトリは先に作っておく）
+set -g @logging-path "~/Vault/$ip/assets"
 
 # TPMの初期化（この行は必ず一番下に！）
 run '~/.tmux/plugins/tpm/tpm'
