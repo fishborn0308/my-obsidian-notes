@@ -1,9 +1,62 @@
 # Basicコマンド
 
-## 日常的なメンテナンス
-```bash
-# パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+## メンテナンス
+### 日常的なメンテナンス
+
+```zsh
+sudo apt update && sudo apt upgrade -y
+sudo apt autoremove -y
+```
+
+### メジャーアップデート
+
+```zsh
+sudo apt update && sudo apt full-upgrade -y
+sudo apt autoclean
+sudo apt autoremove -y
+```
+## 環境設定
+
+### スリープ無効化
+
+```zsh
+xset s off -dpms s noblank
+```
+Linuxのコンソール（Xなし）の場合
+```zsh
+setterm -blank 0 -powerdown 0 -powersave off
+```
+
+## ディレクトリの作成
+
+```zsh
+mkdir -p ~/Vault/Target \
+         ~/Tools/{Git,Python,C#,Powershell,Shell,Bin} \
+         ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web,Exploit,Wordlists} \
+         ~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}/{Linux,Windows}
+
+# 確認用
+ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
+
+```
+
+| カテゴリ | ディレクトリパス | 用途 |
+| :--- | :--- | :--- |
+| **記録** | `~/Vault/Target/$ip/{assets,result,log}` | Obsidian管理。スクショ、Nmap結果、tmuxログ |
+| **倉庫** | `~/Tools/{Git,Python,C#,Powershell}` | オリジナルツールの保管庫。ここからコピーして使う |
+| **作業** | `~/Workbench/{Recon,AD,Web,Exploit,Wordlists}` | Kaliローカルで実行するツール群 |
+| **配送** | `~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}` | ターゲットへ送る用。内部に **Linux/Windows** を作成 |
+
+
+### 自動サスペンドを無効化
+
+無効化
+```zsh
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
+有効化
+```zsh
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
 ##  1. ターミナル操作（Kitty & Zsh）
 
