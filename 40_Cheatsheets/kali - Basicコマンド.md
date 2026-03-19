@@ -32,7 +32,7 @@ setterm -blank 0 -powerdown 0 -powersave off
 ```zsh
 mkdir -p ~/Vault/Target \
          ~/Tools/{Git,Python,C#,Powershell,Shell,Bin} \
-         ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web,Exploit,Wordlists} \
+         ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web/sqli,Exploit,Wordlists,Verification} \
          ~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}/{Linux,Windows}
 
 # 確認用
@@ -40,12 +40,12 @@ ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
 ```
 
-| カテゴリ | ディレクトリパス | 用途 |
-| :--- | :--- | :--- |
-| **記録** | `~/Vault/Target/$ip/{assets,result,log}` | Obsidian管理。スクショ、Nmap結果、tmuxログ |
-| **倉庫** | `~/Tools/{Git,Python,C#,Powershell}` | オリジナルツールの保管庫。ここからコピーして使う |
-| **作業** | `~/Workbench/{Recon,AD,Web,Exploit,Wordlists}` | Kaliローカルで実行するツール群 |
-| **配送** | `~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}` | ターゲットへ送る用。内部に **Linux/Windows** を作成 |
+| カテゴリ   | ディレクトリパス                                                    | 用途                                  |
+| :----- | :---------------------------------------------------------- | :---------------------------------- |
+| **記録** | `~/Vault/Target/$ip/{assets,result,log}`                    | Obsidian管理。スクショ、Nmap結果、tmuxログ       |
+| **倉庫** | `~/Tools/{Git,Python,C#,Powershell,Bin}`                    | オリジナルツールの保管庫。ここからコピーして使う            |
+| **作業** | `~/Workbench/{Recon,AD,Web,Exploit,Wordlists,Verification}` | Kaliローカルで実行するツール群                   |
+| **配送** | `~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}`             | ターゲットへ送る用。内部に **Linux/Windows** を作成 |
 
 
 ### 自動サスペンドを無効化

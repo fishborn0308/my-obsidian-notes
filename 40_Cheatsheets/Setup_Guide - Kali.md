@@ -1,73 +1,4 @@
----
-created: 2026-03-14 09:35
-modified: 2026-03-14 14:43
----
-# OSCP学習環境 構築手順書（プロトタイプ）
 
-## 1. 仮想基盤とOSの基本
-
-| 項目 | 設定内容 |
-| --- | --- |
-| **プラットフォーム** | **VMware Workstation / Player** (公式推奨の安定性) |
-| **イメージ** | [Kali VMware 64-bit (Pre-built)](https://www.google.com/search?q=https://www.kali.org/get-kali/%23kali-virtual-machines) |
-| **基本設定** | RAM: 8GB推奨, CPU: 2コア以上, グラフィックメモリ: 2GB, 3Dアクセラレータあり **日本語フォント** (`fonts-noto-cjk`) |
-
----
-
-## 2. システムの基本更新と日本語化
-
-1. **システム更新:**
-```bash
-# パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
-sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
-```
-
-2. **日本語フォント（文字化け防止）**
-```bash
-sudo apt install -y fonts-noto-cjk
-
-```
-
-3.  **電源管理（スリープ・ロック禁止）**
-
-長時間のスキャンを中断させないための必須設定です。
-
-```bash
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.desktop.session idle-delay 0
-xset s off -dpms s noblank
-
-```
-
-4. **自動サスペンドOFF**
-
-```zsh
-sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
-```
-
----
-
-## 3. ディレクトリ構造の作成（整理のルール化）
-
-| カテゴリ | ディレクトリパス | 用途 |
-| :--- | :--- | :--- |
-| **記録** | `~/Vault/Target/$ip/{assets,result,log}` | Obsidian管理。スクショ、Nmap結果、tmuxログ |
-| **倉庫** | `~/Tools/{Git,Python,C#,Powershell}` | オリジナルツールの保管庫。ここからコピーして使う |
-| **作業** | `~/Workbench/{Recon,AD,Web,Exploit,Wordlists}` | Kaliローカルで実行するツール群 |
-| **配送** | `~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}` | ターゲットへ送る用。内部に **Linux/Windows** を作成
-
-```zsh
-mkdir -p ~/Vault/Target \
-         ~/Tools/{Git,Python,C#,Powershell,Shell,Bin} \
-         ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web,Exploit,Wordlists} \
-         ~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}/{Linux,Windows}
-
-# 確認用
-ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
-
-```
-
----
 
 ## 4. ツール管理とPython環境 (`pipx`)
 
@@ -218,16 +149,7 @@ unzip ligolo-ng_agent_0.5.2_windows_amd64.zip -d agent_win
 
 ## 5. ターミナル & マルチプレクサ & スクリーンショット設定
 
-### スクリーンショット（Flameshot）の設定
 
-OSCPのレポートには「実行したコマンド」と「結果」の証拠が不可欠です。
-
-1. **起動確認:**
-ターミナルで `flameshot gui` を実行し、範囲選択ができるか確認します。
-2. **ショートカット登録 (重要):**
-Kaliの [Settings] > [Keyboard] > [Application Shortcuts] から、以下のショートカットを登録すると効率が劇的に上がります。
-* **Command:** `flameshot gui`
-* **Shortcut:** `Print` キー（または好みのキー）
 
 ### `~/.tmux.conf` (直感操作重視)
 
