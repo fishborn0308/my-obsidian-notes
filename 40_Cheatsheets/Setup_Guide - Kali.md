@@ -82,60 +82,19 @@ sudo apt install -y pipx && pipx ensurepath
 #  システム更新
 sudo apt update && sudo apt upgrade -y
 
-# 必要パッケージ
-sudo apt install -y curl gnupg
-
-# Docker公式GPGキー登録
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg \
-  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-# Dockerリポジトリ追加（Kali対応）
-. /etc/os-release
-
-echo "deb [arch=$(dpkg --print-architecture) \
-signed-by=/etc/apt/keyrings/docker.gpg] \
-https://download.docker.com/linux/debian \
-$VERSION_CODENAME stable" \
-| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# Docker / Compose インストール
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# サービス起動
-sudo systemctl enable --now docker
-
-# 動作確認
-docker --version
-docker compose version
-docker run hello-world
-
-# ## sudoなしで実行（推奨）
+sudo apt install -y docker.io
+sudo systemctl enable docker --now
 sudo usermod -aG docker $USER
 newgrp docker
+
+docker --version
+docker run hello-world
+
+# Compose確認
+docker compose version
 ```
 
-### Composeはv2が標準
-
-```bash
-docker compose
-```
-
-※ `docker-compose` は旧式
-
----
-
-### docker.ioとの違い
-
-|パッケージ|特徴|
-|---|---|
-|docker.io|簡単・安定（Kali標準）|
-|docker-ce|最新・公式|
-
-→ ペンテスト用途なら docker.io でも十分
+- `docker-compose` は旧式
 
 ---
 ### よくあるトラブル

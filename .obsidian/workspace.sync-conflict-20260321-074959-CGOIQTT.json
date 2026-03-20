@@ -1,0 +1,297 @@
+{
+  "main": {
+    "id": "ccfb5a613eb0460a",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e9b2c81377e5cde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "31bdfba5c9009afa",
+            "type": "leaf",
+            "state": {
+              "type": "thino_view",
+              "state": {},
+              "icon": "Memos",
+              "title": "Thino"
+            }
+          },
+          {
+            "id": "ab57846ece9f0dd8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "40_Cheatsheets/Setup_Guide - Kali.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Setup_Guide - Kali"
+            }
+          },
+          {
+            "id": "4cd80dc93ab0b2cb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "40_Cheatsheets/メモ.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "メモ"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1a82598300bbe997",
+    "type": "split",
+    "children": [
+      {
+        "id": "39c99e2f498db841",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3491293c3d8a1349",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "79ac4e5948472e7c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "0d3f07d759dbdffa",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "b737702b2a0d6674",
+    "type": "split",
+    "children": [
+      {
+        "id": "a1472a12fb16a86e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e9543defc202267",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "30_Knowledge/Command - docker - docker network - Dockerネットワーク管理.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Command - docker - docker network - Dockerネットワーク管理へのバックリンク"
+            }
+          },
+          {
+            "id": "6fc0ba6aadb1403d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "30_Knowledge/Command - docker - docker network - Dockerネットワーク管理.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Command - docker - docker network - Dockerネットワーク管理からのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "1c4d9dab8af1bde6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "すべてのプロパティ"
+            }
+          },
+          {
+            "id": "b4e65a452e045968",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "00_inbox/OSCP対応：高度侵入テスト・技術フレームワーク.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "OSCP対応：高度侵入テスト・技術フレームワークのアウトライン"
+            }
+          },
+          {
+            "id": "dccbb9e06dcd40de",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          },
+          {
+            "id": "f22bafcb2101ceb1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "alphabetical",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "a1e2086188b63471",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 425.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:新規ベースを作成": false,
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "command-palette:コマンドパレットを開く": false,
+      "obsidian-git:Open Git source control": false,
+      "templater-obsidian:Templater": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-memos:Thino": false,
+      "copilot:Open Copilot Chat": false
+    }
+  },
+  "active": "ab57846ece9f0dd8",
+  "lastOpenFiles": [
+    "40_Cheatsheets/kali - Basicコマンド.md",
+    "40_Cheatsheets/メモ.md",
+    "40_Cheatsheets/Setup_Guide - Kali.md",
+    "40_Cheatsheets/tmux.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "70_My_PC/Mac - Basicコマンド.md",
+    "99_Assets/${filename}/kitty.conf",
+    "99_Assets/${filename}",
+    "70_My_PC/Mac - Git Hub.md",
+    "40_Cheatsheets/kali - Basicコマンド.sync-conflict-20260320-130110-CGOIQTT.md",
+    "40_Cheatsheets/Setup_Guide - Kali.sync-conflict-20260320-130110-CGOIQTT.md",
+    "00_inbox/MITRE ATT&CK Tactics 一覧と整理.md",
+    "70_My_PC/Windows - Ollama.md",
+    "70_My_PC/Mac - MacGPT.md",
+    "70_My_PC/Tool - Syncthing.md",
+    "70_My_PC/Windows - Marker.md",
+    "70_My_PC/Windows - Marker.md",
+    "70_My_PC/Windows - Portmaster.md",
+    "70_My_PC/Desk - Runbook.md",
+    "70_My_PC/Desk - RDP.md",
+    "70_My_PC/Mac - BTT.md",
+    "70_My_PC/Windows - Git.md",
+    "70_My_PC/Setup_Guide - 移動端末 Setting & Tips.md",
+    "70_My_PC/Windows - VMWare.md",
+    "70_My_PC/Windows - GNS3.md",
+    "70_My_PC/Mac - Karabiner-Elements.md",
+    "70_My_PC/Mac - VSCode.md",
+    "40_Cheatsheets/無題のフォルダ",
+    "40_Cheatsheets/Scanning",
+    "99_Assets/スクリーンショット 2026-01-08 10.33.26.png",
+    "99_Assets/スクリーンショット 2026-01-08 12.44.49.png",
+    "60_Methodology/Osint",
+    "60_Methodology",
+    "50_Machines/00_Assets",
+    "50_Machines/00_Log",
+    "80_Templates",
+    "30_Training/Sec560",
+    "99_Assets/SEC560_Book2_page_163_Picture_0.jpeg",
+    "99_Assets/スクリーンショット 2026-01-08 10.46.03.png",
+    "99_Assets/SEC560_Book1_page_3_Figure_0.jpeg",
+    "99_Assets/SEC560_Book1_page_0_Picture_3.jpeg",
+    "99_Assets/SEC560_Book1_page_2_Picture_0.jpeg",
+    "99_Assets/SEC560_WorkBook2_page_269_Figure_0.jpeg",
+    "99_Assets/SEC560_WorkBook2_page_264_Figure_3.jpeg",
+    "99_Assets/SEC560_WorkBook2_page_264_Figure_1.jpeg",
+    "無題のファイル.canvas"
+  ]
+}
