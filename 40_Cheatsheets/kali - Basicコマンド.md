@@ -93,20 +93,25 @@ ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
 攻撃リソースへ即座にアクセスするための定数です。
 
-| **変数名**       | **パス**                 | **用途**                           |
-| ---------------- | ------------------------ | ---------------------------------- |
-| **`$WORDLISTS`** | `~/Workbench/Wordlists`  | 自作・加工済み辞書の親ディレクトリ |
-| **`$USERS`**     | `$WORDLISTS/Usernames`   | 収集したユーザー名リスト           |
-| **`$PASSES`**    | `$WORDLISTS/Passwords`   | 収集したパス、解凍済み Rockyou     |
-| **`$CREDS`**     | `$WORDLISTS/Credentials` | `user:pass` 形式のコンボリスト     |
-| **`$ROCKYOU`**   | `$PASSES/rockyou.txt`    | 最強のパスワードリスト             |
-| **`$SECLISTS`**  | `/usr/share/seclists`    | Kali標準の Web 攻略用辞書群        |
-| **`$DISCOVERY`**    | `$WORDLISTS/Discovery`   | Webディレクトリ・ファイル列挙用辞書の格納先     |
+| **変数名**         | **パス**                                          | **用途**                                                               |
+| ------------------ | ------------------------------------------------- | ---------------------------------------------------------------------- |
+| **`$WORDLISTS`**   | `~/Workbench/Wordlists`                           | 自作・加工済み辞書の親ディレクトリ                                     |
+| **`$USERS`**       | `$WORDLISTS/Usernames`                            | 収集したユーザー名リスト                                               |
+| **`$PASSES`**      | `$WORDLISTS/Passwords`                            | 収集したパス、解凍済み Rockyou                                         |
+| **`$CREDS`**       | `$WORDLISTS/Credentials`                          | `user:pass` 形式のコンボリスト                                         |
+| **`$ROCKYOU`**     | `$PASSES/rockyou.txt`                             | 最強のパスワードリスト                                                 |
+| **`$SECLISTS`**    | `/usr/share/seclists`                             | Kali標準の Web 攻略用辞書群                                            |
+| **`$DISCOVERY`**   | `$WORDLISTS/Discovery`                            | Webディレクトリ・ファイル列挙用辞書の格納先                            |
+| **`$ACTIVE_DICT`** | getlistでシンボリックリンクを貼ったワードリスト名 | ワードリスト名が同一になるため、この変数を使ってコマンド結果を出力する |
 
 * **ailias**
 	* **cdword:** `cd $WORDLISTS`
+	* **cdusers:** `cd $USERS`
+	* **cdpass:** `cd $PASSES`
+	* **cdcreds:** `cd $CREDS`
+	* **cddisc:** `cd $DISCOVERY`
 	* **cdseclists:** `cd $SECLISTS`
-	* **getlist:** fzfを利用し
+	* **getlist:** fzfを利用し、$WORDLIST/wordlistにSeclistのワードリストからシンボリックリンクを貼る
 
 ```zsh
 # Discoveryの中身だけを2階層まで表示
