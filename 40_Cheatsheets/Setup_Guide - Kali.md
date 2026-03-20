@@ -191,6 +191,8 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 sudo update-alternatives --config x-terminal-emulator
 ```
 
+- Windows:[.config/kitty]()
+
 ```zsh
 mkdir -p ~/.config/kitty
 cat << 'EOF' > ~/.config/kitty/kitty.conf
