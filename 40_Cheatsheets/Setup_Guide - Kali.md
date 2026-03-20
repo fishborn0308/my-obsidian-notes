@@ -354,19 +354,33 @@ gunzip ~/Workbench/Wordlists/Passwords/rockyou.txt.gz
 Kaliにプリインストールされている膨大なリストの中から、主要なものを選択
 
 ```zsh
-# --- Discovery (Web列挙用) ---
-ln -sfn /usr/share/seclists/Discovery/Web-Content/common.txt $WORDLISTS/Discovery/common.txt
-ln -sfn /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt $WORDLISTS/Discovery/dir-medium.txt
-ln -sfn /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt $WORDLISTS/Discovery/raft-files.txt
-ln -sfn /usr/share/seclists/Usernames/top-usernames-shortlist.txt users.txt
-ln -sfn /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt raft-dir.txt
+# --- Discovery (Web列挙・インフラ用) ---
+# ステップ1: Web Discovery の精鋭
+ln -sfn $SECLISTS/Discovery/Web-Content/common.txt $DISCOVERY/common.txt
+ln -sfn $SECLISTS/Discovery/Web-Content/directory-list-2.3-medium.txt $DISCOVERY/dir-medium.txt
+ln -sfn $SECLISTS/Discovery/Web-Content/raft-medium-files.txt $DISCOVERY/raft-files.txt
+ln -sfn $SECLISTS/Discovery/Web-Content/raft-medium-directories.txt $DISCOVERY/raft-dir.txt
+
+# ステップ3: インフラ（DNS/VHost）用
+ln -sfn $SECLISTS/Discovery/DNS/subdomains-top1million-110000.txt $DISCOVERY/dns-110k.txt
+ln -sfn $SECLISTS/Discovery/Web-Content/vhosts-list.txt $DISCOVERY/vhosts.txt
 
 # --- Usernames (ユーザー名列挙用) ---
-ln -sfn /usr/share/seclists/Usernames/top-usernames-shortlist.txt $WORDLISTS/Usernames/users-short.txt
-ln -sfn /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt $WORDLISTS/Usernames/users-10m.txt
+# ステップ2: 認証攻撃の入り口
+ln -sfn $SECLISTS/Usernames/top-usernames-shortlist.txt $USERS/users-short.txt
+ln -sfn $SECLISTS/Usernames/xato-net-10-million-usernames.txt $USERS/users-10m.txt
 
-# --- Passwords (rockyou以外の補助) ---
-ln -sfn /usr/share/seclists/Passwords/Default-Credentials/everything.txt $WORDLISTS/Passwords/default-creds.txt
+# --- Passwords & Credentials (認証・初期設定用) ---
+# ステップ2: デフォルト認証・コンボ
+ln -sfn $SECLISTS/Passwords/Default-Credentials/everything.txt $PASSES/default-creds.txt
+# (※Rockyouは実体を配置済みと想定)
+
+# --- Fuzzing (脆弱性特定用) ---
+# ステップ4: LFI/SQLi/Bypass
+mkdir -p $WORDLISTS/Fuzzing
+ln -sfn $SECLISTS/Fuzzing/LFI/LFI-Jhaddix.txt $WORDLISTS/Fuzzing/lfi.txt
+ln -sfn $SECLISTS/Fuzzing/SQLi/Generic-SQLi.txt $WORDLISTS/Fuzzing/sqli.txt
+ln -sfn $SECLISTS/Fuzzing/Bypass-WAF-HTTP-Headers.txt $WORDLISTS/Fuzzing/bypass-waf.txt
 
 ```
 
