@@ -105,11 +105,22 @@ ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
 * **ailias**
 	* **cdword:** `cd $WORDLISTS`
-	* **cdusers:** `cd $USERS`
-	* **cdpass:** `cd $PASSES`
-	* **cdcreds:** `cd $CREDS`
-	* **cddisc:** `cd $DISCOVERY`
 	* **cdseclists:** `cd $SECLISTS`
+	* **getlist:** fzfを利用し
+
+```zsh
+# Discoveryの中身だけを2階層まで表示
+tree -L 2 $SECLISTS/Discovery/
+
+# 行数をカウント
+wc -l $SECLISTS/Discovery/Web-Content/common.txt
+
+# 中身の確認
+head -n 10 $SECLISTS/Discovery/Web-Content/directory-list-2.3-medium.txt
+
+# 名前で検索する (`find`)
+find $SECLISTS -name "*wordpress*"
+```
 
 ---
 

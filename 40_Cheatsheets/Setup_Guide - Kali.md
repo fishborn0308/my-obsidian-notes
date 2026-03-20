@@ -192,71 +192,12 @@ sudo update-alternatives --config x-terminal-emulator
 ```
 
 - Windows:[.config/kitty]()
+- Mac:[.config/kitty](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/kitty.conf)
 
 ```zsh
 mkdir -p ~/.config/kitty
 cat << 'EOF' > ~/.config/kitty/kitty.conf
-# --- Shell Configuration ---
-# 確実にzshを起動させる
-shell /bin/zsh
-
-# --- Font Settings ---
-# OSCPでは長時間画面を見るため、視認性の高いフォントを推奨
-# (JetBrains Mono 等がインストールされていれば)
-font_family      JetBrainsMono Nerd Font
-font_size        11.0
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
-
-# --- Window Layout ---
-# 画面の余白（少し空けると見やすくなります）
-window_padding_width 5
-# タブバーを上部に表示
-tab_bar_edge top
-tab_bar_style powerline
-
-# --- Color Scheme ---
-# 視認性の高いダークテーマ
-# background_opacity 0.92
-# background            #1e1e1e
-# foreground            #c5c8c6
-
-# ここでは目に優しい Gruvbox 系の色味を推奨
-foreground            #ebdbb2
-background            #282828
-selection_foreground  #282828
-selection_background  #ebdbb2
-
-# --- Scrollback ---
-# tmux側でも設定していますが、kitty側でも多めに確保
-scrollback_lines 20000
-
-# --- Terminal Bell ---
-# うるさいベル音をオフにする
-enable_audio_bell no
-visual_bell_duration 0.0
-
-# --- Performance ---
-# 入力遅延を最小限に
-input_delay 3
-repaint_delay 10
-sync_to_monitor yes
-
-# --- Keybindings ---
-# 選択しただけでクリップボードにコピーする(Tmuxにマウス制御を奪われる可能性あり。その場合Shiftキーを押しながら実施)
-copy_on_select yes
-
-# クリップボードとの同期
-strip_trailing_spaces smart
-
-# 右クリックで貼り付け（お好みで）
-# これを入れると、選択（左ドラッグ）→ 貼り付け（右クリック）で爆速になります
-mouse_map right click ungrabbed paste_from_clipboard
-
-# 矩形選択（ブロック選択）を Alt + マウスドラッグ で可能にする
-# IPアドレスの列だけを抜き出したい時などに便利です
-terminal_select_modifiers alt
+# ペースト
 EOF
 ```
 
@@ -318,152 +259,14 @@ source ~/.zshrc
 ```
 
 ~/.zshrcに追記
+
+- Windows:[.zshrc]()
+- Mac:[.zshrc](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/.zshrc)
+
+
 ```zsh
 cat << 'EOF' >> ~/.zshrc
-# --- Strengthening of history management ---
-setopt HIST_IGNORE_ALL_DUPS  # 重複コマンドを記録しない
-setopt SHARE_HISTORY         # 複数のターミナル間で履歴を共有
-
-# --- Loading plugins (reading apt-installed ones) ---
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source <(fzf --zsh)
-# うまくいかなかったときの代替え案
-# eval "$(fzf --zsh)"
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(zoxide init zsh)"
-# うまくいかなかったときの代替え案： z コマンドを有効化
-# eval "$(zoxide init zsh --cmd z)"
-
-# --- 1. 情報更新ロジック (precmd) ---
-# プロンプト表示の直前に実行され、変数 CURRENT_MY_IP と TARGET_STATUS を更新します
-refresh_oscp_prompt() {
-    # 自局IPの取得 (ip -br で高速化。tun0優先)
-    local my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-    [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-    CURRENT_MY_IP="${my_ip:-N/A}"
-
-    # ターゲット情報の組み立て (exportされた $TARGET_IP と $TARGET_NAME を利用)
-    if [ -n "$TARGET_IP" ]; then
-        if [ -n "$TARGET_NAME" ]; then
-            TARGET_STATUS="%F{red}[T: $TARGET_IP ($TARGET_NAME)]%f"
-        else
-            TARGET_STATUS="%F{red}[T: $TARGET_IP]%f"
-        fi
-    else
-        TARGET_STATUS=""
-    fi
-}
-
-# zshフックに登録
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd refresh_oscp_prompt
-
-# --- 2. ターゲット管理関数 (Vault構造対応・改良版) ---
-target() {
-    local ip="$1"
-    local name="$2"
-    local vault_base="$HOME/Vault/Target"
-    local current_link="$vault_base/current_assets"
-
-    if [ -z "$ip" ]; then
-        export TARGET_IP=""
-        export TARGET_NAME=""
-        export SCREENSHOT_DIR=""
-        echo "ターゲット指定を解除しました。"
-        return
-    fi
-
-    # 1. ディレクトリ構造の作成
-    local target_dir="$vault_base/$ip"
-    mkdir -p "$target_dir/assets" "$target_dir/result" "$target_dir/log"
-
-    # 2. 変数設定 (プロンプトと共有)
-    export TARGET_IP="$ip"
-    export TARGET_NAME="$name"
-    export workdir="$target_dir" # ショートカット用
-    export TARGET_DIR="$target_dir"
-    export OUT="$target_dir/result"
-    export LOG="$target_dir/log"
-    export ASSETS="$target_dir/assets"
-    
-    # 3. /etc/hosts への追記 (タグ付きで一括管理)
-    local tag="# OSCP_TARGET"
-    if [ -n "$name" ]; then
-        sudo sed -i "/ $name/d; /^$ip /d" /etc/hosts
-        echo "$ip $name $tag" | sudo tee -a /etc/hosts > /dev/null
-    fi
-
-    # 4. シンボリックリンクの更新 (SS保存用)
-    ln -sfn "$target_dir/assets" "$current_link"
-    export SCREENSHOT_DIR="$current_link"
-
-    # 5. 移動
-    cd "$target_dir"
-
-    echo "----------------------------------------"
-    echo "🎯 Target Set & Moved to $target_dir"
-    echo "IP   : $TARGET_IP"
-    echo "FQDN : ${TARGET_NAME:-N/A}"
-    echo "----------------------------------------"
-}
-
-targetcl() {
-    sudo sed -i '/# OSCP_TARGET/d' /etc/hosts
-    export TARGET_IP=""
-    export TARGET_NAME=""
-    echo "[!] Target cleared."
-}
-
-# --- 3. プロンプトの定義 ---
-setopt prompt_subst
-# 左側：[L: 自分のIP] パス
-PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
-# 右側：[T: 相手のIP (FQDN)]
-RPROMPT='${TARGET_STATUS}'
-
-# --- 4. ツール・メンテナンス用エイリアス集 ---
-alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
-alias maintenance='sudo apt update && sudo apt full-upgrade -y && gup && pipx upgrade-all'
-alias pserv="python3 -m http.server 80"
-alias udot="updog -p 80"
-alias icat="kitty +kitten icat"
-alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
-
-# 過去のターゲットのNmap結果などからキーワードを検索
-alias vault-grep='grep -r --color=always -E "$1" ~/Vault/Target/'
-
-# tmux ログを Obsidian へ整形して流し込む
-alias l2o='~/Tools/Bin/log2obsidian.sh'
-
-# --- Wordlists & Credentials Path ---
-export WORDLISTS="$HOME/Workbench/Wordlists"
-
-# 攻撃で見つけた「生きた」情報を格納する場所
-export USERS="$WORDLISTS/Usernames"
-export PASSES="$WORDLISTS/Passwords"
-export CREDS="$WORDLISTS/Credentials"  # user:pass のコンボリスト用
-export DISCOVERY="$WORDLISTS/Discovery"
-
-# 定番辞書へのショートカット（解凍後の rockyou をここに置く想定）
-export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
-export SECLISTS="/usr/share/seclists"
-
-# エイリアス: 辞書ディレクトリへ一瞬で移動
-alias cdword='cd $WORDLISTS'
-alias cdusers='cd $USERS'
-alias cdpass='cd $PASSES'
-alias cdcreds='cd $CREDS'
-alias cddisc='cd $DISCOVERY'
-alias cdseclists='cd $SECLISTS'
-
-# Ligolo-ng / Chisel
-setup_ligolo() {
-    sudo ip tuntap add user $USER mode tun ligolo
-    sudo ip link set ligolo up
-    echo "[+] TUN interface 'ligolo' is UP."
-}
-alias chisel_srv='~/Tools/Bin/chisel server -p 8080 --reverse'
+# ペースト
 EOF
 ```
 
@@ -483,49 +286,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #### `~/.tmux.conf` の作成
 
+- Windows:[.tmux.conf]()
+- Mac:[.tmux.conf](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/.tmux.conf)
+
 ```zsh
 cat << 'EOF' > ~/.tmux.conf
-# Set Tmux's default shell to Zsh
-set-option -g default-shell /bin/zsh
-
-# --- Basic Settings ---
-set -g mouse on               # マウス操作を有効化
-set -g history-limit 50000    # スクロール行数を5万行に
-set -g display-time 4000      # メッセージ表示時間を延長
-set -g status-interval 5      # 更新間隔
-
-# --- Keybinds ---
-# Split screen with | and - (current path is carried over)
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-
-# Prefix + r で設定ファイルを再読み込みする
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
-
-# Prefix + L で現在のターゲットディレクトリをログ保存先に再設定
-bind L run-shell "tmux set-environment -g @logging-path \"$HOME/Vault/Target/$TARGET_IP/log\"" \; display "Logging path updated to $TARGET_IP/log"
-
-# --- Prefix change (Ctrl + b -> Ctrl + a) ---
-set -g prefix C-a              # Main prefix is Ctrl+a
-unbind C-b                     # Disable default Ctrl+b
-bind C-a send-prefix           # Pressing Ctrl+a twice sends Ctrl+a to the program side.
-
-# --- Customizing the Status Bar ---
-set -g status-bg black
-set -g status-fg white
-set -g status-right "#[fg=green]#(echo $TARGET) #[fg=yellow]%H:%M:%S "
-
-# --- Automatic Logging (tmux-logging plugin) ---
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-logging'
-
-# tmux-logging の保存先を Target/log に固定する設定
-set -g @logging-path "$HOME/Vault/Target/$TARGET_IP/log"
-# ※ただし、環境変数の同期が必要なため、手動で prefix + shift + p する際に
-# 現在のターゲットフォルダが作成されているか確認が必要です。
-
-# TPM initialization (must be placed at the end)
-run '~/.tmux/plugins/tpm/tpm'
+# ペースト
 EOF
 
 ```
@@ -635,96 +401,19 @@ sudo tcpdump -i lo -nn -vv -A 'tcp port 8000 and (tcp[((tcp[12:1] & 0xf0) >> 2):
 
 ### Pythonサーバ
 
-- Basic認証用サーバ Server_BasicAuth.py
+- Basic認証用サーバ 
 
-```python
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-import base64
+- Windows:[Server_BasicAuth.py]()
+- Mac:[Server_BasicAuth.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Verification/Server_BasicAuth.py)
 
-# 設定したいユーザー名とパスワード
-USER = "admin"
-PASS = "password123"
-AUTH_STR = base64.b64encode(f"{USER}:{PASS}".encode()).decode()
 
-class AuthHandler(SimpleHTTPRequestHandler):
-    def do_HEAD(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
 
-    def do_GET(self):
-        # Authorizationヘッダーのチェック
-        auth_header = self.headers.get('Authorization')
-        if auth_header is None or auth_header != f"Basic {AUTH_STR}":
-            self.send_response(401)
-            self.send_header('WWW-Authenticate', 'Basic realm="Test"')
-            self.end_headers()
-            self.wfile.write(b"Auth failed")
-        else:
-            # 認証成功時は通常のファイル表示を行う
-            super().do_GET()
+- ログインフォーム 
 
-if __name__ == '__main__':
-    print("Serving on port 8000 with Basic Auth...")
-    HTTPServer(('', 8000), AuthHandler).serve_forever()
-```
+- Windows:[Server_LoginForm.py]()
+- Mac:[Server_LoginForm.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Verification/Server_LoginForm.py)
 
-- ログインフォーム Server_LoginForm.py
 
-```python
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import urllib.parse
-
-# テスト用の正解データ
-USER = "admin"
-PASS = "password123"
-
-class FormAuthHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        # ログインフォームのHTMLを表示
-        self.send_response(200)
-        self.send_header("Content-type", "text/html; charset=utf-8")
-        self.end_headers()
-        html = """
-        <html>
-            <body>
-                <h2>Login Test Page</h2>
-                <form method="POST">
-                    User: <input type="text" name="username"><br>
-                    Pass: <input type="password" name="password"><br>
-                    <input type="submit" value="Login">
-                </form>
-            </body>
-        </html>
-        """
-        self.wfile.write(html.encode())
-
-    def do_POST(self):
-        # 送信されたデータの長さを取得
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode('utf-8')
-
-        # パラメータをパース
-        params = urllib.parse.parse_qs(post_data)
-        username = params.get('username', [''])[0]
-        password = params.get('password', [''])[0]
-
-        # 解析用にコンソールに出力
-        print(f"[Captured] User: {username}, Pass: {password}")
-
-        if username == USER and password == PASS:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"Login Success!")
-        else:
-            self.send_response(401)
-            self.end_headers()
-            self.wfile.write(b"Login Failed")
-
-if __name__ == '__main__':
-    print("Serving Login Form on port 8000...")
-    HTTPServer(('', 8000), FormAuthHandler).serve_forever()
-```
 
 ## 一括インストール
 
