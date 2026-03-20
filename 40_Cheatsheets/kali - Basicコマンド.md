@@ -105,12 +105,11 @@ ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
 * **ailias**
 	* **cdword:** `cd $WORDLISTS`
-	* **cdusers:** `cd $WORDLISTS`
-	* **cdpass:** `cd $WORDLISTS`
-	* **cdcreds:** `cd $WORDLISTS`
-	* **cddisc:** `cd $DISCOVER`
-	*  **cdseclists'** `cd $SECLISTS`
-
+	* **cdusers:** `cd $USERS`
+	* **cdpass:** `cd $PASSES`
+	* **cdcreds:** `cd $CREDS`
+	* **cddisc:** `cd $DISCOVERY`
+	* **cdseclists:** `cd $SECLISTS`
 
 ---
 

