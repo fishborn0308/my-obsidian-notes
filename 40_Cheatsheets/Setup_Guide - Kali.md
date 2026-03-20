@@ -338,8 +338,8 @@ ln -sfn $SECLISTS/Passwords/Default-Credentials/default-passwords.csv $PASSES/de
 ln -sfn $SECLISTS/Fuzzing/login_bypass.txt $PASSES/login_bypass.txt
 
 ln -sfn $SECLISTS/Fuzzing/LFI/LFI-Jhaddix.txt $WORDLISTS/Fuzzing/lfi.txt
-ln -sfn $SECLISTS/Fuzzing/Database/SQLi/Generic-SQLi.txt $WORDLISTS/Fuzzing/sqli.txt
-ln -sfn $SECLISTS/Miscellaneous/Web/http-request-headers-common-non-standard-examples.txt $WORDLISTS/Fuzzing/bypass-waf.txt
+ln -sfn $SECLISTS/Fuzzing/Databases/SQLi/Generic-SQLi.txt $WORDLISTS/Fuzzing/sqli.txt
+ln -sfn $SECLISTS/Miscellaneous/Web/http-request-headers/http-request-headers-common-non-standard-examples.txt $WORDLISTS/Fuzzing/bypass-waf.txt
 ln -sfn $SECLISTS/Fuzzing/XSS/robot-friendly/XSS-Cheat-Sheet-PortSwigger.txt $WORDLISTS/Fuzzing/XSS-Cheat-Sheet-PortSwigger.txt
 
 ```
