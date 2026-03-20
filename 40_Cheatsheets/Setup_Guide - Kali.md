@@ -335,6 +335,7 @@ ln -sfn $SECLISTS/Usernames/xato-net-10-million-usernames.txt $USERS/users-10m.t
 
 ln -sfn $SECLISTS/Passwords/Default-Credentials/default-passwords.txt $PASSES/default-creds.txt
 ln -sfn $SECLISTS/Passwords/Default-Credentials/default-passwords.csv $PASSES/default-creds.csv
+ln -sfn $SECLISTS/Fuzzing/login_bypass.txt $PASSES/login_bypass.txt
 
 ln -sfn $SECLISTS/Fuzzing/LFI/LFI-Jhaddix.txt $WORDLISTS/Fuzzing/lfi.txt
 ln -sfn $SECLISTS/Fuzzing/Database/SQLi/Generic-SQLi.txt $WORDLISTS/Fuzzing/sqli.txt
