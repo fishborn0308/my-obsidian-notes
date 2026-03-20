@@ -15,7 +15,8 @@
 1. **システム更新:**
 ```zsh
 # パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
-sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+sudo apt update && sudo apt dist-upgrade -y
+sudo apt autoremove -y && sudo apt autoclean -y
 ```
 
 2. **日本語フォント（文字化け防止）**
@@ -999,7 +1000,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 **原因:** パッケージのバージョン衝突、古い/破損パッケージ
 **解決策:**
 
-```bash
+```zsh
 sudo apt --fix-broken install       # 自動修復
 sudo dpkg --configure -a            # 未設定パッケージの設定
 sudo apt autoremove                 # 不要なパッケージ削除
@@ -1034,11 +1035,10 @@ sudo apt update
 # リリース情報の変更を明示的に許可して更新
 sudo apt update --allow-releaseinfo-change
 
-# 署名キーのエラーが出る場合（最新のキーリングを導入）
-wget -q -O - https://archive.kali.org/archive-key.asc | sudo apt-key add
-
 # 標準の sources.list を強制再生成（中身が壊れている場合）
-echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" | sudo tee /etc/hosts /etc/apt/sources.list
+echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" \
+| sudo tee /etc/apt/sources.list
+sudo apt update
 ```
 
 ---
@@ -1054,7 +1054,7 @@ dpkg: error processing package ... (--configure):
 **原因:** インストールやアップグレードが途中で失敗
 **解決策:**
 
-```bash
+```zsh
 sudo dpkg --configure -a           # 未設定のパッケージを設定
 sudo apt install -f                # 依存関係修復
 ```
@@ -1073,7 +1073,7 @@ deb http://http.kali.org/kali kali-rolling main non-free contrib
 
 その後：
 
-```bash
+```zsh
 sudo apt update
 ```
 
@@ -1084,7 +1084,7 @@ sudo apt update
 **症状:** パッケージのダウンロードやインストールが途中で止まる
 **解決策:**
 
-```bash
+```zsh
 sudo apt clean
 sudo apt autoclean
 sudo apt update
@@ -1097,7 +1097,7 @@ sudo apt update
 **症状:** 「No space left on device」やインストールが止まる
 **解決策:**
 
-```bash
+```zsh
 sudo apt autoremove
 sudo apt clean
 df -h   # 容量確認
@@ -1117,7 +1117,7 @@ df -h   # 容量確認
 
 * **ホスト側:** VMwareの「Virtual Network Editor」で [Restore Defaults] を実行。
 * **ゲスト側:** ネットワークマネージャーの再起動。
-```bash
+```zsh
 sudo systemctl restart NetworkManager
 
 ```
@@ -1157,9 +1157,9 @@ sudo systemctl restart lightdm
 
 ```
 * **方法D (VMware Tools (open-vm-tools) の再インストール)
-```bash
+```zsh
 sudo apt update
-sudo apt install --reinstall upgrade open-vm-tools-desktop
+sudo apt install --reinstall -y open-vm-tools-desktop
 sudo reboot
 
 ```
