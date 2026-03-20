@@ -245,3 +245,154 @@ alias myip="ip -br -4 a"
 alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
 ```
 
+以下に、Kali Linux への Docker / Docker Compose 導入手順を、実務で安定する形に整理してまとめます。
+
+---
+
+# Kali Linux に Docker / Docker Compose を導入する手順（最適版）
+
+## ① システム更新
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+## ② 必要パッケージ
+
+```bash
+sudo apt install -y curl gnupg
+```
+
+---
+
+## ③ Docker公式GPGキー登録
+
+```bash
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+---
+
+## ④ Dockerリポジトリ追加（Kali対応）
+
+※ Debianコードネームを動的取得
+
+```bash
+. /etc/os-release
+
+echo "deb [arch=$(dpkg --print-architecture) \
+signed-by=/etc/apt/keyrings/docker.gpg] \
+https://download.docker.com/linux/debian \
+$VERSION_CODENAME stable" \
+| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+---
+
+## ⑤ Docker / Compose インストール
+
+```bash
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+---
+
+## ⑥ サービス起動
+
+```bash
+sudo systemctl enable --now docker
+```
+
+---
+
+## ⑦ 動作確認
+
+```bash
+docker --version
+docker compose version
+docker run hello-world
+```
+
+---
+
+## ⑧ sudoなしで実行（推奨）
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+---
+
+# 補足（重要ポイント）
+
+## ■ Composeはv2が標準
+
+```bash
+docker compose
+```
+
+※ `docker-compose` は旧式
+
+---
+
+## ■ docker.ioとの違い
+
+|パッケージ|特徴|
+|---|---|
+|docker.io|簡単・安定（Kali標準）|
+|docker-ce|最新・公式|
+
+→ ペンテスト用途なら docker.io でも十分
+
+---
+
+## ■ よくあるトラブル
+
+### 権限エラー
+
+```bash
+permission denied ...
+```
+
+→ dockerグループ追加 or 再ログイン
+
+---
+
+### Dockerが起動しない
+
+```bash
+sudo systemctl restart docker
+sudo systemctl status docker
+```
+
+---
+
+# 結論
+
+- 手順としては「Docker公式 + Kali対応（動的codename）」が最も安全
+    
+- Composeは `docker compose`（v2）を使用
+    
+- 権限設定と動作確認まで行えば実用環境として完成
+    
+
+---
+
+必要なら次は：
+
+- ペンテスト用Docker環境（DVWA / Juice Shop）
+    
+- AutoReconのコンテナ化
+    
+- Burp Suite + ブラウザ分離構成
+    
+
+など、実践向けの構成も設計できます。
