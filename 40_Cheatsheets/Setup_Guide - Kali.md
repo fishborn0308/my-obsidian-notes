@@ -153,7 +153,15 @@ sudo update-alternatives --config x-terminal-emulator
 gclone https://github.com/ryanoasis/nerd-fonts.git ~/Tools/Git/nerd-fonts
 cd ~/Tools/Git/nerd-fonts
 
-./install.sh JetBrainsMono
+# フォントのインストール
+mkdir -p ~/.local/share/fonts
+cd /tmp
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d JetBrainsMono
+cp JetBrainsMono/*.ttf ~/.local/share/fonts/
+fc-cache -fv
+fc-list | grep "JetBrainsMono"
+
 ```
 
 - Windows:[.config/kitty]()
