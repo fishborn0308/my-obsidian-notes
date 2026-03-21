@@ -365,7 +365,7 @@ target() {
   fi
 
   local target_dir="$vault_base/$ip"
-  mkdir -p "$target_dir/assets" "$target_dir/result" "$target_dir/log"
+  mkdir -p "$target_dir/assets" "$target_dir/result/autorecon" "$target_dir/log"
   touch $target_dir/$ip.md
   
   export TARGET_IP="$ip"
