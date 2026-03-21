@@ -418,18 +418,32 @@ vault-grep() {
 }
 
 getlist() {
-  local link_name="wordlist"
+  local link_name="$WORDLISTS/wordlist"
 
   local selected_list
-  selected_list=$(find "$WORDLISTS" "$SECLISTS" -maxdepth 4 -type f 2>/dev/null | fzf \
-    --prompt="Select Wordlist > " \
-    --preview="echo '[ PATH: {} ]'; echo '[ SIZE: ' \$(wc -l < {} 2>/dev/null) ' lines ]'; echo '------------------'; head -n 15 {}")
+  selected_list=$(
+    find "$WORDLISTS" "$SECLISTS" -maxdepth 4 \( -type f -o -type l \) \
+      ! -path "$link_name" 2>/dev/null | fzf \
+      --prompt="Select Wordlist > " \
+      --preview='
+        target=$(readlink -f "{}" 2>/dev/null || echo "{}")
+        echo "[ PATH: {} ]"
+        echo "[ REAL: $target ]"
+        echo "[ SIZE: $(wc -l < "$target" 2>/dev/null) lines ]"
+        echo "------------------"
+        head -n 15 "$target" 2>/dev/null
+      '
+  )
 
   if [ -n "$selected_list" ]; then
-    ln -sfn "$selected_list" "$link_name"
+    local resolved
+    resolved=$(readlink -f "$selected_list" 2>/dev/null || echo "$selected_list")
+
+    ln -sfn "$resolved" "$link_name"
     export ACTIVE_DICT
     ACTIVE_DICT=$(basename "$selected_list")
-    echo "[+] Linked: $selected_list -> $link_name"
+
+    echo "[+] Linked: $resolved -> $link_name"
     echo "[*] Exported: ACTIVE_DICT=$ACTIVE_DICT"
   else
     echo "No list selected."
