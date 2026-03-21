@@ -30,7 +30,7 @@ nmap -p- $TARGET_IP -oA $OUT/nmap_full &
 ### Auto Scan
 
 ```zsh
-autorecon $TARGET_IP
+nohup autorecon "$TARGET_IP" -o "$OUT" > "$OUT/autorecon.log" 2>&1 &
 ```
 
 ### UDP Scan
