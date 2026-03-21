@@ -56,7 +56,7 @@ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.ta
 
 ```zsh
 mkdir -p ~/Vault/Target \
-         ~/Tools/{Git,Python,C#,Powershell,Shell,Bin} \
+         ~/Tools/{Git,Python,Powershell,Shell,Bin} \
          ~/Workbench/{Recon,AD/enumeration,AD/attacks,Web/sqli,Exploit,Wordlists,Verification} \
          ~/Transfer/{RevShell,PrivEsc,PostEx,Pivoting}/{Linux,Windows}
 
