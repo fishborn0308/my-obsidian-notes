@@ -15,7 +15,7 @@
 1. **システム更新:**
 ```zsh
 # パッケージの更新と不要な依存関係の削除、キャッシュの整理を一括で行う
-sudo apt update && sudo apt dist-upgrade -y
+sudo apt update && sudo apt full-upgrade -y
 sudo apt autoremove -y && sudo apt autoclean -y
 ```
 
@@ -149,6 +149,11 @@ sudo apt install kitty -y
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 50
 # 番号のリストが表示されるので、kitty の番号を入力して Enter
 sudo update-alternatives --config x-terminal-emulator
+# fontのインストール
+gclone https://github.com/ryanoasis/nerd-fonts.git ~/Tools/Git/nerd-fonts
+cd ~/Tools/Git/nerd-fonts
+
+./install.sh JetBrainsMono
 ```
 
 - Windows:[.config/kitty]()
@@ -278,7 +283,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 alias ll='ls -alF'
 alias gclone='cd ~/tools/git && git clone'
 alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
-alias maintenance='sudo apt update && sudo apt dist-upgrade -y && gup && pipx upgrade-all'
+alias maintenance='sudo apt update && sudo apt full-upgrade -y && gup && pipx upgrade-all'
 alias pserv='python3 -m http.server 8000'
 alias pserv80='sudo python3 -m http.server 80'
 alias udot='updog -p 80'
