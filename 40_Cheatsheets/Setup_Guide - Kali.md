@@ -350,7 +350,196 @@ source ~/.zshrc
 ```zsh
 cat << 'EOF' >> ~/.zshrc
 # ペースト
+# ----------------------------------------
+# History
+# ----------------------------------------
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
 
+# ----------------------------------------
+# Plugins / Tools
+# ----------------------------------------
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'head -50 {} 2>/dev/null'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
+# ----------------------------------------
+# Aliases
+# ----------------------------------------
+alias ll='ls -alF'
+alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
+alias maintenance='sudo apt update && sudo apt full-upgrade -y && gup && pipx upgrade-all'
+alias pserv='python3 -m http.server 8000'
+alias pserv80='sudo python3 -m http.server 80'
+alias udot='updog -p 80'
+alias icat='kitty +kitten icat'
+alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
+
+# ----------------------------------------
+# Paths
+# ----------------------------------------
+export WORDLISTS="$HOME/Workbench/Wordlists"
+export USERS="$WORDLISTS/Usernames"
+export PASSES="$WORDLISTS/Passwords"
+export CREDS="$WORDLISTS/Credentials"
+export DISCOVERY="$WORDLISTS/Discovery"
+export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
+export SECLISTS="/usr/share/seclists"
+
+alias cdword='cd $WORDLISTS'
+alias cdusers='cd $USERS'
+alias cdpass='cd $PASSES'
+alias cdcreds='cd $CREDS'
+alias cddisc='cd $DISCOVERY'
+alias cdseclists='cd $SECLISTS'
+
+# ----------------------------------------
+# Prompt helpers
+# ----------------------------------------
+refresh_oscp_prompt() {
+  local my_ip
+  my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+  [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
+  CURRENT_MY_IP="${my_ip:-N/A}"
+
+  if [ -n "$TARGET_IP" ]; then
+    if [ -n "$TARGET_NAME" ]; then
+      TARGET_STATUS="%F{red}[T: $TARGET_IP ($TARGET_NAME)]%f"
+    else
+      TARGET_STATUS="%F{red}[T: $TARGET_IP]%f"
+    fi
+  else
+    TARGET_STATUS=""
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd refresh_oscp_prompt
+
+setopt prompt_subst
+PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
+RPROMPT='${TARGET_STATUS}'
+
+# ----------------------------------------
+# Target management
+# ----------------------------------------
+target() {
+  local ip="$1"
+  local name="$2"
+  local vault_base="$HOME/Vault/Target"
+  local current_link="$vault_base/current_assets"
+
+  if [ -z "$ip" ]; then
+    export TARGET_IP=""
+    export TARGET_NAME=""
+    export SCREENSHOT_DIR=""
+    export TARGET_DIR=""
+    export OUT=""
+    export LOG=""
+    export ASSETS=""
+    echo "ターゲット指定を解除しました。"
+    return
+  fi
+
+  local target_dir="$vault_base/$ip"
+  mkdir -p "$target_dir/assets" "$target_dir/result" "$target_dir/log"
+
+  export TARGET_IP="$ip"
+  export TARGET_NAME="$name"
+  export workdir="$target_dir"
+  export TARGET_DIR="$target_dir"
+  export OUT="$target_dir/result"
+  export LOG="$target_dir/log"
+  export ASSETS="$target_dir/assets"
+
+  local tag="# OSCP_TARGET"
+  if [ -n "$name" ]; then
+    sudo sed -i "\| $name$tag|d; \|^$ip |d" /etc/hosts
+    echo "$ip $name $tag" | sudo tee -a /etc/hosts > /dev/null
+  fi
+
+  ln -sfn "$target_dir/assets" "$current_link"
+  export SCREENSHOT_DIR="$current_link"
+
+  if [ -n "$TMUX" ]; then
+    tmux set-environment -g TARGET_IP "$ip"
+    tmux set-environment -g TARGET_NAME "$name"
+    tmux set-environment -g LOG_PATH "$target_dir/log"
+  fi
+
+  cd "$target_dir" || return
+
+  echo "----------------------------------------"
+  echo "Target Set & Moved to $target_dir"
+  echo "IP   : $TARGET_IP"
+  echo "FQDN : ${TARGET_NAME:-N/A}"
+  echo "----------------------------------------"
+}
+
+targetcl() {
+  sudo sed -i '/# OSCP_TARGET/d' /etc/hosts
+  export TARGET_IP=""
+  export TARGET_NAME=""
+  export SCREENSHOT_DIR=""
+  export TARGET_DIR=""
+  export OUT=""
+  export LOG=""
+  export ASSETS=""
+
+  if [ -n "$TMUX" ]; then
+    tmux set-environment -gu TARGET_IP
+    tmux set-environment -gu TARGET_NAME
+    tmux set-environment -gu LOG_PATH
+  fi
+
+  echo "[!] Target cleared."
+}
+
+# ----------------------------------------
+# Search helpers
+# ----------------------------------------
+vault-grep() {
+  grep -r --color=always -E "$1" ~/Vault/Target/
+}
+
+getlist() {
+  local link_name="wordlist"
+
+  local selected_list
+  selected_list=$(find "$WORDLISTS" "$SECLISTS" -maxdepth 4 -type f 2>/dev/null | fzf \
+    --prompt="Select Wordlist > " \
+    --preview="echo '[ PATH: {} ]'; echo '[ SIZE: ' \$(wc -l < {} 2>/dev/null) ' lines ]'; echo '------------------'; head -n 15 {}")
+
+  if [ -n "$selected_list" ]; then
+    ln -sfn "$selected_list" "$link_name"
+    export ACTIVE_DICT
+    ACTIVE_DICT=$(basename "$selected_list")
+    echo "[+] Linked: $selected_list -> $link_name"
+    echo "[*] Exported: ACTIVE_DICT=$ACTIVE_DICT"
+  else
+    echo "No list selected."
+  fi
+}
+
+# ----------------------------------------
+# Ligolo / Chisel
+# ----------------------------------------
+setup_ligolo() {
+  sudo ip tuntap add user $USER mode tun ligolo
+  sudo ip link set ligolo up
+  echo "[+] TUN interface 'ligolo' is UP."
+}
+
+alias chisel_srv='~/Tools/Bin/chisel server -p 8080 --reverse'
+
+# ----------------------------------------
+# Logging helper
+# ----------------------------------------
+alias l2o='~/Tools/Bin/log2obsidian.sh'
 EOF
 ```
 
@@ -376,6 +565,63 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```zsh
 cat << 'EOF' > ~/.tmux.conf
 # ペースト
+# ----------------------------------------
+# Shell
+# ----------------------------------------
+set-option -g default-shell /bin/zsh
+
+# ----------------------------------------
+# Basic
+# ----------------------------------------
+set -g mouse on
+set -g history-limit 50000
+set -g display-time 4000
+set -g status-interval 5
+
+# ----------------------------------------
+# Prefix
+# ----------------------------------------
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# ----------------------------------------
+# Splits
+# ----------------------------------------
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# ----------------------------------------
+# Reload
+# ----------------------------------------
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# ----------------------------------------
+# Logging path refresh
+# ----------------------------------------
+bind L run-shell 'tmux show-environment -g LOG_PATH >/dev/null 2>&1 && tmux display "LOG_PATH is set" || tmux display "LOG_PATH is not set"'
+
+# ----------------------------------------
+# Status bar
+# ----------------------------------------
+set -g status-bg black
+set -g status-fg white
+set -g status-left "#[fg=green]#S "
+set -g status-right "#[fg=yellow]%Y-%m-%d %H:%M:%S"
+
+# ----------------------------------------
+# Plugins
+# ----------------------------------------
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-logging'
+
+# ログ保存先の初期値
+set -g @logging-path "$HOME/Vault/Target/_tmp/log"
+
+# ----------------------------------------
+# TPM
+# ----------------------------------------
+run '~/.tmux/plugins/tpm/tpm'
 EOF
 
 ```
