@@ -42,9 +42,75 @@ xset s off -dpms s noblank
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
 
+GUIでも設定しないと機能しないかも
+
 ---
 
 ## ディレクトリ構造の作成（整理のルール化）
+
+## 全体構成図（操作＋同期）
+
+```mermaid
+flowchart LR
+
+%% ===== Devices =====
+Mac[Mac<br>母艦<br>Git / 編集]
+Windows[Windows VM<br>同期ハブ]
+Kali[Kali Linux<br>実行環境]
+
+%% ===== Operation Flow =====
+Mac -->|RDP| Windows
+Windows -->|VM| Kali
+
+%% ===== Data Layers =====
+subgraph MacSide [Mac]
+  M_work[work]
+  M_obsidian[obsidian Vault + 設定]
+  M_code[vscode / cursor]
+end
+
+subgraph WinSide [Windows]
+  W_work[work]
+  W_obsidian[obsidian Vault + 設定]
+  W_code[cursor]
+end
+
+subgraph KaliSide [Kali]
+  K_vault[Vault（データのみ）]
+  K_obsidian[Obsidian（設定別）]
+  K_code[cursor]
+  K_target[target]
+end
+
+%% ===== Sync =====
+M_work <-->|Syncthing| W_work
+W_work <-->|Syncthing| K_vault
+
+M_obsidian <-->|Syncthing| W_obsidian
+%% KaliはVaultのみ使用（設定は同期しない）
+
+M_code <-->|Syncthing| W_code
+W_code <-->|Syncthing| K_code
+
+W_work <-->|Syncthing| K_target
+```
+
+---
+
+## 設計思想
+
+```mermaid
+flowchart TD
+
+Config[設定] -->|共有| MacWin[Mac / Windows]
+Data[データ] -->|全同期| All[Mac / Windows / Kali]
+Exec[実行] -->|専用| Kali
+
+MacWin --> All
+All --> Exec
+```
+
+---
 
 | カテゴリ   | ディレクトリパス                                                    | 用途                                  |
 | :----- | :---------------------------------------------------------- | :---------------------------------- |
@@ -63,6 +129,14 @@ mkdir -p ~/Vault/Target \
 # 確認用
 ls -R ~/Vault ~/Tools ~/Workbench ~/Transfer
 
+```
+
+Windows側のCursorで管理しているので下記のディレクトリはシンボリックリンク
+
+```zsh
+ln -sfn /home/kali/Vault/Cursor/10_Scripts/shell /home/kali/Tools/Shell
+ln -sfn /home/kali/Vault/Cursor/10_Scripts/python /home/kali/Tools/
+ln -sfn /home/kali/Vault/Cursor/10_Scripts/Powershell /home/kali/Tools/
 ```
 
 ---
@@ -167,41 +241,6 @@ fc-list | grep "JetBrainsMono"
 - Windows:[.config/kitty]()
 - Mac:[.config/kitty](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/kitty.conf)
 
-```zsh
-mkdir -p ~/.config/kitty
-cat << 'EOF' > ~/.config/kitty/kitty.conf
-# ペースト
-shell /bin/zsh
-
-font_family JetBrainsMono Nerd Font
-font_size 11.0
-window_padding_width 5
-
-tab_bar_edge top
-tab_bar_style powerline
-
-foreground #ebdbb2
-background #282828
-selection_foreground #282828
-selection_background #ebdbb2
-
-scrollback_lines 20000
-
-enable_audio_bell no
-visual_bell_duration 0.0
-
-input_delay 3
-repaint_delay 10
-sync_to_monitor yes
-
-copy_on_select yes
-strip_trailing_spaces smart
-
-terminal_select_modifiers alt
-
-EOF
-```
-
 ### shellの拡張機能のインストール
 
 #### **zoxide**
@@ -262,220 +301,7 @@ source ~/.zshrc
 ~/.zshrcに追記
 
 - Windows:[.zshrc]()
-- Mac:[.zshrc](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/.zshrc)
-
-
-```zsh
-cat << 'EOF' >> ~/.zshrc
-# ペースト
-# ----------------------------------------
-# History
-# ----------------------------------------
-setopt HIST_IGNORE_ALL_DUPS
-setopt SHARE_HISTORY
-
-# ----------------------------------------
-# Plugins / Tools
-# ----------------------------------------
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source <(fzf --zsh)
-eval "$(zoxide init zsh)"
-
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'head -50 {} 2>/dev/null'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-
-# ----------------------------------------
-# Aliases
-# ----------------------------------------
-alias ll='ls -alF'
-alias gclone='cd ~/tools/git && git clone'
-alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
-alias maintenance='sudo apt update && sudo apt full-upgrade -y && gup && pipx upgrade-all'
-alias pserv='python3 -m http.server 8000'
-alias pserv80='sudo python3 -m http.server 80'
-alias udot='updog -p 80'
-alias icat='kitty +kitten icat'
-alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
-
-# ----------------------------------------
-# Paths
-# ----------------------------------------
-export WORDLISTS="$HOME/Workbench/Wordlists"
-export USERS="$WORDLISTS/Usernames"
-export PASSES="$WORDLISTS/Passwords"
-export CREDS="$WORDLISTS/Credentials"
-export DISCOVERY="$WORDLISTS/Discovery"
-export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
-export SECLISTS="/usr/share/seclists"
-
-alias cdword='cd $WORDLISTS'
-alias cdusers='cd $USERS'
-alias cdpass='cd $PASSES'
-alias cdcreds='cd $CREDS'
-alias cddisc='cd $DISCOVERY'
-alias cdseclists='cd $SECLISTS'
-
-# ----------------------------------------
-# Prompt helpers
-# ----------------------------------------
-refresh_oscp_prompt() {
-  local my_ip
-  my_ip=$(ip -br -4 a show tun0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-  [ -z "$my_ip" ] && my_ip=$(ip -br -4 a show eth0 2>/dev/null | awk '{print $3}' | cut -d/ -f1)
-  CURRENT_MY_IP="${my_ip:-N/A}"
-
-  if [ -n "$TARGET_IP" ]; then
-    if [ -n "$TARGET_NAME" ]; then
-      TARGET_STATUS="%F{red}[T: $TARGET_IP ($TARGET_NAME)]%f"
-    else
-      TARGET_STATUS="%F{red}[T: $TARGET_IP]%f"
-    fi
-  else
-    TARGET_STATUS=""
-  fi
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd refresh_oscp_prompt
-
-setopt prompt_subst
-PROMPT='%F{cyan}[L: ${CURRENT_MY_IP}]%f %F{blue}%~%f %# '
-RPROMPT='${TARGET_STATUS}'
-
-# ----------------------------------------
-# Target management
-# ----------------------------------------
-target() {
-  local ip="$1"
-  local name="$2"
-  local vault_base="$HOME/Vault/Target"
-  local current_link="$vault_base/current_assets"
-
-  if [ -z "$ip" ]; then
-    export TARGET_IP=""
-    export TARGET_NAME=""
-    export SCREENSHOT_DIR=""
-    export TARGET_DIR=""
-    export OUT=""
-    export LOG=""
-    export ASSETS=""
-    echo "ターゲット指定を解除しました。"
-    return
-  fi
-
-  local target_dir="$vault_base/$ip"
-  mkdir -p "$target_dir/assets" "$target_dir/result/autorecon" "$target_dir/log"
-  touch $target_dir/$ip.md
-  
-  export TARGET_IP="$ip"
-  export TARGET_NAME="$name"
-  export workdir="$target_dir"
-  export TARGET_DIR="$target_dir"
-  export OUT="$target_dir/result"
-  export LOG="$target_dir/log"
-  export ASSETS="$target_dir/assets"
-
-  local tag="# OSCP_TARGET"
-  if [ -n "$name" ]; then
-    sudo sed -i "\| $name$tag|d; \|^$ip |d" /etc/hosts
-    echo "$ip $name $tag" | sudo tee -a /etc/hosts > /dev/null
-  fi
-
-  ln -sfn "$target_dir/assets" "$current_link"
-  export SCREENSHOT_DIR="$current_link"
-
-  if [ -n "$TMUX" ]; then
-    tmux set-environment -g TARGET_IP "$ip"
-    tmux set-environment -g TARGET_NAME "$name"
-    tmux set-environment -g LOG_PATH "$target_dir/log"
-  fi
-
-  cd "$target_dir" || return
-
-  echo "----------------------------------------"
-  echo "Target Set & Moved to $target_dir"
-  echo "IP   : $TARGET_IP"
-  echo "FQDN : ${TARGET_NAME:-N/A}"
-  echo "----------------------------------------"
-}
-
-targetcl() {
-  sudo sed -i '/# OSCP_TARGET/d' /etc/hosts
-  export TARGET_IP=""
-  export TARGET_NAME=""
-  export SCREENSHOT_DIR=""
-  export TARGET_DIR=""
-  export OUT=""
-  export LOG=""
-  export ASSETS=""
-
-  if [ -n "$TMUX" ]; then
-    tmux set-environment -gu TARGET_IP
-    tmux set-environment -gu TARGET_NAME
-    tmux set-environment -gu LOG_PATH
-  fi
-
-  echo "[!] Target cleared."
-}
-
-# ----------------------------------------
-# Search helpers
-# ----------------------------------------
-vault-grep() {
-  grep -r --color=always -E "$1" ~/Vault/Target/
-}
-
-getlist() {
-  local link_name="$WORDLISTS/wordlist"
-
-  local selected_list
-  selected_list=$(
-    find "$WORDLISTS" "$SECLISTS" -maxdepth 4 \( -type f -o -type l \) \
-      ! -path "$link_name" 2>/dev/null | fzf \
-      --prompt="Select Wordlist > " \
-      --preview='
-        target=$(readlink -f "{}" 2>/dev/null || echo "{}")
-        echo "[ PATH: {} ]"
-        echo "[ REAL: $target ]"
-        echo "[ SIZE: $(wc -l < "$target" 2>/dev/null) lines ]"
-        echo "------------------"
-        head -n 15 "$target" 2>/dev/null
-      '
-  )
-
-  if [ -n "$selected_list" ]; then
-    local resolved
-    resolved=$(readlink -f "$selected_list" 2>/dev/null || echo "$selected_list")
-
-    ln -sfn "$resolved" "$link_name"
-    export ACTIVE_DICT
-    ACTIVE_DICT=$(basename "$selected_list")
-
-    echo "[+] Linked: $resolved -> $link_name"
-    echo "[*] Exported: ACTIVE_DICT=$ACTIVE_DICT"
-  else
-    echo "No list selected."
-  fi
-}
-
-# ----------------------------------------
-# Ligolo / Chisel
-# ----------------------------------------
-setup_ligolo() {
-  sudo ip tuntap add user $USER mode tun ligolo
-  sudo ip link set ligolo up
-  echo "[+] TUN interface 'ligolo' is UP."
-}
-
-alias chisel_srv='~/Tools/Bin/chisel server -p 8080 --reverse'
-
-# ----------------------------------------
-# Logging helper
-# ----------------------------------------
-alias l2o='~/Tools/Bin/log2obsidian.sh'
-EOF
-```
+- Mac:[.zshrc](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/zshrc)
 
 ### **tmux**のインストール
 
@@ -494,71 +320,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #### `~/.tmux.conf` の作成
 
 - Windows:[.tmux.conf]()
-- Mac:[.tmux.conf](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/.tmux.conf)
-
-```zsh
-cat << 'EOF' > ~/.tmux.conf
-# ペースト
-# ----------------------------------------
-# Shell
-# ----------------------------------------
-set-option -g default-shell /bin/zsh
-
-# ----------------------------------------
-# Basic
-# ----------------------------------------
-set -g mouse on
-set -g history-limit 50000
-set -g display-time 4000
-set -g status-interval 5
-
-# ----------------------------------------
-# Prefix
-# ----------------------------------------
-set -g prefix C-a
-unbind C-b
-bind C-a send-prefix
-
-# ----------------------------------------
-# Splits
-# ----------------------------------------
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-
-# ----------------------------------------
-# Reload
-# ----------------------------------------
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
-
-# ----------------------------------------
-# Logging path refresh
-# ----------------------------------------
-bind L run-shell 'tmux show-environment -g LOG_PATH >/dev/null 2>&1 && tmux display "LOG_PATH is set" || tmux display "LOG_PATH is not set"'
-
-# ----------------------------------------
-# Status bar
-# ----------------------------------------
-set -g status-bg black
-set -g status-fg white
-set -g status-left "#[fg=green]#S "
-set -g status-right "#[fg=yellow]%Y-%m-%d %H:%M:%S"
-
-# ----------------------------------------
-# Plugins
-# ----------------------------------------
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-logging'
-
-# ログ保存先の初期値
-set -g @logging-path "$HOME/Vault/Target/_tmp/log"
-
-# ----------------------------------------
-# TPM
-# ----------------------------------------
-run '~/.tmux/plugins/tpm/tpm'
-EOF
-
-```
+- Mac:[.tmux.conf](vscode://file/Users/fishborn0308/Documents/work/VSCode/40_Configs/tmux.conf)
 
 #### **拡張機能の反映**
 
@@ -681,14 +443,14 @@ sudo tcpdump -i lo -nn -vv -A 'tcp port 8000 and (tcp[((tcp[12:1] & 0xf0) >> 2):
 - Basic認証用サーバ 
 
 - Windows:[Server_BasicAuth.py]()
-- Mac:[Server_BasicAuth.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Verification/Server_BasicAuth.py)
+- Mac:[Server_BasicAuth.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Server_BasicAuth.py)
 
 
 
 - ログインフォーム 
 
 - Windows:[Server_LoginForm.py]()
-- Mac:[Server_LoginForm.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Verification/Server_LoginForm.py)
+- Mac:[Server_LoginForm.py](vscode://file/Users/fishborn0308/Documents/work/VSCode/10_Scripts/python/Server_LoginForm.py)
 
 
 
@@ -698,10 +460,6 @@ sudo tcpdump -i lo -nn -vv -A 'tcp port 8000 and (tcp[((tcp[12:1] & 0xf0) >> 2):
 sudo apt install zoxide fzf zsh-autosuggestions zsh-syntax-highlighting tmux flameshot kitty
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
-
-
-
-
 
 ## トラブルシューティング
 

@@ -89,7 +89,6 @@ nohup autorecon "$TARGET_IP" -o "$OUT/autorecon" > "$OUT/autorecon/autorecon.log
 
 ### Evidence
 
-![[assets]]
 
 ### Background Jobs
 
