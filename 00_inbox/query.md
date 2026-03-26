@@ -8,3 +8,13 @@ Group them by the following phases:
 
 Do not summarize.
 Return commands only.
+
+
+
+From the sources, list all commands
+
+Group them by the following phases:
+- discovery
+
+Do not summarize.
+Return commands only.
