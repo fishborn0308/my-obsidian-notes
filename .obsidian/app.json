@@ -4,5 +4,6 @@
   "newFileFolderPath": "00_inbox",
   "attachmentFolderPath": "99_Assets/",
   "tabSize": 2,
-  "useTab": false
+  "useTab": false,
+  "alwaysUpdateLinks": true
 }

@@ -1,0 +1,4 @@
+# Nmap 7.98 scan initiated Tue Mar 24 04:45:13 2026 as: /usr/lib/nmap/nmap --privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.13.225/result/nmap_full 10.129.13.225
+Host: 10.129.13.225 ()	Status: Up
+Host: 10.129.13.225 ()	Ports: 21/open/tcp//ftp///, 22/open/tcp//ssh///, 80/open/tcp//http///	Ignored State: closed (65532)
+# Nmap done at Tue Mar 24 05:09:40 2026 -- 1 IP address (1 host up) scanned in 1467.64 seconds

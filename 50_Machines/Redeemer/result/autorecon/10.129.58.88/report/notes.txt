@@ -1,0 +1,4 @@
+[*] redis found on tcp/6379.
+
+
+

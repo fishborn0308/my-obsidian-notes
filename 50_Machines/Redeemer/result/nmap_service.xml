@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Fri Mar 27 03:25:36 2026 as: /usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 6379 -oA /home/kali/Vault/Target/10.129.58.9/result/nmap_service 10.129.58.9 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 6379 -oA /home/kali/Vault/Target/10.129.58.9/result/nmap_service 10.129.58.9" start="1774596336" startstr="Fri Mar 27 03:25:36 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="6379"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1774596337" endtime="1774596344"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.58.9" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="redis" product="Redis key-value store" version="5.0.7" method="probed" conf="10"><cpe>cpe:/a:redislabs:redis:5.0.7</cpe></service></port>
+</ports>
+<times srtt="228672" rttvar="228672" to="1143360"/>
+</host>
+<runstats><finished time="1774596344" timestr="Fri Mar 27 03:25:44 2026" summary="Nmap done at Fri Mar 27 03:25:44 2026; 1 IP address (1 host up) scanned in 7.31 seconds" elapsed="7.31" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

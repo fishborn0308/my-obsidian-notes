@@ -1,0 +1,4 @@
+# Nmap 7.98 scan initiated Tue Mar 24 04:44:49 2026 as: /usr/lib/nmap/nmap --privileged -Pn -n -sC -sV -p 21,22,80 -oA /home/kali/Vault/Target/10.129.13.225/result/nmap_service 10.129.13.225
+Host: 10.129.13.225 ()	Status: Up
+Host: 10.129.13.225 ()	Ports: 21/open/tcp//ftp//vsftpd 3.0.3/, 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//Gunicorn/
+# Nmap done at Tue Mar 24 04:45:13 2026 -- 1 IP address (1 host up) scanned in 23.38 seconds

@@ -157,14 +157,35 @@ nmap -sC -sV -p <ports>
 
 ```text
 target
-targetcl
+targettmux
+targetreset
+infratmux
 scaninit
 ports-init / ports-serv
 next / nextsvc
 fullcheck
+udp-fast
+udp-top
+udp-deep
+getlist
+setup_ligolo
+fshot
+shotdir
+backconf
+restoreconf
 ```
 
 ---
+
+### 補助
+
+```txt
+refresh_oscp_prompt
+vault-grep
+tmuxsync
+tmuxsync_precmd
+extract_ports_gnmap
+```
 
 ### 非自動（意図的）
 
@@ -175,6 +196,62 @@ UDP       → 手動（ケース依存）
 
 ---
 
+## alias
+
+```zsh
+# ---------------------------------------
+# Aliases
+# ----------------------------------------
+alias ll='ls -alF'
+alias gclone='cd ~/tools/git && git clone'
+alias gup='find ~/Tools/Git -maxdepth 2 -name .git -type d -execdir git pull --rebase \;'
+alias maintenance='sudo apt update && sudo apt dist-upgrade -y && gup && pipx upgrade-all'
+alias pserv='python3 -m http.server 8000'
+alias pserv80='sudo python3 -m http.server 80'
+alias udot='updog -p 80'
+alias icat='kitty +kitten icat'
+alias vpnip="ip -br -4 a show tun0 | awk '{print \$3}' | cut -d/ -f1"
+alias opentarget='xdg-open "$TARGET_DIR/$TARGET_IP.md"'
+alias arlog='tail -f $OUT/autorecon/autorecon.log'
+alias udp-open='grep -E "open|open\\|filtered" $OUT/nmap_udp_*.nmap 2>/dev/null'
+alias ar='autorecon "$TARGET_IP" -o "$OUT/autorecon" > "$OUT/autorecon/autorecon.log" 2>&1'
+alias ar_f_nmap='autorecon "$TARGET_IP" -p "$INIT_PORTS" -o "$OUT/autorecon_nmap" > "$OUT/autorecon_nmap/autorecon.log" 2>&1'
+alias ar_f_nmap_full='ports=$(extract_ports_gnmap "$OUT/nmap_full.gnmap"); autorecon "$TARGET_IP" -p "$ports" -o "$OUT/autorecon_full" > "$OUT/autorecon_full/autorecon.log" 2>&1'
+```
+
+## Path
+
+```zsh
+# in the zshrc
+# ----------------------------------------
+# Paths
+# ----------------------------------------
+export WORDLISTS="$HOME/Workbench/Wordlists"
+export USERS="$WORDLISTS/Usernames"
+export PASSES="$WORDLISTS/Passwords"
+export CREDS="$WORDLISTS/Credentials"
+export DISCOVERY="$WORDLISTS/Discovery"
+export ROCKYOU="$WORDLISTS/Passwords/rockyou.txt"
+export SECLISTS="/usr/share/seclists"
+
+alias cdword='cd $WORDLISTS'
+alias cdusers='cd $USERS'
+alias cdpass='cd $PASSES'
+alias cdcreds='cd $CREDS'
+alias cddisc='cd $DISCOVERY'
+alias cdseclists='cd $SECLISTS'
+
+# in the target function
+export TARGET_IP="$ip"
+export TARGET_NAME="$name"
+export TARGET_DIR="$target_dir"
+export workdir="$target_dir"
+export OUT="$target_dir/result"
+export LOG="$target_dir/log"
+export ASSETS="$target_dir/assets"
+export INIT_SCAN_SOURCE=""
+export INIT_PORTS=""
+```
 ## nextsvc の改善ポイント
 
 ```text
@@ -563,6 +640,118 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 **Tmux内で `Prefix (Ctrl+a)` -> `I` (大文字) を押すとインストール**
 
+
+### ターミナルのコンフィグ更新
+
+#### zshrcに更新機能を追加
+
+```zsh
+cat << 'EOF' >> ~/.zshrc
+# -----------------------------
+
+# Buckup Config
+
+# -----------------------------
+
+backconf() {
+
+local base="$HOME/Vault/Cursor/40_Configs"
+
+local ts=$(date +%Y-%m-%d_%H-%M-%S)
+
+local dest="$base/$ts"
+
+  
+
+mkdir -p "$dest"
+
+  
+
+echo "[*] Backing up configs → $dest"
+
+  
+
+cp "$HOME/.zshrc" "$dest/zshrc"
+
+cp "$HOME/.tmux.conf" "$dest/tmux.conf"
+
+cp "$HOME/.config/kitty/kitty.conf" "$dest/kitty.conf"
+
+  
+
+echo "[+] Backup completed"
+
+}
+
+  
+
+# -----------------------------
+
+# Restore Config
+
+# -----------------------------
+
+restoreconf() {
+
+local src="$HOME/Vault/Cursor/40_Configs"
+
+local ts=$(date +%Y-%m-%d_%H-%M-%S)
+
+local backup="$HOME/.config_backup/$ts"
+
+  
+
+mkdir -p "$backup"
+
+  
+
+echo "[*] Backup current configs → $backup"
+
+  
+
+[ -f "$HOME/.zshrc" ] && cp "$HOME/.zshrc" "$backup/zshrc"
+
+[ -f "$HOME/.tmux.conf" ] && cp "$HOME/.tmux.conf" "$backup/tmux.conf"
+
+[ -f "$HOME/.config/kitty/kitty.conf" ] && cp "$HOME/.config/kitty/kitty.conf" "$backup/kitty.conf"
+
+  
+
+echo "[*] Restoring configs from $src"
+
+  
+
+cp "$src/zshrc" "$HOME/.zshrc"
+
+cp "$src/tmux.conf" "$HOME/.tmux.conf"
+
+cp "$src/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+
+  
+
+echo "[+] Restore completed"
+
+echo "[!] Backup saved: $backup"
+
+echo "[!] Run: source ~/.zshrc"
+
+}
+EOF
+```
+
+#### 更新機能の実行
+
+```zsh
+# ｿｰｽの更新
+source ~/.zshrc
+
+# ﾊﾞｯｸｱｯﾌﾟの実施
+backconf
+
+# ｺﾝﾌｨｸﾞの更新 "$HOME/Vault/Cursor/40_Configs"に更新するｺﾝﾌｨｸﾞがあるか確認（zshrc,tmux.conf,kitty.conf）
+restoreconf
+source ~/.zshrc
+```
 ## スクリーンショットのカスタマイズ
 
 ### **flameshot**
@@ -676,15 +865,18 @@ sudo apt install code
 
 ### 拡張機能一覧
 
-| アドオン名 | 用途 | 特徴 |
-| :--- | :--- | :--- |
-| **FoxyProxy Standard** | プロキシ切り替え | Burp Suiteへの通信転送を1クリックでON/OFFできる。 |
-| **Wappalyzer** | 技術スタック特定 | CMS（WordPress等）やOS、Webサーバの種類を瞬時に把握。 |
-| **HackTools** | **オールインワン攻撃ツール** | **最優先で導入すべき。** リバースシェルのコマンド生成、XSS/SQLiペイロード、ハッシュ計算などが開発者ツール内で完結。 |
-| **OWASP PTK** | **高度な解析・スキャン** | Wappalyzerの強化版＋簡易的なBurp機能。R-Attacker（リクエスト再送）やIースト（脆弱性検知）が可能。 |
-| **Cookie Editor** | クッキー編集 | セッションハイジャックやクッキーベースの権限昇格テストに。UIが非常に使いやすい。 |
-| **User-Agent Switcher** | UA偽装 | 「モバイル版のみ脆弱」なケースや、特定のブラウザ制限を回避する際に使用。 |
-| **Container Tabs** | セッション分離 | 管理者と一般ユーザーで同時にログインし、権限昇格（IDOR）を効率よくテストできる。 |
+| アドオン名                                | 用途               | 特徴                                                               |
+| :----------------------------------- | :--------------- | :--------------------------------------------------------------- |
+| **FoxyProxy Standard**               | プロキシ切り替え         | Burp Suiteへの通信転送を1クリックでON/OFFできる。                                |
+| **Wappalyzer**                       | 技術スタック特定         | CMS（WordPress等）やOS、Webサーバの種類を瞬時に把握。                              |
+| **HackTools**                        | **オールインワン攻撃ツール** | **最優先で導入すべき。** リバースシェルのコマンド生成、XSS/SQLiペイロード、ハッシュ計算などが開発者ツール内で完結。 |
+| **OWASP PTK**                        | **高度な解析・スキャン**   | Wappalyzerの強化版＋簡易的なBurp機能。R-Attacker（リクエスト再送）やIースト（脆弱性検知）が可能。    |
+| **Cookie Editor**                    | クッキー編集           | セッションハイジャックやクッキーベースの権限昇格テストに。UIが非常に使いやすい。                        |
+| **User-Agent Switcher**              | UA偽装             | 「モバイル版のみ脆弱」なケースや、特定のブラウザ制限を回避する際に使用。                             |
+| **Firefox Multi-Account Containers** | セッション分離          | 管理者と一般ユーザーで同時にログインし、権限昇格（IDOR）を効率よくテストできる。                       |
+| **Trufflehog**                       | ソースコード検索         | ソースコードの中にうっかり残された機密情報（パスワードやAPIキーなど）を見つけ出す                       |
+| **Shodan**                           | Network情報        | 現在のﾍﾟｰｼﾞのShodan結果を表示                                             |
+| **SingleFile**                       | HTML保存           | SingleFileは、ページ全体（CSS、画像、フォント、フレームなど）を単一のHTMLファイルとして保存する         |
 
 ### 拡張機能を利用したWeb調査の流れ
 

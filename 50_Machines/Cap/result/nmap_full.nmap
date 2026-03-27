@@ -1,0 +1,10 @@
+# Nmap 7.98 scan initiated Tue Mar 24 04:45:13 2026 as: /usr/lib/nmap/nmap --privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.13.225/result/nmap_full 10.129.13.225
+Nmap scan report for 10.129.13.225
+Host is up (0.51s latency).
+Not shown: 65532 closed tcp ports (reset)
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+
+# Nmap done at Tue Mar 24 05:09:40 2026 -- 1 IP address (1 host up) scanned in 1467.64 seconds

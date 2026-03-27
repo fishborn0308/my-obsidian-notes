@@ -1,0 +1,18 @@
+/home/kali/.local/share/pipx/venvs/autorecon/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.2.0)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+[*] Scanning target 10.129.1.14
+[!] [10.129.1.14/top-100-udp-ports] UDP scan requires AutoRecon be run with root privileges.
+[*] [10.129.1.14/all-tcp-ports] Discovered open port tcp/21 on 10.129.1.14
+[*] 02:08:57 - There is 1 scan still running against 10.129.1.14
+[*] 02:09:57 - There is 1 scan still running against 10.129.1.14
+[*] 02:10:57 - There is 1 scan still running against 10.129.1.14
+[*] 02:11:57 - There is 1 scan still running against 10.129.1.14
+[*] 02:12:58 - There is 1 scan still running against 10.129.1.14
+[*] 02:13:58 - There is 1 scan still running against 10.129.1.14
+[*] 02:14:58 - There is 1 scan still running against 10.129.1.14
+[*] 02:15:58 - There is 1 scan still running against 10.129.1.14
+[*] 02:16:58 - There is 1 scan still running against 10.129.1.14
+[*] 02:17:58 - There is 1 scan still running against 10.129.1.14
+[*] Finished scanning target 10.129.1.14 in 10 minutes, 48 seconds
+[*] Finished scanning all targets in 10 minutes, 49 seconds!
+[*] Don't forget to check out more commands to run manually in the _manual_commands.txt file in each target's scans directory!

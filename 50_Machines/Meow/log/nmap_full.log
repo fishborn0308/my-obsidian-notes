@@ -1,0 +1,9 @@
+nohup: ignoring input
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-24 00:40 -0400
+Nmap scan report for 10.129.1.17
+Host is up (0.38s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE
+23/tcp open  telnet
+
+Nmap done: 1 IP address (1 host up) scanned in 1381.60 seconds

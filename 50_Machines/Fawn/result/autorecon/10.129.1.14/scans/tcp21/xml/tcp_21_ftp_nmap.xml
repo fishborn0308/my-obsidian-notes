@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Fri Mar 27 02:08:09 2026 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 21 &quot;-&#45;script=banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/tcp_21_ftp_nmap.txt -oX /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/xml/tcp_21_ftp_nmap.xml 10.129.1.14 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 21 &quot;-&#45;script=banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/tcp_21_ftp_nmap.txt -oX /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/xml/tcp_21_ftp_nmap.xml 10.129.1.14" start="1774591689" startstr="Fri Mar 27 02:08:09 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="21"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1774591689"/>
+<taskend task="NSE" time="1774591689"/>
+<taskbegin task="NSE" time="1774591689"/>
+<taskend task="NSE" time="1774591689"/>
+<taskbegin task="NSE" time="1774591689"/>
+<taskend task="NSE" time="1774591689"/>
+<taskbegin task="SYN Stealth Scan" time="1774591689"/>
+<taskend task="SYN Stealth Scan" time="1774591689" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1774591689"/>
+<taskend task="Service scan" time="1774591690" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1774591690"/>
+<taskend task="NSE" time="1774591691"/>
+<taskbegin task="NSE" time="1774591691"/>
+<taskend task="NSE" time="1774591694"/>
+<taskbegin task="NSE" time="1774591694"/>
+<taskend task="NSE" time="1774591694"/>
+<host starttime="1774591689" endtime="1774591694"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.1.14" addrtype="ipv4"/>
+<hostnames>
+<hostname name="Fawn" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;-rw-r-&#45;r-&#45;    1 0        0              32 Jun 04  2021 flag.txt"/><script id="banner" output="220 (vsFTPd 3.0.3)"/></port>
+</ports>
+<times srtt="228971" rttvar="228971" to="1144855"/>
+</host>
+<taskbegin task="NSE" time="1774591694"/>
+<taskend task="NSE" time="1774591694"/>
+<taskbegin task="NSE" time="1774591694"/>
+<taskend task="NSE" time="1774591694"/>
+<taskbegin task="NSE" time="1774591694"/>
+<taskend task="NSE" time="1774591694"/>
+<runstats><finished time="1774591694" timestr="Fri Mar 27 02:08:14 2026" summary="Nmap done at Fri Mar 27 02:08:14 2026; 1 IP address (1 host up) scanned in 5.59 seconds" elapsed="5.59" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

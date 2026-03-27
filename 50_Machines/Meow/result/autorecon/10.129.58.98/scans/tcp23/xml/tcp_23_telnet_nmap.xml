@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Fri Mar 27 06:37:49 2026 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 23 -&#45;script=banner,telnet-encryption,telnet-ntlm-info -oN /home/kali/Vault/Target/10.129.58.98/result/autorecon/10.129.58.98/scans/tcp23/tcp_23_telnet-nmap.txt -oX /home/kali/Vault/Target/10.129.58.98/result/autorecon/10.129.58.98/scans/tcp23/xml/tcp_23_telnet_nmap.xml 10.129.58.98 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 23 -&#45;script=banner,telnet-encryption,telnet-ntlm-info -oN /home/kali/Vault/Target/10.129.58.98/result/autorecon/10.129.58.98/scans/tcp23/tcp_23_telnet-nmap.txt -oX /home/kali/Vault/Target/10.129.58.98/result/autorecon/10.129.58.98/scans/tcp23/xml/tcp_23_telnet_nmap.xml 10.129.58.98" start="1774607869" startstr="Fri Mar 27 06:37:49 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="23"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1774607869"/>
+<taskend task="NSE" time="1774607869"/>
+<taskbegin task="NSE" time="1774607869"/>
+<taskend task="NSE" time="1774607869"/>
+<taskbegin task="SYN Stealth Scan" time="1774607869"/>
+<taskend task="SYN Stealth Scan" time="1774607870" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1774607870"/>
+<taskend task="Service scan" time="1774607881" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1774607881"/>
+<taskend task="NSE" time="1774607896"/>
+<taskbegin task="NSE" time="1774607896"/>
+<taskend task="NSE" time="1774607896"/>
+<host starttime="1774607869" endtime="1774607896"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.58.98" addrtype="ipv4"/>
+<hostnames>
+<hostname name="Meow" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="telnet" product="Linux telnetd" ostype="Linux" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+</ports>
+<times srtt="436407" rttvar="436407" to="1250000"/>
+</host>
+<taskbegin task="NSE" time="1774607896"/>
+<taskend task="NSE" time="1774607896"/>
+<taskbegin task="NSE" time="1774607896"/>
+<taskend task="NSE" time="1774607896"/>
+<runstats><finished time="1774607896" timestr="Fri Mar 27 06:38:16 2026" summary="Nmap done at Fri Mar 27 06:38:16 2026; 1 IP address (1 host up) scanned in 26.90 seconds" elapsed="26.90" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

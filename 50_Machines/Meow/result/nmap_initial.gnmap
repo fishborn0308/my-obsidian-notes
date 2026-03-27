@@ -1,0 +1,5 @@
+# Nmap 7.98 scan initiated Tue Mar 24 00:39:42 2026 as: /usr/lib/nmap/nmap --privileged -vvv -p 23 -4 -Pn -n -oA /home/kali/Vault/Target/10.129.1.17/result/nmap_initial 10.129.1.17
+# Ports scanned: TCP(1;23) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 10.129.1.17 ()	Status: Up
+Host: 10.129.1.17 ()	Ports: 23/open/tcp//telnet///
+# Nmap done at Tue Mar 24 00:39:42 2026 -- 1 IP address (1 host up) scanned in 0.25 seconds

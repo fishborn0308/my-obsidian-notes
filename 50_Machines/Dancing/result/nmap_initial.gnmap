@@ -1,0 +1,5 @@
+# Nmap 7.98 scan initiated Fri Mar 27 02:44:20 2026 as: /usr/lib/nmap/nmap --privileged -vvv -p 135,139,445,5985,47001,49665,49664,49666,49667,49668,49669 -4 -Pn -n -oA /home/kali/Vault/Target/10.129.57.247/result/nmap_initial 10.129.57.247
+# Ports scanned: TCP(11;135,139,445,5985,47001,49664-49669) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 10.129.57.247 ()	Status: Up
+Host: 10.129.57.247 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 5985/open/tcp//wsman///, 47001/open/tcp//winrm///, 49664/open/tcp/////, 49665/open/tcp/////, 49666/open/tcp/////, 49667/open/tcp/////, 49668/open/tcp/////, 49669/open/tcp/////
+# Nmap done at Fri Mar 27 02:44:20 2026 -- 1 IP address (1 host up) scanned in 0.75 seconds

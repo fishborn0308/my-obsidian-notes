@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Tue Mar 24 00:39:42 2026 as: /usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 23 -oA /home/kali/Vault/Target/10.129.1.17/result/nmap_service 10.129.1.17 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 23 -oA /home/kali/Vault/Target/10.129.1.17/result/nmap_service 10.129.1.17" start="1774327182" startstr="Tue Mar 24 00:39:42 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="23"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1774327182" endtime="1774327204"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.1.17" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="telnet" product="Linux telnetd" ostype="Linux" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+</ports>
+<times srtt="217179" rttvar="217179" to="1085895"/>
+</host>
+<runstats><finished time="1774327204" timestr="Tue Mar 24 00:40:04 2026" summary="Nmap done at Tue Mar 24 00:40:04 2026; 1 IP address (1 host up) scanned in 21.64 seconds" elapsed="21.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Fri Mar 27 06:18:19 2026 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Vault/Target/10.129.58.88/result/autorecon/10.129.58.88/scans/_full_tcp_nmap.txt -oX /home/kali/Vault/Target/10.129.58.88/result/autorecon/10.129.58.88/scans/xml/_full_tcp_nmap.xml 10.129.58.88 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Vault/Target/10.129.58.88/result/autorecon/10.129.58.88/scans/_full_tcp_nmap.txt -oX /home/kali/Vault/Target/10.129.58.88/result/autorecon/10.129.58.88/scans/xml/_full_tcp_nmap.xml 10.129.58.88" start="1774606699" startstr="Fri Mar 27 06:18:19 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1774606699"/>
+<taskend task="NSE" time="1774606699"/>
+<taskbegin task="NSE" time="1774606699"/>
+<taskend task="NSE" time="1774606699"/>
+<taskbegin task="NSE" time="1774606699"/>
+<taskend task="NSE" time="1774606699"/>
+<taskbegin task="SYN Stealth Scan" time="1774606699"/>
+<taskprogress task="SYN Stealth Scan" time="1774606730" percent="6.17" remaining="472" etc="1774607202"/>
+<taskprogress task="SYN Stealth Scan" time="1774606760" percent="6.95" remaining="817" etc="1774607577"/>
+<taskprogress task="SYN Stealth Scan" time="1774606790" percent="7.75" remaining="1083" etc="1774607873"/>
+<taskprogress task="SYN Stealth Scan" time="1774606820" percent="8.50" remaining="1303" etc="1774608122"/>
+<taskprogress task="SYN Stealth Scan" time="1774606856" percent="11.46" remaining="1213" etc="1774608069"/>
+<taskprogress task="SYN Stealth Scan" time="1774606886" percent="15.80" remaining="997" etc="1774607883"/>
+<taskprogress task="SYN Stealth Scan" time="1774606916" percent="20.06" remaining="865" etc="1774607781"/>
+<taskprogress task="SYN Stealth Scan" time="1774606949" percent="23.64" remaining="808" etc="1774607757"/>
+<taskprogress task="SYN Stealth Scan" time="1774606979" percent="27.52" remaining="738" etc="1774607716"/>
+<taskprogress task="SYN Stealth Scan" time="1774607009" percent="31.18" remaining="685" etc="1774607693"/>
+<taskprogress task="SYN Stealth Scan" time="1774607039" percent="35.39" remaining="621" etc="1774607660"/>
+<taskprogress task="SYN Stealth Scan" time="1774607072" percent="39.55" remaining="571" etc="1774607642"/>
+<taskprogress task="SYN Stealth Scan" time="1774607105" percent="43.72" remaining="523" etc="1774607628"/>
+<taskprogress task="SYN Stealth Scan" time="1774607150" percent="48.67" remaining="476" etc="1774607626"/>
+<taskprogress task="SYN Stealth Scan" time="1774607180" percent="52.90" remaining="429" etc="1774607608"/>
+<taskprogress task="SYN Stealth Scan" time="1774607213" percent="57.48" remaining="381" etc="1774607593"/>
+<taskprogress task="SYN Stealth Scan" time="1774607252" percent="62.32" remaining="335" etc="1774607586"/>
+<taskprogress task="SYN Stealth Scan" time="1774607294" percent="67.30" remaining="290" etc="1774607583"/>
+<taskprogress task="SYN Stealth Scan" time="1774607345" percent="72.55" remaining="245" etc="1774607589"/>
+<taskprogress task="SYN Stealth Scan" time="1774607384" percent="77.49" remaining="200" etc="1774607583"/>
+<taskprogress task="SYN Stealth Scan" time="1774607432" percent="82.89" remaining="152" etc="1774607583"/>
+<taskprogress task="SYN Stealth Scan" time="1774607468" percent="87.94" remaining="106" etc="1774607573"/>
+<taskprogress task="SYN Stealth Scan" time="1774607507" percent="93.05" remaining="61" etc="1774607567"/>
+<taskend task="SYN Stealth Scan" time="1774607586" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1774607586"/>
+<taskend task="Service scan" time="1774607592" extrainfo="1 service on 1 host"/>
+<taskbegin task="Traceroute" time="1774607596"/>
+<taskend task="Traceroute" time="1774607596"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1774607596"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1774607597"/>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<host starttime="1774606699" endtime="1774607597"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.58.88" addrtype="ipv4"/>
+<hostnames>
+<hostname name="Redeemer" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-6378,6380-65535"/>
+</extraports>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="redis" product="Redis key-value store" version="5.0.7" method="probed" conf="10"><cpe>cpe:/a:redislabs:redis:5.0.7</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="6379"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="37546"/>
+<osmatch name="Linux 4.15 - 5.19" accuracy="100" line="70534">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.98%E=4%D=3/27%OT=6379%CT=1%CU=37546%PV=Y%DS=2%DC=T%G=Y%TM=69C65&#xa;OS:CED%P=x86_64-pc-linux-gnu)SEQ(SP=108%GCD=1%ISR=10A%TI=Z%CI=Z%II=I%TS=A)O&#xa;OS:PS(O1=M542ST11NW7%O2=M542ST11NW7%O3=M542NNT11NW7%O4=M542ST11NW7%O5=M542S&#xa;OS:T11NW7%O6=M542ST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)E&#xa;OS:CN(R=Y%DF=Y%T=40%W=FAF0%O=M542NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F&#xa;OS:=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5&#xa;OS:(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z&#xa;OS:%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=&#xa;OS:N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%&#xa;OS:CD=S)&#xa;"/>
+</os>
+<uptime seconds="283929" lastboot="Mon Mar 23 23:41:08 2026"/>
+<distance value="2"/>
+<tcpsequence index="264" difficulty="Good luck!" values="7B3D2052,860BB077,49D891AD,E9FB5B95,64378082,717645F8"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="10EC5909,10EC5931,10EC59AE,10EC59FF,10EC5A8B,10EC5B2F"/>
+<trace port="443" proto="tcp">
+<hop ttl="1" ipaddr="10.10.16.1" rtt="377.43"/>
+<hop ttl="2" ipaddr="10.129.58.88" rtt="166.79" host="Redeemer"/>
+</trace>
+<times srtt="302308" rttvar="90506" to="664332"/>
+</host>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<taskbegin task="NSE" time="1774607597"/>
+<taskend task="NSE" time="1774607597"/>
+<runstats><finished time="1774607597" timestr="Fri Mar 27 06:33:17 2026" summary="Nmap done at Fri Mar 27 06:33:17 2026; 1 IP address (1 host up) scanned in 898.82 seconds" elapsed="898.82" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

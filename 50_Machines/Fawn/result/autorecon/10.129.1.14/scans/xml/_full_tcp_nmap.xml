@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Fri Mar 27 02:07:57 2026 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/_full_tcp_nmap.txt -oX /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/xml/_full_tcp_nmap.xml 10.129.1.14 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/_full_tcp_nmap.txt -oX /home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/xml/_full_tcp_nmap.xml 10.129.1.14" start="1774591677" startstr="Fri Mar 27 02:07:57 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1774591678"/>
+<taskend task="NSE" time="1774591678"/>
+<taskbegin task="NSE" time="1774591678"/>
+<taskend task="NSE" time="1774591678"/>
+<taskbegin task="NSE" time="1774591678"/>
+<taskend task="NSE" time="1774591678"/>
+<taskbegin task="SYN Stealth Scan" time="1774591678"/>
+<taskprogress task="SYN Stealth Scan" time="1774591709" percent="20.36" remaining="122" etc="1774591830"/>
+<taskprogress task="SYN Stealth Scan" time="1774591739" percent="23.92" remaining="195" etc="1774591933"/>
+<taskprogress task="SYN Stealth Scan" time="1774591769" percent="27.33" remaining="242" etc="1774592011"/>
+<taskprogress task="SYN Stealth Scan" time="1774591799" percent="30.87" remaining="272" etc="1774592070"/>
+<taskprogress task="SYN Stealth Scan" time="1774591847" percent="36.52" remaining="294" etc="1774592141"/>
+<taskprogress task="SYN Stealth Scan" time="1774592015" percent="55.49" remaining="271" etc="1774592285"/>
+<taskprogress task="SYN Stealth Scan" time="1774592072" percent="62.36" remaining="238" etc="1774592310"/>
+<taskprogress task="SYN Stealth Scan" time="1774592126" percent="68.61" remaining="205" etc="1774592331"/>
+<taskprogress task="SYN Stealth Scan" time="1774592174" percent="74.44" remaining="171" etc="1774592344"/>
+<taskprogress task="SYN Stealth Scan" time="1774592219" percent="80.83" remaining="129" etc="1774592347"/>
+<taskprogress task="SYN Stealth Scan" time="1774592249" percent="87.98" remaining="79" etc="1774592327"/>
+<taskend task="SYN Stealth Scan" time="1774592312" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1774592312"/>
+<taskend task="Service scan" time="1774592312" extrainfo="1 service on 1 host"/>
+<taskbegin task="Traceroute" time="1774592316"/>
+<taskend task="Traceroute" time="1774592316"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1774592316"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1774592317"/>
+<taskbegin task="NSE" time="1774592317"/>
+<taskend task="NSE" time="1774592320"/>
+<taskbegin task="NSE" time="1774592320"/>
+<taskend task="NSE" time="1774592325"/>
+<taskbegin task="NSE" time="1774592325"/>
+<taskend task="NSE" time="1774592325"/>
+<host starttime="1774591678" endtime="1774592325"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.1.14" addrtype="ipv4"/>
+<hostnames>
+<hostname name="Fawn" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-20,22-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;-rw-r-&#45;r-&#45;    1 0        0              32 Jun 04  2021 flag.txt"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="21"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="30544"/>
+<osmatch name="Linux 4.15 - 5.19" accuracy="100" line="70534">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.98%E=4%D=3/27%OT=21%CT=1%CU=30544%PV=Y%DS=2%DC=T%G=Y%TM=69C6214&#xa;OS:5%P=x86_64-pc-linux-gnu)SEQ(SP=FD%GCD=1%ISR=108%TI=Z%CI=Z%II=I%TS=A)OPS(&#xa;OS:O1=M542ST11NW7%O2=M542ST11NW7%O3=M542NNT11NW7%O4=M542ST11NW7%O5=M542ST11&#xa;OS:NW7%O6=M542ST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN(&#xa;OS:R=Y%DF=Y%T=40%W=FAF0%O=M542NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS&#xa;OS:%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=&#xa;OS:Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=&#xa;OS:R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T&#xa;OS:=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=&#xa;OS:S)&#xa;"/>
+</os>
+<uptime seconds="661189" lastboot="Thu Mar 19 10:38:56 2026"/>
+<distance value="2"/>
+<tcpsequence index="253" difficulty="Good luck!" values="EB7942D7,3821B33B,744635B3,443A3FB4,1FC4CED7,3AFDCF25"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="2768BF72,2768BF73,2768C018,2768C0E6,2768C0E6,2768C18C"/>
+<trace port="23" proto="tcp">
+<hop ttl="1" ipaddr="10.10.16.1" rtt="374.49"/>
+<hop ttl="2" ipaddr="10.129.1.14" rtt="166.89" host="Fawn"/>
+</trace>
+<times srtt="335358" rttvar="107632" to="765886"/>
+</host>
+<taskbegin task="NSE" time="1774592325"/>
+<taskend task="NSE" time="1774592325"/>
+<taskbegin task="NSE" time="1774592325"/>
+<taskend task="NSE" time="1774592325"/>
+<taskbegin task="NSE" time="1774592325"/>
+<taskend task="NSE" time="1774592325"/>
+<runstats><finished time="1774592325" timestr="Fri Mar 27 02:18:45 2026" summary="Nmap done at Fri Mar 27 02:18:45 2026; 1 IP address (1 host up) scanned in 648.03 seconds" elapsed="648.03" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
