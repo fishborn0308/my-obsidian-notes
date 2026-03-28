@@ -1,0 +1,22 @@
+# Nmap 7.98 scan initiated Fri Mar 27 07:18:21 2026 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 139 "--script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Vault/Target/10.129.58.117/result/autorecon/10.129.58.117/scans/tcp139/tcp_139_smb_nmap.txt -oX /home/kali/Vault/Target/10.129.58.117/result/autorecon/10.129.58.117/scans/tcp139/xml/tcp_139_smb_nmap.xml 10.129.58.117
+Nmap scan report for Dancing (10.129.58.117)
+Host is up, received user-set (0.30s latency).
+Scanned at 2026-03-27 07:18:22 EDT for 58s
+
+PORT    STATE SERVICE     REASON          VERSION
+139/tcp open  netbios-ssn syn-ack ttl 127 Microsoft Windows netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb2-capabilities: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb-protocols: No dialects accepted. Something may be blocking the responses
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+|_smb-mbenum: ERROR: Script execution failed (use -d to debug)
+|_smb-print-text: false
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb-vuln-ms10-061: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Mar 27 07:19:20 2026 -- 1 IP address (1 host up) scanned in 58.20 seconds

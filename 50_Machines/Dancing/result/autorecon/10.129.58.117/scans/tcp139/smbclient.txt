@@ -1,0 +1,3 @@
+smb2cli_req_compound_submit: Insufficient credits. 0 available, 1 needed
+session setup failed: NT_STATUS_INTERNAL_ERROR
+
