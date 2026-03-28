@@ -1,4 +1,0 @@
-[*] ftp found on tcp/21.
-
-
-

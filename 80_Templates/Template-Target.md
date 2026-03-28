@@ -51,7 +51,7 @@ nohup autorecon "$TARGET_IP" -o "$OUT/autorecon" > "$OUT/autorecon/autorecon.log
 > * autorecon は初動列挙開始後に必要なら追加する
 > * `nmap -p-` と autorecon を同時に重ねすぎると重くなるので注意する
 
-### Scan Status
+## Scan Status
 
 * [ ] initial scan
 * [ ] service scan
@@ -59,49 +59,78 @@ nohup autorecon "$TARGET_IP" -o "$OUT/autorecon" > "$OUT/autorecon/autorecon.log
 * [ ] autorecon
 * [ ] udp scan
 
-### Open Ports
+---
 
-#### Initial
+## Open Ports
+
+### Initial (AUTO)
 ```text
-<貼り付け>
-````
+<auto:init>
+</auto:init>
+```
 
-#### Service Scan
+### Service (AUTO)
+```text
+<auto:service>
+</auto:service>
+```
 
+### Full Delta (AUTO)
+```text
+<auto:full>
+</auto:full>
+```
+
+### UDP(Manual)
 ```text
 <貼り付け>
 ```
 
-#### Full Scan Delta
-
+### AutoRecon(Manual)
 ```text
-<後から追記>
+<差異のみ記入>
 ```
+---
+
+## Services (AUTO)
+
+<!-- auto_services_start --> <!-- auto_services_end -->
 
 ---
 
-### Notes
+## Notes
 
 * どのポートから攻めるか
 * 気になるポイント
 
 ---
 
-### Evidence
+## Evidence
 
 
-### Background Jobs
+## Background Jobs
 
-* full scan:
-* autorecon:
+* [ ] full scan:
+* [ ] autorecon:
 
-### Troubleshooting Notes
+## Troubleshooting Notes
 
 * Rustscan failed:
 * fallback used:
 * filtered / timeout:
 * retry notes:
 
-### Next Actions
+## Next Actions
 
-*
+### Auto
+
+```text
+<auto_actions>
+</auto_actions>
+```
+
+### Manual
+
+```text
+<manual>
+```

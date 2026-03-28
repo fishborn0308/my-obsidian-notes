@@ -1,10 +1,10 @@
-# Nmap 7.98 scan initiated Tue Mar 24 00:39:42 2026 as: /usr/lib/nmap/nmap --privileged -vvv -p 23 -4 -Pn -n -oA /home/kali/Vault/Target/10.129.1.17/result/nmap_initial 10.129.1.17
-Nmap scan report for 10.129.1.17
-Host is up, received user-set (0.17s latency).
-Scanned at 2026-03-24 00:39:42 EDT for 0s
+# Nmap 7.98 scan initiated Sat Mar 28 07:45:46 2026 as: /usr/lib/nmap/nmap --privileged -vvv -p 23 -4 -Pn -n -oA /home/kali/Vault/Target/10.129.61.6/result/nmap_initial 10.129.61.6
+Nmap scan report for 10.129.61.6
+Host is up, received user-set (0.37s latency).
+Scanned at 2026-03-28 07:45:46 EDT for 1s
 
 PORT   STATE SERVICE REASON
 23/tcp open  telnet  syn-ack ttl 63
 
 Read data files from: /usr/share/nmap
-# Nmap done at Tue Mar 24 00:39:42 2026 -- 1 IP address (1 host up) scanned in 0.25 seconds
+# Nmap done at Sat Mar 28 07:45:47 2026 -- 1 IP address (1 host up) scanned in 0.46 seconds

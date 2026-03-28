@@ -1,23 +1,23 @@
 /home/kali/.local/share/pipx/venvs/autorecon/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.2.0)/charset_normalizer (3.4.6) doesn't match a supported version!
   warnings.warn(
-[*] Scanning target 10.129.58.88
-[!] [10.129.58.88/top-100-udp-ports] UDP scan requires AutoRecon be run with root privileges.
-[*] 06:19:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:20:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:21:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:22:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:23:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:24:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:25:19 - There is 1 scan still running against 10.129.58.88
-[*] [10.129.58.88/all-tcp-ports] Discovered open port tcp/6379 on 10.129.58.88
-[*] 06:26:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:27:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:28:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:29:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:30:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:31:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:32:19 - There is 1 scan still running against 10.129.58.88
-[*] 06:33:19 - There are 2 scans still running against 10.129.58.88
-[*] Finished scanning target 10.129.58.88 in 15 minutes, 22 seconds
-[*] Finished scanning all targets in 15 minutes, 23 seconds!
+[*] Scanning target 10.129.136.187
+[!] [10.129.136.187/top-100-udp-ports] UDP scan requires AutoRecon be run with root privileges.
+[*] 08:52:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:53:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:54:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:55:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:56:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:57:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:58:38 - There is 1 scan still running against 10.129.136.187
+[*] 08:59:38 - There is 1 scan still running against 10.129.136.187
+[*] [10.129.136.187/all-tcp-ports] Discovered open port tcp/6379 on 10.129.136.187
+[*] 09:00:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:01:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:02:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:03:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:04:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:05:38 - There is 1 scan still running against 10.129.136.187
+[*] 09:06:38 - There is 1 scan still running against 10.129.136.187
+[*] Finished scanning target 10.129.136.187 in 15 minutes, 35 seconds
+[*] Finished scanning all targets in 15 minutes, 36 seconds!
 [*] Don't forget to check out more commands to run manually in the _manual_commands.txt file in each target's scans directory!

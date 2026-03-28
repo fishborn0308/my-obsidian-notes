@@ -1,10 +1,10 @@
-# Nmap 7.98 scan initiated Tue Mar 24 00:39:42 2026 as: /usr/lib/nmap/nmap --privileged -Pn -n -sC -sV -p 23 -oA /home/kali/Vault/Target/10.129.1.17/result/nmap_service 10.129.1.17
-Nmap scan report for 10.129.1.17
-Host is up (0.22s latency).
+# Nmap 7.98 scan initiated Sat Mar 28 07:45:47 2026 as: /usr/lib/nmap/nmap --privileged -Pn -n -sC -sV -p 23 -oA /home/kali/Vault/Target/10.129.61.6/result/nmap_service 10.129.61.6
+Nmap scan report for 10.129.61.6
+Host is up (0.41s latency).
 
 PORT   STATE SERVICE VERSION
 23/tcp open  telnet  Linux telnetd
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Tue Mar 24 00:40:04 2026 -- 1 IP address (1 host up) scanned in 21.64 seconds
+# Nmap done at Sat Mar 28 07:46:09 2026 -- 1 IP address (1 host up) scanned in 22.24 seconds

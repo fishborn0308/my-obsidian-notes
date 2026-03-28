@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE nmaprun>
-<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.98 scan initiated Fri Mar 27 02:45:32 2026 as: /usr/lib/nmap/nmap -&#45;privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.57.247/result/nmap_full 10.129.57.247 -->
-<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.57.247/result/nmap_full 10.129.57.247" start="1774593932" startstr="Fri Mar 27 02:45:32 2026" version="7.98" xmloutputversion="1.05">
-<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
