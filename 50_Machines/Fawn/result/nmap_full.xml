@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Sat Mar 28 18:36:11 2026 as: /usr/lib/nmap/nmap -&#45;privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.62.25/result/nmap_full 10.129.62.25 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -Pn -n -p- -oA /home/kali/Vault/Target/10.129.62.25/result/nmap_full 10.129.62.25" start="1774737371" startstr="Sat Mar 28 18:36:11 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1774737371" endtime="1774738562"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.62.25" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-20,22-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/></port>
+</ports>
+<times srtt="306248" rttvar="64553" to="564460"/>
+</host>
+<runstats><finished time="1774738562" timestr="Sat Mar 28 18:56:02 2026" summary="Nmap done at Sat Mar 28 18:56:02 2026; 1 IP address (1 host up) scanned in 1190.48 seconds" elapsed="1190.48" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

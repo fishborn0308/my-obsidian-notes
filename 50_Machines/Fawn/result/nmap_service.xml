@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Sat Mar 28 18:36:00 2026 as: /usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 21 -oA /home/kali/Vault/Target/10.129.62.25/result/nmap_service 10.129.62.25 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -Pn -n -sC -sV -p 21 -oA /home/kali/Vault/Target/10.129.62.25/result/nmap_service 10.129.62.25" start="1774737360" startstr="Sat Mar 28 18:36:00 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="21"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1774737360" endtime="1774737371"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.62.25" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.10.16.40&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;-rw-r-&#45;r-&#45;    1 0        0              32 Jun 04  2021 flag.txt"/></port>
+</ports>
+<times srtt="166680" rttvar="166680" to="833400"/>
+</host>
+<runstats><finished time="1774737371" timestr="Sat Mar 28 18:36:11 2026" summary="Nmap done at Sat Mar 28 18:36:11 2026; 1 IP address (1 host up) scanned in 11.25 seconds" elapsed="11.25" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
