@@ -170,7 +170,24 @@ find $SECLISTS -name "*wordpress*"
 ```
 
 ---
+## ■ 脆弱性検索
 
+```zsh
+# データベースの更新
+searchsploit -u
+# 特定のIDのパスを表示
+searchsploit -p <ID>
+# そのまま中身を読む (lessで開く)
+searchsploit -x <ID>
+# カレントディレクトリにコピー
+searchsploit -m <ID>
+# タイトル（Title）のみ検索
+searchsploit -t <keyword>
+# オンラインのURLを表示
+searchsploit -w <keyword>
+```
+
+---
 ## ■ ファイル転送
 
 ### 送信（HTTP）
